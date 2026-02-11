@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { GeneratedSlidesViewer } from './generated/GeneratedSlidesViewer';
 import slideData from './data/slides.json';
+import { exportToPptx } from './utils/pptxExport';
 
 function App() {
   const [scale, setScale] = useState(0.6);
@@ -34,6 +35,24 @@ function App() {
             onChange={(e) => setScale(parseFloat(e.target.value))} 
           />
         </div>
+        <button 
+          onClick={() => {
+            console.log('Download button clicked');
+            exportToPptx(slideData);
+          }}
+          style={{
+            backgroundColor: '#E6007F',
+            color: 'white',
+            border: 'none',
+            padding: '8px 16px',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontWeight: 'bold',
+            marginLeft: 'auto'
+          }}
+        >
+          Download PPTX
+        </button>
       </div>
       <div style={{ 
         paddingTop: '80px', 
