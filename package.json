@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "capture-slides": "node scripts/capture_slides.js"
   },
   "dependencies": {
     "pptxgenjs": "^4.0.1",
