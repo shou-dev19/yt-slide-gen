@@ -358,6 +358,15 @@
             display: block;
             width: 0;
         }
+
+        .balloon.left:after {
+            bottom: auto;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 20px 20px 20px 0;
+            border-color: transparent var(--text-dark) transparent transparent;
+        }
     </style>
 </head>
 
@@ -493,8 +502,8 @@
         <div class="flex-row">
             <img src="./images/irasutoya/pose_anshin_woman.png" style="height: 500px; object-fit: contain;"
                 alt="安心するモモコ">
-            <div class="balloon">
-                対面サポート<br><span class="accent">最高〜！</span>
+            <div class="balloon left">
+                対面サポート<br><span class="accent">安心だ～</span>
             </div>
         </div>
     </div>
