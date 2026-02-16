@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 const PUBLIC_DIR = path.join(PROJECT_ROOT, 'public');
 const OUT_DIR = path.join(PROJECT_ROOT, 'out');
-const SLIDE_HTML_PATH = path.join(PUBLIC_DIR, 'スライド.html');
+const SLIDE_HTML_PATH = path.join(PUBLIC_DIR, 'スライド_ショート.html');
 
 async function main() {
     // Ensure output directory exists
@@ -24,46 +24,36 @@ async function main() {
     const page = await browser.newPage();
 
     // Set viewport to 1280x720 (Slide size)
+    // Even though content is 720x720 inside, the container is 1280x720
     await page.setViewport({ width: 1280, height: 720 });
 
     const fileUrl = `file://${SLIDE_HTML_PATH}`;
     console.log(`Loading: ${fileUrl}`);
     await page.goto(fileUrl, { waitUntil: 'networkidle0' });
 
+    // Wait for fonts to load
+    await page.evaluate(() => document.fonts.ready);
+
     // Find all slide containers
-    const slideIds = await page.evaluate(() => {
-        const slides = document.querySelectorAll('.slide-container');
-        return Array.from(slides).map((slide, index) => {
-            // Try to find the .slide-id element
-            const idEl = slide.querySelector('.slide-id');
-            if (idEl) {
-                // Extract ID text, e.g., "ID: 1" -> "1"
-                const text = idEl.innerText.trim();
-                const match = text.match(/ID:\s*([\d.]+)/);
-                return match ? match[1] : `unknown_${index}`;
-            }
-            return `unknown_${index}`;
-        });
-    });
+    const slides = await page.$$('.slide-container');
+    console.log(`Found ${slides.length} slides.`);
 
-    console.log(`Found ${slideIds.length} slides.`);
-
-    // Hide slide IDs before taking screenshots
+    // Remove border from slide-container for cleaner screenshots
     await page.evaluate(() => {
         const style = document.createElement('style');
-        style.textContent = '.slide-id { display: none !important; }';
+        style.textContent = '.slide-container { border: none !important; }';
         document.head.appendChild(style);
     });
 
-    for (let i = 0; i < slideIds.length; i++) {
-        const id = slideIds[i];
-        console.log(`Processing Slide ID: ${id}`);
+    for (let i = 0; i < slides.length; i++) {
+        // Use 1-based index for file naming
+        const id = i + 1;
+        console.log(`Processing Short Slide: ${id}`);
 
-        // Select the slide element
-        const slideElement = (await page.$$('.slide-container'))[i];
+        const slideElement = slides[i];
 
         if (slideElement) {
-            const outFile = path.join(OUT_DIR, `slide_${id}.png`);
+            const outFile = path.join(OUT_DIR, `short_slide_${id}.png`);
             await slideElement.screenshot({ path: outFile });
             console.log(`Saved: ${outFile}`);
         }
