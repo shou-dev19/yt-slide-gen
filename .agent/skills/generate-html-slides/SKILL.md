@@ -24,6 +24,7 @@ This skill provides instructions on how to generate "Yukkuri Kaisetsu" style pre
     * **本文 (p, li):** フォントサイズ **64px** 基準。行間 1.4。
     * **強調色:** 重要な数字やキーワードは `color: var(--accent-red);` で強調し、通常の文字色は `color: var(--text-dark);` を基本とする。
     * **アイコン:** FontAwesome (`<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">`) を使用し、サイズは **100px〜200px** で大きく配置。
+    * **リスト:** FontAwesome等のアイコンをリスト項目（li）の先頭に付ける場合は、デフォルトの黒丸（・）が表示されないよう、必ず `ul` 要素に `list-style-type: none; padding: 0;` を指定すること。
 
 3.  **レイアウト構成**
 
@@ -31,14 +32,16 @@ This skill provides instructions on how to generate "Yukkuri Kaisetsu" style pre
     * **2カラム (Split):** 左右に要素を分ける場合、余白を詰めすぎず、要素を大きく保つ。
       `.split { display: flex; width: 100%; justify-content: space-around; align-items: center; }`
       `.split-col { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 20px; }`
-    * **表 (Table):** フォントサイズ **50px** 基準。セル内余白を十分に取り、見切れを防ぐ。
+    * **表 (Table):** フォントサイズ **50px** 基準。セル内余白は十分に取りつつ、行数が多い場合は上下のパディング（例: `padding: 10px 15px;`）やフォントサイズを微調整し、親コンテナ（高さ720px）から絶対に縦に見切れないよう細心の注意を払うこと。
+    * **見切れ防止（全体）:** H2や画像、表、箇条書きを組み合わせる際は、マージン（margin）や画像の `max-height` を緻密に計算し、縦の範囲内に要素がぴったり収まるようにすること。
 
 4. **画像の選定と配置のルール**
 
     * イラストやロゴなどを表示する場合は、 `public/images/` 配下の既存の画像（`common`, `irasutoya`, `logo` 等）を `img` タグで配置する。
     * 既存の画像で横幅や縦幅が大きなものは `max-height: 500px; max-width: 100%; object-fit: contain;` 等のスタイルでスライド内に収めること。
-    * 全画面表示が必要な画像（共通の注意書きスライドやチャートなど）は以下のようなクラスを当てて背景全体を覆うようにする。
-      `.fullscreen-img { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 10; }`
+    * 全画面表示が必要な画像（共通の注意書きスライドやチャートなど）は以下のようなクラスを当てて背景全体を覆うようにする。この時、親要素からの `max-height` 制限などを上書きして見切れを防ぐため、必ず `max-width: 100%; max-height: 100%; object-fit: contain;` にすること。（画像によって `cover` と `contain` は使い分けるが、基本として端が切れない `contain` を優先する）
+      `.fullscreen-img { width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; position: absolute; top: 0; left: 0; z-index: 10; }`
+    * **注釈・引用表記:** 画像の下部に「※docomoのページから引用」「※キャンペーンのリンクは概要欄をチェック！」などの注釈テキストを追加する場合は、本文より控えめなサイズ（`font-size: 20px〜35px`程度）、色（`#666` 等）にすること。注釈テキスト分の高さを確保できるよう、画像の `max-height` を縮小して縦はみ出しを防ぐこと。
 
 5. **プレースホルダーの設定**
 
