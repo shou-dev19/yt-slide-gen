@@ -46,5 +46,6 @@ Ensure you iterate through the exact number of `スライドID` found in the scr
 
 ## 4. Image Placeholders
 - Whenever the script implies a visual, illustration, or graph is needed, insert an image placeholder OR an `<img>` tag if the user previously provides the asset.
+- **Logos**: When displaying an MVNO (格安SIM) logo or any carrier logo, use image assets from the `public/images/logo` directory.
 - **Placeholder Style**: `#e6f0ff` background, `6px dashed #0052cc` border, containing an emoji and text describing what image goes there.
 - Replace placeholders with `<img>` tags gracefully (using `object-fit: contain` and `drop-shadow(0 10px 20px rgba(0,0,0,0.1))`) when the user requests image asset replacement.
