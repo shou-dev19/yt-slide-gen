@@ -47,7 +47,7 @@ async function main() {
             let prev = slide.previousSibling;
             while (prev) {
                 if (prev.nodeType === 8) { // Node.COMMENT_NODE is 8
-                    const match = prev.nodeValue.match(/スライドID:\s*(\d+)/);
+                    const match = prev.nodeValue.match(/スライドID:\s*([\w.-]+)/);
                     if (match) return match[1];
                 }
                 prev = prev.previousSibling;
