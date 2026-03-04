@@ -39,6 +39,20 @@ async function main() {
     console.log(`Loading: ${fileUrl} (Mode: ${mode})`);
     await page.goto(fileUrl, { waitUntil: 'networkidle0' });
 
+    // Ensure all images are decoded and rendered before proceeding
+    await page.evaluate(async () => {
+        const imgs = Array.from(document.images);
+        await Promise.all(imgs.map(img => {
+            if (img.complete) return Promise.resolve();
+            return new Promise((resolve, reject) => {
+                img.onload = resolve;
+                img.onerror = reject;
+            });
+        }));
+        // Use decode() to wait for painted pixels if supported
+        await Promise.all(imgs.map(img => img.decode().catch(() => { })));
+    });
+
     // Find all slide containers and extract their IDs
     const slideIds = await page.evaluate((selector) => {
         const slides = document.querySelectorAll(selector);
