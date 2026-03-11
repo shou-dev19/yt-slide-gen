@@ -3,40 +3,35 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Y!mobile 解説スライド</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@800;900&family=Noto+Color+Emoji&display=swap"
-    rel="stylesheet">
+  <title>mineo最強プラン プレゼン資料</title>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary-color: #eb0a2b;
-      /* Y!mobile Red */
-      --accent-yellow: #ffd700;
-      --accent-red: #ff3333;
+      --primary-color: #00B140;
+      /* mineo Green */
+      --accent-yellow: #FFD700;
+      --accent-red: #FF3333;
       --text-dark: #333333;
-      --bg-light: #ffffff;
     }
 
     body {
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #EFEFEF;
       display: flex;
       flex-direction: column;
       gap: 40px;
-      font-family: 'M PLUS Rounded 1c', 'Noto Color Emoji', sans-serif;
-      background-color: #f0f0f0;
-      margin: 0;
-      padding: 40px;
       align-items: center;
+      padding: 40px 0;
     }
 
     .slide-container {
       width: 1280px;
       height: 720px;
       border: 10px solid var(--primary-color);
-      background: var(--bg-light);
+      background: white;
       box-sizing: border-box;
       position: relative;
       overflow: hidden;
@@ -44,68 +39,74 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 30px 40px;
+      padding: 40px;
       flex-shrink: 0;
     }
 
     h1 {
       font-size: 130px;
+      margin: 0;
       font-weight: 900;
-      margin: 0 0 20px 0;
-      color: var(--text-dark);
       text-shadow:
         4px 4px 0px white, -4px -4px 0px white, 4px -4px 0px white, -4px 4px 0px white,
-        0px 6px 0px var(--primary-color), 0px -6px 0px var(--primary-color),
-        6px 0px 0px var(--primary-color), -6px 0px 0px var(--primary-color);
+        0px 4px 0px var(--primary-color), 0px -4px 0px var(--primary-color),
+        4px 0px 0px var(--primary-color), -4px 0px 0px var(--primary-color);
       text-align: center;
-      line-height: 1.1;
+      line-height: 1.2;
     }
 
     h2 {
-      font-size: 85px;
-      font-weight: 800;
+      font-size: 90px;
       margin: 0 0 20px 0;
-      color: var(--text-dark);
-      border-bottom: 10px solid var(--accent-yellow);
+      border-bottom: 8px solid var(--accent-yellow);
       text-align: center;
+      line-height: 1.2;
     }
 
-    p,
-    li {
-      font-size: 58px;
-      font-weight: 800;
+    p {
+      font-size: 64px;
+      margin: 20px 0;
+      line-height: 1.4;
       color: var(--text-dark);
-      line-height: 1.35;
-      margin: 10px 0;
+      text-align: center;
+      font-weight: 800;
+      max-width: 100%;
     }
 
     ul {
       list-style-type: none;
       padding: 0;
+      margin: 0;
       width: 100%;
     }
 
     li {
+      font-size: 64px;
+      margin: 20px 0;
+      line-height: 1.4;
+      color: var(--text-dark);
+      font-weight: 800;
       display: flex;
-      align-items: flex-start;
-      gap: 20px;
+      align-items: center;
     }
 
-    .highlight-red {
+    li i {
+      color: var(--primary-color);
+      margin-right: 20px;
+      font-size: 80px;
+    }
+
+    .highlight {
       color: var(--accent-red);
-    }
-
-    .highlight-blue {
-      color: #00aad0;
-      /* Softbank related blue */
     }
 
     .split {
       display: flex;
       width: 100%;
+      height: 100%;
       justify-content: space-around;
       align-items: center;
-      height: 100%;
+      gap: 40px;
     }
 
     .split-col {
@@ -113,14 +114,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px;
-      max-height: 100%;
-    }
-
-    .split-col img {
-      max-height: 330px;
-      max-width: 100%;
-      object-fit: contain;
+      justify-content: center;
     }
 
     .fullscreen-img {
@@ -135,18 +129,12 @@
       z-index: 10;
     }
 
-    .large-icon {
-      font-size: 130px;
-      color: var(--primary-color);
-      margin-bottom: 15px;
-    }
-
     Placeholder {
       display: flex;
       justify-content: center;
       align-items: center;
       background: #f0f0f0;
-      border: 8px dashed #aaa;
+      border: 4px dashed #999;
       border-radius: 20px;
       padding: 40px;
       font-size: 50px;
@@ -155,7 +143,7 @@
       text-align: center;
       width: 80%;
       margin: 20px auto;
-      max-height: 400px;
+      box-sizing: border-box;
     }
 
     Placeholder::before {
@@ -163,61 +151,46 @@
       margin-right: 10px;
     }
 
+    .note {
+      font-size: 30px;
+      color: #666;
+      margin-top: 10px;
+    }
+
+    img.inline-img {
+      max-height: 550px;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    .table-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
     table {
-      width: 95%;
       border-collapse: collapse;
-      font-size: 40px;
-      margin-top: 15px;
+      width: 90%;
+      font-size: 50px;
+      font-weight: 800;
     }
 
     th,
     td {
       border: 4px solid var(--text-dark);
-      padding: 8px;
+      padding: 10px 15px;
       text-align: center;
-      font-weight: bold;
     }
 
     th {
       background-color: var(--primary-color);
       color: white;
-      font-size: 45px;
+      text-shadow: none;
     }
 
-    .vs-text {
-      font-size: 100px;
-      font-weight: 900;
-      color: var(--accent-red);
-    }
-
-    .badge {
-      background-color: var(--accent-yellow);
-      color: var(--text-dark);
-      padding: 5px 25px;
-      border-radius: 50px;
-      font-size: 45px;
-      display: inline-block;
-      margin-bottom: 10px;
-    }
-
-    /* 評価スライド用（10-16） */
-    .slide-eval h2 {
-      font-size: 100px;
-      margin-bottom: 30px;
-    }
-
-    .slide-eval .badge {
-      font-size: 55px;
-      margin-bottom: 20px;
-    }
-
-    .slide-eval li {
-      font-size: 72px;
-      margin: 15px 0;
-    }
-
-    .slide-eval ul {
-      margin-top: 20px;
+    .red-border {
+      border: 8px solid var(--accent-red);
     }
   </style>
 </head>
@@ -226,506 +199,208 @@
 
   <!-- スライドID: 1 -->
   <div class="slide-container">
-    <div class="split">
-      <div class="split-col" style="flex: 2;">
-        <h2>料金プランの<br>お悩み</h2>
-        <ul>
-          <li><i class="fa-solid fa-triangle-exclamation" style="color:var(--accent-red);"></i>スマホ代は節約したい…</li>
-          <li><i class="fa-regular fa-face-frown" style="color:var(--primary-color);"></i>動画が見れなくなるのは嫌だ</li>
-        </ul>
-      </div>
-      <div class="split-col" style="flex: 1;">
-        <img src="public/images/irasutoya/pose_atama_kakaeru_woman.png" alt="悩む女性">
-      </div>
-    </div>
+    <h2>スマホ代が高すぎる！</h2>
+    <img src="public/images/irasutoya/pose_atama_kakaeru_woman.png" class="inline-img">
   </div>
 
   <!-- スライドID: 2 -->
   <div class="slide-container">
-    <h2>💡 ワイモバイルが<br>おすすめな人</h2>
-    <ul>
-      <li><i class="fa-solid fa-house-signal" style="color:var(--primary-color);"></i> 自宅の<span
-          class="highlight-red">ネット回線</span>を<br>　 ソフトバンク系にできる</li>
-      <li><i class="fa-solid fa-wallet" style="color:var(--primary-color);"></i> 普段から<span
-          class="highlight-red">PayPay</span>をよく使う</li>
-    </ul>
+    <h2><span class="highlight">特大キャンペーン</span><br>実施中！</h2>
+    <img src="public/images/temp/mineo_キャンペーンバナー.png" class="inline-img">
   </div>
 
   <!-- スライドID: 3 -->
   <div class="slide-container">
-    <i class="fa-solid fa-magnifying-glass-chart large-icon"></i>
-    <h1>2026年最新<br>ワイモバイル<br>徹底レビュー</h1>
+    <h2>今一番の最適解はコレ！</h2>
+    <img src="public/images/temp/mineo_マイピタ＋パケット放題Plus＋パスケット.png" class="inline-img">
   </div>
 
   <!-- スライドID: 4 -->
   <div class="slide-container">
-    <h1>Chapter 1</h1>
-    <h2>ワイモバイルの<br>基本情報</h2>
+    <h2>ベースプラン「マイピタ」</h2>
+    <img src="public/images/temp/mineo_マイピタ_料金表.png" class="inline-img">
   </div>
 
   <!-- スライドID: 5 -->
   <div class="slide-container">
-    <h2>ワイモバイルとは？</h2>
-    <div class="split" style="height: auto; margin-bottom: 20px;">
-      <div class="split-col" style="border-right: 5px dashed #ccc; padding: 20px;">
-        <div
-          style="height: 150px; width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
-          <img src="public/images/logo/softbank_logo.png" alt="SoftBank"
-            style="max-height: 100%; max-width: 100%; object-fit: contain;">
-        </div>
-        <p style="margin: 0;">本家ブランド</p>
-      </div>
-      <div class="split-col" style="padding: 20px;">
-        <div
-          style="height: 150px; width: 100%; display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
-          <img src="public/images/logo/Y!mobile.png" alt="Y!mobile"
-            style="max-height: 100%; max-width: 100%; object-fit: contain;">
-        </div>
-        <p style="margin: 0;">サブブランド</p>
-      </div>
+    <h2>mineo最強の独自機能</h2>
+    <div style="display: flex; flex-direction: column; gap: 20px; align-items: center; width: 100%;">
+      <img src="public/images/temp/mineo_パケット放題_バナー.png"
+        style="max-height: 220px; max-width: 100%; object-fit: contain;">
+      <img src="public/images/temp/mineo_パスケット_バナー.png"
+        style="max-height: 220px; max-width: 100%; object-fit: contain;">
     </div>
-    <div style="background: #fff0f0; border-radius: 20px; padding: 25px; width: 90%; text-align: center;">
-      <p style="margin: 5px 0;"><i class="fa-solid fa-circle-check" style="color:var(--primary-color);"></i> 本家と<span
-          class="highlight-red">同等の品質！</span></p>
-      <p style="margin: 5px 0;"><i class="fa-solid fa-circle-check" style="color:var(--primary-color);"></i> なのに<span
-          class="highlight-red">少し安い！</span></p>
-    </div>
+  </div>
+
+  <!-- スライドID: 5-2 -->
+  <div class="slide-container">
+    <h2>パケット放題</h2>
+    <img src="public/images/temp/mineo_パケット放題_概要.png" style="width: 100%; max-height: 500px; object-fit: contain;">
+  </div>
+
+  <!-- スライドID: 5-3 -->
+  <div class="slide-container">
+    <h2>パスケット</h2>
+    <img src="public/images/temp/mineo_パスケット概要.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 5-4 -->
+  <div class="slide-container">
+    <h2>データが<span class="highlight">118GB</span>も！？</h2>
+    <img src="public/images/temp/mineo_パスケット画面のスクショpng.png" class="inline-img">
   </div>
 
   <!-- スライドID: 6 -->
   <div class="slide-container">
-    <img src="public/images/common/格安SIMを車の道路で例えたイラスト.png" class="fullscreen-img" alt="道路の例え">
-  </div>
-
-  <!-- スライドID: 6-2 -->
-  <div class="slide-container">
-    <img src="public/images/temp/ワイモバイルの速度が速いイラスト.png" class="fullscreen-img" alt="ワイモバイルの速度が速いイラスト">
+    <h2>月額たったの<span class="highlight">660円！</span></h2>
+    <img src="public/images/temp/mineo_キャンペーン料金表のみ.png" class="inline-img"
+      style="width: 100%; max-height: 500px; object-fit: contain;">
   </div>
 
   <!-- スライドID: 7 -->
   <div class="slide-container">
-    <h1>Chapter 2</h1>
-    <h2>ワイモバイルの<br>性能評価</h2>
-  </div>
-
-  <!-- スライドID: 7-2 -->
-  <div class="slide-container">
-    <img src="public/images/slides/評価は独断と偏見.png" class="fullscreen-img" alt="評価は独断と偏見">
+    <h2>詳しい解説はこちら！</h2>
+    <img src="public/images/thumbnails/【裏技】mineo歴8年が教える「実質使い放題」の極意！契約前に知らないと損する5つの節約術_サムネ.png" class="inline-img">
   </div>
 
   <!-- スライドID: 8 -->
   <div class="slide-container">
-    <img src="public/images/slides/評価項目について.png" alt="評価項目について" style="max-height: 700px;">
-  </div>
-
-  <!-- スライドID: 8-2 -->
-  <div class="slide-container">
-    <img src="public/images/slides/評価ランクの基準について.png" alt="評価ランクの基準について" style="max-height: 700px;">
+    <h2>実質使い放題とは？</h2>
+    <img src="public/images/temp/mineo_パケット放題の仕組み.png" class="inline-img">
   </div>
 
   <!-- スライドID: 9 -->
   <div class="slide-container">
-    <img src="public/images/charts/Y!mobile.png" alt="ワイモバイルチャート" style="max-height: 700px;">
-  </div>
-
-  <!-- スライドID: 10 -->
-  <div class="slide-container slide-eval">
-    <div class="badge">評価：データ料金</div>
-    <h2>ランク：<span class="highlight-red">B</span> (注意)</h2>
-    <ul>
-      <li><i class="fa-solid fa-circle-xmark" style="color:var(--accent-red);"></i> 割引なしだと<span
-          class="highlight-red">割高</span></li>
-      <li><i class="fa-solid fa-circle-info" style="color:var(--primary-color);"></i> 割引前提の価格設定</li>
-    </ul>
-  </div>
-
-  <!-- スライドID: 11 -->
-  <div class="slide-container slide-eval">
-    <div class="badge">評価：通信品質</div>
-    <h2>ランク：<span class="highlight-red" style="font-size:140px;">SS</span> (最高)</h2>
-    <ul>
-      <li><i class="fa-solid fa-rocket" style="color:var(--primary-color);"></i> お昼でも<span
-          class="highlight-red">爆速！</span></li>
-      <li><i class="fa-solid fa-signal" style="color:var(--primary-color);"></i> プラチナバンド完備！</li>
-    </ul>
-  </div>
-
-  <!-- スライドID: 12 -->
-  <div class="slide-container slide-eval">
-    <div class="badge">評価：初期費用</div>
-    <h2>ランク：<span class="highlight-red">A</span> (優秀)</h2>
-    <ul>
-      <li><i class="fa-solid fa-yen-sign" style="color:var(--primary-color);"></i> 事務手数料はかかるが…</li>
-      <li><i class="fa-solid fa-gift" style="color:var(--primary-color);"></i> キャンペーンで<span
-          class="highlight-red">実質黒字</span>も可能</li>
-    </ul>
-  </div>
-
-  <!-- スライドID: 13 -->
-  <div class="slide-container slide-eval">
-    <div class="badge">評価：通話料</div>
-    <h2>ランク：<span class="highlight-red">B</span> (普通)</h2>
-    <ul>
-      <li><i class="fa-solid fa-phone" style="color:var(--primary-color);"></i> 基本は 22円 / 30秒</li>
-      <li><i class="fa-solid fa-comment-slash" style="color:var(--accent-red);"></i> かけ放題は<span
-          class="highlight-red">有料オプション</span></li>
-    </ul>
-  </div>
-
-  <!-- スライドID: 14 -->
-  <div class="slide-container slide-eval">
-    <div class="badge">評価：店舗サポート</div>
-    <h2>ランク：<span class="highlight-red" style="font-size:140px;">SS</span> (最高)</h2>
-    <ul>
-      <li><i class="fa-solid fa-shop" style="color:var(--primary-color);"></i> 全国の店舗で<span
-          class="highlight-red">フルサポート</span></li>
-      <li><i class="fa-solid fa-user-tie" style="color:var(--primary-color);"></i> 大手キャリアと同じ安心感</li>
-    </ul>
-  </div>
-
-  <!-- スライドID: 15 -->
-  <div class="slide-container slide-eval">
-    <div class="badge">評価：オプション</div>
-    <h2>ランク：<span class="highlight-red">A</span> (優秀)</h2>
-    <ul>
-      <li><i class="fa-solid fa-star" style="color:var(--accent-yellow); -webkit-text-stroke: 1px black;"></i>
-        LYPプレミアムが<span class="highlight-red">無料！</span></li>
-      <li><i class="fa-solid fa-box-archive" style="color:var(--primary-color);"></i> データ繰り越しも対応</li>
-    </ul>
-  </div>
-
-  <!-- スライドID: 16 -->
-  <div class="slide-container slide-eval">
-    <h2>👑 総合評価：<span class="highlight-red" style="font-size:140px;">A</span></h2>
-    <ul>
-      <li><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> <span
-          class="highlight-red">通信品質</span>と<span class="highlight-red">サポート</span>は最強</li>
-      <li><i class="fa-solid fa-triangle-exclamation" style="color:var(--accent-red);"></i> 割引なしの料金に注意が必要</li>
-    </ul>
-  </div>
-
-  <!-- スライドID: 17 -->
-  <div class="slide-container">
-    <h1>Chapter 3</h1>
-    <h2>ワイモバイルの<br>強力なメリット5選</h2>
-  </div>
-
-  <!-- スライドID: 18 -->
-  <div class="slide-container">
-    <h2>メリット① 通信速度トップ</h2>
-    <ul style="margin-bottom: 20px; justify-content: center;">
-      <li style="justify-content: center;"><i class="fa-solid fa-trophy" style="color:#ffd700;"></i> 速度ランキング<span
-          class="highlight-red">1位</span></li>
-    </ul>
-    <img src="public/images/temp/ワイモバイル_みんそくスクショ.png" alt="みんそくスクショ"
-      style="max-width: 95%; max-height: 500px; border: 2px solid #ccc; border-radius: 10px; object-fit: contain; transform: scale(1.3); margin-top: 25px;">
-  </div>
-
-  <!-- スライドID: 18-2 -->
-  <div class="slide-container">
-    <h2>メリット① 通信速度トップ</h2>
-    <ul style="margin-bottom: 20px; justify-content: center;">
-      <li style="justify-content: center;"><i class="fa-solid fa-gauge-high" style="color:var(--primary-color);"></i>
-        お昼でも<span class="highlight-red">サクサク！</span></li>
-    </ul>
-    <img src="public/images/temp/ワイモバイル_みんそく時間別スクショ.png" alt="みんそく時間別スクショ"
-      style="max-width: 95%; max-height: 500px; border: 2px solid #ccc; border-radius: 10px; object-fit: contain;">
-  </div>
-
-  <!-- スライドID: 19 -->
-  <div class="slide-container">
-    <h2 style="font-size: 78px;">メリット② 全国の店舗サポート</h2>
     <div class="split">
-      <div class="split-col" style="flex: 1.5;">
-        <ul>
-          <li><i class="fa-solid fa-store" style="color:var(--primary-color);"></i> 契約・相談・修理　すべて対面で</li>
-          <li><span class="highlight-red" style="font-size: 80px;">　安心！</span></li>
-        </ul>
+      <div class="split-col">
+        <h2 style="border-bottom: none;">最大1Mbpsで<br>できること</h2>
       </div>
-      <div class="split-col" style="flex: 1;">
-        <img src="public/images/irasutoya/kaden_tenin16_woman_ojigi.png" alt="店員">
+      <div class="split-col">
+        <img src="public/images/temp/パケット放題_速度表_1mbps赤枠.png"
+          style="max-height: 700px; max-width: 100%; object-fit: contain;">
       </div>
     </div>
   </div>
 
-  <!-- スライドID: 19-2 -->
+  <!-- スライドID: 10 -->
   <div class="slide-container">
-    <h2>店頭スマホサポート</h2>
-    <img src="public/images/irasutoya/kaden_tenin15_woman.png" alt="データ移行" style="max-height: 350px;">
-    <p style="margin-top:20px;">データ移行も手伝ってくれる！</p>
+    <h2>【要注意】申込みが必要！</h2>
+    <img src="public/images/temp/パケット放題_申し込み画面.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 11 -->
+  <div class="slide-container">
+    <!-- <h2><span class="highlight">「パケット放題 Plus」</span>がもっと快適に！</h2> -->
+    <img src="public/images/temp/mineo_パケット放題Plusの速度が上がったイラスト.png" class="inline-img"
+      style="width: 150%; max-height: 900px; object-fit: contain;">
+  </div>
+
+  <!-- スライドID: 12 -->
+  <div class="slide-container">
+    <h2>実機検証！<br>YouTube高画質再生</h2>
+    <Placeholder>パケット放題Plus（3Mbps）の実機検証：YouTube高画質再生の画面録画</Placeholder>
+  </div>
+
+  <!-- スライドID: 13 -->
+  <div class="slide-container">
+    <div class="split">
+      <div class="split-col">
+        <h2 style="border-bottom: none;">最大3Mbpsで<br>できること</h2>
+      </div>
+      <div class="split-col">
+        <img src="public/images/temp/パケット放題_速度表_3mbps赤枠.png"
+          style="max-height:700px; max-width: 100%; object-fit: contain;">
+      </div>
+    </div>
+  </div>
+
+  <!-- スライドID: 14 -->
+  <div class="slide-container">
+    <h2>3日間で10GB制限？</h2>
+    <img src="public/images/temp/mineo_パケット放題3日10GB制限.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 15 -->
+  <div class="slide-container">
+    <h2>1日3.3GBの目安</h2>
+    <img src="public/images/temp/mineo_パケット放題_1日あたりの利用目安.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 16 -->
+  <div class="slide-container">
+    <h2>パスケットで<span class="highlight">データ貯金</span></h2>
+    <img src="public/images/temp/mineo_パスケットを使ったデータ貯金運用のイメージ図.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 17 -->
+  <div class="slide-container">
+    <h2>春の特大キャンペーン！</h2>
+    <div class="split">
+      <img src="public/images/temp/mineo_キャンペーンバナー.png" class="inline-img">
+      <img src="public/images/temp/mineo_キャンペーン料金表のみ.png" class="inline-img">
+    </div>
+  </div>
+
+  <!-- スライドID: 18 -->
+  <div class="slide-container">
+    <h2>端末大特価セール！</h2>
+    <img src="public/images/temp/mineo_端末キャンペーン.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 19 -->
+  <div class="slide-container">
+    <h2>【注意】<br>セールは<span class="highlight">3/31</span>まで！</h2>
+    <img src="public/images/temp/mineo_端末キャンペーン期限赤枠.png" class="inline-img">
   </div>
 
   <!-- スライドID: 20 -->
   <div class="slide-container">
-    <h2 style="font-size: 78px;">メリット③ LYPプレミアム無料</h2>
+    <h2>mineoを<br><span class="highlight">おすすめしない人</span></h2>
     <ul>
-      <li><i class="fa-brands fa-yahoo" style="color:var(--primary-color);"></i> 通常508円が<span
-          class="highlight-red">タダ！</span></li>
-      <li><i class="fa-solid fa-comments" style="color:#00B900;"></i> LINEスタンプ<span class="highlight-red">使い放題！</span>
-      </li>
-      <li><i class="fa-solid fa-coins" style="color:#ffd700;"></i> PayPayポイントが<span
-          class="highlight-red">ザクザク貯まる！</span>
-      </li>
+      <li><i class="fa-solid fa-xmark" style="color: var(--accent-red);"></i>お昼に爆速の通信が必要な人</li>
+      <li><i class="fa-solid fa-xmark" style="color: var(--accent-red);"></i>外出先で4K動画を頻繁に見る人</li>
+      <li><i class="fa-solid fa-xmark" style="color: var(--accent-red);"></i>オンライン対戦ゲームをやる人</li>
     </ul>
   </div>
 
   <!-- スライドID: 21 -->
   <div class="slide-container">
-    <h2 style="font-size: 78px;">メリット④ 初期費用が実質黒字</h2>
-    <i class="fa-solid fa-sack-dollar large-icon"></i>
-    <p>キャンペーン活用で</p>
-    <p>事務手数料の元が取れるどころか<br><span class="highlight-red">プラスになる！</span></p>
+    <h2>mineoを<br><span style="color:var(--primary-color);">おすすめする人</span></h2>
+    <ul>
+      <li><i class="fa-solid fa-check" style="color: var(--primary-color);"></i>スマホ代を極限まで節約したい人</li>
+      <li><i class="fa-solid fa-check" style="color: var(--primary-color);"></i>日常は3Mbpsで賢くやりくりする人</li>
+      <li><i class="fa-solid fa-check" style="color: var(--primary-color);"></i>パスケットでメリハリ運用できる人</li>
+    </ul>
   </div>
 
   <!-- スライドID: 22 -->
   <div class="slide-container">
-    <h2>メリット⑤ 海外利用<br>（2026年夏以降〜）</h2>
-    <div class="split">
-      <div class="split-col" style="flex: 1.5;">
-        <ul>
-          <li><i class="fa-solid fa-plane" style="color:var(--primary-color);"></i> そのまま海外で<br>　2GB使える！</li>
-          <li><i class="fa-solid fa-ban" style="color:var(--accent-red);"></i> 追加料金・申込<span
-              class="highlight-red">不要！</span></li>
-        </ul>
-      </div>
-      <div class="split-col" style="flex: 0.8;">
-        <img src="public/images/common/海外利用のイメージ図.png" alt="海外利用">
-      </div>
-    </div>
+    <h2>普通に申し込むと<br>事務手数料がかかる！？</h2>
+    <img src="public/images/irasutoya/bikkuri_me_tobideru_man.png" class="inline-img"
+      style="max-height:400px; max-width: 100%; object-fit: contain;">
   </div>
 
   <!-- スライドID: 23 -->
   <div class="slide-container">
-    <h1>Chapter 4</h1>
-    <h2>ワイモバイルの<br>デメリット</h2>
+    <h2>事務手数料が<span class="highlight">無料</span>に！</h2>
+    <Placeholder>事務手数料3,300円が無料になる限定キャンペーンの案内画像</Placeholder>
   </div>
 
   <!-- スライドID: 24 -->
   <div class="slide-container">
-    <h2>デメリット① 割引なしは割高</h2>
-    <i class="fa-solid fa-money-bill-wave large-icon" style="color:var(--accent-red);"></i>
-    <p>おうち割・PayPayカード割が<br>無いと、基本料金が<span class="highlight-red">高い…</span></p>
+    <h2>動画のまとめ</h2>
+    <ul>
+      <li><i class="fa-solid fa-star" style="color: var(--accent-yellow);"></i>3Mbpsで実質使い放題が快適！</li>
+      <li><i class="fa-solid fa-star" style="color: var(--accent-yellow);"></i>今なら月額たったの660円～！</li>
+      <li><i class="fa-solid fa-star" style="color: var(--accent-yellow);"></i>パスケットで無期限データ貯金！</li>
+      <li><i class="fa-solid fa-star" style="color: var(--accent-yellow);"></i>端末セールは3月31日まで！</li>
+    </ul>
   </div>
 
   <!-- スライドID: 25 -->
   <div class="slide-container">
-    <h2>基本料金（<span class="highlight-red">割引前</span>）</h2>
-    <table>
-      <tr>
-        <th>プラン</th>
-        <th>データ量</th>
-        <th>月額料金(税込)</th>
-      </tr>
-      <tr>
-        <td>S</td>
-        <td>5GB</td>
-        <td><span class="highlight-red">3,058円</span></td>
-      </tr>
-      <tr>
-        <td>M</td>
-        <td>30GB</td>
-        <td><span class="highlight-red">4,158円</span></td>
-      </tr>
-      <tr>
-        <td>L</td>
-        <td>35GB</td>
-        <td><span class="highlight-red">5,258円</span></td>
-      </tr>
-    </table>
-  </div>
-
-  <!-- スライドID: 26 -->
-  <div class="slide-container">
-    <h2>基本料金（<span style="color:#008000;">割引適用後</span>）</h2>
-    <p style="font-size:45px; margin-top:0;">PayPayカード割・おうち割光セット 適用時</p>
-    <table>
-      <tr>
-        <th>プラン</th>
-        <th>データ量</th>
-        <th>月額料金(税込)</th>
-      </tr>
-      <tr>
-        <td>S</td>
-        <td>5GB</td>
-        <td><span style="color:#008000;">858円</span></td>
-      </tr>
-      <tr>
-        <td>M</td>
-        <td>30GB</td>
-        <td><span style="color:#008000;">1,958円</span></td>
-      </tr>
-      <tr>
-        <td>L</td>
-        <td>35GB</td>
-        <td><span style="color:#008000;">3,058円</span></td>
-      </tr>
-    </table>
-  </div>
-
-  <!-- スライドID: 27 -->
-  <div class="slide-container">
-    <h2>正直な本音…</h2>
-    <img src="public/images/irasutoya/pose_atama_kakaeru_woman.png" alt="悩む女性"
-      style="max-height: 250px; margin-bottom: 20px;">
-    <ul>
-      <li><i class="fa-solid fa-comment-dots" style="color:var(--primary-color);"></i> 割引前提は<span
-          class="highlight-red">ややこしい</span></li>
-      <li><i class="fa-solid fa-building" style="color:var(--primary-color);"></i> ネット回線が選べない人には<span
-          class="highlight-red">不向き</span></li>
-    </ul>
-  </div>
-
-  <!-- スライドID: 28 -->
-  <div class="slide-container">
-    <h2>デメリット② かけ放題は有料</h2>
-    <i class="fa-solid fa-phone-slash large-icon" style="color:var(--accent-red);"></i>
-    <ul>
-      <li><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> 完全無料の通話は無し</li>
-      <li><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> <span
-          class="highlight-red">＋月額880円</span>等が必要（※S/Mプラン）</li>
-    </ul>
-  </div>
-
-  <!-- スライドID: 29 -->
-  <div class="slide-container">
-    <h2>デメリット③ 初期費用が発生</h2>
-    <ul>
-      <li><i class="fa-solid fa-shop" style="color:var(--primary-color);"></i> 店舗：4,950円</li>
-      <li><i class="fa-solid fa-window-maximize" style="color:var(--primary-color);"></i> ネット：3,850円</li>
-    </ul>
-    <p style="margin-top:40px; border-bottom:8px solid var(--accent-red); display:inline-block;">原則、必ずかかります！</p>
-  </div>
-
-  <!-- スライドID: 30 -->
-  <div class="slide-container">
-    <h1>Chapter 5</h1>
-    <h2>他社との<br>徹底比較</h2>
-  </div>
-
-  <!-- スライドID: 31 -->
-  <div class="slide-container">
-    <h2>他社比較（30GB前後クラス）</h2>
-    <table>
-      <tr>
-        <th>会社</th>
-        <th>データ</th>
-        <th>料金</th>
-      </tr>
-      <tr>
-        <td><img src="public/images/logo/Y!mobile.png" style="height:40px; vertical-align:middle;"></td>
-        <td>30GB</td>
-        <td><span class="highlight-red">1,958円</span>(各種割引後)</td>
-      </tr>
-      <tr>
-        <td><img src="public/images/logo/UQ_logo_2.png" style="height:40px; vertical-align:middle;"></td>
-        <td>5GB~30GB</td>
-        <td>2,728円(各種割引後)</td>
-      </tr>
-      <tr>
-        <td><img src="public/images/logo/Ahamo_logo.png" style="height:40px; vertical-align:middle;"></td>
-        <td>30GB</td>
-        <td>2,970円(5分かけ放題込み)</td>
-      </tr>
-      <tr>
-        <td><img src="public/images/logo/Rakuten_Mobile_logo.png" style="height:40px; vertical-align:middle;"></td>
-        <td>20GB~<br>無制限</td>
-        <td>3,278円<br>(専用アプリ利用で国内通話無料)</td>
-      </tr>
-    </table>
-  </div>
-
-  <!-- スライドID: 31-2 -->
-  <div class="slide-container">
-    <h2>各社の詳細動画も公開中！</h2>
-    <div style="display: flex; gap: 20px; width: 100%; justify-content: center; align-items: center; margin-top: 20px;">
-      <div style="flex: 1; text-align: center;">
-        <img src="public/images/thumbnails/【2026年最新】UQ mobileの評判は？爆速データ通信と、事務手数料3,850円を0円にする裏技.png" alt="UQ mobile"
-          style="max-width: 100%; border-radius: 10px; border: 4px solid var(--text-dark); box-shadow: 4px 4px 10px rgba(0,0,0,0.2);">
-      </div>
-      <div style="flex: 1; text-align: center;">
-        <img src="public/images/thumbnails/【あなたはどっち？】ahamoで得する人・損する人の違いを分かりやすく解説します！_サムネ.png" alt="ahamo"
-          style="max-width: 100%; border-radius: 10px; border: 4px solid var(--text-dark); box-shadow: 4px 4px 10px rgba(0,0,0,0.2);">
-      </div>
-      <div style="flex: 1; text-align: center;">
-        <img src="public/images/thumbnails/【2025年最新】楽天モバイルは繋がらない？1年以上使って分かった本音メリット・デメリットを全公開！_サムネ.png" alt="楽天モバイル"
-          style="max-width: 100%; border-radius: 10px; border: 4px solid var(--text-dark); box-shadow: 4px 4px 10px rgba(0,0,0,0.2);">
-      </div>
-    </div>
-    <ul style="justify-content: center; margin-top: 20px;">
-      <li style="justify-content: center;"><i class="fa-solid fa-circle-play" style="color:var(--primary-color);"></i>
-        気になる方は<span class="highlight-red">過去の動画</span>もチェック！</li>
-    </ul>
-  </div>
-
-  <!-- スライドID: 32 -->
-  <div class="slide-container">
-    <h1>Chapter 6</h1>
-    <h2>キャンペーンと裏技</h2>
-  </div>
-
-  <!-- スライドID: 33 -->
-  <div class="slide-container">
-    <h2>公式キャンペーン</h2>
-    <i class="fa-solid fa-gift large-icon"></i>
-    <p>最大 <span class="highlight-red" style="font-size:120px;">20,000</span> ポイント還元！</p>
-  </div>
-
-  <!-- スライドID: 34 -->
-  <div class="slide-container">
-    <h2>Amazon エントリーコード</h2>
-    <i class="fa-brands fa-amazon large-icon" style="color:#FF9900;"></i>
-    <p>最大 <span class="highlight-red" style="font-size:120px;">15,000</span> 円<br>「現金」キャッシュバック！</p>
-  </div>
-
-  <!-- スライドID: 35 -->
-  <div class="slide-container">
-    <h2>どっちがお得？</h2>
-    <div class="split">
-      <div class="split-col" style="padding: 10px;">
-        <h3 style="font-size:60px; margin:0;">公式ストア</h3>
-        <p><span class="highlight-red" style="font-size:90px;">20,000pt</span></p>
-        <p style="font-size: 54px;">PayPayユーザーなら<br>こっち！</p>
-      </div>
-      <div class="split-col" style="border-left: 5px dashed #ccc; padding: 10px;">
-        <h3 style="font-size:60px; margin:0;">Amazon</h3>
-        <p><span class="highlight-red" style="font-size:90px;">15,000円</span></p>
-        <p style="font-size: 54px;">現金で欲しいなら<br>こっち！</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- スライドID: 36 -->
-  <div class="slide-container">
-    <h1>まとめ</h1>
-    <h2>Y!mobileは<br>こんな人におすすめ！</h2>
-  </div>
-
-  <!-- スライドID: 37 -->
-  <div class="slide-container">
-    <h2>✅ おすすめな人</h2>
-    <ul>
-      <li><i class="fa-regular fa-face-smile-beam" style="color:var(--primary-color);"></i> お昼の通信速度で<span
-          class="highlight-red">妥協したくない！</span></li>
-      <li><i class="fa-solid fa-store" style="color:var(--primary-color);"></i> いざという時は<span
-          class="highlight-red">店舗で相談</span>したい！</li>
-      <li><i class="fa-solid fa-wifi" style="color:var(--primary-color);"></i> 自宅ネットをソフトバンクにできる！</li>
-      <li><i class="fa-solid fa-wallet" style="color:var(--primary-color);"></i> 日常的に<span
-          class="highlight-red">PayPay</span>を使ってる人！</li>
-    </ul>
-  </div>
-
-  <!-- スライドID: 38 -->
-  <div class="slide-container">
-    <h2>❌ おすすめできない人</h2>
-    <ul>
-      <li><i class="fa-solid fa-building" style="color:var(--accent-red);"></i> マンション等の都合で<br>自宅のネット回線が変更できない人</li>
-      <li><i class="fa-solid fa-coins" style="color:var(--accent-red);"></i> とにかく最安の維持費を求める人</li>
-    </ul>
-  </div>
-
-  <!-- スライドID: 39 -->
-  <div class="slide-container">
-    <img src="public/images/slides/プランやキャンペーンは投稿時点のもの注意喚起.png" class="fullscreen-img" alt="注意喚起">
+    <h2>概要欄のリンクを<br>チェック！</h2>
+    <Placeholder>概要欄のリンク（事務手数料無料）を指し示す案内画像</Placeholder>
   </div>
 
 </body>
