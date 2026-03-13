@@ -3,29 +3,28 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>NUROモバイル解説スライド</title>
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
+  <title>mineo最強プラン プレゼン資料</title>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary-color: #00B86F;
-      /* NURO mobile inspired green */
+      --primary-color: #00B140;
+      /* mineo Green */
       --accent-yellow: #FFD700;
-      --accent-red: #FF4136;
+      --accent-red: #FF3333;
       --text-dark: #333333;
-      --bg-light: #F8F9FA;
     }
 
     body {
+      font-family: 'M PLUS Rounded 1c', sans-serif;
       margin: 0;
       padding: 0;
+      background: #EFEFEF;
       display: flex;
       flex-direction: column;
       gap: 40px;
-      background-color: #333;
-      font-family: 'M PLUS Rounded 1c', sans-serif;
+      align-items: center;
+      padding: 40px 0;
     }
 
     .slide-container {
@@ -45,71 +44,60 @@
     }
 
     h1 {
-      font-size: 110px;
-      /* Base 130px might overflow depending on text length, 110px is safer but still huge */
+      font-size: 130px;
+      margin: 0;
       font-weight: 900;
-      margin: 0 0 20px 0;
-      text-align: center;
-      color: var(--text-dark);
       text-shadow:
         4px 4px 0px white, -4px -4px 0px white, 4px -4px 0px white, -4px 4px 0px white,
         0px 4px 0px var(--primary-color), 0px -4px 0px var(--primary-color),
-        4px 0px 0px var(--primary-color), -4px 0px 0px var(--primary-color),
-        8px 8px 0px rgba(0, 0, 0, 0.2);
+        4px 0px 0px var(--primary-color), -4px 0px 0px var(--primary-color);
+      text-align: center;
       line-height: 1.2;
-      width: 100%;
-    }
-
-    h1.long-text {
-      font-size: 80px;
     }
 
     h2 {
-      font-size: 80px;
-      font-weight: 800;
-      margin: 0 0 30px 0;
-      color: var(--text-dark);
+      font-size: 90px;
+      margin: 0 0 20px 0;
       border-bottom: 8px solid var(--accent-yellow);
       text-align: center;
-      line-height: 1.3;
+      line-height: 1.2;
     }
 
-    p,
-    li {
+    p {
       font-size: 64px;
-      color: var(--text-dark);
+      margin: 20px 0;
       line-height: 1.4;
-      margin: 15px 0;
-      font-weight: 700;
+      color: var(--text-dark);
+      text-align: center;
+      font-weight: 800;
+      max-width: 100%;
     }
 
     ul {
       list-style-type: none;
       padding: 0;
       margin: 0;
-      width: 90%;
+      width: 100%;
     }
 
     li {
-      position: relative;
-      padding-left: 1.5em;
+      font-size: 64px;
+      margin: 20px 0;
+      line-height: 1.4;
+      color: var(--text-dark);
+      font-weight: 800;
+      display: flex;
+      align-items: center;
     }
 
     li i {
-      position: absolute;
-      left: 0;
-      top: 0.15em;
       color: var(--primary-color);
+      margin-right: 20px;
+      font-size: 80px;
     }
 
     .highlight {
       color: var(--accent-red);
-    }
-
-    .icon-large {
-      font-size: 150px;
-      color: var(--primary-color);
-      margin: 20px;
     }
 
     .split {
@@ -118,6 +106,7 @@
       height: 100%;
       justify-content: space-around;
       align-items: center;
+      gap: 40px;
     }
 
     .split-col {
@@ -126,13 +115,6 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-    }
-
-    img.content-img {
-      max-height: 400px;
-      max-width: 100%;
-      object-fit: contain;
     }
 
     .fullscreen-img {
@@ -147,31 +129,12 @@
       z-index: 10;
     }
 
-    table {
-      width: 95%;
-      border-collapse: collapse;
-      margin: 20px auto;
-      font-size: 45px;
-      text-align: center;
-    }
-
-    th,
-    td {
-      border: 4px solid var(--primary-color);
-      padding: 10px 15px;
-    }
-
-    th {
-      background-color: var(--bg-light);
-      font-weight: 800;
-    }
-
     Placeholder {
       display: flex;
       justify-content: center;
       align-items: center;
       background: #f0f0f0;
-      border: 6px dashed #999;
+      border: 4px dashed #999;
       border-radius: 20px;
       padding: 40px;
       font-size: 50px;
@@ -188,377 +151,272 @@
       margin-right: 10px;
     }
 
-    .annotation {
+    .note {
       font-size: 30px;
       color: #666;
       margin-top: 10px;
+    }
+
+    img.inline-img {
+      max-height: 550px;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    .table-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 90%;
+      font-size: 50px;
+      font-weight: 800;
+    }
+
+    th,
+    td {
+      border: 4px solid var(--text-dark);
+      padding: 10px 15px;
       text-align: center;
     }
-  </style>
 
+    th {
+      background-color: var(--primary-color);
+      color: white;
+      text-shadow: none;
+    }
+
+    .red-border {
+      border: 8px solid var(--accent-red);
+    }
+  </style>
 </head>
 
 <body>
+
   <!-- スライドID: 1 -->
   <div class="slide-container">
-    <h2>【2026年最新】</h2>
-    <h1 class="long-text">NUROモバイルの評判は？<br>メリット・デメリットを<br>徹底解説！</h1>
-  </div>\n<!-- スライドID: 2 -->
+    <h2>スマホ代が高すぎる！</h2>
+    <img src="public/images/irasutoya/pose_atama_kakaeru_woman.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 2 -->
   <div class="slide-container">
-    <h1 style="font-size:80px; margin-bottom: 20px;">NUROモバイル<br>おすすめな人</h1>
-    <ul>
-      <li><i class="fa-solid fa-check-circle"></i> 通信速度よりスマホ代を<br><span class="highlight">安く抑えたい人</span></li>
-      <li><i class="fa-solid fa-check-circle"></i> <span class="highlight">SNS</span>を息をするように見る人</li>
-      <li><i class="fa-solid fa-check-circle"></i> 対面サポート不要で<br><span class="highlight">ネット申込できる人</span></li>
-    </ul>
-  </div>\n<!-- スライドID: 3 -->
+    <h2><span class="highlight">特大キャンペーン</span><br>実施中！</h2>
+    <img src="public/images/temp/mineo_キャンペーンバナー.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 3 -->
   <div class="slide-container">
-    <h1>Chapter 1</h1>
-    <h2>そもそもNUROモバイルとは？</h2>
-    <i class="fa-solid fa-book-open icon-large"></i>
-  </div>\n<!-- スライドID: 4 -->
+    <h2>今一番の最適解はコレ！</h2>
+    <img src="public/images/temp/mineo_マイピタ＋パケット放題3Mbps＋パスケット.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 4 -->
   <div class="slide-container">
-    <h2>NUROモバイルの運営会社</h2>
-    <img src="public/images/logo/nuromobile_logo.png" class="content-img"
-      style="max-height: 200px; margin-bottom: 30px;">
-    <p>運営元：<br><span class="highlight">ソニーネットワーク</span><br><span class="highlight">コミュニケーションズ</span>株式会社</p>
-    <!-- <Placeholder>ソニーグループのビルやロゴのイメージ図</Placeholder> -->
-  </div>\n<!-- スライドID: 5 -->
+    <h2>ベースプラン「マイピタ」</h2>
+    <img src="public/images/temp/mineo_マイピタ_料金表.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 5 -->
   <div class="slide-container">
-    <h2>トリプルキャリア対応</h2>
-    <div class="split">
-      <img src="public/images/logo/docomo_logo.png" style="max-height:80px;">
-      <img src="public/images/logo/au_logo.png" style="max-height:80px;">
-      <img src="public/images/logo/softbank_logo.png" style="max-height:80px;">
+    <h2>mineo最強の独自機能</h2>
+    <div style="display: flex; flex-direction: column; gap: 20px; align-items: center; width: 100%;">
+      <img src="public/images/temp/mineo_パケット放題_バナー.png"
+        style="max-height: 220px; max-width: 100%; object-fit: contain;">
+      <img src="public/images/temp/mineo_パスケット_バナー.png"
+        style="max-height: 220px; max-width: 100%; object-fit: contain;">
     </div>
-    <p style="margin-top:40px; text-align:center;">好きな回線が<span class="highlight">選べる！</span></p>
-  </div>\n<!-- スライドID: 6 -->
+  </div>
+
+  <!-- スライドID: 5-2 -->
   <div class="slide-container">
-    <h1>Chapter 2</h1>
-    <h2>【辛口評価】NUROモバイルの<br>実力を5段階で格付け！</h2>
-    <i class="fa-solid fa-star icon-large"></i>
-  </div>\n<!-- スライドID: 7 -->
+    <h2>パケット放題</h2>
+    <img src="public/images/temp/mineo_パケット放題_概要.png" style="width: 100%; max-height: 500px; object-fit: contain;">
+  </div>
+
+  <!-- スライドID: 5-3 -->
   <div class="slide-container">
-    <img src="public/images/slides/評価は独断と偏見.png" class="fullscreen-img">
-  </div>\n<!-- スライドID: 8 -->
+    <h2>パスケット</h2>
+    <img src="public/images/temp/mineo_パスケット概要.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 5-4 -->
   <div class="slide-container">
-    <img src="public/images/slides/評価項目について.png" class="fullscreen-img">
-  </div>\n<!-- スライドID: 9 -->
+    <h2>データが<span class="highlight">118GB</span>も！？</h2>
+    <img src="public/images/temp/mineo_パスケット画面のスクショpng.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 6 -->
   <div class="slide-container">
-    <img src="public/images/slides/評価ランクの基準について.png" class="fullscreen-img">
-  </div>\n<!-- スライドID: 10 -->
+    <h2>月額たったの<span class="highlight">660円！</span></h2>
+    <img src="public/images/temp/mineo_キャンペーン料金表のみ.png" class="inline-img"
+      style="width: 100%; max-height: 500px; object-fit: contain;">
+  </div>
+
+  <!-- スライドID: 7 -->
   <div class="slide-container">
-    <img src="public/images/charts/NUROモバイル.png" class="fullscreen-img">
-  </div>\n<!-- スライドID: 11 -->
+    <h2>詳しい解説はこちら！</h2>
+    <img src="public/images/thumbnails/【裏技】mineo歴8年が教える「実質使い放題」の極意！契約前に知らないと損する5つの節約術_サムネ.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 8 -->
   <div class="slide-container">
-    <h2>データ料金：<span class="highlight" style="font-size:120px;">SS</span></h2>
-    <i class="fa-solid fa-coins icon-large" style="font-size: 200px; color: gold;"></i>
-    <p style="font-size: 80px; margin-top:20px;">まさに<span class="highlight">価格破壊！</span></p>
-  </div>\n<!-- スライドID: 12 -->
+    <h2>実質使い放題とは？</h2>
+    <img src="public/images/temp/mineo_パケット放題の仕組み.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 9 -->
   <div class="slide-container">
-    <h2>バリュープラス料金表</h2>
-    <img src="public/images/temp/nuro/NUROモバイル_バリュープラス料金表.png" style="height: 550px; object-fit: contain;">
-    <!-- <p style="text-align:center;">1,000円で<span class="highlight">お釣りが来る！</span></p> -->
-  </div>\n<!-- スライドID: 13 -->
-  <div class="slide-container">
-    <h2>通信品質：<span class="highlight" style="font-size:120px;">A</span></h2>
     <div class="split">
       <div class="split-col">
-        <i class="fa-solid fa-signal icon-large" style="margin:0;"></i>
-        <p style="font-size:40px; margin-top:20px;">お昼や夕方は少し遅延・・・<br>でも<span class="highlight">3キャリア対応！</span></p>
-        <img src="public/images/temp/nuro/3キャリア対応.png" class="content-img">
+        <h2 style="border-bottom: none;">最大1Mbpsで<br>できること</h2>
+      </div>
+      <div class="split-col">
+        <img src="public/images/temp/パケット放題_速度表_1mbps赤枠.png"
+          style="max-height: 700px; max-width: 100%; object-fit: contain;">
       </div>
     </div>
-  </div>\n<!-- スライドID: 14 -->
-  <div class="slide-container">
-    <h2>初期費用：<span class="highlight" style="font-size:120px;">A</span></h2>
-    <p style="text-align:center;">初期手数料 <span style="text-decoration: line-through;">3,740円</span></p>
-    <i class="fa-solid fa-arrow-down icon-large" style="margin: 10px;"></i>
-    <p style="text-align:center;"><span class="highlight">キャンペーン</span>活用で<br>実質 <span class="highlight"
-        style="font-size:100px;">0円</span>！</p>
-  </div>\n<!-- スライドID: 15 -->
-  <div class="slide-container">
-    <h2>通話料：<span class="highlight" style="font-size:120px;">S</span></h2>
-    <div class="split">
-      <div class="split-col" style="align-items: center;">
-        <i class="fa-solid fa-phone icon-large" style="color:var(--text-dark);"></i>
-        <p>標準アプリでOK</p>
-        <p style="font-size:80px;"><span class="highlight">11円</span>/30秒</p>
-      </div>
-    </div>
-  </div>\n<!-- スライドID: 16 -->
-  <div class="slide-container">
-    <h2>店舗サポート：<span style="color:blue; font-size:120px;">C</span></h2>
-    <i class="fa-solid fa-store-slash icon-large" style="color: #666; font-size: 200px;"></i>
-    <p style="text-align:center;">実店舗は<span class="highlight">一切なし！</span><br>全てネットで完結</p>
-  </div>\n<!-- スライドID: 17 -->
-  <div class="slide-container">
-    <h2>オプション：<span class="highlight" style="font-size:120px;">S</span></h2>
-    <img src="public/images/temp/nuro/メインオプション.png" style="height: 800px; object-fit: contain;">
-    <p style="text-align:center; margin-top:30px;">ただ安いだけのSIMじゃない</p>
-  </div>\n<!-- スライドID: 18 -->
-  <div class="slide-container">
-    <h2>総合ランク：<span class="highlight" style="font-size:150px;">A</span></h2>
-    <img src="public/images/charts/NUROモバイル.png" class="content-img">
-    <p style="text-align:center;">非常に<span class="highlight">コスパが高い</span>格安SIM！</p>
-  </div>\n<!-- スライドID: 19 -->
-  <div class="slide-container">
-    <h1>Chapter 3</h1>
-    <h2>NUROモバイルの<br>メリット 6選</h2>
-    <i class="fa-solid fa-thumbs-up icon-large"></i>
-  </div>\n<!-- スライドID: 20 -->
-  <div class="slide-container">
-    <h2>メリット ①</h2>
-    <h1 style="font-size:80px;"><span class="highlight">コスパ最強</span></h1>
-    <img src="public/images/temp/nuro/NUROモバイル_バリュープラス料金表.png" class="content-img">
-  </div>\n<!-- スライドID: 21 -->
-  <div class="slide-container">
-    <h2>メリット ②</h2>
-    <h1 style="font-size:80px;">対象SNS<span class="highlight">使い放題</span></h1>
-    <div style="display: flex; gap: 40px; margin-top:20px;">
-      <i class="fa-brands fa-line" style="font-size: 150px; color: #06C755;"></i>
-    </div>
-    <p>LINEトーク・通話の<br>データ消費 <span class="highlight">ゼロ！</span></p>
-  </div>\n<!-- スライドID: 22 -->
-  <div class="slide-container">
-    <h2>NEOデータフリーなら…</h2>
-    <img src="public/images/temp/nuro/neoデータフリー.png" class="content-img" style="margin: 1px 0;">
-    <p>動画読み込みが多いSNSも<br><span class="highlight">大容量通信が一切カウントなし！</span></p>
-  </div>\n<!-- スライドID: 23 -->
-  <div class="slide-container">
-    <h2>メリット ③</h2>
-    <h1 style="font-size:80px; margin-bottom:10px;">Gigaプラスで<span class="highlight">データプレゼント</span></h1>
-    <img src="public/images/temp/nuro/gigaプラス説明図.png" class="content-img">
-    <p style="font-size: 45px; margin-top:10px;">例：10GBプランなら3ヶ月ごとに6GB追加</p>
-  </div>\n<!-- スライドID: 24 -->
-  <div class="slide-container">
-    <h2>メリット ④</h2>
-    <h1 style="font-size:80px;">専用アプリ不要で<br><span class="highlight">通話料半額</span></h1>
-    <i class="fa-solid fa-mobile-screen icon-large"></i>
-    <p>面倒な使い分けは不要！</p>
-  </div>\n<!-- スライドID: 25 -->
-  <div class="slide-container">
-    <h2>メリット ⑤</h2>
-    <h1 style="font-size:90px;"><span class="highlight">トリプルキャリア対応</span></h1>
-    <div class="split">
-      <img src="public/images/logo/docomo_logo.png" style="max-height:80px;">
-      <img src="public/images/logo/au_logo.png" style="max-height:80px;">
-      <img src="public/images/logo/softbank_logo.png" style="max-height:80px;">
-    </div>
-    <p style="margin-top:40px;">今のままで電波の心配なし！</p>
-  </div>\n<!-- スライドID: 26 -->
-  <div class="slide-container">
-    <h2>メリット ⑥</h2>
-    <h1 style="font-size:80px;">最低利用期間なし<br>＆ 解約金ゼロ</h1>
-    <i class="fa-solid fa-door-open icon-large"></i>
-    <p>お試し契約も<span class="highlight">ノーリスク！</span></p>
-  </div>\n<!-- スライドID: 27 -->
-  <div class="slide-container">
-    <h1>Chapter 4</h1>
-    <h2>NUROモバイルの<br>デメリット・注意点 4選</h2>
-    <i class="fa-solid fa-triangle-exclamation icon-large" style="color:var(--accent-red);"></i>
-  </div>\n<!-- スライドID: 28 -->
-  <div class="slide-container">
-    <h2>デメリット ①</h2>
-    <h1 style="font-size:80px;">通信速度は<span style="color:blue;">イマイチ</span></h1>
-    <img src="public/images/common/お昼休みの通信混雑をイメージした図.png" class="content-img">
-  </div>\n<!-- スライドID: 29 -->
-  <div class="slide-container">
-    <h2>通信速度の仕組み</h2>
-    <img src="public/images/common/格安SIMを車の道路で例えたイラスト.png" class="content-img">
-    <p>お昼や夕方は<span style="color:blue;">「大渋滞」</span>する</p>
-  </div>\n<!-- スライドID: 29-2 -->
-  <div class="slide-container">
-    <h2>通信速度ランキング</h2>
-    <img src="public/images/temp/nuro/NUROモバイル_みんそく結果.png" class="content-img">
-    <p>工夫（Wi-Fi活用や画質調整）が必須！</p>
-  </div>\n<!-- スライドID: 30 -->
-  <div class="slide-container">
-    <h2>(補足) NEOプランなら…</h2>
-    <img src="public/images/temp/nuro/nuroモバイルのneoプラン専用帯域イメージ.png" style="max-height:350px;">
-    <p>専用帯域が使えるため、<br>お昼でも<span class="highlight">ストレスを感じにくい！</span></p>
-  </div>\n<!-- スライドID: 31 -->
-  <div class="slide-container">
-    <h2>デメリット ②</h2>
-    <h1 style="font-size:80px;">初期費用と<br>キャンペーンの<span class="highlight">併用注意</span></h1>
-    <img src="public/images/temp/nuro/nuroモバイル_エントリーコードvs公式キャンペーン.png" class="content-img">
-  </div>\n<!-- スライドID: 32 -->
-  <div class="slide-container">
-    <h2>併用は不可！</h2>
-    <img src="public/images/temp/nuro/nuroモバイル_エントリーコードとキャンペーンは併用不可.png" class="content-img">
-    <p style="font-size: 50px">目先の手数料無料より、<br><span class="highlight">公式サイトの見極め</span>が大事！</p>
-  </div>\n<!-- スライドID: 33 -->
-  <div class="slide-container">
-    <h2>デメリット ③</h2>
-    <h1 style="font-size:80px;"><span style="color:blue;">店舗サポートがほぼない</span></h1>
-    <i class="fa-solid fa-store-slash icon-large" style="color: gray;"></i>
-    <p>トラブル対応は全て自力</p>
-  </div>\n<!-- スライドID: 34 -->
-  <div class="slide-container">
-    <h2>訪問サポートの罠</h2>
-    <h1 style="font-size:120px; color:var(--accent-red); margin-top:20px;">1回 8,800円</h1>
-    <img src="public/images/irasutoya/seikyuusyo_shock.png" style="max-height:250px;">
-    <p style="font-size:50px;">使ったら節約が全て水の泡に…</p>
-  </div>\n<!-- スライドID: 35 -->
-  <div class="slide-container">
-    <h2>デメリット ④</h2>
-    <h1 style="font-size:80px;"><span style="color:blue;">完全無制限</span>プラン<br>＆ <span style="color:blue;">家族割引</span> なし
-    </h1>
-    <ul style="width:70%; margin: 20px auto;">
-      <li><i class="fa-solid fa-xmark" style="color:var(--accent-red);"></i> 使い放題</li>
-      <li><i class="fa-solid fa-xmark" style="color:var(--accent-red);"></i> 家族セット割</li>
-    </ul>
-  </div>\n<!-- スライドID: 36 -->
-  <div class="slide-container">
-    <h1>Chapter 5</h1>
-    <h2>他社SIMとの比較解説</h2>
-    <i class="fa-solid fa-scale-balanced icon-large"></i>
-  </div>\n<!-- スライドID: 36-2 -->
-  <div class="slide-container">
-    <img src="public/images/common/全プラン比較表.png" class="content-img">
-  </div>\n<!-- スライドID: 37 -->
-  <div class="slide-container">
-    <h2>3GB帯の比較</h2>
-    <img src="public/images/temp/nuro/nuroモバイル_3GB帯他社比較表.png" class="content-img">
-    <p>激しいトップ争い！</p>
-  </div>\n<!-- スライドID: 38 -->
-  <div class="slide-container">
-    <h2>NUROモバイルの強み</h2>
-    <ul style="width: 80%; margin: 0 auto; line-height: 2.0; font-size: 70px;">
-      <li><i class="fa-solid fa-check"></i> <span class="highlight">翌月繰り越し</span>あり</li>
-      <li><i class="fa-solid fa-check"></i> <span class="highlight">3キャリア</span>から選べる</li>
-    </ul>
-    <p style="text-align:center; margin-top:40px;">使い勝手でNUROが一歩リード！</p>
-  </div>\n<!-- スライドID: 39 -->
-  <div class="slide-container">
-    <h2>10GB帯の比較</h2>
-    <img src="public/images/temp/nuro/nuroモバイル_10GB帯比較表.png" class="content-img">
-    <p>HISモバイル、IIJmioとトップ争い！</p>
-  </div>\n<!-- スライドID: 40 -->
-  <div class="slide-container">
-    <h2>NUROが逆転する理由</h2>
-    <h1 style="font-size:80px;"><span class="highlight">Gigaプラス</span><br>（3ヶ月ごとに6GB）</h1>
-    <img src="public/images/temp/nuro/gigaプラス_アイコン.png" class="content-img" style="max-height:300px;">
-    <p>SNSをよく使うならNUROが勝利！</p>
-  </div>\n<!-- スライドID: 41 -->
-  <div class="slide-container">
-    <h2>30GB以上の比較</h2>
-    <img src="public/images/temp/nuro/nuroモバイル_30GB帯比較表.png" class="content-img" style="max-height: 550px;">
-  </div>\n<!-- スライドID: 42 -->
-  <div class="slide-container">
-    <h2>NEOプランの破壊力</h2>
-    <ul style="width:90%; margin:0 auto;">
-      <li><i class="fa-solid fa-arrow-up"></i> 基本料金が <span class="highlight">安い！</span></li>
-      <li><i class="fa-solid fa-arrow-up"></i> 主要SNSが <span class="highlight">使い放題！</span></li>
-    </ul>
-    <p style="text-align:center; margin-top:40px;">SNS漬けの人には最強コスパ！</p>
-  </div>\n<!-- スライドID: 43 -->
-  <div class="slide-container">
-    <h1>Chapter 6</h1>
-    <h2>NUROモバイル<br>おすすめYES・NO診断</h2>
-    <i class="fa-solid fa-code-branch icon-large"></i>
-  </div>\n<!-- スライドID: 44 -->
-  <div class="slide-container">
-    <h2>Q1：サポート方針</h2>
-    <h1 style="font-size:80px;">お店の手続きは不要で<br>ネットで自分で解決できる？</h1>
-    <img src="public/images/irasutoya/pose_necchuu_smartphone_woman.png" class="content-img" style="max-height: 300px;">
-  </div>\n<!-- スライドID: 45 -->
-  <div class="slide-container">
-    <h2 style="margin-bottom: 5px;">Q1：NOの場合</h2>
-    <p style="margin: 5px 0;">店舗サポートが必須なら…</p>
-    <ul style="margin: 0;">
-      <li style="margin: 5px 0;"><i class="fa-solid fa-store"></i> UQ mobile</li>
-      <li style="margin: 5px 0;"><i class="fa-solid fa-store"></i> Y!mobile</li>
-      <li style="margin: 5px 0;"><i class="fa-solid fa-store"></i> 楽天モバイル</li>
-      <li style="margin: 5px 0;"><i class="fa-solid fa-store"></i> イオンモバイル</li>
-    </ul>
-    <p style="margin: 5px 0;">などを検討しよう！</p>
-  </div>\n<!-- スライドID: 46 -->
-  <div class="slide-container">
-    <h2>Q2：通信速度</h2>
-    <h1 style="font-size:80px;">お昼休みや帰宅時間の<br>速度低下は我慢できる？</h1>
-    <img src="public/images/irasutoya/friends_obentou_suit.png" class="content-img" style="max-height: 350px;">
-  </div>\n<!-- スライドID: 47 -->
-  <div class="slide-container">
-    <h2>Q2：NOの場合</h2>
-    <p>通信の安定性を重視するなら…</p>
-    <ul style="margin-top:20px;">
-      <li><i class="fa-solid fa-bolt"></i> povo</li>
-      <li><i class="fa-solid fa-bolt"></i> LINEMO</li>
-      <li><i class="fa-solid fa-bolt"></i> 楽天モバイル</li>
-    </ul>
-    <p>などを検討しよう！</p>
-  </div>\n<!-- スライドID: 48 -->
-  <div class="slide-container">
-    <h2>Q3：データ容量</h2>
-    <h1 style="font-size:80px;">毎月の使用量は<br><span class="highlight">35GB以内</span>に収まる？</h1>
-    <img src="public/images/common/スマホのデータ通信料グラフ.png" class="content-img" style="max-height: 300px;">
-  </div>\n<!-- スライドID: 49 -->
-  <div class="slide-container">
-    <h2>Q3：NOの場合</h2>
-    <p>超大容量を使いたいなら…</p>
-    <ul style="margin-top:20px;">
-      <li><i class="fa-solid fa-infinity"></i> 楽天モバイル (無制限)</li>
-      <li><i class="fa-solid fa-infinity"></i> mineo (パケット放題Plus)</li>
-      <li><i class="fa-solid fa-signal"></i> 日本通信SIM (50GB)</li>
-    </ul>
-  </div>\n<!-- スライドID: 50 -->
-  <div class="slide-container">
-    <h2>最後のQ4！</h2>
-    <h1 style="font-size:100px;">LINE・X・Instagram・TikTok<br>各種SNSを<span class="highlight">よく使う？</span></h1>
-    <div style="display:flex; justify-content:center; gap:30px; font-size:150px;">
-      <i class="fa-brands fa-line" style="color:#06C755;"></i>
-      <i class="fa-brands fa-x-twitter" style="color:black;"></i>
-      <i class="fa-brands fa-instagram" style="color:#E1306C;"></i>
-      <i class="fa-brands fa-tiktok" style="color:black;"></i>
-    </div>
-  </div>\n<!-- スライドID: 51 -->
-  <div class="slide-container">
-    <h1 style="font-size: 100px; color: var(--accent-red);">すべてYESなら<br>NUROモバイルが<br>ぴったり！</h1>
-    <img src="public/images/irasutoya/internet_kanki_woman1.png" class="content-img" style="max-height: 300px;">
-  </div>\n<!-- スライドID: 52 -->
-  <div class="slide-container">
-    <h2>Q4：NOの場合</h2>
-    <p>SNSをあまり使わないなら…</p>
-    <ul style="margin-top:20px;">
-      <li><i class="fa-solid fa-mobile-screen"></i> HISモバイル</li>
-      <li><i class="fa-solid fa-mobile-screen"></i> IIJmio</li>
-      <li><i class="fa-solid fa-mobile-screen"></i> mineo / 楽天モバイル</li>
-    </ul>
-  </div>\n<!-- スライドID: 53 -->
-  <div class="slide-container">
-    <h1 style="font-size: 110px; color: var(--accent-red);">すべてYESなら<br>NUROモバイルが<br>ぴったり！</h1>
-    <Placeholder>歓喜するユーザーとNUROロゴのイラスト</Placeholder>
-  </div>\n<!-- スライドID: 54 -->
-  <div class="slide-container">
-    <h1>Chapter 7</h1>
-    <h2>実施中のキャンペーンについて</h2>
-    <i class="fa-solid fa-bullhorn icon-large" style="color: var(--accent-red);"></i>
-  </div>\n<!-- スライドID: 55 -->
-  <div class="slide-container">
-    <h2>1年間 料金割引！</h2>
-    <img src="public/images/temp/nuro/nuroモバイル_キャンペーンバナー.png" class="content-img" style="max-height: 550px;">
-    <p>実質的な負担が<span class="highlight">大幅ダウン！</span></p>
-  </div>\n<!-- スライドID: 56 -->
-  <div class="slide-container">
-    <h1 style="font-size:90px; color: var(--accent-red);">必ず公式サイトの<br>キャンペーンを<br>チェック！</h1>
-    <!-- <Placeholder>スマホで公式サイトを見ているイラスト</Placeholder> -->
-    <p style="text-align:center;">（エントリーコードを使って申し込むと<br>割引が無効になるので注意）</p>
-  </div>\n<!-- スライドID: 57 -->
-  <div class="slide-container">
-    <h1 style="font-size: 150px;">まとめ</h1>
-    <i class="fa-solid fa-clipboard-check" style="font-size:200px; color:var(--primary-color);"></i>
-  </div>\n<!-- スライドID: 58 -->
-  <div class="slide-container">
-    <img src="public/images/slides/プランやキャンペーンは投稿時点のもの注意喚起.png" class="fullscreen-img">
-  </div>\n<!-- スライドID: 59 -->
-  <div class="slide-container">
-    <h1 style="font-size:100px;">概要欄のリンクを<br><span class="highlight">チェック！</span></h1>
-    <i class="fa-solid fa-arrow-down" style="font-size: 250px; color: var(--accent-red); margin-top:20px;"></i>
-  </div>\n<!-- スライドID: 60 -->
-  <div class="slide-container">
-    <img src="public/images/slides/ブログもやってます.png" class="fullscreen-img">
   </div>
+
+  <!-- スライドID: 10 -->
+  <div class="slide-container">
+    <h2>【要注意】申込みが必要！</h2>
+    <img src="public/images/temp/パケット放題_申し込み画面.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 11 -->
+  <div class="slide-container">
+    <!-- <h2><span class="highlight">「パケット放題 Plus」</span>がもっと快適に！</h2> -->
+    <img src="public/images/temp/mineo_パケット放題Plusの速度が上がったイラスト.png" class="inline-img"
+      style="width: 150%; max-height: 900px; object-fit: contain;">
+  </div>
+
+  <!-- スライドID: 12 -->
+  <div class="slide-container">
+    <h2>実機検証！<br>YouTube高画質再生</h2>
+    <img src="public/images/irasutoya/smartphone_photo_satsuei_man.png" class="inline-img"
+      style="max-height:400px; max-width: 100%; object-fit: contain;">
+  </div>
+
+  <!-- スライドID: 13 -->
+  <div class="slide-container">
+    <div class="split">
+      <div class="split-col">
+        <h2 style="border-bottom: none;">最大3Mbpsで<br>できること</h2>
+      </div>
+      <div class="split-col">
+        <img src="public/images/temp/パケット放題_速度表_3mbps赤枠.png"
+          style="max-height:700px; max-width: 100%; object-fit: contain;">
+      </div>
+    </div>
+  </div>
+
+  <!-- スライドID: 14 -->
+  <div class="slide-container">
+    <h2>3日間で10GB制限？</h2>
+    <img src="public/images/temp/mineo_パケット放題3日10GB制限.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 15 -->
+  <div class="slide-container">
+    <h2>1日3.3GBの目安</h2>
+    <img src="public/images/temp/mineo_パケット放題_1日あたりの利用目安.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 16 -->
+  <div class="slide-container">
+    <h2>パスケットで<span class="highlight">データ貯金</span></h2>
+    <img src="public/images/temp/mineo_パスケットを使ったデータ貯金運用のイメージ図.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 17 -->
+  <div class="slide-container">
+    <h2>春の特大キャンペーン！</h2>
+    <div class="split">
+      <img src="public/images/temp/mineo_キャンペーンバナー.png" class="inline-img">
+      <img src="public/images/temp/mineo_キャンペーン料金表のみ.png" class="inline-img">
+    </div>
+  </div>
+
+  <!-- スライドID: 18 -->
+  <div class="slide-container">
+    <h2>端末大特価セール！</h2>
+    <img src="public/images/temp/mineo_端末キャンペーン.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 19 -->
+  <div class="slide-container">
+    <h2>【注意】<br>セールは<span class="highlight">3/31</span>まで！</h2>
+    <img src="public/images/temp/mineo_端末キャンペーン期限赤枠.png" class="inline-img">
+  </div>
+
+  <!-- スライドID: 20 -->
+  <div class="slide-container">
+    <h2>mineoを<br><span class="highlight">おすすめしない人</span></h2>
+    <ul>
+      <li><i class="fa-solid fa-xmark" style="color: var(--accent-red);"></i>お昼に爆速の通信が必要な人</li>
+      <li><i class="fa-solid fa-xmark" style="color: var(--accent-red);"></i>外出先で4K動画を頻繁に見る人</li>
+      <li><i class="fa-solid fa-xmark" style="color: var(--accent-red);"></i>オンライン対戦ゲームをやる人</li>
+    </ul>
+  </div>
+
+  <!-- スライドID: 21 -->
+  <div class="slide-container">
+    <h2>mineoを<br><span style="color:var(--primary-color);">おすすめする人</span></h2>
+    <ul>
+      <li><i class="fa-solid fa-check" style="color: var(--primary-color);"></i>スマホ代を極限まで節約したい人</li>
+      <li><i class="fa-solid fa-check" style="color: var(--primary-color);"></i>日常は3Mbpsで賢くやりくりする人</li>
+      <li><i class="fa-solid fa-check" style="color: var(--primary-color);"></i>パスケットでメリハリ運用できる人</li>
+    </ul>
+  </div>
+
+  <!-- スライドID: 22 -->
+  <div class="slide-container">
+    <h2>普通に申し込むと<br>事務手数料がかかる！？</h2>
+    <img src="public/images/irasutoya/bikkuri_me_tobideru_man.png" class="inline-img"
+      style="max-height:400px; max-width: 100%; object-fit: contain;">
+  </div>
+
+  <!-- スライドID: 23 -->
+  <div class="slide-container">
+    <h2>事務手数料が<span class="highlight">無料</span>に！</h2>
+    <div
+      style="background: rgba(255, 215, 0, 0.2); border: 8px solid var(--accent-yellow); border-radius: 20px; padding: 25px; margin: 10px 0; width: 90%; text-align: center;">
+      <p style="font-size: 64px; color: var(--accent-red); margin: 0; font-weight: 900;">限定キャンペーン開催中！</p>
+      <p style="font-size: 46px; margin: 10px 0 0 0;">専用リンクからのお申込みで<br>通常3,300円の事務手数料が<span class="highlight"
+          style="font-size: 64px;">0円</span>に！</p>
+    </div>
+    <img src="public/images/irasutoya/present_open.png" class="inline-img" style="max-height: 200px;">
+  </div>
+
+  <!-- スライドID: 24 -->
+  <div class="slide-container">
+    <h2>動画のまとめ</h2>
+    <ul>
+      <li><i class="fa-solid fa-star" style="color: var(--accent-yellow);"></i>3Mbpsで実質使い放題が快適！</li>
+      <li><i class="fa-solid fa-star" style="color: var(--accent-yellow);"></i>今なら月額たったの660円～！</li>
+      <li><i class="fa-solid fa-star" style="color: var(--accent-yellow);"></i>パスケットで無期限データ貯金！</li>
+      <li><i class="fa-solid fa-star" style="color: var(--accent-yellow);"></i>端末セールは3月31日まで！</li>
+    </ul>
+  </div>
+
+  <!-- スライドID: 25 -->
+  <div class="slide-container">
+    <h2>概要欄のリンクを<br>チェック！</h2>
+    <div
+      style="display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; gap: 30px;">
+      <p style="font-size: 60px; margin: 0;">↓ お得な専用お申込みリンクはこちら ↓</p>
+      <div
+        style="background: var(--text-dark); color: white; padding: 30px 60px; border-radius: 50px; font-size: 70px; font-weight: 900; box-shadow: 0 10px 0 #000;">
+        概要欄をタップ！ <i class="fa-solid fa-arrow-pointer" style="margin-left: 10px;"></i>
+      </div>
+    </div>
+  </div>
+
 </body>
 
 </html>
