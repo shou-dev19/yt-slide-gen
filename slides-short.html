@@ -1,381 +1,411 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NUROモバイル Shorts Slides</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@900&family=Noto+Sans+JP:wght@700;900&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>mineo 660円キャンペーン ショート動画スライド</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
     <style>
-        body {
+        :root {
+            --primary-blue: #0052cc;
+            --primary-red: #e63946;
+            --primary-yellow: #ffe600;
+            --bg-light: #f0f4f8;
+            --white: #ffffff;
+            --black: #1a1a1a;
+        }
+
+        * {
             margin: 0;
-            padding: 20px;
-            background-color: #f0f4f8;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-light);
             display: flex;
             flex-direction: column;
-            gap: 40px;
             align-items: center;
-            font-family: 'Inter', 'Noto Sans JP', sans-serif;
-            font-weight: 900;
+            padding: 40px 0;
         }
 
         .slide {
             width: 1080px;
             height: 1080px;
-            background-color: #ffffff;
-            box-sizing: border-box;
-            position: relative;
+            background-color: var(--white);
             overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            justify-content: center;
+            align-items: center;
         }
 
-        /* Thumbnail Slide 1 */
-        .thumbnail-slide {
+        /* Slide 1: Thumbnail Style */
+        .slide-1 {
             background: repeating-radial-gradient(circle at 50% 50%, #ffffff 0%, #f0f7ff 10%, #e6f0ff 20%);
-            border: 25px solid #0052cc;
-            align-items: center;
+            border: 25px solid var(--primary-blue);
             justify-content: flex-start;
+            padding-top: 50px;
         }
 
         .thumbnail-logo {
-            width: 100%;
-            height: 180px;
-            margin-top: 50px;
+            height: 220px;
+            margin-bottom: 50px;
+            object-fit: contain;
+        }
+
+        .catchphrase-container {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-        }
-
-        .thumbnail-catchphrase {
+            gap: 20px;
             transform: rotate(-3deg);
-            background-color: #e63946;
-            color: #ffffff;
+        }
+
+        .catchphrase-box {
+            padding: 10px 40px;
             font-size: 80px;
-            padding: 20px 40px;
-            text-align: center;
-            box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.2);
-            margin-top: 40px;
-            line-height: 1.3;
-            z-index: 10;
+            font-weight: 900;
+            color: var(--white);
+            text-shadow: 5px 5px 0 rgba(0,0,0,0.3);
+            display: inline-block;
         }
 
-        .thumbnail-catchphrase .yellow {
-            color: #ffe600;
+        .bg-red { background-color: var(--primary-red); }
+        .bg-yellow { background-color: var(--primary-yellow); color: var(--black); }
+
+        .thumbnail-illustration {
+            position: absolute;
+            bottom: 0;
+            right: 20px;
+            height: 450px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
         }
 
-        .thumbnail-image {
-            margin-top: auto;
-            margin-bottom: -10px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            z-index: 5;
-        }
-
-        /* Standard Slide 2-5 */
-        .standard-slide {
-            padding: 80px;
-        }
-
+        /* Common Slide Elements */
         .big-number {
             position: absolute;
-            top: 20px;
+            top: 40px;
             left: 40px;
-            font-size: 250px;
-            color: #0052cc;
-            opacity: 0.1;
+            font-size: 200px;
             font-weight: 900;
-            z-index: 1;
+            color: var(--primary-blue);
+            opacity: 0.15;
             line-height: 1;
         }
 
         .slide-title {
-            font-size: 75px;
-            color: #333333;
-            border-bottom: 15px solid #0052cc;
-            padding-bottom: 20px;
-            margin-top: 40px;
-            margin-bottom: 60px;
-            z-index: 2;
-            position: relative;
-            line-height: 1.4;
-            display: inline-block;
-            align-self: flex-start;
+            font-size: 72px;
+            font-weight: 900;
+            color: var(--primary-blue);
+            margin-bottom: 40px;
+            border-bottom: 12px solid var(--primary-blue);
+            padding-bottom: 10px;
+            text-align: center;
+            width: 80%;
+        }
+
+        .content-area {
+            width: 90%;
+            height: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
         }
 
         .highlight-text {
-            font-size: 60px;
-            z-index: 2;
-            position: relative;
-            line-height: 1.6;
-            width: 100%;
+            font-size: 64px;
+            font-weight: 900;
+            text-align: center;
+            line-height: 1.4;
         }
 
-        .highlight-text .blue {
-            color: #0052cc;
-            font-size: 130px;
-            line-height: 1;
-        }
+        .highlight-text span.blue { color: var(--primary-blue); font-size: 1.2em; }
+        .highlight-text span.red { color: var(--primary-red); font-size: 1.2em; }
 
-        .highlight-text .red {
-            color: #e63946;
-            font-size: 130px;
-            line-height: 1;
-        }
-
-        .list-item {
-            font-size: 70px;
-            margin-top: 30px;
+        .placeholder-box {
+            width: 800px;
+            height: 500px;
+            background-color: #e6f0ff;
+            border: 6px dashed var(--primary-blue);
             display: flex;
-            align-items: center;
-        }
-
-        .list-item span.emoji {
-            margin-right: 30px;
-            font-size: 90px;
-        }
-
-        /* Warning Slide 6 */
-        .warning-slide {
-            background-color: #fff0f0;
-            border: 25px solid #e63946;
-            padding: 80px;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            border-radius: 30px;
+            color: var(--primary-blue);
+            font-size: 32px;
+            font-weight: 700;
+            text-align: center;
+            padding: 40px;
         }
 
-        .warning-title {
-            font-size: 100px;
-            color: #e63946;
-            margin-bottom: 60px;
-            text-align: center;
-            font-weight: 900;
+        .placeholder-emoji {
+            font-size: 120px;
+            margin-bottom: 20px;
+        }
+
+        img.content-img {
+            max-width: 900px;
+            max-height: 600px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.1));
+            border-radius: 20px;
+        }
+
+        /* Warning Slide */
+        .slide-warning {
+            border: 25px solid var(--primary-red);
+            background-color: #fff0f0;
         }
 
         .warning-box {
-            background-color: #ffffff;
-            border: 15px solid #e63946;
-            padding: 60px;
-            width: 100%;
+            border: 10px solid var(--primary-red);
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 40px;
+            width: 90%;
             text-align: center;
-            font-size: 70px;
-            font-weight: 900;
-            box-sizing: border-box;
-            box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.1);
         }
 
-        /* CTA Slide 7 */
-        .cta-slide {
+        /* CTA Slide */
+        .slide-cta {
             background: linear-gradient(135deg, #0052cc, #003380);
-            padding: 80px;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff;
+            color: var(--white);
         }
 
         .cta-text {
-            font-size: 110px;
-            color: #ffd700;
-            text-align: center;
-            margin-bottom: 20px;
-            text-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            font-size: 100px;
             font-weight: 900;
+            color: var(--primary-yellow);
+            text-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            text-align: center;
+            margin-bottom: 60px;
         }
 
-        .cta-arrow {
+        .bounce-arrow {
             font-size: 150px;
-            animation: bounce 2s infinite;
-            margin-bottom: 20px;
-            text-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            animation: bounce 1.5s infinite;
+            margin-bottom: 40px;
         }
 
         @keyframes bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateY(0);
-            }
-
-            40% {
-                transform: translateY(-30px);
-            }
-
-            60% {
-                transform: translateY(-15px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(30px); }
         }
 
-        /* Placeholders */
-        .placeholder {
-            background-color: #e6f0ff;
-            border: 8px dashed #0052cc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 45px;
-            color: #0052cc;
-            text-align: center;
-            box-sizing: border-box;
-            padding: 20px;
-            font-weight: 700;
-        }
-
-        .placeholder-logo {
+        .thumbnail-preview {
             width: 800px;
-            height: 180px;
+            height: 450px;
+            border: 15px solid var(--white);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            object-fit: cover;
         }
 
-        .placeholder-image {
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            border-width: 15px;
-            background-color: #ffffff;
+        .character-img {
+            height: 400px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
         }
 
-        .placeholder-cta {
-            width: 850px;
-            height: 480px;
-            border: 15px solid #00ce00;
-            /* Distinct border to look like thumbnail wrapper */
-            background-color: #ffffff;
-            border-style: solid;
-            color: #333;
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 48px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        /* Flex utilities */
-        .flex-col {
-            display: flex;
-            flex-direction: column;
+        .comparison-table th, .comparison-table td {
+            padding: 30px;
+            border: 4px solid var(--bg-light);
+            text-align: center;
         }
 
-        .flex-row {
-            display: flex;
-            flex-direction: row;
+        .comparison-table th {
+            background-color: var(--primary-blue);
+            color: white;
         }
 
-        .center {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .price-tag {
+            font-size: 120px;
+            font-weight: 900;
+            color: var(--primary-red);
         }
     </style>
 </head>
-
 <body>
 
-    <!-- Slide 1: Thumbnail -->
-    <div class="slide thumbnail-slide">
-        <div class="thumbnail-logo">
-            <img src="public/images/logo/nuromobile_logo.png" alt="NUROモバイル ロゴ"
-                style="width: 800px; height: 180px; object-fit: contain; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1));">
+    <!-- スライドID: 1 -->
+    <div class="slide slide-1">
+        <img src="public/images/logo/Mineo_logo_背景削除.png" alt="mineo" class="thumbnail-logo">
+        <div class="catchphrase-container">
+            <div class="catchphrase-box bg-red">スマホ代が月660円</div>
+            <div class="catchphrase-box bg-yellow">実質使い放題！？</div>
         </div>
-        <div class="thumbnail-catchphrase">
-            【2026年最新】<br>NUROモバイルの<br><span class="yellow">評判は？</span>
-        </div>
-        <div class="thumbnail-image">
-            <img src="public/images/irasutoya/businessman2_kangaechu.png" alt="考えるビジネスマン"
-                style="width: 300px; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2)); z-index: 5;">
-        </div>
+        <img src="public/images/irasutoya/bikkuri_me_tobideru_man.png" class="thumbnail-illustration">
     </div>
 
-    <!-- Slide 2 -->
-    <div class="slide standard-slide flex-col">
-        <div class="big-number">01</div>
-        <div class="slide-title">結論</div>
-        <div class="highlight-text center flex-col" style="flex:1;">
-            <div style="font-size: 70px; margin-bottom: 60px;">店舗サポート不要なら</div>
-            <div class="red" style="font-size: 140px;">コスパ最強！</div>
-            <img src="public/images/irasutoya/internet_kanki_woman1.png" alt="歓喜する女性"
-                style="width: 450px; margin-top: 40px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); z-index: 5;">
-        </div>
-    </div>
-
-    <!-- Slide 3 -->
-    <div class="slide standard-slide flex-col">
+    <!-- スライドID: 2 -->
+    <div class="slide">
         <div class="big-number">02</div>
-        <div class="slide-title">圧倒的安さ</div>
-        <div class="highlight-text center flex-col" style="flex:1; text-align: center; position: relative;">
-            <div>
-                <span class="blue" style="font-size: 150px;">3</span><span style="font-size: 100px;">GB</span>
+        <div class="slide-title">特大キャンペーン！</div>
+        <div class="content-area">
+            <img src="public/images/temp/mineo_キャンペーンバナー.png" class="content-img">
+            <div class="highlight-text">
+                今、mineoが<br><span class="red">激アツすぎる！！</span>
             </div>
-            <div
-                style="margin-top: 20px; margin-bottom: 20px; font-size: 80px; font-weight: 900; background-color: #ffe600; display: inline-block; padding: 10px 40px; transform: rotate(-2deg); box-shadow: 5px 5px 0px rgba(0,0,0,0.2);">
-                たったの
-            </div>
-            <div>
-                <span class="red" style="font-size: 180px;">792</span><span style="font-size: 100px;">円</span>
-            </div>
-            <img src="public/images/irasutoya/osatsu_money_yamadumi.png" alt="お金"
-                style="position: absolute; bottom: -20px; right: -20px; width: 400px; opacity: 0.9; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2)); z-index: -1;">
         </div>
     </div>
 
-    <!-- Slide 4 -->
-    <div class="slide standard-slide flex-col">
+    <!-- スライドID: 3 -->
+    <div class="slide">
         <div class="big-number">03</div>
-        <div class="slide-title">対象SNS</div>
-        <div class="highlight-text flex-col" style="flex:1; justify-content: center; padding-left: 100px;">
-            <div class="list-item"><i class="fa-brands fa-line"
-                    style="color:#06C755; margin-right: 30px; font-size: 80px;"></i>LINE</div>
-            <div class="list-item"><i class="fa-brands fa-x-twitter"
-                    style="color:black; margin-right: 30px; font-size: 80px;"></i>X (旧Twitter)</div>
-            <div class="list-item"><i class="fa-brands fa-instagram"
-                    style="color:#E1306C; margin-right: 30px; font-size: 80px;"></i>Instagram</div>
-            <div class="list-item"><i class="fa-brands fa-tiktok"
-                    style="color:black; margin-right: 30px; font-size: 80px;"></i>TikTok</div>
-            <div
-                style="margin-top: 10px; font-size: 80px; color: #e63946; font-weight: 900; text-align: left; line-height: 1.2;">
-                使い放題！<br>通信量タダ！</div>
+        <div class="slide-title">本当に大丈夫？</div>
+        <div class="content-area">
+            <img src="public/images/irasutoya/shinpai_man.png" class="character-img">
+            <div class="highlight-text">
+                「どうせすぐ<br><span class="blue">制限かかるでしょ？</span>」
+            </div>
         </div>
     </div>
 
-    <!-- Slide 5 -->
-    <div class="slide standard-slide flex-col">
+    <!-- スライドID: 4 -->
+    <div class="slide">
         <div class="big-number">04</div>
-        <div class="slide-title">トリプルキャリア対応</div>
-        <div class="highlight-text center flex-col" style="flex:1; text-align: center;">
-            <div class="flex-row" style="gap: 40px; margin-bottom: 80px; justify-content: center; align-items: center;">
-                <img src="public/images/logo/docomo_logo.png" alt="ドコモ"
-                    style="width: 250px; height: 120px; object-fit: contain; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1)); border-radius: 20px; background-color: #fff; padding: 10px;">
-                <img src="public/images/logo/au_logo.png" alt="au"
-                    style="width: 250px; height: 120px; object-fit: contain; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1)); border-radius: 20px; background-color: #fff; padding: 10px;">
-                <img src="public/images/logo/softbank_logo.png" alt="ソフトバンク"
-                    style="width: 250px; height: 120px; object-fit: contain; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.1)); border-radius: 20px; background-color: #fff; padding: 10px;">
-            </div>
-            <div style="font-size: 70px; line-height: 1.5;">
-                好きな回線を選べるから<br><span class="blue">安心！</span>
+        <div class="slide-title">実質使い放題の秘密</div>
+        <div class="content-area">
+            <img src="public/images/temp/mineo_マイピタ＋パケット放題3Mbps＋パスケット.png" class="content-img">
+            <div class="highlight-text">
+                オプションの組み合わせで<br><span class="blue">最大3Mbps</span>が使い放題！
             </div>
         </div>
     </div>
 
-    <!-- Slide 6 -->
-    <div class="slide warning-slide flex-col">
-        <div class="warning-title">⚠️ デメリット</div>
-        <img src="public/images/irasutoya/pose_atama_kakaeru_woman.png" alt="ショックを受ける女性"
-            style="width: 450px; height: 300px; object-fit: contain; margin-bottom: 30px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
-        <div class="warning-box">
-            お昼の<br><span style="color: #e63946; font-size: 90px;">通信速度低下</span><br>に注意！
+    <!-- スライドID: 5 -->
+    <div class="slide">
+        <div class="big-number">05</div>
+        <div class="slide-title">3Mbpsってどう？</div>
+        <div class="content-area">
+            <table class="comparison-table">
+                <tr><th>速度</th><th>動画視聴</th></tr>
+                <tr><td>1Mbps</td><td>低画質で限界</td></tr>
+                <tr style="background-color: #fff9c4;"><td>3Mbps</td><td><span class="red">標準画質でも快適！</span></td></tr>
+            </table>
         </div>
     </div>
 
-    <!-- Slide 7 -->
-    <div class="slide cta-slide flex-col">
-        <div class="cta-text">詳しくは<br>本編で解説！</div>
-        <div class="cta-arrow">⬇️</div>
-        <img src="public/images/thumbnails/【月額792円〜】SNS使い放題＆初期費用実質0円！NUROモバイルのメリット6選を徹底解説.png" alt="YouTubeサムネイル"
-            class="placeholder-cta" style="object-fit: cover; padding: 0; box-sizing: border-box;">
+    <!-- スライドID: 6 -->
+    <div class="slide">
+        <div class="big-number">06</div>
+        <div class="slide-title">動画もサクサク！</div>
+        <div class="content-area">
+            <img src="public/images/irasutoya/smartphone_speed_5g.png" class="character-img">
+            <div class="highlight-text">
+                テザリングで<br><span class="blue">PC作業も余裕！</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- スライドID: 7 -->
+    <div class="slide">
+        <div class="big-number">07</div>
+        <div class="slide-title">衝撃の月額料金</div>
+        <div class="content-area">
+            <div class="highlight-text">
+                マイピタ3GB + パケット放題3Mbps<br>
+                キャンペーン適用で...
+            </div>
+            <div class="price-tag">月額 660円</div>
+            <div class="highlight-text">
+                <span class="blue">最大6ヶ月間</span>この価格！
+            </div>
+        </div>
+    </div>
+
+    <!-- スライドID: 8 -->
+    <div class="slide">
+        <div class="big-number">08</div>
+        <div class="slide-title">安すぎて衝撃！</div>
+        <div class="content-area">
+            <img src="public/images/irasutoya/family_happy_banzai.png" class="character-img">
+            <div class="price-tag">660円！？</div>
+            <div class="highlight-text">ランチ代より安い！</div>
+        </div>
+    </div>
+
+    <!-- スライドID: 9 -->
+    <div class="slide">
+        <div class="big-number">09</div>
+        <div class="slide-title">データは無期限！</div>
+        <div class="content-area">
+            <img src="public/images/temp/mineo_パスケットを使ったデータ貯金運用のイメージ図.png" class="content-img">
+            <div class="highlight-text">
+                「パスケット」で<br><span class="blue">永久に貯金できる！</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- スライドID: 10 -->
+    <div class="slide">
+        <div class="big-number">10</div>
+        <div class="slide-title">まさに死角なし！</div>
+        <div class="content-area">
+            <img src="public/images/irasutoya/internet_kanki_woman1.png" class="character-img">
+            <div class="highlight-text">
+                使い放題 ＋ 無期限繰越<br><span class="red">最強の組み合わせ！</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- スライドID: 11 -->
+    <div class="slide">
+        <div class="big-number">11</div>
+        <div class="slide-title">初期費用も無料！</div>
+        <div class="content-area">
+            <div
+      style="background: rgba(255, 215, 0, 0.2); border: 8px solid var(--accent-yellow); border-radius: 20px; padding: 25px; margin: 10px 0; width: 90%; text-align: center;">
+      <p style="font-size: 64px; color: var(--accent-red); margin: 0; font-weight: 900;">限定キャンペーン開催中！</p>
+      <p style="font-size: 46px; margin: 10px 0 0 0;">専用リンクからのお申込みで<br>通常3,300円の事務手数料が<span class="highlight"
+          style="font-size: 64px;">0円</span>に！</p>
+    </div>
+    <img src="public/images/irasutoya/present_open.png" class="character-img" style="height: 300px;">
+        </div>
+    </div>
+
+    <!-- スライドID: 12 -->
+    <div class="slide slide-warning">
+        <div class="big-number" style="color: var(--primary-red);">12</div>
+        <div class="slide-title" style="color: var(--primary-red); border-color: var(--primary-red);">注意点もあります</div>
+        <div class="content-area">
+            <div class="warning-box">
+                <div class="highlight-text">
+                    ⚠️ お昼の速度低下<br>
+                    ⚠️ 3日間10GB制限<br>
+                    など...
+                </div>
+            </div>
+            <img src="public/images/irasutoya/animal_buta_shock.png" class="character-img" style="height: 320px;">
+        </div>
+    </div>
+
+    <!-- スライドID: 13 -->
+    <div class="slide slide-cta">
+        <div class="cta-text">本編で解説！</div>
+        <div class="bounce-arrow">⬇️</div>
+        <img src="public/images/thumbnails/【2026年最新】月額660円で実質使い放題！mineoの最強キャンペーンを徹底解説.png" class="content-img">
+        <div class="highlight-text" style="margin-top: 40px; color: var(--primary-yellow);">
+            左下のリンクをタップ！
+        </div>
     </div>
 
 </body>
-
 </html>
