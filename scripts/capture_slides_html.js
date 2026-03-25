@@ -39,6 +39,11 @@ async function main() {
     console.log(`Loading: ${fileUrl} (Mode: ${mode})`);
     await page.goto(fileUrl, { waitUntil: 'networkidle0' });
 
+    // Wait for fonts to load
+    await page.evaluate(async () => {
+        await document.fonts.ready;
+    });
+
     // Ensure all images are decoded and rendered before proceeding
     await page.evaluate(async () => {
         const imgs = Array.from(document.images);
