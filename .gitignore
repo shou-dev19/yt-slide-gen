@@ -2,6 +2,9 @@
 .env
 .gemini/*
 !.gemini/settings.json
+!.gemini/skills
+!.gemini/rules
+!.gemini/workflows
 
 # Logs
 logs
