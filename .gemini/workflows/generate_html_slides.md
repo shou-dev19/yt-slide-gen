@@ -13,7 +13,7 @@ Use this workflow to automatically generate HTML presentation slides for YouTube
    - Take note of any specific instructions regarding theme colors (`--primary-color`, etc.), logo images, chart images, or common slides requested by the user.
 
 2. **Invoke the Skill**: 
-   - Read the `.agent/skills/generate-html-slides/SKILL.md` rules and CSS template carefully.
+   - Read the `.gemini/skills/generate-html-slides/SKILL.md` rules and CSS template carefully.
    - Ensure you follow the "デカ文字" (Huge Text) design philosophy closely, maximizing visibility for smartphone viewers.
 
 3. **Check for Assets**:
