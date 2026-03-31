@@ -41,6 +41,7 @@ This skill provides instructions on how to generate "Yukkuri Kaisetsu" style pre
     * 既存の画像で横幅や縦幅が大きなものは `max-height: 500px; max-width: 100%; object-fit: contain;` 等のスタイルでスライド内に収めること。
     * 全画面表示が必要な画像（共通の注意書きスライドやチャートなど）は以下のようなクラスを当てて背景全体を覆うようにする。この時、親要素からの `max-height` 制限などを上書きして見切れを防ぐため、必ず `max-width: 100%; max-height: 100%; object-fit: contain;` にすること。（画像によって `cover` と `contain` は使い分けるが、基本として端が切れない `contain` を優先する）
       `.fullscreen-img { width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; position: absolute; top: 0; left: 0; z-index: 10; }`
+    * 過去に投稿した動画に誘導するスライドの場合は、 `public/images/thumbnails` に格納されているサムネイル画像群から、ファイル名をもとに適したサムネイル画像を判断して、スライド内に配置すること。
     * **注釈・引用表記:** 画像の下部に「※docomoのページから引用」「※キャンペーンのリンクは概要欄をチェック！」などの注釈テキストを追加する場合は、本文より控えめなサイズ（`font-size: 20px〜35px`程度）、色（`#666` 等）にすること。注釈テキスト分の高さを確保できるよう、画像の `max-height` を縮小して縦はみ出しを防ぐこと。
 
 5. **プレースホルダーの設定**
