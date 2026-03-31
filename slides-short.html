@@ -3,92 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Shorts Slides</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>YouTube Shorts Slides - 格安SIM 2枚持ち</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-blue: #0052cc;
             --primary-red: #e63946;
-            --primary-white: #ffffff;
             --accent-yellow: #ffe600;
-            --bg-outside: #f0f4f8;
-            --slide-size: 1080px;
+            --bg-light: #f0f4f8;
+            --text-dark: #1a1a1a;
+            --white: #ffffff;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
-            background-color: var(--bg-outside);
-            font-family: 'Inter', 'Noto Sans JP', 'Noto Color Emoji', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-light);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 40px;
-            padding: 40px;
+            padding: 40px 0;
         }
 
-        .slide {
-            width: var(--slide-size);
-            height: var(--slide-size);
-            background-color: var(--primary-white);
+        .slide-container {
+            width: 1080px;
+            height: 1080px;
+            background-color: var(--white);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 60px;
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            flex-shrink: 0;
         }
 
         /* Slide 1: Thumbnail */
-        .slide-1 {
+        #slide-1 {
             background: repeating-radial-gradient(circle at 50% 50%, #ffffff 0%, #f0f7ff 10%, #e6f0ff 20%);
             border: 25px solid var(--primary-blue);
             justify-content: center;
             align-items: center;
+            text-align: center;
         }
 
-        .logo-scatter {
-            position: relative;
-            width: 90%;
-            height: 90%;
-            z-index: 1;
+        .thumbnail-title-wrapper {
+            transform: rotate(-3deg);
+            z-index: 2;
         }
 
-        .logo-scatter img {
-            position: absolute;
-            max-width: 400px;
-            max-height: 200px;
-            object-fit: contain;
-            filter: drop-shadow(10px 10px 15px rgba(0,0,0,0.15));
+        .thumbnail-main-text {
+            font-size: 110px;
+            font-weight: 900;
+            color: var(--white);
+            background-color: var(--primary-red);
+            padding: 20px 40px;
+            display: inline-block;
+            margin-bottom: 20px;
+            box-shadow: 15px 15px 0px rgba(0,0,0,0.2);
+            line-height: 1.2;
         }
 
-        /* Slide 2-9: Standard */
-        .standard-slide {
+        .thumbnail-sub-text {
+            font-size: 80px;
+            font-weight: 900;
+            color: var(--text-dark);
+            background-color: var(--accent-yellow);
+            padding: 15px 30px;
+            display: inline-block;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
+        }
+
+        /* Standard Explanation Slides */
+        .explanation-slide {
             padding: 80px;
+            justify-content: flex-start;
         }
 
         .big-number {
             position: absolute;
             top: 20px;
-            left: 20px;
-            font-size: 180px;
+            left: 40px;
+            font-size: 300px;
             font-weight: 900;
             color: var(--primary-blue);
             opacity: 0.1;
+            z-index: 0;
             line-height: 1;
         }
 
         .slide-title {
             font-size: 80px;
             font-weight: 900;
-            color: #333;
+            color: var(--primary-blue);
             border-bottom: 12px solid var(--primary-blue);
-            margin-bottom: 60px;
             padding-bottom: 20px;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 1;
             width: fit-content;
         }
 
@@ -97,32 +114,63 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            width: 100%;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Typography & Highlighting */
         .highlight-text {
-            font-size: 70px;
+            font-size: 72px;
             font-weight: 900;
             line-height: 1.4;
+            color: var(--text-dark);
+        }
+
+        .highlight-text span.blue { color: var(--primary-blue); }
+        .highlight-text span.red { color: var(--primary-red); font-size: 90px; }
+
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+
+        .list-emoji {
+            font-size: 80px;
+            margin-right: 30px;
+            flex-shrink: 0;
+        }
+
+        /* Slide 6: CTA */
+        #slide-6 {
+            background: linear-gradient(135deg, #0052cc, #003380);
+            color: var(--white);
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            padding: 60px;
         }
 
-        .massive { font-size: 120px; }
-        .red { color: var(--primary-red); }
-        .blue { color: var(--primary-blue); }
-        
-        .badge-red {
-            background-color: var(--primary-red);
-            color: white;
-            padding: 10px 30px;
-            border-radius: 10px;
-            display: inline-block;
+        .cta-text {
+            font-size: 80px;
+            font-weight: 900;
+            color: var(--accent-yellow);
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 0px rgba(0,0,0,0.3);
         }
 
-        /* Placeholder Styles */
-        .placeholder {
+        .bounce-arrow {
+            font-size: 120px;
+            margin-bottom: 40px;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(30px); }
+        }
+
+        /* Image Placeholders */
+        .image-placeholder {
             background-color: #e6f0ff;
             border: 6px dashed var(--primary-blue);
             border-radius: 30px;
@@ -130,255 +178,129 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 40px;
-            text-align: center;
             color: var(--primary-blue);
             font-weight: 700;
-            margin: 20px 0;
+            font-size: 32px;
+            padding: 40px;
+            text-align: center;
             width: 100%;
             height: 400px;
+            margin-top: 40px;
         }
 
-        .placeholder-emoji {
-            font-size: 120px;
+        .image-placeholder span {
+            font-size: 100px;
             margin-bottom: 20px;
         }
 
-        /* Slide 10: Warning */
-        .slide-10 {
-            background-color: #fff0f0;
-            border: 20px solid var(--primary-red);
-            padding: 80px;
+        img {
+            max-width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+            filter: drop-shadow(0 15px 30px rgba(0,0,0,0.15));
         }
 
-        .warning-title {
-            color: var(--primary-red);
-            font-size: 100px;
-            font-weight: 900;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        /* Slide 11: CTA */
-        .slide-11 {
-            background: linear-gradient(135deg, var(--primary-blue), #003380);
-            color: white;
-            justify-content: center;
-            align-items: center;
-            padding: 60px;
-        }
-
-        .cta-text {
-            font-size: 100px;
-            font-weight: 900;
-            color: var(--accent-yellow);
-            text-align: center;
-            margin-bottom: 40px;
-            text-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        .thumbnail-placeholder {
+        .thumbnail-img-container {
             width: 100%;
-            height: 500px;
-            border: 15px solid var(--primary-white);
-            border-radius: 20px;
-            background-color: rgba(255,255,255,0.1);
+            height: 350px;
+            margin-top: 140px;
             display: flex;
             justify-content: center;
-            align-items: center;
-        }
-
-        .bounce {
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-30px);}
-            60% {transform: translateY(-15px);}
-        }
-
-        /* Specific Layouts */
-        .list-item {
-            display: flex;
-            align-items: center;
-            font-size: 55px;
-            font-weight: 900;
-            margin-bottom: 30px;
-            width: 100%;
-        }
-
-        .list-emoji {
-            font-size: 70px;
-            margin-right: 30px;
-        }
-
-        .vs-container {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            width: 100%;
-        }
-
-        .vs-box {
-            text-align: center;
-            padding: 40px;
-            border-radius: 30px;
-            background: #f8f9fa;
-            width: 45%;
-        }
-
-        .vs-divider {
-            font-size: 80px;
-            font-weight: 900;
-            color: var(--primary-red);
+            align-items: flex-end;
         }
 
     </style>
 </head>
 <body>
 
-    <!-- Slide 1: Thumbnail -->
-    <div class="slide slide-1">
-        <div style="background-color: var(--primary-red); color: white; padding: 20px 60px; font-size: 60px; font-weight: 900; transform: rotate(-3deg); margin-bottom: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
-            5GB・10GB・20GB
+    <!-- SLIDE 1: Thumbnail -->
+    <div class="slide-container" id="slide-1">
+        <div class="thumbnail-title-wrapper">
+            <div class="thumbnail-main-text">格安SIMは1枚より<br>2枚持ちが最強！</div><br>
+            <div class="thumbnail-sub-text">月1,298円で実質使い放題</div>
         </div>
-        <div style="font-size: 120px; font-weight: 900; line-height: 1.1; text-align: center; color: #333; text-shadow: 5px 5px 0px var(--accent-yellow);">
-            目的別<br>ベストSIMは<br><span class="blue" style="font-size: 160px;">これだ！</span>
-        </div>
-        <div class="logo-scatter">
-            <img src="public/images/logo/Mineo_logo_背景削除.png" style="top: -10%; left: -6%; transform: rotate(-15deg); width: 400px;">
-            <img src="public/images/logo/iijmio_logo.png" style="top: 5%; right: -5%; transform: rotate(12deg); width: 350px;">
-            <img src="public/images/logo/Povo_logo.png" style="top: 35%; left: 3%; transform: rotate(8deg); width: 300px;">
-            <img src="public/images/logo/Rakuten_Mobile_logo.png" style="bottom: 10%; left: -3%; transform: rotate(-10deg); width: 450px;">
-            <img src="public/images/logo/Ahamo_logo.png" style="top: 40%; right: 2%; transform: rotate(-12deg); width: 320px;">
-            <img src="public/images/logo/LINEMO_logo.png" style="bottom: 5%; right: -2%; transform: rotate(18deg); width: 380px;">
-            <img src="public/images/logo/nihon_tsushin.jpg" style="top: 25%; left: 36%; transform: rotate(5deg); width: 260px;">
-            <img src="public/images/logo/nuromobile_logo.png" style="bottom: 5%; left: 34%; transform: rotate(-5deg); width: 350px;">
-            <img src="public/images/logo/aeonmobile_logo.png" style="top: 5%; left: 35%; transform: rotate(-8deg); width: 300px; opacity: 0.8;">
+        <div class="thumbnail-img-container">
+            <img src="public/images/irasutoya/animal_buta_shock.png" alt="驚くキャラ">
         </div>
     </div>
 
-    <!-- Slide 2: Comparison -->
-    <div class="slide standard-slide">
+    <!-- SLIDE 2: Intro -->
+    <div class="slide-container explanation-slide" id="slide-2">
+        <div class="big-number">01</div>
+        <div class="slide-title">2枚持ちの方がお得？</div>
+        <div class="content-area">
+            <div class="highlight-text">
+                え！？<br>
+                1枚より<span class="red">2枚</span>の方が<br>
+                <span class="blue">安くて安心</span>なの！？
+            </div>
+            <div style="display: flex; justify-content: center; margin-top: 40px;">
+                <img src="public/images/irasutoya/businessman2_kangaechu.png" alt="考える人" style="height: 350px;">
+            </div>
+        </div>
+    </div>
+
+    <!-- SLIDE 3: Benefit 1 -->
+    <div class="slide-container explanation-slide" id="slide-3">
         <div class="big-number">02</div>
-        <div class="slide-title">衝撃の価格差！</div>
+        <div class="slide-title">①通信障害対策</div>
         <div class="content-area">
-            <div class="vs-container">
-                <div class="vs-box">
-                    <div style="font-size: 40px;">他社</div>
-                    <div class="massive">5GB</div>
-                    <div style="font-size: 50px;">950円~1,300円</div>
-                </div>
-                <div class="vs-divider">VS</div>
-                <div class="vs-box" style="border: 8px solid var(--primary-red);">
-                    <div><img src="public/images/logo/nihon_tsushin.jpg" style="width: 200px;"></div>
-                    <div class="massive blue">20GB</div>
-                    <div class="red" style="font-size: 60px; font-weight: 900;">1,390円</div>
+            <div class="list-item">
+                <div class="list-emoji">🛡️</div>
+                <div class="highlight-text">
+                    1社が止まっても<br>
+                    <span class="blue">もう1枚でカバー！</span>
                 </div>
             </div>
-            <div class="badge-red" style="font-size: 50px; margin-top: 40px;">バグレベルの安さ！</div>
+            <div style="display: flex; justify-content: center; margin-top: 10px;">
+                <img src="public/images/common/複数回線持ちで通信障害対策.png" alt="通信障害イメージ">
+            </div>
         </div>
     </div>
 
-    <!-- Slide 3: Market Situation -->
-    <div class="slide standard-slide">
+    <!-- SLIDE 4: Benefit 2 -->
+    <div class="slide-container explanation-slide" id="slide-4">
         <div class="big-number">03</div>
-        <div class="slide-title">激戦区はここ！</div>
+        <div class="slide-title">②各社の良いとこ取り</div>
         <div class="content-area">
-            <div class="highlight-text">
-                ミドル帯<br>
-                <span class="massive blue">3〜20GB</span>は<br>
-                <span class="red">激戦区！</span>
+            <div class="list-item">
+                <div class="list-emoji">✂️</div>
+                <div class="highlight-text">
+                    <span class="blue">通話</span>と<span class="blue">データ</span>を<br>
+                    役割分担させる！
+                </div>
             </div>
-            <image src="public/images/common/激戦をイメージしたイラスト.png" style=" width: 700px;"></image>
+            <div style="display: flex; justify-content: center; margin-top: 10px;">
+                <img src="public/images/common/複数回線を組み合わせるイメージ図.png" alt="役割分担イメージ">
+            </div>
         </div>
     </div>
 
-    <!-- Slide 4: Guide Intro -->
-    <div class="slide standard-slide">
+    <!-- SLIDE 5: Benefit 3 -->
+    <div class="slide-container explanation-slide" id="slide-5">
         <div class="big-number">04</div>
-        <div class="slide-title">失敗しない選び方</div>
+        <div class="slide-title">③コスト削減！</div>
         <div class="content-area">
-            <div class="highlight-text">
-                容量別に<br>
-                <span class="blue">おすすめプラン</span>を<br>
-                サクッと解説！
+            <div class="highlight-text" style="font-size: 60px;">
+                mineo(<span class="blue">1298円</span>) + povo2.0(<span class="blue">0円</span>)<br>
+                <div style="font-size: 80px; margin-top: 30px;">
+                    ＝月<span class="red">1298円</span>で<br>実質使い放題！
+                </div>
             </div>
-            <image src="public/images/irasutoya/dentaku_kaden3_woman.png" style=" width: 400px;"></image>
-        </div>
-    </div>
-
-    <!-- Slide 5: 5GB Recommendations -->
-    <div class="slide standard-slide">
-        <div class="big-number">05</div>
-        <div class="content-area">
-            <image src="public/images/temp/middle_user/slide_51-1.png" style=" width: 1050px; margin-top: 50px;"></image>
-        </div>
-    </div>
-
-    <!-- Slide 6: 10GB Recommendations -->
-    <div class="slide standard-slide">
-        <div class="big-number">06</div>
-        <div class="content-area">
-            <image src="public/images/temp/middle_user/slide_51-2.png" style=" width: 1050px; margin-top: 50px;"></image>
-        </div>
-    </div>
-
-    <!-- Slide 7: mineo Visual -->
-    <div class="slide standard-slide">
-        <div class="big-number">07</div>
-        <div class="slide-title">mineoが凄い！</div>
-        <div class="content-area">
-            <image src="public/images/temp/mineo/mineo_パケット放題Plusの速度が上がったイラスト.png" style=" width: 1050px; margin-top: 50px;"></image>
-        </div>
-    </div>
-
-    <!-- Slide 8: 20GB Recommendations -->
-    <div class="slide standard-slide">
-        <div class="big-number">08</div>
-        <div class="content-area">
-            <image src="public/images/temp/middle_user/slide_51-3.png" style=" width: 1050px; margin-top: 50px;"></image>
-        </div>
-    </div>
-
-    <!-- Slide 9: Fixed Cost Impact -->
-    <div class="slide standard-slide">
-        <div class="big-number">09</div>
-        <div class="slide-title">知らないと損！</div>
-        <div class="content-area">
-            <div class="highlight-text">
-                今まで高いお金を<br>
-                払ってませんか？<br>
-                <span class="red">固定費を大幅削減！</span>
+            <div style="display: flex; justify-content: space-around; align-items: center; margin-top: 60px;">
+                <img src="public/images/logo/Mineo_logo.jpg" alt="mineo" style="height: 200px;">
+                <div style="font-size: 80px; font-weight: 900; color: var(--primary-blue);">+</div>
+                <img src="public/images/logo/Povo_logo.png" alt="povo" style="height: 200px;">
             </div>
-            <image src="public/images/irasutoya/money_fueru.png" style=" width: 500px;"></image>
         </div>
     </div>
 
-    <!-- Slide 10: Summary/Warning -->
-    <div class="slide slide-10">
-        <div class="warning-title"><i class="fa-solid fa-triangle-exclamation"></i> 重要事項</div>
-        <div style="font-size: 50px; font-weight: 900; text-align: center; line-height: 1.6;">
-            プランやキャンペーンは<br>
-            <span class="red">投稿時点</span>の内容です。<br>
-            詳細は必ず各社公式サイトを<br>
-            ご確認ください。
-        </div>
-        <div class="content-area">
-            <image src="public/images/irasutoya/pop_chuui.png" style=" width: 500px;"></image>
-        </div>
-    </div>
-
-    <!-- Slide 11: CTA -->
-    <div class="slide slide-11">
-        <div class="cta-text">今すぐ本編を<br>チェック！</div>
-        <div class="bounce" style="font-size: 100px; margin-bottom: 10px; color: var(--accent-yellow);"><i class="fa-solid fa-hand-point-down"></i></div>
-        <div class="thumbnail-placeholder">
-            <image src="public/images/thumbnails/【2026年最新】5GB・10GB・20GB別！おすすめ格安SIM徹底比較！.png" style=" width: 850px;"></image>
-        </div>
-        <div style="margin-top: 20px; font-size: 45px; font-weight: 900; background: var(--accent-yellow); color: black; padding: 10px 40px; border-radius: 50px;">
-            事務手数料0円リンクあり！
+    <!-- SLIDE 6: CTA -->
+    <div class="slide-container" id="slide-6">
+        <div class="cta-text">おすすめ組み合わせ3選は<br>本編動画でチェック！</div>
+        <div class="bounce-arrow">⬇️</div>
+        <div style="width: 90%; height: 500px; background-color: white; border: 15px solid var(--accent-yellow); border-radius: 20px; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+            <img src="public/images/thumbnails/【2026年最新】最強の2枚持ちおすすめ格安SIM組み合わせ3選！_サムネ1.png" alt="本編サムネイル" style="width: 100%; height: 100%; object-fit: cover; filter: none;">
         </div>
     </div>
 
