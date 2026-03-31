@@ -14,7 +14,7 @@ const mode = process.argv[2] === 'short' ? 'short' : 'long';
 const isShort = mode === 'short';
 
 const SLIDE_HTML_PATH = isShort ? path.join(PROJECT_ROOT, 'slides-short.html') : path.join(PROJECT_ROOT, 'slides.html');
-const SLIDE_SELECTOR = isShort ? '.slide' : '.slide-container';
+const SLIDE_SELECTOR = '.slide-container';
 // always set a large viewport so the layout avoids tight squeeze/scrollbars
 const VIEWPORT_WIDTH = 1920;
 const VIEWPORT_HEIGHT = 1080;
