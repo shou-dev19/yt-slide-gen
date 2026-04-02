@@ -1,565 +1,694 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>YouTube Slides - 最強の2枚持ちおすすめ格安SIM</title>
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --primary-color: #2c3e50;
-      --accent-yellow: #f1c40f;
-      --accent-red: #e74c3c;
-      --text-dark: #333;
-    }
-    body {
-      font-family: 'M PLUS Rounded 1c', sans-serif;
-      margin: 0;
-      background: #eee;
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      padding: 40px;
-      align-items: center;
-    }
-    .slide-container {
-      width: 1280px;
-      height: 720px;
-      border: 10px solid var(--primary-color);
-      background: white;
-      box-sizing: border-box;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 40px;
-      flex-shrink: 0;
-      color: var(--text-dark);
-    }
-    h1 {
-      font-size: 110px;
-      font-weight: 900;
-      text-align: center;
-      margin: 0;
-      line-height: 1.2;
-      text-shadow: 
-        4px 4px 0px white, -4px -4px 0px white, 4px -4px 0px white, -4px 4px 0px white,
-        0px 4px 0px var(--primary-color), 0px -4px 0px var(--primary-color), 
-        4px 0px 0px var(--primary-color), -4px 0px 0px var(--primary-color);
-    }
-    h2 {
-      font-size: 90px;
-      font-weight: 800;
-      text-align: center;
-      margin: 0 0 30px 0;
-      border-bottom: 8px solid var(--accent-yellow);
-      display: inline-block;
-    }
-    p, li {
-      font-size: 64px;
-      font-weight: 800;
-      margin: 15px 0;
-      line-height: 1.4;
-    }
-    ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      width: 100%;
-    }
-    li i {
-      color: var(--primary-color);
-      margin-right: 20px;
-      width: 80px;
-      text-align: center;
-    }
-    .highlight {
-      color: var(--accent-red);
-    }
-    .split {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      justify-content: space-around;
-      align-items: center;
-    }
-    .split-col {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
-    .split-col img {
-      max-height: 400px;
-      max-width: 100%;
-      object-fit: contain;
-    }
-    .fullscreen-img {
-      width: 100%;
-      height: 100%;
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 10;
-    }
-    .logo-img {
-      max-height: 200px;
-      max-width: 400px;
-      object-fit: contain;
-      margin: 20px;
-    }
-    .note {
-      font-size: 50px;
-      color: #666;
-      margin-top: 20px;
-    }
-    Placeholder {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #f0f0f0;
-      border: 4px dashed #999;
-      border-radius: 20px;
-      padding: 40px;
-      font-size: 50px;
-      font-weight: bold;
-      color: #666;
-      text-align: center;
-      width: 80%;
-      margin: 20px auto;
-    }
-    Placeholder::before {
-      content: "🖼️ ";
-      margin-right: 10px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 45px;
-      font-weight: 800;
-    }
-    th, td {
-      border: 4px solid var(--primary-color);
-      padding: 10px 15px;
-      text-align: center;
-    }
-    th {
-      background-color: var(--primary-color);
-      color: white;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>格安SIM初期費用比較スライド</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #003366;
+            --accent-yellow: #FFD700;
+            --accent-red: #FF4500;
+            --text-dark: #333333;
+            --bg-light: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            border: 10px solid var(--primary-color);
+            background: white;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            flex-shrink: 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 110px;
+            line-height: 1.2;
+            margin: 0;
+            text-align: center;
+            color: white;
+            font-weight: 900;
+            text-shadow: 
+                4px 4px 0px var(--primary-color), 
+                -4px -4px 0px var(--primary-color), 
+                4px -4px 0px var(--primary-color), 
+                -4px 4px 0px var(--primary-color), 
+                0px 6px 0px var(--primary-color), 
+                0px -6px 0px var(--primary-color), 
+                6px 0px 0px var(--primary-color), 
+                -6px 0px 0px var(--primary-color),
+                8px 8px 15px rgba(0,0,0,0.3);
+            word-break: keep-all;
+        }
+
+        h2 {
+            font-size: 80px;
+            margin: 20px 0;
+            color: var(--text-dark);
+            border-bottom: 12px solid var(--accent-yellow);
+            padding-bottom: 10px;
+            text-align: center;
+            word-break: keep-all;
+        }
+
+        p {
+            font-size: 64px;
+            color: var(--text-dark);
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 800;
+            line-height: 1.4;
+        }
+
+        .highlight-red {
+            color: var(--accent-red);
+        }
+
+        .highlight-yellow {
+            background: linear-gradient(transparent 60%, var(--accent-yellow) 60%);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            width: 90%;
+        }
+
+        li {
+            font-size: 56px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            font-weight: 800;
+        }
+
+        li i {
+            color: var(--primary-color);
+            margin-top: 10px;
+            font-size: 60px;
+        }
+
+        .split {
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+            align-items: center;
+            height: 100%;
+        }
+
+        .split-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 45px;
+            margin-top: 20px;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border: 3px solid #ccc;
+        }
+
+        td {
+            padding: 15px;
+            border: 3px solid #ccc;
+            text-align: center;
+            font-weight: 800;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .fullscreen-img {
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .character-img {
+            max-height: 400px;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .logo-img {
+            max-height: 250px;
+            max-width: 80%;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .chart-img {
+            max-height: 550px;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--accent-red);
+            color: white;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .note {
+            font-size: 28px;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        Placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f0f0f0;
+            border: 6px dashed #999;
+            border-radius: 30px;
+            padding: 40px;
+            font-size: 48px;
+            font-weight: bold;
+            color: #666;
+            text-align: center;
+            width: 80%;
+            margin: 20px auto;
+        }
+        Placeholder::before {
+            content: "🖼️ ";
+            margin-right: 15px;
+        }
+    </style>
 </head>
 <body>
 
-<!-- スライドID: 0.1 -->
-<div class="slide-container">
-  <h1>【2026年最新】<br>最強の<span class="highlight">2枚持ち</span><br>おすすめ格安SIM<br>組み合わせ3選！</h1>
-</div>
-
-<!-- スライドID: 0.2 -->
-<div class="slide-container">
-  <h2 style="font-size: 75px;">チャンネル登録をお願いします！</h2>
-  <img src="public/images/irasutoya/family_happy_banzai.png" style="max-height:380px; max-width:100%; object-fit:contain;" alt="喜び">
-  <p style="text-align:center; font-size: 45px;">最新の格安SIM情報を毎週お届け！</p>
-</div>
-
-<!-- スライドID: 1 -->
-<div class="slide-container">
-  <h2>格安SIM選びで迷う</h2>
-  <img src="public/images/irasutoya/pose_atama_kakaeru_woman.png" style="max-height:450px; max-width:100%; object-fit:contain;" alt="悩む女性">
-</div>
-
-<!-- スライドID: 2 -->
-<div class="slide-container">
-  <h1>【2026年最新】<br>最強の<span class="highlight">2枚持ち</span><br>おすすめ格安SIM<br>組み合わせ3選！</h1>
-</div>
-
-<!-- スライドID: 3 -->
-<div class="slide-container">
-  <h2>2枚持ちの<span class="highlight">3大メリット</span></h2>
-  <ul>
-    <li><i class="fa-solid fa-shield-halved"></i> 1. <span class="highlight">通信障害対策</span></li>
-    <li><i class="fa-solid fa-handshake"></i> 2. 各社の<span class="highlight">長所を組み合わせ</span></li>
-    <li><i class="fa-solid fa-piggy-bank"></i> 3. トータルの<span class="highlight">コスト削減</span></li>
-  </ul>
-</div>
-
-<!-- スライドID: 4 -->
-<div class="slide-container">
-  <h2>今回のキーマン <span class="highlight">povo2.0</span></h2>
-  <div class="split">
-    <div class="split-col">
-      <img src="public/images/logo/Povo_logo.png" class="logo-img" style="max-width: 300px;" alt="povo2.0">
+    <!-- スライドID: 1 -->
+    <div class="slide-container">
+        <div class="badge">乗り換え前に必見！</div>
+        <h1>初期費用ゼロで試せる！<br><span style="color: var(--accent-yellow);">格安SIM 4社</span>徹底比較</h1>
+        <div class="split" style="margin-top: 40px;">
+            <img src="public/images/logo/Povo_logo.png" style="height: 100px;">
+            <img src="public/images/logo/Rakuten_Mobile_logo.png" style="height: 100px;">
+            <img src="public/images/logo/Ahamo_logo.png" style="height: 100px;">
+            <img src="public/images/logo/Mineo_logo_背景削除.png" style="height: 100px;">
+        </div>
     </div>
-    <div class="split-col">
-      <ul style="white-space: nowrap;">
-        <li><i class="fa-solid fa-yen-sign"></i> 月額<span class="highlight">0円</span>維持</li>
-        <li><i class="fa-solid fa-signal"></i> au回線と<span class="highlight">同等品質</span></li>
-        <li><i class="fa-solid fa-cubes"></i> <span class="highlight">トッピング制</span>で柔軟</li>
-      </ul>
+
+    <!-- スライドID: 2 -->
+    <div class="slide-container">
+        <h2>チャンネル登録<br>よろしくお願いします！</h2>
+        <div class="split">
+            <img src="public/images/irasutoya/pose_anshin_woman.png" class="character-img">
+            <p>スマホ代節約の<br><span class="highlight-red">お得な裏技</span>を<br>毎週発信中！</p>
+        </div>
     </div>
-  </div>
-</div>
 
-<!-- スライドID: 5 -->
-<div class="slide-container">
-  <h2><span class="highlight">注意！</span>180日ルール</h2>
-  <p style="text-align:center;">180日以内に最低1回は<br><span class="highlight">トッピング購入</span>が必要！</p>
-  <ul>
-    <li><i class="fa-solid fa-check"></i> 対策例：100円のpovoガチャ</li>
-    <li><i class="fa-solid fa-check"></i> ローソンコラボ(500円) など</li>
-  </ul>
-</div>
-
-<!-- スライドID: 5-2 -->
-<div class="slide-container">
-  <h2  style="font-size: 80px;">詳細は過去の動画もチェック！</h2>
-  <img src="public/images/thumbnails/スマホ代を0円にする方法。「povo2.0」なら維持費タダ？メリット・デメリットからahamo・楽天モバイル比較まで.png" class="fullscreen-img" style="position: relative; max-height: 500px; margin-top: 20px;" alt="povo2.0解説動画">
-</div>
-
-<!-- スライドID: 6 -->
-<div class="slide-container">
-  <h2>デュアルSIM運用の<span class="highlight">注意点</span></h2>
-  <ul>
-    <li><i class="fa-solid fa-mobile-screen"></i> 物理SIM+eSIM または<br>　　　複数eSIM対応スマホが必要</li>
-    <li><i class="fa-solid fa-triangle-exclamation highlight"></i> 古いスマホは要確認！</li>
-  </ul>
-</div>
-
-<!-- スライドID: 7 -->
-<div class="slide-container">
-  <h2 style="font-size: 80px;">デュアルSIM対応の主なスマホ</h2>
-  <ul style="display:flex; flex-wrap:wrap; justify-content:center; gap:20px;">
-    <li style="width:40%;"><i class="fa-brands fa-apple"></i> iPhone</li>
-    <li style="width:40%;"><i class="fa-brands fa-google"></i> Pixel</li>
-    <li style="width:40%;"><i class="fa-solid fa-mobile"></i> Xperia</li>
-    <li style="width:40%;"><i class="fa-solid fa-mobile"></i> Galaxy</li>
-  </ul>
-  <p style="text-align:center; margin-top:40px;">中上位モデルが対応！</p>
-</div>
-
-<!-- スライドID: 8 -->
-<div class="slide-container">
-  <h2>今日のゴール！</h2>
-  <p style="text-align:center;"><span class="highlight">100点を目指さなくていい！</span></p>
-  <img src="public/images/irasutoya/pose_anshin_woman.png" style="max-height:300px; max-width:100%; object-fit:contain; margin: 10px 0;" alt="安心する女性">
-  <p style="text-align:center;">この3選で<span class="highlight">80点以上の節約</span>を実現！</p>
-</div>
-
-<!-- スライドID: 9 -->
-<div class="slide-container">
-  <h2>組み合わせ①</h2>
-  <div class="split">
-    <div class="split-col">
-      <img src="public/images/logo/Mineo_logo_背景削除.png" class="logo-img" alt="mineo">
+    <!-- スライドID: 3 -->
+    <div class="slide-container">
+        <h2 class="highlight-red">格安SIMの事務手数料</h2>
+        <h1>最大 <span style="color: var(--accent-yellow);">3,300円</span> …！</h1>
+        <img src="public/images/irasutoya/seikyuusyo_shock.png" style="max-height: 350px;">
+        <p>せっかくの節約が台無し？</p>
     </div>
-    <span style="font-size: 80px; font-weight: bold;">＋</span>
-    <div class="split-col">
-      <img src="public/images/logo/Povo_logo.png" class="logo-img" alt="povo2.0">
+
+    <!-- スライドID: 3-2 -->
+    <div class="slide-container">
+        <h2>事務手数料 3,300円 ＝</h2>
+        <p style="font-size: 100px;"><span class="highlight-red">月290円</span>プランの</p>
+        <h1>約 <span style="color: var(--accent-yellow);">1年分</span> の料金！</h1>
+        <p>スタートから損をしていませんか？</p>
     </div>
-  </div>
-  <p style="text-align:center;">合計月額：<span class="highlight">1,298円〜</span></p>
-  <p style="text-align:center; font-size: 55px;">実質データ使い放題の2回線運用！</p>
-</div>
 
-<!-- スライドID: 10 -->
-<div class="slide-container">
-  <h2>mineo マイピタ 3GB</h2>
-  <p style="text-align:center;">月額 <span class="highlight">1,298円</span></p>
-  <p style="text-align:center;">パケット放題<span class="highlight">1Mbps</span> 無料付帯！</p>
-  <div style="background: #f8f9fa; border-radius: 20px; padding: 20px; width: 90%; margin-top: 20px;">
-    <p style="font-size: 45px; text-align:center; margin:0;">【1Mbpsでできること】</p>
-    <ul style="font-size: 45px; display:flex; justify-content:space-around; margin-top: 10px;">
-      <li style="font-size: 45px;"><i class="fa-solid fa-music"></i> 音楽</li>
-      <li style="font-size: 45px;"><i class="fa-brands fa-line"></i> LINE</li>
-      <li style="font-size: 45px;"><i class="fa-brands fa-youtube"></i> 低画質動画</li>
-    </ul>
-  </div>
-</div>
-
-<!-- スライドID: 11 -->
-<div class="slide-container">
-  <h2>mineoの<span class="highlight">注意点</span></h2>
-  <ul>
-    <li><i class="fa-solid fa-circle-exclamation highlight"></i> 3日間で<span class="highlight">10GB</span>超過すると<br>速度制限あり</li>
-  </ul>
-  <div style="margin-top:40px; border: 6px solid var(--primary-color); padding: 20px; border-radius:20px; width:80%;">
-    <p style="margin:0; text-align:center;">アップグレードオプション<br>パケット放題<span class="highlight">3Mbps</span> ＋385円</p>
-  </div>
-</div>
-
-<!-- スライドID: 12 -->
-<div class="slide-container">
-  <h2>組み合わせ①まとめ</h2>
-  <ul style="font-size: 50px; width: 100%;">
-    <li><img src="public/images/logo/Mineo_logo_背景削除.png" style="height:60px; vertical-align:middle;"> (ドコモ/ソフトバンク) 1,298円</li>
-    <li style="text-align:center; margin: 5px 0;"><i class="fa-solid fa-plus"></i></li>
-    <li><img src="public/images/logo/Povo_logo.png" style="height:60px; vertical-align:middle;"> (au) 0円</li>
-  </ul>
-  <p style="text-align:center; margin-top:20px; font-size:70px;">＝ 合計 <span class="highlight">1,298円〜</span></p>
-  <p style="text-align:center; font-size: 45px;"><i class="fa-solid fa-check"></i> 2回線で通信障害も安心！</p>
-</div>
-
-<!-- スライドID: 13 -->
-<div class="slide-container">
-  <h2><span class="highlight">重要！</span>mineoのプラン選び</h2>
-  <ul>
-    <li style="color: #999;"><i class="fa-solid fa-xmark" style="color: var(--accent-red);"></i> Aプラン（au）<br><span style="font-size:40px; margin-left: 100px;">→ povo2.0と被るためNG！</span></li>
-    <li><i class="fa-solid fa-circle-check" style="color: green;"></i> Dプラン（ドコモ）</li>
-    <li><i class="fa-solid fa-circle-check" style="color: green;"></i> Sプラン（ソフトバンク）</li>
-  </ul>
-</div>
-
-<!-- スライドID: 14 -->
-<div class="slide-container">
-  <h2>おすすめの契約方法</h2>
-  <p style="text-align:center; font-size: 50px;">SプランはeSIM非対応なので…</p>
-  <div style="font-size: 60px; font-weight: bold; background:#e8f4f8; padding:30px; border-radius:20px; width:90%; text-align:center;">
-    mineo <span class="highlight">物理SIM</span><br>＋<br>povo2.0 <span class="highlight">eSIM</span>
-  </div>
-  <p style="text-align:center; margin-top:20px; color: var(--accent-red);"><i class="fa-solid fa-user-check"></i> ショウ自身も使用中！</p>
-</div>
-
-<!-- スライドID: 15 -->
-<div class="slide-container">
-  <h2>過去の動画もチェック！</h2>
-  <img src="public/images/thumbnails/【2026年最新】月額660円で実質使い放題！mineoの最強キャンペーンを徹底解説.png" class="fullscreen-img" style="position: relative; max-height: 500px; margin-top: 20px;" alt="mineoキャンペーン解説動画">
-</div>
-
-<!-- スライドID: 15-2 -->
-<div class="slide-container">
-  <h2>mineo <span class="highlight">キャンペーン中！</span></h2>
-  <img src="public/images/irasutoya/present_open.png" style="max-height:300px; max-width:100%; object-fit:contain; margin: 10px 0;" alt="プレゼント">
-  <p style="text-align:center; font-size: 50px;">概要欄・固定コメントの限定リンクから！</p>
-  <p style="text-align:center; font-size: 60px;">事務手数料3,300円が<span class="highlight">無料！</span></p>
-</div>
-
-<!-- スライドID: 16 -->
-<div class="slide-container">
-  <h2>組み合わせ②</h2>
-  <div class="split">
-    <div class="split-col">
-      <img src="public/images/logo/Rakuten_Mobile_logo.png" class="logo-img" style="height: 250px; max-width: 500px;" alt="楽天モバイル">
+    <!-- スライドID: 4 -->
+    <div class="slide-container">
+        <h2>まず「試す」ことで<br><span class="highlight-yellow">ハードルを下げよう！</span></h2>
+        <div class="split">
+            <img src="public/images/irasutoya/pose_naruhodo_woman.png" class="character-img">
+            <ul>
+                <li><i class="fa-solid fa-check-circle"></i> 初期費用ゼロなら安心</li>
+                <li><i class="fa-solid fa-check-circle"></i> 合わなければすぐ解約OK</li>
+                <li><i class="fa-solid fa-check-circle"></i> まずは通信品質を体感</li>
+            </ul>
+        </div>
     </div>
-    <span style="font-size: 80px; font-weight: bold;">＋</span>
-    <div class="split-col">
-      <img src="public/images/logo/Povo_logo.png" class="logo-img" alt="povo2.0">
+
+    <!-- スライドID: 4-2 -->
+    <div class="slide-container">
+        <h2>大手 vs MVNO 比較</h2>
+        <table>
+            <tr>
+                <th>項目</th>
+                <th>大手オンライン</th>
+                <th>MVNO(格安SIM)</th>
+            </tr>
+            <tr>
+                <td>初期費用</td>
+                <td class="highlight-red">基本 0円</td>
+                <td>3,300円〜</td>
+            </tr>
+            <tr>
+                <td>月額料金</td>
+                <td>標準的</td>
+                <td class="highlight-red">最安クラス</td>
+            </tr>
+        </table>
+        <p>理想は<span class="highlight-yellow">「初期費用ゼロ ＋ 安い月額」</span></p>
     </div>
-  </div>
-  <p style="text-align:center;">合計月額：<span class="highlight">1,078円〜</span></p>
-  <p style="text-align:center; font-size: 55px;"><i class="fa-solid fa-phone-volume"></i> 通話かけ放題の2回線運用！</p>
-</div>
 
-<!-- スライドID: 17 -->
-<div class="slide-container">
-  <h2>Rakuten最強プラン</h2>
-  <ul>
-    <li><i class="fa-solid fa-chart-pie"></i> 3GBまで：<span class="highlight">1,078円</span></li>
-    <li><i class="fa-solid fa-phone"></i> <span class="highlight">Rakuten Link</span>で<br>　　国内通話かけ放題！</li>
-  </ul>
-  <p class="note" style="text-align:center;">お店・病院・ビジネスの電話も無料！</p>
-</div>
-
-<!-- スライドID: 18 -->
-<div class="slide-container">
-  <h2>最強タッグの<span class="highlight">役割分担</span></h2>
-  <div class="split" style="align-items: flex-start; margin-top:20px;">
-    <div class="split-col" style="border-right: 4px dashed #ccc;">
-      <img src="public/images/logo/Rakuten_Mobile_logo.png" style="height:80px; margin-bottom:20px; object-fit:contain;" alt="楽天モバイル">
-      <p style="font-size:45px; text-align:center;">日常の通話<br>＋データ</p>
+    <!-- スライドID: 5 -->
+    <div class="slide-container">
+        <h2>今回紹介する4社</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; width: 90%;">
+            <div class="split-col" style="background: #f9f9f9; border-radius: 20px; border: 4px solid var(--primary-color);">
+                <img src="public/images/logo/Povo_logo.png" class="logo-img" style="height: 80px;">
+                <p style="font-size: 40px;">povo2.0</p>
+            </div>
+            <div class="split-col" style="background: #f9f9f9; border-radius: 20px; border: 4px solid var(--primary-color);">
+                <img src="public/images/logo/Rakuten_Mobile_logo.png" class="logo-img" style="height: 80px;">
+                <p style="font-size: 40px;">楽天モバイル</p>
+            </div>
+            <div class="split-col" style="background: #f9f9f9; border-radius: 20px; border: 4px solid var(--primary-color);">
+                <img src="public/images/logo/Ahamo_logo.png" class="logo-img" style="height: 80px;">
+                <p style="font-size: 40px;">ahamo</p>
+            </div>
+            <div class="split-col" style="background: #f9f9f9; border-radius: 20px; border: 4px solid var(--primary-color);">
+                <img src="public/images/logo/Mineo_logo_背景削除.png" class="logo-img" style="height: 80px;">
+                <p style="font-size: 40px;">mineo</p>
+            </div>
+        </div>
     </div>
-    <div class="split-col">
-      <img src="public/images/logo/Povo_logo.png" style="height:80px; margin-bottom:20px; object-fit:contain;" alt="povo2.0">
-      <p style="font-size:45px; text-align:center;">繋がらないエリア<br>のカバー</p>
+
+    <!-- スライドID: 5-2 -->
+    <div class="slide-container">
+        <h2>4社の特徴を一言で！</h2>
+        <ul style="font-size: 50px;">
+            <li><i class="fa-solid fa-star"></i> <b>povo：</b>基本料0円のサブ回線向け</li>
+            <li><i class="fa-solid fa-phone"></i> <b>楽天：</b>通話をよくする人向け</li>
+            <li><i class="fa-solid fa-plane"></i> <b>ahamo：</b>海外・旅行が多い人向け</li>
+            <li><i class="fa-solid fa-infinity"></i> <b>mineo：</b>データ使い放題が欲しい人</li>
+        </ul>
     </div>
-  </div>
-  <p style="text-align:center; font-size: 55px; margin-top:40px;">お互いの弱点を補う！</p>
-</div>
 
-<!-- スライドID: 19 -->
-<div class="slide-container">
-  <h2>楽天モバイル 無制限</h2>
-  <p style="text-align:center; font-size: 80px;">月額 <span class="highlight">3,278円</span></p>
-  <ul>
-    <li><i class="fa-solid fa-infinity"></i> 完全データ無制限！</li>
-    <li><i class="fa-solid fa-ban"></i> 3日制限なし！</li>
-    <li><i class="fa-solid fa-house-signal"></i> 固定回線代の節約にも！</li>
-  </ul>
-</div>
-
-<!-- スライドID: 20 -->
-<div class="slide-container">
-  <h2>三木谷キャンペーン！</h2>
-  <p style="text-align:center; font-size: 55px;">概要欄URLから申し込みで</p>
-  <p style="text-align:center; font-size: 80px;">最大<span class="highlight">14,000</span>ポイント！</p>
-  <div style="background: #fff3cd; border: 6px solid #ffeeba; padding: 20px; border-radius: 20px; width:80%; text-align:center;">
-    <p style="margin:0; font-size:55px;">なんと1年分が<span class="highlight">実質無料</span>に！</p>
-  </div>
-</div>
-
-<!-- スライドID: 21 -->
-<div class="slide-container">
-  <h2>詳細は過去動画をチェック！</h2>
-  <img src="public/images/thumbnails/【2025年最新】楽天モバイルは繋がらない？1年以上使って分かった本音メリット・デメリットを全公開！_サムネ.png" class="fullscreen-img" style="position: relative; max-height: 500px; margin-top: 20px;" alt="楽天モバイル本音レビュー動画">
-</div>
-
-<!-- スライドID: 22 -->
-<div class="slide-container">
-  <h2>組み合わせ③</h2>
-  <div class="split">
-    <div class="split-col">
-      <img src="public/images/logo/nihon_tsushin.jpg" class="logo-img" alt="日本通信SIM">
+    <!-- スライドID: 6 -->
+    <div class="slide-container">
+        <div class="badge">Chapter 1</div>
+        <img src="public/images/logo/Povo_logo.png" class="logo-img">
+        <h1>完全手数料無料の<br><span style="color: var(--accent-yellow);">唯一の存在</span></h1>
+        <p>契約も解約も、すべてゼロ。</p>
     </div>
-    <span style="font-size: 80px; font-weight: bold;">＋</span>
-    <div class="split-col">
-      <img src="public/images/logo/Povo_logo.png" class="logo-img" alt="povo2.0">
+
+    <!-- スライドID: 7 -->
+    <div class="slide-container">
+        <h2 class="highlight-red">povo2.0の注意点</h2>
+        <div class="split">
+            <img src="public/images/irasutoya/mark_chuui.png" class="character-img">
+            <ul style="font-size: 45px;">
+                <li><i class="fa-solid fa-triangle-exclamation"></i> 短期解約はブラックの恐れ</li>
+                <li><i class="fa-solid fa-triangle-exclamation"></i> 累計5回線以上は手数料あり</li>
+                <li><i class="fa-solid fa-triangle-exclamation"></i> 同一名義での制限に注意</li>
+            </ul>
+        </div>
     </div>
-  </div>
-  <p style="text-align:center;">合計月額：なんと<span class="highlight">290円〜</span></p>
-  <p style="text-align:center; font-size: 55px;">最安値を追求したい人に！</p>
-</div>
 
-<!-- スライドID: 23 -->
-<div class="slide-container">
-  <h2>合理的シンプル290</h2>
-  <ul style="font-size: 55px; width:80%;">
-    <li><img src="public/images/logo/nihon_tsushin.jpg" style="height:60px; vertical-align:middle;"> 1GB：290円</li>
-    <li style="text-align:center; margin: 10px 0;"><i class="fa-solid fa-plus"></i></li>
-    <li><img src="public/images/logo/Povo_logo.png" style="height:60px; vertical-align:middle;"> 0円</li>
-  </ul>
-  <p style="text-align:center; margin-top:30px; font-size:75px;">＝ 月額 <span class="highlight">290円</span>で2回線！</p>
-</div>
-
-<!-- スライドID: 24 -->
-<div class="slide-container">
-  <h2>こんな人に最適！</h2>
-  <ul>
-    <li><i class="fa-solid fa-wifi"></i> 自宅・職場にWi-Fiあり</li>
-    <li><i class="fa-brands fa-line"></i> 外出先はLINEテキスト中心</li>
-    <li><i class="fa-solid fa-arrow-down"></i> 通信費を<span class="highlight">最小限</span>にしたい</li>
-  </ul>
-</div>
-
-<!-- スライドID: 25 -->
-<div class="slide-container">
-  <h2>データ追加の比較</h2>
-  <div style="display:flex; flex-direction:column; gap:20px; width:90%;">
-    <div style="border: 6px solid var(--text-dark); padding:20px; border-radius:20px;">
-      <p style="margin:0; font-size:45px; text-align:center;"><img src="public/images/logo/nihon_tsushin.jpg" style="height:50px; vertical-align:middle; margin-right:20px;"> 1GB追加 ＝ <span class="highlight">220円</span></p>
+    <!-- スライドID: 7-1 -->
+    <div class="slide-container">
+        <h2>180日間<br><span class="highlight-red">トッピング未購入</span>に注意</h2>
+        <p>半年間何も買わないと…<br><h1>利用停止・契約解除</h1></p>
+        <p style="font-size: 45px;">最低1つはトッピングを買おう！</p>
     </div>
-    <div style="border: 6px solid #ccc; padding:20px; border-radius:20px; color:#666;">
-      <p style="margin:0; font-size:45px; text-align:center;"><img src="public/images/logo/Povo_logo.png" style="height:50px; vertical-align:middle; margin-right:20px; filter: grayscale(100%);"> 1GB+2時間使い放題 ＝ 500円</p>
+
+    <!-- スライドID: 7-2 -->
+    <div class="slide-container">
+        <h2>詳細はこちら！</h2>
+        <Placeholder>povo2.0 180日ルールの解説動画サムネイル</Placeholder>
+        <p>過去動画で詳しく解説中</p>
     </div>
-  </div>
-  <p style="text-align:center; margin-top:30px; font-size: 55px;"><i class="fa-solid fa-arrow-right highlight"></i> 日本通信SIMの追加が割安！</p>
-</div>
 
-<!-- スライドID: 26 -->
-<div class="slide-container">
-  <h2>合理的みんなのプラン</h2>
-  <p style="text-align:center; font-size: 80px;">月額 <span class="highlight">1,390円</span></p>
-  <ul>
-    <li><i class="fa-solid fa-battery-three-quarters"></i> <span class="highlight">20GB</span>のデータ</li>
-    <li><i class="fa-solid fa-phone-volume"></i> <span class="highlight">通話無料</span>オプション込み<br><span style="font-size:40px; margin-left:100px;">(5分かけ放題 or 月70分無料)</span></li>
-  </ul>
-</div>
-
-<!-- スライドID: 27 -->
-<div class="slide-container">
-  <h2>ミドルユーザーに超おすすめ</h2>
-  <p style="text-align:center; font-size: 60px;">合理的みんなのプラン × povo2.0</p>
-  <div style="background:#e8f4f8; border-radius: 20px; padding:30px; width: 80%; margin: 20px auto; text-align:center;">
-    <p style="margin:0; font-size: 65px;"><span class="highlight">1,390円</span> で<br>ドコモ＋au の<span class="highlight">2回線！</span></p>
-  </div>
-</div>
-
-<!-- スライドID: 28 -->
-<div class="slide-container">
-  <h2>お得情報！</h2>
-  <div class="split">
-    <div class="split-col" style="flex: 1;">
-      <img src="public/images/entry_package/nihontsushin.jpg" style="max-height: 500px; width: auto;" alt="日本通信SIM エントリーパッケージ">
+    <!-- スライドID: 8 -->
+    <div class="slide-container">
+        <h2>povo2.0 独自評価</h2>
+        <img src="public/images/charts/povo2.0.png" class="chart-img">
     </div>
-    <div class="split-col" style="flex: 2;">
-      <p style="font-size: 50px;">Amazonの<br>エントリーパッケージで<br><span class="highlight">事務手数料を節約！</span></p>
-      <p class="note">※概要欄のリンクをチェック！</p>
+
+    <!-- スライドID: 9 -->
+    <div class="slide-container">
+        <div class="badge">Chapter 2</div>
+        <img src="public/images/logo/Rakuten_Mobile_logo.png" class="logo-img">
+        <h1>通話かけ放題も使える<br><span style="color: var(--accent-yellow);">最強の万能選手</span></h1>
     </div>
-  </div>
-</div>
 
-<!-- スライドID: 28-2 -->
-<div class="slide-container">
-  <h2>詳細は過去動画をチェック！</h2>
-  <img src="public/images/thumbnails/【2026年最新】20GBで1,390円！？日本通信SIMの「SS級」コスパを徹底解剖！メリット・デメリット全公開.png" class="fullscreen-img" style="position: relative; max-height: 500px; margin-top: 20px;" alt="日本通信レビュー動画">
-</div>
+    <!-- スライドID: 9-2 -->
+    <div class="slide-container">
+        <h2 class="highlight-red">解約金に注意！</h2>
+        <p>1年以内の解約は…<br><h1>解約料 1,078円</h1></p>
+        <p>※月額最低料金1ヶ月分相当</p>
+    </div>
 
-<!-- スライドID: 29 -->
-<div class="slide-container">
-  <h2>今日の3選を振り返ろう！</h2>
-  <table>
-    <tr>
-      <th style="width:25%">組み合わせ</th>
-      <th style="width:25%">月額</th>
-      <th style="width:50%">特徴</th>
-    </tr>
-    <tr>
-      <td style="font-size: 40px;">mineo<br>+povo</td>
-      <td class="highlight">1,298円〜</td>
-      <td style="font-size: 40px; text-align:left;">実質使い放題<br><span style="font-size:30px; color:#666;">※D/Sプラン選択必須</span></td>
-    </tr>
-    <tr>
-      <td style="font-size: 40px;">楽天<br>+povo</td>
-      <td class="highlight">1,078円〜</td>
-      <td style="font-size: 40px; text-align:left;">通話かけ放題<br><span style="font-size:30px; color:#666;">※三木谷CPで超お得</span></td>
-    </tr>
-    <tr>
-      <td style="font-size: 40px;">日本通信<br>+povo</td>
-      <td class="highlight">290円〜</td>
-      <td style="font-size: 40px; text-align:left;">最安維持<br><span style="font-size:30px; color:#666;">※1390円で20GBも可</span></td>
-    </tr>
-  </table>
-</div>
+    <!-- スライドID: 9-3 -->
+    <div class="slide-container">
+        <h2 class="highlight-red">複数回線は手数料あり</h2>
+        <p>累計5回線目以降は…<br><h1>事務手数料 3,850円</h1></p>
+        <p>2025年11月19日以降の新規契約が対象</p>
+    </div>
 
-<!-- スライドID: 30 -->
-<div class="slide-container">
-  <h2>迷ったらこれ！</h2>
-  <div style="border: 8px solid var(--accent-red); padding:30px; border-radius:20px; width: 90%; text-align:center;">
-    <p style="margin:0; font-size:55px;">SNS・動画をよく使うなら…</p>
-    <p style="margin:20px 0; font-size:75px; font-weight:bold;"><span class="highlight">mineo ＋ povo2.0</span></p>
-    <p style="margin:0; font-size:45px;"><i class="fa-solid fa-user-check"></i> ショウも使用中！一番おすすめ！</p>
-  </div>
-</div>
+    <!-- スライドID: 9-4 -->
+    <div class="slide-container">
+        <h2>詳細はこちら！</h2>
+        <Placeholder>楽天モバイル 改悪・改良の解説動画サムネイル</Placeholder>
+    </div>
 
-<!-- スライドID: 31 -->
-<div class="slide-container">
-  <h2 style="font-size: 80px;">まとめ</h2>
-  <p style="text-align:center; font-size: 55px; line-height: 1.5;">
-    3つの組み合わせはどれも<br>
-    <span class="highlight">安くて・安心・賢い！</span>
-  </p>
-  <div style="background: var(--accent-yellow); padding: 30px; border-radius: 20px; margin-top: 30px;">
-    <p style="margin:0; font-size: 60px; font-weight: 900;">概要欄のリンクから今すぐ申し込もう！</p>
-  </div>
-</div>
+    <!-- スライドID: 10 -->
+    <div class="slide-container">
+        <h2>Rakuten Linkで</h2>
+        <h1>国内通話が <span style="color: var(--accent-yellow);">ずっと無料！</span></h1>
+        <div class="split">
+            <i class="fa-solid fa-phone-volume" style="font-size: 200px; color: var(--accent-red);"></i>
+            <p>固定電話も<br>他社スマホも<br><span class="highlight-red">24時間タダ！</span></p>
+        </div>
+    </div>
 
-<!-- スライドID: 32 -->
-<div class="slide-container">
-  <h2>コメント募集中！</h2>
-  <p style="text-align:center; font-size: 50px;">「私は○○使ってる！」<br>「ここがわからなかった」など</p>
-  <p style="text-align:center; font-size: 65px;" class="highlight">気軽に書いてね！</p>
-  <img src="public/images/irasutoya/smartphone04_laugh.png" style="max-height:250px; max-width:100%; object-fit:contain;" alt="笑う">
-</div>
+    <!-- スライドID: 10-2 -->
+    <div class="slide-container">
+        <h2>楽天モバイル 料金プラン</h2>
+        <table style="font-size: 55px;">
+            <tr>
+                <th>データ量</th>
+                <th>月額料金(税込)</th>
+            </tr>
+            <tr>
+                <td>3GBまで</td>
+                <td>1,078円</td>
+            </tr>
+            <tr>
+                <td>20GBまで</td>
+                <td>2,178円</td>
+            </tr>
+            <tr>
+                <td>無制限</td>
+                <td class="highlight-red">3,278円</td>
+            </tr>
+        </table>
+    </div>
 
-<!-- スライドID: 33 -->
-<div class="slide-container">
-  <img src="public/images/slides/チャンネル登録と高評価よろしくお願いします.png" class="fullscreen-img" alt="チャンネル登録＆グッドボタンよろしくお願いします！">
-</div>
+    <!-- スライドID: 11 -->
+    <div class="slide-container">
+        <div class="badge">最大 14,000pt 還元！</div>
+        <h2>三木谷キャンペーンで</h2>
+        <h1>1年間実質 <span style="color: var(--accent-yellow);">0円</span> も可能！</h1>
+        <img src="public/images/irasutoya/money_fueru.png" class="character-img">
+        <p>概要欄のリンクからチェック！</p>
+    </div>
+
+    <!-- スライドID: 12 -->
+    <div class="slide-container">
+        <h2>楽天モバイル 独自評価</h2>
+        <img src="public/images/charts/楽天モバイル.png" class="chart-img">
+    </div>
+
+    <!-- スライドID: 13 -->
+    <div class="slide-container">
+        <div class="badge">Chapter 3</div>
+        <img src="public/images/logo/Ahamo_logo.png" class="logo-img">
+        <h1>海外対応・通話無料が<br><span style="color: var(--accent-yellow);">標準搭載！</span></h1>
+    </div>
+
+    <!-- スライドID: 13-2 -->
+    <div class="slide-container">
+        <h2 class="highlight-red">解約金と回線数</h2>
+        <ul>
+            <li><i class="fa-solid fa-triangle-exclamation"></i> 1年以内の解約は<b>1,100円</b></li>
+            <li><i class="fa-solid fa-triangle-exclamation"></i> 同一名義で<b>最大5回線</b>まで</li>
+        </ul>
+        <img src="public/images/irasutoya/mark_chuui.png" style="height: 200px;">
+    </div>
+
+    <!-- スライドID: 14 -->
+    <div class="slide-container">
+        <h2>アプリ不要で</h2>
+        <h1>5分以内通話 <span style="color: var(--accent-yellow);">無料！</span></h1>
+        <p>基本料金に含まれているから安心。<br>短い電話が多い人に最適！</p>
+    </div>
+
+    <!-- スライドID: 14-2 -->
+    <div class="slide-container">
+        <h2>海外データ 30GBまで</h2>
+        <h1>追加料金 <span style="color: var(--accent-yellow);">ゼロ！</span></h1>
+        <div class="split">
+            <img src="public/images/common/海外利用のイメージ図.png" class="character-img" style="max-height: 350px;">
+            <p>海外旅行・出張に<br><span class="highlight-red">最強の1枚</span></p>
+        </div>
+    </div>
+
+    <!-- スライドID: 15 -->
+    <div class="slide-container">
+        <h2 class="highlight-red">海外利用の注意点</h2>
+        <p>15日経過後は…<br><h1>速度 128kbps</h1></p>
+        <img src="public/images/irasutoya/wifi_speed_slow_l.png" style="height: 250px;">
+        <p style="font-size: 35px;">※帰国するまで解除されません</p>
+    </div>
+
+    <!-- スライドID: 15-2 -->
+    <div class="slide-container">
+        <h2 class="highlight-red">通信品質の懸念</h2>
+        <div class="split">
+            <img src="public/images/irasutoya/shinpai_man.png" class="character-img">
+            <p>ドコモ回線の<br>品質低下に注意。<br>過度な期待は禁物？</p>
+        </div>
+    </div>
+
+    <!-- スライドID: 16 -->
+    <div class="slide-container">
+        <h2>ahamo 独自評価</h2>
+        <img src="public/images/charts/ahamo.png" class="chart-img">
+    </div>
+
+    <!-- スライドID: 16-2 -->
+    <div class="slide-container">
+        <h2>詳細はこちら！</h2>
+        <Placeholder>ahamoのメリット・デメリット徹底解説サムネイル</Placeholder>
+    </div>
+
+    <!-- スライドID: 17 -->
+    <div class="slide-container">
+        <div class="badge">Chapter 4</div>
+        <img src="public/images/logo/Mineo_logo_背景削除.png" class="logo-img">
+        <h1>当チャンネル限定で<br><span style="color: var(--accent-yellow);">初期費用 ほぼゼロ！</span></h1>
+    </div>
+
+    <!-- スライドID: 17-2 -->
+    <div class="slide-container">
+        <h2 class="highlight-red">限定リンク特典</h2>
+        <p>事務手数料 3,300円 が<br><h1>なんと 0円 に！</h1></p>
+        <p>※概要欄・固定コメントをチェック</p>
+    </div>
+
+    <!-- スライドID: 17-3 -->
+    <div class="slide-container">
+        <h2>初期費用はこれだけ！</h2>
+        <p>事務手数料：<span class="highlight-red">0円</span></p>
+        <p>＋</p>
+        <p>SIM発行料：<span class="highlight-yellow">440円</span></p>
+        <p>ワンコイン以下で始められる！</p>
+    </div>
+
+    <!-- スライドID: 18 -->
+    <div class="slide-container">
+        <h2>解約金・縛り</h2>
+        <h1>一切 <span style="color: var(--accent-yellow);">なし！</span></h1>
+        <div class="split">
+            <i class="fa-solid fa-unlock-keyhole" style="font-size: 200px; color: var(--primary-color);"></i>
+            <p>いつでも辞められる<br>圧倒的な安心感。</p>
+        </div>
+    </div>
+
+    <!-- スライドID: 19 -->
+    <div class="slide-container">
+        <h2>mineo マイピタ</h2>
+        <table style="font-size: 45px;">
+            <tr>
+                <th>コース</th>
+                <th>月額料金</th>
+                <th>パケット放題</th>
+            </tr>
+            <tr>
+                <td>1GB</td>
+                <td>1,298円</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>10GB</td>
+                <td>1,958円</td>
+                <td class="highlight-red">無料(最大1.5Mbps)</td>
+            </tr>
+            <tr>
+                <td>20GB</td>
+                <td>2,178円</td>
+                <td class="highlight-red">無料(最大1.5Mbps)</td>
+            </tr>
+        </table>
+        <p style="font-size: 30px;">※現在は広告フリー等も充実</p>
+    </div>
+
+    <!-- スライドID: 20 -->
+    <div class="slide-container">
+        <h2>パケット放題 Plus</h2>
+        <h1>最大 <span style="color: var(--accent-yellow);">1.5Mbps</span> で使い放題！</h1>
+        <ul style="font-size: 45px;">
+            <li><i class="fa-solid fa-youtube"></i> YouTube(標準画質) OK</li>
+            <li><i class="fa-solid fa-music"></i> 音楽ストリーミング OK</li>
+            <li><i class="fa-solid fa-map-location-dot"></i> 地図アプリ・SNS OK</li>
+        </ul>
+        <p class="note">※3日間で10GB以上使うと制限あり</p>
+    </div>
+
+    <!-- スライドID: 21 -->
+    <div class="slide-container">
+        <h2>ショウも愛用中！</h2>
+        <div class="split">
+            <img src="public/images/irasutoya/businessman2_kangaechu.png" class="character-img">
+            <p>メイン回線として<br><span class="highlight-red">数年以上</span>使っています！<br>自信を持っておすすめ。</p>
+        </div>
+    </div>
+
+    <!-- スライドID: 21-2 -->
+    <div class="slide-container">
+        <h2>詳細はこちら！</h2>
+        <Placeholder>mineo 1.5MbpsでYouTubeは快適？検証動画サムネイル</Placeholder>
+    </div>
+
+    <!-- スライドID: 22 -->
+    <div class="slide-container">
+        <h2>mineo 独自評価</h2>
+        <img src="public/images/charts/mineo.png" class="chart-img">
+    </div>
+
+    <!-- スライドID: 23 -->
+    <div class="slide-container">
+        <h2 class="highlight-yellow">お得に申し込む方法</h2>
+        <h1>概要欄の <span class="highlight-red">限定リンク</span> を<br>必ず活用してね！</h1>
+        <p>普通に申し込むと3,300円損します！</p>
+    </div>
+
+    <!-- スライドID: 24 -->
+    <div class="slide-container">
+        <h2>今日のまとめ 4社比較</h2>
+        <table style="font-size: 38px;">
+            <tr>
+                <th>プラン</th>
+                <th>初期費用</th>
+                <th>強み</th>
+            </tr>
+            <tr>
+                <td>povo2.0</td>
+                <td>0円</td>
+                <td>基本料0円・サブに最強</td>
+            </tr>
+            <tr>
+                <td>楽天</td>
+                <td>0円</td>
+                <td>通話無料・ポイント還元</td>
+            </tr>
+            <tr>
+                <td>ahamo</td>
+                <td>0円</td>
+                <td>海外30GB・5分通話無料</td>
+            </tr>
+            <tr>
+                <td>mineo</td>
+                <td class="highlight-red">440円※</td>
+                <td>データ使い放題・解約自由</td>
+            </tr>
+        </table>
+        <p class="note">※当チャンネル限定リンク使用時</p>
+    </div>
+
+    <!-- スライドID: 25 -->
+    <div class="slide-container">
+        <h2>迷ったらこれ！</h2>
+        <p style="font-size: 80px;">まずはサブで <span class="highlight-red">povo2.0</span></p>
+        <p>リスクゼロで格安SIMを体験！</p>
+        <div class="split">
+            <i class="fa-solid fa-mobile-screen-button" style="font-size: 150px; color: var(--primary-color);"></i>
+            <p>メインは自分の<br>用途に合わせて選ぼう</p>
+        </div>
+    </div>
+
+    <!-- スライドID: 26 -->
+    <div class="slide-container">
+        <h2 class="highlight-red">損しないために！</h2>
+        <h1>概要欄のリンクを<br><span style="color: var(--accent-yellow);">必ずチェック！</span></h1>
+        <img src="public/images/irasutoya/pose_yubisashi_kakunin_businesswoman.png" class="character-img">
+    </div>
+
+    <!-- スライドID: 27 -->
+    <div class="slide-container">
+        <h2>コメント募集中！</h2>
+        <div class="split">
+            <img src="public/images/irasutoya/sns_happy_woman.png" class="character-img">
+            <ul style="font-size: 45px;">
+                <li>「自分は〇〇を使ってます！」</li>
+                <li>「ここが分かりにくかった…」</li>
+                <li>「次は〇〇を比較してほしい！」</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- スライドID: 28 -->
+    <div class="slide-container">
+        <h1>ご視聴<br>ありがとうございました！</h1>
+        <div class="split" style="margin-top: 40px;">
+            <div class="split-col">
+                <i class="fa-solid fa-square-rss" style="font-size: 150px; color: var(--accent-red);"></i>
+                <p style="font-size: 40px;">チャンネル登録</p>
+            </div>
+            <div class="split-col">
+                <i class="fa-solid fa-thumbs-up" style="font-size: 150px; color: var(--accent-yellow);"></i>
+                <p style="font-size: 40px;">高評価</p>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
