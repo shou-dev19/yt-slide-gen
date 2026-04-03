@@ -26,9 +26,23 @@ async function main() {
         fs.mkdirSync(OUT_DIR, { recursive: true });
     }
 
+    // Determine the Chromium executable to use.
+    // On ARM64 Linux containers, Puppeteer's bundled Chromium is x64 and fails
+    // via Rosetta. Prefer a system-installed Chromium when available.
+    const systemChromiumCandidates = [
+        '/usr/bin/chromium',
+        '/usr/bin/chromium-browser',
+        '/usr/bin/google-chrome',
+        '/usr/bin/google-chrome-stable',
+    ];
+    const systemChromium =
+        process.env.PUPPETEER_EXECUTABLE_PATH ||
+        systemChromiumCandidates.find((p) => fs.existsSync(p));
+
     const browser = await puppeteer.launch({
         headless: 'new',
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        ...(systemChromium ? { executablePath: systemChromium } : {}),
     });
     const page = await browser.newPage();
 
