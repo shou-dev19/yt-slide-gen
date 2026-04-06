@@ -17,11 +17,12 @@ Use this workflow to automatically generate HTML presentation slides for YouTube
    - Ensure you follow the "デカ文字" (Huge Text) design philosophy closely, maximizing visibility for smartphone viewers.
 
 3. **Check for Assets**:
-   - Check the `public/images/` directories (e.g. `public/images/charts`, `public/images/thumbnails`, `public/images/slides`, `public/images/irasutoya`, `public/images/logo`) to verify which visual assets requested by the script actually exist.
+   - Check the `public/images/` directory and refer to `public/images/GEMINI.md` to verify which visual assets exist and match the script's requirements.
+   - Select the most appropriate images (logos, charts, illustrations) directly from the available assets.
 
 4. **Generate the Output**:
    - Create a single HTML file (e.g., `slides.html` unless specified otherwise by the user) containing all the consecutive slides detailed in the script.
-   - For missing imagery, use the `<Placeholder>` tag with an appropriate prompt enclosed inside it, according to the `generate-html-slides` skill rules.
+   - Do NOT use placeholders. Instead, use `<img>` tags pointing to the selected assets in `public/images/`.
 
 5. **Completion**:
    - Save the HTML file and present the result to the user.
