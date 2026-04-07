@@ -48,13 +48,20 @@ To maximize audience retention, use **"Extremely Huge Text Size"** as the standa
 
 5. **Self-Check & Adjustment (Critical)**
     * **Overflow Check**: Before final generation, strictly verify that all content (text, images, tables) fits entirely within the `1280px × 720px` container.
+    * **Maximize Space Usage**: Actively increase font sizes and image heights to fill available space. Aim for **less than 15% whitespace** within each slide. Start large, then scale down only if overflow occurs.
     * **Automatic Adjustment Rules**:
         * **Text**: If text is too long and overflows or overlaps, reduce the font size by 10%–20%.
         * **Images**: If images overlap with text or hit boundaries, reduce `max-height`/`max-width` and adjust margins.
         * **Tables**: If tables overflow, reduce cell font size down to a minimum of **30px**. If it still overflows, consider splitting the content into two slides.
-    * **Whitespace**: Adjust `padding` or `gap` to ensure elements are not too close to the borders.
+    * **Whitespace**: Adjust `padding` or `gap` to ensure elements are not too close to the borders, but also maximize use of available space — do not leave large empty areas.
 
-6. **Output Format Requirements**
+6. **Last Slide (CTA) — Thumbnail Requirement (Mandatory)**
+    * The final slide **must** include the thumbnail image of the main (long-form) video that the short is promoting.
+    * Determine the main video title from the `スライドに表示する内容` column of the last row in `台本.txt` (the title appears in parentheses, e.g., `(【2026年最新】事務手数料0円で始める格安SIM4社を徹底比較！)`).
+    * Select the best-matching file from `public/images/thumbnails/` based on the title (partial keyword match is acceptable).
+    * Embed the thumbnail using `<img src="public/images/thumbnails/[filename]" ...>` in the CTA slide. Do **not** omit or use a placeholder.
+
+7. **Output Format Requirements**
     * Output as a single HTML file containing all slides (div elements).
     * Use `body { display: flex; flex-direction: column; gap: 40px; }` to display all `.slide-container` elements vertically.
     * Add `<!-- Slide ID: XX -->` before each slide's HTML to map it to the script.
