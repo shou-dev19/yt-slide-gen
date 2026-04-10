@@ -84,7 +84,7 @@ async function main() {
             let prev = slide.previousSibling;
             while (prev) {
                 if (prev.nodeType === 8) { // Node.COMMENT_NODE is 8
-                    const match = prev.nodeValue.match(/スライドID:\s*([\w.-]+)/);
+                    const match = prev.nodeValue.match(/(?:スライドID|Slide ID):\s*([\w.-]+)/);
                     if (match) return match[1];
                 }
                 prev = prev.previousSibling;
@@ -104,7 +104,8 @@ async function main() {
         const slideElement = (await page.$$(SLIDE_SELECTOR))[i];
 
         if (slideElement) {
-            const outFile = path.join(OUT_DIR, `${FILE_PREFIX}${id}.png`);
+            const paddedId = id.replace(/^(\d+)/, (n) => n.padStart(2, '0'));
+            const outFile = path.join(OUT_DIR, `${FILE_PREFIX}${paddedId}.png`);
             await slideElement.screenshot({ path: outFile });
             console.log(`Saved: ${outFile}`);
         }
