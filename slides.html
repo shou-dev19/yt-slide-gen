@@ -3,31 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>【4/13終了】楽天マジ得vs三木谷キャンペーン あなたはどっちが得？</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@800;900&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>ワイモバ値上げ スライド</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root {
-      --primary-color: #BF0000;
-      --accent-red: #e53935;
-      --accent-yellow: #fdd835;
-      --accent-green: #43a047;
-      --text-dark: #1a1a2e;
+      --primary-color: #FF6B00;
+      --accent-yellow: #FFD700;
+      --accent-red: #E53935;
+      --text-dark: #1a1a1a;
+      --bg-light: #FFF8F0;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      font-weight: 800;
     }
 
     body {
-      font-family: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
-      background: #e0e0e0;
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: 40px;
+      background: #f0f0f0;
       padding: 40px;
     }
 
@@ -53,11 +55,9 @@
       color: var(--text-dark);
       text-align: center;
       line-height: 1.1;
-      text-shadow:
-        4px 4px 0px white, -4px -4px 0px white,
-        4px -4px 0px white, -4px 4px 0px white,
-        0px 4px 0px var(--primary-color), 0px -4px 0px var(--primary-color),
-        4px 0px 0px var(--primary-color), -4px 0px 0px var(--primary-color);
+      text-shadow: 4px 4px 0px white, -4px -4px 0px white, 4px -4px 0px white, -4px 4px 0px white,
+                   0px 4px 0px var(--primary-color), 0px -4px 0px var(--primary-color),
+                   4px 0px 0px var(--primary-color), -4px 0px 0px var(--primary-color);
     }
 
     h2 {
@@ -68,15 +68,19 @@
       border-bottom: 8px solid var(--accent-yellow);
       padding-bottom: 10px;
       margin-bottom: 20px;
-      line-height: 1.2;
+    }
+
+    h3 {
+      font-size: 64px;
+      font-weight: 800;
+      color: var(--primary-color);
+      text-align: center;
     }
 
     p, li {
       font-size: 64px;
-      font-weight: 800;
-      color: var(--text-dark);
       line-height: 1.4;
-      text-align: center;
+      color: var(--text-dark);
     }
 
     ul {
@@ -84,14 +88,8 @@
       padding: 0;
     }
 
-    ul li {
-      text-align: left;
-    }
-
-    .red { color: var(--accent-red); }
-    .blue { color: #1565c0; }
-    .green { color: var(--accent-green); }
-    .crimson { color: var(--primary-color); }
+    .accent-red { color: var(--accent-red); }
+    .accent-orange { color: var(--primary-color); }
 
     .split {
       display: flex;
@@ -108,51 +106,6 @@
       padding: 20px;
     }
 
-    .slide-label {
-      display: none;
-      position: absolute;
-      top: 12px;
-      right: 20px;
-      font-size: 22px;
-      color: #aaa;
-      font-weight: 800;
-    }
-
-    .icon-big {
-      font-size: 140px;
-      color: var(--primary-color);
-      margin-bottom: 10px;
-    }
-
-    .icon-red { color: var(--accent-red); }
-    .icon-green { color: var(--accent-green); }
-    .icon-yellow { color: #f9a825; }
-
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      font-size: 50px;
-      font-weight: 800;
-    }
-
-    th {
-      background: var(--primary-color);
-      color: white;
-      padding: 14px 14px;
-      text-align: center;
-    }
-
-    td {
-      padding: 10px 10px;
-      text-align: center;
-      border: 3px solid #ddd;
-      color: var(--text-dark);
-    }
-
-    tr:nth-child(even) td {
-      background: #fff0f0;
-    }
-
     .fullscreen-img {
       width: 100%;
       height: 100%;
@@ -165,612 +118,840 @@
       z-index: 10;
     }
 
-    .warning-banner {
-      background: #fff3e0;
-      border: 6px solid #ff8f00;
-      border-radius: 20px;
-      padding: 16px 32px;
-      margin-top: 16px;
+    table {
       width: 100%;
+      border-collapse: collapse;
+      font-size: 50px;
     }
 
-    .warning-banner p {
-      font-size: 48px;
-      color: #e65100;
+    th {
+      background: var(--primary-color);
+      color: white;
+      padding: 12px 20px;
+      text-align: center;
     }
+
+    td {
+      padding: 10px 20px;
+      text-align: center;
+      border-bottom: 3px solid #eee;
+    }
+
+    tr:nth-child(even) td { background: #FFF8F0; }
 
     .badge {
-      background: var(--accent-red);
+      background: var(--primary-color);
       color: white;
+      border-radius: 20px;
+      padding: 8px 24px;
       font-size: 52px;
-      font-weight: 900;
-      border-radius: 16px;
-      padding: 10px 30px;
       display: inline-block;
-      margin: 10px;
-    }
-
-    .badge-gold {
-      background: #f9a825;
-      color: white;
-      font-size: 52px;
-      font-weight: 900;
-      border-radius: 16px;
-      padding: 10px 30px;
-      display: inline-block;
-      margin: 10px;
+      margin: 8px;
     }
 
     .chapter-label {
-      font-size: 36px;
-      font-weight: 800;
+      font-size: 40px;
       color: white;
       background: var(--primary-color);
-      padding: 8px 30px;
+      padding: 10px 30px;
       border-radius: 40px;
-      margin-bottom: 16px;
-      display: inline-block;
+      margin-bottom: 20px;
     }
 
-    .logo-img {
-      max-height: 120px;
-      max-width: 400px;
-      object-fit: contain;
+    .caption {
+      font-size: 28px;
+      color: #666;
+      font-weight: 400;
+      margin-top: 8px;
     }
 
-    .chart-img {
-      max-height: 480px;
-      max-width: 100%;
-      object-fit: contain;
-    }
-
-    .box-red {
-      background: #fce4ec;
-      border: 6px solid var(--primary-color);
-      border-radius: 20px;
-      padding: 20px 40px;
-    }
-
-    .box-blue {
-      background: #e3f2fd;
-      border: 6px solid #1565c0;
-      border-radius: 20px;
-      padding: 20px 40px;
-    }
-
-    .cta-img {
-      max-height: 400px;
-      max-width: 90%;
-      object-fit: contain;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.2));
+    .highlight-box {
+      background: var(--bg-light);
+      border-left: 12px solid var(--primary-color);
+      padding: 20px 30px;
+      border-radius: 0 16px 16px 0;
+      width: 100%;
     }
 
     .terop {
-      font-size: 64px;
-      font-weight: 800;
+      font-size: 72px;
+      font-weight: 900;
       color: var(--text-dark);
-      line-height: 1.4;
       text-align: center;
+      line-height: 1.3;
     }
   </style>
 </head>
 <body>
 
 <!-- Slide ID: 1 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff0f0 0%, #ffffff 100%);">
-  <span class="slide-label">1</span>
-  <div style="text-align:center;">
-    <div class="chapter-label">今回のテーマ</div>
-    <h1 style="font-size:72px; line-height:1.15; margin-top:10px;">
-      【4/13終了】<br>
-      <span class="crimson">楽天マジ得</span> vs <span class="blue">三木谷キャンペーン</span><br>
-      あなたはどっちが得？
-    </h1>
-    <img src="public/images/logo/Rakuten_Mobile_logo.png" class="logo-img" style="max-height:110px; margin-top:20px;">
-  </div>
+<div class="slide-container" style="background: linear-gradient(135deg, #fff8f0 60%, #ffe0c0 100%);">
+  <div style="position:absolute; top:20px; right:30px; font-size:36px; color:#aaa;">2026年4月</div>
+  <p style="font-size:44px; color:var(--primary-color); margin-bottom:10px;">【緊急警告】</p>
+  <h1 style="font-size:100px; line-height:1.2; margin-bottom:20px;">ワイモバが値上げ！</h1>
+  <h2 style="font-size:68px; border-bottom:none; color:var(--text-dark);">今すぐ確認すべき対処法と<br><span class="accent-red">乗り換え先4選</span></h2>
+  <img src="public/images/irasutoya/seikyuusyo_shock.png" style="max-height:200px; max-width:300px; object-fit:contain; position:absolute; bottom:20px; right:60px; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.15));">
 </div>
 
 <!-- Slide ID: 2 -->
-<div class="slide-container" style="background:#fffde7;">
-  <span class="slide-label">2</span>
-  <i class="fa-solid fa-bell icon-big icon-yellow"></i>
-  <p style="font-size:80px; color:var(--text-dark);">チャンネル登録</p>
-  <p style="font-size:76px; color:var(--text-dark);">よろしくお願いします！</p>
-  <p style="font-size:46px; color:#888; margin-top:16px;">格安SIM情報・お得な裏技を毎週発信中</p>
+<div class="slide-container">
+  <h2 style="font-size:80px; margin-bottom:30px;">📋 今日の内容</h2>
+  <ul style="width:100%;">
+    <li style="font-size:60px; margin-bottom:18px; display:flex; align-items:center; gap:20px;">
+      <span style="background:var(--primary-color); color:white; border-radius:50%; width:70px; height:70px; display:flex; align-items:center; justify-content:center; font-size:44px; flex-shrink:0;">①</span>
+      <span>ワイモバイルの<span class="accent-red">値上げの詳細</span></span>
+    </li>
+    <li style="font-size:60px; margin-bottom:18px; display:flex; align-items:center; gap:20px;">
+      <span style="background:var(--primary-color); color:white; border-radius:50%; width:70px; height:70px; display:flex; align-items:center; justify-content:center; font-size:44px; flex-shrink:0;">②</span>
+      <span>値上げ<span class="accent-red">回避できる人・できない人</span></span>
+    </li>
+    <li style="font-size:60px; display:flex; align-items:center; gap:20px;">
+      <span style="background:var(--primary-color); color:white; border-radius:50%; width:70px; height:70px; display:flex; align-items:center; justify-content:center; font-size:44px; flex-shrink:0;">③</span>
+      <span>おすすめ乗り換え先<span class="accent-red">4社</span>の徹底解説</span>
+    </li>
+  </ul>
 </div>
 
 <!-- Slide ID: 3 -->
-<div class="slide-container">
-  <span class="slide-label">3</span>
-  <i class="fa-solid fa-triangle-exclamation icon-big icon-red" style="font-size:110px;"></i>
-  <p style="font-size:58px; line-height:1.35;">申し込むルートを間違えると</p>
-  <p style="font-size:96px; font-weight:900; color:var(--accent-red);">最大6,000pt以上</p>
-  <p style="font-size:58px;">の損！</p>
+<div class="slide-container" style="background: linear-gradient(135deg, #fff8f0, #ffe0c0);">
+  <i class="fa-solid fa-bell" style="font-size:140px; color:var(--primary-color); margin-bottom:20px;"></i>
+  <p class="terop">チャンネル登録よろしくお願いします！</p>
+  <p style="font-size:50px; color:#666; margin-top:16px;">格安SIM情報を毎週発信中</p>
 </div>
 
 <!-- Slide ID: 4 -->
 <div class="slide-container">
-  <span class="slide-label">4</span>
-  <div class="chapter-label">結論！</div>
-  <div class="split" style="margin-top:10px; gap:20px; flex-direction:column;">
-    <div class="split-col box-red" style="flex:1;">
-      <p style="font-size:42px; color:var(--primary-color); font-weight:900;">楽天カードあり＋初回申込</p>
-      <p style="font-size:52px; font-weight:900; margin-top:8px;">→ <span class="crimson">マジ得フェスティバル</span></p>
+  <div class="chapter-label">Chapter 1</div>
+  <h2 style="font-size:76px;">ワイモバイルの値上げの詳細</h2>
+  <div class="split" style="margin-top:10px;">
+    <div class="split-col">
+      <i class="fa-solid fa-triangle-exclamation" style="font-size:140px; color:var(--accent-red);"></i>
     </div>
-    <div class="split-col box-blue" style="flex:1;">
-      <p style="font-size:42px; color:#1565c0; font-weight:900;">カードなし / 出戻り</p>
-      <p style="font-size:52px; font-weight:900; margin-top:8px;">→ <span class="blue">三木谷キャンペーン</span></p>
+    <div class="split-col">
+      <p style="font-size:58px; text-align:left; line-height:1.5;">
+        <span style="display:block; margin-bottom:10px;"><i class="fa-solid fa-calendar" style="color:var(--primary-color);"></i> 発表日：<span class="accent-red">2026年4月10日</span></span>
+        <span style="display:block;">値上げの影響は<br>契約状況によって<span class="accent-red">違う！</span></span>
+      </p>
     </div>
   </div>
 </div>
 
 <!-- Slide ID: 5 -->
 <div class="slide-container">
-  <span class="slide-label">5</span>
-  <div class="chapter-label">今回解説する2大キャンペーン</div>
-  <div style="text-align:center; margin-top:20px;">
-    <p style="font-size:76px; font-weight:900;"><span class="crimson">①</span> 楽天マジ得フェスティバル</p>
-    <div style="border-top:4px dashed #ddd; margin:24px 0;"></div>
-    <p style="font-size:76px; font-weight:900;"><span class="blue">②</span> 三木谷キャンペーン</p>
+  <h2 style="font-size:82px; margin-bottom:30px;">値上げ幅はどのくらい？</h2>
+  <div style="display:flex; gap:40px; justify-content:center; width:100%;">
+    <div style="flex:1; background:#FFF3E0; border:6px solid var(--primary-color); border-radius:20px; padding:30px; text-align:center;">
+      <p style="font-size:46px; color:var(--text-dark); margin-bottom:10px;">シンプル3 S/M/L</p>
+      <p style="font-size:100px; color:var(--accent-red); font-weight:900;">＋220円</p>
+      <p style="font-size:40px; color:#666;">月額（2026年6月2日〜）</p>
+    </div>
+    <div style="flex:1; background:#FFEBEE; border:6px solid var(--accent-red); border-radius:20px; padding:30px; text-align:center;">
+      <p style="font-size:46px; color:var(--text-dark); margin-bottom:10px;">シンプル / シンプル2</p>
+      <p style="font-size:100px; color:var(--accent-red); font-weight:900;">＋330円</p>
+      <p style="font-size:40px; color:#666;">月額（2026年7月1日〜）</p>
+    </div>
   </div>
-  <img src="public/images/logo/Rakuten_Mobile_logo.png" class="logo-img" style="max-height:80px; margin-top:24px;">
 </div>
 
 <!-- Slide ID: 6 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff0f0 0%, #ffffff 100%);">
-  <span class="slide-label">6</span>
-  <div class="chapter-label">楽天マジ得フェスティバル</div>
-  <h2 style="font-size:66px; margin-top:10px;">マジ得が得な人</h2>
-  <div class="box-red" style="margin-top:10px; width:95%;">
-    <ul style="text-align:left;">
-      <li style="font-size:60px;"><i class="fa-solid fa-check" style="color:var(--primary-color);"></i>　楽天カードあり</li>
-      <li style="font-size:60px;"><i class="fa-solid fa-check" style="color:var(--primary-color);"></i>　楽天モバイル <span class="crimson">初回申込者</span></li>
-    </ul>
+<div class="slide-container" style="padding:20px 30px;">
+  <h2 style="font-size:66px; margin-bottom:16px;">ワイモバ値上げ一覧表</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>プラン</th>
+        <th>現在の月額</th>
+        <th>改定後</th>
+        <th>値上げ額</th>
+        <th>開始日</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>シンプル3 S</td>
+        <td>3,058円</td>
+        <td style="color:var(--accent-red); font-weight:900;">3,278円</td>
+        <td style="color:var(--accent-red);">＋220円</td>
+        <td>6月2日〜</td>
+      </tr>
+      <tr>
+        <td>シンプル3 M</td>
+        <td>4,158円</td>
+        <td style="color:var(--accent-red); font-weight:900;">4,378円</td>
+        <td style="color:var(--accent-red);">＋220円</td>
+        <td>6月2日〜</td>
+      </tr>
+      <tr>
+        <td>シンプル3 L</td>
+        <td>5,258円</td>
+        <td style="color:var(--accent-red); font-weight:900;">5,478円</td>
+        <td style="color:var(--accent-red);">＋220円</td>
+        <td>6月2日〜</td>
+      </tr>
+      <tr>
+        <td style="color:var(--accent-red); font-weight:900;">シンプル / シンプル2</td>
+        <td>—</td>
+        <td style="color:var(--accent-red); font-weight:900;">＋330円</td>
+        <td style="color:var(--accent-red);">＋330円</td>
+        <td style="color:var(--accent-red);">7月1日〜</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:36px; color:#666; margin-top:12px;">年間では <span style="color:var(--accent-red); font-size:46px;">最大3,960円</span> の負担増に！</p>
+</div>
+
+<!-- Slide ID: 6-2 -->
+<div class="slide-container">
+  <h2 style="font-size:74px; margin-bottom:20px;">旧プランユーザーは要注意！</h2>
+  <div class="split">
+    <div class="split-col">
+      <i class="fa-solid fa-circle-exclamation" style="font-size:160px; color:var(--accent-red);"></i>
+    </div>
+    <div class="split-col">
+      <p style="font-size:58px; line-height:1.5; text-align:left;">
+        シンプル/シンプル2ユーザー<br>
+        月 <span class="accent-red" style="font-size:80px;">330円</span> の値上げ<br>
+        年間 <span class="accent-red" style="font-size:80px;">3,960円</span> 増に！
+      </p>
+    </div>
   </div>
 </div>
 
 <!-- Slide ID: 7 -->
 <div class="slide-container">
-  <span class="slide-label">7</span>
-  <h2 style="font-size:72px;">マジ得フェスティバル</h2>
-  <p style="font-size:58px;">最大</p>
-  <p style="font-size:120px; font-weight:900; color:var(--accent-red); line-height:1.0;">20,000<span style="font-size:72px;">ポイント</span></p>
-  <p style="font-size:54px; margin-top:8px;">還元！</p>
-  <div class="warning-banner" style="margin-top:14px;">
-    <p style="font-size:46px; text-align:center;">3GBプラン(月額1,078円)で <span style="color:var(--accent-red); font-weight:900;">約18ヶ月分</span> 実質無料！</p>
+  <h2 style="font-size:70px; margin-bottom:20px;">値上げ回避の救済措置</h2>
+  <div class="highlight-box" style="margin-bottom:20px;">
+    <p style="font-size:52px; line-height:1.4;">
+      <i class="fa-solid fa-check" style="color:var(--primary-color);"></i> <b>シンプル3 特別割引</b><br>
+      <span style="font-size:44px; color:#555; margin-left:40px; display:block;">2026年6月1日までに契約 → 年内は値上げ前の価格で使える</span>
+    </p>
   </div>
+  <p style="font-size:60px; text-align:center;">シンプル3ユーザーは<br><span class="accent-red">2026年12月31日</span>まで現行価格を維持！</p>
+</div>
+
+<!-- Slide ID: 7-2 -->
+<div class="slide-container">
+  <h2 style="font-size:68px; margin-bottom:20px;">PayPayカード割でさらに回避も可能</h2>
+  <div style="display:flex; gap:30px; width:100%; align-items:center;">
+    <div style="flex:1; text-align:center;">
+      <i class="fa-solid fa-credit-card" style="font-size:130px; color:var(--primary-color); margin-bottom:10px;"></i>
+    </div>
+    <div style="flex:2;">
+      <ul style="font-size:50px; line-height:1.6;">
+        <li><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> PayPayカードゴールドで月<span class="accent-red">220円</span>追加割引</li>
+        <li><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> 既存割引と合わせ最大<span class="accent-red">770円</span>割引</li>
+        <li><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> 条件を全適用で<span class="accent-red">858円</span>維持も可</li>
+      </ul>
+    </div>
+  </div>
+  <p style="font-size:40px; color:#666; margin-top:16px;">※ ただし複雑な条件…初心者にはわかりにくい</p>
 </div>
 
 <!-- Slide ID: 8 -->
 <div class="slide-container">
-  <span class="slide-label">8</span>
-  <i class="fa-solid fa-store icon-big" style="color:#f9a825;"></i>
-  <p style="font-size:62px; line-height:1.4;">もらったポイントは楽天モバイル以外でも利用可能！</p>
-  <div style="display:flex; gap:40px; justify-content:center; margin-top:20px; align-items:center;">
-    <div style="text-align:center;">
-      <i class="fa-solid fa-shopping-cart" style="font-size:80px; color:var(--primary-color);"></i>
-      <p style="font-size:46px;">楽天市場</p>
+  <h2 style="font-size:76px; margin-bottom:20px;">複雑な割引条件…</h2>
+  <div class="split">
+    <div class="split-col">
+      <img src="public/images/irasutoya/pose_atama_kakaeru_woman.png" style="max-height:380px; max-width:100%; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
     </div>
-    <div style="text-align:center;">
-      <i class="fa-solid fa-credit-card" style="font-size:80px; color:var(--primary-color);"></i>
-      <p style="font-size:46px;">楽天ペイ</p>
-    </div>
-    <div style="text-align:center;">
-      <i class="fa-solid fa-tag" style="font-size:80px; color:var(--primary-color);"></i>
-      <p style="font-size:46px;">楽天経済圏</p>
+    <div class="split-col">
+      <p style="font-size:56px; line-height:1.5; text-align:left;">
+        <span class="accent-red">初心者には<br>わかりにくい！</span><br>
+        <span style="font-size:46px; color:#555; margin-top:10px; display:block;">「○○カード割引前提」の<br>料金体系はわかりづらい</span>
+      </p>
     </div>
   </div>
 </div>
 
+<!-- Slide ID: 8-2 -->
+<div class="slide-container">
+  <h2 style="font-size:70px; margin-bottom:20px;">値上げの背景には新サービス</h2>
+  <div class="split">
+    <div class="split-col">
+      <i class="fa-solid fa-satellite" style="font-size:150px; color:var(--primary-color);"></i>
+      <p style="font-size:44px; text-align:center; margin-top:10px;">Starlink Direct</p>
+    </div>
+    <div class="split-col">
+      <i class="fa-solid fa-map-location-dot" style="font-size:150px; color:var(--primary-color);"></i>
+      <p style="font-size:44px; text-align:center; margin-top:10px;">JAPANローミング</p>
+    </div>
+  </div>
+  <p style="font-size:50px; text-align:center; margin-top:16px; color:#555;">申込不要・追加料金なしで利用可能</p>
+</div>
+
 <!-- Slide ID: 9 -->
-<div class="slide-container" style="background:#fff8e1;">
-  <span class="slide-label">9</span>
-  <i class="fa-solid fa-clock icon-big icon-red" style="font-size:120px;"></i>
-  <p style="font-size:58px; font-weight:900; color:var(--accent-red);">注意！申し込み期限</p>
-  <p style="font-size:88px; font-weight:900; color:var(--text-dark);">2026年4月13日(月)</p>
-  <p style="font-size:80px; font-weight:900; color:var(--accent-red);">10:00まで！</p>
+<div class="slide-container">
+  <div class="chapter-label">Chapter 2</div>
+  <h2 style="font-size:72px; margin-bottom:20px;">値上げを回避できる人・できない人</h2>
+  <div style="display:flex; gap:30px; width:100%;">
+    <div style="flex:1; background:#E8F5E9; border:6px solid #4CAF50; border-radius:20px; padding:24px; text-align:center;">
+      <p style="font-size:48px; color:#2E7D32; margin-bottom:10px;">✅ 回避できる人</p>
+      <p style="font-size:40px; line-height:1.5; color:#1a1a1a; text-align:left;">・シンプル3ユーザー<br>・PayPayカードゴールド所持<br>・おうち割光セット適用中</p>
+    </div>
+    <div style="flex:1; background:#FFEBEE; border:6px solid var(--accent-red); border-radius:20px; padding:24px; text-align:center;">
+      <p style="font-size:48px; color:var(--accent-red); margin-bottom:10px;">❌ 回避できない人</p>
+      <p style="font-size:40px; line-height:1.5; color:#1a1a1a; text-align:left;">・旧プラン（シンプル/シンプル2）<br>・特別割引非対象<br>・7月から確実に<span style="color:var(--accent-red);">330円</span>値上げ</p>
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 9-2 -->
+<div class="slide-container">
+  <h2 style="font-size:74px; margin-bottom:20px;">旧プランユーザーの対策</h2>
+  <div class="highlight-box" style="margin-bottom:20px;">
+    <p style="font-size:54px; line-height:1.5;">
+      <i class="fa-solid fa-arrow-right" style="color:var(--primary-color);"></i>
+      <b>2026年6月1日まで</b>に<br>「シンプル3 S/M/L」へプラン変更
+    </p>
+  </div>
+  <div class="highlight-box">
+    <p style="font-size:54px; line-height:1.5;">
+      <i class="fa-solid fa-arrow-right" style="color:var(--accent-red);"></i>
+      または <span class="accent-red"><b>他社へ乗り換え</b></span>を検討しよう
+    </p>
+  </div>
+  <p style="font-size:38px; color:#666; margin-top:16px;">※ 必ずご自身でシミュレーションを</p>
 </div>
 
 <!-- Slide ID: 10 -->
 <div class="slide-container">
-  <span class="slide-label">10</span>
-  <h2 style="font-size:68px;">注意点①</h2>
-  <div class="box-red" style="width:95%; padding:20px 30px;">
-    <p style="font-size:58px; line-height:1.4;">
-      <i class="fa-solid fa-arrow-right" style="color:var(--primary-color);"></i>
-      キャンペーンページの<br>
-      申し込みボタンから<br>
-      <span class="crimson">必ず最後まで完了すること！</span>
-    </p>
+  <div class="chapter-label">Chapter 3</div>
+  <h2 style="font-size:74px; margin-bottom:20px;">おすすめ乗り換え先4社</h2>
+  <div style="display:flex; gap:24px; width:100%;">
+    <div style="flex:1; background:#FFF3E0; border:6px solid var(--primary-color); border-radius:20px; padding:20px; text-align:center;">
+      <p style="font-size:36px; color:#666; margin-bottom:8px;">実店舗サポート重視</p>
+      <img src="public/images/logo/Rakuten_Mobile_logo.png" style="max-height:70px; object-fit:contain; margin-bottom:8px;">
+      <p style="font-size:44px; font-weight:900;">楽天モバイル</p>
+    </div>
+    <div style="flex:1; background:#FFF3E0; border:6px solid var(--primary-color); border-radius:20px; padding:20px; text-align:center;">
+      <p style="font-size:36px; color:#666; margin-bottom:8px;">実店舗サポート重視</p>
+      <img src="public/images/logo/aeonmobile_logo.png" style="max-height:70px; object-fit:contain; margin-bottom:8px;">
+      <p style="font-size:44px; font-weight:900;">イオンモバイル</p>
+    </div>
+    <div style="flex:1; background:#FFF0F0; border:6px solid #E57373; border-radius:20px; padding:20px; text-align:center;">
+      <p style="font-size:36px; color:#666; margin-bottom:8px;">SB回線を維持したい</p>
+      <img src="public/images/logo/LINEMO_logo.png" style="max-height:70px; object-fit:contain; margin-bottom:8px;">
+      <p style="font-size:44px; font-weight:900;">LINEMO</p>
+    </div>
+    <div style="flex:1; background:#FFF0F0; border:6px solid #E57373; border-radius:20px; padding:20px; text-align:center;">
+      <p style="font-size:36px; color:#666; margin-bottom:8px;">SB回線を維持したい</p>
+      <img src="public/images/logo/Mineo_logo_背景削除.png" style="max-height:70px; object-fit:contain; margin-bottom:8px;">
+      <p style="font-size:44px; font-weight:900;">mineo</p>
+    </div>
   </div>
-  <p style="font-size:46px; color:#888; margin-top:16px;">途中でセッション切れ・別ページから再開はNG</p>
 </div>
 
 <!-- Slide ID: 11 -->
 <div class="slide-container">
-  <span class="slide-label">11</span>
-  <h2 style="font-size:64px;">4/30 23:59までに完了すること</h2>
-  <ul style="width:95%; margin-top:10px;">
-    <li style="font-size:58px; padding:10px 0;"><i class="fa-solid fa-circle-check" style="color:var(--primary-color);"></i>　<span class="crimson">①</span> プランの利用開始</li>
-    <li style="font-size:58px; padding:10px 0;"><i class="fa-solid fa-circle-check" style="color:var(--primary-color);"></i>　<span class="crimson">②</span> Rakuten Linkアプリで<br>　　　10秒以上通話</li>
-    <li style="font-size:58px; padding:10px 0;"><i class="fa-solid fa-circle-check" style="color:var(--primary-color);"></i>　<span class="crimson">③</span> 楽天カードと楽天モバイルのIDを<br>　　　紐づけ</li>
-  </ul>
+  <div style="display:flex; align-items:center; gap:20px; margin-bottom:16px;">
+    <img src="public/images/logo/Rakuten_Mobile_logo.png" style="max-height:80px; object-fit:contain;">
+    <div>
+      <p style="font-size:38px; color:#666;">店舗サポートを重視・通話をよくする人向け</p>
+      <h2 style="font-size:80px; border-bottom:none;">楽天モバイル</h2>
+    </div>
+  </div>
+  <div class="split">
+    <div class="split-col">
+      <i class="fa-solid fa-store" style="font-size:140px; color:var(--primary-color);"></i>
+      <p style="font-size:50px; text-align:center; margin-top:10px;">街やショッピングモールに<br>専用ショップあり！</p>
+    </div>
+    <div class="split-col">
+      <p style="font-size:52px; line-height:1.6; text-align:left;">
+        <i class="fa-solid fa-check" style="color:var(--primary-color);"></i> 自社回線のMNO<br>
+        <i class="fa-solid fa-check" style="color:var(--primary-color);"></i> 対面サポート可能<br>
+        <i class="fa-solid fa-check" style="color:var(--primary-color);"></i> 初期費用 <span class="accent-red">0円</span>
+      </p>
+    </div>
+  </div>
 </div>
 
 <!-- Slide ID: 12 -->
-<div class="slide-container">
-  <span class="slide-label">12</span>
-  <i class="fa-solid fa-phone icon-big" style="font-size:120px;"></i>
-  <p style="font-size:64px; font-weight:900;">Rakuten Linkアプリからの通話は</p>
-  <p style="font-size:96px; font-weight:900; color:var(--accent-red);">無料！</p>
-  <p style="font-size:58px; margin-top:12px;">家族や友人に <span class="crimson">15秒</span> くらいかければOK</p>
-</div>
-
-<!-- Slide ID: 13 -->
-<div class="slide-container">
-  <span class="slide-label">13</span>
-  <h2 style="font-size:68px;">その他の注意点</h2>
-  <ul style="width:95%; margin-top:4px;">
-    <li style="font-size:54px; padding:8px 0; line-height:1.3;">
-      <i class="fa-solid fa-xmark" style="color:var(--accent-red);"></i>
-      　<span class="red">データタイプのプランは対象外</span>
-    </li>
-    <li style="font-size:54px; padding:8px 0; line-height:1.3;">
-      <i class="fa-solid fa-store" style="color:var(--primary-color);"></i>
-      　店舗申込は <span class="crimson">4/12(日)閉店まで</span> に<br>
-      　クーポンコードをスタッフに伝えること
-    </li>
-  </ul>
-</div>
-
-<!-- Slide ID: 14 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff0f0 0%, #ffffff 100%);">
-  <span class="slide-label">14</span>
-  <i class="fa-solid fa-link icon-big" style="font-size:100px;"></i>
-  <p style="font-size:64px; font-weight:900; line-height:1.4;">概要欄に<br><span class="crimson">マジ得フェスティバル</span>の<br>申し込みリンクを掲載！</p>
-  <p style="font-size:46px; color:#888; margin-top:16px;">そちらから申し込んでね</p>
-</div>
-
-<!-- Slide ID: 15 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);">
-  <span class="slide-label">15</span>
-  <div class="chapter-label" style="background:#1565c0;">三木谷キャンペーン</div>
-  <h2 style="font-size:62px; border-bottom-color:#1565c0; margin-top:10px;">三木谷キャンペーンが得な人</h2>
-  <div class="box-blue" style="margin-top:10px; width:95%;">
-    <ul style="text-align:left;">
-      <li style="font-size:58px;"><i class="fa-solid fa-check" style="color:#1565c0;"></i>　過去に楽天モバイルを使った人（<span class="blue">出戻り</span>）</li>
-      <li style="font-size:58px;"><i class="fa-solid fa-check" style="color:#1565c0;"></i>　楽天カードを持っていない / 作りたくない人</li>
-    </ul>
+<div class="slide-container" style="padding:20px 40px;">
+  <div style="display:flex; align-items:center; gap:16px; margin-bottom:16px;">
+    <img src="public/images/logo/Rakuten_Mobile_logo.png" style="max-height:60px; object-fit:contain;">
+    <h2 style="font-size:68px; border-bottom:none;">料金プラン</h2>
   </div>
-</div>
-
-<!-- Slide ID: 17 -->
-<div class="slide-container">
-  <span class="slide-label">17</span>
-  <h2 style="font-size:68px;">三木谷キャンペーン</h2>
-  <p style="font-size:58px;">MNP（他社乗り換え）で最大</p>
-  <p style="font-size:110px; font-weight:900; color:#1565c0; line-height:1.0;">14,000<span style="font-size:66px;">ポイント</span></p>
-  <div class="warning-banner" style="margin-top:14px;">
-    <p style="font-size:44px; text-align:center;">3GBプラン月1,078円で <span style="color:#1565c0; font-weight:900;">約12ヶ月分</span> が実質無料！</p>
-  </div>
-</div>
-
-<!-- Slide ID: 18 -->
-<div class="slide-container">
-  <span class="slide-label">18</span>
-  <h2 style="font-size:68px;">三木谷キャンペーンのメリット</h2>
-  <ul style="width:95%; margin-top:16px;">
-    <li style="font-size:68px; padding:12px 0;"><i class="fa-solid fa-circle-check" style="color:#1565c0;"></i>　楽天カード<span class="blue">不要！</span></li>
-    <li style="font-size:68px; padding:12px 0;"><i class="fa-solid fa-circle-check" style="color:#1565c0;"></i>　再契約（<span class="blue">出戻り</span>）もOK！</li>
-  </ul>
-</div>
-
-<!-- Slide ID: 19 -->
-<div class="slide-container" style="background:#fff8e1;">
-  <span class="slide-label">19</span>
-  <i class="fa-solid fa-triangle-exclamation icon-big icon-red" style="font-size:120px;"></i>
-  <p style="font-size:68px; font-weight:900; color:var(--accent-red);">注意！</p>
-  <p style="font-size:62px; line-height:1.4; margin-top:8px;">過去に <span class="red">三木谷キャンペーン</span> を<br>利用した人は対象外</p>
-</div>
-
-<!-- Slide ID: 20 -->
-<div class="slide-container">
-  <span class="slide-label">20</span>
-  <h2 style="font-size:64px;">三木谷キャンペーン 注意点</h2>
-  <ul style="width:95%; margin-top:8px;">
-    <li style="font-size:52px; padding:10px 0; line-height:1.3;">
-      <i class="fa-solid fa-arrow-right" style="color:#1565c0;"></i>
-      　キャンペーンページから<br>　　<span class="blue">最後まで申し込み完了</span>
-    </li>
-    <li style="font-size:52px; padding:10px 0; line-height:1.3;">
-      <i class="fa-solid fa-calendar-check" style="color:#1565c0;"></i>
-      　翌月末日までに
-    </li>
-    <li style="font-size:50px; padding:6px 0 6px 60px; line-height:1.3;">
-      <span class="blue">①</span> プランの利用開始
-    </li>
-    <li style="font-size:50px; padding:6px 0 6px 60px; line-height:1.3;">
-      <span class="blue">②</span> Rakuten Linkアプリで10秒以上通話
-    </li>
-  </ul>
-</div>
-
-<!-- Slide ID: 21 -->
-<div class="slide-container">
-  <span class="slide-label">21</span>
-  <div class="split" style="gap:30px;">
-    <div class="split-col box-blue" style="flex:1.2;">
-      <i class="fa-solid fa-calendar" style="font-size:90px; color:#1565c0;"></i>
-      <p style="font-size:56px; color:#1565c0; font-weight:900; margin-top:10px;">翌月末日まで</p>
-      <p style="font-size:48px;">余裕あり！</p>
-    </div>
-    <div class="split-col" style="flex:1.2;">
-      <i class="fa-solid fa-credit-card" style="font-size:90px; color:#888;"></i>
-      <p style="font-size:56px; font-weight:900; margin-top:10px;">楽天カードの</p>
-      <p style="font-size:56px;">紐づけも<span class="green">不要！</span></p>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 22 -->
-<div class="slide-container">
-  <span class="slide-label">22</span>
-  <i class="fa-solid fa-infinity icon-big" style="color:#1565c0; font-size:130px;"></i>
-  <p style="font-size:68px; font-weight:900;">三木谷キャンペーンは</p>
-  <p style="font-size:72px; font-weight:900; color:#1565c0;">終了日未定（長期継続）</p>
-  <div class="warning-banner" style="margin-top:20px;">
-    <p style="font-size:48px;">ただし予告なく終了の可能性もあり<br>→ <span style="color:var(--accent-red);">早めの申込を推奨</span></p>
-  </div>
-</div>
-
-<!-- Slide ID: 23 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);">
-  <span class="slide-label">23</span>
-  <i class="fa-solid fa-link icon-big" style="font-size:100px; color:#1565c0;"></i>
-  <p style="font-size:64px; font-weight:900; line-height:1.4;">概要欄に<br><span class="blue">三木谷キャンペーン</span>の<br>申し込みリンクも掲載！</p>
-  <p style="font-size:46px; color:#888; margin-top:16px;">楽天カードなし・出戻りの人はそちらから</p>
-</div>
-
-<!-- Slide ID: 24 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff0f0 0%, #e3f2fd 100%);">
-  <span class="slide-label">24</span>
-  <div class="chapter-label">2大キャンペーン徹底比較！</div>
-  <h1 style="font-size:100px; margin-top:14px;">あなたはどっち？</h1>
-  <div class="split" style="margin-top:20px; gap:20px;">
-    <div style="text-align:center; flex:1;">
-      <p style="font-size:52px; color:var(--primary-color); font-weight:900;">マジ得フェスティバル</p>
-    </div>
-    <div style="font-size:72px; font-weight:900; color:var(--text-dark);">vs</div>
-    <div style="text-align:center; flex:1;">
-      <p style="font-size:52px; color:#1565c0; font-weight:900;">三木谷キャンペーン</p>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 25 -->
-<div class="slide-container">
-  <span class="slide-label">25</span>
-  <table style="font-size:40px; margin-top:0;">
-    <thead>
-      <tr>
-        <th style="font-size:42px; background:#555;">項目</th>
-        <th style="font-size:42px; background:var(--primary-color);">マジ得フェスティバル</th>
-        <th style="font-size:42px; background:#1565c0;">三木谷キャンペーン</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td style="font-weight:900;">ポイント</td>
-        <td style="color:var(--primary-color); font-weight:900;">最大20,000pt</td>
-        <td style="color:#1565c0; font-weight:900;">MNP:14,000pt<br>新規:11,000pt</td>
-      </tr>
-      <tr>
-        <td style="font-weight:900;">楽天カード</td>
-        <td style="color:var(--accent-red); font-weight:900;">必須</td>
-        <td style="color:var(--accent-green); font-weight:900;">不要</td>
-      </tr>
-      <tr>
-        <td style="font-weight:900;">対象者</td>
-        <td style="color:var(--accent-red); font-weight:900;">初回のみ</td>
-        <td style="color:var(--accent-green); font-weight:900;">再契約OK</td>
-      </tr>
-      <tr>
-        <td style="font-weight:900;">期限</td>
-        <td style="color:var(--accent-red); font-weight:900;">4/13まで！</td>
-        <td style="color:#1565c0; font-weight:900;">未定（継続中）</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- Slide ID: 27 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff0f0 0%, #ffffff 100%);">
-  <span class="slide-label">27</span>
-  <div class="chapter-label">楽天モバイル 基本情報</div>
-  <h2 style="margin-top:10px;">Rakuten最強プラン</h2>
-  <img src="public/images/logo/Rakuten_Mobile_logo.png" class="logo-img" style="height:200px; margin-bottom:16px;">
-</div>
-
-<!-- Slide ID: 28 -->
-<div class="slide-container">
-  <span class="slide-label">28</span>
-  <h2 style="font-size:64px;">料金プラン：Rakuten最強プラン</h2>
-  <table style="font-size:52px; margin-top:10px;">
+  <table style="font-size:48px; margin-bottom:14px;">
     <thead>
       <tr>
         <th>データ量</th>
-        <th>月額料金</th>
+        <th>月額</th>
+        <th>特徴</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>〜3GB</td>
-        <td style="color:var(--accent-green); font-weight:900;">1,078円</td>
+        <td style="color:var(--primary-color); font-weight:900;">1,078円</td>
+        <td>自動適用</td>
       </tr>
       <tr>
         <td>〜20GB</td>
-        <td style="font-weight:900;">2,178円</td>
+        <td style="color:var(--primary-color); font-weight:900;">2,178円</td>
+        <td>自動適用</td>
       </tr>
       <tr>
-        <td>20GB超（無制限）</td>
-        <td style="font-weight:900;">3,278円</td>
+        <td>無制限</td>
+        <td style="color:var(--primary-color); font-weight:900;">3,278円</td>
+        <td>自動適用</td>
       </tr>
     </tbody>
   </table>
+  <div style="background:#FFF3E0; border:4px solid var(--primary-color); border-radius:16px; padding:14px 24px; text-align:center;">
+    <p style="font-size:58px;"><i class="fa-solid fa-phone" style="color:var(--primary-color);"></i> Rakuten Link使用で <span class="accent-red">国内通話ずっと無料！</span></p>
+  </div>
+</div>
+
+<!-- Slide ID: 12-2 -->
+<div class="slide-container">
+  <h2 style="font-size:76px; margin-bottom:20px;">Rakuten Linkで通話無料！</h2>
+  <div class="split">
+    <div class="split-col">
+      <i class="fa-solid fa-phone-volume" style="font-size:160px; color:var(--primary-color);"></i>
+    </div>
+    <div class="split-col">
+      <ul style="font-size:52px; line-height:1.7; text-align:left;">
+        <li><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> 携帯・固定電話に<span class="accent-red">無料</span></li>
+        <li><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> 電話をよくする人に<span class="accent-red">最強</span></li>
+        <li><i class="fa-solid fa-triangle-exclamation" style="color:var(--accent-red);"></i> 0570番号は対象外</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 13 -->
+<div class="slide-container">
+  <div style="display:flex; align-items:center; gap:20px; margin-bottom:10px;">
+    <img src="public/images/logo/Rakuten_Mobile_logo.png" style="max-height:70px; object-fit:contain;">
+    <h2 style="font-size:74px; border-bottom:none;">当チャンネル独自評価</h2>
+  </div>
+  <img src="public/images/charts/楽天モバイル.png" style="max-height:500px; max-width:100%; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+</div>
+
+<!-- Slide ID: 14 -->
+<div class="slide-container">
+  <div style="display:flex; align-items:center; gap:20px; margin-bottom:16px;">
+    <img src="public/images/logo/aeonmobile_logo.png" style="max-height:80px; object-fit:contain;">
+    <div>
+      <p style="font-size:38px; color:#666;">店舗サポート×コスパ重視の人向け</p>
+      <h2 style="font-size:80px; border-bottom:none;">イオンモバイル</h2>
+    </div>
+  </div>
+  <div class="split">
+    <div class="split-col">
+      <i class="fa-solid fa-shop" style="font-size:130px; color:var(--primary-color);"></i>
+      <p style="font-size:44px; text-align:center; margin-top:10px;">全国200以上の<br>イオンモール等に店舗</p>
+    </div>
+    <div class="split-col">
+      <p style="font-size:52px; line-height:1.6; text-align:left;">
+        <i class="fa-solid fa-check" style="color:var(--primary-color);"></i> 対面での契約相談<br>
+        <i class="fa-solid fa-check" style="color:var(--primary-color);"></i> 故障時の対応<br>
+        <i class="fa-solid fa-check" style="color:var(--primary-color);"></i> 格安SIM唯一の充実サポート
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 14-2 -->
+<div class="slide-container">
+  <h2 style="font-size:74px; margin-bottom:20px;">格安SIM唯一の手厚い店舗サポート！</h2>
+  <div class="split">
+    <div class="split-col">
+      <img src="public/images/irasutoya/pose_anshin_woman.png" style="max-height:380px; max-width:100%; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+    <div class="split-col">
+      <p style="font-size:56px; line-height:1.5; text-align:left;">
+        シニア・初心者に<span class="accent-red">最強！</span><br>
+        <span style="font-size:46px; color:#555;">生活圏のイオンで<br>安心のサポートが受けられる</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 15 -->
+<div class="slide-container" style="padding:20px 40px;">
+  <div style="display:flex; align-items:center; gap:16px; margin-bottom:16px;">
+    <img src="public/images/logo/aeonmobile_logo.png" style="max-height:60px; object-fit:contain;">
+    <h2 style="font-size:68px; border-bottom:none;">料金プラン</h2>
+  </div>
+  <table style="font-size:48px; margin-bottom:14px;">
+    <thead>
+      <tr>
+        <th>データ量</th>
+        <th>月額</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>3GB</td>
+        <td style="color:var(--primary-color); font-weight:900;">1,078円</td>
+      </tr>
+      <tr>
+        <td>5GB</td>
+        <td style="color:var(--primary-color); font-weight:900;">1,298円</td>
+      </tr>
+      <tr>
+        <td>10GB</td>
+        <td style="color:var(--primary-color); font-weight:900;">1,848円</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="background:#FFF3E0; border:4px solid var(--primary-color); border-radius:16px; padding:14px 24px; text-align:center;">
+    <p style="font-size:56px;"><i class="fa-solid fa-users" style="color:var(--primary-color);"></i> 家族の「シェアプラン」で<span class="accent-red">さらにお得！</span></p>
+  </div>
+</div>
+
+<!-- Slide ID: 16 -->
+<div class="slide-container">
+  <div style="display:flex; align-items:center; gap:20px; margin-bottom:10px;">
+    <img src="public/images/logo/aeonmobile_logo.png" style="max-height:70px; object-fit:contain;">
+    <h2 style="font-size:74px; border-bottom:none;">当チャンネル独自評価</h2>
+  </div>
+  <img src="public/images/charts/イオンモバイル.png" style="max-height:500px; max-width:100%; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+</div>
+
+<!-- Slide ID: 17 -->
+<div class="slide-container">
+  <div style="display:flex; align-items:center; gap:20px; margin-bottom:16px;">
+    <img src="public/images/logo/LINEMO_logo.png" style="max-height:80px; object-fit:contain;">
+    <div>
+      <p style="font-size:38px; color:#666;">ソフトバンク回線＆品質重視の人向け</p>
+      <h2 style="font-size:80px; border-bottom:none;">LINEMO</h2>
+    </div>
+  </div>
+  <div class="split">
+    <div class="split-col">
+      <img src="public/images/logo/Softbank_logo.png" style="max-height:120px; object-fit:contain; filter:drop-shadow(0 6px 12px rgba(0,0,0,0.1));">
+      <p style="font-size:46px; text-align:center; margin-top:10px;">ソフトバンク回線<br>そのまま使える</p>
+    </div>
+    <div class="split-col">
+      <ul style="font-size:52px; line-height:1.6; text-align:left;">
+        <li><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> ワイモバから<br>　手続きがラク</li>
+        <li><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> 通信品質<span class="accent-red">SS</span>ランク</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 17-2 -->
+<div class="slide-container">
+  <h2 style="font-size:76px; margin-bottom:20px;">LINEMOの通信品質はSSランク！</h2>
+  <div class="split">
+    <div class="split-col">
+      <img src="public/images/irasutoya/smartphone_speed_5g.png" style="max-height:300px; max-width:100%; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+    <div class="split-col">
+      <p style="font-size:64px; line-height:1.5; text-align:center;">
+        ワイモバと同じ<br><span style="font-size:44px; color:#555;">ソフトバンク回線を維持</span><br>
+        品質そのままで<span class="accent-red">安く！</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 18 -->
+<div class="slide-container" style="padding:20px 40px;">
+  <div style="display:flex; align-items:center; gap:16px; margin-bottom:16px;">
+    <img src="public/images/logo/LINEMO_logo.png" style="max-height:60px; object-fit:contain;">
+    <h2 style="font-size:68px; border-bottom:none;">LINEMOベストプラン</h2>
+  </div>
+  <table style="font-size:48px; margin-bottom:14px;">
+    <thead>
+      <tr>
+        <th>プラン</th>
+        <th>月額</th>
+        <th>特徴</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>〜3GB</td>
+        <td style="color:var(--primary-color); font-weight:900;">990円</td>
+        <td>自動適用</td>
+      </tr>
+      <tr>
+        <td>〜10GB</td>
+        <td style="color:var(--primary-color); font-weight:900;">2,090円</td>
+        <td>自動適用</td>
+      </tr>
+      <tr>
+        <td>30GB（V）</td>
+        <td style="color:var(--primary-color); font-weight:900;">2,970円</td>
+        <td>5分通話無料</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="background:#F3F8FF; border:4px solid #1DA1F2; border-radius:16px; padding:14px 24px; text-align:center;">
+    <p style="font-size:54px;"><i class="fa-brands fa-line" style="color:#06C755;"></i> LINEのデータ通信が<span class="accent-red">消費されない！</span>（ギガフリー）</p>
+  </div>
+</div>
+
+<!-- Slide ID: 18-2 -->
+<div class="slide-container">
+  <h2 style="font-size:72px; margin-bottom:20px;">LINEMOの注意点</h2>
+  <div class="split">
+    <div class="split-col">
+      <i class="fa-solid fa-triangle-exclamation" style="font-size:150px; color:var(--accent-red);"></i>
+    </div>
+    <div class="split-col">
+      <ul style="font-size:52px; line-height:1.7; text-align:left;">
+        <li><i class="fa-solid fa-exclamation" style="color:var(--accent-red);"></i> データ使用量の<br>　管理に注意！</li>
+        <li><i class="fa-solid fa-exclamation" style="color:var(--accent-red);"></i> 店舗サポートは<br>　基本なし</li>
+        <li><i class="fa-solid fa-check" style="color:#666;"></i> ネット自己解決<br>　できる人向け</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 19 -->
+<div class="slide-container">
+  <h2 style="font-size:80px; margin-bottom:20px;">LINEMO 詳細は過去動画をチェック！</h2>
+  <div class="split">
+    <div class="split-col">
+      <img src="public/images/logo/LINEMO_logo.png" style="max-height:200px; max-width:100%; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+    <div class="split-col">
+      <i class="fa-brands fa-youtube" style="font-size:160px; color:#FF0000;"></i>
+      <p style="font-size:52px; text-align:center; margin-top:10px;">概要欄の<br>リンクをチェック！</p>
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 20 -->
+<div class="slide-container">
+  <div style="display:flex; align-items:center; gap:20px; margin-bottom:16px;">
+    <img src="public/images/logo/Mineo_logo_背景削除.png" style="max-height:80px; object-fit:contain;">
+    <div>
+      <p style="font-size:38px; color:#666;">ソフトバンク回線対応＆コスパ最強の格安SIM</p>
+      <h2 style="font-size:80px; border-bottom:none;">mineo（マイネオ）</h2>
+    </div>
+  </div>
+  <div class="split">
+    <div class="split-col">
+      <i class="fa-solid fa-star" style="font-size:140px; color:var(--accent-yellow);"></i>
+      <p style="font-size:50px; text-align:center; margin-top:10px; color:var(--primary-color);">ショウが実際に<br>使っているSIM！</p>
+    </div>
+    <div class="split-col">
+      <p style="font-size:52px; line-height:1.6; text-align:left;">
+        <i class="fa-solid fa-check" style="color:var(--primary-color);"></i> 個人的に一番おすすめ<br>
+        <i class="fa-solid fa-check" style="color:var(--primary-color);"></i> 今一番おすすめの格安SIM<br>
+        <i class="fa-solid fa-check" style="color:var(--primary-color);"></i> コスパ最強
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 21 -->
+<div class="slide-container">
+  <h2 style="font-size:74px; margin-bottom:20px;">mineoはトリプルキャリア対応！</h2>
+  <div style="display:flex; gap:24px; justify-content:center; width:100%;">
+    <div style="flex:1; text-align:center; background:#F5F5F5; border-radius:20px; padding:24px;">
+      <img src="public/images/logo/docomo_logo.png" style="max-height:80px; object-fit:contain; margin-bottom:8px;">
+      <p style="font-size:48px;">ドコモ回線</p>
+    </div>
+    <div style="flex:1; text-align:center; background:#FFF3E0; border-radius:20px; padding:24px;">
+      <img src="public/images/logo/au_logo.png" style="max-height:80px; object-fit:contain; margin-bottom:8px;">
+      <p style="font-size:48px;">au回線</p>
+    </div>
+    <div style="flex:1; text-align:center; background:#FFF0E0; border-radius:20px; padding:24px;">
+      <img src="public/images/logo/Softbank_logo.png" style="max-height:80px; object-fit:contain; margin-bottom:8px;">
+      <p style="font-size:48px; color:var(--primary-color); font-weight:900;">SB回線 ✅</p>
+    </div>
+  </div>
+  <p style="font-size:46px; margin-top:20px; text-align:center; color:#555;">ワイモバと同じSB回線で乗り換え可能！<br><span style="color:var(--accent-red);">※ eSIM未対応</span></p>
+</div>
+
+<!-- Slide ID: 22 -->
+<div class="slide-container">
+  <h2 style="font-size:74px; margin-bottom:20px;">パケット放題 3Mbpsで快適！</h2>
+  <div class="split">
+    <div class="split-col">
+      <img src="public/images/irasutoya/pose_necchuu_smartphone_man.png" style="max-height:360px; max-width:100%; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+    <div class="split-col">
+      <p style="font-size:56px; line-height:1.5; text-align:left;">
+        <span class="accent-red" style="font-size:70px;">3Mbps</span>あれば…<br>
+        <i class="fa-solid fa-check" style="color:var(--primary-color);"></i> ネットサーフィン ◎<br>
+        <i class="fa-solid fa-check" style="color:var(--primary-color);"></i> YouTube動画 ◎<br>
+        <span style="font-size:44px; color:#555;">ショウが実体験で確認済み！</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 22-2 -->
+<div class="slide-container">
+  <h2 style="font-size:74px; margin-bottom:20px;">今がキャンペーンチャンス！</h2>
+  <div class="split">
+    <div class="split-col">
+      <img src="public/images/irasutoya/present_open.png" style="max-height:360px; max-width:100%; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+    <div class="split-col">
+      <p style="font-size:56px; line-height:1.5; text-align:center;">
+        現在キャンペーン実施中！<br>
+        乗り換えるなら<br>
+        <span class="accent-red" style="font-size:70px;">今がチャンス！</span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 23 -->
+<div class="slide-container">
+  <h2 style="font-size:80px; margin-bottom:20px;">キャンペーン詳細は過去動画で！</h2>
+  <div class="split">
+    <div class="split-col">
+      <img src="public/images/logo/Mineo_logo_背景削除.png" style="max-height:180px; max-width:100%; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+    <div class="split-col">
+      <i class="fa-brands fa-youtube" style="font-size:150px; color:#FF0000;"></i>
+      <p style="font-size:52px; text-align:center; margin-top:10px;">過去動画で<br>キャンペーン詳細をチェック！</p>
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 23-2 -->
+<div class="slide-container">
+  <h2 style="font-size:72px; margin-bottom:24px;">当チャンネル限定特典！</h2>
+  <div style="background:#FFF3E0; border:8px solid var(--accent-red); border-radius:24px; padding:30px; text-align:center; width:100%;">
+    <p style="font-size:56px; color:var(--text-dark); margin-bottom:10px;">当チャンネル限定リンクから申込で</p>
+    <p style="font-size:90px; color:var(--accent-red); font-weight:900; line-height:1.1;">契約事務手数料<br>3,300円が無料！</p>
+  </div>
+  <p style="font-size:46px; color:#555; margin-top:16px;">申し込む際は必ず<b style="color:var(--accent-red);">概要欄の当チャンネル限定リンク</b>から！</p>
+</div>
+
+<!-- Slide ID: 24 -->
+<div class="slide-container" style="padding:20px 40px;">
+  <div style="display:flex; align-items:center; gap:16px; margin-bottom:14px;">
+    <img src="public/images/logo/Mineo_logo_背景削除.png" style="max-height:60px; object-fit:contain;">
+    <h2 style="font-size:66px; border-bottom:none;">料金プラン</h2>
+  </div>
+  <table style="font-size:46px; margin-bottom:14px;">
+    <thead>
+      <tr>
+        <th>プラン</th>
+        <th>月額</th>
+        <th>特徴</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>マイピタ 3GB</td>
+        <td style="color:var(--primary-color); font-weight:900;">1,298円</td>
+        <td>データ量指定</td>
+      </tr>
+      <tr>
+        <td>マイそく スタンダード</td>
+        <td style="color:var(--primary-color); font-weight:900;">990円</td>
+        <td>3Mbps使い放題</td>
+      </tr>
+      <tr>
+        <td>マイそく ライト</td>
+        <td style="color:var(--accent-red); font-weight:900;">660円</td>
+        <td>300kbps使い放題</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="font-size:40px; color:#666; text-align:center;">※ MVNOのため混雑時は速度低下あり / 店舗サポートなし<br>オンラインで自己解決できる人向け</p>
+</div>
+
+<!-- Slide ID: 25 -->
+<div class="slide-container">
+  <div style="display:flex; align-items:center; gap:20px; margin-bottom:10px;">
+    <img src="public/images/logo/Mineo_logo_背景削除.png" style="max-height:70px; object-fit:contain;">
+    <h2 style="font-size:74px; border-bottom:none;">当チャンネル独自評価</h2>
+  </div>
+  <img src="public/images/charts/mineo.png" style="max-height:500px; max-width:100%; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+</div>
+
+<!-- Slide ID: 26 -->
+<div class="slide-container" style="background: linear-gradient(135deg, #fff8f0, #ffe0c0);">
+  <i class="fa-solid fa-flag-checkered" style="font-size:140px; color:var(--primary-color); margin-bottom:16px;"></i>
+  <h1 style="font-size:120px;">まとめ</h1>
+  <p style="font-size:56px; color:#555; margin-top:10px;">今日の内容を振り返ろう！</p>
+</div>
+
+<!-- Slide ID: 27 -->
+<div class="slide-container" style="padding:30px 40px;">
+  <h2 style="font-size:70px; margin-bottom:20px;">まとめ：ワイモバ値上げポイント</h2>
+  <ul style="width:100%; font-size:52px; line-height:1.6;">
+    <li style="margin-bottom:12px; display:flex; gap:16px; align-items:flex-start;">
+      <i class="fa-solid fa-circle-arrow-right" style="color:var(--primary-color); flex-shrink:0; margin-top:6px;"></i>
+      シンプル3 S/M/L → <span class="accent-red">月220円値上げ</span>（2026年6月2日〜）
+    </li>
+    <li style="margin-bottom:12px; display:flex; gap:16px; align-items:flex-start;">
+      <i class="fa-solid fa-circle-arrow-right" style="color:var(--primary-color); flex-shrink:0; margin-top:6px;"></i>
+      シンプル/シンプル2 → <span class="accent-red">月330円値上げ</span>（2026年7月1日〜）
+    </li>
+    <li style="display:flex; gap:16px; align-items:flex-start;">
+      <i class="fa-solid fa-circle-arrow-right" style="color:var(--primary-color); flex-shrink:0; margin-top:6px;"></i>
+      シンプル3ユーザーは<span class="accent-red">年内特別割引</span>あり（2026年12月31日まで）
+    </li>
+  </ul>
+  <p style="font-size:44px; color:#555; margin-top:16px; text-align:center;">まず今の自分のプランを確認しよう！</p>
+</div>
+
+<!-- Slide ID: 28 -->
+<div class="slide-container" style="padding:24px 40px;">
+  <h2 style="font-size:68px; margin-bottom:18px;">まとめ：おすすめ乗り換え先4社</h2>
+  <div style="display:flex; gap:20px; width:100%;">
+    <div style="flex:1; background:#FFF3E0; border:5px solid var(--primary-color); border-radius:16px; padding:18px; text-align:center;">
+      <p style="font-size:36px; color:#666; margin-bottom:8px;">実店舗サポート重視</p>
+      <img src="public/images/logo/Rakuten_Mobile_logo.png" style="max-height:50px; object-fit:contain; margin-bottom:6px;">
+      <p style="font-size:40px; font-weight:900;">楽天モバイル</p>
+      <p style="font-size:32px; color:#555;">通話無料・MNO</p>
+    </div>
+    <div style="flex:1; background:#FFF3E0; border:5px solid var(--primary-color); border-radius:16px; padding:18px; text-align:center;">
+      <p style="font-size:36px; color:#666; margin-bottom:8px;">実店舗サポート重視</p>
+      <img src="public/images/logo/aeonmobile_logo.png" style="max-height:50px; object-fit:contain; margin-bottom:6px;">
+      <p style="font-size:40px; font-weight:900;">イオンモバイル</p>
+      <p style="font-size:32px; color:#555;">家族シェアお得</p>
+    </div>
+    <div style="flex:1; background:#FFF0F0; border:5px solid #E57373; border-radius:16px; padding:18px; text-align:center;">
+      <p style="font-size:36px; color:#666; margin-bottom:8px;">SB回線を維持したい</p>
+      <img src="public/images/logo/LINEMO_logo.png" style="max-height:50px; object-fit:contain; margin-bottom:6px;">
+      <p style="font-size:40px; font-weight:900;">LINEMO</p>
+      <p style="font-size:32px; color:#555;">品質SS・LINE無制限</p>
+    </div>
+    <div style="flex:1; background:#FFF0F0; border:5px solid #E57373; border-radius:16px; padding:18px; text-align:center;">
+      <p style="font-size:36px; color:#666; margin-bottom:8px;">SB回線を維持したい</p>
+      <img src="public/images/logo/Mineo_logo_背景削除.png" style="max-height:50px; object-fit:contain; margin-bottom:6px;">
+      <p style="font-size:40px; font-weight:900;">mineo</p>
+      <p style="font-size:32px; color:#555;">660円〜使い放題</p>
+    </div>
+  </div>
+  <p style="font-size:42px; color:var(--primary-color); margin-top:14px; text-align:center;">概要欄のリンクからチェックしてみてね！</p>
 </div>
 
 <!-- Slide ID: 29 -->
 <div class="slide-container">
-  <span class="slide-label">29</span>
-  <h2 style="font-size:68px;">楽天モバイルの強み</h2>
-  <ul style="width:95%; margin-top:16px;">
-    <li style="font-size:64px; padding:12px 0;"><i class="fa-solid fa-circle-check" style="color:var(--primary-color);"></i>　初期費用 <span class="crimson">0円！</span></li>
-    <li style="font-size:64px; padding:12px 0;"><i class="fa-solid fa-phone" style="color:var(--primary-color);"></i>　Rakuten Linkアプリで<br>　　国内通話 <span class="crimson">無料！</span></li>
-    <li style="font-size:64px; padding:12px 0;"><i class="fa-solid fa-arrow-trend-down" style="color:var(--accent-green);"></i>　使った分だけの <span class="green">段階制プラン</span></li>
-  </ul>
+  <img src="public/images/slides/プランやキャンペーンは投稿時点のもの注意喚起.png" class="fullscreen-img">
 </div>
 
 <!-- Slide ID: 30 -->
 <div class="slide-container">
-  <span class="slide-label">30</span>
-  <h2 style="font-size:64px;">楽天モバイル チャンネル評価</h2>
-  <img src="public/images/charts/楽天モバイル.png" class="chart-img" style="max-height:460px; margin-top:10px;">
+  <h2 style="font-size:78px; margin-bottom:20px;">コメントで教えてください！</h2>
+  <div class="split">
+    <div class="split-col">
+      <i class="fa-solid fa-comment-dots" style="font-size:160px; color:var(--primary-color);"></i>
+    </div>
+    <div class="split-col">
+      <ul style="font-size:52px; line-height:1.7; text-align:left;">
+        <li><i class="fa-solid fa-arrow-right" style="color:var(--primary-color);"></i> 「楽天モバイルにしようと思う！」</li>
+        <li><i class="fa-solid fa-arrow-right" style="color:var(--primary-color);"></i> 「○○のメリットがよくわかった！」</li>
+        <li><i class="fa-solid fa-arrow-right" style="color:var(--primary-color);"></i> 「自分は○○使ってる」</li>
+      </ul>
+    </div>
+  </div>
 </div>
 
 <!-- Slide ID: 31 -->
 <div class="slide-container">
-  <span class="slide-label">31</span>
-  <i class="fa-solid fa-map-location-dot icon-big" style="font-size:110px;"></i>
-  <p style="font-size:62px; font-weight:900;">通信品質は <span class="crimson">Aランク</span></p>
-  <p style="font-size:54px; line-height:1.4; margin-top:10px;">エリアによって差がある</p>
-  <div class="warning-banner" style="margin-top:16px;">
-    <p style="font-size:48px;">公式サイトの <span style="color:var(--primary-color); font-weight:900;">エリアマップ</span> で確認を</p>
-  </div>
-</div>
-
-<!-- Slide ID: 32 -->
-<div class="slide-container">
-  <span class="slide-label">32</span>
-  <img src="public/images/common/複数回線持ちで通信障害対策.png" style="max-height:380px; max-width:90%; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
-  <p style="font-size:54px; font-weight:900; margin-top:10px;">人が密集したエリアでは通信品質低下</p>
-  <p style="font-size:48px; color:#888;">→ 複数回線の用意が大事</p>
-</div>
-
-<!-- Slide ID: 33 -->
-<div class="slide-container">
-  <span class="slide-label">33</span>
-  <div class="chapter-label">チャンネルのこだわり</div>
-  <h2 style="font-size:64px; margin-top:10px;">端末購入プログラムに注意！</h2>
-  <div class="warning-banner" style="margin-top:14px; width:95%;">
-    <p style="font-size:52px; line-height:1.4;">「実質1円」「実質24円」は<br><span style="color:var(--accent-red);">返却前提のレンタル</span>！</p>
-  </div>
-</div>
-
-<!-- Slide ID: 34 -->
-<div class="slide-container">
-  <span class="slide-label">34</span>
-  <h2 style="font-size:64px;">端末購入プログラムのリスク</h2>
-  <ul style="width:95%; margin-top:12px;">
-    <li style="font-size:56px; padding:10px 0;"><i class="fa-solid fa-xmark" style="color:var(--accent-red);"></i>　返却前提で <span class="red">レンタル扱い</span></li>
-    <li style="font-size:56px; padding:10px 0;"><i class="fa-solid fa-xmark" style="color:var(--accent-red);"></i>　2年後に同社で機種変更しないと<br>　　最大 <span class="red">22,000円</span> の特典利用料</li>
-    <li style="font-size:56px; padding:10px 0;"><i class="fa-solid fa-xmark" style="color:var(--accent-red);"></i>　コスト計算が <span class="red">複雑</span></li>
-  </ul>
-</div>
-
-<!-- Slide ID: 35 -->
-<div class="slide-container">
-  <span class="slide-label">35</span>
-  <i class="fa-solid fa-circle-info icon-big" style="font-size:100px;"></i>
-  <p style="font-size:58px; line-height:1.4; font-weight:900;">楽天モバイルは特典利用料なしで<br><span class="green">比較的シンプル</span></p>
-  <p style="font-size:50px; color:#888; margin-top:12px; line-height:1.4;">今回の動画の目的は<br>ポイント還元キャンペーン活用</p>
-</div>
-
-<!-- Slide ID: 36 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff0f0 0%, #e3f2fd 100%);">
-  <span class="slide-label">36</span>
-  <div class="chapter-label">まとめ</div>
-  <h1 style="font-size:84px; margin-top:14px;">あなたはどちらのルートで<br>申し込む？</h1>
-</div>
-
-<!-- Slide ID: 37 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff0f0 0%, #ffffff 100%);">
-  <span class="slide-label">37</span>
-  <div class="chapter-label">マジ得フェスティバルを選ぶべき人</div>
-  <div class="box-red" style="width:95%; margin-top:12px; padding:16px 32px;">
-    <p style="font-size:56px; line-height:1.5;">
-      初回申込 ＋ 楽天カードあり<br>
-      → 最大 <span class="crimson" style="font-size:72px;">20,000pt</span><br>
-      → 約 <span class="crimson">18ヶ月分</span> が実質無料！
-    </p>
-  </div>
-  <div class="warning-banner" style="margin-top:12px; width:95%;">
-    <p style="font-size:52px; text-align:center; color:var(--accent-red); font-weight:900;">期限：4/13(月)10:00まで！<br>今すぐ行動しよう！</p>
-  </div>
-</div>
-
-<!-- Slide ID: 38 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);">
-  <span class="slide-label">38</span>
-  <div class="chapter-label" style="background:#1565c0;">三木谷キャンペーンを選ぶべき人</div>
-  <div class="box-blue" style="width:95%; margin-top:12px; padding:16px 32px;">
-    <p style="font-size:56px; line-height:1.5;">
-      出戻り / 楽天カードなし<br>
-      → MNPで最大 <span class="blue" style="font-size:72px;">14,000pt</span><br>
-      → 約 <span class="blue">12ヶ月分</span> が実質無料！
-    </p>
-  </div>
-  <p style="font-size:48px; color:#888; margin-top:12px;">終了日未定 → <span class="blue">早めの申込を推奨</span></p>
-</div>
-
-<!-- Slide ID: 39 -->
-<div class="slide-container">
-  <span class="slide-label">39</span>
-  <h2 style="font-size:68px;">概要欄のリンク案内</h2>
-  <ul style="width:95%; margin-top:16px;">
-    <li style="font-size:56px; padding:12px 0; line-height:1.4;">
-      <span class="crimson">①</span> 楽天カードあり・初回申込<br>
-      　→ <span class="crimson">マジ得フェスティバル</span>のリンク
-    </li>
-    <li style="font-size:56px; padding:12px 0; line-height:1.4;">
-      <span class="blue">②</span> 楽天カードなし / 出戻り<br>
-      　→ <span class="blue">三木谷キャンペーン</span>のリンク
-    </li>
-  </ul>
-</div>
-
-<!-- Slide ID: 40 -->
-<div class="slide-container" style="padding:0;">
-  <span class="slide-label">40</span>
-  <img src="public/images/thumbnails/【2025年最新】楽天モバイルは繋がらない？1年以上使って分かった本音メリット・デメリットを全公開！_サムネ.png" style="max-width: 80%; max-height: 80%;">
-  <p style="font-size:68px; font-weight:900; line-height:1.4;">過去動画も参考にしてね！</p>
-</div>
-
-<!-- Slide ID: 41 -->
-<div class="slide-container">
-  <span class="slide-label">41</span>
-  <i class="fa-regular fa-comment-dots icon-big" style="font-size:120px;"></i>
-  <p style="font-size:64px; font-weight:900;">コメントで教えてね！</p>
-  <p style="font-size:52px; color:#888; margin-top:12px; line-height:1.5;">
-    例：「マジ得フェスティバルで申し込んだよ！」<br>
-    「三木谷キャンペーン使う予定！」
-  </p>
-</div>
-
-<!-- Slide ID: 42 -->
-<div class="slide-container">
-  <span class="slide-label">42</span>
-  <img src="public/images/slides/プランやキャンペーンは投稿時点のもの注意喚起.png" class="fullscreen-img">
-</div>
-
-<!-- Slide ID: 43 -->
-<div class="slide-container">
-  <span class="slide-label">43</span>
   <img src="public/images/slides/ブログもやってます.png" class="fullscreen-img">
 </div>
 
-<!-- Slide ID: 44 -->
-<div class="slide-container" style="background:#fffde7;">
-  <span class="slide-label">44</span>
+<!-- Slide ID: 32 -->
+<div class="slide-container" style="background: linear-gradient(135deg, #fff8f0, #ffe0c0);">
   <img src="public/images/slides/チャンネル登録と高評価よろしくお願いします.png" class="fullscreen-img">
 </div>
 
