@@ -1,0 +1,9 @@
+{
+  "enabledMcpjsonServers": [
+    "github",
+    "playwright",
+    "context7",
+    "remotion-docs",
+    "voicevox-docs"
+  ]
+}
