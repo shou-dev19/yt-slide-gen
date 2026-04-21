@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ワイモバ値上げ！乗り換え先どこがいい？</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ワイモバ値上げ対策！損しない格安SIM乗り換えルートを解説</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet" />
   <style>
     * {
       box-sizing: border-box;
@@ -13,19 +15,32 @@
     }
 
     body {
-      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       background: #f0f4f8;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 40px 20px;
       gap: 40px;
+      padding: 40px 20px;
+    }
+
+    .slide-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slide-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #666;
+      letter-spacing: 1px;
     }
 
     .slide {
       width: 1080px;
       height: 1080px;
-      background: #ffffff;
       position: relative;
       overflow: hidden;
       display: flex;
@@ -34,14 +49,16 @@
       justify-content: center;
     }
 
-    /* ===== SLIDE 1: THUMBNAIL ===== */
+    /* ============================================================
+       SLIDE 1 - Thumbnail
+    ============================================================ */
     .slide-1 {
       background: repeating-radial-gradient(circle at 50% 50%, #ffffff 0%, #f0f7ff 10%, #e6f0ff 20%);
       border: 25px solid #0052cc;
     }
 
     .slide-1 .logo-area {
-      height: 200px;
+      height: 160px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -49,572 +66,892 @@
     }
 
     .slide-1 .logo-area img {
-      height: 160px;
+      height: 120px;
       object-fit: contain;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
     }
 
-    .slide-1 .catch-wrapper {
+    .slide-1 .tag-row {
       display: flex;
-      flex-direction: column;
-      align-items: center;
       gap: 16px;
-      z-index: 0;
+      margin-bottom: 20px;
     }
 
-    .slide-1 .catch-tag {
+    .slide-1 .tag {
       background: #e63946;
       color: #fff;
-      font-size: 60px;
+      font-size: 32px;
       font-weight: 900;
-      padding: 12px 40px;
-      transform: rotate(-3deg);
-      filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.3));
-      white-space: nowrap;
+      padding: 8px 24px;
+      border-radius: 8px;
+      letter-spacing: 1px;
     }
 
-    .slide-1 .catch-main {
-      background: #0052cc;
-      color: #ffffff;
-      font-size: 72px;
-      font-weight: 900;
-      padding: 16px 48px;
-      text-align: center;
-      filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.3));
-      line-height: 1.2;
-    }
-
-    .slide-1 .catch-sub {
+    .slide-1 .tag.yellow {
       background: #ffe600;
       color: #111;
-      font-size: 52px;
+    }
+
+    .slide-1 .main-title {
+      font-size: 70px;
       font-weight: 900;
-      padding: 10px 36px;
-      transform: rotate(2deg);
-      filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.2));
+      color: #0052cc;
+      text-align: center;
+      line-height: 1.15;
+      transform: rotate(-2deg);
+      text-shadow: 3px 3px 0 rgba(0,82,204,0.15);
+      padding: 0 30px;
+      margin-bottom: 20px;
+    }
+
+    .slide-1 .main-title span {
+      color: #e63946;
+      display: inline-block;
+      background: #fff;
+      padding: 0 8px;
+      border-radius: 6px;
+    }
+
+    .slide-1 .sub-title {
+      font-size: 38px;
+      font-weight: 900;
+      color: #333;
+      text-align: center;
+      background: #ffe600;
+      padding: 10px 30px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      transform: rotate(-1deg);
     }
 
     .slide-1 .illust {
       position: absolute;
-      bottom: -10px;
-      right: 30px;
-      height: 280px;
+      bottom: 30px;
+      right: 40px;
+      height: 260px;
       object-fit: contain;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
     }
 
-    /* ===== BIG NUMBER WATERMARK ===== */
-    .big-number {
+    /* ============================================================
+       SLIDE 2 - Warning: ソフトバンクグループ内はNG
+    ============================================================ */
+    .slide-2 {
+      background: #fff;
+    }
+
+    .slide-2 .big-number {
       position: absolute;
       top: 10px;
       left: 20px;
-      font-size: 220px;
+      font-size: 240px;
       font-weight: 900;
       color: #0052cc;
-      opacity: 0.1;
+      opacity: 0.08;
       line-height: 1;
-      z-index: 0;
-      pointer-events: none;
+      user-select: none;
     }
 
-    /* ===== SLIDE TITLE ===== */
-    .slide-title {
-      font-size: 70px;
-      font-weight: 900;
-      color: #111111;
-      border-bottom: 10px solid #0052cc;
-      padding-bottom: 12px;
-      margin-bottom: 32px;
-      text-align: center;
-      z-index: 1;
-      line-height: 1.3;
-    }
-
-    /* ===== STANDARD CONTENT ===== */
-    .slide-content {
-      z-index: 1;
+    .slide-2 .content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 100%;
-      padding: 0 60px;
+      justify-content: center;
+      height: 100%;
+      padding: 50px 60px;
+      gap: 28px;
+      z-index: 1;
     }
 
-    .highlight-text {
+    .slide-2 .slide-title {
       font-size: 52px;
       font-weight: 900;
-      text-align: center;
-      line-height: 1.4;
-      margin-bottom: 20px;
-    }
-
-    .highlight-text .blue {
       color: #0052cc;
-      font-size: 1.3em;
+      text-align: center;
+      border-bottom: 10px solid #0052cc;
+      padding-bottom: 16px;
+      width: 100%;
+      line-height: 1.3;
     }
 
-    .highlight-text .red {
+    .slide-2 .warning-box {
+      border: 10px solid #e63946;
+      background: #fff0f0;
+      border-radius: 16px;
+      padding: 28px 40px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .slide-2 .warning-label {
+      font-size: 36px;
+      font-weight: 900;
       color: #e63946;
-      font-size: 1.3em;
-    }
-
-    .emoji-list {
-      list-style: none;
-      font-size: 44px;
-      font-weight: 700;
-      text-align: left;
-      line-height: 1.8;
-    }
-
-    .emoji-list li {
-      margin-bottom: 8px;
-    }
-
-    /* ===== SLIDE 2 ===== */
-    .slide-2 .logo-area {
-      height: 250px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-      z-index: 1;
+      gap: 10px;
     }
 
-    .slide-2 .logo-area img {
+    .slide-2 .route-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .slide-2 .route-row img {
+      height: 72px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+    }
+
+    .slide-2 .arrow {
+      font-size: 48px;
+      color: #e63946;
+      font-weight: 900;
+    }
+
+    .slide-2 .ng-badge {
+      background: #e63946;
+      color: #fff;
+      font-size: 44px;
+      font-weight: 900;
+      padding: 10px 32px;
+      border-radius: 12px;
+      letter-spacing: 2px;
+    }
+
+    .slide-2 .reason-text {
+      font-size: 34px;
+      font-weight: 900;
+      color: #333;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .slide-2 .reason-text span {
+      color: #e63946;
+    }
+
+    .slide-2 .illust-img {
       height: 200px;
       object-fit: contain;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.1));
     }
 
-    .slide-2 .alert-box {
-      background: #fff0f0;
-      border: 8px solid #e63946;
-      border-radius: 16px;
-      padding: 28px 48px;
-      font-size: 68px;
+    /* ============================================================
+       SLIDE 3 - 2ステップ乗り換えルート
+    ============================================================ */
+    .slide-3 {
+      background: #fff;
+    }
+
+    .slide-3 .big-number {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 240px;
       font-weight: 900;
-      color: #e63946;
-      text-align: center;
-      z-index: 1;
-      line-height: 1.3;
-      margin-bottom: 24px;
+      color: #0052cc;
+      opacity: 0.08;
+      line-height: 1;
+      user-select: none;
     }
 
-    .slide-2 .alert-box .year {
-      font-size: 50px;
-      color: #111;
-    }
-
-    .slide-2 .illust {
-      height: 340px;
-      object-fit: contain;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
-      z-index: 1;
-    }
-
-    /* ===== SLIDE 3 ===== */
     .slide-3 .content {
-      z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0 60px;
-      width: 100%;
-    }
-
-    .price-box {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      width: 100%;
-      margin: 24px 0;
-    }
-
-    .price-row {
-      background: #f0f7ff;
-      border-left: 16px solid #0052cc;
-      padding: 20px 32px;
-      font-size: 48px;
-      font-weight: 900;
-      color: #111;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      border-radius: 0 12px 12px 0;
-    }
-
-    .price-row .value {
-      color: #e63946;
-      font-size: 1.2em;
-    }
-
-    /* ===== SLIDE 4 ===== */
-    .slide-4 .main-illust {
-      height: 280px;
-      object-fit: contain;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
-      z-index: 1;
-    }
-
-    /* ===== SLIDE 5 ===== */
-    .slide-5 .question-box {
-      background: linear-gradient(135deg, #f0f7ff, #e6f0ff);
-      border: 8px solid #0052cc;
-      border-radius: 20px;
-      padding: 36px 56px;
-      font-size: 60px;
-      font-weight: 900;
-      color: #0052cc;
-      text-align: center;
-      z-index: 1;
-      line-height: 1.3;
-      margin: 24px 0;
-    }
-
-    .slide-5 .main-illust {
-      height: 260px;
-      object-fit: contain;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
-      z-index: 1;
-    }
-
-    /* ===== SLIDE 6: LINEMO ===== */
-    .slide-6 .logo-area {
-      height: 160px;
-      display: flex;
-      align-items: center;
       justify-content: center;
-      margin-bottom: 8px;
-      z-index: 1;
-    }
-
-    .slide-6 .logo-area img {
-      height: 130px;
-      object-fit: contain;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
-    }
-
-    .rank-badge {
-      background: linear-gradient(135deg, #ffe600, #ffd700);
-      color: #111;
-      font-size: 48px;
-      font-weight: 900;
-      padding: 10px 40px;
-      border-radius: 50px;
-      margin-bottom: 20px;
-      z-index: 1;
-      filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.2));
-    }
-
-    /* ===== SLIDE 7: mineo ===== */
-    .slide-7 .logo-area {
-      height: 160px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 8px;
-      z-index: 1;
-    }
-
-    .slide-7 .logo-area img {
-      height: 130px;
-      object-fit: contain;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
-    }
-
-    .plan-table {
-      width: 900px;
-      border-collapse: collapse;
-      font-size: 42px;
-      font-weight: 700;
-      z-index: 1;
-    }
-
-    .plan-table th {
-      background: #0052cc;
-      color: #fff;
-      padding: 16px 24px;
-      text-align: center;
-    }
-
-    .plan-table td {
-      padding: 12px 12px;
-      text-align: center;
-      border: 4px solid #e0e8f0;
-    }
-
-    .plan-table tr:nth-child(even) td {
-      background: #f0f7ff;
-    }
-
-    .plan-table .price-cell {
-      color: #e63946;
-      font-size: 1.1em;
-      font-weight: 900;
-    }
-
-    .plan-table .unlimited {
-      color: #0052cc;
-      font-weight: 900;
-    }
-
-    /* ===== SLIDE 8: 節約 ===== */
-    .saving-box {
-      background: linear-gradient(135deg, #0052cc, #003a99);
-      border-radius: 24px;
+      height: 100%;
       padding: 40px 60px;
-      color: #fff;
-      text-align: center;
+      gap: 24px;
       z-index: 1;
-      margin: 20px 0;
     }
 
-    .saving-box .label {
-      font-size: 48px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .saving-box .amount {
-      font-size: 88px;
+    .slide-3 .slide-title {
+      font-size: 52px;
       font-weight: 900;
-      color: #ffe600;
+      color: #0052cc;
+      text-align: center;
+      border-bottom: 10px solid #0052cc;
+      padding-bottom: 16px;
+      width: 100%;
+      line-height: 1.3;
+    }
+
+    .slide-3 .route-diagram {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .slide-3 .route-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .slide-3 .route-node img {
+      height: 80px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.12));
+    }
+
+    .slide-3 .route-node .node-label {
+      font-size: 26px;
+      font-weight: 900;
+      color: #0052cc;
+      text-align: center;
+    }
+
+    .slide-3 .arrow {
+      font-size: 56px;
+      color: #0052cc;
+      font-weight: 900;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .slide-3 .arrow-label {
+      font-size: 22px;
+      font-weight: 900;
+      color: #e63946;
+    }
+
+    .slide-3 .step-cards {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .slide-3 .step-card {
+      background: #f0f7ff;
+      border: 6px solid #0052cc;
+      border-radius: 16px;
+      padding: 20px 24px;
+      flex: 1;
+      max-width: 440px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .slide-3 .step-card .step-num {
+      font-size: 24px;
+      font-weight: 900;
+      color: #fff;
+      background: #0052cc;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-3 .step-card .step-text {
+      font-size: 30px;
+      font-weight: 900;
+      color: #111;
+      line-height: 1.4;
+    }
+
+    .slide-3 .step-card .step-text span {
+      color: #e63946;
+    }
+
+    /* ============================================================
+       SLIDE 4 - 楽天モバイル三木谷キャンペーン
+    ============================================================ */
+    .slide-4 {
+      background: #fff;
+    }
+
+    .slide-4 .big-number {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 240px;
+      font-weight: 900;
+      color: #0052cc;
+      opacity: 0.08;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .slide-4 .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 40px 60px;
+      gap: 24px;
+      z-index: 1;
+    }
+
+    .slide-4 .slide-title {
+      font-size: 48px;
+      font-weight: 900;
+      color: #0052cc;
+      text-align: center;
+      border-bottom: 10px solid #0052cc;
+      padding-bottom: 16px;
+      width: 100%;
+      line-height: 1.3;
+    }
+
+    .slide-4 .logo-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 120px;
+    }
+
+    .slide-4 .logo-area img {
+      height: 100px;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.12));
+    }
+
+    .slide-4 .highlight-box {
+      background: linear-gradient(135deg, #fff0f0, #ffe8e8);
+      border: 8px solid #e63946;
+      border-radius: 20px;
+      padding: 24px 40px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .slide-4 .highlight-label {
+      font-size: 32px;
+      font-weight: 900;
+      color: #e63946;
+      margin-bottom: 8px;
+    }
+
+    .slide-4 .highlight-number {
+      font-size: 110px;
+      font-weight: 900;
+      color: #e63946;
+      line-height: 1;
+      text-shadow: 4px 4px 0 rgba(230,57,70,0.2);
+    }
+
+    .slide-4 .highlight-unit {
+      font-size: 44px;
+      font-weight: 900;
+      color: #e63946;
+    }
+
+    .slide-4 .benefit-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+    }
+
+    .slide-4 .benefit-item {
+      font-size: 34px;
+      font-weight: 900;
+      color: #111;
+      background: #f0f7ff;
+      border-radius: 10px;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .slide-4 .benefit-item .blue {
+      color: #0052cc;
+    }
+
+    .slide-4 .illust-img {
+      height: 180px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.1));
+    }
+
+    /* ============================================================
+       SLIDE 5 - mineo：SB回線・事務手数料0円
+    ============================================================ */
+    .slide-5 {
+      background: #fff;
+    }
+
+    .slide-5 .big-number {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 240px;
+      font-weight: 900;
+      color: #0052cc;
+      opacity: 0.08;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .slide-5 .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 40px 60px;
+      gap: 24px;
+      z-index: 1;
+    }
+
+    .slide-5 .slide-title {
+      font-size: 52px;
+      font-weight: 900;
+      color: #0052cc;
+      text-align: center;
+      border-bottom: 10px solid #0052cc;
+      padding-bottom: 16px;
+      width: 100%;
+      line-height: 1.3;
+    }
+
+    .slide-5 .logo-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 120px;
+    }
+
+    .slide-5 .logo-area img {
+      height: 100px;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.12));
+    }
+
+    .slide-5 .merit-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      width: 100%;
+    }
+
+    .slide-5 .merit-card {
+      background: #f0f7ff;
+      border-left: 12px solid #0052cc;
+      border-radius: 12px;
+      padding: 20px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .slide-5 .merit-card .merit-label {
+      font-size: 26px;
+      font-weight: 900;
+      color: #666;
+    }
+
+    .slide-5 .merit-card .merit-value {
+      font-size: 54px;
+      font-weight: 900;
+      color: #0052cc;
       line-height: 1.1;
     }
 
-    .saving-box .unit {
-      font-size: 52px;
-      font-weight: 700;
-      color: #ffe600;
+    .slide-5 .merit-card .merit-value span {
+      color: #e63946;
     }
 
-    /* ===== SLIDE 9: CTA ===== */
-    .slide-9 {
+    .slide-5 .illust-img {
+      height: 180px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.1));
+    }
+
+    /* ============================================================
+       SLIDE 6 - 1年後LINEMO乗り換えでキャンペーン対象
+    ============================================================ */
+    .slide-6 {
+      background: #fff;
+    }
+
+    .slide-6 .big-number {
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      font-size: 240px;
+      font-weight: 900;
+      color: #0052cc;
+      opacity: 0.08;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .slide-6 .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 40px 60px;
+      gap: 24px;
+      z-index: 1;
+    }
+
+    .slide-6 .slide-title {
+      font-size: 52px;
+      font-weight: 900;
+      color: #0052cc;
+      text-align: center;
+      border-bottom: 10px solid #0052cc;
+      padding-bottom: 16px;
+      width: 100%;
+      line-height: 1.3;
+    }
+
+    .slide-6 .timeline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .slide-6 .timeline-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slide-6 .timeline-node img {
+      height: 72px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.12));
+    }
+
+    .slide-6 .timeline-node .t-label {
+      font-size: 24px;
+      font-weight: 900;
+      color: #0052cc;
+      text-align: center;
+    }
+
+    .slide-6 .timeline-arrow {
+      font-size: 48px;
+      color: #0052cc;
+      font-weight: 900;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .slide-6 .timeline-arrow span {
+      font-size: 22px;
+      color: #e63946;
+      font-weight: 900;
+    }
+
+    .slide-6 .good-box {
+      background: linear-gradient(135deg, #f0f7ff, #e0eeff);
+      border: 8px solid #0052cc;
+      border-radius: 20px;
+      padding: 24px 40px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .slide-6 .good-label {
+      font-size: 32px;
+      font-weight: 900;
+      color: #0052cc;
+    }
+
+    .slide-6 .good-text {
+      font-size: 44px;
+      font-weight: 900;
+      color: #111;
+      line-height: 1.3;
+    }
+
+    .slide-6 .good-text span {
+      color: #e63946;
+    }
+
+    .slide-6 .illust-img {
+      height: 180px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 16px rgba(0,0,0,0.1));
+    }
+
+    /* ============================================================
+       SLIDE 7 - CTA
+    ============================================================ */
+    .slide-7 {
       background: linear-gradient(135deg, #0052cc, #003380);
     }
 
-    .cta-title {
-      font-size: 56px;
-      font-weight: 900;
-      color: #ffffff;
-      text-align: center;
-      margin-bottom: 16px;
-      z-index: 1;
+    .slide-7 .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 50px 60px;
+      gap: 28px;
     }
 
-    .cta-main {
-      font-size: 88px;
+    .slide-7 .cta-label {
+      font-size: 36px;
       font-weight: 900;
-      color: #ffe600;
-      text-align: center;
-      line-height: 1.1;
-      margin-bottom: 20px;
-      z-index: 1;
-      filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.3));
+      color: rgba(255,255,255,0.8);
+      letter-spacing: 4px;
     }
 
-    .cta-arrow {
+    .slide-7 .cta-main {
       font-size: 80px;
-      animation: bounce 1s infinite;
-      z-index: 1;
-      margin-bottom: 10px;
+      font-weight: 900;
+      color: #ffd700;
+      text-align: center;
+      line-height: 1.2;
+      text-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+    }
+
+    .slide-7 .cta-sub {
+      font-size: 44px;
+      font-weight: 900;
+      color: #fff;
+      text-align: center;
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 14px 40px;
+    }
+
+    .slide-7 .bounce-arrow {
+      font-size: 72px;
+      color: #ffd700;
+      animation: bounce 1.2s ease-in-out infinite;
     }
 
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(16px); }
+      50% { transform: translateY(18px); }
     }
 
-    .cta-img {
-      width: 820px;
-      border-radius: 16px;
-      border: 10px solid #ffe600;
+    .slide-7 .cta-image {
+      width: 640px;
+      height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 16px 32px rgba(0,0,0,0.4));
-      z-index: 1;
-      margin-top: 8px;
+      border: 10px solid #ffd700;
+      border-radius: 16px;
+      filter: drop-shadow(0 12px 24px rgba(0,0,0,0.4));
     }
-
-    .sub-text {
-      font-size: 40px;
-      font-weight: 700;
-      color: #cce0ff;
-      text-align: center;
-      z-index: 1;
-      margin-top: 16px;
-    }
-
-    /* ===== INFO BOX ===== */
-    .info-box {
-      background: #f0f7ff;
-      border-left: 12px solid #0052cc;
-      border-radius: 0 12px 12px 0;
-      padding: 20px 32px;
-      font-size: 44px;
-      font-weight: 900;
-      color: #111;
-      z-index: 1;
-      width: 900px;
-      margin: 12px 0;
-    }
-
-    .info-box .blue { color: #0052cc; }
-    .info-box .red { color: #e63946; }
-
   </style>
 </head>
 <body>
 
-  <!-- ===== SLIDE 1: タイトル ===== -->
-  <div class="slide slide-1" id="slide-1">
-    <div class="logo-area">
-      <img src="public/images/logo/Y!mobile.svg" alt="Y!mobile">
-    </div>
-    <div class="catch-wrapper">
-      <div class="catch-tag">⚠️ 2026年 値上げ決定！</div>
-      <div class="catch-main">乗り換え先<br>どこがいい？</div>
-      <div class="catch-sub">💰 年間最大4,000円増</div>
-    </div>
-    <img class="illust" src="public/images/irasutoya/seikyuusyo_shock.png" alt="請求書ショック">
-  </div>
-
-  <!-- ===== SLIDE 2: ワイモバイル2026年値上げ決定！ ===== -->
-  <div class="slide slide-2" id="slide-2">
-    <div class="big-number">02</div>
-    <div class="logo-area">
-      <img src="public/images/logo/Y!mobile.svg" alt="Y!mobile">
-    </div>
-    <div class="alert-box">
-      <div class="year">2026年</div>
-      ワイモバイル<br>値上げ決定！
-    </div>
-    <img class="illust" src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="驚き">
-  </div>
-
-  <!-- ===== SLIDE 3: 値上げ幅 ===== -->
-  <div class="slide slide-3" id="slide-3">
-    <div class="big-number">03</div>
-    <div class="slide-content">
-      <div class="slide-title">⚠️ 値上げ幅は以下のとおり！</div>
-      <div class="price-box">
-        <div class="price-row">
-          📅 月々 <span class="value">+220〜330円</span>
-        </div>
-        <div class="price-row">
-          💸 年間 <span class="value">最大3,960円増</span>
-        </div>
-      </div>
-      <div class="highlight-text">
-        このまま払い続ける？<br>
-        それとも<span class="blue">乗り換え</span>る？
-      </div>
-      <img src="public/images/irasutoya/mark_chuui.png" alt="注意" style="height:240px; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
-    </div>
-  </div>
-
-  <!-- ===== SLIDE 4: 今すぐ乗り換えを検討！ ===== -->
-  <div class="slide slide-4" id="slide-4">
-    <div class="big-number">04</div>
-    <div class="slide-content">
-      <div class="slide-title">💡 今すぐ乗り換えを<br>検討しよう！</div>
-      <div class="highlight-text">
-        年間 <span class="red">4,000円</span> の差は<br>
-        <span class="blue">無視できない！</span>
-      </div>
-      <img class="main-illust" src="public/images/irasutoya/pose_naruhodo_woman.png" alt="なるほど" style="height:280px; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
-    </div>
-  </div>
-
-  <!-- ===== SLIDE 5: おすすめ乗り換え先は？ ===== -->
-  <div class="slide slide-5" id="slide-5">
-    <div class="big-number">05</div>
-    <div class="slide-content">
-      <div class="slide-title">🤔 おすすめ乗り換え先は？</div>
-      <div class="question-box">
-        どこに<br>乗り換えれば<br>いいの？
-      </div>
-      <img class="main-illust" src="public/images/irasutoya/pose_necchuu_smartphone_woman.png" alt="スマホ操作" style="height:260px; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
-    </div>
-  </div>
-
-  <!-- ===== SLIDE 6: LINEMO ===== -->
-  <div class="slide slide-6" id="slide-6">
-    <div class="big-number">06</div>
-    <div class="slide-content">
-      <div class="slide-title">① ソフトバンク回線そのまま</div>
+  <!-- SLIDE 1: タイトル -->
+  <div class="slide-wrapper">
+    <div class="slide-label">SLIDE 1 / 7 — タイトル</div>
+    <div class="slide slide-1">
       <div class="logo-area">
-        <img src="public/images/logo/LINEMO_logo.svg" alt="LINEMO">
+        <img src="public/images/logo/Y!mobile.png" alt="ワイモバイル" />
       </div>
-      <div class="rank-badge">🏆 通信品質 SSランク</div>
-      <ul class="emoji-list">
-        <li>📶 ソフトバンク回線そのまま</li>
-        <li>💰 月 <span style="color:#e63946;font-size:1.2em;">990円〜</span></li>
-        <li>✅ 品質ほぼ変わらない</li>
-      </ul>
+      <div class="tag-row">
+        <div class="tag">値上げ対策</div>
+        <div class="tag yellow">最大14,000pt</div>
+      </div>
+      <div class="main-title">
+        損しない<br /><span>乗り換えルート</span><br />を解説！
+      </div>
+      <div class="sub-title">ワイモバ値上げ対策</div>
+      <img class="illust" src="public/images/irasutoya/pose_anshin_woman.png" alt="安心" />
     </div>
   </div>
 
-  <!-- ===== SLIDE 7: mineo ===== -->
-  <div class="slide slide-7" id="slide-7">
-    <div class="big-number">07</div>
-    <div class="slide-content">
-      <div class="slide-title">② コスパ最強！</div>
-      <div class="logo-area">
-        <img src="public/images/logo/Mineo_logo_背景削除.png" alt="mineo">
+  <!-- SLIDE 2: ワイモバ→LINEMOはキャンペーン対象外 -->
+  <div class="slide-wrapper">
+    <div class="slide-label">SLIDE 2 / 7 — 注意：ソフトバンクグループ内</div>
+    <div class="slide slide-2">
+      <div class="big-number">01</div>
+      <div class="content">
+        <div class="slide-title">ワイモバ→LINEMO<br />直接乗り換えはNG！</div>
+        <div class="warning-box">
+          <div class="warning-label">⚠ キャンペーン対象外</div>
+          <div class="route-row">
+            <img src="public/images/logo/Y!mobile.png" alt="ワイモバイル" />
+            <div class="arrow">→</div>
+            <img src="public/images/logo/LINEMO_logo.png" alt="LINEMO" />
+          </div>
+          <div class="ng-badge">対象外</div>
+          <div class="reason-text">
+            同じ<span>ソフトバンクグループ</span>内の<br />移動はキャンペーン対象外！
+          </div>
+        </div>
+        <img class="illust-img" src="public/images/irasutoya/seikyuusyo_shock.png" alt="ショック" />
       </div>
-      <table class="plan-table">
-        <thead>
-          <tr>
-            <th>プラン</th>
-            <th>月額</th>
-            <th>特徴</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>マイピタ 3GB</td>
-            <td class="price-cell">1,298円</td>
-            <td class="unlimited">1Mbps<br>使い放題付き！</td>
-          </tr>
-          <tr>
-            <td>マイそくライト</td>
-            <td class="price-cell">660円</td>
-            <td class="unlimited">300kbps<br>使い放題！</td>
-          </tr>
-          <tr>
-            <td>マイそく<br>スタンダード</td>
-            <td class="price-cell">990円</td>
-            <td class="unlimited">1.5Mpbs<br>使い放題！</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 
-  <!-- ===== SLIDE 8: 年間節約 ===== -->
-  <div class="slide slide-8" id="slide-8">
-    <div class="big-number">08</div>
-    <div class="slide-content">
-      <div class="slide-title">💴 乗り換えで節約できる！</div>
-      <div class="saving-box">
-        <div class="label">乗り換えるだけで</div>
-        <div class="amount">年間</div>
-        <div class="unit">数千円 節約！</div>
+  <!-- SLIDE 3: 損しない2ステップ乗り換えルート -->
+  <div class="slide-wrapper">
+    <div class="slide-label">SLIDE 3 / 7 — 乗り換えルート図</div>
+    <div class="slide slide-3">
+      <div class="big-number">02</div>
+      <div class="content">
+        <div class="slide-title">損しない乗り換えルート<br />2ステップ作戦！</div>
+        <div class="route-diagram">
+          <div class="route-node">
+            <img src="public/images/logo/Y!mobile.png" alt="ワイモバイル" />
+            <div class="node-label">ワイモバ</div>
+          </div>
+          <div class="arrow">
+            →<br />
+            <span class="arrow-label">まず</span>
+          </div>
+          <div class="route-node">
+            <img src="public/images/logo/Rakuten_Mobile_logo.png" alt="楽天モバイル" />
+            <div class="node-label">楽天 or<br />mineo</div>
+          </div>
+          <div class="arrow">
+            →<br />
+            <span class="arrow-label">1年後</span>
+          </div>
+          <div class="route-node">
+            <img src="public/images/logo/LINEMO_logo.png" alt="LINEMO" />
+            <div class="node-label">LINEMO</div>
+          </div>
+        </div>
+        <div class="step-cards">
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <div class="step-text">
+              楽天 or mineoで<br />
+              <span>お得な特典ゲット！</span>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <div class="step-text">
+              1年後にLINEMOへ<br />
+              <span>キャンペーン対象に！</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="info-box">
-        📌 まず今のプランを確認してみよう
-      </div>
-      <img src="public/images/irasutoya/money_fueru.png" alt="お金が増える" style="height:200px; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.1)); margin-top:12px; z-index:1;">
     </div>
   </div>
 
-  <!-- ===== SLIDE 9: CTA ===== -->
-  <div class="slide slide-9" id="slide-9">
-    <div class="cta-title">📺 詳しくはこちら！</div>
-    <div class="cta-main">本編で<br>解説！</div>
-    <div class="cta-arrow">👇</div>
-    <img class="cta-img" src="public/images/thumbnails/【2026年最新】ワイモバ値上げ。楽天・LINEMO・mineo・イオン比較完全版_サムネ1.png" alt="本編動画をチェック">
-    <div class="sub-text">チャンネル登録もよろしくね！</div>
+  <!-- SLIDE 4: 楽天モバイル三木谷キャンペーン -->
+  <div class="slide-wrapper">
+    <div class="slide-label">SLIDE 4 / 7 — 楽天モバイル三木谷キャンペーン</div>
+    <div class="slide slide-4">
+      <div class="big-number">03</div>
+      <div class="content">
+        <div class="slide-title">楽天モバイル<br />三木谷キャンペーン</div>
+        <div class="logo-area">
+          <img src="public/images/logo/Rakuten_Mobile_logo.png" alt="楽天モバイル" />
+        </div>
+        <div class="highlight-box">
+          <div class="highlight-label">最大ポイント還元</div>
+          <div>
+            <span class="highlight-number">14,000</span>
+            <span class="highlight-unit">pt</span>
+          </div>
+        </div>
+        <div class="benefit-list">
+          <div class="benefit-item">💰 <span class="blue">約1年分</span>実質無料！</div>
+          <div class="benefit-item">🆓 初期費用 <span class="blue">0円</span></div>
+        </div>
+        <img class="illust-img" src="public/images/irasutoya/money_fueru.png" alt="お得" />
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: mineo：SB回線・事務手数料0円 -->
+  <div class="slide-wrapper">
+    <div class="slide-label">SLIDE 5 / 7 — mineo</div>
+    <div class="slide slide-5">
+      <div class="big-number">04</div>
+      <div class="content">
+        <div class="slide-title">mineo<br />ソフトバンク回線でそのまま！</div>
+        <div class="logo-area">
+          <img src="public/images/logo/Mineo_logo_背景削除.png" alt="mineo" />
+        </div>
+        <div class="merit-cards">
+          <div class="merit-card">
+            <div class="merit-label">回線の変更なし</div>
+            <div class="merit-value">SB回線<span>継続</span></div>
+          </div>
+          <div class="merit-card">
+            <div class="merit-label">当チャンネル限定</div>
+            <div class="merit-value">事務手数料<span>0円</span></div>
+          </div>
+        </div>
+        <img class="illust-img" src="public/images/irasutoya/pose_anshin_woman.png" alt="安心" />
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: 1年後LINEMO乗り換えでキャンペーン対象 -->
+  <div class="slide-wrapper">
+    <div class="slide-label">SLIDE 6 / 7 — 1年後LINEMO</div>
+    <div class="slide slide-6">
+      <div class="big-number">05</div>
+      <div class="content">
+        <div class="slide-title">1年後にLINEMOへ！<br />2度おいしい作戦</div>
+        <div class="timeline">
+          <div class="timeline-node">
+            <img src="public/images/logo/Rakuten_Mobile_logo.png" alt="楽天 or mineo" />
+            <div class="t-label">楽天 or mineo<br />（1年間）</div>
+          </div>
+          <div class="timeline-arrow">
+            →
+            <span>1年後</span>
+          </div>
+          <div class="timeline-node">
+            <img src="public/images/logo/LINEMO_logo.png" alt="LINEMO" />
+            <div class="t-label">LINEMO<br />乗り換え</div>
+          </div>
+        </div>
+        <div class="good-box">
+          <div class="good-label">今度はキャンペーン対象に！</div>
+          <div class="good-text">
+            特典を<span>2回</span>受け取れる<br />一石二鳥の作戦！
+          </div>
+        </div>
+        <img class="illust-img" src="public/images/irasutoya/family_happy_banzai.png" alt="喜び" />
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 7: CTA -->
+  <div class="slide-wrapper">
+    <div class="slide-label">SLIDE 7 / 7 — CTA</div>
+    <div class="slide slide-7">
+      <div class="content">
+        <div class="cta-label">詳しい解説はこちら</div>
+        <div class="cta-main">本編で解説！</div>
+        <div class="cta-sub">画面下のリンクからチェック！</div>
+        <div class="bounce-arrow">↓</div>
+        <img class="cta-image" src="public/images/slides/今すぐ本編動画をチェック.png" alt="本編動画をチェック" />
+      </div>
+    </div>
   </div>
 
 </body>
