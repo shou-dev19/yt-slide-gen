@@ -3,36 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ワイモバ→LINEMO乗り換え 落とし穴 スライド</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>povo Data Oasis スライド</title>
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary-color: #FF6B00;
-      --accent-yellow: #FFD700;
-      --accent-red: #E53935;
+      --primary-color: #E60012;
+      --accent-yellow: #FFD600;
+      --accent-red: #E60012;
       --text-dark: #1a1a1a;
-      --bg-light: #FFF8F0;
     }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'M PLUS Rounded 1c', sans-serif;
-      font-weight: 800;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       display: flex;
       flex-direction: column;
       gap: 40px;
       background: #f0f0f0;
       padding: 40px;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
     }
-
     .slide-container {
       width: 1280px;
       height: 720px;
@@ -48,56 +37,48 @@
       padding: 40px;
       flex-shrink: 0;
     }
-
     h1 {
       font-size: 130px;
       font-weight: 900;
-      color: var(--text-dark);
+      color: var(--primary-color);
       text-align: center;
       line-height: 1.1;
-      text-shadow: 4px 4px 0px white, -4px -4px 0px white, 4px -4px 0px white, -4px 4px 0px white,
-                   0px 4px 0px var(--primary-color), 0px -4px 0px var(--primary-color),
-                   4px 0px 0px var(--primary-color), -4px 0px 0px var(--primary-color);
+      text-shadow:
+        4px 4px 0px white, -4px -4px 0px white,
+        4px -4px 0px white, -4px 4px 0px white,
+        0px 4px 0px var(--primary-color), 0px -4px 0px var(--primary-color),
+        4px 0px 0px var(--primary-color), -4px 0px 0px var(--primary-color);
     }
-
     h2 {
       font-size: 90px;
-      font-weight: 900;
+      font-weight: 800;
       color: var(--text-dark);
       text-align: center;
       border-bottom: 8px solid var(--accent-yellow);
       padding-bottom: 10px;
-      margin-bottom: 20px;
+      line-height: 1.2;
     }
-
     h3 {
-      font-size: 64px;
+      font-size: 72px;
       font-weight: 800;
-      color: var(--primary-color);
+      color: var(--text-dark);
       text-align: center;
+      line-height: 1.2;
     }
-
     p, li {
       font-size: 64px;
-      line-height: 1.4;
+      font-weight: 800;
       color: var(--text-dark);
+      line-height: 1.4;
     }
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-
-    .accent-red { color: var(--accent-red); }
-    .accent-orange { color: var(--primary-color); }
-
+    ul { list-style-type: none; padding: 0; }
+    .accent { color: var(--accent-red); }
     .split {
       display: flex;
       width: 100%;
       justify-content: space-around;
       align-items: center;
     }
-
     .split-col {
       flex: 1;
       display: flex;
@@ -105,7 +86,6 @@
       align-items: center;
       padding: 20px;
     }
-
     .fullscreen-img {
       width: 100%;
       height: 100%;
@@ -117,568 +97,723 @@
       left: 0;
       z-index: 10;
     }
-
+    .corner-logo {
+      position: absolute;
+      bottom: 18px;
+      right: 24px;
+      opacity: 0.7;
+      z-index: 5;
+    }
+    .corner-logo img {
+      height: 48px;
+      object-fit: contain;
+    }
+    .badge {
+      background: var(--primary-color);
+      color: white;
+      font-size: 44px;
+      font-weight: 900;
+      padding: 8px 28px;
+      border-radius: 12px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+    .note {
+      font-size: 28px;
+      color: #666;
+      margin-top: 10px;
+    }
+    .warn-box {
+      background: #fff3cd;
+      border: 6px solid #FFD600;
+      border-radius: 16px;
+      padding: 20px 32px;
+      margin-top: 16px;
+      width: 100%;
+    }
+    .warn-box p, .warn-box li {
+      font-size: 52px;
+    }
+    .red-box {
+      background: #fff0f0;
+      border: 6px solid var(--primary-color);
+      border-radius: 16px;
+      padding: 20px 32px;
+      margin-top: 16px;
+      width: 100%;
+    }
+    .red-box p, .red-box li {
+      font-size: 52px;
+    }
+    .chapter-label {
+      font-size: 48px;
+      font-weight: 800;
+      color: white;
+      background: var(--primary-color);
+      padding: 8px 32px;
+      border-radius: 40px;
+      margin-bottom: 24px;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
       font-size: 50px;
+      font-weight: 800;
     }
-
     th {
       background: var(--primary-color);
       color: white;
-      padding: 12px 20px;
+      padding: 12px 16px;
       text-align: center;
     }
-
     td {
-      padding: 10px 20px;
+      border: 3px solid #ddd;
+      padding: 12px 16px;
       text-align: center;
-      border-bottom: 3px solid #eee;
-    }
-
-    tr:nth-child(even) td { background: #FFF8F0; }
-
-    .badge {
-      background: var(--primary-color);
-      color: white;
-      border-radius: 20px;
-      padding: 8px 24px;
-      font-size: 52px;
-      display: inline-block;
-      margin: 8px;
-    }
-
-    .chapter-label {
-      font-size: 40px;
-      color: white;
-      background: var(--primary-color);
-      padding: 10px 30px;
-      border-radius: 40px;
-      margin-bottom: 20px;
-    }
-
-    .caption {
-      font-size: 28px;
-      color: #666;
-      font-weight: 400;
-      margin-top: 8px;
-    }
-
-    .highlight-box {
-      background: var(--bg-light);
-      border-left: 12px solid var(--primary-color);
-      padding: 20px 30px;
-      border-radius: 0 16px 16px 0;
-      width: 100%;
-    }
-
-    .terop {
-      font-size: 72px;
-      font-weight: 900;
       color: var(--text-dark);
-      text-align: center;
-      line-height: 1.3;
+    }
+    tr:nth-child(even) td { background: #fafafa; }
+    .icon-big {
+      font-size: 140px;
+      color: var(--primary-color);
+      margin-bottom: 16px;
+    }
+    .slide-number {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      font-size: 28px;
+      color: #999;
+      font-weight: 800;
+      z-index: 5;
     }
   </style>
 </head>
 <body>
 
-<!-- Slide ID: 1 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff8f0 60%, #ffe0c0 100%);">
-  <div style="position:absolute; top:20px; left:30px; font-size:36px; color:var(--primary-color); background:white; border:4px solid var(--primary-color); border-radius:12px; padding:6px 20px;">⚠️ 落とし穴</div>
-  <h1 style="font-size:86px; line-height:1.2; margin-bottom:14px; margin-top:20px;">ワイモバ値上げで<br>LINEMOに乗り換えると</h1>
-  <h2 style="font-size:76px; border-bottom:none; color:var(--accent-red); margin-bottom:14px;">12,000pt<span style="color:var(--text-dark); font-size:64px;">もらえない理由</span></h2>
-  <p style="font-size:50px; color:#555; text-align:center;">損しない乗り換えルートを徹底解説！</p>
-  <img src="public/images/irasutoya/seikyuusyo_shock.png" style="max-height:220px; max-width:250px; object-fit:contain; position:absolute; bottom:20px; right:50px; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.15));">
-  <img src="public/images/logo/LINEMO_logo.png" style="max-height:70px; max-width:200px; object-fit:contain; position:absolute; bottom:30px; left:50px; filter:drop-shadow(0 4px 8px rgba(0,0,0,0.1));">
-</div>
-
-<!-- Slide ID: 2 -->
+<!-- Slide ID: 0.1 -->
 <div class="slide-container">
-  <h2 style="font-size:80px; margin-bottom:28px;">📋 今日の内容</h2>
-  <ul style="width:100%;">
-    <li style="font-size:58px; margin-bottom:20px; display:flex; align-items:center; gap:20px;">
-      <span style="background:var(--primary-color); color:white; border-radius:50%; width:72px; height:72px; display:flex; align-items:center; justify-content:center; font-size:44px; flex-shrink:0;">①</span>
-      <span>ワイモバ→LINEMOの<span class="accent-red"><br>キャンペーン落とし穴</span></span>
-    </li>
-    <li style="font-size:58px; margin-bottom:20px; display:flex; align-items:center; gap:20px;">
-      <span style="background:var(--primary-color); color:white; border-radius:50%; width:72px; height:72px; display:flex; align-items:center; justify-content:center; font-size:44px; flex-shrink:0;">②</span>
-      <span>LINEMOキャンペーンの<span class="accent-red">対象者の条件</span></span>
-    </li>
-    <li style="font-size:58px; display:flex; align-items:center; gap:20px;">
-      <span style="background:var(--primary-color); color:white; border-radius:50%; width:72px; height:72px; display:flex; align-items:center; justify-content:center; font-size:44px; flex-shrink:0;">③</span>
-      <span><span class="accent-red">損しない乗り換えルート</span>の紹介</span>
-    </li>
-  </ul>
-</div>
-
-<!-- Slide ID: 3 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff8f0, #ffe0c0);">
-  <i class="fa-solid fa-bell" style="font-size:150px; color:var(--primary-color); margin-bottom:20px;"></i>
-  <p class="terop">チャンネル登録<br>よろしくお願いします！</p>
-  <p style="font-size:50px; color:#666; margin-top:16px;">格安SIM情報を毎週更新中</p>
-</div>
-
-<!-- Slide ID: 4 -->
-<div class="slide-container">
-  <div class="chapter-label">Chapter 1</div>
-  <h2 style="font-size:72px; margin-bottom:20px;">ワイモバからLINEMOに乗り換えると何が起きる？</h2>
-  <div class="split">
-    <div class="split-col" style="flex:1;">
-      <img src="public/images/logo/Y!mobile.png" style="max-height:130px; max-width:200px; object-fit:contain; filter:drop-shadow(0 6px 12px rgba(0,0,0,0.1));">
-      <p style="font-size:72px; margin:10px 0;">→</p>
-      <img src="public/images/logo/LINEMO_logo.png" style="max-height:100px; max-width:220px; object-fit:contain; filter:drop-shadow(0 6px 12px rgba(0,0,0,0.1));">
+  <div class="split" style="align-items: center; gap: 40px;">
+    <div class="split-col" style="flex: 1.2; align-items: flex-start;">
+      <div class="badge">2026年4月 最新情報</div>
+      <h2 style="text-align: left; font-size: 68px; border-bottom: 8px solid var(--accent-yellow);">【無料でデータ増量】</h2>
+      <h1 style="text-align: left; font-size: 88px; color: var(--text-dark);">povo2.0の新裏技！</h1>
+      <p style="font-size: 56px; margin-top: 12px;">東京メトロで<span class="accent">0円チャージ</span>が<br>できるようになった件</p>
     </div>
-    <div class="split-col" style="flex:2; align-items:flex-start;">
-      <div style="background:#FFEBEE; border:6px solid var(--accent-red); border-radius:16px; padding:24px 30px; width:100%;">
-        <p style="font-size:52px; color:var(--accent-red); text-align:center; margin-bottom:10px;">⚠️ キャンペーン対象外！</p>
-        <p style="font-size:48px; text-align:center;">ソフトバンクグループ内の<br>移動</p>
-        <p style="font-size:44px; text-align:center; color:#666; margin-top:6px;">12,000ptはもらえない</p>
-      </div>
+    <div class="split-col" style="flex: 0.8;">
+      <img src="public/images/logo/Povo_logo.svg" style="max-height: 200px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
     </div>
   </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
 </div>
 
-<!-- Slide ID: 5 -->
-<div class="slide-container" style="padding:20px 40px;">
-  <h2 style="font-size:68px; margin-bottom:15px;">乗り換え元とLINEMOキャンペーン<br>対象一覧</h2>
-  <table style="font-size:38px; width:100%;">
+<!-- Slide ID: 0.2 -->
+<div class="slide-container">
+  <h2 style="font-size: 80px; margin-bottom: 32px;">今回の内容</h2>
+  <ul style="width: 100%;">
+    <li style="font-size: 56px; padding: 10px 0; display: flex; align-items: center; gap: 20px;">
+      <span style="color: var(--primary-color); font-size: 64px; min-width: 64px; text-align: center;"><i class="fas fa-circle-check"></i></span>
+      <span>① povo Data Oasisの概要と対象スポット</span>
+    </li>
+    <li style="font-size: 56px; padding: 10px 0; display: flex; align-items: center; gap: 20px;">
+      <span style="color: var(--primary-color); font-size: 64px; min-width: 64px; text-align: center;"><i class="fas fa-circle-check"></i></span>
+      <span>② <span class="accent">0.1GB</span>でできること</span>
+    </li>
+    <li style="font-size: 56px; padding: 10px 0; display: flex; align-items: center; gap: 20px;">
+      <span style="color: var(--primary-color); font-size: 64px; min-width: 64px; text-align: center;"><i class="fas fa-circle-check"></i></span>
+      <span>③ チャージ方法と小技</span>
+    </li>
+    <li style="font-size: 56px; padding: 10px 0; display: flex; align-items: center; gap: 20px;">
+      <span style="color: var(--primary-color); font-size: 64px; min-width: 64px; text-align: center;"><i class="fas fa-circle-check"></i></span>
+      <span>④ デュアルSIM活用法</span>
+    </li>
+  </ul>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 0.3 -->
+<div class="slide-container">
+  <div style="text-align: center;">
+    <i class="fas fa-bell icon-big"></i>
+    <h2 style="font-size: 86px; margin-bottom: 24px;">チャンネル登録はこちら！</h2>
+    <p style="font-size: 58px;">スマホ代節約に役立つ格安SIM情報を<br><span class="accent">毎週発信中！</span></p>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 1 (東京メトロでpovo無料チャージ) -->
+<div class="slide-container">
+  <div class="split" style="gap: 30px;">
+    <div class="split-col" style="flex: 1.3; align-items: flex-start;">
+      <h2 style="text-align: left; font-size: 72px; border-bottom: 8px solid var(--accent-yellow); margin-bottom: 20px;">2026年4月14日〜</h2>
+      <p style="font-size: 54px; margin-bottom: 16px;"><span class="accent">東京メトロ・京成電鉄<br>相模鉄道 全駅</span>が対象に！</p>
+      <p style="font-size: 52px;">毎日通勤・通学で使っている人に<br><span class="accent">めちゃくちゃ朗報！</span></p>
+    </div>
+    <div class="split-col" style="flex: 0.7;">
+      <img src="public/images/irasutoya/smartphone_nidaimochi_man.png" style="max-height: 380px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 2 (povo Data Oasisとは) -->
+<div class="slide-container">
+  <h2 style="font-size: 76px; margin-bottom: 24px;">povo Data Oasisとは？</h2>
+  <ul style="width: 100%;">
+    <li style="font-size: 56px; padding: 12px 0; display: flex; align-items: center; gap: 20px;">
+      <span style="color: var(--primary-color); font-size: 64px; min-width: 64px; text-align: center;"><i class="fas fa-map-location-dot"></i></span>
+      <span>対象スポット付近で<span class="accent">povoアプリをタップ</span>するだけ</span>
+    </li>
+    <li style="font-size: 56px; padding: 12px 0; display: flex; align-items: center; gap: 20px;">
+      <span style="color: var(--primary-color); font-size: 64px; min-width: 64px; text-align: center;"><i class="fas fa-gift"></i></span>
+      <span><span class="accent">0.1GB</span>（24時間有効）が<span class="accent">無料</span>でもらえる！</span>
+    </li>
+    <li style="font-size: 52px; padding: 12px 0; display: flex; align-items: center; gap: 20px;">
+      <span style="color: var(--primary-color); font-size: 64px; min-width: 64px; text-align: center;"><i class="fas fa-stamp"></i></span>
+      <span>スタンプラリーのイメージで<br>決まった場所でポチッとするだけ！</span>
+    </li>
+  </ul>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 3 (対象スポット) -->
+<div class="slide-container">
+  <h2 style="font-size: 76px; margin-bottom: 20px;">対象スポット</h2>
+  <div class="split" style="gap: 30px; width: 100%;">
+    <div class="split-col" style="background: #fff0f0; border: 6px solid var(--primary-color); border-radius: 16px; padding: 24px;">
+      <p style="font-size: 52px; font-weight: 900; color: var(--primary-color); margin-bottom: 12px;"><i class="fas fa-store"></i> ① 全国ローソン</p>
+      <p style="font-size: 48px;">約<span class="accent">14,000店舗</span></p>
+      <p style="font-size: 40px; color: #555; margin-top: 8px;">ナチュラルローソン・<br>ローソンストア100含む</p>
+    </div>
+    <div class="split-col" style="background: #f0f4ff; border: 6px solid #2244bb; border-radius: 16px; padding: 24px;">
+      <p style="font-size: 52px; font-weight: 900; color: #2244bb; margin-bottom: 12px;"><i class="fas fa-train-subway"></i> ② 関東私鉄の駅</p>
+      <p style="font-size: 44px; color: var(--text-dark);">東京メトロ全駅</p>
+      <p style="font-size: 44px; color: var(--text-dark);">京成電鉄全駅</p>
+      <p style="font-size: 44px; color: var(--text-dark);">相模鉄道全駅</p>
+      <p style="font-size: 34px; color: var(--accent-red); margin-top: 8px;">2026年4月14日〜</p>
+    </div>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 3b (東京メトロ対象路線) -->
+<div class="slide-container">
+  <h2 style="font-size: 72px; margin-bottom: 20px;">東京メトロ 対象路線（全9路線）</h2>
+  <div style="width: 100%; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;">
+    <div style="background: #f7f7f7; border: 4px solid var(--primary-color); border-radius: 12px; padding: 14px 20px; text-align: center;">
+      <p style="font-size: 52px; font-weight: 900;">銀座線</p>
+    </div>
+    <div style="background: #f7f7f7; border: 4px solid var(--primary-color); border-radius: 12px; padding: 14px 20px; text-align: center;">
+      <p style="font-size: 52px; font-weight: 900;">丸の内線</p>
+    </div>
+    <div style="background: #f7f7f7; border: 4px solid var(--primary-color); border-radius: 12px; padding: 14px 20px; text-align: center;">
+      <p style="font-size: 52px; font-weight: 900;">日比谷線</p>
+    </div>
+    <div style="background: #f7f7f7; border: 4px solid var(--primary-color); border-radius: 12px; padding: 14px 20px; text-align: center;">
+      <p style="font-size: 52px; font-weight: 900;">東西線</p>
+    </div>
+    <div style="background: #f7f7f7; border: 4px solid var(--primary-color); border-radius: 12px; padding: 14px 20px; text-align: center;">
+      <p style="font-size: 52px; font-weight: 900;">千代田線</p>
+    </div>
+    <div style="background: #f7f7f7; border: 4px solid var(--primary-color); border-radius: 12px; padding: 14px 20px; text-align: center;">
+      <p style="font-size: 52px; font-weight: 900;">有楽町線</p>
+    </div>
+    <div style="background: #f7f7f7; border: 4px solid var(--primary-color); border-radius: 12px; padding: 14px 20px; text-align: center;">
+      <p style="font-size: 52px; font-weight: 900;">半蔵門線</p>
+    </div>
+    <div style="background: #f7f7f7; border: 4px solid var(--primary-color); border-radius: 12px; padding: 14px 20px; text-align: center;">
+      <p style="font-size: 52px; font-weight: 900;">南北線</p>
+    </div>
+    <div style="background: #f7f7f7; border: 4px solid var(--primary-color); border-radius: 12px; padding: 14px 20px; text-align: center;">
+      <p style="font-size: 52px; font-weight: 900;">副都心線</p>
+    </div>
+  </div>
+  <p style="font-size: 40px; color: var(--accent-red); margin-top: 14px; font-weight: 900;"><i class="fas fa-circle-exclamation"></i> 東京の地下鉄を通勤・通学に使う人は全員チャンスあり！</p>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 4 (チャージの制限) -->
+<div class="slide-container">
+  <div class="split" style="gap: 30px; align-items: flex-start;">
+    <div class="split-col" style="flex: 1.1; align-items: flex-start;">
+      <h2 style="text-align: left; font-size: 72px; border-bottom: 8px solid var(--accent-yellow); margin-bottom: 20px;">チャージの制限</h2>
+      <div class="warn-box">
+        <ul>
+          <li style="font-size: 56px; padding: 8px 0;"><i class="fas fa-clock" style="color: var(--primary-color);"></i> 1日<span class="accent">1回</span>まで</li>
+          <li style="font-size: 56px; padding: 8px 0;"><i class="fas fa-calendar" style="color: var(--primary-color);"></i> 月<span class="accent">10回</span>まで</li>
+          <li style="font-size: 56px; padding: 8px 0;"><i class="fas fa-database" style="color: var(--primary-color);"></i> 最大<span class="accent">1GB/月</span></li>
+          <li style="font-size: 52px; padding: 8px 0;"><i class="fas fa-rotate" style="color: var(--primary-color);"></i> 毎日<span class="accent">0時</span>にリセット</li>
+        </ul>
+      </div>
+    </div>
+    <div class="split-col" style="flex: 0.9;">
+      <img src="public/images/irasutoya/pose_anshin_woman.png" style="max-height: 360px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 4b (重要な注意点) -->
+<div class="slide-container">
+  <div class="split" style="gap: 30px; align-items: flex-start;">
+    <div class="split-col" style="flex: 1.2; align-items: flex-start;">
+      <p style="font-size: 52px; font-weight: 900; color: white; background: var(--primary-color); padding: 8px 24px; border-radius: 10px; margin-bottom: 20px;"><i class="fas fa-triangle-exclamation"></i> 重要な注意点！</p>
+      <div class="red-box">
+        <ul>
+          <li style="font-size: 54px; padding: 8px 0;"><i class="fas fa-hourglass-half" style="color: var(--primary-color);"></i> 0.1GBは<span class="accent">翌日23:59</span>まで有効</li>
+          <li style="font-size: 54px; padding: 8px 0;"><i class="fas fa-ban" style="color: var(--primary-color);"></i> <span class="accent">貯めることはできない！</span></li>
+        </ul>
+      </div>
+      <p style="font-size: 50px; margin-top: 20px;">チャージしたら<span class="accent">次の日まで</span>に<br>使い切る意識で！</p>
+    </div>
+    <div class="split-col" style="flex: 0.8;">
+      <img src="public/images/irasutoya/shinpai_man.png" style="max-height: 360px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 5 (小技あり) -->
+<div class="slide-container">
+  <div class="split" style="gap: 30px;">
+    <div class="split-col" style="flex: 1.3; align-items: flex-start;">
+      <div class="badge"><i class="fas fa-lightbulb"></i> 小技あり！</div>
+      <h2 style="text-align: left; font-size: 68px; border-bottom: 8px solid var(--accent-yellow); margin-bottom: 20px;">最大0.2GBを一気に使えるタイミングも！</h2>
+      <p style="font-size: 52px;">前日の残り 0.1GB<br>＋ 当日チャージ 0.1GB<br>＝ <span class="accent">一時的に 0.2GB！</span></p>
+      <p style="font-size: 42px; color: #555; margin-top: 12px;">詳しくは後ほど解説</p>
+    </div>
+    <div class="split-col" style="flex: 0.7;">
+      <img src="public/images/irasutoya/money_fueru.png" style="max-height: 340px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 5b (povo2.0とは) -->
+<div class="slide-container">
+  <div class="split" style="gap: 30px;">
+    <div class="split-col" style="flex: 0.7;">
+      <img src="public/images/logo/Povo_logo.svg" style="max-height: 200px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+    <div class="split-col" style="flex: 1.3; align-items: flex-start;">
+      <h2 style="text-align: left; font-size: 76px; border-bottom: 8px solid var(--accent-yellow); margin-bottom: 20px;">povo2.0とは</h2>
+      <ul>
+        <li style="font-size: 54px; padding: 10px 0;"><i class="fas fa-check-circle" style="color: var(--primary-color);"></i> 基本料<span class="accent">0円</span>（月額）</li>
+        <li style="font-size: 54px; padding: 10px 0;"><i class="fas fa-check-circle" style="color: var(--primary-color);"></i> au回線で<span class="accent">大手と同等</span>の通信品質</li>
+        <li style="font-size: 54px; padding: 10px 0;"><i class="fas fa-check-circle" style="color: var(--primary-color);"></i> トッピング制で<span class="accent">必要な時だけ</span>購入</li>
+        <li style="font-size: 50px; padding: 10px 0;"><i class="fas fa-star" style="color: var(--accent-yellow);"></i> サブ回線として特に優秀！</li>
+      </ul>
+    </div>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 6 (注意！180日ルール) -->
+<div class="slide-container">
+  <p style="font-size: 52px; font-weight: 900; color: white; background: var(--primary-color); padding: 8px 32px; border-radius: 10px; margin-bottom: 20px;"><i class="fas fa-triangle-exclamation"></i> 注意！180日ルール</p>
+  <div class="red-box" style="margin-top: 0; margin-bottom: 16px;">
+    <ul>
+      <li style="font-size: 52px; padding: 8px 0;"><span class="accent">180日間</span>有料トッピング購入なし → <span class="accent">利用停止</span></li>
+      <li style="font-size: 48px; padding: 8px 0; color: #555;">Data Oasis無料チャージは<span class="accent">カウント対象外！</span></li>
+    </ul>
+  </div>
+  <div class="warn-box" style="margin-top: 0;">
+    <p style="font-size: 50px; font-weight: 900;"><i class="fas fa-check" style="color: var(--primary-color);"></i> 対策：半年に1回、安いトッピングを購入</p>
+    <ul style="margin-top: 8px;">
+      <li style="font-size: 46px; padding: 4px 0;">・<span class="accent">100円</span>のpovoガチャ</li>
+      <li style="font-size: 46px; padding: 4px 0;">・<span class="accent">500円</span>のローソンお買い物券セット</li>
+    </ul>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 7 (章タイトル：②0.1GBでできること) -->
+<div class="slide-container">
+  <div class="chapter-label">CHAPTER 2</div>
+  <h1 style="font-size: 120px;">② 0.1GBでできること</h1>
+  <div class="split" style="margin-top: 24px; gap: 40px;">
+    <img src="public/images/irasutoya/smartphone_speed_5g.png" style="max-height: 200px; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 7b (0.1GBでできること) -->
+<div class="slide-container">
+  <h2 style="font-size: 72px; margin-bottom: 20px;">0.1GB（100MB）でできること（目安）</h2>
+  <table>
     <thead>
       <tr>
-        <th style="padding:10px; font-size:38px;">乗り換え元</th>
-        <th style="padding:10px; font-size:38px;">キャンペーン</th>
-        <th style="padding:10px; font-size:38px;">理由</th>
+        <th>用途</th>
+        <th>利用量の目安</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td style="padding:8px;"><img src="public/images/logo/docomo_logo.png" style="height:50px; vertical-align:middle; object-fit:contain;">・<img src="public/images/logo/Ahamo_logo.png" style="height:40px; vertical-align:middle; object-fit:contain;"></td>
-        <td style="color:#22a722; font-size:48px; font-weight:900; padding:8px;">◎ 対象</td>
-        <td style="font-size:34px; color:#555; padding:8px;">他社からの乗り換え</td>
+        <td>Webサイト閲覧</td>
+        <td><span class="accent">約300ページ</span></td>
       </tr>
       <tr>
-        <td style="padding:8px;"><img src="public/images/logo/au_logo.png" style="height:40px; vertical-align:middle; object-fit:contain;">・<img src="public/images/logo/Povo_logo.png" style="height:40px; vertical-align:middle; object-fit:contain;">・<img src="public/images/logo/UQ_logo_2.png" style="height:40px; vertical-align:middle; object-fit:contain;"></td>
-        <td style="color:#22a722; font-size:48px; font-weight:900; padding:8px;">◎ 対象</td>
-        <td style="font-size:34px; color:#555; padding:8px;">他社からの乗り換え</td>
+        <td>メール送受信</td>
+        <td><span class="accent">約200通</span></td>
       </tr>
       <tr>
-        <td style="padding:8px;"><img src="public/images/logo/Rakuten_Mobile_logo.png" style="height:40px; vertical-align:middle; object-fit:contain;"></td>
-        <td style="color:#22a722; font-size:48px; font-weight:900; padding:8px;">◎ 対象</td>
-        <td style="font-size:34px; color:#555; padding:8px;">他社からの乗り換え</td>
+        <td>地図アプリ</td>
+        <td><span class="accent">約100回</span></td>
       </tr>
       <tr>
-        <td style="padding:8px;"><img src="public/images/logo/Y!mobile.png" style="height:22px; vertical-align:middle; object-fit:contain;">・<img src="public/images/logo/softbank_logo.png" style="height:22px; vertical-align:middle; object-fit:contain;">・<img src="public/images/logo/line_mobile_logo.png" style="height:22px; vertical-align:middle; object-fit:contain;"></td>
-        <td style="color:var(--accent-red); font-size:48px; font-weight:900; padding:8px;">✕ 対象外</td>
-        <td style="font-size:34px; color:var(--accent-red); padding:8px;">SBグループ内</td>
+        <td>LINEトーク</td>
+        <td><span class="accent">約3万回</span></td>
+      </tr>
+      <tr>
+        <td>標準画質動画</td>
+        <td><span class="accent">約15分</span></td>
       </tr>
     </tbody>
   </table>
+  <p class="note" style="font-size: 28px; margin-top: 12px;">※参考：楽天モバイル・イオンモバイルの記事</p>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
 </div>
 
-<!-- Slide ID: 6 -->
+<!-- Slide ID: 8 (動画・普段使い) -->
 <div class="slide-container">
-  <div class="chapter-label">Chapter 2</div>
-  <h2 style="font-size:76px; margin-bottom:20px; line-height: 100%;">LINEMOのキャンペーン詳細と<br>対象条件</h2>
-  <div style="display:flex; gap:30px; width:100%;">
-    <div style="flex:1; background:#F3F8FF; border:6px solid #1976D2; border-radius:16px; padding:24px; text-align:center;">
-      <p style="font-size:42px; color:#1976D2; margin-bottom:8px;">ベストプラン</p>
-      <p style="font-size:100px; color:var(--primary-color); font-weight:900; line-height:1;">10,000<span style="font-size:52px;">pt</span></p>
-      <p style="font-size:38px; color:#555; margin-top:4px;">PayPayポイント還元</p>
-    </div>
-    <div style="flex:1; background:#FFF8F0; border:6px solid var(--primary-color); border-radius:16px; padding:24px; text-align:center;">
-      <p style="font-size:42px; color:var(--primary-color); margin-bottom:8px;">ベストプランV</p>
-      <p style="font-size:100px; color:var(--accent-red); font-weight:900; line-height:1;">12,000<span style="font-size:52px;">pt</span></p>
-      <p style="font-size:38px; color:#555; margin-top:4px;">PayPayポイント還元</p>
-    </div>
-  </div>
-  <p style="font-size:44px; color:#666; margin-top:16px; text-align:center;">※他社からMNPで申し込みの場合（動画投稿時点）</p>
-</div>
-
-<!-- Slide ID: 7 -->
-<div class="slide-container">
-  <div style="position:absolute; top:0; left:0; right:0; height:12px; background:var(--accent-red);"></div>
-  <i class="fa-solid fa-triangle-exclamation" style="font-size:110px; color:var(--accent-red); margin-bottom:16px;"></i>
-  <p style="font-size:52px; color:var(--accent-red); margin-bottom:16px; text-align:center;">注意！過去にLINEMOを契約したことがある人は</p>
-  <div style="background:#FFEBEE; border:6px solid var(--accent-red); border-radius:16px; padding:20px 30px; width:100%;">
-    <p style="font-size:56px; text-align:center; color:var(--text-dark);">「おかえりだモン」キャンペーン適用</p>
-    <p style="font-size:62px; color:var(--accent-red); text-align:center; font-weight:900;">最大 6,000pt</p>
-    <p style="font-size:44px; color:#555; text-align:center; margin-top:6px;">電話番号が違っても名義が同じだとNG</p>
-  </div>
-</div>
-
-<!-- Slide ID: 7-2 -->
-<div class="slide-container">
-  <h2 style="font-size:76px; margin-bottom:24px;">契約事務手数料を差し引いた<br>実質還元額</h2>
-  <div style="display:flex; gap:30px; width:100%;">
-    <div style="flex:1; background:#FFF8F0; border:6px solid var(--primary-color); border-radius:16px; padding:5px; text-align:center;">
-      <p style="font-size:44px; margin-bottom:8px;">ベストプラン</p>
-      <p style="font-size:58px; color:var(--text-dark); margin-bottom:4px;">10,000pt <span style="font-size:44px; color:#666;">－ 3,850円</span></p>
-      <p style="font-size:80px; color:var(--primary-color); font-weight:900;">= 6,150円</p>
-      <p style="font-size:38px; color:#666;">実質受け取り額</p>
-    </div>
-    <div style="flex:1; background:#F0FFF4; border:6px solid #2E7D32; border-radius:16px; padding:5px; text-align:center;">
-      <p style="font-size:44px; margin-bottom:8px;">ベストプランV</p>
-      <p style="font-size:58px; color:var(--text-dark); margin-bottom:4px;">12,000pt <span style="font-size:44px; color:#666;">－ 3,850円</span></p>
-      <p style="font-size:80px; color:#2E7D32; font-weight:900;">= 8,150円</p>
-      <p style="font-size:38px; color:#666;">実質受け取り額</p>
-    </div>
-  </div>
-  <p style="font-size:46px; color:var(--primary-color); margin-top:16px; text-align:center;"><i class="fa-solid fa-check-circle"></i> 他社からの乗り換えなら十分プラス！</p>
-</div>
-
-<!-- Slide ID: 8 -->
-<div class="slide-container">
-  <div class="chapter-label">Chapter 3</div>
-  <h2 style="font-size:78px; margin-bottom:24px; line-height: 100%;">僕だったらこうする。<br>損しない乗り換えルート</h2>
-  <div class="split">
-    <div class="split-col">
-      <i class="fa-solid fa-route" style="font-size:180px; color:var(--primary-color);"></i>
-    </div>
-    <div class="split-col" style="flex:2; align-items:flex-start;">
-      <div class="highlight-box">
-        <p style="font-size:54px;">ワイモバからでも<br><span class="accent-red">損しない方法</span>がある！</p>
-        <p style="font-size:46px; color:#666; margin-top:10px;">2ステップの乗り換えルートを紹介</p>
+  <div class="split" style="gap: 30px;">
+    <div class="split-col" style="flex: 1.2; align-items: flex-start;">
+      <h2 style="text-align: left; font-size: 68px; border-bottom: 8px solid var(--accent-yellow); margin-bottom: 20px;">月10回チャージすると…</h2>
+      <p style="font-size: 56px; margin-bottom: 16px;">0.1GB × 10日間 ＝ <span class="accent">実質1GBを使える！</span></p>
+      <div class="warn-box" style="background: #f0fff0; border-color: #4caf50;">
+        <p style="font-size: 50px;"><i class="fas fa-train" style="color: #4caf50;"></i> 通勤・通学中の<br>普段使いには<span class="accent">十分な容量</span></p>
       </div>
     </div>
-  </div>
-</div>
-
-<!-- Slide ID: 9 -->
-<div class="slide-container" style="padding:20px 50px;">
-  <h2 style="font-size:70px; margin-bottom:15px;">損しない乗り換えルート図</h2>
-  <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; width:100%;">
-    <div style="text-align:center; background:#FFF8F0; border:5px solid var(--primary-color); border-radius:16px; padding:10px 40px; width:700px;">
-      <img src="public/images/logo/Y!mobile.png" style="height:70px; width:250px; object-fit:contain;">
-    </div>
-    <div style="display:flex; align-items:center; gap:20px;">
-      <i class="fa-solid fa-arrow-down" style="font-size:50px; color:var(--primary-color);"></i>
-      <p style="font-size:32px; color:var(--primary-color); font-weight:900;">①乗り換え</p>
-    </div>
-    <div style="text-align:center; background:#F3F8FF; border:5px solid #1976D2; border-radius:16px; padding:10px 40px; width:700px;">
-      <div style="display:flex; gap:20px; align-items:center; justify-content:center; margin-bottom:5px;">
-        <img src="public/images/logo/Mineo_logo_背景削除.png" style="height:70px; width:180px; object-fit:contain;">
-        <span style="font-size:36px; color:#888;">or</span>
-        <img src="public/images/logo/Rakuten_Mobile_logo.png" style="height:70px; width:180px; object-fit:contain;">
-      </div>
-      <p style="font-size:32px; color:var(--primary-color);">大型キャンペーン活用</p>
-    </div>
-    <div style="display:flex; align-items:center; gap:20px;">
-      <i class="fa-solid fa-arrow-down" style="font-size:50px; color:var(--primary-color);"></i>
-      <p style="font-size:32px; color:var(--primary-color); font-weight:900;">②1年後</p>
-    </div>
-    <div style="text-align:center; background:#FFEBEE; border:5px solid var(--accent-red); border-radius:16px; padding:10px 40px; width:700px;">
-      <img src="public/images/logo/LINEMO_logo.png" style="height:60px; width:200px; object-fit:contain;">
-      <p style="font-size:32px; color:var(--accent-red);">キャンペーン対象に！</p>
+    <div class="split-col" style="flex: 0.8;">
+      <img src="public/images/irasutoya/pose_necchuu_smartphone_woman.png" style="max-height: 380px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
     </div>
   </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
 </div>
 
-<!-- Slide ID: 9-2 -->
+<!-- Slide ID: 9 (章タイトル：③チャージ方法と知っておきたい小技) -->
 <div class="slide-container">
-  <h2 style="font-size:74px; margin-bottom:20px;">2ステップ作戦のポイント</h2>
-  <ul style="width:100%;">
-    <li style="font-size:54px; margin-bottom:20px; display:flex; align-items:flex-start; gap:20px;">
-      <span style="background:var(--primary-color); color:white; border-radius:50%; width:68px; height:68px; display:flex; align-items:center; justify-content:center; font-size:42px; flex-shrink:0; margin-top:4px;">①</span>
-      <span>経由先でも<span class="accent-red">大型キャンペーンの恩恵</span>を<br>受けられる</span>
+  <div class="chapter-label">CHAPTER 3</div>
+  <h1 style="font-size: 100px;">③ チャージ方法と<br>知っておきたい小技</h1>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 9b (チャージ3ステップ) -->
+<div class="slide-container">
+  <h2 style="font-size: 76px; margin-bottom: 24px;">チャージ 3ステップ</h2>
+  <div style="width: 100%; display: flex; gap: 24px; align-items: stretch;">
+    <div style="flex: 1; background: #fff0f0; border: 6px solid var(--primary-color); border-radius: 16px; padding: 24px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <p style="font-size: 64px; font-weight: 900; color: var(--primary-color); margin-bottom: 8px;">STEP 1</p>
+      <i class="fas fa-mobile-screen" style="font-size: 80px; color: var(--primary-color); margin-bottom: 10px;"></i>
+      <p style="font-size: 48px; font-weight: 900;">povo2.0アプリを<br>開く</p>
+    </div>
+    <div style="flex: 1; background: #fff0f0; border: 6px solid var(--primary-color); border-radius: 16px; padding: 24px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <p style="font-size: 64px; font-weight: 900; color: var(--primary-color); margin-bottom: 8px;">STEP 2</p>
+      <i class="fas fa-map-pin" style="font-size: 80px; color: var(--primary-color); margin-bottom: 10px;"></i>
+      <p style="font-size: 44px; font-weight: 900;">対象スポット付近で<br>バナーをタップ</p>
+    </div>
+    <div style="flex: 1; background: #fff0f0; border: 6px solid var(--primary-color); border-radius: 16px; padding: 24px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <p style="font-size: 64px; font-weight: 900; color: var(--primary-color); margin-bottom: 8px;">STEP 3</p>
+      <i class="fas fa-hand-pointer" style="font-size: 80px; color: var(--primary-color); margin-bottom: 10px;"></i>
+      <p style="font-size: 48px; font-weight: 900;">「チャージする」<br>ボタンを押す</p>
+    </div>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 10 (初回のみ) -->
+<div class="slide-container">
+  <div class="split" style="gap: 30px;">
+    <div class="split-col" style="flex: 1.2; align-items: flex-start;">
+      <h2 style="text-align: left; font-size: 72px; border-bottom: 8px solid var(--accent-yellow); margin-bottom: 20px;">初回のみ必要な設定</h2>
+      <ul>
+        <li style="font-size: 56px; padding: 10px 0;"><i class="fas fa-right-to-bracket" style="color: var(--primary-color);"></i> ログイン</li>
+        <li style="font-size: 56px; padding: 10px 0;"><i class="fas fa-location-dot" style="color: var(--primary-color);"></i> 位置情報の利用許可</li>
+      </ul>
+      <div class="warn-box" style="background: #f0fff0; border-color: #4caf50; margin-top: 16px;">
+        <p style="font-size: 50px;"><i class="fas fa-circle-check" style="color: #4caf50;"></i> 公式サイトに手順あり<br>2回目以降はすぐチャージ！</p>
+      </div>
+    </div>
+    <div class="split-col" style="flex: 0.8;">
+      <img src="public/images/irasutoya/pose_anshin_woman.png" style="max-height: 360px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 11 (小技①ローソン) -->
+<div class="slide-container">
+  <div class="split" style="gap: 30px;">
+    <div class="split-col" style="flex: 1.2; align-items: flex-start;">
+      <div class="badge"><i class="fas fa-lightbulb"></i> 小技① ローソン活用</div>
+      <h2 style="text-align: left; font-size: 68px; border-bottom: 8px solid var(--accent-yellow); margin-bottom: 20px;">店内に入らなくてOK！</h2>
+      <p style="font-size: 56px; margin-bottom: 16px;">店舗<span class="accent">付近</span>にいるだけで<br>チャージ可能！</p>
+      <p style="font-size: 50px; color: #555;">通り道にローソンがあれば<br>サクッとチャージできる！</p>
+    </div>
+    <div class="split-col" style="flex: 0.8;">
+      <img src="public/images/irasutoya/sns_happy_woman.png" style="max-height: 360px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 12 (ショウの活用例) -->
+<div class="slide-container">
+  <div class="split" style="gap: 30px; align-items: flex-start;">
+    <div class="split-col" style="flex: 1.3; align-items: flex-start;">
+      <h2 style="text-align: left; font-size: 68px; border-bottom: 8px solid var(--accent-yellow); margin-bottom: 16px;">ショウのリアル活用例</h2>
+      <ul>
+        <li style="font-size: 50px; padding: 8px 0;"><i class="fas fa-store" style="color: var(--primary-color);"></i> 朝：職場下のローソンでチャージ</li>
+        <li style="font-size: 50px; padding: 8px 0;"><i class="fas fa-sun" style="color: var(--primary-color);"></i> 昼：povoのデータで外出</li>
+      </ul>
+      <div class="warn-box" style="margin-top: 16px;">
+        <p style="font-size: 48px;"><i class="fas fa-triangle-exclamation" style="color: var(--primary-color);"></i> MVNOは昼帯に速度が落ちやすい<br>→ <span class="accent">au回線のpovoでカバー！</span></p>
+      </div>
+    </div>
+    <div class="split-col" style="flex: 0.7;">
+      <img src="public/images/common/お昼休みの通信混雑をイメージした図.png" style="max-height: 360px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 12b (小技②0.2GBを作る方法) -->
+<div class="slide-container">
+  <div class="split" style="gap: 30px;">
+    <div class="split-col" style="flex: 1.3; align-items: flex-start;">
+      <div class="badge"><i class="fas fa-lightbulb"></i> 小技② 0.2GBを作る方法</div>
+      <div style="background: #f0f4ff; border: 6px solid #2244bb; border-radius: 16px; padding: 20px 28px; margin-top: 12px;">
+        <p style="font-size: 52px; color: var(--text-dark);">前日の残り <span class="accent">0.1GB</span></p>
+        <p style="font-size: 48px; color: #555;">＋ 当日チャージ <span class="accent">0.1GB</span></p>
+        <p style="font-size: 68px; font-weight: 900; color: var(--primary-color); margin-top: 10px;">＝ 最大 <span style="font-size: 80px;">0.2GB！</span></p>
+      </div>
+      <p style="font-size: 46px; margin-top: 16px; color: #555;">少し多めに使いたいタイミングに最適</p>
+    </div>
+    <div class="split-col" style="flex: 0.7;">
+      <img src="public/images/irasutoya/money_fueru.png" style="max-height: 340px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 13 (0.2GBの使いどころ) -->
+<div class="slide-container">
+  <h2 style="font-size: 80px; margin-bottom: 32px;">0.2GBの使いどころ</h2>
+  <div class="split" style="gap: 32px;">
+    <div class="split-col" style="background: #fff0f0; border: 6px solid var(--primary-color); border-radius: 16px; padding: 28px;">
+      <i class="fas fa-play-circle" style="font-size: 100px; color: var(--primary-color); margin-bottom: 12px;"></i>
+      <p style="font-size: 56px; font-weight: 900; text-align: center;">外出先で<br>ちょっと動画を見たい</p>
+    </div>
+    <div class="split-col" style="background: #fff0f0; border: 6px solid var(--primary-color); border-radius: 16px; padding: 28px;">
+      <i class="fas fa-map-location-dot" style="font-size: 100px; color: var(--primary-color); margin-bottom: 12px;"></i>
+      <p style="font-size: 56px; font-weight: 900; text-align: center;">地図を<br>長めに使いたい</p>
+    </div>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 14 (章タイトル：④デュアルSIM活用法) -->
+<div class="slide-container">
+  <div class="chapter-label">CHAPTER 4</div>
+  <h1 style="font-size: 100px;">④ デュアルSIMとしての<br>活用法</h1>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 14b (povo Data Oasis×デュアルSIM) -->
+<div class="slide-container">
+  <div class="split" style="gap: 30px;">
+    <div class="split-col" style="flex: 1.2; align-items: flex-start;">
+      <h2 style="text-align: left; font-size: 68px; border-bottom: 8px solid var(--accent-yellow); margin-bottom: 20px;">povo Data Oasis × デュアルSIM</h2>
+      <p style="font-size: 54px; margin-bottom: 16px;">鉄道駅の追加で<br><span class="accent">ローソンなし地域</span>の人にも恩恵！</p>
+      <p style="font-size: 50px; color: #555;">これまで使いにくかった人にも<br><span class="accent">チャンスが広がった！</span></p>
+    </div>
+    <div class="split-col" style="flex: 0.8;">
+      <img src="public/images/common/複数回線持ちで通信障害対策.png" style="max-height: 360px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 15 (デュアルSIM活用のイメージ) -->
+<div class="slide-container">
+  <h2 style="font-size: 76px; margin-bottom: 20px;">デュアルSIM活用のイメージ</h2>
+  <div class="split" style="gap: 24px; width: 100%;">
+    <div class="split-col" style="background: #f0f4ff; border: 6px solid #2244bb; border-radius: 16px; padding: 20px;">
+      <p style="font-size: 44px; font-weight: 900; color: #2244bb; margin-bottom: 8px;"><i class="fas fa-sim-card"></i> メイン回線</p>
+      <p style="font-size: 52px; font-weight: 900;">お気に入りの<br>格安SIM</p>
+    </div>
+    <div style="display: flex; align-items: center; font-size: 80px; color: var(--primary-color);">＋</div>
+    <div class="split-col" style="background: #fff0f0; border: 6px solid var(--primary-color); border-radius: 16px; padding: 20px;">
+      <p style="font-size: 44px; font-weight: 900; color: var(--primary-color); margin-bottom: 8px;"><i class="fas fa-sim-card"></i> サブ回線</p>
+      <img src="public/images/logo/Povo_logo.png" style="max-height: 70px; object-fit: contain; margin-bottom: 8px;">
+      <p style="font-size: 46px; font-weight: 900;"><span class="accent">0円</span>維持</p>
+    </div>
+  </div>
+  <div class="warn-box" style="background: #f0fff0; border-color: #4caf50; margin-top: 16px;">
+    <p style="font-size: 48px;"><i class="fas fa-train" style="color: #4caf50;"></i> 毎日の通勤・通学でData Oasisを使って<br><span class="accent">月1GB分ゲット！</span></p>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 15b (povo Data Oasisが輝くシーン) -->
+<div class="slide-container">
+  <h2 style="font-size: 72px; margin-bottom: 20px;">povo Data Oasisが輝くシーン</h2>
+  <div class="split" style="gap: 28px; align-items: stretch;">
+    <div class="split-col" style="background: #fff0f0; border: 6px solid var(--primary-color); border-radius: 16px; padding: 20px;">
+      <i class="fas fa-calendar-xmark" style="font-size: 80px; color: var(--primary-color); margin-bottom: 10px;"></i>
+      <p style="font-size: 50px; font-weight: 900; text-align: center; margin-bottom: 8px;">月末に<br>データ枯渇</p>
+      <p style="font-size: 42px; color: #555; text-align: center;">最大10日間<br>povo無料チャージで<br>乗り切れる！</p>
+    </div>
+    <div class="split-col" style="background: #fff3cd; border: 6px solid #FFD600; border-radius: 16px; padding: 20px;">
+      <i class="fas fa-wifi" style="font-size: 80px; color: #c8a000; margin-bottom: 10px;"></i>
+      <p style="font-size: 50px; font-weight: 900; text-align: center; margin-bottom: 8px;">昼帯の<br>速度落ち対策</p>
+      <p style="font-size: 42px; color: #555; text-align: center;">MVNOの弱点を<br>au回線で<br>カバー！</p>
+    </div>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 16 (こんな場面でも活躍) -->
+<div class="slide-container">
+  <div class="split" style="gap: 30px;">
+    <div class="split-col" style="flex: 1.2; align-items: flex-start;">
+      <h2 style="text-align: left; font-size: 68px; border-bottom: 8px solid var(--accent-yellow); margin-bottom: 20px;">こんな場面でも活躍！</h2>
+      <p style="font-size: 56px; margin-bottom: 16px;"><i class="fas fa-exclamation-circle" style="color: var(--primary-color);"></i> MVNOの昼帯速度落ち対策</p>
+      <div class="red-box">
+        <p style="font-size: 50px;"><i class="fas fa-barcode" style="color: var(--primary-color);"></i> バーコード決済の<br><span class="accent">バックアップに最適！</span></p>
+      </div>
+      <p style="font-size: 46px; margin-top: 16px; color: #555;">レジでの「あの焦り」が<br>なくなる！</p>
+    </div>
+    <div class="split-col" style="flex: 0.8;">
+      <img src="public/images/common/パケ詰まりのイラスト.png" style="max-height: 360px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 17 (デュアルSIMのおすすめ構成は過去動画をチェック) -->
+<div class="slide-container">
+  <div class="split" style="gap: 30px;">
+    <div class="split-col" style="flex: 0.8;">
+      <img src="public/images/common/複数回線を組み合わせるイメージ図.png" style="max-height: 380px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+    <div class="split-col" style="flex: 1.2; align-items: flex-start;">
+      <h2 style="text-align: left; font-size: 64px; border-bottom: 8px solid var(--accent-yellow); margin-bottom: 20px;">デュアルSIMのおすすめ構成は<br>過去動画をチェック！</h2>
+      <p style="font-size: 52px; color: #555;">↓ チャンネルの過去動画で詳しく紹介中！</p>
+    </div>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 17b (ショウのホンネ) -->
+<div class="slide-container">
+  <div class="split" style="gap: 30px;">
+    <div class="split-col" style="flex: 1.3; align-items: flex-start;">
+      <h2 style="text-align: left; font-size: 72px; border-bottom: 8px solid var(--accent-yellow); margin-bottom: 20px;">ショウのホンネ</h2>
+      <p style="font-size: 52px; margin-bottom: 16px;">自分の通勤路線は<span class="accent">今回は対象外…</span></p>
+      <div class="warn-box" style="background: #f0fff0; border-color: #4caf50;">
+        <p style="font-size: 50px;"><i class="fas fa-seedling" style="color: #4caf50;"></i> 今後の追加拡大に<span class="accent">期待！</span><br>職場下のローソンで毎朝活用中！</p>
+      </div>
+    </div>
+    <div class="split-col" style="flex: 0.7;">
+      <img src="public/images/irasutoya/pose_atama_kakaeru_woman.png" style="max-height: 340px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 18 (まだpovo2.0未開設の人へ) -->
+<div class="slide-container">
+  <div class="split" style="gap: 30px;">
+    <div class="split-col" style="flex: 0.7;">
+      <img src="public/images/logo/Povo_logo.svg" style="max-height: 180px; max-width: 100%; object-fit: contain; margin-bottom: 20px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+      <img src="public/images/irasutoya/present_open.png" style="max-height: 240px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+    </div>
+    <div class="split-col" style="flex: 1.3; align-items: flex-start;">
+      <h2 style="text-align: left; font-size: 64px; border-bottom: 8px solid var(--accent-yellow); margin-bottom: 20px;">まだpovo2.0未開設の人へ</h2>
+      <ul>
+        <li style="font-size: 52px; padding: 8px 0;"><i class="fas fa-check" style="color: var(--primary-color);"></i> 基本料<span class="accent">0円</span>で開設できる</li>
+        <li style="font-size: 52px; padding: 8px 0;"><i class="fas fa-check" style="color: var(--primary-color);"></i> Data Oasisで毎月<span class="accent">最大1GB無料</span>ゲット</li>
+        <li style="font-size: 48px; padding: 8px 0; color: #555;">追加料金なしでお得に使えるチャンス！</li>
+      </ul>
+    </div>
+  </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
+</div>
+
+<!-- Slide ID: 19 (まとめ) -->
+<div class="slide-container">
+  <h2 style="font-size: 80px; margin-bottom: 16px;">まとめ</h2>
+  <ul style="width: 100%;">
+    <li style="font-size: 44px; padding: 6px 0; display: flex; align-items: flex-start; gap: 16px;">
+      <span style="color: var(--primary-color); font-weight: 900; min-width: 52px;">①</span>
+      <span>対象スポット付近でアプリタップするだけで<span class="accent">0.1GB無料</span></span>
     </li>
-    <li style="font-size:54px; margin-bottom:20px; display:flex; align-items:flex-start; gap:20px;">
-      <span style="background:var(--primary-color); color:white; border-radius:50%; width:68px; height:68px; display:flex; align-items:center; justify-content:center; font-size:42px; flex-shrink:0; margin-top:4px;">②</span>
-      <span>1年後のLINEMO乗り換えで<span class="accent-red"><br>SBグループ外扱い</span>に</span>
+    <li style="font-size: 44px; padding: 6px 0; display: flex; align-items: flex-start; gap: 16px;">
+      <span style="color: var(--primary-color); font-weight: 900; min-width: 52px;">②</span>
+      <span>2026年4月14日〜<span class="accent">東京メトロ・京成・相鉄</span>の全駅が追加</span>
     </li>
-    <li style="font-size:54px; display:flex; align-items:flex-start; gap:20px;">
-      <span style="background:var(--primary-color); color:white; border-radius:50%; width:68px; height:68px; display:flex; align-items:center; justify-content:center; font-size:42px; flex-shrink:0; margin-top:4px;">③</span>
-      <span>気に入ればそのまま使い続けてもOK！</span>
+    <li style="font-size: 44px; padding: 6px 0; display: flex; align-items: flex-start; gap: 16px;">
+      <span style="color: var(--primary-color); font-weight: 900; min-width: 52px;">③</span>
+      <span>1日1回・月10回まで（<span class="accent">最大1GB/月</span>）</span>
+    </li>
+    <li style="font-size: 44px; padding: 6px 0; display: flex; align-items: flex-start; gap: 16px;">
+      <span style="color: var(--primary-color); font-weight: 900; min-width: 52px;">④</span>
+      <span>翌日23:59まで有効・前日分を残せば<span class="accent">0.2GB</span>に</span>
+    </li>
+    <li style="font-size: 44px; padding: 6px 0; display: flex; align-items: flex-start; gap: 16px;">
+      <span style="color: var(--primary-color); font-weight: 900; min-width: 52px;">⑤</span>
+      <span>デュアルSIMサブ回線として<span class="accent">月末・昼帯対策</span>に最適</span>
     </li>
   </ul>
-  <p style="font-size:50px; color:var(--primary-color); margin-top:20px; text-align:center;"><i class="fa-solid fa-star"></i> 一石二鳥どころか一石三鳥の作戦！</p>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
 </div>
 
-<!-- Slide ID: 10 -->
+<!-- Slide ID: 20 (行動アクション) -->
 <div class="slide-container">
-  <div class="chapter-label" style="margin-bottom:14px;">経由先① 楽天モバイル</div>
-  <div class="split">
-    <div class="split-col" style="flex:1;">
-      <img src="public/images/logo/Rakuten_Mobile_logo.png" style="height:140px; width:420px; object-fit:contain; filter:drop-shadow(0 6px 12px rgba(0,0,0,0.1));">
-      <p style="font-size:44px; color:var(--accent-red); font-weight:900; margin-bottom:8px;">三木谷キャンペーン</p>
-      <p style="font-size:62px; color:var(--accent-red); font-weight:900; text-align:center;">最大 14,000pt</p>
-    </div>
-    <div class="split-col" style="flex:1.4; align-items:flex-start;">
-      <div class="highlight-box">
-        <p style="font-size:44px; color:var(--text-dark); margin-top:8px;">3GBプラン月1,078円で</p>
-        <p style="font-size:52px; color:var(--primary-color); font-weight:900;">約12ヶ月分 実質無料！</p>
-        <p style="font-size:42px; color:#2E7D32; margin-top:6px;"><i class="fa-solid fa-check"></i> 初期費用0円！</p>
+  <div class="split" style="gap: 30px; align-items: flex-start;">
+    <div class="split-col" style="flex: 1.3; align-items: flex-start;">
+      <h2 style="text-align: left; font-size: 72px; border-bottom: 8px solid var(--accent-yellow); margin-bottom: 20px;">行動アクション</h2>
+      <div class="red-box">
+        <p style="font-size: 52px; font-weight: 900;"><i class="fas fa-arrow-right" style="color: var(--primary-color);"></i> povo2.0をまだ持っていない人</p>
+        <p style="font-size: 52px; margin-top: 8px;"><span class="accent">今すぐ開設を検討！</span></p>
       </div>
+      <p style="font-size: 48px; margin-top: 20px;">概要欄のリンクから<br>公式サイトをチェック！</p>
+    </div>
+    <div class="split-col" style="flex: 0.7;">
+      <img src="public/images/logo/Povo_logo.svg" style="max-height: 180px; max-width: 100%; object-fit: contain; margin-bottom: 16px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
+      <img src="public/images/irasutoya/family_happy_banzai.png" style="max-height: 260px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));">
     </div>
   </div>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
 </div>
 
-<!-- Slide ID: 11 -->
+<!-- Slide ID: 20b (コメントで教えて！) -->
 <div class="slide-container">
-  <i class="fa-solid fa-triangle-exclamation" style="font-size:120px; color:var(--accent-red); margin-bottom:16px;"></i>
-  <p style="font-size:52px; color:var(--accent-red); margin-bottom:16px; text-align:center;">注意！楽天モバイルの違約金</p>
-  <div style="background:#FFEBEE; border:6px solid var(--accent-red); border-radius:16px; padding:24px 36px; width:100%;">
-    <p style="font-size:58px; text-align:center; color:var(--text-dark);">契約から<span class="accent-red">1年以内に解約</span>すると</p>
-    <p style="font-size:70px; color:var(--accent-red); text-align:center; font-weight:900; margin-top:8px;">最大 1,078円 の違約金</p>
-    <p style="font-size:48px; color:#555; text-align:center; margin-top:8px;">最低1年は使うことが前提！</p>
+  <div style="text-align: center;">
+    <i class="fas fa-comments" style="font-size: 140px; color: var(--primary-color); margin-bottom: 20px;"></i>
+    <h2 style="font-size: 80px; margin-bottom: 20px;">コメントで教えて！</h2>
+    <ul style="text-align: left; display: inline-block;">
+      <li style="font-size: 52px; padding: 8px 0;"><i class="fas fa-check" style="color: var(--primary-color);"></i> 「自分もData Oasis使ってるよ」</li>
+      <li style="font-size: 52px; padding: 8px 0;"><i class="fas fa-check" style="color: var(--primary-color);"></i> 「こんな使い方してる！」</li>
+      <li style="font-size: 52px; padding: 8px 0;"><i class="fas fa-check" style="color: var(--primary-color);"></i> 「ここがよくわからなかった」</li>
+    </ul>
   </div>
-  <p style="font-size:48px; color:var(--primary-color); margin-top:16px; text-align:center;"><i class="fa-solid fa-check-circle"></i> 1年使う気持ちがあれば余計なコストなし</p>
+  <div class="corner-logo"><img src="public/images/logo/Povo_logo.svg"></div>
 </div>
 
-<!-- Slide ID: 12 -->
-<div class="slide-container">
-  <h2 style="font-size:76px; margin-bottom:16px;">楽天モバイル 評価</h2>
-  <img src="public/images/charts/楽天モバイル.png" style="height:500px; width:700px; object-fit:contain;">
-  <div>
-    <p style="font-size:44px; color:#555; text-align:center;">Rakuten Linkアプリで</p>
-    <p style="font-size:52px; color:var(--primary-color); text-align:center; font-weight:900;">国内通話 永年無料！</p>
-  </div>
-</div>
-
-<!-- Slide ID: 12-2 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff8f0, #ffe0c0);">
-  <i class="fa-solid fa-video" style="font-size:100px; color:var(--primary-color); margin-bottom:20px;"></i>
-  <p class="terop">楽天モバイルの三木谷キャンペーン<br>詳細は過去動画をチェック！</p>
-  <img src="public/images/thumbnails/【最大20,000pt】楽天マジ得vs三木谷キャンペーン。18ヶ月実質無料にする方法。_サムネ1.png" style="height:400px; width:600px; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.2)); margin-top:20px; border-radius:12px;">
-</div>
-
-<!-- Slide ID: 13 -->
-<div class="slide-container">
-  <div class="chapter-label" style="margin-bottom:14px;">経由先② mineo（マイネオ）</div>
-  <div class="split">
-    <div class="split-col" style="flex:1;">
-      <img src="public/images/logo/Mineo_logo_背景削除.png" style="max-height:140px; max-width:220px; object-fit:contain; filter:drop-shadow(0 6px 12px rgba(0,0,0,0.1));">
-      <p style="font-size:42px; margin-top:14px; color:var(--primary-color); text-align:center; font-weight:900;">ショウが<br>実際に使ってる！</p>
-    </div>
-    <div class="split-col" style="flex:2; align-items:flex-start;">
-      <div class="highlight-box">
-        <p style="font-size:52px; margin-bottom:10px;"><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> トリプルキャリア対応</p>
-        <p style="font-size:52px; margin-bottom:10px; color:var(--accent-red);"><i class="fa-solid fa-star" style="color:var(--accent-red);"></i> ソフトバンク回線<br>継続で安心！</p>
-        <p style="font-size:52px; color:var(--accent-red); font-weight:900;"><i class="fa-solid fa-triangle-exclamation"></i> eSIMは非対応<br><span style="font-size:42px;">（ソフトバンク回線のみ）</span></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 14 -->
-<div class="slide-container">
-  <h2 style="font-size:74px; margin-bottom:18px;">mineoが選ばれる理由</h2>
-  <div class="split">
-    <div class="split-col" style="flex:1; justify-content:center;">
-      <img src="public/images/irasutoya/pose_necchuu_smartphone_man.png" style="height:350px; width:300px; object-fit:contain; filter:drop-shadow(0 8px 16px rgba(0,0,0,0.12));">
-    </div>
-    <div class="split-col" style="flex:1.5; align-items:flex-start;">
-      <div style="background:#F0FFF4; border:6px solid #2E7D32; border-radius:16px; padding:22px 28px; width:100%;">
-        <p style="font-size:50px; color:#2E7D32; font-weight:900; margin-bottom:10px;">パケット放題 3Mbps</p>
-        <p style="font-size:48px; margin-bottom:6px;"><i class="fa-solid fa-infinity" style="color:var(--primary-color);"></i> 最大3Mbpsの速度で<br><span class="accent-red">データ使い放題</span></p>
-        <p style="font-size:48px; margin-bottom:6px;"><i class="fa-solid fa-mobile-screen" style="color:var(--primary-color);"></i> 動画・SNSも<span class="accent-red">サクサク</span></p>
-        <p style="font-size:42px; color:#666;">実際に使っており普段使いでは<br>ストレスほぼゼロ！</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 14-2 -->
-<div class="slide-container">
-  <h2 style="font-size:72px; margin-bottom:18px;">mineoキャンペーン中！</h2>
-  <div style="width:100%; background:#F0FFF4; border:6px solid #2E7D32; border-radius:16px; padding:24px 36px; text-align:center;">
-    <p style="font-size:46px; margin-bottom:8px;">マイピタ3GB + パケット放題3Mbpsが</p>
-    <p style="font-size:100px; color:var(--accent-red); font-weight:900; line-height:1;">660円</p>
-    <p style="font-size:50px; margin-top:4px; color:#555;">最大<span style="color:var(--accent-red);">6ヶ月間</span>（通常1,683円相当）</p>
-    <div style="display:flex; justify-content:center; gap:30px; margin-top:16px;">
-      <div style="background:white; border:4px solid var(--primary-color); border-radius:12px; padding:12px 24px;">
-        <p style="font-size:40px; color:#666;">パケット放題3Mbpsオプション(最大9カ月間)</p>
-        <p style="font-size:50px; color:var(--text-dark);">通常 <span style="text-decoration:line-through; color:#999;">385円</span> → <span class="accent-red" style="font-size:58px;">110円</span></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 14-3 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #f0fff4, #c8f0d4);">
-  <i class="fa-solid fa-video" style="font-size:100px; color:#2E7D32; margin-bottom:20px;"></i>
-  <p class="terop" style="color:#2E7D32;">mineoキャンペーン詳細は<br>過去動画をチェック！</p>
-  <img src="public/images/thumbnails/【2026年最新】月額660円で実質使い放題！mineoの最強キャンペーンを徹底解説.png" style="height:400px; width:600px; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.2)); margin-top:20px; border-radius:12px;">
-</div>
-
-<!-- Slide ID: 15 -->
-<div class="slide-container">
-  <div style="position:absolute; top:0; left:0; right:0; height:12px; background:var(--primary-color);"></div>
-  <i class="fa-solid fa-gift" style="font-size:120px; color:var(--primary-color); margin-bottom:16px;"></i>
-  <p style="font-size:52px; color:var(--primary-color); text-align:center; margin-bottom:12px; font-weight:900;">当チャンネル限定リンクから申込で</p>
-  <div style="background:#FFF8F0; border:8px solid var(--primary-color); border-radius:16px; padding:20px 40px; width:100%; text-align:center;">
-    <p style="font-size:62px; color:var(--accent-red); font-weight:900;">契約事務手数料 3,300円</p>
-    <p style="font-size:80px; color:var(--primary-color); font-weight:900;">→ 無料！</p>
-    <p style="font-size:48px; color:#555; margin-top:8px;">SIM発行料440円のみでOK</p>
-  </div>
-  <p style="font-size:46px; color:var(--accent-red); margin-top:16px; text-align:center;"><i class="fa-solid fa-triangle-exclamation"></i> 必ず概要欄のリンクから申し込んで！</p>
-</div>
-
-<!-- Slide ID: 16 -->
-<div class="slide-container">
-  <h2 style="font-size:76px; margin-bottom:16px;">mineo 評価</h2>
-  <img src="public/images/charts/mineo.png" style="height:500px; width:700px; object-fit:contain;">
-  <div>
-    <p style="font-size:44px; color:var(--primary-color); margin-top:12px; font-weight:900;">ソフトバンク回線継続OK!</p>
-    <p style="font-size:35px; color:var(--accent-red); font-weight:900;"><i class="fa-solid fa-triangle-exclamation"></i> eSIMは非対応</p>
-  </div>
-</div>
-
-<!-- Slide ID: 17 -->
-<div class="slide-container" style="padding:28px 40px;">
-  <h2 style="font-size:72px; margin-bottom:16px;">楽天モバイル vs mineo <br>選び方まとめ</h2>
-  <div style="display:flex; gap:24px; width:100%;">
-    <div style="flex:1; background:#FFF0F0; border:6px solid var(--accent-red); border-radius:16px; padding:20px 24px; text-align:center;">
-      <img src="public/images/logo/Rakuten_Mobile_logo.png" style="height:150px; width:500px; object-fit:contain; margin-bottom:8px;">
-      <p style="font-size:44px; color:var(--accent-red); font-weight:900; margin-bottom:10px;">楽天モバイルがおすすめ</p>
-      <p style="font-size:42px; margin-bottom:6px;"><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> 初期費用0円で始めたい</p>
-      <p style="font-size:42px;"><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> 電話をよくかける</p>
-    </div>
-    <div style="flex:1; background:#F0FFF4; border:6px solid #2E7D32; border-radius:16px; padding:20px 24px; text-align:center;">
-      <img src="public/images/logo/Mineo_logo_背景削除.png" style="height:150px; width:400px; object-fit:contain; margin-bottom:8px;">
-      <p style="font-size:44px; color:#2E7D32; font-weight:900; margin-bottom:10px;">mineoがおすすめ</p>
-      <p style="font-size:42px; margin-bottom:6px;"><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> SB回線継続したい</p>
-      <p style="font-size:42px;"><i class="fa-solid fa-check" style="color:var(--primary-color);"></i> コスパ重視</p>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 17-2 -->
-<div class="slide-container">
-  <h2 style="font-size:72px; margin-bottom:18px;">補足：<br>乗り換え後の通信品質が不安な人へ</h2>
-  <div class="split">
-    <div class="split-col" style="flex:1;">
-      <img src="public/images/common/複数回線持ちで通信障害対策.png" style="max-height:320px; max-width:360px; object-fit:contain; filter:drop-shadow(0 8px 16px rgba(0,0,0,0.1));">
-    </div>
-    <div class="split-col" style="flex:2; align-items:flex-start;">
-      <div class="highlight-box">
-        <p style="font-size:50px; margin-bottom:10px;"><span class="accent-red">デュアルSIM</span>運用がおすすめ</p>
-        <p style="font-size:46px; color:#555;">povo・日本通信SIMを</p>
-        <p style="font-size:46px; color:#555;">サブ回線として持つ</p>
-        <p style="font-size:46px; color:var(--primary-color); margin-top:8px; font-weight:900;">コストをほぼゼロに抑える！</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 17-3 -->
-<div class="slide-container">
-  <h2 style="font-size:76px; margin-bottom:20px;">povo をサブ回線に！</h2>
-  <div class="split">
-    <div class="split-col" style="flex:1;">
-      <img src="public/images/logo/Povo_logo.png" style="height:200px; width:350px; object-fit:contain; filter:drop-shadow(0 6px 12px rgba(0,0,0,0.1));">
-    </div>
-    <div class="split-col" style="flex:2; align-items:flex-start;">
-      <div style="background:#F3F8FF; border:6px solid #1976D2; border-radius:16px; padding:24px 28px; width:100%;">
-        <p style="font-size:56px; color:#1976D2; font-weight:900; margin-bottom:10px;"><i class="fa-solid fa-circle-dollar-to-slot"></i> 月0円から使える！</p>
-        <p style="font-size:50px; margin-bottom:6px;">必要な時だけトッピング購入</p>
-        <p style="font-size:48px; color:var(--primary-color);">au回線でエリアをカバー</p>
-        <p style="font-size:44px; color:#555; margin-top:8px;">乗り換えたての不安を解消！</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 17-4 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #f3f8ff, #dce8ff);">
-  <i class="fa-solid fa-video" style="font-size:100px; color:#1976D2; margin-bottom:20px;"></i>
-  <p class="terop" style="color:#1976D2;">格安SIM 2枚持ちおすすめ<br>組み合わせは過去動画をチェック！</p>
-  <img src="public/images/thumbnails/【2026年最新】最強の2枚持ちおすすめ格安SIM組み合わせ3選！_サムネ2.png" style="height:400px; width:600px; object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,0.2)); margin-top:20px; border-radius:12px;">
-</div>
-
-<!-- Slide ID: 18 -->
-<div class="slide-container">
-  <i class="fa-solid fa-lightbulb" style="font-size:100px; color:var(--accent-yellow); margin-bottom:2px;"></i>
-  <p style="font-size:52px; color:var(--primary-color); margin-bottom:14px; text-align:center; font-weight:900;">重要な補足</p>
-  <div style="background:#FFF8F0; border:6px solid var(--primary-color); border-radius:16px; padding:20px 36px; width:100%; text-align:center;">
-    <p style="font-size:56px; color:var(--text-dark);">今回の話はあくまで<br><span class="accent-red">「僕だったらこうする」</span>という提案</p>
-    <p style="font-size:50px; color:#555; margin-top:10px;">シンプルにLINEMOに<br>すぐ乗り換えるのも全然アリ！</p>
-    <p style="font-size:46px; color:var(--primary-color); margin-top:8px;">特にSB回線継続＋固定費削減が最優先の人は<br>キャンペーン抜きでもLINEMOは良いプラン</p>
-  </div>
-</div>
-
-<!-- Slide ID: 19 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff8f0 60%, #ffe0c0 100%);">
-  <i class="fa-solid fa-list-check" style="font-size:140px; color:var(--primary-color); margin-bottom:20px;"></i>
-  <p class="terop">今日のまとめ</p>
-  <p style="font-size:50px; color:#666; margin-top:16px;">3つのポイントを整理していこう！</p>
-</div>
-
-<!-- Slide ID: 20 -->
-<div class="slide-container">
-  <p style="font-size:44px; color:var(--primary-color); margin-bottom:12px; font-weight:900;">まとめ ①</p>
-  <div style="background:#FFEBEE; border:8px solid var(--accent-red); border-radius:16px; padding:24px 36px; width:100%; text-align:center;">
-    <p style="font-size:56px; color:var(--accent-red); font-weight:900; margin-bottom:10px;">⚠️ ワイモバ→LINEMO乗り換えは</p>
-    <p style="font-size:62px; color:var(--accent-red); font-weight:900; margin-bottom:10px;">キャンペーン対象外！</p>
-    <p style="font-size:50px; color:var(--text-dark);">ソフトバンクグループ内の移動のため</p>
-    <p style="font-size:50px; color:var(--text-dark); margin-top:6px;">最大12,000ptはもらえない</p>
-  </div>
-  <p style="font-size:48px; color:#666; margin-top:16px; text-align:center;">絶対に覚えておこう！</p>
-</div>
-
-<!-- Slide ID: 20-2 -->
-<div class="slide-container" style="padding:28px 40px;">
-  <p style="font-size:44px; color:var(--primary-color); margin-bottom:12px; font-weight:900;">まとめ ②</p>
-  <h2 style="font-size:68px; margin-bottom:6px; border-bottom-width:6px;">ワイモバからLINEMOで<br>使えるキャンペーン</h2>
-  <div style="width:100%; background:#FFF8F0; border:6px solid var(--primary-color); border-radius:16px; padding:20px 30px; text-align:center;">
-    <p style="font-size:50px; color:var(--text-dark); margin-bottom:10px;">PayPayカード設定で</p>
-    <p style="font-size:70px; color:var(--primary-color); font-weight:900;">1,100pt 還元のみ</p>
-    <p style="font-size:50px; color:var(--text-dark); margin-top:8px;">事務手数料3,850円を差し引くと</p>
-    <p style="font-size:62px; color:var(--accent-red); font-weight:900; margin-top:6px;">差し引き -2,750円 のマイナス</p>
-  </div>
-</div>
-
-<!-- Slide ID: 21 -->
-<div class="slide-container" style="padding:24px 36px;">
-  <p style="font-size:40px; color:var(--primary-color); margin-bottom:10px; font-weight:900;">まとめ ③</p>
-  <h2 style="font-size:64px; margin-bottom:14px; border-bottom-width:6px;">損しない乗り換えルート</h2>
-  <div style="display:flex; gap:20px; width:100%;">
-    <div style="flex:1; background:#F0FFF4; border:5px solid #2E7D32; border-radius:14px; padding:18px 20px; text-align:center;">
-      <img src="public/images/logo/Mineo_logo_背景削除.png" style="max-height:55px; object-fit:contain; margin-bottom:8px;">
-      <p style="font-size:42px; color:#2E7D32; font-weight:900; margin-bottom:6px;">mineo経由</p>
-      <p style="font-size:38px; color:var(--text-dark);">当チャンネル限定リンクで</p>
-      <p style="font-size:44px; color:var(--accent-red); font-weight:900;">事務手数料<br>0円！</p>
-    </div>
-    <div style="flex:1; background:#FFF0F0; border:5px solid var(--accent-red); border-radius:14px; padding:18px 20px; text-align:center;">
-      <img src="public/images/logo/Rakuten_Mobile_logo.png" style="max-height:55px; object-fit:contain; margin-bottom:8px;">
-      <p style="font-size:42px; color:var(--accent-red); font-weight:900; margin-bottom:6px;">楽天モバイル<br>経由</p>
-      <p style="font-size:38px; color:var(--text-dark);">初期費用0円＋<br>三木谷CP</p>
-      <p style="font-size:44px; color:var(--accent-red); font-weight:900;">最大14,000pt！</p>
-    </div>
-    <div style="flex:1; background:#F3F8FF; border:5px solid #1976D2; border-radius:14px; padding:18px 20px; text-align:center;">
-      <img src="public/images/logo/LINEMO_logo.png" style="max-height:55px; object-fit:contain; margin-bottom:8px;">
-      <p style="font-size:42px; color:#1976D2; font-weight:900; margin-bottom:6px;">1年後LINEMO</p>
-      <p style="font-size:38px; color:var(--text-dark);">SBグループ外<br>扱いで</p>
-      <p style="font-size:44px; color:var(--accent-red); font-weight:900;">CPも使える！</p>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 22 -->
-<div class="slide-container">
-  <i class="fa-solid fa-link" style="font-size:130px; color:var(--primary-color); margin-bottom:20px;"></i>
-  <p class="terop">概要欄のリンクから<br>申し込みを！</p>
-  <p style="font-size:52px; color:var(--accent-red); margin-top:16px; text-align:center; font-weight:900;"><i class="fa-solid fa-triangle-exclamation"></i> mineo限定リンクは当チャンネル限定！<br>必ず概要欄から申し込んで！</p>
-</div>
-
-<!-- Slide ID: 23 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff8f0, #ffe0c0);">
-  <i class="fa-brands fa-youtube" style="font-size:140px; color:var(--accent-red); margin-bottom:20px;"></i>
-  <p class="terop">コメントで教えてね！</p>
-  <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px; text-align:center;">
-    <p style="font-size:50px; color:#555;">「今使ってるSIM」</p>
-    <p style="font-size:50px; color:#555;">「乗り換え検討中のSIM」</p>
-    <p style="font-size:50px; color:#555;">「この動画で気になったSIM」</p>
-  </div>
-</div>
-
-<!-- Slide ID: 24 -->
+<!-- Slide ID: 21 (注意事項) -->
 <div class="slide-container">
   <img src="public/images/slides/プランやキャンペーンは投稿時点のもの注意喚起.png" class="fullscreen-img">
 </div>
 
-<!-- Slide ID: 26 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff8f0 60%, #ffe0c0 100%);">
+<!-- Slide ID: 22 (ブログもチェック！) -->
+<div class="slide-container">
+  <img src="public/images/slides/ブログもやってます.png" class="fullscreen-img">
+</div>
+
+<!-- Slide ID: 23 (チャンネル登録＆グッドボタン) -->
+<div class="slide-container">
   <img src="public/images/slides/チャンネル登録と高評価よろしくお願いします.png" class="fullscreen-img">
 </div>
 
