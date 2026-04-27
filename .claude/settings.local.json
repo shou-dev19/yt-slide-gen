@@ -5,5 +5,10 @@
     "context7",
     "remotion-docs",
     "voicevox-docs"
-  ]
+  ],
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)"
+    ]
+  }
 }
