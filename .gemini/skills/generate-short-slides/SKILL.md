@@ -23,26 +23,40 @@ Ensure you iterate through the exact number of `スライドID` found in the scr
 
 ### A. Thumbnail Slide (Slide 1)
 - **Background**: `repeating-radial-gradient(circle at 50% 50%, #ffffff 0%, #f0f7ff 10%, #e6f0ff 20%)` with a `25px solid #0052cc` border.
-- **Logo Area**: Large, centered at the top (`height: 180px;`).
-- **Catchphrase Text**: Ultra-bold, rotated (e.g., `transform: rotate(-3deg);`), massive text with heavy dropshadows, solid background colors (e.g., Red `#e63946`, Yellow `#ffe600`).
-- **Illustration**: Positioned at the bottom (`align-items: flex-end`), using `filter: drop-shadow(...)`.
+- **Logo Area**: Large, centered at the top. Logo `<img>` height: `150px`. Wrapper height: `190px`.
+- **Catchphrase layout**: `gap: 26px` between elements.
+- **Tag (e.g., 「無料」)**: `font-size: 70px`, rotated (`transform: rotate(-3deg)`), red background `#e63946`, `padding: 14px 46px`, `box-shadow: 6px 6px 0 #000`.
+- **Main title**: `font-size: 90px`.
+- **Sub-title band**: `font-size: 56px`, `padding: 14px 38px`.
+- **Badge (e.g., メトロ)**: `font-size: 48px`, `padding: 12px 36px`.
+- **Illustration**: Bottom-right absolute, `height: 290px`, `filter: drop-shadow(...)`.
 
 ### B. Standard Explanation Slides (Slide 2 - Penultimate Slide-1)
-- Include massive watermark-style numbering at the top-left (e.g., `<div class="big-number">01</div>` overlay with opacity `0.2`).
-- Use `slide-title` with bottom blue borders (`border-bottom: 10px solid #0052cc;`).
-- **Text blocks**: Use `.highlight-text` with massive `.blue` or `.red` spans to highlight specific metrics (e.g., `30`, `0円`).
+- Include watermark-style numbering at the top-left (`font-size: 280px`, opacity `0.07`).
+- **Slide title** (`slide-title`): `font-size: 62px`, bottom border `border-bottom: 10px solid #0052cc`, `margin-bottom: 30px`.
+- **Slide body** (`slide-body`): `gap: 28px` between items.
+- **List items** (`.list-item`): `font-size: 52px`, emoji `font-size: 54px`.
+- **Info box** (`.info-box`): label `font-size: 40px`, value `font-size: 64px`, `padding: 22px 32px`.
+- **Highlight block** (`.highlight-block`): `font-size: 62px`, `padding: 20px 24px`.
+- **Date badge** (`.date-badge`): `font-size: 40px`, `padding: 10px 30px`.
+- **Illustration**: Bottom-right absolute, `height: 260px`.
 - Use emojis for list items instead of standard bullets.
 
 ### C. Warning Slide (Penultimate Slide)
-- **Theme**: Red / Faint Red to aggressively signify danger/attention.
-- **Warning Box**: `border: 10px solid #e63946; background-color: #fff0f0;`
-- **Icon/Image**: Shocked expression illustration (e.g., `animal_buta_shock_etc`).
+- **Theme**: Red / Faint Red (`background: #fff8f8`).
+- **Warning banner**: `font-size: 62px`, `padding: 22px 0`, full-bleed across slide.
+- **Warning box**: `border: 10px solid #e63946; background: #fff0f0;`, `padding: 36px 42px`, `gap: 26px`.
+  - Box title (`.w-title`): `font-size: 58px`.
+  - Box items (`.w-item`): `font-size: 50px`.
+- **Illustration**: Bottom-right absolute, `height: 280px`. Use a shocked-expression illustration.
 
 ### D. CTA Slide (Last Slide)
-- **Theme**: Solid blue gradient background (`linear-gradient(135deg, #0052cc, #003380)`).
-- **Text**: Prompt viewers to watch the full video (e.g., "本編で解説！" in yellow `#ffd700`).
-- **Animation**: Downward pointing floating arrow (`@keyframes bounce`).
-- **Image**: A large `<img>` tag at the bottom for the main YouTube video thumbnail with a blue thick border.
+- **Theme**: `background: linear-gradient(135deg, #0052cc, #003380)`.
+- **Logo**: `height: 120px`, `margin-bottom: 26px`, `filter: brightness(10)` to make it white.
+- **Title** (`.cta-title`): `font-size: 84px`, color `#ffd700`.
+- **Sub-text** (`.cta-sub`): `font-size: 50px`, color `#ffffff`.
+- **Bounce arrow**: `font-size: 90px`, color `#ffd700`, `@keyframes bounce` animation.
+- **Banner image** (`.cta-banner-img`): `width: 940px`.
 
 ## 4. Image Selection & Assets
 - **No Placeholders**: Do NOT use placeholder boxes. Always select and use the most appropriate image asset from the `public/images/` directory.
@@ -57,6 +71,7 @@ Ensure you iterate through the exact number of `スライドID` found in the scr
 ## 5. Self-Check & Adjustment (Critical)
 - **Overflow Check**: Before final generation, strictly verify that all text and images fit entirely within the `1080px × 1080px` container.
 - **Automatic Adjustment Rules**:
-    - **Text**: Even after refining to short phrases, if text still overflows, reduce the font size by 10%–15%.
-    - **Images**: If background logos or illustrations overlap too much with text making it unreadable, reduce the image size or adjust the position.
+    - **Text**: Even after refining to short phrases, if text still overflows, reduce the font size by 10%–15% from the standard sizes defined above.
+    - **Images**: If illustrations overlap text making it unreadable, reduce the image height or adjust position — but never go below 200px for slide illustrations.
 - **Mobile Visibility**: Since the 1:1 aspect ratio will be viewed full-screen on smartphones, ensure sufficient margins (safe areas) at the edges.
+- **Fill the canvas**: The standard sizes above are the baseline — the goal is a visually full, high-impact canvas with minimal empty space. If a slide feels sparse, increase font or image sizes rather than adding padding.
