@@ -1,14 +1,16 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "mcp__playwright__browser_navigate",
+      "Bash(curl -s http://localhost:5173/slides.html)"
+    ]
+  },
   "enabledMcpjsonServers": [
     "github",
     "playwright",
     "context7",
     "remotion-docs",
     "voicevox-docs"
-  ],
-  "permissions": {
-    "allow": [
-      "Bash(npm run *)"
-    ]
-  }
+  ]
 }
