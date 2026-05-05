@@ -17,14 +17,15 @@ When generating HTML slides for YouTube shorts from a script (e.g., `台本.txt`
 - **Fonts**: 'Inter', 'Noto Sans JP', sans-serif. Ensure Google Fonts are imported.
 - **Weights**: Extremely bold (`700` or `900`) for readability on small smartphone screens.
 - **Rule**: Eliminate long sentences. Extract only the shortest, most impactful phrases (e.g., "30GB", "たったの2,970円", "通話無料") from the script.
+- **Do NOT over-abbreviate established compound nouns**: Terms like `通信品質`、`乗り換えキャンペーン` must be kept intact. Dropping a character to shorten (e.g., `通信品質` → `品質`) changes the meaning and feels unnatural.
 
 ## 3. Mandatory Slide Types
 Ensure you iterate through the exact number of `スライドID` found in the script.
 
 ### A. Thumbnail Slide (Slide 1)
 - **Background**: `repeating-radial-gradient(circle at 50% 50%, #ffffff 0%, #f0f7ff 10%, #e6f0ff 20%)` with a `25px solid #0052cc` border.
-- **Logo Area**: Large, centered at the top. Logo `<img>` height: `150px`. Wrapper height: `190px`.
-- **Catchphrase layout**: `gap: 26px` between elements.
+- **Logo Area**: Include ONLY when the video features a single carrier. Omit entirely when the video is a comparison (e.g., "A vs B"). Logo `<img>` height: `150px`. Wrapper height: `190px`.
+- **Catchphrase layout**: `gap: 26px` between elements. Add `style="margin-bottom: 250px;"` to `.catchphrase-wrapper` to reserve space for the bottom-right illustration and prevent overlap.
 - **Tag (e.g., 「無料」)**: `font-size: 70px`, rotated (`transform: rotate(-3deg)`), red background `#e63946`, `padding: 14px 46px`, `box-shadow: 6px 6px 0 #000`.
 - **Main title**: `font-size: 90px`.
 - **Sub-title band**: `font-size: 56px`, `padding: 14px 38px`.
@@ -34,12 +35,12 @@ Ensure you iterate through the exact number of `スライドID` found in the scr
 ### B. Standard Explanation Slides (Slide 2 - Penultimate Slide-1)
 - Include watermark-style numbering at the top-left (`font-size: 280px`, opacity `0.07`).
 - **Slide title** (`slide-title`): `font-size: 62px`, bottom border `border-bottom: 10px solid #0052cc`, `margin-bottom: 30px`.
-- **Slide body** (`slide-body`): `gap: 28px` between items.
+- **Slide body** (`slide-body`): `gap: 28px` between items. When illustration overlaps body content, add `style="margin-bottom: 120px;"` to `.slide-body`.
 - **List items** (`.list-item`): `font-size: 52px`, emoji `font-size: 54px`.
 - **Info box** (`.info-box`): label `font-size: 40px`, value `font-size: 64px`, `padding: 22px 32px`.
 - **Highlight block** (`.highlight-block`): `font-size: 62px`, `padding: 20px 24px`.
 - **Date badge** (`.date-badge`): `font-size: 40px`, `padding: 10px 30px`.
-- **Illustration**: Bottom-right absolute, `height: 260px`.
+- **Illustration**: Bottom-right absolute, `height: 260px`. Always add `style="z-index: 2;"` to the `.slide-illust` wrapper div so the illustration renders above all other elements.
 - Use emojis for list items instead of standard bullets.
 
 ### C. Warning Slide (Penultimate Slide)
@@ -56,7 +57,7 @@ Ensure you iterate through the exact number of `スライドID` found in the scr
 - **Title** (`.cta-title`): `font-size: 84px`, color `#ffd700`.
 - **Sub-text** (`.cta-sub`): `font-size: 50px`, color `#ffffff`.
 - **Bounce arrow**: `font-size: 90px`, color `#ffd700`, `@keyframes bounce` animation.
-- **Banner image** (`.cta-banner-img`): `width: 940px`.
+- **Banner image** (`.cta-banner-img`): `width: 940px`. Use the video's own thumbnail from `public/images/thumbnails/` — the file follows the naming convention `{動画タイトル}_サムネ1.png`. Do NOT use generic slides images (e.g. `public/images/slides/今すぐ本編動画をチェック.png`).
 
 ## 4. Image Selection & Assets
 - **No Placeholders**: Do NOT use placeholder boxes. Always select and use the most appropriate image asset from the `public/images/` directory.
