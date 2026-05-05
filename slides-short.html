@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>povo Data Oasis × 東京メトロ Short Slides</title>
+  <title>ahamo vs LINEMO 2026年5月最新比較 Short Slides</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet" />
@@ -50,7 +50,7 @@
     }
 
     /* ============================================================
-       SLIDE 1 — Thumbnail (タイトル)
+       SLIDE 1 — Thumbnail (サムネイル)
     ============================================================ */
     .slide-1 {
       background: repeating-radial-gradient(circle at 50% 50%, #ffffff 0%, #f0f7ff 10%, #e6f0ff 20%);
@@ -79,23 +79,24 @@
       align-items: center;
       justify-content: center;
       gap: 26px;
-      padding: 0 30px;
+      padding: 0 50px;
       z-index: 2;
     }
 
     .slide-1 .tag-free {
       background: #e63946;
       color: #fff;
-      font-size: 70px;
+      font-size: 58px;
       font-weight: 900;
       padding: 14px 46px;
       transform: rotate(-3deg);
       box-shadow: 6px 6px 0 #000;
-      letter-spacing: 3px;
+      letter-spacing: 2px;
+      text-align: center;
     }
 
     .slide-1 .main-title {
-      font-size: 90px;
+      font-size: 80px;
       font-weight: 900;
       color: #0052cc;
       text-align: center;
@@ -105,7 +106,7 @@
     }
 
     .slide-1 .sub-title {
-      font-size: 56px;
+      font-size: 50px;
       font-weight: 900;
       color: #fff;
       background: #0052cc;
@@ -115,14 +116,15 @@
       text-align: center;
     }
 
-    .slide-1 .metro-badge {
-      background: #ffe600;
+    .slide-1 .campaign-badge {
+      background: #ffd700;
       color: #000;
-      font-size: 48px;
+      font-size: 44px;
       font-weight: 900;
       padding: 12px 36px;
       transform: rotate(-1.5deg);
       box-shadow: 4px 4px 0 #cc9900;
+      text-align: center;
     }
 
     .slide-1 .illust-bottom {
@@ -138,7 +140,7 @@
     }
 
     /* ============================================================
-       Shared: Standard Slides
+       Shared: Standard Slides (Slide 2〜4)
     ============================================================ */
     .slide-std {
       background: #ffffff;
@@ -256,10 +258,18 @@
       filter: drop-shadow(0 10px 20px rgba(0,0,0,0.10));
     }
 
+    /* Slide 2 専用：ロゴ */
+    .linemo-logo-inline {
+      height: 80px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.12));
+      margin-bottom: 10px;
+    }
+
     /* ============================================================
-       SLIDE 7 — Warning
+       SLIDE 5 — Warning（注意スライド）
     ============================================================ */
-    .slide-7 {
+    .slide-5 {
       background: #fff8f8;
       padding: 50px 60px;
       justify-content: flex-start;
@@ -309,22 +319,22 @@
       line-height: 1.35;
     }
 
-    .slide-7 .shock-illust {
+    .slide-5 .shock-illust {
       position: absolute;
       bottom: 20px;
       right: 28px;
     }
 
-    .slide-7 .shock-illust img {
+    .slide-5 .shock-illust img {
       height: 280px;
       object-fit: contain;
       filter: drop-shadow(0 10px 20px rgba(0,0,0,0.10));
     }
 
     /* ============================================================
-       SLIDE 8 — CTA
+       SLIDE 6 — CTA
     ============================================================ */
-    .slide-8 {
+    .slide-6 {
       background: linear-gradient(135deg, #0052cc, #003380);
       padding: 50px 60px;
       justify-content: flex-start;
@@ -334,7 +344,7 @@
     .cta-logo {
       height: 120px;
       object-fit: contain;
-      filter: drop-shadow(0 4px 16px rgba(0,0,0,0.3));
+      filter: brightness(10) drop-shadow(0 4px 16px rgba(0,0,0,0.3));
       margin-bottom: 26px;
     }
 
@@ -378,199 +388,136 @@
 <body>
 
   <!-- ============================================================
-       SLIDE 1 / 8 — タイトル（サムネイル）
+       SLIDE 1 / 6 — タイトル（サムネイル）
   ============================================================ -->
   <div class="slide-wrapper">
-    <div class="slide-label">SLIDE 1 / 8 — タイトル</div>
+    <div class="slide-label">SLIDE 1 / 6 — タイトル（サムネイル）</div>
     <div class="slide slide-1">
       <div class="logo-area">
-        <img src="public/images/logo/Povo_logo.png" alt="povo2.0" />
+        <img src="public/images/logo/LINEMO_logo.svg" alt="LINEMO" />
       </div>
       <div class="catchphrase-wrapper">
-        <div class="tag-free">月最大1GB 無料</div>
-        <div class="main-title">東京メトロで<br />毎日無料チャージ！</div>
-        <div class="sub-title">povo Data Oasis</div>
-        <div class="metro-badge">🚇 電車に乗るだけ</div>
+        <div class="tag-free">2026年5月最新</div>
+        <div class="main-title">ahamo 2万dポイント<br />vs<br />LINEMO 1.6万PayPay</div>
+        <div class="sub-title">どっちがお得？徹底比較！</div>
+        <div class="campaign-badge">🎁 乗り換えキャンペーン最新情報</div>
       </div>
       <div class="illust-bottom">
-        <img src="public/images/irasutoya/pose_necchuu_smartphone_woman.png" alt="スマホ操作" />
+        <img src="public/images/irasutoya/family_happy_banzai.png" alt="ファミリー万歳" />
       </div>
     </div>
   </div>
 
   <!-- ============================================================
-       SLIDE 2 / 8 — povo無料チャージ解禁
+       SLIDE 2 / 6 — 事務手数料0円
   ============================================================ -->
   <div class="slide-wrapper">
-    <div class="slide-label">SLIDE 2 / 8 — 東京メトロ全駅解禁</div>
+    <div class="slide-label">SLIDE 2 / 6 — 事務手数料0円</div>
     <div class="slide slide-std">
       <div class="big-number">01</div>
-      <div class="slide-title">東京メトロ全駅で<br />povo無料チャージ解禁！</div>
+      <div class="slide-title">事務手数料が今だけ0円！</div>
+      <img class="linemo-logo-inline" src="public/images/logo/LINEMO_logo.svg" alt="LINEMO" style="z-index:1;" />
       <div class="slide-body">
-        <div class="date-badge">📅 2026年4月14日〜</div>
-        <div class="list-item">
-          <span class="emoji">🚇</span>
-          <span>東京メトロ<span class="blue">全駅</span>が対象に！</span>
-        </div>
         <div class="info-box">
-          <div class="box-label">チャージ方法</div>
-          <div class="box-value">アプリでタップするだけ！</div>
+          <div class="box-label">通常の事務手数料</div>
+          <div class="box-value" style="color:#999; text-decoration:line-through;">3,850円</div>
+        </div>
+        <div class="info-box" style="background:#fff0f5; border-left-color:#e63946;">
+          <div class="box-label" style="color:#e63946;">今だけ特別価格</div>
+          <div class="box-value" style="color:#e63946; font-size:80px;">0円！</div>
         </div>
         <div class="list-item">
-          <span class="emoji">💰</span>
-          <span>データが<span class="red">0円</span>でもらえる</span>
+          <span class="emoji">💡</span>
+          <span>これだけでも<span class="red">かなりお得</span>！</span>
         </div>
       </div>
       <div class="slide-illust">
-        <img src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="驚き" />
+        <img src="public/images/irasutoya/money_fueru.png" alt="お金が増える" />
       </div>
     </div>
   </div>
 
   <!-- ============================================================
-       SLIDE 3 / 8 — povo Data Oasisとは
+       SLIDE 3 / 6 — MNP乗り換えで最大16,000PayPayポイント
   ============================================================ -->
   <div class="slide-wrapper">
-    <div class="slide-label">SLIDE 3 / 8 — povo Data Oasisとは</div>
+    <div class="slide-label">SLIDE 3 / 6 — MNP乗り換えで最大16,000PayPayポイント</div>
     <div class="slide slide-std">
       <div class="big-number">02</div>
-      <div class="slide-title">povo Data Oasisとは？</div>
+      <div class="slide-title">MNP乗り換えで<br />最大16,000ptプレゼント！</div>
       <div class="slide-body">
-        <div class="list-item">
-          <span class="emoji">📍</span>
-          <span>対象スポットで<br />povoアプリ内でバナーをタップ</span>
-        </div>
         <div class="info-box">
-          <div class="box-label">チャージ量</div>
-          <div class="box-value"><span class="blue">0.1GB</span>（24時間有効）</div>
+          <div class="box-label">対象プラン</div>
+          <div class="box-value" style="font-size:52px;">ベストプランV（30GB）</div>
+        </div>
+        <div class="highlight-block">
+          <span class="red" style="font-size:1.2em;">最大 16,000</span><br />
+          PayPayポイント付与！
         </div>
         <div class="list-item">
-          <span class="emoji">🎁</span>
-          <span>完全<span class="red">無料</span>でチャージ！</span>
+          <span class="emoji">🏪</span>
+          <span>コンビニ・スーパーでも使える！</span>
         </div>
       </div>
       <div class="slide-illust">
-        <img src="public/images/irasutoya/smartphone_nidaimochi_man.png" alt="スマホ2台持ち" />
+        <img src="public/images/irasutoya/osatsu_money_yamadumi.png" alt="お金の山積み" />
       </div>
     </div>
   </div>
 
   <!-- ============================================================
-       SLIDE 4 / 8 — チャージ上限
+       SLIDE 4 / 6 — 月額・品質・LINEギガフリー
   ============================================================ -->
   <div class="slide-wrapper">
-    <div class="slide-label">SLIDE 4 / 8 — チャージ上限</div>
+    <div class="slide-label">SLIDE 4 / 6 — 月額・品質・LINEギガフリー</div>
     <div class="slide slide-std">
       <div class="big-number">03</div>
-      <div class="slide-title">チャージ上限は？</div>
-      <div class="slide-body">
-        <div style="display:flex; gap:24px; width:100%; z-index:1;">
+      <div class="slide-title">月額2,970円・通信SSランク</div>
+      <div class="slide-body" style="margin-bottom: 120px;">
+        <div style="display:flex; gap:20px; width:100%; z-index:1;">
           <div class="info-box" style="flex:1;">
-            <div class="box-label">1日あたり</div>
-            <div class="box-value" style="font-size:62px;"><span class="blue">1回</span></div>
+            <div class="box-label">月額料金</div>
+            <div class="box-value" style="font-size:58px;"><span class="blue">2,970円</span></div>
           </div>
-          <div class="info-box" style="flex:1;">
-            <div class="box-label">月あたり</div>
-            <div class="box-value" style="font-size:62px;"><span class="blue">10回</span></div>
+          <div class="info-box" style="flex:1; background:#e8ffe8; border-left-color:#00a040;">
+            <div class="box-label" style="color:#00a040;">通信品質</div>
+            <div class="box-value" style="color:#00a040; font-size:72px;">SS</div>
           </div>
+        </div>
+        <div class="list-item">
+          <span class="emoji">💚</span>
+          <span>LINEのトーク・通話は<br /><span class="blue">データ消費ゼロ！</span></span>
         </div>
         <div class="highlight-block">
-          毎月最大 <span class="red" style="font-size:1.15em;">1GB</span> が <span class="red" style="font-size:1.15em;">0円！</span>
-        </div>
-        <div class="list-item">
-          <span class="emoji">📆</span>
-          <span>通勤・通学で毎日チャンス</span>
+          ahamoと同月額で<br /><span class="blue">品質が上</span>！
         </div>
       </div>
       <div class="slide-illust">
-        <img src="public/images/irasutoya/money_fueru.png" alt="お得" />
+        <img src="public/images/irasutoya/pose_anshin_woman.png" alt="安心" />
       </div>
     </div>
   </div>
 
   <!-- ============================================================
-       SLIDE 5 / 8 — 対象路線
+       SLIDE 5 / 6 — 注意事項（Warning）
   ============================================================ -->
   <div class="slide-wrapper">
-    <div class="slide-label">SLIDE 5 / 8 — 対象路線</div>
-    <div class="slide slide-std">
-      <div class="big-number">04</div>
-      <div class="slide-title">対象路線</div>
-      <div class="slide-body">
-        <div class="info-box">
-          <div class="box-label">🚇 東京メトロ</div>
-          <div class="box-value"><span class="blue">全9路線</span> 全駅</div>
-        </div>
-        <div class="list-item">
-          <span class="emoji">✅</span>
-          <span>銀座線・副都心線など全線</span>
-        </div>
-        <div class="list-item">
-          <span class="emoji">✅</span>
-          <span>京成電鉄・相模鉄道も追加！</span>
-        </div>
-        <div class="list-item">
-          <span class="emoji">👥</span>
-          <span>通勤・通学ユーザー<br /><span class="blue">全員チャンスあり</span></span>
-        </div>
-      </div>
-      <div class="slide-illust">
-        <img src="public/images/irasutoya/family_happy_banzai.png" alt="喜び" />
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================================
-       SLIDE 6 / 8 — 0.1GBでできること
-  ============================================================ -->
-  <div class="slide-wrapper">
-    <div class="slide-label">SLIDE 6 / 8 — 0.1GBでできること</div>
-    <div class="slide slide-std">
-      <div class="big-number">05</div>
-      <div class="slide-title">0.1GBでできること</div>
-      <div class="slide-body" style="margin-bottom: 150px;">
-        <div class="list-item">
-          <span class="emoji">💬</span>
-          <span>LINE：約<span class="blue">3万回</span>トーク</span>
-        </div>
-        <div class="list-item">
-          <span class="emoji">🗺️</span>
-          <span>地図アプリ：約<span class="blue">100回</span></span>
-        </div>
-        <div class="list-item">
-          <span class="emoji">🌐</span>
-          <span>Webサイト：約<span class="blue">300ページ</span></span>
-        </div>
-        <div class="highlight-block">
-          普段使いには<span class="blue">十分！</span>
-        </div>
-      </div>
-      <div class="slide-illust">
-        <img src="public/images/irasutoya/sns_happy_woman.png" alt="SNS happy" />
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================================
-       SLIDE 7 / 8 — 知らないと損！（Warning）
-  ============================================================ -->
-  <div class="slide-wrapper">
-    <div class="slide-label">SLIDE 7 / 8 — 知らないと損！</div>
-    <div class="slide slide-7">
-      <div class="warning-banner">⚠️ 知らないと損！</div>
+    <div class="slide-label">SLIDE 5 / 6 — 注意事項</div>
+    <div class="slide slide-5">
+      <div class="warning-banner">⚠️ 申込前に必ずチェック！</div>
       <div class="warning-box">
-        <div class="w-title">povo2.0の基本料金</div>
+        <div class="w-title">⚠️ 注意事項</div>
         <div class="w-item">
-          <span>💴</span>
-          <span>基本料金 <span class="red" style="font-size:1.2em;">月額0円</span></span>
+          <span>📅</span>
+          <span>ポイント付与は<span class="red">7ヶ月後</span>！</span>
         </div>
         <div class="w-item">
-          <span>📱</span>
-          <span>サブ回線として<span class="blue">最強コスパ</span></span>
+          <span>⏰</span>
+          <span>キャンペーン期限：<br /><span class="red">2026年5月10日まで</span></span>
         </div>
         <div class="w-item">
-          <span>🔑</span>
-          <span>Data Oasisで<br /><span class="red">毎月1GB無料</span>ゲット！</span>
+          <span>📋</span>
+          <span>MNP乗り換えが条件</span>
         </div>
       </div>
       <div class="shock-illust">
@@ -580,16 +527,16 @@
   </div>
 
   <!-- ============================================================
-       SLIDE 8 / 8 — CTA
+       SLIDE 6 / 6 — CTA
   ============================================================ -->
   <div class="slide-wrapper">
-    <div class="slide-label">SLIDE 8 / 8 — CTA</div>
-    <div class="slide slide-8">
-      <img class="cta-logo" src="public/images/logo/Povo_logo_背景透過.png" alt="povo2.0" />
-      <div class="cta-title">詳しくは本編で！</div>
-      <div class="cta-sub">チャージ方法・活用術を全解説</div>
+    <div class="slide-label">SLIDE 6 / 6 — CTA</div>
+    <div class="slide slide-6">
+      <img class="cta-logo" src="public/images/logo/LINEMO_logo.svg" alt="LINEMO" />
+      <div class="cta-title">本編で詳しく解説中！</div>
+      <div class="cta-sub">ahamo vs LINEMO 完全比較</div>
       <div class="cta-arrow">▼</div>
-      <img class="cta-banner-img" src="public/images/thumbnails/【月最大1GB無料】povo Data Oasis×東京メトロで毎日0円チャージする方法_サムネ1.png" alt="本編動画をチェック" />
+      <img class="cta-banner-img" src="public/images/slides/今すぐ本編動画をチェック.png" alt="今すぐ本編動画をチェック" />
     </div>
   </div>
 
