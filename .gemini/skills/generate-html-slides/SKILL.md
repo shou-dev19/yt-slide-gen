@@ -30,7 +30,9 @@ To maximize audience retention, use **"Extremely Huge Text Size"** as the standa
     * **2-Column Layout (Split)**: Ensure elements remain large and maintain sufficient whitespace.
       `.split { display: flex; width: 100%; justify-content: space-around; align-items: center; }`
       `.split-col { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 20px; }`
+    * **Icon-only left column**: When the left `split-col` contains **only** a FontAwesome icon (no text below it), set `style="flex: 0.5"` on that column. This narrows the icon column and gives the right text column more horizontal room. Do NOT add a `<p>` label beneath a standalone icon — the right-column text already provides the explanation.
     * **Tables**: Base font size **50px**. Ensure rows do not overflow the 720px height. Adjust padding and font size meticulously if there are many rows.
+    * **Dense table headers**: When a table has **4 or more columns** or tight vertical space, add `padding: 4px 8px` to every `<th>` to prevent header-row overflow.
     * **Overflow Prevention**: Calculate margins and image `max-height` carefully to ensure all elements (H2, images, tables, lists) fit perfectly within the vertical bounds.
 
 4. **Flex List Items — Critical Text Wrapping Rule (Mandatory)**
@@ -67,13 +69,26 @@ To maximize audience retention, use **"Extremely Huge Text Size"** as the standa
 
     Aim for roughly equal visual line lengths. Do not break mid-word or in a way that separates a number from its unit.
 
+    **Apply `<br>` in all contexts at 46px+**, including:
+    * `terop-box` text — break at every ~20 characters or at logical phrase boundaries
+    * `<td>` cells in tables — break at natural phrase boundaries when text exceeds ~15 characters
+    * `<span>` inside list items — break before accent-colored sub-phrases when the combined line would be too long
+
+    **Carrier/service name abbreviations**: Always use full names in slide text. Never abbreviate:
+    * ❌ `SB` → ✅ `ソフトバンク`
+    * ❌ `ドコモ系` when the full name fits → ✅ `ドコモ`
+    * ❌ `楽天` (without `モバイル` when referring to the carrier) → ✅ `楽天モバイル`
+
 6. **Image Selection & Asset Rules**
-    * **No Placeholders**: Do NOT use `<Placeholder>` tags. Select and use the most appropriate existing image from `public/images/` (subdirectories: `common`, `irasutoya`, `logo`, `charts`) based on the script context.
-    * **Selection Logic**: Refer to `public/images/GEMINI.md` for mapping:
-        * **Logos**: Use `public/images/logo/` for service mentions (ahamo, LINEMO, etc.).
-        * **Concepts**: Use `public/images/common/` for conceptual explanations (e.g., congestion, road metaphors).
-        * **Emotions/Situations**: Use `public/images/irasutoya/` for reactions (e.g., shock, joy, saving money).
-        * **Charts**: Use `public/images/charts/` or `common/` for price tables and speed comparisons.
+    * **No Placeholders**: Do NOT use `<Placeholder>` tags. Select and use the most appropriate existing image from `public/images/` (subdirectories: `common`, `irasutoya`, `logo`, `charts`, `temp`, `thumbnails`) based on the script context.
+    * **Selection Priority (highest to lowest)**:
+        1. **`public/images/temp/<carrier>/`**: Campaign banners, third-party reference screenshots, or any image that directly depicts the content being described. **Always prefer this over a generic logo or icon when a matching file exists.** (e.g., a povo Data Oasis banner slide should use `temp/povo/povo_data_oasis_バナー.png`, not a Lawson icon; a mineo campaign slide should use `temp/mineo/mineo_キャンペーンバナー.png`).
+        2. **`public/images/slides/`**: Standard pre-made slides (see table below). Always use these for matching topics.
+        3. **`public/images/thumbnails/`**: Related video CTA slides and デュアルSIM promotion slides (see rules 8 and 10 below).
+        4. **`public/images/logo/`**: Service logos for carrier introduction slides.
+        5. **`public/images/irasutoya/`**: Character illustrations for emotion/situation slides.
+        6. **`public/images/common/`** or **`public/images/charts/`**: Conceptual diagrams and speed/price charts.
+    * **Refer to `public/images/GEMINI.md`** for full file listings within each subdirectory.
     * **Image Styling**: Use `max-height: 500px; max-width: 100%; object-fit: contain;`. Apply `filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1))` for visibility.
     * **Full-Screen Images**: For charts or notice slides, use the `.fullscreen-img` class.
       `.fullscreen-img { width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; position: absolute; top: 0; left: 0; z-index: 10; }`
@@ -102,13 +117,58 @@ To maximize audience retention, use **"Extremely Huge Text Size"** as the standa
         * **Tables**: If tables overflow, reduce cell font size down to a minimum of **30px**. If it still overflows, consider splitting the content into two slides.
     * **Whitespace**: Adjust `padding` or `gap` to ensure elements are not too close to the borders, but also maximize use of available space — do not leave large empty areas.
 
-8. **Last Slide (CTA) — Thumbnail Requirement (Mandatory)**
+8. **"当チャンネル評価" (Radar Chart) Slides — Mandatory Rules**
+
+    When generating a carrier/MVNO evaluation slide that shows a radar chart:
+
+    * **Chart image only** — embed the chart using `height: 540px; object-fit: contain;` (use `height`, not `max-height`). Do **not** add a row of evaluation badges (`ss-badge`, `a-badge`, etc.) below the chart. The radar chart image already contains all evaluation information; duplicating it as badges wastes space and creates visual clutter.
+    * **Correct**:
+      ```html
+      <img src="public/images/charts/mineo.png" style="height: 540px; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));" alt="mineoレーダーチャート">
+      ```
+    * **Wrong** (do not generate):
+      ```html
+      <img src="public/images/charts/mineo.png" style="max-height: 380px; max-width: 100%; ...">
+      <div style="display: flex; gap: 16px; ...">
+        <span class="ss-badge">料金 SS</span>
+        <span class="a-badge">通信品質 A</span>
+        ...
+      </div>
+      ```
+
+9. **"過去動画" / Related Video CTA Slides — Thumbnail Requirement (Mandatory)**
+
+    When a slide promotes a past video of the channel (e.g., "〇〇の過去動画もチェック！"), use the actual **thumbnail image** from `public/images/thumbnails/` — **never** a generic icon such as `fa-play-circle`.
+
+    * Select the best-matching file from `public/images/thumbnails/` by partial keyword match on the carrier or topic name.
+    * Embed at `max-height: 540px; object-fit: contain;`.
+    * Similarly, for slides that promote a related topic (e.g., デュアルSIM運用, 2枚持ち), use the matching thumbnail instead of assembling a logo collage with `+` icons.
+
+    ```html
+    <!-- CORRECT -->
+    <img src="public/images/thumbnails/【2026年最新】月額660円で実質使い放題！mineoの最強キャンペーンを徹底解説.png"
+         style="max-height: 540px; object-fit: contain;" alt="mineo過去動画">
+    <div class="terop-box" style="font-size: 54px;">
+      mineoの<span style="color: var(--accent-yellow);">過去動画</span>もチェック！
+    </div>
+
+    <!-- WRONG — do not use a generic icon -->
+    <i class="fa-solid fa-play-circle" style="font-size: 150px; color: var(--accent-red);"></i>
+    ```
+
+10. **Carrier Logo Sizing in Introduction / Detail Slides**
+
+    In 2-column split slides where a carrier logo appears in the left `split-col` alongside a badge label below it:
+    * Use a **fixed** `height: 80px` on the `<img>` (not `max-height: 140px; max-width: 380px`). This prevents the logo from dominating the column and ensures the badge label below it remains visible.
+    * Example: `<img src="public/images/logo/LINEMO_logo.png" style="height: 80px; object-fit: contain;" alt="LINEMO">`
+
+11. **Last Slide (CTA) — Thumbnail Requirement (Mandatory)**
     * The final slide **must** include the thumbnail image of the main (long-form) video that the short is promoting.
     * Determine the main video title from the `スライドに表示する内容` column of the last row in `台本.txt` (the title appears in parentheses, e.g., `(【2026年最新】事務手数料0円で始める格安SIM4社を徹底比較！)`).
     * Select the best-matching file from `public/images/thumbnails/` based on the title (partial keyword match is acceptable).
     * Embed the thumbnail using `<img src="public/images/thumbnails/[filename]" ...>` in the CTA slide. Do **not** omit or use a placeholder.
 
-9. **Output Format Requirements**
+12. **Output Format Requirements**
     * Output as a single HTML file containing all slides (div elements).
     * Use `body { display: flex; flex-direction: column; gap: 40px; }` to display all `.slide-container` elements vertically.
     * Add `<!-- Slide ID: XX -->` before each slide's HTML to map it to the script.
