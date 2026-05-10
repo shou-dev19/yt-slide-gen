@@ -57,10 +57,12 @@ async function main() {
     console.log(`Loading: ${fileUrl} (Mode: ${mode})`);
     await page.goto(fileUrl, { waitUntil: 'networkidle0' });
 
-    // Wait for fonts to load
-    await page.evaluate(async () => {
-        await document.fonts.ready;
-    });
+    // Wait for fonts to load. Google Fonts may fail to load from file:// (CORS),
+    // so we race against a 3s timeout to avoid hanging on a failed font fetch.
+    await Promise.race([
+        page.evaluate(async () => { await document.fonts.ready; }),
+        new Promise(resolve => setTimeout(resolve, 3000)),
+    ]);
 
     // Ensure all images are decoded and rendered before proceeding
     await page.evaluate(async () => {
