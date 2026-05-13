@@ -10,6 +10,7 @@ When generating HTML slides for YouTube shorts from a script (e.g., `台本.txt`
 
 ## 1. Output Format & Structure
 - **Output File**: Default to `slides-short.html` unless specified otherwise.
+- **Slide Class**: Every slide `<div>` **must** use the class `slide-container`. The capture script (`capture_slides_html.js`) locates slides by querying `.slide-container`, so any slide missing this class will be skipped.
 - **Aspect Ratio**: 1:1 (`width: 1080px; height: 1080px;`).
 - **Layout**: Center content, use flexbox (`flex-row`, `flex-col`).
 - **Base Color scheme**: Trustworthy Blue (`#0052cc`), White (`#ffffff`), and Red (`#e63946`) for emphasis. Background outside slides: `#f0f4f8`. Slide background: `#ffffff`.
