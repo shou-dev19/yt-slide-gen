@@ -87,40 +87,179 @@
 
         /* Slide 1: Thumbnail */
         .slide-thumbnail {
-            background: repeating-radial-gradient(circle at 50% 50%, #ffffff 0%, #f0f7ff 10%, #e6f0ff 20%);
+            background:
+                repeating-conic-gradient(from 0deg at 52% 48%, rgba(0,82,204,0.06) 0deg 2.5deg, transparent 2.5deg 16deg),
+                radial-gradient(ellipse at 52% 48%, #ffffff 5%, #e8f3ff 45%, #c8dcff 100%);
             border: 25px solid var(--blue);
             justify-content: center;
             align-items: center;
             text-align: center;
+            padding-top: 80px;
+            padding-bottom: 200px;
+        }
+
+        .thumb-top-strip {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            right: 25px;
+            background: var(--blue);
+            color: #fff;
+            font-size: 36px;
+            font-weight: 900;
+            padding: 18px 0;
+            text-align: center;
+            letter-spacing: 0.06em;
+            z-index: 3;
+        }
+
+        .thumb-accent-tri {
+            position: absolute;
+            width: 0;
+            height: 0;
+            z-index: 1;
+        }
+
+        .thumb-accent-tri.tl {
+            top: 25px;
+            left: 25px;
+            border-top: 300px solid rgba(0, 82, 204, 0.09);
+            border-right: 300px solid transparent;
+        }
+
+        .thumb-accent-tri.br {
+            bottom: 25px;
+            right: 25px;
+            border-bottom: 300px solid rgba(0, 82, 204, 0.09);
+            border-left: 300px solid transparent;
         }
 
         .thumb-tag {
             background-color: var(--red);
             color: var(--white);
-            font-size: 70px;
+            font-size: 80px;
             font-weight: 900;
-            padding: 14px 46px;
+            padding: 18px 54px;
             transform: rotate(-3deg);
-            box-shadow: 6px 6px 0 #000;
-            margin-bottom: 40px;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.25);
+            margin-bottom: 28px;
+            letter-spacing: 0.05em;
         }
 
         .thumb-main-title {
-            font-size: 90px;
+            font-size: 80px;
             font-weight: 900;
             color: var(--text-dark);
-            line-height: 1.2;
-            margin-bottom: 40px;
+            line-height: 1.25;
+            margin-bottom: 22px;
             max-width: 900px;
+        }
+
+        .thumb-rank-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 28px;
+            z-index: 2;
+        }
+
+        .rank-num-big {
+            font-size: 150px;
+            font-weight: 900;
+            color: var(--red);
+            line-height: 1;
+            font-style: italic;
+            text-shadow: 6px 6px 0 rgba(180, 0, 0, 0.18);
+        }
+
+        .rank-denom-block {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+            border-left: 6px solid var(--red);
+            padding-left: 16px;
+        }
+
+        .rank-over-label {
+            font-size: 44px;
+            font-weight: 900;
+            color: var(--text-dark);
+        }
+
+        .rank-pos-label {
+            font-size: 50px;
+            font-weight: 900;
+            color: var(--red);
         }
 
         .thumb-sub-band {
             background-color: var(--blue);
             color: var(--white);
-            font-size: 56px;
+            font-size: 60px;
             font-weight: 700;
-            padding: 14px 60px;
-            border-radius: 10px;
+            padding: 18px 70px;
+            border-radius: 12px;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+        }
+
+        /* Slide 2 Enhanced Info Cards */
+        .report-header-card {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            background: linear-gradient(135deg, var(--blue) 0%, #003fa0 100%);
+            color: #fff;
+            border-radius: 20px;
+            padding: 28px 36px;
+        }
+
+        .rhc-icon {
+            font-size: 64px;
+            flex-shrink: 0;
+        }
+
+        .rhc-text {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .rhc-title {
+            font-size: 44px;
+            font-weight: 900;
+        }
+
+        .rhc-sub {
+            font-size: 32px;
+            font-weight: 700;
+            opacity: 0.85;
+        }
+
+        .info-card {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            padding: 22px 32px;
+            border-radius: 0 16px 16px 0;
+            font-size: 46px;
+            font-weight: 700;
+            background: #f0f5ff;
+            border-left: 14px solid var(--blue);
+        }
+
+        .info-card.alert {
+            background: #fff0f0;
+            border-left-color: var(--red);
+            color: var(--red);
+            font-size: 50px;
+            font-weight: 900;
+        }
+
+        .info-card .emoji {
+            font-size: 52px;
+            flex-shrink: 0;
         }
 
         /* Slide Body Elements */
@@ -158,6 +297,24 @@
             min-width: 80px;
         }
 
+        .rank-num-badge {
+            min-width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: 900;
+            flex-shrink: 0;
+            color: #fff;
+            letter-spacing: -0.02em;
+        }
+        .rank-num-badge.r1 { background: linear-gradient(135deg, #ffd700, #e6a800); box-shadow: 3px 3px 0 rgba(0,0,0,0.15); }
+        .rank-num-badge.r2 { background: linear-gradient(135deg, #b0b8c8, #7a8799); box-shadow: 3px 3px 0 rgba(0,0,0,0.15); }
+        .rank-num-badge.r3 { background: linear-gradient(135deg, #cd7f32, #9a5a1a); box-shadow: 3px 3px 0 rgba(0,0,0,0.15); }
+        .rank-num-badge.r4 { background: linear-gradient(135deg, #e63946, #b0001e); box-shadow: 3px 3px 0 rgba(0,0,0,0.15); }
+
         .rank-logo {
             height: 80px;
             width: 250px;
@@ -191,6 +348,56 @@
             align-items: center;
             gap: 20px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .recommend-card.highlighted {
+            border: 8px solid var(--blue);
+            transform: scale(1.08);
+            box-shadow: 0 20px 50px rgba(0,82,204,0.32);
+            background: linear-gradient(155deg, #eaf3ff, #d4e8ff);
+            z-index: 4;
+        }
+
+        .recommend-card.dimmed {
+            opacity: 0.22;
+            filter: grayscale(55%);
+        }
+
+        .card-spotlight-tag {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--blue);
+            color: #fff;
+            font-size: 24px;
+            font-weight: 900;
+            padding: 6px 22px;
+            border-radius: 30px;
+            white-space: nowrap;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
+            z-index: 5;
+        }
+
+        .slide-progress {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            margin: -25px 60px 20px;
+        }
+
+        .progress-dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #c0cce0;
+        }
+
+        .progress-dot.active {
+            background: var(--blue);
+            width: 26px;
+            height: 26px;
         }
 
         .card-logo {
@@ -225,7 +432,7 @@
             margin: 60px;
             border: 10px solid var(--red);
             background-color: #fff0f0;
-            padding: 40px;
+            padding: 30px;
             border-radius: 20px;
             display: flex;
             flex-direction: column;
@@ -296,7 +503,10 @@
 
     <!-- Slide 1: Thumbnail -->
     <div class="slide-container slide-thumbnail">
-        <div class="thumb-tag">最下位！</div>
+        <div class="thumb-top-strip">⚡ 2026年4月 Opensignal社調査 ⚡</div>
+        <div class="thumb-accent-tri tl"></div>
+        <div class="thumb-accent-tri br"></div>
+        <div class="thumb-tag">衝撃！</div>
         <h1 class="thumb-main-title">ドコモの通信品質が<br>4キャリア中最下位</h1>
         <div class="thumb-sub-band">乗り換え先4選</div>
         <div class="slide-illust">
@@ -309,14 +519,21 @@
         <div class="watermark">2</div>
         <h2 class="slide-title">Opensignal最新レポート</h2>
         <div class="slide-body">
-            <div class="list-item">
-                <span class="emoji">📊</span> 「一貫した品質」部門
+            <div class="report-header-card">
+                <span class="rhc-icon">📡</span>
+                <div class="rhc-text">
+                    <span class="rhc-title">Opensignal 調査レポート</span>
+                    <span class="rhc-sub">2026年4月版 日本市場分析</span>
+                </div>
             </div>
-            <div class="list-item">
-                <span class="emoji">⚡</span> ドコモが4キャリア中最下位
+            <div class="info-card">
+                <span class="emoji">📊</span>「一貫した品質」部門を分析
             </div>
-            <div class="list-item">
-                <span class="emoji">📅</span> 2026年4月版レポート
+            <div class="info-card alert">
+                <span class="emoji">⚡</span>ドコモが4キャリア中最下位！
+            </div>
+            <div class="info-card">
+                <span class="emoji">📅</span>最新2026年4月版
             </div>
         </div>
         <div class="slide-illust">
@@ -331,55 +548,170 @@
         <div class="slide-body">
             <div class="ranking-container">
                 <div class="rank-item">
-                    <span class="rank-badge">🥇</span>
+                    <span class="rank-num-badge r1">1位</span>
                     <img src="public/images/logo/au_logo.png" class="rank-logo" alt="au">
                 </div>
                 <div class="rank-item">
-                    <span class="rank-badge">🥈</span>
+                    <span class="rank-num-badge r2">2位</span>
                     <img src="public/images/logo/Softbank_logo.png" class="rank-logo" alt="SoftBank">
                 </div>
                 <div class="rank-item">
-                    <span class="rank-badge">🥈</span>
+                    <span class="rank-num-badge r3">3位</span>
                     <img src="public/images/logo/Rakuten_Mobile_logo.svg" class="rank-logo" alt="Rakuten">
                 </div>
                 <div class="rank-item" style="border-left-color: var(--red);">
-                    <span class="rank-badge">🥉</span>
+                    <span class="rank-num-badge r4">4位</span>
                     <img src="public/images/logo/docomo_logo.png" class="rank-logo" alt="docomo">
                     <span class="rank-text rank-worst">最下位</span>
                 </div>
             </div>
         </div>
         <div class="slide-illust">
-            <img src="public/images/irasutoya/seikyuusyo_shock.png" height="260" alt="請求書に驚く">
+            <img src="public/images/irasutoya/smartphone_speed_5g.png" height="260" alt="通信速度">
         </div>
     </div>
 
-    <!-- Slide 4: Recommendations -->
+    <!-- Slide 4-1: mineo highlight -->
     <div class="slide-container">
         <div class="watermark">4</div>
-        <h2 class="slide-title">おすすめ乗り換え先4選</h2>
+        <h2 class="slide-title">乗り換え先① mineo</h2>
+        <div class="slide-progress">
+            <span class="progress-dot active"></span>
+            <span class="progress-dot"></span>
+            <span class="progress-dot"></span>
+            <span class="progress-dot"></span>
+        </div>
         <div class="slide-body" style="margin-bottom: 120px;">
             <div class="recommend-grid">
-                <div class="recommend-card">
+                <div class="recommend-card highlighted">
+                    <span class="card-spotlight-tag">コスパ最強！</span>
                     <img src="public/images/logo/Mineo_logo_背景削除.png" class="card-logo" alt="mineo">
                     <div class="card-desc">月660円〜</div>
                 </div>
-                <div class="recommend-card">
+                <div class="recommend-card dimmed">
                     <img src="public/images/logo/Povo_logo_背景透過.png" class="card-logo" alt="povo2.0">
                     <div class="card-desc">月0円〜</div>
                 </div>
-                <div class="recommend-card">
+                <div class="recommend-card dimmed">
                     <img src="public/images/logo/LINEMO_logo.svg" class="card-logo" alt="LINEMO">
                     <div class="card-desc">LINE使い放題</div>
                 </div>
-                <div class="recommend-card">
+                <div class="recommend-card dimmed">
                     <img src="public/images/logo/Rakuten_Mobile_logo.svg" class="card-logo" alt="楽天モバイル">
                     <div class="card-desc">通話無料</div>
                 </div>
             </div>
         </div>
         <div class="slide-illust" style="z-index: 10;">
-            <img src="public/images/irasutoya/pose_anshin_woman.png" height="260" alt="安心する女性">
+            <img src="public/images/irasutoya/smartphone_nidaimochi_man.png" height="260" alt="二台持ち男性">
+        </div>
+    </div>
+
+    <!-- Slide 4-2: povo highlight -->
+    <div class="slide-container">
+        <div class="watermark">4</div>
+        <h2 class="slide-title">乗り換え先② povo2.0</h2>
+        <div class="slide-progress">
+            <span class="progress-dot"></span>
+            <span class="progress-dot active"></span>
+            <span class="progress-dot"></span>
+            <span class="progress-dot"></span>
+        </div>
+        <div class="slide-body" style="margin-bottom: 120px;">
+            <div class="recommend-grid">
+                <div class="recommend-card dimmed">
+                    <img src="public/images/logo/Mineo_logo_背景削除.png" class="card-logo" alt="mineo">
+                    <div class="card-desc">月660円〜</div>
+                </div>
+                <div class="recommend-card highlighted">
+                    <span class="card-spotlight-tag">基本料¥0！</span>
+                    <img src="public/images/logo/Povo_logo_背景透過.png" class="card-logo" alt="povo2.0">
+                    <div class="card-desc">月0円〜</div>
+                </div>
+                <div class="recommend-card dimmed">
+                    <img src="public/images/logo/LINEMO_logo.svg" class="card-logo" alt="LINEMO">
+                    <div class="card-desc">LINE使い放題</div>
+                </div>
+                <div class="recommend-card dimmed">
+                    <img src="public/images/logo/Rakuten_Mobile_logo.svg" class="card-logo" alt="楽天モバイル">
+                    <div class="card-desc">通話無料</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-illust" style="z-index: 10;">
+            <img src="public/images/irasutoya/smartphone_nidaimochi_man.png" height="260" alt="二台持ち男性">
+        </div>
+    </div>
+
+    <!-- Slide 4-3: LINEMO highlight -->
+    <div class="slide-container">
+        <div class="watermark">4</div>
+        <h2 class="slide-title">乗り換え先③ LINEMO</h2>
+        <div class="slide-progress">
+            <span class="progress-dot"></span>
+            <span class="progress-dot"></span>
+            <span class="progress-dot active"></span>
+            <span class="progress-dot"></span>
+        </div>
+        <div class="slide-body" style="margin-bottom: 120px;">
+            <div class="recommend-grid">
+                <div class="recommend-card dimmed">
+                    <img src="public/images/logo/Mineo_logo_背景削除.png" class="card-logo" alt="mineo">
+                    <div class="card-desc">月660円〜</div>
+                </div>
+                <div class="recommend-card dimmed">
+                    <img src="public/images/logo/Povo_logo_背景透過.png" class="card-logo" alt="povo2.0">
+                    <div class="card-desc">月0円〜</div>
+                </div>
+                <div class="recommend-card highlighted">
+                    <span class="card-spotlight-tag">LINEギガフリー！</span>
+                    <img src="public/images/logo/LINEMO_logo.svg" class="card-logo" alt="LINEMO">
+                    <div class="card-desc">LINE使い放題</div>
+                </div>
+                <div class="recommend-card dimmed">
+                    <img src="public/images/logo/Rakuten_Mobile_logo.svg" class="card-logo" alt="楽天モバイル">
+                    <div class="card-desc">通話無料</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-illust" style="z-index: 10;">
+            <img src="public/images/irasutoya/smartphone_nidaimochi_man.png" height="260" alt="二台持ち男性">
+        </div>
+    </div>
+
+    <!-- Slide 4-4: 楽天モバイル highlight -->
+    <div class="slide-container">
+        <div class="watermark">4</div>
+        <h2 class="slide-title">乗り換え先④ 楽天モバイル</h2>
+        <div class="slide-progress">
+            <span class="progress-dot"></span>
+            <span class="progress-dot"></span>
+            <span class="progress-dot"></span>
+            <span class="progress-dot active"></span>
+        </div>
+        <div class="slide-body" style="margin-bottom: 120px;">
+            <div class="recommend-grid">
+                <div class="recommend-card dimmed">
+                    <img src="public/images/logo/Mineo_logo_背景削除.png" class="card-logo" alt="mineo">
+                    <div class="card-desc">月660円〜</div>
+                </div>
+                <div class="recommend-card dimmed">
+                    <img src="public/images/logo/Povo_logo_背景透過.png" class="card-logo" alt="povo2.0">
+                    <div class="card-desc">月0円〜</div>
+                </div>
+                <div class="recommend-card dimmed">
+                    <img src="public/images/logo/LINEMO_logo.svg" class="card-logo" alt="LINEMO">
+                    <div class="card-desc">LINE使い放題</div>
+                </div>
+                <div class="recommend-card highlighted">
+                    <span class="card-spotlight-tag">通話かけ放題！</span>
+                    <img src="public/images/logo/Rakuten_Mobile_logo.svg" class="card-logo" alt="楽天モバイル">
+                    <div class="card-desc">通話無料</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-illust" style="z-index: 10;">
+            <img src="public/images/irasutoya/smartphone_nidaimochi_man.png" height="260" alt="二台持ち男性">
         </div>
     </div>
 
