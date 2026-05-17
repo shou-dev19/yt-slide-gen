@@ -6,7 +6,7 @@
 
 ### `public/images/logo/`
 格安SIM各社およびキャリアのロゴ。
-- `Ahamo_logo.svg`, `LINEMO_logo.svg`, `Povo_logo.svg`, `Rakuten_Mobile_logo.svg`, `Y!mobile.svg`, `hismobile_logo.svg`, `nuromobile_logo.png`, `iijmio_logo.png`, `aeonmobile_logo.png` など。
+- `Ahamo_logo.png`, `LINEMO_logo.png`, `Povo_logo_背景透過.png`, `Rakuten_Mobile_logo.png`, `Y!mobile.png`, `hismobile_logo.png`, `nuromobile_logo.png`, `iijmio_logo.png`, `aeonmobile_logo.png`, `nihon_tsushin.jpg` など。
 
 ### `public/images/charts/`
 各社の速度計測結果やプラン比較などのチャート。
