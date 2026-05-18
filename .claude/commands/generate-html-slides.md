@@ -158,7 +158,7 @@ To maximize audience retention, use **"Extremely Huge Text Size"** as the standa
     <img src="public/images/thumbnails/【2026年最新】月額660円で実質使い放題！mineoの最強キャンペーンを徹底解説.png"
          style="max-height: 540px; object-fit: contain;" alt="mineo過去動画">
     <div class="terop-box" style="font-size: 54px;">
-      mineoの<span style="color: var(--accent-yellow);">過去動画</span>もチェック！
+      mineoの<span style="color: var(--accent-red);">過去動画</span>もチェック！
     </div>
 
     <!-- WRONG — do not use a generic icon -->

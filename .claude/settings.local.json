@@ -13,7 +13,8 @@
       "Bash(chromium --headless --no-sandbox --screenshot=/tmp/slide4.png --window-size=1200,6000 \"http://localhost:5173/slides-short.html\")",
       "Bash(chromium --headless --no-sandbox --screenshot=/tmp/slide4_zoom.png --window-size=1200,1400 --virtual-time-budget=2000 \"http://localhost:5173/slides-short.html#slide4\")",
       "Bash(chromium --headless --no-sandbox --screenshot=/tmp/s41_full.png --window-size=1200,5500 \"http://localhost:5173/slides-short.html\")",
-      "Bash(convert /tmp/s41_full.png -crop 1200x1200+0+3300 /tmp/s41_crop.png)"
+      "Bash(convert /tmp/s41_full.png -crop 1200x1200+0+3300 /tmp/s41_crop.png)",
+      "Bash(python3 *)"
     ]
   },
   "enabledMcpjsonServers": [
