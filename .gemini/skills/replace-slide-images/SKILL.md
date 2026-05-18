@@ -1,1 +1,0 @@
-../../../.claude/commands/replace-slide-images.md

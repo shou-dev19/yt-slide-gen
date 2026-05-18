@@ -1,1 +1,0 @@
-../../../.claude/commands/generate-slides.md
