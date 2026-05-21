@@ -32,7 +32,7 @@ background:
     repeating-conic-gradient(from 0deg at 52% 48%, rgba(0,82,204,0.06) 0deg 2.5deg, transparent 2.5deg 16deg),
     radial-gradient(ellipse at 52% 48%, #ffffff 5%, #e8f3ff 45%, #c8dcff 100%);
 ```
-Add a `25px solid #0052cc` border and `padding-top: 80px; padding-bottom: 300px;` to center content in the upper zone and prevent overlap with the bottom-right illustration.
+Add a `25px solid #0052cc` border and `padding-top: 160px; padding-bottom: 300px;` to center content in the upper zone and prevent overlap with the bottom-right illustration. **`padding-top` must be at least `140px`** — the `thumb-top-strip` is absolute-positioned at `top: 25px` with `font-size: 36px` and `padding: 18px 0`, so it occupies roughly `25px → 115px` from the top edge; anything less than `140px` causes the first flex child (e.g. `.thumb-tag`) to overlap the strip.
 
 **Top announcement strip**: Always add a full-width blue band just inside the border:
 ```css
@@ -217,6 +217,7 @@ When a slide presents N selectable options (e.g., 乗り換え先4選), **split 
 - **Fallbacks**: If no specific image matches, use a relevant generic illustration from `public/images/irasutoya/` or `public/images/common/`. Do NOT leave images empty.
 
 ## 5. Self-Check & Adjustment (Critical)
+- **Thumbnail strip/content overlap**: Verify that no flex child on the thumbnail slide (`.thumb-tag`, main title, sub-band, etc.) overlaps with `.thumb-top-strip`. The strip sits at `top: 25px` and is ~90px tall, ending at roughly `y = 115px`. `.slide-thumbnail` must have `padding-top ≥ 140px` so the first child starts below the strip. If overlap is detected, increase `padding-top` (not the strip's `top`) until the gap is clear.
 - **Overflow Check**: Before final generation, strictly verify that all text and images fit entirely within the `1080px × 1080px` container.
 - **Illustration overlap prevention**: The bottom-right illustration (`position: absolute; bottom: 40px; right: 40px; height: ~260–290px`) occupies roughly the bottom 330px of the slide. On Slide 1, `padding-bottom: 300px` handles this automatically. On other slides, add `style="margin-bottom: 120px;"` to `.slide-body` whenever body content would otherwise extend into that zone.
 - **Automatic Adjustment Rules**:

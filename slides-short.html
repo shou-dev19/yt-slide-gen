@@ -178,7 +178,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding-top: 80px;
+            padding-top: 200px;
             padding-bottom: 300px;
         }
 
@@ -258,21 +258,37 @@
         }
 
         .thumb-logo-area {
-            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            z-index: 2;
+            transform: translate(-140px, 40px);
+        }
+
+        .thumb-logo-row1 {
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 2;
+            gap: 28px;
         }
 
         .thumb-logo-area img {
-            height: 120px;
+            height: 80px;
             filter: drop-shadow(0 4px 12px rgba(0,0,0,0.12));
+        }
+
+        .thumb-logo-divider {
+            width: 4px;
+            height: 70px;
+            background: #c0cce0;
+            border-radius: 2px;
+            flex-shrink: 0;
         }
 
         .thumb-illust {
             position: absolute;
-            bottom: 40px;
+            bottom: 30px;
             right: 50px;
             height: 280px;
             z-index: 2;
@@ -476,7 +492,7 @@
         }
 
         .cta-banner-img {
-            width: 920px;
+            width: 800px;
             border-radius: 16px;
             box-shadow: 0 12px 40px rgba(0,0,0,0.4);
             filter: none;
@@ -489,7 +505,6 @@
      SLIDE 1 (スライドID: 1) — サムネイル
      ========================================================== -->
 <div class="slide-container slide-thumbnail">
-    <div class="thumb-top-strip">⭐ 2026年最新 長期利用でお得な格安SIM特集 ⭐</div>
     <div class="thumb-accent-tri tl"></div>
     <div class="thumb-accent-tri br"></div>
 
@@ -502,7 +517,12 @@
     <div class="thumb-sub-band">長く使うほど特典が増える！</div>
 
     <div class="thumb-logo-area">
-        <img src="public/images/logo/Mineo_logo_背景削除.png" alt="mineo">
+        <div class="thumb-logo-row1">
+            <img src="public/images/logo/Mineo_logo_背景削除.png" alt="mineo">
+            <div class="thumb-logo-divider"></div>
+            <img src="public/images/logo/iijmio_logo.png" alt="IIJmio">
+        </div>
+        <img src="public/images/logo/Rakuten_Mobile_logo.png" alt="楽天モバイル">
     </div>
 
     <div class="thumb-illust">
@@ -550,7 +570,6 @@
 
     <div class="slide-body" style="margin-bottom: 120px;">
         <div class="mineo-logo-row">
-            <img src="public/images/logo/Mineo_logo_背景削除.png" alt="mineo">
             <span>mineo（マイネオ）</span>
         </div>
         <div class="info-card">
@@ -579,7 +598,7 @@
     <div class="slide-body" style="margin-bottom: 120px;">
         <div class="info-card alert">
             <span class="card-icon">🎁</span>
-            <span>1年以上継続で<br>毎年「mineoコイン」プレゼント！</span>
+            <span>1年以上継続で<br>毎年「mineoコイン」<br>プレゼント！</span>
         </div>
         <div class="info-card">
             <span class="card-icon">📆</span>
@@ -650,7 +669,7 @@
             </div>
             <div class="carrier-badge">
                 <img src="public/images/logo/Softbank_logo.png" alt="ソフトバンク">
-                <span class="carrier-name">SB回線</span>
+                <span class="carrier-name">ソフトバンク回線</span>
             </div>
         </div>
 
@@ -670,7 +689,6 @@
      SLIDE 7 (スライドID: 7) — CTA（本編動画をチェック）
      ========================================================== -->
 <div class="slide-container slide-cta">
-    <img class="cta-logo" src="public/images/logo/Mineo_logo_背景削除.png" alt="mineo">
     <div class="cta-title">本編動画で<br>3社の長期特典を<br>徹底比較！</div>
     <div class="cta-sub">
         mineo・IIJmio・楽天モバイル<br>どこが一番お得？
@@ -678,7 +696,7 @@
     <div class="cta-arrow">↓</div>
     <img
         class="cta-banner-img"
-        src="public/images/thumbnails/【2026年最新】長期利用特典が手厚い格安SIM3選_サムネ1.png"
+        src="public/images/thumbnails/【2026年最新】長期利用特典が手厚い格安SIM3選_サムネ2.png"
         alt="本編動画サムネイル"
     >
 </div>
