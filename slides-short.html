@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Short Slides - Docomo Quality Down</title>
+    <title>Long-term SIM Benefits - Short Slides</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --blue: #0052cc;
+            --blue-dark: #003fa0;
             --white: #ffffff;
             --red: #e63946;
-            --text-dark: #1a1a1a;
+            --text-dark: #001a52;
             --bg-outside: #f0f4f8;
         }
 
@@ -27,21 +28,32 @@
             flex-direction: column;
             align-items: center;
             padding: 40px 0;
+            gap: 0;
         }
 
+        /* ===================================
+           SHARED: slide-container
+           =================================== */
         .slide-container {
             width: 1080px;
             height: 1080px;
-            background-color: var(--white);
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             margin-bottom: 60px;
+            background: var(--white);
         }
 
-        /* Common Elements */
+        img {
+            object-fit: contain;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+        }
+
+        /* ===================================
+           WATERMARK
+           =================================== */
         .watermark {
             position: absolute;
             top: -40px;
@@ -50,22 +62,27 @@
             font-weight: 900;
             color: var(--blue);
             opacity: 0.07;
-            z-index: 1;
+            z-index: 0;
+            user-select: none;
+            line-height: 1;
         }
 
+        /* ===================================
+           SLIDE TITLE & BODY
+           =================================== */
         .slide-title {
             font-size: 62px;
             font-weight: 900;
-            color: var(--blue);
+            color: var(--text-dark);
             border-bottom: 10px solid var(--blue);
-            margin: 80px 60px 40px;
-            padding-bottom: 10px;
+            margin: 80px 60px 30px;
+            padding-bottom: 14px;
             align-self: flex-start;
             z-index: 2;
+            line-height: 1.25;
         }
 
         .slide-body {
-            flex: 1;
             padding: 0 60px;
             display: flex;
             flex-direction: column;
@@ -73,19 +90,86 @@
             z-index: 2;
         }
 
+        /* ===================================
+           INFO CARDS
+           =================================== */
+        .info-card {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            padding: 22px 32px;
+            border-radius: 0 16px 16px 0;
+            font-size: 46px;
+            font-weight: 700;
+            background: #f0f5ff;
+            border-left: 14px solid var(--blue);
+            color: var(--text-dark);
+            line-height: 1.3;
+            z-index: 2;
+        }
+
+        .info-card.alert {
+            background: #fff0f0;
+            border-left-color: var(--red);
+            color: var(--red);
+            font-size: 50px;
+            font-weight: 900;
+        }
+
+        .info-card .card-icon {
+            font-size: 52px;
+            flex-shrink: 0;
+        }
+
+        /* ===================================
+           HIGHLIGHT BLOCK
+           =================================== */
+        .highlight-block {
+            background: linear-gradient(135deg, #e8f0ff, #d0e2ff);
+            border-left: 12px solid var(--blue);
+            border-radius: 0 16px 16px 0;
+            font-size: 56px;
+            font-weight: 900;
+            color: var(--blue);
+            padding: 20px 32px;
+            line-height: 1.3;
+            z-index: 2;
+        }
+
+        /* ===================================
+           REPORT HEADER CARD
+           =================================== */
+        .report-header-card {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+            color: #fff;
+            border-radius: 20px;
+            padding: 28px 36px;
+            font-size: 48px;
+            font-weight: 900;
+            z-index: 2;
+        }
+
+        /* ===================================
+           SLIDE ILLUSTRATION
+           =================================== */
         .slide-illust {
             position: absolute;
             right: 40px;
             bottom: 40px;
-            z-index: 5;
+            height: 260px;
+            z-index: 2;
         }
 
-        img {
-            object-fit: contain;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+        .slide-illust img {
+            height: 100%;
         }
 
-        /* Slide 1: Thumbnail */
+        /* ===================================
+           SLIDE 1: THUMBNAIL
+           =================================== */
         .slide-thumbnail {
             background:
                 repeating-conic-gradient(from 0deg at 52% 48%, rgba(0,82,204,0.06) 0deg 2.5deg, transparent 2.5deg 16deg),
@@ -95,7 +179,7 @@
             align-items: center;
             text-align: center;
             padding-top: 80px;
-            padding-bottom: 200px;
+            padding-bottom: 300px;
         }
 
         .thumb-top-strip {
@@ -123,14 +207,14 @@
         .thumb-accent-tri.tl {
             top: 25px;
             left: 25px;
-            border-top: 300px solid rgba(0, 82, 204, 0.09);
+            border-top: 300px solid rgba(0,82,204,0.09);
             border-right: 300px solid transparent;
         }
 
         .thumb-accent-tri.br {
             bottom: 25px;
             right: 25px;
-            border-bottom: 300px solid rgba(0, 82, 204, 0.09);
+            border-bottom: 300px solid rgba(0,82,204,0.09);
             border-left: 300px solid transparent;
         }
 
@@ -144,6 +228,7 @@
             box-shadow: 8px 8px 0 rgba(0,0,0,0.25);
             margin-bottom: 28px;
             letter-spacing: 0.05em;
+            z-index: 2;
         }
 
         .thumb-main-title {
@@ -153,266 +238,151 @@
             line-height: 1.25;
             margin-bottom: 22px;
             max-width: 900px;
-        }
-
-        .thumb-rank-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 28px;
             z-index: 2;
         }
 
-        .rank-num-big {
-            font-size: 150px;
-            font-weight: 900;
-            color: var(--red);
-            line-height: 1;
-            font-style: italic;
-            text-shadow: 6px 6px 0 rgba(180, 0, 0, 0.18);
-        }
-
-        .rank-denom-block {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 4px;
-            border-left: 6px solid var(--red);
-            padding-left: 16px;
-        }
-
-        .rank-over-label {
-            font-size: 44px;
-            font-weight: 900;
-            color: var(--text-dark);
-        }
-
-        .rank-pos-label {
-            font-size: 50px;
-            font-weight: 900;
-            color: var(--red);
+        .thumb-main-title .hl {
+            color: var(--blue);
         }
 
         .thumb-sub-band {
             background-color: var(--blue);
             color: var(--white);
-            font-size: 60px;
-            font-weight: 700;
+            font-size: 58px;
+            font-weight: 900;
             padding: 18px 70px;
             border-radius: 12px;
             box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+            z-index: 2;
+            margin-bottom: 20px;
         }
 
-        /* Slide 2 Enhanced Info Cards */
-        .report-header-card {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            background: linear-gradient(135deg, var(--blue) 0%, #003fa0 100%);
-            color: #fff;
-            border-radius: 20px;
-            padding: 28px 36px;
-        }
-
-        .rhc-icon {
-            font-size: 64px;
-            flex-shrink: 0;
-        }
-
-        .rhc-text {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .rhc-title {
-            font-size: 44px;
-            font-weight: 900;
-        }
-
-        .rhc-sub {
-            font-size: 32px;
-            font-weight: 700;
-            opacity: 0.85;
-        }
-
-        .info-card {
-            display: flex;
-            align-items: center;
-            gap: 22px;
-            padding: 22px 32px;
-            border-radius: 0 16px 16px 0;
-            font-size: 46px;
-            font-weight: 700;
-            background: #f0f5ff;
-            border-left: 14px solid var(--blue);
-        }
-
-        .info-card.alert {
-            background: #fff0f0;
-            border-left-color: var(--red);
-            color: var(--red);
-            font-size: 50px;
-            font-weight: 900;
-        }
-
-        .info-card .emoji {
-            font-size: 52px;
-            flex-shrink: 0;
-        }
-
-        /* Slide Body Elements */
-        .list-item {
-            font-size: 52px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .emoji {
-            font-size: 60px;
-        }
-
-        /* Ranking Styles */
-        .ranking-container {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .rank-item {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            background: #f8faff;
-            padding: 20px 40px;
-            border-radius: 20px;
-            border-left: 15px solid var(--blue);
-        }
-
-        .rank-badge {
-            font-size: 50px;
-            min-width: 80px;
-        }
-
-        .rank-num-badge {
-            min-width: 96px;
-            height: 96px;
-            border-radius: 50%;
+        .thumb-logo-area {
+            height: 150px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 36px;
+            z-index: 2;
+        }
+
+        .thumb-logo-area img {
+            height: 120px;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.12));
+        }
+
+        .thumb-illust {
+            position: absolute;
+            bottom: 40px;
+            right: 50px;
+            height: 280px;
+            z-index: 2;
+        }
+
+        .thumb-illust img {
+            height: 100%;
+        }
+
+        /* ===================================
+           SLIDE 3: mineo紹介
+           =================================== */
+        .mineo-logo-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+            border-radius: 20px;
+            padding: 24px 36px;
+        }
+
+        .mineo-logo-row img {
+            height: 72px;
+            filter: brightness(10) drop-shadow(0 2px 6px rgba(0,0,0,0.2));
+        }
+
+        .mineo-logo-row span {
+            font-size: 52px;
             font-weight: 900;
-            flex-shrink: 0;
             color: #fff;
-            letter-spacing: -0.02em;
-        }
-        .rank-num-badge.r1 { background: linear-gradient(135deg, #ffd700, #e6a800); box-shadow: 3px 3px 0 rgba(0,0,0,0.15); }
-        .rank-num-badge.r2 { background: linear-gradient(135deg, #b0b8c8, #7a8799); box-shadow: 3px 3px 0 rgba(0,0,0,0.15); }
-        .rank-num-badge.r3 { background: linear-gradient(135deg, #cd7f32, #9a5a1a); box-shadow: 3px 3px 0 rgba(0,0,0,0.15); }
-        .rank-num-badge.r4 { background: linear-gradient(135deg, #e63946, #b0001e); box-shadow: 3px 3px 0 rgba(0,0,0,0.15); }
-
-        .rank-logo {
-            height: 80px;
-            width: 250px;
-            object-fit: contain;
         }
 
-        .rank-text {
+        /* ===================================
+           SLIDE 4: ファンとく特典詳細
+           =================================== */
+        .funtoku-banner {
+            background: linear-gradient(135deg, #00a86b, #007a4d);
+            color: #fff;
             font-size: 48px;
-            font-weight: 700;
+            font-weight: 900;
+            padding: 22px 40px;
+            border-radius: 16px;
+            text-align: center;
+            z-index: 2;
         }
 
-        .rank-worst {
+        /* ===================================
+           SLIDE 5: コインの使い道
+           =================================== */
+        .use-card {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            padding: 24px 32px;
+            border-radius: 16px;
+            font-size: 50px;
+            font-weight: 700;
+            color: var(--text-dark);
+            background: #f0f5ff;
+            border: 6px solid #c8dcff;
+            z-index: 2;
+            line-height: 1.3;
+        }
+
+        .use-card.up {
+            background: #fff0f0;
+            border-color: var(--red);
             color: var(--red);
             font-weight: 900;
         }
 
-        /* Recommendation Styles */
-        .recommend-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+        /* ===================================
+           SLIDE 6: 3回線
+           =================================== */
+        .carrier-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            z-index: 2;
         }
 
-        .recommend-card {
-            background: #fff;
-            border: 5px solid #eef2f7;
-            border-radius: 25px;
-            padding: 30px;
+        .carrier-badge {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            position: relative;
-        }
-
-        .recommend-card.highlighted {
-            border: 8px solid var(--blue);
-            transform: scale(1.08);
-            box-shadow: 0 20px 50px rgba(0,82,204,0.32);
-            background: linear-gradient(155deg, #eaf3ff, #d4e8ff);
-            z-index: 4;
-        }
-
-        .recommend-card.dimmed {
-            opacity: 0.22;
-            filter: grayscale(55%);
-        }
-
-        .card-spotlight-tag {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--blue);
-            color: #fff;
-            font-size: 24px;
-            font-weight: 900;
-            padding: 6px 22px;
-            border-radius: 30px;
-            white-space: nowrap;
-            box-shadow: 2px 4px 10px rgba(0,0,0,0.2);
-            z-index: 5;
-        }
-
-        .slide-progress {
-            display: flex;
             gap: 14px;
-            align-items: center;
-            margin: -25px 60px 20px;
+            background: #f0f5ff;
+            border: 6px solid var(--blue);
+            border-radius: 20px;
+            padding: 24px 20px;
+            flex: 1;
         }
 
-        .progress-dot {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: #c0cce0;
+        .carrier-badge img {
+            height: 56px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.08));
         }
 
-        .progress-dot.active {
-            background: var(--blue);
-            width: 26px;
-            height: 26px;
+        .carrier-badge .carrier-name {
+            font-size: 40px;
+            font-weight: 900;
+            color: var(--text-dark);
         }
 
-        .card-logo {
-            height: 90px;
-            width: 100%;
-        }
-
-        .card-desc {
-            font-size: 38px;
-            font-weight: 700;
-            color: var(--blue);
-            text-align: center;
-        }
-
-        /* Warning Slide */
+        /* ===================================
+           SLIDE 7 (WARNING → NOTE): 注意事項
+           =================================== */
         .slide-warning {
             background-color: #fff8f8;
         }
@@ -421,320 +391,297 @@
             width: 100%;
             background-color: var(--red);
             color: var(--white);
-            font-size: 62px;
+            font-size: 58px;
             font-weight: 900;
             text-align: center;
             padding: 22px 0;
-            margin-top: 100px;
+            z-index: 2;
+        }
+
+        .warning-content {
+            padding: 36px 60px 0;
+            z-index: 2;
         }
 
         .warning-box {
-            margin: 60px;
             border: 10px solid var(--red);
             background-color: #fff0f0;
-            padding: 30px;
+            padding: 32px 42px;
             border-radius: 20px;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 26px;
         }
 
         .w-title {
             font-size: 54px;
             font-weight: 900;
             color: var(--red);
-            text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 4px;
         }
 
         .w-item {
-            font-size: 44px;
+            font-size: 50px;
             font-weight: 700;
+            color: #5a1a1a;
             display: flex;
             align-items: flex-start;
-            gap: 15px;
+            gap: 16px;
+            line-height: 1.35;
         }
 
-        /* CTA Slide */
+        /* ===================================
+           LAST SLIDE: CTA
+           =================================== */
         .slide-cta {
-            background: linear-gradient(135deg, #0052cc, #003380);
-            color: var(--white);
+            background: linear-gradient(135deg, var(--blue), #003380);
             justify-content: center;
             align-items: center;
-            padding: 0;
+            gap: 18px;
+            padding: 60px;
+        }
+
+        .cta-logo {
+            height: 110px;
+            object-fit: contain;
+            filter: brightness(10);
+            margin-bottom: 6px;
         }
 
         .cta-title {
-            font-size: 84px;
+            font-size: 82px;
             font-weight: 900;
             color: #ffd700;
-            margin-bottom: 20px;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-align: center;
+            line-height: 1.2;
         }
 
         .cta-sub {
-            font-size: 50px;
+            font-size: 48px;
             font-weight: 700;
-            margin-bottom: 40px;
+            color: #ffffff;
+            text-align: center;
+            line-height: 1.4;
         }
 
         .cta-arrow {
             font-size: 90px;
             color: #ffd700;
-            animation: bounce 1.5s infinite;
-            margin-bottom: 30px;
+            animation: bounce 1.3s ease-in-out infinite;
         }
 
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-20px);}
-            60% {transform: translateY(-10px);}
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(14px); }
         }
 
         .cta-banner-img {
-            width: 940px;
-            border: 8px solid var(--white);
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            width: 920px;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+            filter: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- Slide 1: Thumbnail -->
-    <div class="slide-container slide-thumbnail">
-        <div class="thumb-top-strip">⚡ 2026年4月 Opensignal社調査 ⚡</div>
-        <div class="thumb-accent-tri tl"></div>
-        <div class="thumb-accent-tri br"></div>
-        <div class="thumb-tag">衝撃！</div>
-        <h1 class="thumb-main-title">ドコモの通信品質が<br>4キャリア中最下位</h1>
-        <div class="thumb-sub-band">乗り換え先4選</div>
-        <div class="slide-illust">
-            <img src="public/images/irasutoya/bikkuri_me_tobideru_man.png" height="290" alt="驚く男性">
+<!-- ==========================================================
+     SLIDE 1 (スライドID: 1) — サムネイル
+     ========================================================== -->
+<div class="slide-container slide-thumbnail">
+    <div class="thumb-top-strip">⭐ 2026年最新 長期利用でお得な格安SIM特集 ⭐</div>
+    <div class="thumb-accent-tri tl"></div>
+    <div class="thumb-accent-tri br"></div>
+
+    <div class="thumb-tag">おすすめ3選！</div>
+
+    <h1 class="thumb-main-title">
+        長期利用で<br><span class="hl">ずっとお得</span>になる<br>格安SIMはどれ？
+    </h1>
+
+    <div class="thumb-sub-band">長く使うほど特典が増える！</div>
+
+    <div class="thumb-logo-area">
+        <img src="public/images/logo/Mineo_logo_背景削除.png" alt="mineo">
+    </div>
+
+    <div class="thumb-illust">
+        <img src="public/images/irasutoya/money_fueru.png" alt="お金が増えるイラスト">
+    </div>
+</div>
+
+
+<!-- ==========================================================
+     SLIDE 2 (スライドID: 2) — 長く使うほどお得になる格安SIMがある！
+     ========================================================== -->
+<div class="slide-container">
+    <div class="watermark">2</div>
+
+    <h2 class="slide-title">長く使うほど<br>お得になる仕組みがある！</h2>
+
+    <div class="slide-body" style="margin-bottom: 120px;">
+        <div class="info-card alert">
+            <span class="card-icon">💡</span>
+            <span>継続するほど<br>特典が増える格安SIMがある！</span>
+        </div>
+        <div class="info-card">
+            <span class="card-icon">📅</span>
+            <span>使い続けるほど<br>毎年お得な特典をGET</span>
+        </div>
+        <div class="info-card">
+            <span class="card-icon">💰</span>
+            <span>乗り換えより<br>継続がお得なケースも</span>
         </div>
     </div>
 
-    <!-- Slide 2: Explanation -->
-    <div class="slide-container">
-        <div class="watermark">2</div>
-        <h2 class="slide-title">Opensignal最新レポート</h2>
-        <div class="slide-body">
-            <div class="report-header-card">
-                <span class="rhc-icon">📡</span>
-                <div class="rhc-text">
-                    <span class="rhc-title">Opensignal 調査レポート</span>
-                    <span class="rhc-sub">2026年4月版 日本市場分析</span>
-                </div>
-            </div>
-            <div class="info-card">
-                <span class="emoji">📊</span>「一貫した品質」部門を分析
-            </div>
-            <div class="info-card alert">
-                <span class="emoji">⚡</span>ドコモが4キャリア中最下位！
-            </div>
-            <div class="info-card">
-                <span class="emoji">📅</span>最新2026年4月版
-            </div>
+    <div class="slide-illust" style="z-index: 2;">
+        <img src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="驚く男性">
+    </div>
+</div>
+
+
+<!-- ==========================================================
+     SLIDE 3 (スライドID: 3) — 今日紹介するのは「mineo」
+     ========================================================== -->
+<div class="slide-container">
+    <div class="watermark">3</div>
+
+    <h2 class="slide-title">特に太っ腹な格安SIM</h2>
+
+    <div class="slide-body" style="margin-bottom: 120px;">
+        <div class="mineo-logo-row">
+            <img src="public/images/logo/Mineo_logo_背景削除.png" alt="mineo">
+            <span>mineo（マイネオ）</span>
         </div>
-        <div class="slide-illust">
-            <img src="public/images/irasutoya/animal_buta_shock.png" height="260" alt="ショックを受ける豚">
+        <div class="info-card">
+            <span class="card-icon">🏆</span>
+            <span>長期利用特典が<br>業界トップクラス！</span>
+        </div>
+        <div class="highlight-block">
+            「ファン∞とく」で<br>毎年コインをプレゼント！
         </div>
     </div>
 
-    <!-- Slide 3: Ranking -->
-    <div class="slide-container">
-        <div class="watermark">3</div>
-        <h2 class="slide-title">通信品質ランキング</h2>
-        <div class="slide-body">
-            <div class="ranking-container">
-                <div class="rank-item">
-                    <span class="rank-num-badge r1">1位</span>
-                    <img src="public/images/logo/au_logo.png" class="rank-logo" alt="au">
-                </div>
-                <div class="rank-item">
-                    <span class="rank-num-badge r2">2位</span>
-                    <img src="public/images/logo/Softbank_logo.png" class="rank-logo" alt="SoftBank">
-                </div>
-                <div class="rank-item">
-                    <span class="rank-num-badge r3">3位</span>
-                    <img src="public/images/logo/Rakuten_Mobile_logo.svg" class="rank-logo" alt="Rakuten">
-                </div>
-                <div class="rank-item" style="border-left-color: var(--red);">
-                    <span class="rank-num-badge r4">4位</span>
-                    <img src="public/images/logo/docomo_logo.png" class="rank-logo" alt="docomo">
-                    <span class="rank-text rank-worst">最下位</span>
-                </div>
+    <div class="slide-illust" style="z-index: 2;">
+        <img src="public/images/irasutoya/sns_happy_woman.png" alt="喜ぶ女性">
+    </div>
+</div>
+
+
+<!-- ==========================================================
+     SLIDE 4 (スライドID: 4) — mineo「ファン∞とく」長期利用特典
+     ========================================================== -->
+<div class="slide-container">
+    <div class="watermark">4</div>
+
+    <h2 class="slide-title">mineo「ファン∞とく」<br>長期利用特典</h2>
+
+    <div class="slide-body" style="margin-bottom: 120px;">
+        <div class="info-card alert">
+            <span class="card-icon">🎁</span>
+            <span>1年以上継続で<br>毎年「mineoコイン」プレゼント！</span>
+        </div>
+        <div class="info-card">
+            <span class="card-icon">📆</span>
+            <span>契約から1年ごとに<br>自動でもらえる</span>
+        </div>
+        <div class="info-card">
+            <span class="card-icon">⬆️</span>
+            <span>継続年数が長いほど<br>コインがどんどん増える！</span>
+        </div>
+    </div>
+
+    <div class="slide-illust" style="z-index: 2;">
+        <img src="public/images/irasutoya/present_open.png" alt="プレゼントを開けるイラスト">
+    </div>
+</div>
+
+
+<!-- ==========================================================
+     SLIDE 5 (スライドID: 5) — mineoコインの使い道 & 増加
+     ========================================================== -->
+<div class="slide-container">
+    <div class="watermark">5</div>
+
+    <h2 class="slide-title">mineoコインの使い道</h2>
+
+    <div class="slide-body" style="margin-bottom: 120px;">
+        <div class="use-card">
+            <span>📶</span>
+            <span>ギガ（データ容量）に交換</span>
+        </div>
+        <div class="use-card">
+            <span>🏷️</span>
+            <span>各種手数料の<br>割引クーポンに交換</span>
+        </div>
+        <div class="use-card up">
+            <span>📈</span>
+            <span>長く使うほど<br>もらえる枚数UP！</span>
+        </div>
+    </div>
+
+    <div class="slide-illust" style="z-index: 2;">
+        <img src="public/images/irasutoya/osatsu_money_yamadumi.png" alt="お金が増えるイラスト">
+    </div>
+</div>
+
+
+<!-- ==========================================================
+     SLIDE 6 (スライドID: 6) — 3回線（au・ドコモ・SB）から選べる
+     ========================================================== -->
+<div class="slide-container">
+    <div class="watermark">6</div>
+
+    <h2 class="slide-title">3回線から選べる強みも！</h2>
+
+    <div class="slide-body" style="margin-bottom: 140px;">
+        <div class="highlight-block">
+            au・ドコモ・ソフトバンク<br>の3回線に対応
+        </div>
+
+        <div class="carrier-row">
+            <div class="carrier-badge">
+                <img src="public/images/logo/au_logo.png" alt="au">
+                <span class="carrier-name">au回線</span>
+            </div>
+            <div class="carrier-badge">
+                <img src="public/images/logo/docomo_logo.png" alt="ドコモ">
+                <span class="carrier-name">ドコモ回線</span>
+            </div>
+            <div class="carrier-badge">
+                <img src="public/images/logo/Softbank_logo.png" alt="ソフトバンク">
+                <span class="carrier-name">SB回線</span>
             </div>
         </div>
-        <div class="slide-illust">
-            <img src="public/images/irasutoya/smartphone_speed_5g.png" height="260" alt="通信速度">
+
+        <div class="info-card">
+            <span class="card-icon">✅</span>
+            <span>今の端末に合わせて<br>回線を選べる！</span>
         </div>
     </div>
 
-    <!-- Slide 4-1: mineo highlight -->
-    <div class="slide-container">
-        <div class="watermark">4</div>
-        <h2 class="slide-title">乗り換え先① mineo</h2>
-        <div class="slide-progress">
-            <span class="progress-dot active"></span>
-            <span class="progress-dot"></span>
-            <span class="progress-dot"></span>
-            <span class="progress-dot"></span>
-        </div>
-        <div class="slide-body" style="margin-bottom: 120px;">
-            <div class="recommend-grid">
-                <div class="recommend-card highlighted">
-                    <span class="card-spotlight-tag">コスパ最強！</span>
-                    <img src="public/images/logo/Mineo_logo_背景削除.png" class="card-logo" alt="mineo">
-                    <div class="card-desc">月660円〜</div>
-                </div>
-                <div class="recommend-card dimmed">
-                    <img src="public/images/logo/Povo_logo_背景透過.png" class="card-logo" alt="povo2.0">
-                    <div class="card-desc">月0円〜</div>
-                </div>
-                <div class="recommend-card dimmed">
-                    <img src="public/images/logo/LINEMO_logo.svg" class="card-logo" alt="LINEMO">
-                    <div class="card-desc">LINE使い放題</div>
-                </div>
-                <div class="recommend-card dimmed">
-                    <img src="public/images/logo/Rakuten_Mobile_logo.svg" class="card-logo" alt="楽天モバイル">
-                    <div class="card-desc">通話無料</div>
-                </div>
-            </div>
-        </div>
-        <div class="slide-illust" style="z-index: 10;">
-            <img src="public/images/irasutoya/smartphone_nidaimochi_man.png" height="260" alt="二台持ち男性">
-        </div>
+    <div class="slide-illust" style="z-index: 2;">
+        <img src="public/images/irasutoya/pose_anshin_woman.png" alt="安心する女性">
     </div>
+</div>
 
-    <!-- Slide 4-2: povo highlight -->
-    <div class="slide-container">
-        <div class="watermark">4</div>
-        <h2 class="slide-title">乗り換え先② povo2.0</h2>
-        <div class="slide-progress">
-            <span class="progress-dot"></span>
-            <span class="progress-dot active"></span>
-            <span class="progress-dot"></span>
-            <span class="progress-dot"></span>
-        </div>
-        <div class="slide-body" style="margin-bottom: 120px;">
-            <div class="recommend-grid">
-                <div class="recommend-card dimmed">
-                    <img src="public/images/logo/Mineo_logo_背景削除.png" class="card-logo" alt="mineo">
-                    <div class="card-desc">月660円〜</div>
-                </div>
-                <div class="recommend-card highlighted">
-                    <span class="card-spotlight-tag">基本料¥0！</span>
-                    <img src="public/images/logo/Povo_logo_背景透過.png" class="card-logo" alt="povo2.0">
-                    <div class="card-desc">月0円〜</div>
-                </div>
-                <div class="recommend-card dimmed">
-                    <img src="public/images/logo/LINEMO_logo.svg" class="card-logo" alt="LINEMO">
-                    <div class="card-desc">LINE使い放題</div>
-                </div>
-                <div class="recommend-card dimmed">
-                    <img src="public/images/logo/Rakuten_Mobile_logo.svg" class="card-logo" alt="楽天モバイル">
-                    <div class="card-desc">通話無料</div>
-                </div>
-            </div>
-        </div>
-        <div class="slide-illust" style="z-index: 10;">
-            <img src="public/images/irasutoya/smartphone_nidaimochi_man.png" height="260" alt="二台持ち男性">
-        </div>
-    </div>
 
-    <!-- Slide 4-3: LINEMO highlight -->
-    <div class="slide-container">
-        <div class="watermark">4</div>
-        <h2 class="slide-title">乗り換え先③ LINEMO</h2>
-        <div class="slide-progress">
-            <span class="progress-dot"></span>
-            <span class="progress-dot"></span>
-            <span class="progress-dot active"></span>
-            <span class="progress-dot"></span>
-        </div>
-        <div class="slide-body" style="margin-bottom: 120px;">
-            <div class="recommend-grid">
-                <div class="recommend-card dimmed">
-                    <img src="public/images/logo/Mineo_logo_背景削除.png" class="card-logo" alt="mineo">
-                    <div class="card-desc">月660円〜</div>
-                </div>
-                <div class="recommend-card dimmed">
-                    <img src="public/images/logo/Povo_logo_背景透過.png" class="card-logo" alt="povo2.0">
-                    <div class="card-desc">月0円〜</div>
-                </div>
-                <div class="recommend-card highlighted">
-                    <span class="card-spotlight-tag">LINEギガフリー！</span>
-                    <img src="public/images/logo/LINEMO_logo.svg" class="card-logo" alt="LINEMO">
-                    <div class="card-desc">LINE使い放題</div>
-                </div>
-                <div class="recommend-card dimmed">
-                    <img src="public/images/logo/Rakuten_Mobile_logo.svg" class="card-logo" alt="楽天モバイル">
-                    <div class="card-desc">通話無料</div>
-                </div>
-            </div>
-        </div>
-        <div class="slide-illust" style="z-index: 10;">
-            <img src="public/images/irasutoya/smartphone_nidaimochi_man.png" height="260" alt="二台持ち男性">
-        </div>
+<!-- ==========================================================
+     SLIDE 7 (スライドID: 7) — CTA（本編動画をチェック）
+     ========================================================== -->
+<div class="slide-container slide-cta">
+    <img class="cta-logo" src="public/images/logo/Mineo_logo_背景削除.png" alt="mineo">
+    <div class="cta-title">本編動画で<br>3社の長期特典を<br>徹底比較！</div>
+    <div class="cta-sub">
+        mineo・IIJmio・楽天モバイル<br>どこが一番お得？
     </div>
-
-    <!-- Slide 4-4: 楽天モバイル highlight -->
-    <div class="slide-container">
-        <div class="watermark">4</div>
-        <h2 class="slide-title">乗り換え先④ 楽天モバイル</h2>
-        <div class="slide-progress">
-            <span class="progress-dot"></span>
-            <span class="progress-dot"></span>
-            <span class="progress-dot"></span>
-            <span class="progress-dot active"></span>
-        </div>
-        <div class="slide-body" style="margin-bottom: 120px;">
-            <div class="recommend-grid">
-                <div class="recommend-card dimmed">
-                    <img src="public/images/logo/Mineo_logo_背景削除.png" class="card-logo" alt="mineo">
-                    <div class="card-desc">月660円〜</div>
-                </div>
-                <div class="recommend-card dimmed">
-                    <img src="public/images/logo/Povo_logo_背景透過.png" class="card-logo" alt="povo2.0">
-                    <div class="card-desc">月0円〜</div>
-                </div>
-                <div class="recommend-card dimmed">
-                    <img src="public/images/logo/LINEMO_logo.svg" class="card-logo" alt="LINEMO">
-                    <div class="card-desc">LINE使い放題</div>
-                </div>
-                <div class="recommend-card highlighted">
-                    <span class="card-spotlight-tag">通話かけ放題！</span>
-                    <img src="public/images/logo/Rakuten_Mobile_logo.svg" class="card-logo" alt="楽天モバイル">
-                    <div class="card-desc">通話無料</div>
-                </div>
-            </div>
-        </div>
-        <div class="slide-illust" style="z-index: 10;">
-            <img src="public/images/irasutoya/smartphone_nidaimochi_man.png" height="260" alt="二台持ち男性">
-        </div>
-    </div>
-
-    <!-- Slide 5: Warning -->
-    <div class="slide-container slide-warning">
-        <div class="warning-banner">⚠️ ご注意ください</div>
-        <div class="warning-box">
-            <h3 class="w-title">プランは変更になる場合があります</h3>
-            <div class="w-item">📋 掲載情報は投稿時点のもの</div>
-            <div class="w-item">🔍 契約前に公式サイトをご確認ください</div>
-        </div>
-        <div class="slide-illust">
-            <img src="public/images/irasutoya/mark_chuui.png" height="280" alt="注意マーク">
-        </div>
-    </div>
-
-    <!-- Slide 6: CTA -->
-    <div class="slide-container slide-cta">
-        <h2 class="cta-title">本編動画をチェック！</h2>
-        <p class="cta-sub">チャンネル登録もよろしくね！</p>
-        <div class="cta-arrow">▼</div>
-        <img src="public/images/thumbnails/【2026年最新】ドコモの通信品質が4キャリア中最下位。乗り換え先4社を比較_サムネ3-2.png" class="cta-banner-img" alt="動画サムネイル">
-    </div>
+    <div class="cta-arrow">↓</div>
+    <img
+        class="cta-banner-img"
+        src="public/images/thumbnails/【2026年最新】長期利用特典が手厚い格安SIM3選_サムネ1.png"
+        alt="本編動画サムネイル"
+    >
+</div>
 
 </body>
 </html>
