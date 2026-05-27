@@ -30,3 +30,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Automatic synchronized assets
+/public/images/logo/
+
