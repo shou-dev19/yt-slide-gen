@@ -23,5 +23,12 @@
     "context7",
     "remotion-docs",
     "voicevox-docs"
-  ]
+  ],
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "network": {
+      "allowedDomains": ["github.com"]
+    }
+  }
 }
