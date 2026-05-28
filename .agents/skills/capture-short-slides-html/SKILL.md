@@ -1,4 +1,5 @@
 ---
+name: capture-short-slides-html
 description: Capture screenshots of the slides-short.html file per slide ID
 ---
 
