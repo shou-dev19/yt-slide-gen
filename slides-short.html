@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Long-term SIM Benefits - Short Slides</title>
+    <title>BIC SIMとIIJmioの違い3選 - Short Slides</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -137,22 +137,6 @@
         }
 
         /* ===================================
-           REPORT HEADER CARD
-           =================================== */
-        .report-header-card {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            background: linear-gradient(135deg, var(--blue), var(--blue-dark));
-            color: #fff;
-            border-radius: 20px;
-            padding: 28px 36px;
-            font-size: 48px;
-            font-weight: 900;
-            z-index: 2;
-        }
-
-        /* ===================================
            SLIDE ILLUSTRATION
            =================================== */
         .slide-illust {
@@ -221,7 +205,7 @@
         .thumb-tag {
             background-color: var(--red);
             color: var(--white);
-            font-size: 80px;
+            font-size: 72px;
             font-weight: 900;
             padding: 18px 54px;
             transform: rotate(-3deg);
@@ -248,9 +232,9 @@
         .thumb-sub-band {
             background-color: var(--blue);
             color: var(--white);
-            font-size: 58px;
+            font-size: 54px;
             font-weight: 900;
-            padding: 18px 70px;
+            padding: 18px 60px;
             border-radius: 12px;
             box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
             z-index: 2;
@@ -259,18 +243,11 @@
 
         .thumb-logo-area {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 16px;
-            z-index: 2;
-            transform: translate(-140px, 40px);
-        }
-
-        .thumb-logo-row1 {
-            display: flex;
             align-items: center;
             justify-content: center;
             gap: 28px;
+            z-index: 2;
+            margin-top: 10px;
         }
 
         .thumb-logo-area img {
@@ -299,105 +276,105 @@
         }
 
         /* ===================================
-           SLIDE 3: mineo紹介
+           SAME CONTENT badge (slide 2)
            =================================== */
-        .mineo-logo-row {
+        .same-badge {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 30px;
             background: linear-gradient(135deg, var(--blue), var(--blue-dark));
             border-radius: 20px;
-            padding: 24px 36px;
+            padding: 26px 36px;
+            z-index: 2;
         }
 
-        .mineo-logo-row img {
-            height: 72px;
+        .same-badge img {
+            height: 68px;
             filter: brightness(10) drop-shadow(0 2px 6px rgba(0,0,0,0.2));
         }
 
-        .mineo-logo-row span {
+        .same-badge .eq-label {
             font-size: 52px;
             font-weight: 900;
             color: #fff;
+            letter-spacing: 0.05em;
         }
 
         /* ===================================
-           SLIDE 4: ファンとく特典詳細
+           FEATURE BADGE (slides 4-7)
            =================================== */
-        .funtoku-banner {
-            background: linear-gradient(135deg, #00a86b, #007a4d);
+        .feature-num-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--blue);
             color: #fff;
-            font-size: 48px;
+            font-size: 36px;
             font-weight: 900;
-            padding: 22px 40px;
-            border-radius: 16px;
-            text-align: center;
+            border-radius: 50px;
+            padding: 8px 28px;
+            margin-bottom: 6px;
+            letter-spacing: 0.08em;
             z-index: 2;
+            align-self: flex-start;
         }
 
         /* ===================================
-           SLIDE 5: コインの使い道
+           WIFI CARD (slide 5)
            =================================== */
-        .use-card {
+        .wifi-point-card {
             display: flex;
             align-items: center;
             gap: 22px;
-            padding: 24px 32px;
+            padding: 22px 32px;
             border-radius: 16px;
-            font-size: 50px;
+            font-size: 46px;
             font-weight: 700;
+            background: #e8f5ff;
+            border: 6px solid #4fa8e8;
             color: var(--text-dark);
-            background: #f0f5ff;
-            border: 6px solid #c8dcff;
-            z-index: 2;
             line-height: 1.3;
-        }
-
-        .use-card.up {
-            background: #fff0f0;
-            border-color: var(--red);
-            color: var(--red);
-            font-weight: 900;
-        }
-
-        /* ===================================
-           SLIDE 6: 3回線
-           =================================== */
-        .carrier-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
             z-index: 2;
         }
 
-        .carrier-badge {
+        /* ===================================
+           CHOICE FLOW (slide 8)
+           =================================== */
+        .choice-card {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 14px;
-            background: #f0f5ff;
-            border: 6px solid var(--blue);
-            border-radius: 20px;
-            padding: 24px 20px;
-            flex: 1;
+            align-items: flex-start;
+            gap: 22px;
+            padding: 28px 36px;
+            border-radius: 16px;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.35;
+            z-index: 2;
         }
 
-        .carrier-badge img {
-            height: 56px;
-            object-fit: contain;
-            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.08));
-        }
-
-        .carrier-badge .carrier-name {
-            font-size: 40px;
-            font-weight: 900;
+        .choice-card.bicsim {
+            background: #e8f3ff;
+            border-left: 14px solid var(--blue);
             color: var(--text-dark);
         }
 
+        .choice-card.iijmio {
+            background: #f0f5ff;
+            border-left: 14px solid #6699cc;
+            color: #334466;
+        }
+
+        .choice-arrow {
+            font-size: 60px;
+            font-weight: 900;
+            text-align: center;
+            color: var(--blue);
+            z-index: 2;
+        }
+
         /* ===================================
-           SLIDE 7 (WARNING → NOTE): 注意事項
+           WARNING SLIDE (penultimate = slide 8)
            =================================== */
         .slide-warning {
             background-color: #fff8f8;
@@ -503,54 +480,54 @@
 
 <!-- ==========================================================
      SLIDE 1 (スライドID: 1) — サムネイル
+     BIC SIMとIIJmioの違い3選！
      ========================================================== -->
 <div class="slide-container slide-thumbnail">
+    <div class="thumb-top-strip">📋 2026年最新 BIC SIM vs IIJmio 徹底比較</div>
     <div class="thumb-accent-tri tl"></div>
     <div class="thumb-accent-tri br"></div>
 
-    <div class="thumb-tag">おすすめ3選！</div>
+    <div class="thumb-tag">違い3選！</div>
 
     <h1 class="thumb-main-title">
-        長期利用で<br><span class="hl">ずっとお得</span>になる<br>格安SIMはどれ？
+        <span class="hl">BIC SIM</span>と<br><span class="hl">IIJmio</span>の<br>違いって何？
     </h1>
 
-    <div class="thumb-sub-band">長く使うほど特典が増える！</div>
+    <div class="thumb-sub-band">実は3つの独自特典が違う！</div>
 
     <div class="thumb-logo-area">
-        <div class="thumb-logo-row1">
-            <img src="public/images/logo/Mineo_logo_背景削除.png" alt="mineo">
-            <div class="thumb-logo-divider"></div>
-            <img src="public/images/logo/iijmio_logo.png" alt="IIJmio">
-        </div>
-        <img src="public/images/logo/Rakuten_Mobile_logo.png" alt="楽天モバイル">
+        <img src="public/images/logo/bicsim_logo.png" alt="BIC SIM">
+        <div class="thumb-logo-divider"></div>
+        <img src="public/images/logo/iijmio_logo.png" alt="IIJmio">
     </div>
 
     <div class="thumb-illust">
-        <img src="public/images/irasutoya/money_fueru.png" alt="お金が増えるイラスト">
+        <img src="public/images/irasutoya/pose_naruhodo_woman.png" alt="なるほどとうなずく女性">
     </div>
 </div>
 
 
 <!-- ==========================================================
-     SLIDE 2 (スライドID: 2) — 長く使うほどお得になる格安SIMがある！
+     SLIDE 2 (スライドID: 2) — BIC SIM＝IIJmioと中身は完全に同じ
      ========================================================== -->
 <div class="slide-container">
     <div class="watermark">2</div>
 
-    <h2 class="slide-title">長く使うほど<br>お得になる仕組みがある！</h2>
+    <h2 class="slide-title">料金も回線も<br>実は完全に同じ！</h2>
 
     <div class="slide-body" style="margin-bottom: 120px;">
+        <div class="same-badge">
+            <img src="public/images/logo/bicsim_logo.png" alt="BIC SIM">
+            <span class="eq-label">＝</span>
+            <img src="public/images/logo/iijmio_logo.png" alt="IIJmio">
+        </div>
         <div class="info-card alert">
             <span class="card-icon">💡</span>
-            <span>継続するほど<br>特典が増える格安SIMがある！</span>
+            <span>中身は完全に同じ<br>（料金・回線品質）</span>
         </div>
         <div class="info-card">
-            <span class="card-icon">📅</span>
-            <span>使い続けるほど<br>毎年お得な特典をGET</span>
-        </div>
-        <div class="info-card">
-            <span class="card-icon">💰</span>
-            <span>乗り換えより<br>継続がお得なケースも</span>
+            <span class="card-icon">✅</span>
+            <span>違いは<br>BIC SIMだけの独自特典</span>
         </div>
     </div>
 
@@ -561,23 +538,25 @@
 
 
 <!-- ==========================================================
-     SLIDE 3 (スライドID: 3) — 今日紹介するのは「mineo」
+     SLIDE 3 (スライドID: 3) — BIC SIMだけの3つの独自特典
      ========================================================== -->
 <div class="slide-container">
     <div class="watermark">3</div>
 
-    <h2 class="slide-title">特に太っ腹な格安SIM</h2>
+    <h2 class="slide-title">BIC SIMだけの<br>独自特典3つ</h2>
 
     <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="mineo-logo-row">
-            <span>mineo（マイネオ）</span>
+        <div class="info-card">
+            <span class="card-icon">①</span>
+            <span>ギガぞうWi-Fi<span style="color:var(--red);font-weight:900;">無料</span></span>
         </div>
         <div class="info-card">
-            <span class="card-icon">🏆</span>
-            <span>長期利用特典が<br>業界トップクラス！</span>
+            <span class="card-icon">②</span>
+            <span>ビックカメラ店頭<br>サポート</span>
         </div>
-        <div class="highlight-block">
-            「ファン∞とく」で<br>毎年コインをプレゼント！
+        <div class="info-card">
+            <span class="card-icon">③</span>
+            <span>ビックポイントで<br>月額払いOK</span>
         </div>
     </div>
 
@@ -588,94 +567,53 @@
 
 
 <!-- ==========================================================
-     SLIDE 4 (スライドID: 4) — mineo「ファン∞とく」長期利用特典
+     SLIDE 4 (スライドID: 4) — 独自特典①ギガぞうWi-Fi無料
      ========================================================== -->
 <div class="slide-container">
     <div class="watermark">4</div>
 
-    <h2 class="slide-title">mineo「ファン∞とく」<br>長期利用特典</h2>
+    <h2 class="slide-title">独自特典①<br>ギガぞうWi-Fi 無料</h2>
 
     <div class="slide-body" style="margin-bottom: 120px;">
         <div class="info-card alert">
-            <span class="card-icon">🎁</span>
-            <span>1年以上継続で<br>毎年「mineoコイン」<br>プレゼント！</span>
+            <span class="card-icon">📶</span>
+            <span>全国<span style="font-size:54px;">10万箇所以上</span><br>の公衆Wi-Fiがタダ！</span>
         </div>
         <div class="info-card">
-            <span class="card-icon">📆</span>
-            <span>契約から1年ごとに<br>自動でもらえる</span>
+            <span class="card-icon">☕</span>
+            <span>カフェ・駅・空港で<br>すぐつながる</span>
         </div>
-        <div class="info-card">
-            <span class="card-icon">⬆️</span>
-            <span>継続年数が長いほど<br>コインがどんどん増える！</span>
+        <div class="highlight-block">
+            データ節約になる！
         </div>
     </div>
 
     <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/present_open.png" alt="プレゼントを開けるイラスト">
+        <img src="public/images/irasutoya/pose_necchuu_smartphone_woman.png" alt="スマホに夢中な女性">
     </div>
 </div>
 
 
 <!-- ==========================================================
-     SLIDE 5 (スライドID: 5) — mineoコインの使い道 & 増加
+     SLIDE 5 (スライドID: 5) — 高セキュリティな公衆Wi-Fi
      ========================================================== -->
 <div class="slide-container">
     <div class="watermark">5</div>
 
-    <h2 class="slide-title">mineoコインの使い道</h2>
+    <h2 class="slide-title">フリーWi-Fiより<br>安全！</h2>
 
     <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="use-card">
-            <span>📶</span>
-            <span>ギガ（データ容量）に交換</span>
+        <div class="info-card alert">
+            <span class="card-icon">🔒</span>
+            <span>通信を暗号化した<br>高セキュリティタイプ</span>
         </div>
-        <div class="use-card">
-            <span>🏷️</span>
-            <span>各種手数料の<br>割引クーポンに交換</span>
+        <div class="wifi-point-card">
+            <span>📡</span>
+            <span>フリーWi-Fiより<br>安心して使える！</span>
         </div>
-        <div class="use-card up">
-            <span>📈</span>
-            <span>長く使うほど<br>もらえる枚数UP！</span>
-        </div>
-    </div>
-
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/osatsu_money_yamadumi.png" alt="お金が増えるイラスト">
-    </div>
-</div>
-
-
-<!-- ==========================================================
-     SLIDE 6 (スライドID: 6) — 3回線（au・ドコモ・SB）から選べる
-     ========================================================== -->
-<div class="slide-container">
-    <div class="watermark">6</div>
-
-    <h2 class="slide-title">3回線から選べる強みも！</h2>
-
-    <div class="slide-body" style="margin-bottom: 140px;">
-        <div class="highlight-block">
-            au・ドコモ・ソフトバンク<br>の3回線に対応
-        </div>
-
-        <div class="carrier-row">
-            <div class="carrier-badge">
-                <img src="public/images/logo/au_logo.png" alt="au">
-                <span class="carrier-name">au回線</span>
-            </div>
-            <div class="carrier-badge">
-                <img src="public/images/logo/docomo_logo.png" alt="ドコモ">
-                <span class="carrier-name">ドコモ回線</span>
-            </div>
-            <div class="carrier-badge">
-                <img src="public/images/logo/Softbank_logo.png" alt="ソフトバンク">
-                <span class="carrier-name">ソフトバンク回線</span>
-            </div>
-        </div>
-
-        <div class="info-card">
-            <span class="card-icon">✅</span>
-            <span>今の端末に合わせて<br>回線を選べる！</span>
+        <div class="wifi-point-card">
+            <span>🏙️</span>
+            <span>カフェ・駅・空港で<br>安心接続</span>
         </div>
     </div>
 
@@ -686,17 +624,98 @@
 
 
 <!-- ==========================================================
-     SLIDE 7 (スライドID: 7) — CTA（本編動画をチェック）
+     SLIDE 6 (スライドID: 6) — 独自特典②ビックカメラ店頭サポート
+     ========================================================== -->
+<div class="slide-container">
+    <div class="watermark">6</div>
+
+    <h2 class="slide-title">独自特典②<br>ビックカメラ店頭サポート</h2>
+
+    <div class="slide-body" style="margin-bottom: 120px;">
+        <div class="info-card alert">
+            <span class="card-icon">🏪</span>
+            <span>全国のビックカメラ・<br>コジマ・ソフマップで<br>対面相談OK！</span>
+        </div>
+        <div class="info-card">
+            <span class="card-icon">💬</span>
+            <span>申し込み・初期設定を<br>店頭でサポート</span>
+        </div>
+    </div>
+
+    <div class="slide-illust" style="z-index: 2;">
+        <img src="public/images/irasutoya/kaden_tenin15_woman.png" alt="家電店員の女性">
+    </div>
+</div>
+
+
+<!-- ==========================================================
+     SLIDE 7 (スライドID: 7) — 独自特典③ビックポイントで月額料金を支払い可
+     ========================================================== -->
+<div class="slide-container">
+    <div class="watermark">7</div>
+
+    <h2 class="slide-title">独自特典③<br>ビックポイントで支払い可</h2>
+
+    <div class="slide-body" style="margin-bottom: 120px;">
+        <div class="info-card alert">
+            <span class="card-icon">💳</span>
+            <span>ビックポイントで<br>月額料金を支払える！</span>
+        </div>
+        <div class="info-card">
+            <span class="card-icon">🏆</span>
+            <span>ポイントで<br>スマホ代が実質タダに！</span>
+        </div>
+        <div class="highlight-block">
+            ポイント活用で<br>さらにお得！
+        </div>
+    </div>
+
+    <div class="slide-illust" style="z-index: 2;">
+        <img src="public/images/irasutoya/money_fueru.png" alt="お金が増えるイラスト">
+    </div>
+</div>
+
+
+<!-- ==========================================================
+     SLIDE 8 (スライドID: 8) — 選び方（ペナルティメイト・警告スタイル）
+     ========================================================== -->
+<div class="slide-container slide-warning">
+    <div class="watermark">8</div>
+
+    <div class="warning-banner">⚠️ どっちを選ぶ？</div>
+
+    <div class="warning-content">
+        <div class="warning-box">
+            <div class="w-title">選び方のポイント</div>
+            <div class="w-item">
+                <span>✅</span>
+                <span>3つの特典が<span style="color:var(--red);font-weight:900;">1つでも刺さる</span><br>→ BIC SIMがおすすめ</span>
+            </div>
+            <div class="w-item">
+                <span>⬜</span>
+                <span>どれもピンとこない<br>→ IIJmioで十分</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-illust" style="z-index: 2;">
+        <img src="public/images/irasutoya/businessman2_kangaechu.png" alt="考え中のビジネスマン">
+    </div>
+</div>
+
+
+<!-- ==========================================================
+     SLIDE 9 (スライドID: 9) — CTA（本編動画をチェック）
      ========================================================== -->
 <div class="slide-container slide-cta">
-    <div class="cta-title">本編動画で<br>3社の長期特典を<br>徹底比較！</div>
+    <div class="cta-title">本編で料金プランと<br>評価を詳しく解説！</div>
     <div class="cta-sub">
-        mineo・IIJmio・楽天モバイル<br>どこが一番お得？
+        BIC SIMの全貌を徹底チェック
     </div>
     <div class="cta-arrow">↓</div>
     <img
         class="cta-banner-img"
-        src="public/images/thumbnails/【2026年最新】長期利用特典が手厚い格安SIM3選_サムネ2.png"
+        src="public/images/thumbnails/【2026年最新】BIC SIM完全ガイド 950円で5GB｜IIJmioとの違い_サムネ1.png"
         alt="本編動画サムネイル"
     >
 </div>
