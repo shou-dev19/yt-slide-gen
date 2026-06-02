@@ -121,6 +121,14 @@ To maximize audience retention, use **"Extremely Huge Text Size"** as the standa
 
     * **Thumbnails**: For CTA slides that are NOT covered by a standard slide image above, select the most relevant image from `public/images/thumbnails` based on file names.
     * **Captions/Citations**: Use small text (`font-size: 20px–35px`, color: `#666`) at the bottom of images if needed. Adjust image `max-height` to accommodate the text.
+    * **External source attribution (mandatory)**: When an image was obtained from a third-party site (e.g. an Amazon product listing, a carrier's official page, a measurement site), add a small source caption directly below it. **Cite the retrieval source accurately and do not conflate it with the copyright holder.** A product image fetched from an Amazon listing is the *carrier/manufacturer's* artwork merely hosted on Amazon, so attribute it as e.g. `出典：Amazon.co.jp（IIJmio商品ページ）` — not `出典：Amazon` alone (which wrongly implies Amazon owns it). Use the standard caption style (`font-size: 26px; color: #666; margin-top: 12px; text-align: center;`) and reduce the image `max-height` to make room.
+
+      ```html
+      <div class="split-col" style="flex: 0.6;">
+        <img src="public/images/entry_package/iijmio.jpg" style="max-height: 420px; max-width: 100%; object-fit: contain; border-radius: 16px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="IIJmioエントリーパッケージ">
+        <div style="font-size: 26px; color: #666; margin-top: 12px; text-align: center;">出典：Amazon.co.jp（IIJmio商品ページ）</div>
+      </div>
+      ```
 
 7. **Self-Check & Adjustment (Critical)**
     * **Overflow Check**: Before final generation, strictly verify that all content (text, images, tables) fits entirely within the `1280px × 720px` container.
@@ -183,6 +191,8 @@ To maximize audience retention, use **"Extremely Huge Text Size"** as the standa
 
     Slides with IDs in the format `N-0` (e.g., `4-0`, `7-0`, `14-0`) are chapter transition slides — full-screen title cards shown at the start of each chapter. Apply all of the following rules:
 
+    > **Role separation (important):** A chapter usually has **two** distinct intro slides that must look different. The `N-0` slide (this rule) is the **lively character transition** with ショウ／モモコ. The plain-number slide `N` (rule 13) is the **clean typographic chapter card** with no characters. Never put characters on the plain `N` card, and never add the `CHAPTER N` typographic layout to the `N-0` slide. Keep their roles strictly separate.
+
     * **Title text only** — display exactly the title text from the script. Do **not** add any extra text (chapter badges, speech bubbles, labels, icons, etc.).
     * **Characters** — place the channel characters at the bottom of the slide using `position: absolute; bottom: 0`. Use only these two assets:
         * `public/images/characters/ショウ_デフォルメ_笑顔.png`
@@ -190,6 +200,7 @@ To maximize audience retention, use **"Extremely Huge Text Size"** as the standa
     * **Title positioning** — use `position: absolute` with `top: 50%; left: 50%; transform: translate(-50%, -50%)` to center the title. Apply the standard heavy text-shadow for readability over the characters. Set `z-index: 5` on the title and `z-index: 3` on the characters.
     * **Background** — use a gradient (linear or radial) based on the theme color (e.g., `linear-gradient(135deg, #fff 60%, #ffe0f0 100%)` or `radial-gradient(circle at center, #fff 0%, #ffe0f0 100%)`). Add `justify-content: center` to the container.
     * **Vary the layout** across slides to maintain visual interest — e.g., both characters at the bottom corners (height ~320–360px), or one character large on one side (height ~500–560px) with the title offset to the opposite side.
+    * **Offset-title wrapping pitfall (mandatory):** When the title is offset to one side (e.g. `left: 64%` instead of `50%`) and only `left` is set on the absolutely-positioned title (no `width`/`right`), its shrink-to-fit width is capped by the distance from that `left` position to the container's right edge. A title that should fit on one line then wraps at an unexpected mid-phrase point. **Always add `white-space: nowrap` to an offset title** so the box sizes to its content and line breaks are controlled solely by your explicit `<br>` tags. Nudge `left` and verify clearance from the character so neither edge clips.
 
     ```html
     <!-- CORRECT — both characters at bottom corners, title centered -->
@@ -227,7 +238,41 @@ To maximize audience retention, use **"Extremely Huge Text Size"** as the standa
     </div>
     ```
 
-13. **Output Format Requirements**
+13. **Chapter Title Cards (Plain "N" Format, script content `Chapter N：…`) — Mandatory Rules**
+
+    When the script's `スライドに表示する内容` column reads `Chapter N：<title>` and the slide ID is a **plain chapter number** (e.g. `4`, `7`, `12` — *not* the `N-0` transition), generate a **simple, stylish chapter title card**. This is the companion to the `N-0` character transition (rule 12) and must look clearly different: **no characters, no speech bubbles, no icons, no chapter badge** — just the chapter number and its name.
+
+    * **Layout** — a single horizontal flex row, vertically centered:
+        * **Left**: a small letter-spaced `CHAPTER` label stacked above a **huge number** in the primary color.
+        * **Divider**: a thin vertical **accent-yellow** bar between the number and the title.
+        * **Right**: the chapter name in `var(--text-dark)`.
+    * **Sizing (fixed across all chapter cards for consistency)**:
+        * `CHAPTER` label: `font-size: 38px; letter-spacing: 8px; color: var(--primary-color);`
+        * Number: `font-size: 240px; line-height: 0.8; color: var(--primary-color);`
+        * Divider: `width: 10px; align-self: stretch; background: var(--accent-yellow); border-radius: 8px; margin: 24px 0;`
+        * `gap: 56px` between the three blocks; `flex-shrink: 0` on the number block.
+    * **Title font scales by length** (keep it visually balanced, never overflowing): short titles (e.g. `まとめ`) ~96px; medium (2 lines) ~68–80px; long (e.g. `スマホもお得に買える！スマホ大特価セール`) ~60px. `line-height: 1.3`. Insert `<br>` at natural phrase boundaries per rule 5.
+    * **Background**: subtle theme gradient `linear-gradient(135deg, #fff 55%, #ffebe9 100%)` (adjust the tint to the theme color).
+
+    ```html
+    <!-- Slide ID: 7 -->
+    <div class="slide-container" style="background: linear-gradient(135deg, #fff 55%, #ffebe9 100%);">
+      <div style="display: flex; align-items: center; gap: 56px;">
+        <div style="display: flex; flex-direction: column; align-items: center; flex-shrink: 0;">
+          <div style="font-size: 38px; font-weight: 900; letter-spacing: 8px; color: var(--primary-color); margin-bottom: 4px;">CHAPTER</div>
+          <div style="font-size: 240px; font-weight: 900; color: var(--primary-color); line-height: 0.8;">2</div>
+        </div>
+        <div style="width: 10px; align-self: stretch; background: var(--accent-yellow); border-radius: 8px; margin: 24px 0;"></div>
+        <div style="font-size: 68px; font-weight: 900; color: var(--text-dark); line-height: 1.3;">
+          今だけ！<br>キャンペーンの<br>中身がすごい
+        </div>
+      </div>
+    </div>
+    ```
+
+    * **Content-relocation rule (mandatory):** A chapter card slide must contain **only** the chapter card. If the script maps the *same* plain `N` ID to both the `Chapter N：…` line **and** subsequent explanatory rows (a different `スライドに表示する内容` value under the same ID), that explanatory content does **not** belong on the card. Emit the chapter card as ID `N`, move the explanation to a new slide **`N-1`**, and re-assign those narration rows in `台本.txt` from `N` to `N-1` so audio/slide sync is preserved.
+
+14. **Output Format Requirements**
     * Output as a single HTML file containing all slides (div elements).
     * Use `body { display: flex; flex-direction: column; gap: 40px; }` to display all `.slide-container` elements vertically.
     * Add `<!-- Slide ID: XX -->` before each slide's HTML to map it to the script.
