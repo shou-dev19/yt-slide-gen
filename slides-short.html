@@ -1,726 +1,330 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BIC SIMとIIJmioの違い3選 - Short Slides</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --blue: #0052cc;
-            --blue-dark: #003fa0;
-            --white: #ffffff;
-            --red: #e63946;
-            --text-dark: #001a52;
-            --bg-outside: #f0f4f8;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IIJmio 25GB 月700円 キャンペーン ショート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --blue: #0052cc;
+        --blue-dark: #003fa0;
+        --red: #e63946;
+        --gold: #ffd700;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: 'Inter', 'Noto Sans JP', sans-serif;
+        background: #f0f4f8;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        padding: 40px;
+    }
+    .slide-container {
+        width: 1080px;
+        height: 1080px;
+        background: #ffffff;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+    img { object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    /* ============ THUMBNAIL (Slide 1) ============ */
+    .slide-thumbnail {
+        align-items: center;
+        justify-content: flex-start;
+        text-align: center;
+        border: 25px solid var(--blue);
+        padding: 160px 60px 300px;
+        background:
+            repeating-conic-gradient(from 0deg at 52% 48%, rgba(0,82,204,0.06) 0deg 2.5deg, transparent 2.5deg 16deg),
+            radial-gradient(ellipse at 52% 48%, #ffffff 5%, #e8f3ff 45%, #c8dcff 100%);
+    }
+    .thumb-top-strip {
+        position: absolute; top: 25px; left: 25px; right: 25px;
+        background: var(--blue); color: #fff;
+        font-size: 36px; font-weight: 900; padding: 18px 0;
+        text-align: center; letter-spacing: 0.06em; z-index: 3;
+    }
+    .thumb-accent-tri { position: absolute; width: 0; height: 0; z-index: 0; }
+    .thumb-accent-tri.tl { top:25px; left:25px; border-top:300px solid rgba(0,82,204,0.09); border-right:300px solid transparent; }
+    .thumb-accent-tri.br { bottom:25px; right:25px; border-bottom:300px solid rgba(0,82,204,0.09); border-left:300px solid transparent; }
+    .thumb-tag {
+        font-size: 80px; font-weight: 900; color: #fff;
+        background: var(--red); padding: 18px 54px;
+        transform: rotate(-3deg); box-shadow: 8px 8px 0 rgba(0,0,0,0.25);
+        margin-bottom: 28px; z-index: 2; border-radius: 8px;
+    }
+    .thumb-title {
+        font-size: 80px; font-weight: 900; color: #1a2b4a;
+        line-height: 1.25; margin-bottom: 22px; max-width: 900px; z-index: 2;
+    }
+    .thumb-title .hl { color: var(--red); }
+    .thumb-sub-band {
+        font-size: 60px; font-weight: 900; color: #fff;
+        background: var(--blue); padding: 18px 70px;
+        border-radius: 12px; box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+        margin-bottom: 32px; z-index: 2;
+    }
+    .thumb-logo-area {
+        height: 190px; display: flex; align-items: center; justify-content: center; z-index: 2;
+    }
+    .thumb-logo-area img { height: 150px; filter: drop-shadow(0 6px 14px rgba(0,0,0,0.15)); }
+    .thumb-illust {
+        position: absolute; bottom: 40px; right: 40px;
+        height: 290px; z-index: 1;
+        filter: drop-shadow(0 12px 24px rgba(0,0,0,0.2));
+    }
 
-        body {
-            background-color: var(--bg-outside);
-            font-family: 'Inter', 'Noto Sans JP', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 0;
-            gap: 0;
-        }
+    /* ============ STANDARD SLIDES ============ */
+    .slide-standard { padding: 70px 70px; }
+    .watermark {
+        position: absolute; top: -60px; left: 10px;
+        font-size: 280px; font-weight: 900; color: var(--blue);
+        opacity: 0.07; z-index: 0; line-height: 1;
+    }
+    .slide-title {
+        font-size: 62px; font-weight: 900; color: #1a2b4a;
+        border-bottom: 10px solid var(--blue); padding-bottom: 14px;
+        margin-bottom: 30px; z-index: 1;
+    }
+    .slide-title .hl { color: var(--red); }
+    .slide-body { display: flex; flex-direction: column; gap: 28px; z-index: 1; }
 
-        /* ===================================
-           SHARED: slide-container
-           =================================== */
-        .slide-container {
-            width: 1080px;
-            height: 1080px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-            margin-bottom: 60px;
-            background: var(--white);
-        }
+    .info-card {
+        display: flex; align-items: center; gap: 22px;
+        padding: 22px 32px; border-radius: 0 16px 16px 0;
+        font-size: 46px; font-weight: 700; color: #1a2b4a;
+        background: #f0f5ff; border-left: 14px solid var(--blue);
+    }
+    .info-card .emoji { font-size: 54px; }
+    .info-card.alert {
+        background: #fff0f0; border-left-color: var(--red);
+        color: var(--red); font-size: 50px; font-weight: 900;
+    }
+    .price-big { color: var(--red); font-size: 58px; font-weight: 900; }
+    .info-card.alert .price-big { color: var(--red); }
 
-        img {
-            object-fit: contain;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
-        }
+    .vs-row {
+        display: flex; align-items: stretch; gap: 24px; justify-content: center;
+    }
+    .vs-card {
+        flex: 1; border-radius: 20px; padding: 30px 20px;
+        display: flex; flex-direction: column; align-items: center; gap: 10px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+    .vs-card.small { background: #eef2f7; border: 4px solid #c0cce0; }
+    .vs-card.big { background: linear-gradient(155deg, #eaf3ff, #d4e8ff); border: 6px solid var(--blue); transform: scale(1.04); }
+    .vs-gb { font-size: 64px; font-weight: 900; color: #1a2b4a; }
+    .vs-card.small .vs-price { font-size: 56px; font-weight: 900; color: #5a6a85; }
+    .vs-card.big .vs-price { font-size: 64px; font-weight: 900; color: var(--red); }
+    .vs-arrow { display: flex; align-items: center; font-size: 70px; font-weight: 900; color: var(--blue); }
 
-        /* ===================================
-           WATERMARK
-           =================================== */
-        .watermark {
-            position: absolute;
-            top: -40px;
-            left: 20px;
-            font-size: 280px;
-            font-weight: 900;
-            color: var(--blue);
-            opacity: 0.07;
-            z-index: 0;
-            user-select: none;
-            line-height: 1;
-        }
+    .highlight-block {
+        font-size: 62px; font-weight: 900; color: #fff;
+        background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+        padding: 30px 24px; border-radius: 18px; text-align: center;
+        box-shadow: 0 10px 24px rgba(0,82,204,0.3);
+    }
+    .free-badge {
+        font-size: 72px; font-weight: 900; color: var(--red);
+        background: var(--gold); display: inline-block;
+        padding: 10px 40px; border-radius: 14px; transform: rotate(-2deg);
+        box-shadow: 6px 6px 0 rgba(0,0,0,0.2); align-self: center;
+    }
+    .slide-illust {
+        position: absolute; bottom: 40px; right: 40px; height: 260px; z-index: 2;
+    }
+    .slide-illust img { height: 260px; }
 
-        /* ===================================
-           SLIDE TITLE & BODY
-           =================================== */
-        .slide-title {
-            font-size: 62px;
-            font-weight: 900;
-            color: var(--text-dark);
-            border-bottom: 10px solid var(--blue);
-            margin: 80px 60px 30px;
-            padding-bottom: 14px;
-            align-self: flex-start;
-            z-index: 2;
-            line-height: 1.25;
-        }
+    /* ============ WARNING SLIDE ============ */
+    .slide-warning { padding: 0; background: #fff8f8; align-items: center; }
+    .warning-banner {
+        width: 100%; font-size: 62px; font-weight: 900; color: #fff;
+        background: var(--red); padding: 22px 0; text-align: center;
+        letter-spacing: 0.04em; z-index: 1;
+    }
+    .warning-body {
+        flex: 1; width: 100%; padding: 50px 70px 70px;
+        display: flex; flex-direction: column; gap: 30px; z-index: 1;
+    }
+    .warning-box {
+        border: 10px solid var(--red); background: #fff0f0;
+        border-radius: 18px; padding: 36px 42px;
+        display: flex; flex-direction: column; gap: 26px;
+    }
+    .w-title { font-size: 58px; font-weight: 900; color: var(--red); }
+    .w-item { font-size: 50px; font-weight: 700; color: #1a2b4a; display: flex; gap: 16px; align-items: center; }
+    .w-deadline {
+        font-size: 70px; font-weight: 900; color: #fff;
+        background: var(--red); border-radius: 14px; padding: 22px;
+        text-align: center; box-shadow: 0 8px 18px rgba(230,57,70,0.35);
+    }
+    .warning-illust { position: absolute; bottom: 40px; right: 40px; height: 280px; z-index: 2; }
+    .warning-illust img { height: 280px; }
 
-        .slide-body {
-            padding: 0 60px;
-            display: flex;
-            flex-direction: column;
-            gap: 28px;
-            z-index: 2;
-        }
-
-        /* ===================================
-           INFO CARDS
-           =================================== */
-        .info-card {
-            display: flex;
-            align-items: center;
-            gap: 22px;
-            padding: 22px 32px;
-            border-radius: 0 16px 16px 0;
-            font-size: 46px;
-            font-weight: 700;
-            background: #f0f5ff;
-            border-left: 14px solid var(--blue);
-            color: var(--text-dark);
-            line-height: 1.3;
-            z-index: 2;
-        }
-
-        .info-card.alert {
-            background: #fff0f0;
-            border-left-color: var(--red);
-            color: var(--red);
-            font-size: 50px;
-            font-weight: 900;
-        }
-
-        .info-card .card-icon {
-            font-size: 52px;
-            flex-shrink: 0;
-        }
-
-        /* ===================================
-           HIGHLIGHT BLOCK
-           =================================== */
-        .highlight-block {
-            background: linear-gradient(135deg, #e8f0ff, #d0e2ff);
-            border-left: 12px solid var(--blue);
-            border-radius: 0 16px 16px 0;
-            font-size: 56px;
-            font-weight: 900;
-            color: var(--blue);
-            padding: 20px 32px;
-            line-height: 1.3;
-            z-index: 2;
-        }
-
-        /* ===================================
-           SLIDE ILLUSTRATION
-           =================================== */
-        .slide-illust {
-            position: absolute;
-            right: 40px;
-            bottom: 40px;
-            height: 260px;
-            z-index: 2;
-        }
-
-        .slide-illust img {
-            height: 100%;
-        }
-
-        /* ===================================
-           SLIDE 1: THUMBNAIL
-           =================================== */
-        .slide-thumbnail {
-            background:
-                repeating-conic-gradient(from 0deg at 52% 48%, rgba(0,82,204,0.06) 0deg 2.5deg, transparent 2.5deg 16deg),
-                radial-gradient(ellipse at 52% 48%, #ffffff 5%, #e8f3ff 45%, #c8dcff 100%);
-            border: 25px solid var(--blue);
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding-top: 200px;
-            padding-bottom: 300px;
-        }
-
-        .thumb-top-strip {
-            position: absolute;
-            top: 25px;
-            left: 25px;
-            right: 25px;
-            background: var(--blue);
-            color: #fff;
-            font-size: 36px;
-            font-weight: 900;
-            padding: 18px 0;
-            text-align: center;
-            letter-spacing: 0.06em;
-            z-index: 3;
-        }
-
-        .thumb-accent-tri {
-            position: absolute;
-            width: 0;
-            height: 0;
-            z-index: 1;
-        }
-
-        .thumb-accent-tri.tl {
-            top: 25px;
-            left: 25px;
-            border-top: 300px solid rgba(0,82,204,0.09);
-            border-right: 300px solid transparent;
-        }
-
-        .thumb-accent-tri.br {
-            bottom: 25px;
-            right: 25px;
-            border-bottom: 300px solid rgba(0,82,204,0.09);
-            border-left: 300px solid transparent;
-        }
-
-        .thumb-tag {
-            background-color: var(--red);
-            color: var(--white);
-            font-size: 72px;
-            font-weight: 900;
-            padding: 18px 54px;
-            transform: rotate(-3deg);
-            box-shadow: 8px 8px 0 rgba(0,0,0,0.25);
-            margin-bottom: 28px;
-            letter-spacing: 0.05em;
-            z-index: 2;
-        }
-
-        .thumb-main-title {
-            font-size: 80px;
-            font-weight: 900;
-            color: var(--text-dark);
-            line-height: 1.25;
-            margin-bottom: 22px;
-            max-width: 900px;
-            z-index: 2;
-        }
-
-        .thumb-main-title .hl {
-            color: var(--blue);
-        }
-
-        .thumb-sub-band {
-            background-color: var(--blue);
-            color: var(--white);
-            font-size: 54px;
-            font-weight: 900;
-            padding: 18px 60px;
-            border-radius: 12px;
-            box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
-            z-index: 2;
-            margin-bottom: 20px;
-        }
-
-        .thumb-logo-area {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 28px;
-            z-index: 2;
-            margin-top: 10px;
-        }
-
-        .thumb-logo-area img {
-            height: 80px;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.12));
-        }
-
-        .thumb-logo-divider {
-            width: 4px;
-            height: 70px;
-            background: #c0cce0;
-            border-radius: 2px;
-            flex-shrink: 0;
-        }
-
-        .thumb-illust {
-            position: absolute;
-            bottom: 30px;
-            right: 50px;
-            height: 280px;
-            z-index: 2;
-        }
-
-        .thumb-illust img {
-            height: 100%;
-        }
-
-        /* ===================================
-           SAME CONTENT badge (slide 2)
-           =================================== */
-        .same-badge {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-            background: #ffffff;
-            border: 8px solid var(--blue);
-            border-radius: 20px;
-            padding: 26px 36px;
-            z-index: 2;
-        }
-
-        .same-badge img {
-            height: 68px;
-            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.15));
-        }
-
-        .same-badge .eq-label {
-            font-size: 52px;
-            font-weight: 900;
-            color: var(--blue);
-            letter-spacing: 0.05em;
-        }
-
-        /* ===================================
-           FEATURE BADGE (slides 4-7)
-           =================================== */
-        .feature-num-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--blue);
-            color: #fff;
-            font-size: 36px;
-            font-weight: 900;
-            border-radius: 50px;
-            padding: 8px 28px;
-            margin-bottom: 6px;
-            letter-spacing: 0.08em;
-            z-index: 2;
-            align-self: flex-start;
-        }
-
-        /* ===================================
-           WIFI CARD (slide 5)
-           =================================== */
-        .wifi-point-card {
-            display: flex;
-            align-items: center;
-            gap: 22px;
-            padding: 22px 32px;
-            border-radius: 16px;
-            font-size: 46px;
-            font-weight: 700;
-            background: #e8f5ff;
-            border: 6px solid #4fa8e8;
-            color: var(--text-dark);
-            line-height: 1.3;
-            z-index: 2;
-        }
-
-        /* ===================================
-           CHOICE FLOW (slide 8)
-           =================================== */
-        .choice-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 22px;
-            padding: 28px 36px;
-            border-radius: 16px;
-            font-size: 48px;
-            font-weight: 700;
-            line-height: 1.35;
-            z-index: 2;
-        }
-
-        .choice-card.bicsim {
-            background: #e8f3ff;
-            border-left: 14px solid var(--blue);
-            color: var(--text-dark);
-        }
-
-        .choice-card.iijmio {
-            background: #f0f5ff;
-            border-left: 14px solid #6699cc;
-            color: #334466;
-        }
-
-        .choice-arrow {
-            font-size: 60px;
-            font-weight: 900;
-            text-align: center;
-            color: var(--blue);
-            z-index: 2;
-        }
-
-        /* ===================================
-           WARNING SLIDE (penultimate = slide 8)
-           =================================== */
-        .slide-warning {
-            background-color: #fff8f8;
-        }
-
-        .warning-banner {
-            width: 100%;
-            background-color: var(--red);
-            color: var(--white);
-            font-size: 58px;
-            font-weight: 900;
-            text-align: center;
-            padding: 22px 0;
-            z-index: 2;
-        }
-
-        .warning-content {
-            padding: 36px 60px 0;
-            z-index: 2;
-        }
-
-        .warning-box {
-            border: 10px solid var(--red);
-            background-color: #fff0f0;
-            padding: 32px 42px;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 26px;
-        }
-
-        .w-title {
-            font-size: 54px;
-            font-weight: 900;
-            color: var(--red);
-            margin-bottom: 4px;
-        }
-
-        .w-item {
-            font-size: 50px;
-            font-weight: 700;
-            color: #5a1a1a;
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            line-height: 1.35;
-        }
-
-        /* ===================================
-           LAST SLIDE: CTA
-           =================================== */
-        .slide-cta {
-            background: linear-gradient(135deg, var(--blue), #003380);
-            justify-content: center;
-            align-items: center;
-            gap: 18px;
-            padding: 60px;
-        }
-
-        .cta-logo {
-            height: 110px;
-            object-fit: contain;
-            filter: brightness(10);
-            margin-bottom: 6px;
-        }
-
-        .cta-title {
-            font-size: 82px;
-            font-weight: 900;
-            color: #ffd700;
-            text-align: center;
-            line-height: 1.2;
-        }
-
-        .cta-sub {
-            font-size: 48px;
-            font-weight: 700;
-            color: #ffffff;
-            text-align: center;
-            line-height: 1.4;
-        }
-
-        .cta-arrow {
-            font-size: 90px;
-            color: #ffd700;
-            animation: bounce 1.3s ease-in-out infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50%       { transform: translateY(14px); }
-        }
-
-        .cta-banner-img {
-            width: 800px;
-            border-radius: 16px;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-            filter: none;
-        }
-    </style>
+    /* ============ CTA SLIDE ============ */
+    .slide-cta {
+        background: linear-gradient(135deg, var(--blue), #003380);
+        align-items: center; justify-content: center; text-align: center;
+        padding: 70px;
+    }
+    .cta-logo-wrap {
+        background: #fff; border-radius: 18px;
+        padding: 18px 48px; margin-bottom: 26px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        display: flex; align-items: center; justify-content: center;
+    }
+    .cta-logo { height: 100px; }
+    .cta-title { font-size: 84px; font-weight: 900; color: var(--gold); margin-bottom: 18px; line-height: 1.2; }
+    .cta-sub { font-size: 50px; font-weight: 700; color: #fff; margin-bottom: 20px; }
+    .cta-arrow {
+        font-size: 90px; color: var(--gold); margin-bottom: 16px;
+        animation: bounce 1s infinite;
+    }
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(20px); }
+    }
+    .cta-banner-img { width: 800px; border-radius: 18px; box-shadow: 0 14px 30px rgba(0,0,0,0.35); }
+</style>
 </head>
 <body>
 
-<!-- ==========================================================
-     SLIDE 1 (スライドID: 1) — サムネイル
-     BIC SIMとIIJmioの違い3選！
-     ========================================================== -->
+<!-- ===================== Slide 1: Thumbnail ===================== -->
 <div class="slide-container slide-thumbnail">
-    <div class="thumb-top-strip">📋 2026年最新 BIC SIM vs IIJmio 徹底比較</div>
+    <div class="thumb-top-strip">⚡ 2026年6月8日まで 神キャンペーン ⚡</div>
     <div class="thumb-accent-tri tl"></div>
     <div class="thumb-accent-tri br"></div>
-
-    <div class="thumb-tag">違い3選！</div>
-
-    <h1 class="thumb-main-title">
-        <span class="hl">BIC SIM</span>と<br><span class="hl">IIJmio</span>の<br>違いって何？
-    </h1>
-
-    <div class="thumb-sub-band">実は3つの独自特典が違う！</div>
-
+    <div class="thumb-tag">月700円</div>
+    <div class="thumb-title">IIJmio <span class="hl">25GB</span> が<br>激安すぎる件</div>
+    <div class="thumb-sub-band">10分かけ放題 6ヶ月無料</div>
     <div class="thumb-logo-area">
-        <img src="public/images/logo/bicsim_logo.png" alt="BIC SIM">
-        <div class="thumb-logo-divider"></div>
         <img src="public/images/logo/iijmio_logo.png" alt="IIJmio">
     </div>
+    <img class="thumb-illust" src="public/images/irasutoya/money_fueru.png" alt="お得">
+</div>
 
-    <div class="thumb-illust">
-        <img src="public/images/irasutoya/pose_naruhodo_woman.png" alt="なるほどとうなずく女性">
+<!-- ===================== Slide 2: 25GBが月700円 ===================== -->
+<div class="slide-container slide-standard">
+    <div class="watermark">1</div>
+    <h2 class="slide-title">今だけ <span class="hl">25GB が月700円</span></h2>
+    <div class="slide-body" style="margin-bottom: 120px;">
+        <div class="info-card">
+            <span class="emoji">📱</span>
+            <span>IIJmio ギガプラン</span>
+        </div>
+        <div class="info-card alert">
+            <span class="emoji">💥</span>
+            <span>25GB が <span class="price-big">月700円</span>（税込）</span>
+        </div>
+        <div class="info-card">
+            <span class="emoji">😲</span>
+            <span>安すぎて目を疑うレベル</span>
+        </div>
+    </div>
+    <div class="slide-illust" style="z-index: 2;">
+        <img src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="驚き">
     </div>
 </div>
 
-
-<!-- ==========================================================
-     SLIDE 2 (スライドID: 2) — BIC SIM＝IIJmioと中身は完全に同じ
-     ========================================================== -->
-<div class="slide-container">
+<!-- ===================== Slide 3: 10GBより25GBが安い逆転 ===================== -->
+<div class="slide-container slide-standard">
     <div class="watermark">2</div>
-
-    <h2 class="slide-title">料金も回線も<br>実は完全に同じ！</h2>
-
+    <h2 class="slide-title">まさかの <span class="hl">価格逆転</span></h2>
     <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="same-badge">
-            <img src="public/images/logo/bicsim_logo.png" alt="BIC SIM">
-            <span class="eq-label">＝</span>
-            <img src="public/images/logo/iijmio_logo.png" alt="IIJmio">
+        <div class="vs-row">
+            <div class="vs-card small">
+                <div class="vs-gb">10GB</div>
+                <div class="vs-price">月1250円</div>
+            </div>
+            <div class="vs-arrow">＜</div>
+            <div class="vs-card big">
+                <div class="vs-gb">25GB</div>
+                <div class="vs-price">月700円</div>
+            </div>
         </div>
         <div class="info-card alert">
-            <span class="card-icon">💡</span>
-            <span>中身は完全に同じ<br>（料金・回線品質）</span>
-        </div>
-        <div class="info-card">
-            <span class="card-icon">✅</span>
-            <span>違いは<br>BIC SIMだけの独自特典</span>
+            <span class="emoji">🤯</span>
+            <span>容量が多い 25GB の方が安い！</span>
         </div>
     </div>
-
     <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="驚く男性">
+        <img src="public/images/irasutoya/money_kasoutsuuka_kusa.png" alt="コイン">
     </div>
 </div>
 
-
-<!-- ==========================================================
-     SLIDE 3 (スライドID: 3) — BIC SIMだけの3つの独自特典
-     ========================================================== -->
-<div class="slide-container">
+<!-- ===================== Slide 4: 25GB一択 ===================== -->
+<div class="slide-container slide-standard">
     <div class="watermark">3</div>
-
-    <h2 class="slide-title">BIC SIMだけの<br>独自特典3つ</h2>
-
+    <h2 class="slide-title">今申し込むなら</h2>
     <div class="slide-body" style="margin-bottom: 120px;">
+        <div class="highlight-block">25GB プラン 一択！</div>
         <div class="info-card">
-            <span class="card-icon">①</span>
-            <span>ギガぞうWi-Fi<span style="color:var(--red);font-weight:900;">無料</span></span>
+            <span class="emoji">✅</span>
+            <span>大容量なのに最安値</span>
         </div>
         <div class="info-card">
-            <span class="card-icon">②</span>
-            <span>ビックカメラ店頭<br>サポート</span>
-        </div>
-        <div class="info-card">
-            <span class="card-icon">③</span>
-            <span>ビックポイントで<br>月額払いOK</span>
+            <span class="emoji">💰</span>
+            <span>迷わず選んで大正解</span>
         </div>
     </div>
-
     <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/sns_happy_woman.png" alt="喜ぶ女性">
+        <img src="public/images/irasutoya/pose_naruhodo_woman.png" alt="納得">
     </div>
 </div>
 
-
-<!-- ==========================================================
-     SLIDE 4 (スライドID: 4) — 独自特典①ギガぞうWi-Fi無料
-     ========================================================== -->
-<div class="slide-container">
+<!-- ===================== Slide 5: 10分かけ放題 6ヶ月無料 ===================== -->
+<div class="slide-container slide-standard">
     <div class="watermark">4</div>
-
-    <h2 class="slide-title">独自特典①<br>ギガぞうWi-Fi 無料</h2>
-
-    <img src="public/images/temp/bicsim/ギガぞうWi-Fi_ギガぞうのみ.png" alt="ギガぞう" style="position: absolute; top: 30px; right: 40px; height: 220px; z-index: 3; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.15));">
-
+    <h2 class="slide-title"><span class="hl">10分かけ放題</span> も</h2>
     <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card alert">
-            <span class="card-icon">📶</span>
-            <span>全国<span style="font-size:54px;">10万箇所以上</span><br>の公衆Wi-Fiがタダ！</span>
-        </div>
+        <div class="free-badge">最大6ヶ月 無料</div>
         <div class="info-card">
-            <span class="card-icon">☕</span>
-            <span>カフェ・駅・空港で<br>すぐつながる</span>
+            <span class="emoji">📞</span>
+            <span>通話オプションがタダ</span>
         </div>
-        <div class="highlight-block">
-            データ節約になる！
-        </div>
-    </div>
-
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/pose_necchuu_smartphone_woman.png" alt="スマホに夢中な女性">
-    </div>
-</div>
-
-
-<!-- ==========================================================
-     SLIDE 5 (スライドID: 5) — 高セキュリティな公衆Wi-Fi
-     ========================================================== -->
-<div class="slide-container">
-    <div class="watermark">5</div>
-
-    <h2 class="slide-title">フリーWi-Fiより<br>安全！</h2>
-
-    <div class="slide-body" style="margin-bottom: 120px;">
         <div class="info-card alert">
-            <span class="card-icon">🔒</span>
-            <span>通信を暗号化した<br>高セキュリティタイプ</span>
-        </div>
-        <div class="wifi-point-card">
-            <span>📡</span>
-            <span>フリーWi-Fiより<br>安心して使える！</span>
-        </div>
-        <div class="wifi-point-card">
-            <span>🏙️</span>
-            <span>カフェ・駅・空港で<br>安心接続</span>
+            <span class="emoji">🎁</span>
+            <span>至れり尽くせりの大盤振る舞い</span>
         </div>
     </div>
-
     <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/pose_anshin_woman.png" alt="安心する女性">
+        <img src="public/images/irasutoya/smartphone_talk08_woman.png" alt="通話">
     </div>
 </div>
 
-
-<!-- ==========================================================
-     SLIDE 6 (スライドID: 6) — 独自特典②ビックカメラ店頭サポート
-     ========================================================== -->
-<div class="slide-container">
-    <div class="watermark">6</div>
-
-    <h2 class="slide-title">独自特典②<br>ビックカメラ店頭サポート</h2>
-
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card alert">
-            <span class="card-icon">🏪</span>
-            <span>全国のビックカメラ・<br>コジマ・ソフマップで<br>対面相談OK！</span>
-        </div>
-        <div class="info-card">
-            <span class="card-icon">💬</span>
-            <span>申し込み・初期設定を<br>店頭でサポート</span>
-        </div>
-    </div>
-
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/kaden_tenin15_woman.png" alt="家電店員の女性">
-    </div>
-</div>
-
-
-<!-- ==========================================================
-     SLIDE 7 (スライドID: 7) — 独自特典③ビックポイントで月額料金を支払い可
-     ========================================================== -->
-<div class="slide-container">
-    <div class="watermark">7</div>
-
-    <h2 class="slide-title">独自特典③<br>ビックポイントで支払い可</h2>
-
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card alert">
-            <span class="card-icon">💳</span>
-            <span>ビックポイントで<br>月額料金を支払える！</span>
-        </div>
-        <div class="info-card">
-            <span class="card-icon">🏆</span>
-            <span>ポイントで<br>スマホ代が実質タダに！</span>
-        </div>
-        <div class="highlight-block">
-            ポイント活用で<br>さらにお得！
-        </div>
-    </div>
-
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/money_fueru.png" alt="お金が増えるイラスト">
-    </div>
-</div>
-
-
-<!-- ==========================================================
-     SLIDE 8 (スライドID: 8) — 選び方（ペナルティメイト・警告スタイル）
-     ========================================================== -->
+<!-- ===================== Slide 6: Warning（締切） ===================== -->
 <div class="slide-container slide-warning">
-    <div class="watermark">8</div>
-
-    <div class="warning-banner">⚠️ どっちを選ぶ？</div>
-
-    <div class="warning-content">
+    <div class="warning-banner">⚠ 急いで！締切間近 ⚠</div>
+    <div class="warning-body">
         <div class="warning-box">
-            <div class="w-title">選び方のポイント</div>
-            <div class="w-item">
-                <span>✅</span>
-                <span>3つの特典が<span style="color:var(--red);font-weight:900;">1つでも刺さる</span><br>→ BIC SIMがおすすめ</span>
-            </div>
-            <div class="w-item">
-                <span>⬜</span>
-                <span>どれもピンとこない<br>→ IIJmioで十分</span>
-            </div>
+            <div class="w-title">キャンペーン終了！</div>
+            <div class="w-item">⏰ もうすぐ受付終了</div>
+            <div class="w-item">🏃 申し込みはお早めに</div>
         </div>
+        <div class="w-deadline">2026年6月8日 23:59 まで</div>
     </div>
-
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/businessman2_kangaechu.png" alt="考え中のビジネスマン">
+    <div class="warning-illust">
+        <img src="public/images/irasutoya/animal_buta_shock.png" alt="ショック">
     </div>
 </div>
 
-
-<!-- ==========================================================
-     SLIDE 9 (スライドID: 9) — CTA（本編動画をチェック）
-     ========================================================== -->
+<!-- ===================== Slide 7: CTA ===================== -->
 <div class="slide-container slide-cta">
-    <div class="cta-title">本編で料金プランと<br>評価を詳しく解説！</div>
-    <div class="cta-sub">
-        BIC SIMの全貌を徹底チェック
+    <div class="cta-logo-wrap">
+        <img class="cta-logo" src="public/images/logo/iijmio_logo.png" alt="IIJmio">
     </div>
-    <div class="cta-arrow">↓</div>
-    <img
-        class="cta-banner-img"
-        src="public/images/thumbnails/【2026年最新】BIC SIM完全ガイド 950円で5GB｜IIJmioとの違い_サムネ1.png"
-        alt="本編動画サムネイル"
-    >
+    <div class="cta-title">本編で<br>もっと詳しく！</div>
+    <div class="cta-sub">乗り換え同時でスマホも激安に</div>
+    <div class="cta-arrow">▼</div>
+    <img class="cta-banner-img" src="public/images/thumbnails/【月700円】IIJmio 25GB＋10分かけ放題6ヶ月無料！6月8日までの神キャンペーン_サムネ1.png" alt="本編動画">
 </div>
 
 </body>
