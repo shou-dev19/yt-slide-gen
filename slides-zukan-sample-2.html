@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>格安SIM図鑑 見開きスライド試作B（観点フォーカス型） - mineo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #22a73f;
+      --brand-deep: #1c8b34;
+      --brand-soft: #e8f5e6;
+      --paper: #fbf7ec;
+      --ink: #2b2b2b;
+      --ink-soft: #6b6b5e;
+      --rank-SS: #ff6f3c;
+      --rank-S:  #ffa726;
+      --rank-A:  #43a047;
+      --rank-B:  #42a5f5;
+      --rank-C:  #9e9e9e;
+      --pro: #2e9e4f;
+      --con: #e3603a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+      background: #2b2622;
+      display: flex; flex-direction: column; gap: 40px;
+      padding: 40px; align-items: center;
+    }
+
+    .slide-container {
+      width: 1280px; height: 720px;
+      flex-shrink: 0; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(120% 120% at 50% 0%, #6b5d49 0%, #41382c 55%, #2d261d 100%);
+    }
+
+    /* ===== 見開き本体 ===== */
+    .book {
+      position: relative;
+      width: 1200px; height: 700px;
+      display: flex;
+      border-radius: 10px;
+      box-shadow: 0 26px 60px rgba(0,0,0,0.55), 0 6px 14px rgba(0,0,0,0.4);
+    }
+    .page {
+      position: relative; width: 50%; height: 100%;
+      background: linear-gradient(180deg, #fdfaf1 0%, var(--paper) 60%, #f6f0e0 100%);
+      padding: 24px 30px;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .page.left  { border-radius: 10px 0 0 10px; }
+    .page.right { border-radius: 0 10px 10px 0; }
+    .page::before {
+      content: ""; position: absolute; inset: 0;
+      background: repeating-linear-gradient(0deg, rgba(0,0,0,0.012) 0 2px, transparent 2px 26px);
+      pointer-events: none;
+    }
+    .page.left::after {
+      content: ""; position: absolute; top: 0; right: 0; width: 60px; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(70,55,30,0.22)); pointer-events: none;
+    }
+    .page.right::after {
+      content: ""; position: absolute; top: 0; left: 0; width: 60px; height: 100%;
+      background: linear-gradient(270deg, transparent, rgba(70,55,30,0.22)); pointer-events: none;
+    }
+    .spine {
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 10px; height: 100%;
+      background: linear-gradient(90deg, #c9bd9c, #b6a982 50%, #c9bd9c);
+      box-shadow: 0 0 8px rgba(0,0,0,0.25); z-index: 5;
+    }
+    .index-tab {
+      position: absolute; top: -2px; right: 40px;
+      background: var(--brand); color: #fff; font-weight: 900;
+      font-size: 22px; letter-spacing: 2px;
+      padding: 10px 22px 12px; border-radius: 0 0 10px 10px;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.3); z-index: 6;
+    }
+
+    /* ===== ヘッダー（左：ロゴ＋総合評価 / 右：チャート） ===== */
+    .head-left {
+      display: flex; align-items: center; gap: 22px;
+      border-bottom: 4px solid var(--brand);
+      padding-bottom: 12px; margin-bottom: 12px;
+      height: 150px;
+    }
+    .head-left .logo { height: 70px; object-fit: contain; }
+    .total {
+      margin-left: auto; text-align: center; line-height: 1;
+    }
+    .total .label { font-size: 20px; font-weight: 800; color: var(--ink-soft); }
+    .total .grade {
+      font-size: 78px; font-weight: 900; color: var(--brand-deep);
+      text-shadow: 3px 3px 0 #fff;
+    }
+    .file-no {
+      font-size: 18px; font-weight: 800; letter-spacing: 2px;
+      color: var(--brand-deep); border: 3px solid var(--brand);
+      border-radius: 999px; padding: 3px 14px; background: var(--brand-soft);
+      align-self: flex-start;
+    }
+    .head-right {
+      height: 150px;
+      border-bottom: 4px solid var(--brand);
+      padding-bottom: 8px; margin-bottom: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .head-right img { height: 100%; object-fit: contain; transform: translateX(-60px); }
+
+    /* ===== 観点カード（大判） ===== */
+    .cards {
+      flex: 1;
+      display: flex; flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .card {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 4px 16px;
+      background: #fff;
+      border: 3px solid #e7dcc2;
+      border-left: 10px solid var(--brand);
+      border-radius: 14px;
+      padding: 12px 18px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    }
+    .rank {
+      grid-row: 1 / span 3; align-self: center;
+      width: 76px; height: 76px; border-radius: 16px;
+      color: #fff; font-weight: 900; font-size: 38px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 5px 0 rgba(0,0,0,0.12);
+    }
+    .rank.SS { background: var(--rank-SS); }
+    .rank.S  { background: var(--rank-S); }
+    .rank.A  { background: var(--rank-A); }
+    .rank.B  { background: var(--rank-B); }
+    .rank.C  { background: var(--rank-C); }
+
+    .card-name { font-size: 31px; font-weight: 900; color: var(--ink); line-height: 1.1; }
+    .line { font-size: 24px; font-weight: 500; line-height: 1.2; color: var(--ink); white-space: nowrap; }
+    .line .tag { display: inline-block; width: 1.4em; font-weight: 900; }
+    .line.pro .tag { color: var(--pro); }
+    .line.con .tag { color: var(--con); }
+  </style>
+</head>
+<body>
+
+  <!-- ============ 見開き図鑑B：観点フォーカス型（1観点=大判ブロック） ============ -->
+  <div class="slide-container">
+    <div class="book">
+      <div class="spine"></div>
+
+      <!-- 左ページ：ロゴ＋総合評価 ＋ 観点カード3枚 -->
+      <div class="page left">
+        <div class="head-left">
+          <img class="logo" src="public/images/logo/Mineo_logo_背景削除.png" alt="mineo">
+          <span class="file-no">FILE No.01</span>
+          <div class="total">
+            <div class="label">総合評価</div>
+            <div class="grade">S</div>
+          </div>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div class="rank SS">SS</div>
+            <div class="card-name">データ料金</div>
+            <div class="line pro"><span class="tag">＋</span>3GB 月1,298円。小〜中容量は最安級</div>
+            <div class="line con"><span class="tag">－</span>20GB超の大容量プランは無い</div>
+          </div>
+          <div class="card">
+            <div class="rank A">A</div>
+            <div class="card-name">通信品質</div>
+            <div class="line pro"><span class="tag">＋</span>ドコモ/au/SBのトリプル回線</div>
+            <div class="line con"><span class="tag">－</span>平日12時台は速度が落ちやすい</div>
+          </div>
+          <div class="card">
+            <div class="rank A">A</div>
+            <div class="card-name">初期費用</div>
+            <div class="line pro"><span class="tag">＋</span>YouTube限定リンクで手数料無料</div>
+            <div class="line con"><span class="tag">－</span>通常は事務手数料3,300円＋発行料</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右ページ：レーダーチャート ＋ 観点カード3枚 -->
+      <div class="page right">
+        <span class="index-tab">格安SIM図鑑</span>
+        <div class="head-right">
+          <img src="public/images/charts/mineo.png" alt="mineo レーダーチャート">
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div class="rank A">A</div>
+            <div class="card-name">通話料</div>
+            <div class="line pro"><span class="tag">＋</span>10分/時間無制限のかけ放題あり</div>
+            <div class="line con"><span class="tag">－</span>標準は30秒22円とやや割高</div>
+          </div>
+          <div class="card">
+            <div class="rank A">A</div>
+            <div class="card-name">店舗サポート</div>
+            <div class="line pro"><span class="tag">＋</span>「マイネ王」でユーザー同士が助け合い</div>
+            <div class="line con"><span class="tag">－</span>実店舗が少なく対面は弱め</div>
+          </div>
+          <div class="card">
+            <div class="rank SS">SS</div>
+            <div class="card-name">オプション</div>
+            <div class="line pro"><span class="tag">＋</span>パケット放題3Mbpsで実質使い放題</div>
+            <div class="line con"><span class="tag">－</span>3Mbpsは月385円の別オプション</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
