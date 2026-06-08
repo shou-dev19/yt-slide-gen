@@ -1,0 +1,173 @@
+/*
+ * 格安SIM図鑑 見開きスライド 共有ベース CSS
+ * -----------------------------------------------------------
+ * 全スライド共通の「紙の見開き（机背景込み・全画面）」の装丁を提供する。
+ * 解像度は本編動画と同じ 1920x1080（試作サンプル 1280x720 の 1.5 倍）。
+ * capture_slides_html.js は .slide-container 要素の実寸でスクショするため、
+ * このコンテナ寸法がそのまま出力 PNG の解像度になる。
+ *
+ * 使い方:
+ *   <link rel="stylesheet" href="templates/spread-base.css">
+ *   <div class="slide-container" style="--brand:#1565C0">   ← ブランド色は per-slide で上書き可
+ *     <div class="book">
+ *       <div class="spine"></div>
+ *       <div class="page left"> ... </div>
+ *       <div class="page right"> ... </div>
+ *     </div>
+ *   </div>
+ *
+ * コンテンツ種別ごとのレイアウト（目次/比較表/注意点/評価カード 等）は
+ * 各スライド側の <style> または別 CSS で定義する。ここは装丁のみ。
+ */
+
+:root {
+  /* ブランド色（既定は mineo グリーン。slide 側で --brand を上書きする） */
+  --brand: #22a73f;
+  --brand-deep: #1c8b34;
+  --brand-soft: #e8f5e6;
+  /* 紙・装丁 */
+  --paper: #fbf7ec;
+  --paper-edge: #efe6cf;
+  --ink: #2b2b2b;
+  --ink-soft: #6b6b5e;
+  --gutter: #d8cdb0;
+  /* 評価ランクの段階色 */
+  --rank-SS: #ff6f3c;
+  --rank-S:  #ffa726;
+  --rank-A:  #43a047;
+  --rank-B:  #42a5f5;
+  --rank-C:  #9e9e9e;
+  --pro: #2e9e4f;
+  --con: #e3603a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  background: #2b2622;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  padding: 60px;
+  align-items: center;
+}
+
+/* 動画キャプチャ対象。本編と同じ 1920x1080。
+   見開きの外側に余白（机）を持たせ、ZukanSpread の "引き" の絵を作る。 */
+.slide-container {
+  width: 1920px;
+  height: 1080px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(120% 120% at 50% 0%, #6b5d49 0%, #41382c 55%, #2d261d 100%);
+}
+
+/* ===== 見開き本体 ===== */
+.book {
+  position: relative;
+  width: 1800px;
+  height: 1050px;
+  display: flex;
+  border-radius: 15px;
+  box-shadow:
+    0 39px 90px rgba(0,0,0,0.55),
+    0 9px 21px rgba(0,0,0,0.4);
+}
+
+.page {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  background:
+    linear-gradient(180deg, #fdfaf1 0%, var(--paper) 60%, #f6f0e0 100%);
+  padding: 39px 54px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.page.left  { border-radius: 15px 0 0 15px; }
+.page.right { border-radius: 0 15px 15px 0; }
+
+/* 紙の上下の僅かな汚し／質感 */
+.page::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(0deg, rgba(0,0,0,0.012) 0 3px, transparent 3px 39px);
+  pointer-events: none;
+}
+
+/* 中央の綴じ目（ノド）。左右ページの内側に陰影を落とす */
+.page.left::after {
+  content: ""; position: absolute; top: 0; right: 0; width: 90px; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(70,55,30,0.22));
+  pointer-events: none;
+}
+.page.right::after {
+  content: ""; position: absolute; top: 0; left: 0; width: 90px; height: 100%;
+  background: linear-gradient(270deg, transparent, rgba(70,55,30,0.22));
+  pointer-events: none;
+}
+.spine {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 15px; height: 100%;
+  background: linear-gradient(90deg, #c9bd9c, #b6a982 50%, #c9bd9c);
+  box-shadow: 0 0 12px rgba(0,0,0,0.25);
+  z-index: 5;
+}
+
+/* 右上の図鑑インデックスタブ */
+.index-tab {
+  position: absolute; top: -3px; right: 60px;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 900;
+  font-size: 33px;
+  letter-spacing: 3px;
+  padding: 15px 33px 18px;
+  border-radius: 0 0 15px 15px;
+  box-shadow: 0 9px 15px rgba(0,0,0,0.3);
+  z-index: 6;
+}
+
+/* ファイル番号バッジ */
+.file-no {
+  font-size: 27px; font-weight: 800; letter-spacing: 3px;
+  color: var(--brand-deep);
+  border: 4px solid var(--brand);
+  border-radius: 999px;
+  padding: 5px 21px;
+  background: var(--brand-soft);
+  align-self: flex-start;
+}
+
+/* ページ番号 */
+.page-no {
+  position: absolute; bottom: 18px;
+  font-size: 24px; font-weight: 700; color: var(--ink-soft);
+}
+.left  .page-no { left: 60px; }
+.right .page-no { right: 60px; }
+
+/* ===== 評価ランクバッジ（共通パレット） ===== */
+.rank {
+  color: #fff; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.12);
+}
+.rank.SS { background: var(--rank-SS); }
+.rank.S  { background: var(--rank-S); }
+.rank.A  { background: var(--rank-A); }
+.rank.B  { background: var(--rank-B); }
+.rank.C  { background: var(--rank-C); }
+
+/* ===== メリット/デメリット行（共通） ===== */
+.line .tag { display: inline-block; width: 1.4em; font-weight: 900; }
+.line.pro .tag { color: var(--pro); }
+.line.con .tag { color: var(--con); }
