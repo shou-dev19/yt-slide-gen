@@ -1,0 +1,1 @@
+../../.agents/skills/capture-slides-html/SKILL.md

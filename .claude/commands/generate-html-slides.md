@@ -1,0 +1,1 @@
+../../.agents/skills/generate-html-slides/SKILL.md
