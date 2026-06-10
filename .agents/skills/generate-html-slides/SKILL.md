@@ -195,8 +195,8 @@ To maximize audience retention, use **"Extremely Huge Text Size"** as the standa
 
     * **Title text only** — display exactly the title text from the script. Do **not** add any extra text (chapter badges, speech bubbles, labels, icons, etc.).
     * **Characters** — place the channel characters at the bottom of the slide using `position: absolute; bottom: 0`. Use only these two assets:
-        * `public/images/characters/ショウ_デフォルメ_笑顔.png`
-        * `public/images/characters/モモコ_嬉しい_口開け_星無.png`
+        * `public/images/characters/sho/ショウ_デフォルメ_笑顔.png`
+        * `public/images/characters/momoko/モモコ_嬉しい_口開け_星無.png`
     * **Title positioning** — use `position: absolute` with `top: 50%; left: 50%; transform: translate(-50%, -50%)` to center the title. Apply the standard heavy text-shadow for readability over the characters. Set `z-index: 5` on the title and `z-index: 3` on the characters.
     * **Background** — use a gradient (linear or radial) based on the theme color (e.g., `linear-gradient(135deg, #fff 60%, #ffe0f0 100%)` or `radial-gradient(circle at center, #fff 0%, #ffe0f0 100%)`). Add `justify-content: center` to the container.
     * **Vary the layout** across slides to maintain visual interest — e.g., both characters at the bottom corners (height ~320–360px), or one character large on one side (height ~500–560px) with the title offset to the opposite side.
@@ -211,15 +211,15 @@ To maximize audience retention, use **"Extremely Huge Text Size"** as the standa
                         5px 0px 0px var(--primary-color), -5px 0px 0px var(--primary-color);">
         チャプタータイトル
       </div>
-      <img src="public/images/characters/ショウ_デフォルメ_笑顔.png"
+      <img src="public/images/characters/sho/ショウ_デフォルメ_笑顔.png"
            style="position: absolute; bottom: 0; left: 20px; height: 320px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="ショウ">
-      <img src="public/images/characters/モモコ_嬉しい_口開け_星無.png"
+      <img src="public/images/characters/momoko/モモコ_嬉しい_口開け_星無.png"
            style="position: absolute; bottom: 0; right: 20px; height: 320px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="モモコ">
     </div>
 
     <!-- CORRECT — one character large on the right, title offset left -->
     <div class="slide-container" style="background: linear-gradient(135deg, #fff 50%, #ffe0f0 100%); justify-content: center;">
-      <img src="public/images/characters/ショウ_デフォルメ_笑顔.png"
+      <img src="public/images/characters/sho/ショウ_デフォルメ_笑顔.png"
            style="position: absolute; bottom: 0; right: 30px; height: 560px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="ショウ">
       <div style="position: absolute; top: 50%; left: 36%; transform: translate(-50%, -50%); font-size: 100px; font-weight: 900; text-align: center; line-height: 1.3; z-index: 5;
            text-shadow: 5px 5px 0px white, -5px -5px 0px white, 5px -5px 0px white, -5px 5px 0px white,
@@ -234,7 +234,7 @@ To maximize audience retention, use **"Extremely Huge Text Size"** as the standa
       <div style="... Chapter 2 ...">Chapter 2</div>  <!-- ❌ extra badge -->
       <div style="...">解説するよ！</div>              <!-- ❌ extra speech bubble -->
       <div style="...">チャプタータイトル</div>
-      <img src="public/images/characters/ショウ_デフォルメ_笑顔.png" ...>
+      <img src="public/images/characters/sho/ショウ_デフォルメ_笑顔.png" ...>
     </div>
     ```
 

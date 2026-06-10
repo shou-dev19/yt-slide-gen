@@ -31,6 +31,9 @@ dist-ssr
 *.sln
 *.sw?
 
-# Automatic synchronized assets
+# Automatic synchronized assets (master: shared/assets/ — scripts/sync-assets.sh)
 /public/images/logo/
+/public/images/charts/
+/public/images/characters/
+/public/images/thumbnails/
 
