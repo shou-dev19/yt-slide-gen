@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IIJmio 25GB 月700円 キャンペーン ショート</title>
+<title>1年縛り復活 縛りなしで試せる格安SIM3選 (Short)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
 <style>
     :root {
         --blue: #0052cc;
-        --blue-dark: #003fa0;
+        --blue-dark: #003380;
         --red: #e63946;
-        --gold: #ffd700;
+        --white: #ffffff;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -27,21 +27,24 @@
     .slide-container {
         width: 1080px;
         height: 1080px;
-        background: #ffffff;
+        background: var(--white);
         position: relative;
         overflow: hidden;
         display: flex;
         flex-direction: column;
     }
+    .flex-row { display: flex; flex-direction: row; }
+    .flex-col { display: flex; flex-direction: column; }
     img { object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
 
-    /* ============ THUMBNAIL (Slide 1) ============ */
+    /* ===== Thumbnail (Slide 1) ===== */
     .slide-thumbnail {
         align-items: center;
         justify-content: flex-start;
         text-align: center;
         border: 25px solid var(--blue);
-        padding: 160px 60px 300px;
+        padding-top: 160px;
+        padding-bottom: 300px;
         background:
             repeating-conic-gradient(from 0deg at 52% 48%, rgba(0,82,204,0.06) 0deg 2.5deg, transparent 2.5deg 16deg),
             radial-gradient(ellipse at 52% 48%, #ffffff 5%, #e8f3ff 45%, #c8dcff 100%);
@@ -52,279 +55,243 @@
         font-size: 36px; font-weight: 900; padding: 18px 0;
         text-align: center; letter-spacing: 0.06em; z-index: 3;
     }
-    .thumb-accent-tri { position: absolute; width: 0; height: 0; z-index: 0; }
+    .thumb-accent-tri { position: absolute; width: 0; height: 0; z-index: 1; }
     .thumb-accent-tri.tl { top:25px; left:25px; border-top:300px solid rgba(0,82,204,0.09); border-right:300px solid transparent; }
     .thumb-accent-tri.br { bottom:25px; right:25px; border-bottom:300px solid rgba(0,82,204,0.09); border-left:300px solid transparent; }
     .thumb-tag {
         font-size: 80px; font-weight: 900; color: #fff;
         background: var(--red); padding: 18px 54px;
         transform: rotate(-3deg); box-shadow: 8px 8px 0 rgba(0,0,0,0.25);
-        margin-bottom: 28px; z-index: 2; border-radius: 8px;
+        margin-bottom: 28px; z-index: 2;
     }
     .thumb-title {
-        font-size: 80px; font-weight: 900; color: #1a2b4a;
+        font-size: 80px; font-weight: 900; color: #1a1a2e;
         line-height: 1.25; margin-bottom: 22px; max-width: 900px; z-index: 2;
     }
-    .thumb-title .hl { color: var(--red); }
-    .thumb-sub-band {
+    .thumb-title .em { color: var(--red); }
+    .thumb-subband {
         font-size: 60px; font-weight: 900; color: #fff;
         background: var(--blue); padding: 18px 70px;
-        border-radius: 12px; box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
-        margin-bottom: 32px; z-index: 2;
+        border-radius: 12px; box-shadow: 4px 4px 0 rgba(0,0,0,0.2); z-index: 2;
     }
-    .thumb-logo-area {
-        height: 190px; display: flex; align-items: center; justify-content: center; z-index: 2;
-    }
-    .thumb-logo-area img { height: 150px; filter: drop-shadow(0 6px 14px rgba(0,0,0,0.15)); }
     .thumb-illust {
         position: absolute; bottom: 40px; right: 40px;
-        height: 290px; z-index: 1;
+        height: 290px; z-index: 2;
         filter: drop-shadow(0 12px 24px rgba(0,0,0,0.2));
     }
 
-    /* ============ STANDARD SLIDES ============ */
-    .slide-standard { padding: 70px 70px; }
+    /* ===== Standard slides ===== */
+    .slide-standard {
+        padding: 90px 70px 60px;
+        background: var(--white);
+    }
     .watermark {
-        position: absolute; top: -60px; left: 10px;
+        position: absolute; top: -40px; left: 10px;
         font-size: 280px; font-weight: 900; color: var(--blue);
         opacity: 0.07; z-index: 0; line-height: 1;
     }
     .slide-title {
-        font-size: 62px; font-weight: 900; color: #1a2b4a;
-        border-bottom: 10px solid var(--blue); padding-bottom: 14px;
-        margin-bottom: 30px; z-index: 1;
+        font-size: 62px; font-weight: 900; color: #1a1a2e;
+        border-bottom: 10px solid var(--blue);
+        padding-bottom: 14px; margin-bottom: 30px; z-index: 1;
     }
-    .slide-title .hl { color: var(--red); }
-    .slide-body { display: flex; flex-direction: column; gap: 28px; z-index: 1; }
-
+    .slide-body {
+        display: flex; flex-direction: column; gap: 28px; z-index: 1;
+    }
+    .report-header-card {
+        display: flex; align-items: center; gap: 24px;
+        background: linear-gradient(135deg, #0052cc, #003fa0);
+        color: #fff; border-radius: 20px; padding: 28px 36px;
+        font-size: 48px; font-weight: 900;
+    }
+    .report-header-card .rh-icon { font-size: 64px; }
     .info-card {
         display: flex; align-items: center; gap: 22px;
         padding: 22px 32px; border-radius: 0 16px 16px 0;
-        font-size: 46px; font-weight: 700; color: #1a2b4a;
+        font-size: 46px; font-weight: 700; color: #1a1a2e;
         background: #f0f5ff; border-left: 14px solid var(--blue);
     }
-    .info-card .emoji { font-size: 54px; }
+    .info-card .ic-emoji { font-size: 50px; flex-shrink: 0; }
     .info-card.alert {
         background: #fff0f0; border-left-color: var(--red);
         color: var(--red); font-size: 50px; font-weight: 900;
     }
-    .price-big { color: var(--red); font-size: 58px; font-weight: 900; }
-    .info-card.alert .price-big { color: var(--red); }
-
-    .vs-row {
-        display: flex; align-items: stretch; gap: 24px; justify-content: center;
+    .info-card .ic-strong { color: var(--red); }
+    .feature-logo {
+        height: 130px; margin: 0 auto 10px; display: block;
     }
-    .vs-card {
-        flex: 1; border-radius: 20px; padding: 30px 20px;
-        display: flex; flex-direction: column; align-items: center; gap: 10px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    .big-badge {
+        align-self: center; text-align: center;
+        background: linear-gradient(135deg, var(--blue), #003fa0);
+        color: #fff; border-radius: 24px; padding: 26px 40px;
+        font-size: 72px; font-weight: 900;
+        box-shadow: 6px 6px 0 rgba(0,0,0,0.15);
     }
-    .vs-card.small { background: #eef2f7; border: 4px solid #c0cce0; }
-    .vs-card.big { background: linear-gradient(155deg, #eaf3ff, #d4e8ff); border: 6px solid var(--blue); transform: scale(1.04); }
-    .vs-gb { font-size: 64px; font-weight: 900; color: #1a2b4a; }
-    .vs-card.small .vs-price { font-size: 56px; font-weight: 900; color: #5a6a85; }
-    .vs-card.big .vs-price { font-size: 64px; font-weight: 900; color: var(--red); }
-    .vs-arrow { display: flex; align-items: center; font-size: 70px; font-weight: 900; color: var(--blue); }
-
-    .highlight-block {
-        font-size: 62px; font-weight: 900; color: #fff;
-        background: linear-gradient(135deg, var(--blue), var(--blue-dark));
-        padding: 30px 24px; border-radius: 18px; text-align: center;
-        box-shadow: 0 10px 24px rgba(0,82,204,0.3);
+    .big-badge .bb-sub { display: block; font-size: 40px; font-weight: 700; margin-top: 6px; }
+    .zero-row {
+        display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
     }
-    .free-badge {
-        font-size: 72px; font-weight: 900; color: var(--red);
-        background: var(--gold); display: inline-block;
-        padding: 10px 40px; border-radius: 14px; transform: rotate(-2deg);
-        box-shadow: 6px 6px 0 rgba(0,0,0,0.2); align-self: center;
+    .zero-pill {
+        background: #eaf3ff; border: 6px solid var(--blue);
+        border-radius: 18px; padding: 18px 26px;
+        font-size: 40px; font-weight: 900; color: var(--blue);
+        text-align: center;
     }
+    .zero-pill .zp-num { display: block; font-size: 60px; color: var(--red); }
     .slide-illust {
-        position: absolute; bottom: 40px; right: 40px; height: 260px; z-index: 2;
+        position: absolute; bottom: 40px; right: 40px; height: 260px;
     }
-    .slide-illust img { height: 260px; }
 
-    /* ============ WARNING SLIDE ============ */
-    .slide-warning { padding: 0; background: #fff8f8; align-items: center; }
-    .warning-banner {
-        width: 100%; font-size: 62px; font-weight: 900; color: #fff;
-        background: var(--red); padding: 22px 0; text-align: center;
-        letter-spacing: 0.04em; z-index: 1;
-    }
-    .warning-body {
-        flex: 1; width: 100%; padding: 50px 70px 70px;
-        display: flex; flex-direction: column; gap: 30px; z-index: 1;
-    }
-    .warning-box {
-        border: 10px solid var(--red); background: #fff0f0;
-        border-radius: 18px; padding: 36px 42px;
-        display: flex; flex-direction: column; gap: 26px;
-    }
-    .w-title { font-size: 58px; font-weight: 900; color: var(--red); }
-    .w-item { font-size: 50px; font-weight: 700; color: #1a2b4a; display: flex; gap: 16px; align-items: center; }
-    .w-deadline {
-        font-size: 70px; font-weight: 900; color: #fff;
-        background: var(--red); border-radius: 14px; padding: 22px;
-        text-align: center; box-shadow: 0 8px 18px rgba(230,57,70,0.35);
-    }
-    .warning-illust { position: absolute; bottom: 40px; right: 40px; height: 280px; z-index: 2; }
-    .warning-illust img { height: 280px; }
-
-    /* ============ CTA SLIDE ============ */
+    /* ===== CTA slide ===== */
     .slide-cta {
-        background: linear-gradient(135deg, var(--blue), #003380);
+        background: linear-gradient(135deg, #0052cc, #003380);
         align-items: center; justify-content: center; text-align: center;
-        padding: 70px;
+        padding: 60px;
     }
-    .cta-logo-wrap {
-        background: #fff; border-radius: 18px;
-        padding: 18px 48px; margin-bottom: 26px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        display: flex; align-items: center; justify-content: center;
+    .cta-logo { height: 120px; margin-bottom: 26px; filter: brightness(10); }
+    .cta-title {
+        font-size: 84px; font-weight: 900; color: #ffd700;
+        margin-bottom: 18px; line-height: 1.2;
     }
-    .cta-logo { height: 100px; }
-    .cta-title { font-size: 84px; font-weight: 900; color: var(--gold); margin-bottom: 18px; line-height: 1.2; }
-    .cta-sub { font-size: 50px; font-weight: 700; color: #fff; margin-bottom: 20px; }
+    .cta-sub {
+        font-size: 50px; font-weight: 700; color: #ffffff; margin-bottom: 20px; line-height: 1.4;
+    }
     .cta-arrow {
-        font-size: 90px; color: var(--gold); margin-bottom: 16px;
+        font-size: 90px; color: #ffd700; margin-bottom: 16px;
         animation: bounce 1s infinite;
     }
     @keyframes bounce {
         0%, 100% { transform: translateY(0); }
         50% { transform: translateY(20px); }
     }
-    .cta-banner-img { width: 800px; border-radius: 18px; box-shadow: 0 14px 30px rgba(0,0,0,0.35); }
+    .cta-banner-img {
+        width: 940px; border-radius: 16px;
+        box-shadow: 0 14px 30px rgba(0,0,0,0.35);
+    }
 </style>
 </head>
 <body>
 
-<!-- ===================== Slide 1: Thumbnail ===================== -->
+<!-- ===== Slide 1: Thumbnail ===== -->
 <div class="slide-container slide-thumbnail">
-    <div class="thumb-top-strip">⚡ 2026年6月8日まで 神キャンペーン ⚡</div>
+    <div class="thumb-top-strip">⚡ 2026年7月 ソフトバンク系3ブランドに激震 ⚡</div>
     <div class="thumb-accent-tri tl"></div>
     <div class="thumb-accent-tri br"></div>
-    <div class="thumb-tag">月700円</div>
-    <div class="thumb-title">IIJmio <span class="hl">25GB</span> が<br>激安すぎる件</div>
-    <div class="thumb-sub-band">10分かけ放題 6ヶ月無料</div>
-    <div class="thumb-logo-area">
-        <img src="public/images/logo/iijmio_logo.png" alt="IIJmio">
-    </div>
-    <img class="thumb-illust" src="public/images/irasutoya/money_fueru.png" alt="お得">
+    <div class="thumb-tag">実質1年縛り復活</div>
+    <div class="thumb-title">でも<span class="em">縛りなし</span>で<br>気軽に試せる</div>
+    <div class="thumb-subband">格安SIM 3選</div>
+    <img class="thumb-illust" src="public/images/irasutoya/shinpai_man.png" alt="心配">
 </div>
 
-<!-- ===================== Slide 2: 25GBが月700円 ===================== -->
+<!-- ===== Slide 2: 契約解除料新設 ===== -->
 <div class="slide-container slide-standard">
     <div class="watermark">1</div>
-    <h2 class="slide-title">今だけ <span class="hl">25GB が月700円</span></h2>
+    <h2 class="slide-title">2026年7月から変わる</h2>
     <div class="slide-body" style="margin-bottom: 120px;">
+        <div class="report-header-card">
+            <span class="rh-icon">📅</span>
+            <span>2026年7月スタート</span>
+        </div>
         <div class="info-card">
-            <span class="emoji">📱</span>
-            <span>IIJmio ギガプラン</span>
+            <span class="ic-emoji">📱</span>
+            <span>ソフトバンク・ワイモバイル・LINEMO</span>
         </div>
         <div class="info-card alert">
-            <span class="emoji">💥</span>
-            <span>25GB が <span class="price-big">月700円</span>（税込）</span>
-        </div>
-        <div class="info-card">
-            <span class="emoji">😲</span>
-            <span>安すぎて目を疑うレベル</span>
+            <span class="ic-emoji">💸</span>
+            <span>1年以内の解約で<span class="ic-strong">契約解除料</span></span>
         </div>
     </div>
     <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="驚き">
+        <img src="public/images/irasutoya/seikyuusyo_shock.png" alt="請求にショック" style="height:260px;">
     </div>
 </div>
 
-<!-- ===================== Slide 3: 10GBより25GBが安い逆転 ===================== -->
+<!-- ===== Slide 3: 実質1年縛り復活 (Shock) ===== -->
 <div class="slide-container slide-standard">
     <div class="watermark">2</div>
-    <h2 class="slide-title">まさかの <span class="hl">価格逆転</span></h2>
+    <h2 class="slide-title">つまり…</h2>
     <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="vs-row">
-            <div class="vs-card small">
-                <div class="vs-gb">10GB</div>
-                <div class="vs-price">月1250円</div>
-            </div>
-            <div class="vs-arrow">＜</div>
-            <div class="vs-card big">
-                <div class="vs-gb">25GB</div>
-                <div class="vs-price">月700円</div>
-            </div>
+        <div class="info-card alert" style="font-size:64px; padding:36px 40px;">
+            <span class="ic-emoji" style="font-size:70px;">⚠️</span>
+            <span>事実上の<br>「1年縛り」復活</span>
         </div>
-        <div class="info-card alert">
-            <span class="emoji">🤯</span>
-            <span>容量が多い 25GB の方が安い！</span>
+        <div class="info-card">
+            <span class="ic-emoji">😱</span>
+            <span>気軽に試せなくなる…</span>
         </div>
     </div>
     <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/money_kasoutsuuka_kusa.png" alt="コイン">
+        <img src="public/images/irasutoya/animal_buta_shock.png" alt="ショック" style="height:280px;">
     </div>
 </div>
 
-<!-- ===================== Slide 4: 25GB一択 ===================== -->
+<!-- ===== Slide 4: イオンモバイル ===== -->
 <div class="slide-container slide-standard">
     <div class="watermark">3</div>
-    <h2 class="slide-title">今申し込むなら</h2>
+    <h2 class="slide-title">①縛りなしで試せる</h2>
     <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="highlight-block">25GB プラン 一択！</div>
-        <div class="info-card">
-            <span class="emoji">✅</span>
-            <span>大容量なのに最安値</span>
+        <img class="feature-logo" src="public/images/logo/aeonmobile_logo.png" alt="イオンモバイル">
+        <div class="big-badge">
+            データSIM 1週間無料
+            <span class="bb-sub">お試しできる！</span>
         </div>
         <div class="info-card">
-            <span class="emoji">💰</span>
-            <span>迷わず選んで大正解</span>
+            <span class="ic-emoji">📶</span>
+            <span>自宅で電波が届くか確認できる</span>
         </div>
     </div>
     <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/pose_naruhodo_woman.png" alt="納得">
+        <img src="public/images/irasutoya/pose_anshin_woman.png" alt="安心" style="height:250px;">
     </div>
 </div>
 
-<!-- ===================== Slide 5: 10分かけ放題 6ヶ月無料 ===================== -->
+<!-- ===== Slide 5: povo2.0 ===== -->
 <div class="slide-container slide-standard">
     <div class="watermark">4</div>
-    <h2 class="slide-title"><span class="hl">10分かけ放題</span> も</h2>
+    <h2 class="slide-title">②縛りなしで試せる</h2>
     <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="free-badge">最大6ヶ月 無料</div>
-        <div class="info-card">
-            <span class="emoji">📞</span>
-            <span>通話オプションがタダ</span>
+        <img class="feature-logo" src="public/images/logo/Povo_logo_背景透過.png" alt="povo2.0">
+        <div class="zero-row">
+            <div class="zero-pill"><span class="zp-num">0</span>事務手数料</div>
+            <div class="zero-pill"><span class="zp-num">0</span>契約解除料</div>
+            <div class="zero-pill"><span class="zp-num">0</span>最低利用期間</div>
         </div>
         <div class="info-card alert">
-            <span class="emoji">🎁</span>
-            <span>至れり尽くせりの大盤振る舞い</span>
+            <span class="ic-emoji">⚡</span>
+            <span>電波は<span class="ic-strong">au本家</span>と同等！</span>
         </div>
     </div>
     <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/smartphone_talk08_woman.png" alt="通話">
+        <img src="public/images/irasutoya/smartphone_speed_5g.png" alt="高速通信" style="height:250px;">
     </div>
 </div>
 
-<!-- ===================== Slide 6: Warning（締切） ===================== -->
-<div class="slide-container slide-warning">
-    <div class="warning-banner">⚠ 急いで！締切間近 ⚠</div>
-    <div class="warning-body">
-        <div class="warning-box">
-            <div class="w-title">キャンペーン終了！</div>
-            <div class="w-item">⏰ もうすぐ受付終了</div>
-            <div class="w-item">🏃 申し込みはお早めに</div>
+<!-- ===== Slide 6: mineo ===== -->
+<div class="slide-container slide-standard">
+    <div class="watermark">5</div>
+    <h2 class="slide-title">③縛りなしで試せる</h2>
+    <div class="slide-body" style="margin-bottom: 120px;">
+        <img class="feature-logo" src="public/images/logo/Mineo_logo_背景削除.png" alt="mineo">
+        <div class="zero-row">
+            <div class="zero-pill"><span class="zp-num">0</span>契約解除料</div>
+            <div class="zero-pill"><span class="zp-num">0</span>最低利用期間</div>
         </div>
-        <div class="w-deadline">2026年6月8日 23:59 まで</div>
+        <div class="info-card alert">
+            <span class="ic-emoji">⭐</span>
+            <span>運営者が<span class="ic-strong">メイン回線</span>で愛用中</span>
+        </div>
     </div>
-    <div class="warning-illust">
-        <img src="public/images/irasutoya/animal_buta_shock.png" alt="ショック">
+    <div class="slide-illust" style="z-index: 2;">
+        <img src="public/images/irasutoya/family_happy_banzai.png" alt="喜び" style="height:250px;">
     </div>
 </div>
 
-<!-- ===================== Slide 7: CTA ===================== -->
+<!-- ===== Slide 7: CTA ===== -->
 <div class="slide-container slide-cta">
-    <div class="cta-logo-wrap">
-        <img class="cta-logo" src="public/images/logo/iijmio_logo.png" alt="IIJmio">
-    </div>
-    <div class="cta-title">本編で<br>もっと詳しく！</div>
-    <div class="cta-sub">乗り換え同時でスマホも激安に</div>
+    <div class="cta-title">詳しくは<br>本編をチェック！</div>
+    <div class="cta-sub">新設される契約解除料の中身＆<br>試しやすい格安SIMを徹底解説</div>
     <div class="cta-arrow">▼</div>
-    <img class="cta-banner-img" src="public/images/thumbnails/【月700円】IIJmio 25GB＋10分かけ放題6ヶ月無料！6月8日までの神キャンペーン_サムネ1.png" alt="本編動画">
+    <img class="cta-banner-img" src="public/images/thumbnails/【2026年7月】ソフトバンク・ワイモバイル・LINEMOに1年縛り復活！気軽に試せる格安SIM3選_サムネ1.png" alt="本編サムネイル">
 </div>
 
 </body>
