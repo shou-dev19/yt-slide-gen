@@ -79,6 +79,14 @@
         height: 290px; z-index: 2;
         filter: drop-shadow(0 12px 24px rgba(0,0,0,0.2));
     }
+    .thumb-logos {
+        position: absolute; bottom: 70px; left: 50px;
+        display: flex; flex-direction: column; gap: 14px; z-index: 2;
+        background: rgba(255,255,255,0.92); border-radius: 18px;
+        padding: 18px 28px; box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    }
+    .thumb-logos-row { display: flex; align-items: center; justify-content: center; gap: 20px; }
+    .thumb-logos img { height: 60px; object-fit: contain; filter: none; }
 
     /* ===== Standard slides ===== */
     .slide-standard {
@@ -181,6 +189,15 @@
     <div class="thumb-title">でも<span class="em">縛りなし</span>で<br>気軽に試せる</div>
     <div class="thumb-subband">格安SIM 3選</div>
     <img class="thumb-illust" src="public/images/irasutoya/shinpai_man.png" alt="心配">
+    <div class="thumb-logos">
+        <div class="thumb-logos-row">
+            <img src="public/images/logo/Softbank_logo.png" alt="ソフトバンク">
+        </div>
+        <div class="thumb-logos-row">
+            <img src="public/images/logo/Y!mobile.png" alt="ワイモバイル">
+            <img src="public/images/logo/LINEMO_logo.png" alt="LINEMO">
+        </div>
+    </div>
 </div>
 
 <!-- ===== Slide 2: 契約解除料新設 ===== -->
@@ -230,7 +247,7 @@
     <div class="watermark">3</div>
     <h2 class="slide-title">①縛りなしで試せる</h2>
     <div class="slide-body" style="margin-bottom: 120px;">
-        <img class="feature-logo" src="public/images/logo/aeonmobile_logo.png" alt="イオンモバイル">
+        <img class="feature-logo" src="public/images/logo/aeonmobile_logo.png" style="height: 100px;" alt="イオンモバイル">
         <div class="big-badge">
             データSIM 1週間無料
             <span class="bb-sub">お試しできる！</span>
@@ -250,7 +267,7 @@
     <div class="watermark">4</div>
     <h2 class="slide-title">②縛りなしで試せる</h2>
     <div class="slide-body" style="margin-bottom: 120px;">
-        <img class="feature-logo" src="public/images/logo/Povo_logo_背景透過.png" alt="povo2.0">
+        <img class="feature-logo" src="public/images/logo/Povo_logo_背景透過.png" style="height: 140px;" alt="povo2.0">
         <div class="zero-row">
             <div class="zero-pill"><span class="zp-num">0</span>事務手数料</div>
             <div class="zero-pill"><span class="zp-num">0</span>契約解除料</div>
