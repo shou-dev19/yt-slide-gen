@@ -54,7 +54,10 @@ body {
 }
 
 /* 動画キャプチャ対象。本編と同じ 1920x1080。
-   見開きの外側に余白（机）を持たせ、ZukanSpread の "引き" の絵を作る。 */
+   本（見開き）は **ほぼ全画面** で表示する。スライドのコンテンツは各ページの上部 約80% に
+   描画し、ページ下部 約20% は空白の紙面として残す（下の .page の padding-bottom で確保）。
+   video-studio の字幕（MessageWindow, bottom:60 / height:150 → y≈870〜1020）はこの紙面の上に
+   重なって表示され、本文と衝突しない。ZukanSpread の "引き" の絵もこの構図で成立する。 */
 .slide-container {
   width: 1920px;
   height: 1080px;
@@ -69,10 +72,11 @@ body {
 }
 
 /* ===== 見開き本体 ===== */
+/* ほぼ全画面（1920x1080 に対し四辺に僅かな机の縁のみ）。下部の字幕余白は .page 側で確保する。 */
 .book {
   position: relative;
-  width: 1800px;
-  height: 1050px;
+  width: 1840px;
+  height: 1056px;
   display: flex;
   border-radius: 15px;
   box-shadow:
@@ -86,7 +90,9 @@ body {
   height: 100%;
   background:
     linear-gradient(180deg, #fdfaf1 0%, var(--paper) 60%, #f6f0e0 100%);
-  padding: 39px 54px;
+  /* 下部 padding を大きく取り、コンテンツを上部 約80% に収める。
+     残した下部の紙面（約250px）に video-studio の字幕が重なる。 */
+  padding: 32px 54px 250px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -124,17 +130,19 @@ body {
 
 /* 右上の図鑑インデックスタブ */
 .index-tab {
-  position: absolute; top: -3px; right: 60px;
+  position: absolute; top: -2px; right: 48px;
   background: var(--brand);
   color: #fff;
   font-weight: 900;
-  font-size: 33px;
-  letter-spacing: 3px;
-  padding: 15px 33px 18px;
-  border-radius: 0 0 15px 15px;
+  font-size: 28px;
+  letter-spacing: 2px;
+  padding: 8px 24px 10px;
+  border-radius: 0 0 14px 14px;
   box-shadow: 0 9px 15px rgba(0,0,0,0.3);
   z-index: 6;
 }
+/* 右ページの見出しはインデックスタブの下に潜らないよう右側を空ける */
+.right .page-head { padding-right: 210px; }
 
 /* ファイル番号バッジ */
 .file-no {
@@ -171,3 +179,135 @@ body {
 .line .tag { display: inline-block; width: 1.4em; font-weight: 900; }
 .line.pro .tag { color: var(--pro); }
 .line.con .tag { color: var(--con); }
+
+/* ===========================================================================
+ * 見開きページの本文レイアウト（共通部品）
+ * ---------------------------------------------------------------------------
+ * 各ページ（.page）の中で使う再利用可能なコンテンツブロック。
+ * 装丁（上の .book/.page 等）と組み合わせて、1社1見開き／解説／比較表／
+ * 章扉／CTA など全コンテンツ種別を賄う。per-slide の微調整は style 属性で。
+ * generate-html-slides スキルはこのクラス群を前提に HTML を生成する。
+ * =========================================================================== */
+
+/* --- ページ見出し --- */
+.page-head {
+  font-size: 60px; font-weight: 900; color: var(--ink);
+  border-bottom: 7px solid var(--brand);
+  padding-bottom: 14px; margin-bottom: 24px;
+}
+.page-head small { font-size: 34px; color: var(--ink-soft); margin-left: 12px; font-weight: 800; }
+
+/* --- 本文コンテナ（ページ内の余白を使い切る） ---
+ * 既定で残りの高さを使い切り、内側を space-evenly で配って余白を散らす。
+ * 単一ブロック（lead/emph 一個など）は .center で縦中央寄せにする。 */
+.page-body { flex: 1; display: flex; flex-direction: column; gap: 22px; min-height: 0; justify-content: space-evenly; }
+.page-body.center { justify-content: center; }
+.page-body.top { justify-content: flex-start; }
+
+/* --- 目次／得すること --- */
+.agenda { list-style: none; flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; gap: 24px; }
+.agenda li { display: flex; align-items: center; gap: 28px; font-size: 56px; font-weight: 800; color: var(--ink); line-height: 1.25; }
+.agenda .num {
+  flex-shrink: 0; width: 88px; height: 88px; border-radius: 18px;
+  background: var(--brand); color: #fff; font-size: 50px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+}
+.benefits { list-style: none; flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; gap: 32px; }
+.benefits li { display: flex; align-items: flex-start; gap: 24px; font-size: 56px; font-weight: 700; color: var(--ink); line-height: 1.35; }
+.benefits .check { flex-shrink: 0; color: var(--brand-deep); font-size: 64px; font-weight: 900; line-height: 1.1; }
+.benefits b { color: var(--con); }
+
+/* --- リード文（紙のテロップ） --- */
+.lead {
+  background: var(--brand-soft); border-left: 14px solid var(--brand);
+  border-radius: 16px; padding: 32px 38px;
+  font-size: 52px; font-weight: 900; line-height: 1.4; color: var(--ink);
+}
+.lead .em { color: var(--con); }
+.lead.tight { font-size: 44px; }
+
+/* --- アイコン／番号付きリスト行 ---
+ * .rows は残り高さを使い切り、各行を均等に配置（li を flex:1 で伸ばさず、
+ * 行間を space-evenly で散らして余白を目立たせない）。 */
+.rows { list-style: none; flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; gap: 22px; }
+.rows li {
+  display: flex; align-items: center; gap: 24px;
+  background: #fff; border: 3px solid #e7dcc2; border-left: 14px solid var(--brand);
+  border-radius: 18px; padding: 26px 32px; box-shadow: 0 5px 12px rgba(0,0,0,0.05);
+}
+.rows .ic { flex-shrink: 0; width: 80px; text-align: center; color: var(--brand); font-size: 62px; line-height: 1.2; }
+.rows .badge {
+  flex-shrink: 0; width: 78px; height: 78px; border-radius: 16px;
+  background: var(--brand); color: #fff; font-size: 46px; font-weight: 900;
+  display: flex; align-items: center; justify-content: center;
+}
+.rows .tx { font-size: 48px; font-weight: 700; line-height: 1.35; color: var(--ink); }
+.rows .tx .em { color: var(--con); font-weight: 900; }
+.rows .tx .sub { display: block; font-size: 34px; color: var(--ink-soft); font-weight: 600; margin-top: 6px; }
+
+/* --- 強調ボックス（数値／結論） --- */
+.emph {
+  background: var(--brand-soft); border: 5px solid var(--brand);
+  border-radius: 22px; padding: 40px 44px; text-align: center;
+  font-size: 52px; font-weight: 800; line-height: 1.45; color: var(--ink);
+}
+.emph .big { font-size: 92px; font-weight: 900; color: var(--brand-deep); }
+.emph .em { color: var(--con); font-weight: 900; }
+
+/* --- 注意ボックス --- */
+.warn {
+  background: #fff5e6; border: 5px solid #f0a020; border-radius: 18px;
+  padding: 32px 38px; font-size: 46px; font-weight: 700; line-height: 1.4; color: var(--ink);
+}
+.warn .ic { color: #f0a020; margin-right: 12px; }
+.warn .em { color: var(--con); font-weight: 900; }
+
+/* --- 小注記 --- */
+.note { font-size: 36px; color: var(--ink-soft); font-weight: 600; line-height: 1.4; }
+
+/* --- 紙の表 --- */
+.sheet { width: 100%; border-collapse: collapse; font-size: 42px; }
+.sheet th, .sheet td { border: 3px solid var(--brand); padding: 16px 18px; text-align: center; line-height: 1.3; }
+.sheet th { background: var(--brand); color: #fff; font-weight: 900; }
+.sheet td { color: var(--ink); font-weight: 700; background: #fff; }
+.sheet .em { color: var(--con); font-weight: 900; }
+.sheet .sub { font-size: 30px; color: var(--ink-soft); font-weight: 600; }
+
+/* --- ページ中央の大見出し --- */
+.big-title { font-size: 104px; font-weight: 900; line-height: 1.22; color: var(--ink); text-align: center; text-shadow: 4px 4px 0 #fff; }
+.big-title .em { color: var(--brand-deep); }
+
+/* --- 章扉のエンブレム --- */
+.divider { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; height: 100%; text-align: center; }
+.divider .kicker { font-size: 42px; font-weight: 900; letter-spacing: 12px; color: var(--brand-deep); }
+.divider .num { font-size: 280px; font-weight: 900; color: var(--brand); line-height: 0.8; text-shadow: 6px 6px 0 #fff; }
+.divider .seal { margin-top: 10px; padding: 12px 38px; border: 6px solid var(--brand); border-radius: 999px; color: var(--brand-deep); font-size: 38px; font-weight: 900; letter-spacing: 2px; }
+
+/* --- CTA画像／ビジュアル --- */
+.visual { display: flex; align-items: center; justify-content: center; height: 100%; }
+.visual img { max-width: 100%; max-height: 720px; object-fit: contain; border-radius: 18px; filter: drop-shadow(0 12px 22px rgba(0,0,0,0.2)); }
+
+/* --- 中央アイコン --- */
+.bigicon { font-size: 260px; color: var(--brand); text-align: center; line-height: 1; }
+
+/* --- ロゴ並べ --- */
+.logos { display: flex; gap: 56px; align-items: center; justify-content: center; flex-wrap: wrap; }
+.logos img { height: 112px; object-fit: contain; }
+
+/* ===== 評価（Layout B：1社1見開き） ===== */
+.head-left { display: flex; align-items: center; gap: 28px; border-bottom: 6px solid var(--brand); padding-bottom: 14px; margin-bottom: 14px; height: 150px; }
+.head-left .logo { height: 80px; object-fit: contain; }
+.total { margin-left: auto; text-align: center; line-height: 1; }
+.total .label { font-size: 28px; font-weight: 800; color: var(--ink-soft); }
+.total .grade { font-size: 96px; font-weight: 900; color: var(--brand-deep); text-shadow: 4px 4px 0 #fff; }
+.head-right { height: 150px; border-bottom: 6px solid var(--brand); padding-bottom: 10px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; }
+.head-right img { height: 100%; object-fit: contain; transform: translateX(-70px); }
+.cards { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; }
+.card {
+  flex: 1; display: grid; grid-template-columns: 104px 1fr; gap: 4px 22px;
+  background: #fff; border: 4px solid #e7dcc2; border-left: 14px solid var(--brand);
+  border-radius: 18px; padding: 16px 26px; box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+}
+.card .rank { grid-row: 1 / span 3; align-self: center; width: 96px; height: 96px; border-radius: 20px; font-size: 48px; }
+.card-name { font-size: 42px; font-weight: 900; color: var(--ink); line-height: 1.1; }
+.card .line { font-size: 33px; font-weight: 500; line-height: 1.2; color: var(--ink); }

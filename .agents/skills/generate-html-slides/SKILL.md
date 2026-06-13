@@ -1,288 +1,176 @@
 ---
 name: generate-html-slides
-description: "Generate a presentation slides HTML file based on a script, applying a 'Huge Text' design, specific colors, and image asset mapping."
+description: "Generate the long-form '格安SIM図鑑' presentation slides as full-screen 1920x1080 two-page book spreads (見開き), with carrier evaluation spreads, chapter dividers, and asset mapping."
 ---
 
 Script file path: $ARGUMENTS (default: `台本.txt`)
 
 ---
 
-# Generate HTML Slides Skill
+# Generate HTML Slides Skill（図鑑見開き版）
 
-This skill provides instructions on how to generate "Yukkuri Kaisetsu" style (Japanese commentary style) presentation slides in HTML.
+このスキルは「格安SIM図鑑」チャンネルの**長尺動画**スライドを HTML で生成する。
 
-## Design Rules ("Deka-Moji" / Huge Text Style)
+## 大原則：本編スライドは全て「図鑑見開き」
 
-To maximize audience retention, use **"Extremely Huge Text Size"** as the standard, ensuring clarity even when viewed on small smartphone screens.
+本編のスライドは**例外なく** 1920×1080 の**左右2ページの本（見開き）＋机背景**で作る。
+動画側（video-studio `BookSpread`）は各スライドを全画面表示するため、紙の見開きが画面いっぱいに広がり、評価パートでは ZukanSpread がその上にカメラ演出を重ねる。
 
-1. **Basic Configuration**
-    * **Resolution**: `1280px × 720px`
-    * **Font**: Use 'M PLUS Rounded 1c' (Weight: 800/900) for friendliness and high visibility.
-    * **Color Palette**: Based on the user-specified theme color, using a white background with borders for consistency.
+唯一の例外は**冒頭のつかみスライド**（速報／タイトル／初回チャンネル誘導など、目次より前の導入カット）で、ここだけ従来の `std`（1280×720・デカ文字）を許容する。**目次以降の全スライド（解説・比較表・評価・章扉/章カード・おすすめ診断・まとめ・過去動画CTA・定型の注意喚起/ブログ/チャンネル登録）は見開き**にすること。
 
-2. **CSS Style Requirements (Strict Adherence)**
-    * **Container**: `.slide-container` { width: 1280px; height: 720px; border: 10px solid var(--primary-color); background: white; box-sizing: border-box; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px; flex-shrink: 0; }
-    * **Heading (H1)**: Base font size **130px**. Bold. Apply heavy text-shadow (outlining). Example: `text-shadow: 4px 4px 0px white, -4px -4px 0px white, 4px -4px 0px white, -4px 4px 0px white, 0px 4px 0px var(--primary-color), 0px -4px 0px var(--primary-color), 4px 0px 0px var(--primary-color), -4px 0px 0px var(--primary-color);`
-    * **Subheading (H2)**: Base font size **90px**. Decorative underline: `border-bottom: 8px solid var(--accent-yellow);`.
-    * **Body Text (p, li)**: Base font size **64px**. Line-height 1.4.
-    * **Emphasis**: Highlight critical numbers or keywords with `color: var(--accent-red);`. Use `color: var(--text-dark);` for standard text.
-    * **Icons**: Use FontAwesome. Size should be large (**100px–200px**).
-    * **Lists**: Set `list-style-type: none; padding: 0;` for `ul` to avoid default bullets when using custom icons.
+> 旧仕様（1スライド=1280×720 のデカ文字カード）はもう使わない。評価パートだけ見開き、という中途半端な状態にしないこと。
 
-3. **Layout Composition**
-    * **Centered Layout**: Default to placing large text and icons in the center.
-    * **2-Column Layout (Split)**: Ensure elements remain large and maintain sufficient whitespace.
-      `.split { display: flex; width: 100%; justify-content: space-around; align-items: center; }`
-      `.split-col { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 20px; }`
-    * **Icon-only left column**: When the left `split-col` contains **only** a FontAwesome icon (no text below it), set `style="flex: 0.5"` on that column. This narrows the icon column and gives the right text column more horizontal room. Do NOT add a `<p>` label beneath a standalone icon — the right-column text already provides the explanation.
-    * **Tables**: Base font size **50px**. Ensure rows do not overflow the 720px height. Adjust padding and font size meticulously if there are many rows.
-    * **Dense table headers**: When a table has **4 or more columns** or tight vertical space, add `padding: 4px 8px` to every `<th>` to prevent header-row overflow.
-    * **Overflow Prevention**: Calculate margins and image `max-height` carefully to ensure all elements (H2, images, tables, lists) fit perfectly within the vertical bounds.
+## 1. 装丁と共有CSS
 
-4. **Flex List Items — Critical Text Wrapping Rule (Mandatory)**
-
-    When a `<li>` uses `display: flex` (e.g., `display: flex; align-items: flex-start; gap: 12px;`), its direct children each become independent flex items. This means text nodes and `<span>` elements placed directly inside the `<li>` — after the icon or badge — are treated as **separate flex items**, causing them to be arranged horizontally and splitting Japanese text at the character level (e.g., `毎` / `月` / `以上` / `コンスタントに…` each on their own row).
-
-    **Rule: Always wrap all text content after the icon/badge in a single `<span>`.**
-
-    ```html
-    <!-- WRONG — text node and inner <span> become separate flex items -->
-    <li style="display: flex; align-items: flex-start; gap: 12px;">
-      <i class="fa-solid fa-check-circle"></i>
-      毎月<span class="accent">20GB以上</span>コンスタントに使う人
-    </li>
-
-    <!-- CORRECT — all text is one flex item; wraps naturally -->
-    <li style="display: flex; align-items: flex-start; gap: 12px;">
-      <i class="fa-solid fa-check-circle"></i>
-      <span>毎月<span class="accent">20GB以上</span>コンスタントに使う人</span>
-    </li>
-    ```
-
-    This rule applies even when the text has no inner `<span>` — wrap it anyway for consistency and future safety.
-
-5. **Japanese Text Line Breaks**
-
-    At font sizes of **46px or larger**, long Japanese strings will wrap at unnatural mid-phrase boundaries. Insert explicit `<br>` at semantically meaningful break points (after a particle like が/を/も, after punctuation, or between logical phrases).
-
-    ```html
-    <!-- Natural break after a meaningful chunk -->
-    <span>毎月<span class="accent">20GB以上</span><br>コンスタントに使う人</span>
-    <span>MNP/新規で最大<br><span class="accent-green">16,000PayPayポイント</span>還元</span>
-    ```
-
-    Aim for roughly equal visual line lengths. Do not break mid-word or in a way that separates a number from its unit.
-
-    **Apply `<br>` in all contexts at 46px+**, including:
-    * `terop-box` text — break at every ~20 characters or at logical phrase boundaries
-    * `<td>` cells in tables — break at natural phrase boundaries when text exceeds ~15 characters
-    * `<span>` inside list items — break before accent-colored sub-phrases when the combined line would be too long
-
-    **Carrier/service name abbreviations**: Always use full names in slide text. Never abbreviate:
-    * ❌ `SB` → ✅ `ソフトバンク`
-    * ❌ `ドコモ系` when the full name fits → ✅ `ドコモ`
-    * ❌ `楽天` (without `モバイル` when referring to the carrier) → ✅ `楽天モバイル`
-
-    **`white-space: nowrap` for quoted terms**: When a `<span>` contains a Japanese quoted term enclosed in corner brackets (「〜」) that must not break mid-word, add `white-space: nowrap` to that span.
-
-    ```html
-    <!-- CORRECT — 「ホッピング」 stays on one line -->
-    <span style="color: var(--primary-color); white-space: nowrap;">「ホッピング」</span>って何？
-
-    <!-- WRONG — may render as 「ホッピン / グ」 depending on container width -->
-    <span style="color: var(--primary-color);">「ホッピング」</span>って何？
-    ```
-
-6. **Image Selection & Asset Rules**
-    * **No Placeholders**: Do NOT use `<Placeholder>` tags. Select and use the most appropriate existing image from `public/images/` (subdirectories: `common`, `irasutoya`, `logo`, `charts`, `temp`, `thumbnails`) based on the script context.
-    * **Selection Priority (highest to lowest)**:
-        1. **`public/images/temp/<carrier>/`**: Campaign banners, third-party reference screenshots, or any image that directly depicts the content being described. **Always prefer this over a generic logo or icon when a matching file exists.**
-        2. **`public/images/slides/`**: Standard pre-made slides (see table below). Always use these for matching topics.
-        3. **`public/images/thumbnails/`**: Related video CTA slides and デュアルSIM promotion slides (see rules 8 and 10 below).
-        4. **`public/images/logo/`**: Service logos for carrier introduction slides.
-        5. **`public/images/irasutoya/`**: Character illustrations for emotion/situation slides.
-        6. **`public/images/common/`** or **`public/images/charts/`**: Conceptual diagrams and speed/price charts.
-    * **Refer to `public/images/GEMINI.md`** for full file listings within each subdirectory.
-    * **Image Styling**: Use `max-height: 500px; max-width: 100%; object-fit: contain;`. Apply `filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1))` for visibility.
-    * **Full-Screen Images**: For charts or notice slides, use the `.fullscreen-img` class.
-      `.fullscreen-img { width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; position: absolute; top: 0; left: 0; z-index: 10; }`
-    * **Standard Slide Images (`public/images/slides/`)**: Several recurring slide types have dedicated pre-made images. **Always use these instead of generating custom HTML for these topics.**
-
-      | File | Use when |
-      |---|---|
-      | `チャンネル登録と高評価よろしくお願いします.png` | Final CTA (チャンネル登録・高評価のお願い) |
-      | `ブログもやってます.png` | Blog promotion slide |
-      | `プランやキャンペーンは投稿時点のもの注意喚起.png` | Disclaimer — plans/campaigns as of recording date |
-      | `今すぐ本編動画をチェック.png` | Promotion slide pointing to main video |
-      | `毎月のスマホ代高すぎ.png` | Opening hook slide |
-      | `評価は独断と偏見.png` | Disclaimer for evaluation slides |
-      | `評価ランクの基準について.png` | Explanation of evaluation rank criteria |
-      | `評価項目について.png` | Explanation of evaluation items |
-
-    * **Thumbnails**: For CTA slides that are NOT covered by a standard slide image above, select the most relevant image from `public/images/thumbnails` based on file names.
-    * **Captions/Citations**: Use small text (`font-size: 20px–35px`, color: `#666`) at the bottom of images if needed. Adjust image `max-height` to accommodate the text.
-    * **External source attribution (mandatory)**: When an image was obtained from a third-party site (e.g. an Amazon product listing, a carrier's official page, a measurement site), add a small source caption directly below it. **Cite the retrieval source accurately and do not conflate it with the copyright holder.** A product image fetched from an Amazon listing is the *carrier/manufacturer's* artwork merely hosted on Amazon, so attribute it as e.g. `出典：Amazon.co.jp（IIJmio商品ページ）` — not `出典：Amazon` alone (which wrongly implies Amazon owns it). Use the standard caption style (`font-size: 26px; color: #666; margin-top: 12px; text-align: center;`) and reduce the image `max-height` to make room.
-
-      ```html
-      <div class="split-col" style="flex: 0.6;">
-        <img src="public/images/entry_package/iijmio.jpg" style="max-height: 420px; max-width: 100%; object-fit: contain; border-radius: 16px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="IIJmioエントリーパッケージ">
-        <div style="font-size: 26px; color: #666; margin-top: 12px; text-align: center;">出典：Amazon.co.jp（IIJmio商品ページ）</div>
-      </div>
-      ```
-
-7. **Self-Check & Adjustment (Critical)**
-    * **Overflow Check**: Before final generation, strictly verify that all content (text, images, tables) fits entirely within the `1280px × 720px` container.
-    * **Maximize Space Usage**: Actively increase font sizes and image heights to fill available space. Aim for **less than 15% whitespace** within each slide. Start large, then scale down only if overflow occurs.
-    * **Automatic Adjustment Rules**:
-        * **Text**: If text is too long and overflows or overlaps, reduce the font size by 10%–20%.
-        * **Images**: If images overlap with text or hit boundaries, reduce `max-height`/`max-width` and adjust margins.
-        * **Tables**: If tables overflow, reduce cell font size down to a minimum of **30px**. If it still overflows, consider splitting the content into two slides.
-    * **Whitespace**: Adjust `padding` or `gap` to ensure elements are not too close to the borders, but also maximize use of available space — do not leave large empty areas.
-
-8. **"当チャンネル評価" (Radar Chart) Slides — Mandatory Rules**
-
-    When generating a carrier/MVNO evaluation slide that shows a radar chart:
-
-    * **Chart image only** — embed the chart using `height: 540px; object-fit: contain;` (use `height`, not `max-height`). Do **not** add a row of evaluation badges (`ss-badge`, `a-badge`, etc.) below the chart.
-    * **Correct**:
-      ```html
-      <img src="public/images/charts/mineo.png" style="height: 540px; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));" alt="mineoレーダーチャート">
-      ```
-    * **Wrong** (do not generate):
-      ```html
-      <img src="public/images/charts/mineo.png" style="max-height: 380px; max-width: 100%; ...">
-      <div style="display: flex; gap: 16px; ...">
-        <span class="ss-badge">料金 SS</span>
-        ...
-      </div>
-      ```
-
-9. **"過去動画" / Related Video CTA Slides — Thumbnail Requirement (Mandatory)**
-
-    When a slide promotes a past video of the channel (e.g., "〇〇の過去動画もチェック！"), use the actual **thumbnail image** from `public/images/thumbnails/` — **never** a generic icon such as `fa-play-circle`.
-
-    * Select the best-matching file from `public/images/thumbnails/` by partial keyword match on the carrier or topic name.
-    * Embed at `max-height: 540px; object-fit: contain;`.
-
-    ```html
-    <!-- CORRECT -->
-    <img src="public/images/thumbnails/【2026年最新】月額660円で実質使い放題！mineoの最強キャンペーンを徹底解説.png"
-         style="max-height: 540px; object-fit: contain;" alt="mineo過去動画">
-    <div class="terop-box" style="font-size: 54px;">
-      mineoの<span style="color: var(--accent-red);">過去動画</span>もチェック！
-    </div>
-
-    <!-- WRONG — do not use a generic icon -->
-    <i class="fa-solid fa-play-circle" style="font-size: 150px; color: var(--accent-red);"></i>
-    ```
-
-10. **Carrier Logo Sizing in Introduction / Detail Slides**
-
-    In 2-column split slides where a carrier logo appears in the left `split-col` alongside a badge label below it:
-    * Use a **fixed** `height: 80px` on the `<img>` (not `max-height: 140px; max-width: 380px`). This prevents the logo from dominating the column and ensures the badge label below it remains visible.
-
-11. **Last Slide (CTA) — Thumbnail Requirement (Mandatory)**
-    * The final slide **must** include the thumbnail image of the main (long-form) video that the short is promoting.
-    * Determine the main video title from the `スライドに表示する内容` column of the last row in `台本.txt`.
-    * Select the best-matching file from `public/images/thumbnails/` based on the title.
-    * Embed the thumbnail using `<img src="public/images/thumbnails/[filename]" ...>`. Do **not** omit or use a placeholder.
-
-12. **Chapter Transition Slides ("X-0" Format) — Mandatory Rules**
-
-    Slides with IDs in the format `N-0` (e.g., `4-0`, `7-0`, `14-0`) are chapter transition slides — full-screen title cards shown at the start of each chapter. Apply all of the following rules:
-
-    > **Role separation (important):** A chapter usually has **two** distinct intro slides that must look different. The `N-0` slide (this rule) is the **lively character transition** with ショウ／モモコ. The plain-number slide `N` (rule 13) is the **clean typographic chapter card** with no characters. Never put characters on the plain `N` card, and never add the `CHAPTER N` typographic layout to the `N-0` slide. Keep their roles strictly separate.
-
-    * **Title text only** — display exactly the title text from the script. Do **not** add any extra text (chapter badges, speech bubbles, labels, icons, etc.).
-    * **Characters** — place the channel characters at the bottom of the slide using `position: absolute; bottom: 0`. Use only these two assets:
-        * `public/images/characters/sho/ショウ_デフォルメ_笑顔.png`
-        * `public/images/characters/momoko/モモコ_嬉しい_口開け_星無.png`
-    * **Title positioning** — use `position: absolute` with `top: 50%; left: 50%; transform: translate(-50%, -50%)` to center the title. Apply the standard heavy text-shadow for readability over the characters. Set `z-index: 5` on the title and `z-index: 3` on the characters.
-    * **Background** — use a gradient (linear or radial) based on the theme color (e.g., `linear-gradient(135deg, #fff 60%, #ffe0f0 100%)` or `radial-gradient(circle at center, #fff 0%, #ffe0f0 100%)`). Add `justify-content: center` to the container.
-    * **Vary the layout** across slides to maintain visual interest — e.g., both characters at the bottom corners (height ~320–360px), or one character large on one side (height ~500–560px) with the title offset to the opposite side.
-    * **Offset-title wrapping pitfall (mandatory):** When the title is offset to one side (e.g. `left: 64%` instead of `50%`) and only `left` is set on the absolutely-positioned title (no `width`/`right`), its shrink-to-fit width is capped by the distance from that `left` position to the container's right edge. A title that should fit on one line then wraps at an unexpected mid-phrase point. **Always add `white-space: nowrap` to an offset title** so the box sizes to its content and line breaks are controlled solely by your explicit `<br>` tags. Nudge `left` and verify clearance from the character so neither edge clips.
-
-    ```html
-    <!-- CORRECT — both characters at bottom corners, title centered -->
-    <div class="slide-container" style="background: linear-gradient(135deg, #fff 60%, #ffe0f0 100%); justify-content: center;">
-      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 100px; font-weight: 900; text-align: center; color: var(--text-dark); line-height: 1.3; z-index: 5;
-           text-shadow: 5px 5px 0px white, -5px -5px 0px white, 5px -5px 0px white, -5px 5px 0px white,
-                        0px 5px 0px var(--primary-color), 0px -5px 0px var(--primary-color),
-                        5px 0px 0px var(--primary-color), -5px 0px 0px var(--primary-color);">
-        チャプタータイトル
-      </div>
-      <img src="public/images/characters/sho/ショウ_デフォルメ_笑顔.png"
-           style="position: absolute; bottom: 0; left: 20px; height: 320px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="ショウ">
-      <img src="public/images/characters/momoko/モモコ_嬉しい_口開け_星無.png"
-           style="position: absolute; bottom: 0; right: 20px; height: 320px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="モモコ">
-    </div>
-
-    <!-- CORRECT — one character large on the right, title offset left -->
-    <div class="slide-container" style="background: linear-gradient(135deg, #fff 50%, #ffe0f0 100%); justify-content: center;">
-      <img src="public/images/characters/sho/ショウ_デフォルメ_笑顔.png"
-           style="position: absolute; bottom: 0; right: 30px; height: 560px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="ショウ">
-      <div style="position: absolute; top: 50%; left: 36%; transform: translate(-50%, -50%); font-size: 100px; font-weight: 900; text-align: center; line-height: 1.3; z-index: 5;
-           text-shadow: 5px 5px 0px white, -5px -5px 0px white, 5px -5px 0px white, -5px 5px 0px white,
-                        0px 5px 0px var(--primary-color), 0px -5px 0px var(--primary-color),
-                        5px 0px 0px var(--primary-color), -5px 0px 0px var(--primary-color);">
-        チャプタータイトル
-      </div>
-    </div>
-
-    <!-- WRONG — do not add extra text, badges, or icons beyond the title -->
-    <div class="slide-container" ...>
-      <div style="... Chapter 2 ...">Chapter 2</div>  <!-- ❌ extra badge -->
-      <div style="...">解説するよ！</div>              <!-- ❌ extra speech bubble -->
-      <div style="...">チャプタータイトル</div>
-      <img src="public/images/characters/sho/ショウ_デフォルメ_笑顔.png" ...>
-    </div>
-    ```
-
-13. **Chapter Title Cards (Plain "N" Format, script content `Chapter N：…`) — Mandatory Rules**
-
-    When the script's `スライドに表示する内容` column reads `Chapter N：<title>` and the slide ID is a **plain chapter number** (e.g. `4`, `7`, `12` — *not* the `N-0` transition), generate a **simple, stylish chapter title card**. This is the companion to the `N-0` character transition (rule 12) and must look clearly different: **no characters, no speech bubbles, no icons, no chapter badge** — just the chapter number and its name.
-
-    * **Layout** — a single horizontal flex row, vertically centered:
-        * **Left**: a small letter-spaced `CHAPTER` label stacked above a **huge number** in the primary color.
-        * **Divider**: a thin vertical **accent-yellow** bar between the number and the title.
-        * **Right**: the chapter name in `var(--text-dark)`.
-    * **Sizing (fixed across all chapter cards for consistency)**:
-        * `CHAPTER` label: `font-size: 38px; letter-spacing: 8px; color: var(--primary-color);`
-        * Number: `font-size: 240px; line-height: 0.8; color: var(--primary-color);`
-        * Divider: `width: 10px; align-self: stretch; background: var(--accent-yellow); border-radius: 8px; margin: 24px 0;`
-        * `gap: 56px` between the three blocks; `flex-shrink: 0` on the number block.
-    * **Title font scales by length** (keep it visually balanced, never overflowing): short titles (e.g. `まとめ`) ~96px; medium (2 lines) ~68–80px; long (e.g. `スマホもお得に買える！スマホ大特価セール`) ~60px. `line-height: 1.3`. Insert `<br>` at natural phrase boundaries per rule 5.
-    * **Background**: subtle theme gradient `linear-gradient(135deg, #fff 55%, #ffebe9 100%)` (adjust the tint to the theme color).
-
-    ```html
-    <!-- Slide ID: 7 -->
-    <div class="slide-container" style="background: linear-gradient(135deg, #fff 55%, #ffebe9 100%);">
-      <div style="display: flex; align-items: center; gap: 56px;">
-        <div style="display: flex; flex-direction: column; align-items: center; flex-shrink: 0;">
-          <div style="font-size: 38px; font-weight: 900; letter-spacing: 8px; color: var(--primary-color); margin-bottom: 4px;">CHAPTER</div>
-          <div style="font-size: 240px; font-weight: 900; color: var(--primary-color); line-height: 0.8;">2</div>
-        </div>
-        <div style="width: 10px; align-self: stretch; background: var(--accent-yellow); border-radius: 8px; margin: 24px 0;"></div>
-        <div style="font-size: 68px; font-weight: 900; color: var(--text-dark); line-height: 1.3;">
-          今だけ！<br>キャンペーンの<br>中身がすごい
-        </div>
-      </div>
-    </div>
-    ```
-
-    * **Content-relocation rule (mandatory):** A chapter card slide must contain **only** the chapter card. If the script maps the *same* plain `N` ID to both the `Chapter N：…` line **and** subsequent explanatory rows (a different `スライドに表示する内容` value under the same ID), that explanatory content does **not** belong on the card. Emit the chapter card as ID `N`, move the explanation to a new slide **`N-1`**, and re-assign those narration rows in `台本.txt` from `N` to `N-1` so audio/slide sync is preserved.
-
-14. **Output Format Requirements**
-    * Output as a single HTML file containing all slides (div elements).
-    * Use `body { display: flex; flex-direction: column; gap: 40px; }` to display all `.slide-container` elements vertically.
-    * Add `<!-- Slide ID: XX -->` before each slide's HTML to map it to the script.
-
-## Example of Special Common Slide
-For slides that use a single fixed image, do not add text. Use the image only.
+`templates/spread-base.css` に見開きの装丁と本文レイアウト部品が**全て**入っている。生成HTMLでは必ずこれをリンクし、定義済みクラスを使う（重複定義しない）。
 
 ```html
-<!-- Slide ID: XX -->
-<div class="slide-container">
-  <img src="public/images/slides/評価項目について.png" class="fullscreen-img">
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="templates/spread-base.css">
+```
+
+各見開きスライドの骨格（`--brand` 系はブランド色の上書き）:
+
+```html
+<!-- Slide ID: N -->
+<div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
+  <div class="book">
+    <div class="spine"></div>
+    <div class="page left">
+      <div class="page-head">左ページの見出し</div>
+      <div class="page-body center"> … </div>
+      <span class="page-no">― 11 ―</span>
+    </div>
+    <div class="page right">
+      <span class="index-tab">格安SIM図鑑</span>
+      <div class="page-head">右ページの見出し</div>
+      <div class="page-body center"> … </div>
+      <span class="page-no">― 12 ―</span>
+    </div>
+  </div>
 </div>
 ```
+
+- `.index-tab` は**右ページのみ**に置く（図鑑インデックスタブ）。右ページの `.page-head` はタブを避けるよう自動で右側に余白が入る（`spread-base.css` 側で対応済み）。
+- `.page-no` はノンブル。解説・評価などの本文ページに付け、左右で連番（章扉/章カード/CTA/定型などの「扉・特殊ページ」は省略してよい）。
+- **本（見開き）はほぼ全画面で表示され、スライドのコンテンツは各ページの上部 約80% に描画される。ページ下部 約20% は空白の紙面として残り、その上に video-studio の字幕が重なる**（`spread-base.css` の `.page` の `padding-bottom` で担保。per-slide で本やページの寸法を変えない）。本文がこの字幕帯に被らないよう、コンテンツは上部80%だけに収める。
+- 各ページの内容領域は約 **810×772px**。`.page-body` は既定で余白を `space-evenly` に散らして縦を使い切る。単一ブロック（lead/emph 一個など）は `.center` で縦中央寄せにする。
+
+### ブランド色（per-slide で上書き）
+
+`--brand` / `--brand-deep` / `--brand-soft` をキャリア・章ごとに設定する。
+
+| 対象 | brand | brand-deep | brand-soft |
+|---|---|---|---|
+| ドコモ系 / 赤系（ahamo・楽天・一般章） | `#C8102E` | `#9a0c23` | `#fde3e7` |
+| IIJmio・青系 | `#1565C0` | `#0d47a1` | `#e3f0fb` |
+| 緑系（mineo 等） | `#22a73f` | `#1c8b34` | `#e8f5e6` |
+
+1枚の見開き内でページごとに別ブランド色にしたい場合は、その**ブロック要素に `style="--brand:…;--brand-deep:…;--brand-soft:…"` を再指定**すれば局所的に切り替わる（例：左ページ=赤、右ページ=青の比較）。
+
+## 2. 共通レイアウト部品（spread-base.css 由来）
+
+ページ本文はこれらの部品を組み合わせて作る。per-slide の微調整は `style` 属性で。
+
+| クラス | 用途 |
+|---|---|
+| `.page-head`（`<small>` で副題） | ページ見出し（ブランド色の下線） |
+| `.page-body` / `.page-body.center` | 本文コンテナ（縦に使い切る／縦中央寄せ） |
+| `.lead`（`.em` で強調） | 紙のテロップ風リード文 |
+| `.rows > li`（`.ic` / `.badge` / `.tx`、`.tx .sub` / `.tx .em`） | アイコン or 番号付きリスト行 |
+| `.emph`（`.big` / `.em`） | 数値・結論の強調ボックス |
+| `.warn`（`.ic` / `.em`） | 注意ボックス |
+| `.note` | 小さなグレーの注記 |
+| `.sheet`（`th`/`td`、`.em` / `.sub`） | 紙の表（料金・比較） |
+| `.big-title`（`.em`） | ページ中央の大見出し（章タイトル・CTA等） |
+| `.divider`（`.kicker` / `.num` / `.seal`） | 章扉のエンブレム |
+| `.visual > img` | サムネ等のビジュアルを1ページに大きく |
+| `.bigicon` | 中央の大アイコン（FontAwesome） |
+| `.logos > img` | ロゴ並べ |
+| `.agenda` / `.benefits` | 目次／「この動画でわかること」 |
+| `.head-left`/`.total`/`.head-right`/`.cards`/`.card`/`.card .rank`/`.card-name`/`.card .line`（`.line.pro`/`.line.con` の `.tag`） | 評価 Layout B（1社1見開き） |
+| `.rank.SS`/`.S`/`.A`/`.B`/`.C` | 評価ランクバッジ（色は段階固定） |
+
+### コンテンツ種別 → レイアウト指針
+
+- **目次**：左 `.agenda`（動画の流れ）／右 `.benefits`（この動画でわかること）。
+- **解説（リスト系）**：`.page-head` + `.rows`。項目が多ければ左右ページに分割（見出しに `<small>①②</small>` 等で続きを示す）。
+- **数値・結論**：`.emph`。補足は隣ページに `.lead` / `.note`。
+- **料金・比較表**：`.sheet`。列・行が多ければ左右ページに分割。
+- **注意点**：`.warn` ＋ `.note`、または左ページに `.bigicon`（⚠）。
+- **イラスト/図解**：片ページを `.visual` にして大きく、もう片方で要点を `.lead`。
+- **おすすめ診断・まとめ**：`.rows`（番号バッジ）や `.emph` を左右に。
+
+## 3. 評価見開き（1社1見開き）— 必須ルール
+
+各キャリアの評価は**1社につき1見開き**で表現する（Layout B）。台本の「スライドに表示する内容」書式：
+
+```
+評価見開き／社名／総合:rank／観点:rank(＋pro／－con) を6観点
+```
+
+- データは原則 `shared/sim_evaluations.json` と `primary-information.md` から取る（未登録キャリアは台本側のランク・所感を使う）。
+- **6観点固定順**：データ料金・通信品質・初期費用・通話料・店舗サポート・オプション。
+- **左ページ**：`.head-left`（ロゴ＋`.file-no`＋`.total`総合評価）／`.cards` に観点3枚（`.card` = `.rank` + `.card-name` + `.line.pro` + `.line.con`）。
+- **右ページ**：`.index-tab` ＋ `.head-right` にレーダーチャート（`public/images/charts/<社名>.png`）／`.cards` に残り観点3枚。
+- ランクの色は `.rank.SS/S/A/B/C` に従う（独自配色にしない）。pro は `＋`、con は `－`。
+- レーダーチャートは `.head-right img`（`height:100%`）で表示。評価バッジを別途並べない。
+
+## 4. 章扉（N-0）と章カード（N）— 見開きで作る・役割を分ける
+
+章の入口は**2枚**あり、どちらも見開きにするが**見た目を明確に変える**。
+
+- **章扉 `N-0`（にぎやか・扉ページ）**：左ページに `.divider`（`CHAPTER`/大きな番号/`FILE No.0X` シール）、右ページに `.big-title`（章テーマ）＋丸いリード。`.page-no` は付けない。
+  - **キャラクター画像はスライドに焼き込まない**。本編では video-studio 側がショウ／モモコを画面隅にライブ合成するため、見開きにも描くと二重になる。扉は番号エンブレムと大見出しで魅せる。
+- **章カード `N`（シンプル・タイポ）**：左ページに `CHAPTER` ラベル＋巨大番号、右ページに `.big-title` で章名のみ。バッジ・吹き出し・アイコンは足さない。
+
+> **コンテンツ移送ルール**：同じプレーン番号 `N` に「章名」と「解説本文」の両方が紐づく場合、`N` は章カードのみにし、解説は新スライド `N-1` に移して台本側のナレーション行も `N`→`N-1` に振り直す（音声/スライド同期を保つ）。
+
+## 5. 過去動画 CTA 見開き
+
+- 片ページを `.visual` にして `public/images/thumbnails/` の**実サムネイル**を大きく置く（汎用アイコンで代用しない。社名/トピックで部分一致選択）。
+- もう片方に `.bigicon`（▶）＋ `.big-title`（「○○の解説動画もチェック！」）＋ `.note`。
+
+## 6. 定型スライド（注意喚起／ブログ／チャンネル登録）も見開きで
+
+旧 `public/images/slides/*.png` の貼り付けは使わない。次の内容を見開きで作る：
+
+- **投稿時点の注意喚起**：左 `.bigicon`（ℹ）＋`.big-title`「ご注意」／右 `.warn`「料金・プラン・キャンペーンは投稿時点の情報」＋`.note`「最新は各社公式で確認」。
+- **ブログ／note案内**：左 `.bigicon`（ペン）＋`.big-title`／右 `.lead`＋`.note`。
+- **チャンネル登録・高評価**：左 `.bigicon`（ベル）＋`.big-title`／右 `.logos`（👍🔔）＋`.lead`。
+
+## 7. 冒頭つかみスライド（std を許容する唯一の例外）
+
+目次より前の導入カット（速報・タイトル・初回チャンネル誘導）だけ `std`（1280×720）でよい。最小限の `std` CSS を `<style>` にインラインし、`<div class="slide-container std" …>` で作る。
+
+```css
+.slide-container.std { width:1280px;height:720px;border:10px solid var(--primary-color);background:white;box-sizing:border-box;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px;flex-shrink:0; }
+body { --primary-color:#C8102E; --accent-red:#E53935; --text-dark:#212121; }
+.terop-box { background:rgba(255,255,255,.9); border-left:16px solid var(--primary-color); padding:16px 32px; font-size:58px; font-weight:900; color:var(--text-dark); text-align:center; line-height:1.4; box-shadow:0 10px 20px rgba(0,0,0,.1); }
+```
+
+## 8. 文字組み・改行（必須）
+
+- 大きな文字サイズでは長い日本語が不自然な位置で折り返す。意味の切れ目（助詞「が/を/も」の後、句読点、論理的まとまりの境界）に `<br>` を明示。各行の見た目の長さを揃える。数字と単位は切り離さない。
+- 「ホッピング」のような鉤括弧の固有語は `white-space: nowrap` で割らない。
+- **キャリア/サービス名は省略しない**：✅`ソフトバンク`/`楽天モバイル`/`ドコモ`。❌`SB`/`楽天`(単体)。
+- 1ページは約792px幅。`.rows .tx`(38px)なら1行18文字程度で `<br>`、`.sheet`(32px)のセルも長ければ改行。
+
+## 9. 画像アセット
+
+- **プレースホルダ禁止**。`public/images/` から文脈に最適な既存画像を選ぶ（`GEMINI.md` に一覧）。
+- 選択優先度：`temp/<carrier>/`（キャンペーンバナー等の直接的画像） > `charts/`（レーダーチャート） > `thumbnails/`（過去動画CTA） > `logo/` > `irasutoya/`（状況イラスト） > `common/`（概念図）。
+- **外部出典の明記（必須）**：第三者サイトから取得した画像には取得元を正確に併記（例 `出典：Amazon.co.jp（IIJmio商品ページ）`。Amazon が権利者ではない点に注意）。キャプションは `.note` 相当の小さめ・グレーで画像直下に。
+
+## 10. 自己チェック（重要）
+
+- **オーバーフロー厳禁**：各ページ（約810×772px）に全要素が収まること。はみ出すならフォント10〜20%縮小／行数削減／隣ページへ分割。本の下端より下（画面下部約20%）は字幕帯なので、ここに本文を置かない。
+- **余白を残さない**：文字・アイコン・画像は大きめに。`.page-body`（既定 `space-evenly`）とフォント/行間で縦を使い切る。1ページ1〜3要素のような薄い内容でも、大きな文字・大アイコン・大ビジュアルでスカスカに見せない（目安：本文の文字は 40px 以上、見出し 56〜60px、章タイトル・CTA は 90px 以上）。詰めすぎてもいけない。
+- 評価見開きの `.cards` は左右3枚ずつが基本。card 内のテキストが長い時は `.line` を短く要約。
+
+## 11. 出力フォーマット
+
+- 全スライドを1つのHTMLファイルに `div` で縦に並べる（`body` レイアウトは `spread-base.css` が担う）。
+- 各スライドの直前に `<!-- Slide ID: XX -->` を置き、台本の行IDと対応付ける（`N-0`/`N-1`/`N-2` などのサフィックスも可）。
+- 出力後、`npm run capture-slides-html` でキャプチャされ、見開きは 1920×1080、冒頭 std は 1280×720 の PNG になる。
