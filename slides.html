@@ -2,31 +2,16 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>【1年縛り復活】ソフトバンク・ワイモバイル・LINEMO契約解除料 スライド</title>
+  <title>【JALモバイル完全比較】IIJmio版 vs ahamo版 スライド</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- 図鑑見開き（目次・評価）の装丁 -->
+  <link rel="stylesheet" href="templates/spread-base.css">
   <style>
-    :root {
-      --primary-color: #1565C0;
-      --accent-yellow: #FFD600;
-      --accent-red: #E53935;
-      --accent-green: #43A047;
-      --text-dark: #212121;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'M PLUS Rounded 1c', sans-serif;
-      font-weight: 800;
-      background: #f0f0f0;
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-      padding: 40px;
-      align-items: center;
-    }
-    .slide-container {
+    /* ===== 通常スライド（1280x720）の基本デザイン ===== */
+    .slide-container.std {
       width: 1280px;
       height: 720px;
       border: 10px solid var(--primary-color);
@@ -41,7 +26,21 @@
       padding: 40px;
       flex-shrink: 0;
     }
-    h1 {
+    .std :root, .std {
+      --primary-color: #C8102E;
+      --accent-yellow: #FFD600;
+      --accent-red: #E53935;
+      --accent-green: #43A047;
+      --text-dark: #212121;
+    }
+    body {
+      --primary-color: #C8102E;
+      --accent-yellow: #FFD600;
+      --accent-red: #E53935;
+      --accent-green: #43A047;
+      --text-dark: #212121;
+    }
+    .std h1 {
       font-size: 130px;
       font-weight: 900;
       color: var(--text-dark);
@@ -49,7 +48,7 @@
                    0px 4px 0px var(--primary-color), 0px -4px 0px var(--primary-color),
                    4px 0px 0px var(--primary-color), -4px 0px 0px var(--primary-color);
     }
-    h2 {
+    .std h2 {
       font-size: 90px;
       font-weight: 900;
       color: var(--text-dark);
@@ -57,29 +56,17 @@
       margin-bottom: 24px;
       padding-bottom: 8px;
     }
-    p, li {
+    .std p, .std li {
       font-size: 64px;
       line-height: 1.4;
       color: var(--text-dark);
     }
-    ul { list-style-type: none; }
+    .std ul { list-style-type: none; padding: 0; }
     .accent { color: var(--accent-red); }
     .accent-green { color: var(--accent-green); }
     .accent-blue { color: var(--primary-color); }
-    .split {
-      display: flex;
-      width: 100%;
-      justify-content: space-around;
-      align-items: center;
-      gap: 20px;
-    }
-    .split-col {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px;
-    }
+    .split { display: flex; width: 100%; justify-content: space-around; align-items: center; gap: 20px; }
+    .split-col { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 20px; }
     .terop-box {
       background: rgba(255, 255, 255, 0.9);
       border-left: 16px solid var(--primary-color);
@@ -92,39 +79,16 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
     .fullscreen-img {
-      width: 100%;
-      height: 100%;
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 10;
+      width: 100%; height: 100%; max-width: 100%; max-height: 100%;
+      object-fit: contain; position: absolute; top: 0; left: 0; z-index: 10;
     }
-    table {
-      font-size: 50px;
-      border-collapse: collapse;
-      width: 100%;
-    }
-    th, td {
-      border: 3px solid var(--primary-color);
-      padding: 12px 20px;
-      text-align: center;
-    }
-    th {
-      background: var(--primary-color);
-      color: white;
-    }
+    .std table { font-size: 50px; border-collapse: collapse; width: 100%; }
+    .std th, .std td { border: 3px solid var(--primary-color); padding: 12px 20px; text-align: center; }
+    .std th { background: var(--primary-color); color: white; }
     .warning-box {
-      background: #FFF3E0;
-      border: 4px solid #FF9800;
-      border-radius: 16px;
-      padding: 20px 32px;
-      font-size: 60px;
-      color: var(--text-dark);
-      text-align: center;
-      line-height: 1.4;
+      background: #FFF3E0; border: 4px solid #FF9800; border-radius: 16px;
+      padding: 20px 32px; font-size: 60px; color: var(--text-dark);
+      text-align: center; line-height: 1.4;
     }
     .chapter-title {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -134,687 +98,773 @@
                    0px 5px 0px var(--primary-color), 0px -5px 0px var(--primary-color),
                    5px 0px 0px var(--primary-color), -5px 0px 0px var(--primary-color);
     }
+
+    /* ===== 図鑑見開き（spread）専用の追加レイアウト ===== */
+    .page-head {
+      font-size: 52px; font-weight: 900; color: var(--ink);
+      border-bottom: 6px solid var(--brand);
+      padding-bottom: 12px; margin-bottom: 24px;
+    }
+    .page-head small { font-size: 30px; color: var(--ink-soft); margin-left: 12px; }
+    /* 目次 / 得すること */
+    .agenda { list-style: none; display: flex; flex-direction: column; gap: 28px; }
+    .agenda li {
+      display: flex; align-items: center; gap: 24px;
+      font-size: 48px; font-weight: 800; color: var(--ink);
+    }
+    .agenda .num {
+      flex-shrink: 0; width: 74px; height: 74px; border-radius: 16px;
+      background: var(--brand); color: #fff; font-size: 42px; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .benefits { list-style: none; display: flex; flex-direction: column; gap: 34px; }
+    .benefits li {
+      display: flex; align-items: flex-start; gap: 22px;
+      font-size: 46px; font-weight: 700; color: var(--ink); line-height: 1.35;
+    }
+    .benefits .check { flex-shrink: 0; color: var(--brand-deep); font-size: 52px; font-weight: 900; line-height: 1.1; }
+    .benefits b { color: var(--con); }
+    /* 評価（Layout B） */
+    .head-left {
+      display: flex; align-items: center; gap: 33px;
+      border-bottom: 6px solid var(--brand);
+      padding-bottom: 18px; margin-bottom: 18px; height: 200px;
+    }
+    .head-left .logo { height: 90px; object-fit: contain; }
+    .total { margin-left: auto; text-align: center; line-height: 1; }
+    .total .label { font-size: 30px; font-weight: 800; color: var(--ink-soft); }
+    .total .grade { font-size: 110px; font-weight: 900; color: var(--brand-deep); text-shadow: 4px 4px 0 #fff; }
+    .head-right {
+      height: 200px; border-bottom: 6px solid var(--brand);
+      padding-bottom: 12px; margin-bottom: 18px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .head-right img { height: 100%; object-fit: contain; transform: translateX(-90px); }
+    .cards { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; }
+    .card {
+      flex: 1; display: grid; grid-template-columns: 117px 1fr; gap: 6px 24px;
+      background: #fff; border: 4px solid #e7dcc2; border-left: 15px solid var(--brand);
+      border-radius: 21px; padding: 16px 27px; box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+    }
+    .card .rank { grid-row: 1 / span 3; align-self: center; width: 110px; height: 110px; border-radius: 24px; font-size: 55px; }
+    .card-name { font-size: 44px; font-weight: 900; color: var(--ink); line-height: 1.1; }
+    .card .line { font-size: 34px; font-weight: 500; line-height: 1.2; color: var(--ink); }
   </style>
 </head>
 <body>
 
 <!-- Slide ID: 1 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff 50%, #e3f0ff 100%); justify-content: center; gap: 24px;">
+<div class="slide-container std" style="background: linear-gradient(135deg, #fff 50%, #ffe3e8 100%); justify-content: center; gap: 24px;">
   <div style="display: flex; gap: 16px; align-items: center;">
-    <div style="background: var(--accent-red); color: white; font-size: 46px; font-weight: 900; padding: 8px 32px; border-radius: 40px;">
-      <i class="fa-solid fa-triangle-exclamation"></i> 2026年7月
+    <div style="background: var(--accent-red); color: white; font-size: 44px; font-weight: 900; padding: 8px 32px; border-radius: 40px;">
+      <i class="fa-solid fa-bullhorn"></i> 速報
     </div>
-    <div style="background: var(--primary-color); color: white; font-size: 46px; font-weight: 900; padding: 8px 32px; border-radius: 40px;">
-      1年縛り復活
+    <div style="background: var(--primary-color); color: white; font-size: 44px; font-weight: 900; padding: 8px 32px; border-radius: 40px;">
+      2026年6月25日 誕生
     </div>
   </div>
-  <div style="font-size: 72px; font-weight: 900; color: var(--text-dark); line-height: 1.3; text-align: center;">
-    ソフトバンク・ワイモバイル・<br>LINEMOに<span style="color: var(--accent-red);">契約解除料</span>新設
+  <div style="font-size: 74px; font-weight: 900; color: var(--text-dark); line-height: 1.3; text-align: center;">
+    「JALモバイル<br><span style="color: var(--primary-color);">powered by ahamo</span>」<br>がリリース！？
   </div>
-  <div style="display: flex; gap: 50px; align-items: center; margin: 10px 0;">
-    <img src="public/images/logo/Softbank_logo.png" style="height: 70px; object-fit: contain;" alt="ソフトバンク">
-    <img src="public/images/logo/Y!mobile.png" style="height: 64px; object-fit: contain;" alt="ワイモバイル">
-    <img src="public/images/logo/LINEMO_logo.png" style="height: 60px; object-fit: contain;" alt="LINEMO">
-  </div>
-  <div class="terop-box" style="font-size: 54px;">
-    今こそ試すべき<span style="color: var(--primary-color);">格安SIM</span>を紹介！
-  </div>
+  <img src="public/images/temp/jalmobile_ahamo/バナースクショ.png"
+       style="max-height: 300px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15)); border-radius: 12px;" alt="JALモバイル powered by ahamo バナー">
 </div>
 
 <!-- Slide ID: 2 -->
-<div class="slide-container" style="justify-content: center;">
-  <h2 style="font-size: 76px;">今回の内容</h2>
-  <ul style="width: 100%; display: flex; flex-direction: column; gap: 24px;">
-    <li style="display: flex; align-items: center; gap: 28px; background: #E3F2FD; border-radius: 16px; padding: 22px 32px;">
-      <i class="fa-solid fa-file-contract" style="color: var(--primary-color); font-size: 70px; width: 92px; text-align: center;"></i>
-      <span style="font-size: 56px;"><span class="accent-blue">①</span> 3社の<span class="accent">契約解除料</span>の新設内容</span>
-    </li>
-    <li style="display: flex; align-items: center; gap: 28px; background: #FFFDE7; border-radius: 16px; padding: 22px 32px;">
-      <i class="fa-solid fa-comment-dots" style="color: #FB8C00; font-size: 70px; width: 92px; text-align: center;"></i>
-      <span style="font-size: 56px;"><span style="color: #FB8C00;">②</span> ショウの個人的見解</span>
-    </li>
-    <li style="display: flex; align-items: center; gap: 28px; background: #E8F5E9; border-radius: 16px; padding: 22px 32px;">
-      <i class="fa-solid fa-mobile-screen-button" style="color: var(--accent-green); font-size: 70px; width: 92px; text-align: center;"></i>
-      <span style="font-size: 56px;"><span class="accent-green">③</span> 試しやすい格安SIM3選</span>
-    </li>
-  </ul>
+<div class="slide-container std" style="background: linear-gradient(135deg, #fff 55%, #ffe3e8 100%); justify-content: center; gap: 28px;">
+  <div style="font-size: 50px; font-weight: 900; color: var(--primary-color); letter-spacing: 2px;">【JALモバイル完全比較】</div>
+  <div style="font-size: 80px; font-weight: 900; color: var(--text-dark); line-height: 1.25; text-align: center;">
+    <span style="color: var(--accent-blue);">IIJmio版</span> vs <span style="color: var(--primary-color);">ahamo版</span>！<br>あなたにはどっちが向いてる？
+  </div>
+  <div style="display: flex; gap: 50px; align-items: center; margin: 4px 0;">
+    <img src="public/images/logo/iijmio_logo.png" style="height: 84px; object-fit: contain;" alt="IIJmio">
+    <i class="fa-solid fa-plane" style="font-size: 80px; color: var(--primary-color);"></i>
+    <img src="public/images/logo/Ahamo_logo.png" style="height: 70px; object-fit: contain;" alt="ahamo">
+  </div>
+  <div class="terop-box" style="font-size: 50px;">
+    2種類のJALモバイルを<span style="color: var(--primary-color);">徹底比較</span>！
+  </div>
 </div>
 
 <!-- Slide ID: 3 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff 60%, #e3f0ff 100%);">
+<div class="slide-container std" style="background: linear-gradient(135deg, #fff 60%, #ffe3e8 100%);">
   <div style="text-align: center; width: 100%;">
     <i class="fa-solid fa-bell" style="font-size: 150px; color: var(--primary-color); margin-bottom: 24px;"></i>
-    <div style="font-size: 72px; font-weight: 900; color: var(--text-dark); line-height: 1.35; margin-bottom: 28px;">
+    <div style="font-size: 70px; font-weight: 900; color: var(--text-dark); line-height: 1.35; margin-bottom: 28px;">
       スマホ代節約の情報を<br><span style="color: var(--primary-color);">毎週発信中</span>
     </div>
-    <div class="terop-box" style="font-size: 58px; display: inline-block;">
+    <div class="terop-box" style="font-size: 56px; display: inline-block;">
       チャンネル登録<br>よろしくお願いします！
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 4-0 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff 60%, #e0ecff 100%); justify-content: center;">
-  <div class="chapter-title">
-    <span style="white-space: nowrap;">3社の契約解除料</span><br>新設の内容！
-  </div>
-  <img src="public/images/characters/ショウ_デフォルメ_笑顔.png"
-       style="position: absolute; bottom: 0; left: 20px; height: 330px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="ショウ">
-  <img src="public/images/characters/モモコ_嬉しい_口開け_星無.png"
-       style="position: absolute; bottom: 0; right: 20px; height: 330px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="モモコ">
-</div>
-
-<!-- Slide ID: 4 -->
-<div class="slide-container">
-  <div class="split">
-    <div class="split-col" style="flex: 0.5;">
-      <i class="fa-solid fa-circle-question" style="font-size: 200px; color: var(--primary-color);"></i>
+<!-- Slide ID: 4  （目次見開き：図鑑スタイル 1920x1080） -->
+<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+  <div class="book">
+    <div class="spine"></div>
+    <div class="page left">
+      <div class="page-head">格安SIM図鑑 もくじ <small>この動画の流れ</small></div>
+      <ul class="agenda">
+        <li><span class="num">1</span>JALモバイルとは？2種類の違い</li>
+        <li><span class="num">2</span>IIJmio版の独自評価</li>
+        <li><span class="num">3</span>ahamo版の独自評価</li>
+        <li><span class="num">4</span>あなたにおすすめはどっち？</li>
+        <li><span class="num">5</span>まとめ</li>
+      </ul>
+      <span class="page-no">― 1 ―</span>
     </div>
-    <div class="split-col">
-      <div class="terop-box" style="font-size: 56px;">
-        <span class="accent">契約解除料</span>って<br>何が変わるの？
-      </div>
-      <div style="margin-top: 28px; background: #E3F2FD; border: 4px solid var(--primary-color); border-radius: 16px; padding: 20px 30px; text-align: center;">
-        <div style="font-size: 50px; font-weight: 900; color: var(--text-dark); line-height: 1.35;">
-          <span class="accent-blue">2026年7月1日以降</span>の<br>新規・乗り換えが対象
-        </div>
-      </div>
+    <div class="page right">
+      <span class="index-tab">格安SIM図鑑</span>
+      <div class="page-head">この動画でわかること</div>
+      <ul class="benefits">
+        <li><span class="check">✓</span><span>自分に向いた<b>JALモバイル</b>が分かる</span></li>
+        <li><span class="check">✓</span><span>ムダな<b>月額料金</b>を払わずに済む</span></li>
+      </ul>
+      <span class="page-no">― 2 ―</span>
     </div>
   </div>
 </div>
 
 <!-- Slide ID: 5 -->
-<div class="slide-container" style="justify-content: center; gap: 36px;">
-  <div class="warning-box" style="font-size: 66px; background: #E3F2FD; border-color: var(--primary-color);">
-    <span style="color: var(--primary-color);">契約解除料</span>＝<br><span class="accent">早く辞めると取られるお金</span>
-  </div>
-  <div style="display: flex; align-items: center; gap: 36px;">
-    <i class="fa-solid fa-calendar-xmark" style="font-size: 150px; color: var(--accent-red);"></i>
-    <div style="font-size: 60px; font-weight: 900; line-height: 1.4; text-align: left;">
-      回線提供開始月から<br><span class="accent">12カ月以内</span>の解約で<br>かかる仕組み
-    </div>
-  </div>
+<div class="slide-container std" style="justify-content: center; gap: 28px;">
+  <h2 style="font-size: 68px;">JALモバイルは2種類</h2>
+  <ul style="width: 100%; display: flex; flex-direction: column; gap: 28px;">
+    <li style="display: flex; align-items: center; gap: 28px; background: #E3F2FD; border-radius: 16px; padding: 24px 36px;">
+      <i class="fa-solid fa-sim-card" style="color: var(--accent-blue); font-size: 70px; width: 92px; text-align: center;"></i>
+      <span style="font-size: 50px;"><span class="accent-blue">①</span> JALモバイル<span class="accent-blue">powered by IIJmio</span><br>2025年4月誕生 ・ <span style="color:#666;">MVNO（格安SIM）</span></span>
+    </li>
+    <li style="display: flex; align-items: center; gap: 28px; background: #FDE3E7; border-radius: 16px; padding: 24px 36px;">
+      <i class="fa-solid fa-tower-cell" style="color: var(--primary-color); font-size: 70px; width: 92px; text-align: center;"></i>
+      <span style="font-size: 50px;"><span class="accent">②</span> JALモバイル<span class="accent">powered by ahamo</span><br>2026年6月25日誕生 ・ <span style="color:#666;">MNO（ドコモ回線）</span></span>
+    </li>
+  </ul>
 </div>
 
 <!-- Slide ID: 6 -->
-<div class="slide-container" style="justify-content: flex-start; padding-top: 20px;">
-  <div style="display: flex; align-items: center; gap: 22px; margin-bottom: 20px;">
-    <img src="public/images/logo/Softbank_logo.png" style="height: 56px; object-fit: contain;" alt="ソフトバンク">
-    <h2 style="font-size: 60px; margin-bottom: 0; padding-bottom: 6px;">契約解除料</h2>
-  </div>
-  <table style="font-size: 48px;">
-    <tr>
-      <th style="padding: 8px 16px;">プラン</th>
-      <th style="padding: 8px 16px;">契約解除料</th>
-    </tr>
-    <tr>
-      <td style="text-align: left;">データプランペイトク<br>などの主要プラン</td>
-      <td><span class="accent">1,100円</span></td>
-    </tr>
-    <tr>
-      <td style="text-align: left;">データ定額未加入</td>
-      <td><span class="accent">748円</span></td>
-    </tr>
-    <tr>
-      <td style="text-align: left;">キッズフォン</td>
-      <td><span class="accent">528円</span></td>
-    </tr>
-    <tr>
-      <td style="text-align: left;">Apple Watch向け</td>
-      <td><span class="accent">385円</span></td>
-    </tr>
+<div class="slide-container std" style="justify-content: center; gap: 24px;">
+  <h2 style="font-size: 64px;">共通点：JALマイルが貯まる</h2>
+  <ul style="width: 100%; display: flex; flex-direction: column; gap: 20px;">
+    <li style="display: flex; align-items: flex-start; gap: 24px; background: #FDE3E7; border-radius: 16px; padding: 20px 32px;">
+      <i class="fa-solid fa-plane-departure" style="color: var(--primary-color); font-size: 56px; width: 72px; text-align: center; margin-top: 6px;"></i>
+      <span style="font-size: 46px;">「どこかにマイル」が<span class="accent">1,500マイル</span>で交換可<br><span style="font-size: 36px; color:#666;">（通常7,000マイル）</span></span>
+    </li>
+    <li style="display: flex; align-items: flex-start; gap: 24px; background: #FFFDE7; border-radius: 16px; padding: 20px 32px;">
+      <i class="fa-solid fa-star" style="color: #FB8C00; font-size: 56px; width: 72px; text-align: center; margin-top: 6px;"></i>
+      <span style="font-size: 46px;">Life Statusポイント<span class="accent">毎月1ポイント</span></span>
+    </li>
+    <li style="display: flex; align-items: flex-start; gap: 24px; background: #E8F5E9; border-radius: 16px; padding: 20px 32px;">
+      <i class="fa-solid fa-gift" style="color: var(--accent-green); font-size: 56px; width: 72px; text-align: center; margin-top: 6px;"></i>
+      <span style="font-size: 44px;">フライトボーナスで<br>国内線<span class="accent-green">+50マイル</span>・国際線<span class="accent-green">+100マイル</span></span>
+    </li>
+  </ul>
+</div>
+
+<!-- Slide ID: 7  （ざっくり違い比較表） -->
+<div class="slide-container std" style="justify-content: center; gap: 10px; padding: 28px;">
+  <h2 style="font-size: 42px; margin-bottom: 6px; padding-bottom: 4px;">2種類のJALモバイル ざっくり比較</h2>
+  <table style="font-size: 29px;">
+    <thead>
+      <tr>
+        <th style="padding: 4px 8px; width: 22%;">比較項目</th>
+        <th style="padding: 4px 8px;">IIJmio版</th>
+        <th style="padding: 4px 8px;">ahamo版</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th style="padding: 4px 8px;">月額料金</th>
+        <td style="padding: 4px 8px;"><span class="accent">2GB 850円〜</span><br>容量を選べる</td>
+        <td style="padding: 4px 8px;">30GBで <span class="accent">2,970円</span></td>
+      </tr>
+      <tr>
+        <th style="padding: 4px 8px;">回線</th>
+        <td style="padding: 4px 8px;">MVNO<br><span style="font-size:25px;">（ドコモ・au回線を借りる）</span></td>
+        <td style="padding: 4px 8px;">ドコモ回線そのまま<br><span style="font-size:25px;">（MNO）</span></td>
+      </tr>
+      <tr>
+        <th style="padding: 4px 8px;">通話</th>
+        <td style="padding: 4px 8px;">5分・10分・かけ放題<br>から選べる</td>
+        <td style="padding: 4px 8px;">5分以内の<br>国内通話無料</td>
+      </tr>
+      <tr>
+        <th style="padding: 4px 8px;">海外利用</th>
+        <td style="padding: 4px 8px;">海外eSIMの<br>追加購入が必要</td>
+        <td style="padding: 4px 8px;"><span class="accent-green">91の国と地域で</span><br><span class="accent-green">追加料金なし</span></td>
+      </tr>
+      <tr>
+        <th style="padding: 4px 8px;">初期費用</th>
+        <td style="padding: 4px 8px;">約3,740円</td>
+        <td style="padding: 4px 8px;">通常2,200円<br><span style="font-size:25px;">（今だけ無料）</span></td>
+      </tr>
+    </tbody>
   </table>
 </div>
 
-<!-- Slide ID: 6-2 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff 60%, #e3f0ff 100%);">
-  <div style="text-align: center;">
-    <img src="public/images/logo/Y!mobile.png" style="height: 110px; object-fit: contain; margin-bottom: 36px;" alt="ワイモバイル">
-    <div class="terop-box" style="font-size: 72px;">
-      ワイモバイルは？
+<!-- Slide ID: 8-0  （章転換：キャラクター） -->
+<div class="slide-container std" style="background: radial-gradient(circle at center, #fff 0%, #ffe3e8 100%); justify-content: center;">
+  <div class="chapter-title" style="font-size: 96px;">
+    JALモバイル<br><span style="color: var(--accent-blue);">IIJmio版</span>
+  </div>
+  <img src="public/images/characters/sho/ショウ_デフォルメ_笑顔.png"
+       style="position: absolute; bottom: 0; left: 30px; height: 340px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="ショウ">
+  <img src="public/images/characters/momoko/モモコ_嬉しい_口開け_星無.png"
+       style="position: absolute; bottom: 0; right: 30px; height: 340px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="モモコ">
+</div>
+
+<!-- Slide ID: 8  （Chapter 2 タイトルカード） -->
+<div class="slide-container std" style="background: linear-gradient(135deg, #fff 55%, #ffebed 100%);">
+  <div style="display: flex; align-items: center; gap: 56px;">
+    <div style="display: flex; flex-direction: column; align-items: center; flex-shrink: 0;">
+      <div style="font-size: 38px; font-weight: 900; letter-spacing: 8px; color: var(--primary-color); margin-bottom: 4px;">CHAPTER</div>
+      <div style="font-size: 240px; font-weight: 900; color: var(--primary-color); line-height: 0.8;">2</div>
+    </div>
+    <div style="width: 10px; align-self: stretch; background: var(--accent-yellow); border-radius: 8px; margin: 24px 0;"></div>
+    <div style="font-size: 60px; font-weight: 900; color: var(--text-dark); line-height: 1.3;">
+      JALモバイル<br>powered by<br>IIJmio を解説
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 6-3 -->
-<div class="slide-container" style="justify-content: center; gap: 30px;">
-  <div style="display: flex; align-items: center; gap: 22px;">
-    <img src="public/images/logo/Y!mobile.png" style="height: 64px; object-fit: contain;" alt="ワイモバイル">
-    <h2 style="font-size: 60px; margin-bottom: 0; padding-bottom: 6px;">契約解除料</h2>
+<!-- Slide ID: 9  （MVNOとは） -->
+<div class="slide-container std" style="gap: 24px;">
+  <div class="terop-box" style="font-size: 48px; margin-bottom: 4px;">
+    <span style="color: var(--accent-blue);">MVNO</span> ＝ 大手キャリアの回線を借りて<br>格安サービスを提供する事業者
   </div>
-  <img src="public/images/temp/ymobile/契約解除料新設_表.png"
-       style="height: 500px; width: 100%; object-fit: contain; border-radius: 12px; border: 4px solid var(--primary-color); filter: drop-shadow(0 10px 20px rgba(0,0,0,0.12));" alt="ワイモバイル契約解除料表">
-  <div style="font-size: 50px; font-weight: 900; color: var(--text-dark);">
-    <span class="accent">12カ月以内</span>の解約でかかる
+  <img src="public/images/common/格安SIMを車の道路で例えたイラスト.png"
+       style="max-height: 420px; max-width: 100%; object-fit: contain; border-radius: 12px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));" alt="格安SIMの仕組み">
+</div>
+
+<!-- Slide ID: 10  （IIJmio版 料金プラン） -->
+<div class="slide-container std" style="justify-content: center; gap: 16px;">
+  <h2 style="font-size: 50px; margin-bottom: 8px;">IIJmio版 料金プラン（音声SIM）</h2>
+  <table style="font-size: 42px;">
+    <tbody>
+      <tr>
+        <th style="padding: 8px 10px;">2GB</th><td style="padding: 8px 10px;"><span class="accent">850円</span></td>
+        <th style="padding: 8px 10px;">5GB</th><td style="padding: 8px 10px;">950円</td>
+      </tr>
+      <tr>
+        <th style="padding: 8px 10px;">10GB</th><td style="padding: 8px 10px;">1,400円</td>
+        <th style="padding: 8px 10px;">15GB</th><td style="padding: 8px 10px;">1,600円</td>
+      </tr>
+      <tr>
+        <th style="padding: 8px 10px;">25GB</th><td style="padding: 8px 10px;">2,000円</td>
+        <th style="padding: 8px 10px;">35GB</th><td style="padding: 8px 10px;">2,400円</td>
+      </tr>
+      <tr>
+        <th style="padding: 8px 10px;">45GB</th><td style="padding: 8px 10px;">3,300円</td>
+        <th style="padding: 8px 10px;">55GB</th><td style="padding: 8px 10px;">3,900円</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="font-size: 36px; color: #666;">（税込）使い方に合った容量を選べるのが最大の強み</div>
+</div>
+
+<!-- Slide ID: 11  （本家IIJmioと共通の機能） -->
+<div class="slide-container std" style="justify-content: center; gap: 24px;">
+  <h2 style="font-size: 58px;">本家IIJmioと共通の機能</h2>
+  <ul style="width: 100%; display: flex; flex-direction: column; gap: 22px;">
+    <li style="display: flex; align-items: center; gap: 24px; background: #E3F2FD; border-radius: 16px; padding: 20px 32px;">
+      <i class="fa-solid fa-rotate-right" style="color: var(--accent-blue); font-size: 56px; width: 72px; text-align: center;"></i>
+      <span style="font-size: 48px;">余ったギガを<span class="accent">翌月繰り越し</span></span>
+    </li>
+    <li style="display: flex; align-items: center; gap: 24px; background: #E8F5E9; border-radius: 16px; padding: 20px 32px;">
+      <i class="fa-solid fa-people-group" style="color: var(--accent-green); font-size: 56px; width: 72px; text-align: center;"></i>
+      <span style="font-size: 48px;">家族で<span class="accent-green">データシェア</span>可能</span>
+    </li>
+    <li style="display: flex; align-items: center; gap: 24px; background: #FFFDE7; border-radius: 16px; padding: 20px 32px;">
+      <i class="fa-solid fa-yen-sign" style="color: #FB8C00; font-size: 56px; width: 72px; text-align: center;"></i>
+      <span style="font-size: 44px;">家族割引（1回線あたり<span class="accent">100円割引</span>）・長期利用特典</span>
+    </li>
+  </ul>
+</div>
+
+<!-- Slide ID: 12  （IIJmio版 独自特典4つ） -->
+<div class="slide-container std" style="justify-content: center; gap: 14px;">
+  <h2 style="font-size: 54px; margin-bottom: 8px;">IIJmio版 独自特典4つ</h2>
+  <ul style="width: 100%; display: flex; flex-direction: column; gap: 14px;">
+    <li style="display: flex; align-items: center; gap: 20px; background: #FDE3E7; border-radius: 14px; padding: 14px 28px;">
+      <span style="background: var(--primary-color); color: #fff; font-size: 40px; font-weight: 900; width: 64px; height: 64px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">①</span>
+      <span style="font-size: 40px;">「どこかにマイル」が<span class="accent">1,500マイル</span>で交換可<br><span style="font-size: 32px; color:#666;">（通常7,000マイル / 約78%OFF）</span></span>
+    </li>
+    <li style="display: flex; align-items: center; gap: 20px; background: #FFFDE7; border-radius: 14px; padding: 14px 28px;">
+      <span style="background: #FB8C00; color: #fff; font-size: 40px; font-weight: 900; width: 64px; height: 64px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">②</span>
+      <span style="font-size: 42px;">毎月<span class="accent">50マイル</span>（年間600マイル）</span>
+    </li>
+    <li style="display: flex; align-items: center; gap: 20px; background: #E8F5E9; border-radius: 14px; padding: 14px 28px;">
+      <span style="background: var(--accent-green); color: #fff; font-size: 40px; font-weight: 900; width: 64px; height: 64px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">③</span>
+      <span style="font-size: 42px;">Life Statusポイント毎月1ポイント</span>
+    </li>
+    <li style="display: flex; align-items: center; gap: 20px; background: #E3F2FD; border-radius: 14px; padding: 14px 28px;">
+      <span style="background: var(--accent-blue); color: #fff; font-size: 40px; font-weight: 900; width: 64px; height: 64px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">④</span>
+      <span style="font-size: 40px;">フライトボーナスマイル<br><span style="font-size: 34px;">（国内線+50 / 国際線+100）</span></span>
+    </li>
+  </ul>
+</div>
+
+<!-- Slide ID: 13  （初年度マイル内訳・注意点） -->
+<div class="slide-container std" style="justify-content: center; gap: 20px;">
+  <h2 style="font-size: 50px; margin-bottom: 6px;">音声SIM 10GBの場合 初年度マイル</h2>
+  <div style="background: #E3F2FD; border-radius: 16px; padding: 24px 36px; font-size: 46px; font-weight: 800; line-height: 1.4; text-align: center; width: 100%;">
+    新規契約<span class="accent">500</span> ＋（毎月50 ＋ シークレット100）×12ヶ月<br>
+    ＝ 合計<span class="accent" style="font-size: 60px;">2,300マイル</span>
+  </div>
+  <div class="warning-box" style="font-size: 42px;">
+    <i class="fa-solid fa-triangle-exclamation" style="color: #FF9800;"></i> シークレットマイルは<span class="accent">毎月JMBアプリ内の操作が必要</span>！<br>忘れると付与されない
   </div>
 </div>
 
-<!-- Slide ID: 6-4 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff 60%, #e3f0ff 100%);">
-  <div style="text-align: center;">
-    <img src="public/images/logo/LINEMO_logo.png" style="height: 96px; object-fit: contain; margin-bottom: 36px;" alt="LINEMO">
-    <div class="terop-box" style="font-size: 72px;">
-      LINEMOは？
-    </div>
+<!-- Slide ID: 14  （2年目以降のマイル） -->
+<div class="slide-container std" style="justify-content: center; gap: 20px;">
+  <h2 style="font-size: 50px; margin-bottom: 6px;">2年目以降（音声SIM 10GB）</h2>
+  <div style="background: #E8F5E9; border-radius: 16px; padding: 24px 36px; font-size: 46px; font-weight: 800; line-height: 1.4; text-align: center; width: 100%;">
+    毎月50マイル ＋ シークレット100マイル ＝ <span class="accent">150マイル</span><br>
+    ×12ヶ月 ＝ 年間<span class="accent" style="font-size: 60px;">1,800マイル</span>
+  </div>
+  <div class="terop-box" style="font-size: 46px;">
+    <i class="fa-solid fa-plane-departure" style="color: var(--primary-color);"></i> 毎年「どこかにマイル」<br>（1,500マイル）に交換可能！
   </div>
 </div>
 
-<!-- Slide ID: 6-5 -->
-<div class="slide-container" style="justify-content: flex-start; padding-top: 44px; gap: 22px;">
-  <div style="display: flex; align-items: center; gap: 22px;">
-    <img src="public/images/logo/LINEMO_logo.png" style="height: 54px; object-fit: contain;" alt="LINEMO">
-    <h2 style="font-size: 56px; margin-bottom: 0; padding-bottom: 6px;">契約解除料が大きく変化</h2>
-  </div>
-  <div style="display: flex; align-items: center; justify-content: center; gap: 30px; width: 100%;">
-    <div style="background: #ECEFF1; border-radius: 16px; padding: 18px 26px; text-align: center;">
-      <div style="font-size: 36px; color: #666; font-weight: 900;">変更前</div>
-      <div style="font-size: 42px; font-weight: 900; line-height: 1.3;">加入当月解約で<br>990円</div>
-    </div>
-    <i class="fa-solid fa-arrow-right" style="font-size: 70px; color: var(--accent-red);"></i>
-    <div style="background: #FFEBEE; border: 4px solid var(--accent-red); border-radius: 16px; padding: 18px 26px; text-align: center;">
-      <div style="font-size: 36px; color: var(--accent-red); font-weight: 900;">変更後</div>
-      <div style="font-size: 42px; font-weight: 900; line-height: 1.3;"><span class="accent">12カ月以内</span>の<br>解約でかかる</div>
-    </div>
-  </div>
-  <img src="public/images/temp/linemo/契約解除料_表.png"
-       style="height: 300px; width: 100%; object-fit: contain; border-radius: 12px; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.12));" alt="LINEMO契約解除料表">
-</div>
-
-<!-- Slide ID: 6-6 -->
-<div class="slide-container" style="justify-content: center; gap: 30px;">
-  <div class="warning-box" style="font-size: 64px; background: #FFEBEE; border-color: var(--accent-red);">
-    実質的に<span class="accent">1年間の縛り</span>に変わる<br>＝事実上の「1年縛り復活」
-  </div>
-  <div style="background: #E8F5E9; border: 4px solid var(--accent-green); border-radius: 16px; padding: 22px 32px; text-align: center; max-width: 92%;">
-    <div style="font-size: 44px; font-weight: 900; line-height: 1.4;">
-      <i class="fa-solid fa-circle-check" style="color: var(--accent-green);"></i>
-      <span style="color: var(--accent-green);">例外</span>：3ブランド間の乗り換え・<br>8日間キャンセル制度は<span style="color: var(--accent-green);">対象外</span>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 7-0 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff 50%, #e0ecff 100%); justify-content: center;">
-  <img src="public/images/characters/ショウ_デフォルメ_笑顔.png"
-       style="position: absolute; bottom: 0; right: 40px; height: 540px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="ショウ">
-  <div style="position: absolute; top: 50%; left: 36%; transform: translate(-50%, -50%); white-space: nowrap; font-size: 100px; font-weight: 900; text-align: center; line-height: 1.3; z-index: 5; color: var(--text-dark);
-       text-shadow: 5px 5px 0px white, -5px -5px 0px white, 5px -5px 0px white, -5px 5px 0px white,
-                    0px 5px 0px var(--primary-color), 0px -5px 0px var(--primary-color),
-                    5px 0px 0px var(--primary-color), -5px 0px 0px var(--primary-color);">
-    ショウの<br>個人的見解！
-  </div>
-</div>
-
-<!-- Slide ID: 7 -->
-<div class="slide-container">
-  <div class="split">
-    <div class="split-col" style="flex: 0.3;">
-      <i class="fa-solid fa-arrow-trend-down" style="font-size: 200px; color: var(--accent-red);"></i>
-    </div>
-    <div class="split-col">
-      <div style="font-size: 80px; font-weight: 900; line-height: 1.4; text-align: center;">
-        <img src="public/images/logo/Y!mobile.png" style="height: 80px; object-fit: contain; vertical-align: middle;" alt="ワイモバイル"><br>
-        先日の<span class="accent">値上げ</span>に続いて<br><span class="accent">解除料の新設</span>…
+<!-- Slide ID: 15  （評価見開き：JALモバイル IIJmio版 / 図鑑 Layout B） -->
+<div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
+  <div class="book">
+    <div class="spine"></div>
+    <div class="page left">
+      <div class="head-left">
+        <img class="logo" src="public/images/logo/iijmio_logo.png" alt="JALモバイル IIJmio版">
+        <span class="file-no">JAL × IIJmio</span>
+        <div class="total">
+          <div class="label">総合評価</div>
+          <div class="grade">A</div>
+        </div>
       </div>
+      <div class="cards">
+        <div class="card">
+          <div class="rank SS">SS</div>
+          <div class="card-name">データ料金</div>
+          <div class="line pro"><span class="tag">＋</span>2GBで月850円の圧倒的安さ</div>
+          <div class="line con"><span class="tag">－</span>特になし</div>
+        </div>
+        <div class="card">
+          <div class="rank B">B</div>
+          <div class="card-name">通信品質</div>
+          <div class="line pro"><span class="tag">＋</span>ドコモ・au回線が選べる</div>
+          <div class="line con"><span class="tag">－</span>昼12〜13時は速度低下</div>
+        </div>
+        <div class="card">
+          <div class="rank A">A</div>
+          <div class="card-name">初期費用</div>
+          <div class="line pro"><span class="tag">＋</span>キャンペーンで安くなることも</div>
+          <div class="line con"><span class="tag">－</span>通常は手数料3,300円＋発行約440円</div>
+        </div>
+      </div>
+      <span class="page-no">― 9 ―</span>
+    </div>
+    <div class="page right">
+      <span class="index-tab">格安SIM図鑑</span>
+      <div class="head-right">
+        <img src="public/images/charts/JALモバイル(IIJmio).png" alt="JALモバイル IIJmio版 レーダーチャート">
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="rank S">S</div>
+          <div class="card-name">通話料</div>
+          <div class="line pro"><span class="tag">＋</span>専用アプリなし30秒11円・かけ放題完備</div>
+          <div class="line con"><span class="tag">－</span>かけ放題オプションは別途料金</div>
+        </div>
+        <div class="card">
+          <div class="rank C">C</div>
+          <div class="card-name">店舗サポート</div>
+          <div class="line pro"><span class="tag">＋</span>オンライン完結</div>
+          <div class="line con"><span class="tag">－</span>対面サポートなし</div>
+        </div>
+        <div class="card">
+          <div class="rank S">S</div>
+          <div class="card-name">オプション</div>
+          <div class="line pro"><span class="tag">＋</span>JALマイル特典が豊富</div>
+          <div class="line con"><span class="tag">－</span>特典維持に条件あり</div>
+        </div>
+      </div>
+      <span class="page-no">― 10 ―</span>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 7-2 -->
-<div class="slide-container" style="justify-content: center; gap: 10px;">
-  <img src="public/images/thumbnails/【2026年最新】ワイモバ値上げ。楽天・LINEMO・mineo・イオン比較完全版_サムネ1.png"
-       style="max-height: 500px; object-fit: contain; border-radius: 12px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="ワイモバ乗り換え過去動画">
+<!-- Slide ID: 16-2  （IIJmioの過去動画 CTA） -->
+<div class="slide-container std" style="background: linear-gradient(135deg, #fff 60%, #e3f0ff 100%); gap: 24px;">
+  <img src="public/images/thumbnails/IIJmioって実際どうなの？元ユーザーが教える「損しない契約方法」と「お昼の速度」の真実.png"
+       style="max-height: 500px; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15)); border-radius: 12px;" alt="IIJmio過去動画">
   <div class="terop-box" style="font-size: 50px;">
-    ワイモバ乗り換え<span style="color: var(--primary-color);">おすすめ4社</span>の<br><span class="accent">過去動画</span>もチェック！
+    <span style="color: var(--accent-blue);">IIJmio</span>の解説動画もチェック！
   </div>
 </div>
 
-<!-- Slide ID: 7-3 -->
-<div class="slide-container" style="justify-content: center; gap: 30px;">
-  <div style="display: flex; align-items: center; gap: 36px;">
-    <i class="fa-solid fa-person-running" style="font-size: 160px; color: var(--primary-color);"></i>
-    <div style="font-size: 56px; font-weight: 900; line-height: 1.4; text-align: left;">
-      キャンペーン目的の<br><span class="accent">短期解約</span>を繰り返す行為<br>＝<span style="color: var(--primary-color); white-space: nowrap;">「ホッピング」</span>
+<!-- Slide ID: 17-0  （章転換：キャラクター） -->
+<div class="slide-container std" style="background: radial-gradient(circle at center, #fff 0%, #ffe3e8 100%); justify-content: center;">
+  <div class="chapter-title" style="font-size: 96px;">
+    JALモバイル<br><span style="color: var(--primary-color);">ahamo版</span>
+  </div>
+  <img src="public/images/characters/momoko/モモコ_嬉しい_口開け_星無.png"
+       style="position: absolute; bottom: 0; left: 30px; height: 340px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="モモコ">
+  <img src="public/images/characters/sho/ショウ_デフォルメ_笑顔.png"
+       style="position: absolute; bottom: 0; right: 30px; height: 340px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="ショウ">
+</div>
+
+<!-- Slide ID: 17  （Chapter 3 タイトルカード） -->
+<div class="slide-container std" style="background: linear-gradient(135deg, #fff 55%, #ffebed 100%);">
+  <div style="display: flex; align-items: center; gap: 56px;">
+    <div style="display: flex; flex-direction: column; align-items: center; flex-shrink: 0;">
+      <div style="font-size: 38px; font-weight: 900; letter-spacing: 8px; color: var(--primary-color); margin-bottom: 4px;">CHAPTER</div>
+      <div style="font-size: 240px; font-weight: 900; color: var(--primary-color); line-height: 0.8;">3</div>
     </div>
+    <div style="width: 10px; align-self: stretch; background: var(--accent-yellow); border-radius: 8px; margin: 24px 0;"></div>
+    <div style="font-size: 60px; font-weight: 900; color: var(--text-dark); line-height: 1.3;">
+      JALモバイル<br>powered by<br>ahamo を解説
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 18  （ahamo版の基本スペック） -->
+<div class="slide-container std" style="justify-content: center; gap: 18px;">
+  <h2 style="font-size: 54px; margin-bottom: 8px;">ahamo版の基本スペック</h2>
+  <ul style="width: 100%; display: flex; flex-direction: column; gap: 16px;">
+    <li style="display: flex; align-items: center; gap: 24px; background: #FDE3E7; border-radius: 14px; padding: 16px 30px;">
+      <i class="fa-solid fa-yen-sign" style="color: var(--primary-color); font-size: 50px; width: 64px; text-align: center;"></i>
+      <span style="font-size: 46px;">月額<span class="accent">2,970円</span>（税込）／ データ<span class="accent">30GB</span></span>
+    </li>
+    <li style="display: flex; align-items: flex-start; gap: 24px; background: #E8F5E9; border-radius: 14px; padding: 16px 30px;">
+      <i class="fa-solid fa-globe" style="color: var(--accent-green); font-size: 50px; width: 64px; text-align: center; margin-top: 6px;"></i>
+      <span style="font-size: 42px;">海外<span class="accent-green">91の国と地域で追加料金なし</span><br><span style="font-size: 32px; color:#666;">（※15日超で速度制限あり）</span></span>
+    </li>
+    <li style="display: flex; align-items: center; gap: 24px; background: #E3F2FD; border-radius: 14px; padding: 16px 30px;">
+      <i class="fa-solid fa-phone" style="color: var(--accent-blue); font-size: 50px; width: 64px; text-align: center;"></i>
+      <span style="font-size: 46px;">通話：<span class="accent">5分以内無料</span></span>
+    </li>
+  </ul>
+</div>
+
+<!-- Slide ID: 19  （ahamo版 マイル付与） -->
+<div class="slide-container std" style="justify-content: center; gap: 24px;">
+  <h2 style="font-size: 56px;">ahamo版 マイル付与</h2>
+  <div style="background: #FDE3E7; border-radius: 16px; padding: 28px 40px; font-size: 50px; font-weight: 800; line-height: 1.4; text-align: center; width: 100%;">
+    毎月<span class="accent">125マイル</span> × 12ヶ月<br>
+    ＝ 年間<span class="accent" style="font-size: 64px;">1,500マイル</span>
   </div>
   <div class="terop-box" style="font-size: 48px;">
-    その<span class="accent">対策</span>という側面もある
+    <i class="fa-solid fa-plane-departure" style="color: var(--primary-color);"></i> 毎年「どこかにマイル」交換可能！
   </div>
 </div>
 
-<!-- Slide ID: 7-4 -->
-<div class="slide-container" style="justify-content: center; gap: 26px;">
-  <div class="warning-box" style="font-size: 56px; background: #E3F2FD; border-color: var(--primary-color);">
-    <i class="fa-solid fa-building-columns" style="color: var(--primary-color);"></i>
-    総務省も事実上<span class="accent">1年縛り</span>を<br>容認する流れ
-  </div>
-  <img src="public/images/thumbnails/【2026年最新】長期利用特典が手厚い格安SIM3選_サムネ2.png"
-       style="max-height: 360px; object-fit: contain; border-radius: 12px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="背景解説の過去動画">
-  <div style="font-size: 42px; font-weight: 900; color: #666;">背景は過去動画で詳しく解説</div>
+<!-- Slide ID: 20  （ahamo版 新規・MNP特典） -->
+<div class="slide-container std" style="justify-content: center; gap: 16px;">
+  <h2 style="font-size: 48px; margin-bottom: 6px;">新規・MNP特典（期間限定）</h2>
+  <ul style="width: 100%; display: flex; flex-direction: column; gap: 16px;">
+    <li style="display: flex; align-items: center; gap: 24px; background: #FFFDE7; border-radius: 14px; padding: 16px 30px;">
+      <i class="fa-solid fa-user-plus" style="color: #FB8C00; font-size: 50px; width: 64px; text-align: center;"></i>
+      <span style="font-size: 46px;">新規：<span class="accent">1,000マイル</span></span>
+    </li>
+    <li style="display: flex; align-items: center; gap: 24px; background: #FDE3E7; border-radius: 14px; padding: 16px 30px;">
+      <i class="fa-solid fa-arrow-right-arrow-left" style="color: var(--primary-color); font-size: 50px; width: 64px; text-align: center;"></i>
+      <span style="font-size: 44px;">ドコモ以外からMNP：<span class="accent">5,000マイル</span></span>
+    </li>
+    <li style="display: flex; align-items: flex-start; gap: 24px; background: #E8F5E9; border-radius: 14px; padding: 16px 30px;">
+      <i class="fa-solid fa-ticket" style="color: var(--accent-green); font-size: 50px; width: 64px; text-align: center; margin-top: 6px;"></i>
+      <span style="font-size: 40px;">オプション申込手数料（通常2,200円）<br>→ キャンペーン期間中は<span class="accent-green">無料</span></span>
+    </li>
+  </ul>
+  <div style="font-size: 34px; color: #666;">※ahamoからの乗り換えは無料対象外なので注意</div>
 </div>
 
-<!-- Slide ID: 7-5 -->
-<div class="slide-container" style="justify-content: center; gap: 36px;">
-  <div style="display: flex; align-items: center; gap: 40px;">
-    <i class="fa-solid fa-signal" style="font-size: 150px; color: var(--accent-red);"></i>
-    <div style="font-size: 70px; font-weight: 900; line-height: 1.4; text-align: left;">
-      本当に<span class="accent">合わなかった人</span>の<br>ための<span style="color: var(--primary-color);">お試し制度</span>が<br>ほしい
+<!-- Slide ID: 21  （ahamo版の強み 海外） -->
+<div class="slide-container std" style="gap: 20px;">
+  <div class="terop-box" style="font-size: 50px;">
+    ahamo版の強み<br><span style="color: var(--primary-color);">「海外でそのまま使える」</span>
+  </div>
+  <img src="public/images/common/海外利用のイメージ図.png"
+       style="max-height: 360px; max-width: 100%; object-fit: contain; border-radius: 12px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));" alt="海外利用イメージ">
+  <div style="font-size: 40px; color: var(--text-dark); text-align: center; line-height: 1.35;">
+    91か国で追加手続きなし（30GBまで）<br><span style="font-size: 34px; color:#666;">「海外の方が通信が安定する」という声も</span>
+  </div>
+</div>
+
+<!-- Slide ID: 22  （注意点：海外速度制限） -->
+<div class="slide-container std" style="justify-content: center; gap: 28px;">
+  <i class="fa-solid fa-triangle-exclamation" style="font-size: 150px; color: #FF9800;"></i>
+  <div class="warning-box" style="font-size: 50px;">
+    海外利用<span class="accent">15日超</span>で最大<span class="accent">128kbps</span>に速度制限<br>
+    <span style="font-size: 40px;">長期滞在には別途対策が必要</span>
+  </div>
+</div>
+
+<!-- Slide ID: 23  （評価見開き：JALモバイル ahamo版 / 図鑑 Layout B） -->
+<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+  <div class="book">
+    <div class="spine"></div>
+    <div class="page left">
+      <div class="head-left">
+        <img class="logo" src="public/images/logo/Ahamo_logo.png" alt="JALモバイル ahamo版">
+        <span class="file-no">JAL × ahamo</span>
+        <div class="total">
+          <div class="label">総合評価</div>
+          <div class="grade">A</div>
+        </div>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="rank A">A</div>
+          <div class="card-name">データ料金</div>
+          <div class="line pro"><span class="tag">＋</span>30GBで2,970円はMNOとして好コスパ</div>
+          <div class="line con"><span class="tag">－</span>小容量プランがない</div>
+        </div>
+        <div class="card">
+          <div class="rank S">S</div>
+          <div class="card-name">通信品質</div>
+          <div class="line pro"><span class="tag">＋</span>ドコモMNO回線で昼の速度は落ちづらい</div>
+          <div class="line con"><span class="tag">－</span>都心での通信品質悪化が顕著</div>
+        </div>
+        <div class="card">
+          <div class="rank S">S</div>
+          <div class="card-name">初期費用</div>
+          <div class="line pro"><span class="tag">＋</span>キャンペーンにより当分は手数料無料</div>
+          <div class="line con"><span class="tag">－</span>キャンペーン終了後は手数料発生</div>
+        </div>
+      </div>
+      <span class="page-no">― 11 ―</span>
+    </div>
+    <div class="page right">
+      <span class="index-tab">格安SIM図鑑</span>
+      <div class="head-right">
+        <img src="public/images/charts/JALモバイル(ahamo).png" alt="JALモバイル ahamo版 レーダーチャート">
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="rank S">S</div>
+          <div class="card-name">通話料</div>
+          <div class="line pro"><span class="tag">＋</span>5分以内の国内通話無料</div>
+          <div class="line con"><span class="tag">－</span>5分超は30秒22円</div>
+        </div>
+        <div class="card">
+          <div class="rank C">C</div>
+          <div class="card-name">店舗サポート</div>
+          <div class="line pro"><span class="tag">＋</span>オンライン完結</div>
+          <div class="line con"><span class="tag">－</span>対面サポートなし</div>
+        </div>
+        <div class="card">
+          <div class="rank S">S</div>
+          <div class="card-name">オプション</div>
+          <div class="line pro"><span class="tag">＋</span>海外91か国データ通信</div>
+          <div class="line con"><span class="tag">－</span>海外15日超で速度制限</div>
+        </div>
+      </div>
+      <span class="page-no">― 12 ―</span>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 7-6 -->
-<div class="slide-container" style="justify-content: center; gap: 30px;">
-  <h2 style="font-size: 72px;">試しやすい格安SIM3選</h2>
-  <ul style="width: 88%; display: flex; flex-direction: column; gap: 22px;">
-    <li style="display: flex; align-items: center; gap: 28px; background: #FCE4EC; border-radius: 16px; padding: 18px 30px;">
-      <span style="font-size: 58px; font-weight: 900; color: var(--accent-red);">①</span>
-      <img src="public/images/logo/aeonmobile_logo.png" style="height: 64px; object-fit: contain;" alt="イオンモバイル">
+<!-- Slide ID: 24-2  （ahamoの過去動画 CTA） -->
+<div class="slide-container std" style="background: linear-gradient(135deg, #fff 60%, #ffe3e8 100%); gap: 24px;">
+  <img src="public/images/thumbnails/【あなたはどっち？】ahamoで得する人・損する人の違いを分かりやすく解説します！_サムネ.png"
+       style="max-height: 500px; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15)); border-radius: 12px;" alt="ahamo過去動画">
+  <div class="terop-box" style="font-size: 50px;">
+    <span style="color: var(--primary-color);">ahamo</span>の解説動画もチェック！
+  </div>
+</div>
+
+<!-- Slide ID: 25-0  （章転換：キャラクター） -->
+<div class="slide-container std" style="background: radial-gradient(circle at center, #fff 0%, #ffe3e8 100%); justify-content: center;">
+  <div class="chapter-title" style="font-size: 84px;">
+    あなたにおすすめ<br>なのはどっち？
+  </div>
+  <img src="public/images/characters/sho/ショウ_デフォルメ_笑顔.png"
+       style="position: absolute; bottom: 0; right: 30px; height: 540px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="ショウ">
+</div>
+
+<!-- Slide ID: 25  （Chapter 4 タイトルカード） -->
+<div class="slide-container std" style="background: linear-gradient(135deg, #fff 55%, #ffebed 100%);">
+  <div style="display: flex; align-items: center; gap: 56px;">
+    <div style="display: flex; flex-direction: column; align-items: center; flex-shrink: 0;">
+      <div style="font-size: 38px; font-weight: 900; letter-spacing: 8px; color: var(--primary-color); margin-bottom: 4px;">CHAPTER</div>
+      <div style="font-size: 240px; font-weight: 900; color: var(--primary-color); line-height: 0.8;">4</div>
+    </div>
+    <div style="width: 10px; align-self: stretch; background: var(--accent-yellow); border-radius: 8px; margin: 24px 0;"></div>
+    <div style="font-size: 64px; font-weight: 900; color: var(--text-dark); line-height: 1.3;">
+      あなたには<br>どっちがおすすめ？<br>ケース別診断
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 26  （大前提） -->
+<div class="slide-container std" style="justify-content: center; gap: 24px;">
+  <div class="terop-box" style="font-size: 46px;">
+    大前提：JALマイルに興味がない人 →<br>本家のahamoかIIJmioがシンプルでおすすめ
+  </div>
+  <div style="background: #FFFDE7; border-radius: 16px; padding: 28px 40px; font-size: 50px; font-weight: 900; line-height: 1.4; text-align: center; width: 100%; color: var(--text-dark);">
+    スマホ代節約が目的なら<br><span class="accent">格安SIM移行が最優先</span>！
+  </div>
+</div>
+
+<!-- Slide ID: 27  （JALモバイルがお得な人） -->
+<div class="slide-container std" style="justify-content: center; gap: 28px;">
+  <h2 style="font-size: 60px;">JALモバイルがお得な人</h2>
+  <ul style="width: 100%; display: flex; flex-direction: column; gap: 28px;">
+    <li style="display: flex; align-items: center; gap: 28px; background: #FDE3E7; border-radius: 16px; padding: 24px 36px;">
+      <i class="fa-solid fa-plane" style="color: var(--primary-color); font-size: 64px; width: 84px; text-align: center;"></i>
+      <span style="font-size: 52px;">飛行機に<span class="accent">よく乗る</span>人</span>
     </li>
-    <li style="display: flex; align-items: center; gap: 28px; background: #FFF8E1; border-radius: 16px; padding: 18px 30px;">
-      <span style="font-size: 58px; font-weight: 900; color: #FB8C00;">②</span>
-      <img src="public/images/logo/Povo_logo_背景透過.png" style="height: 70px; object-fit: contain;" alt="povo2.0">
-    </li>
-    <li style="display: flex; align-items: center; gap: 28px; background: #E8F5E9; border-radius: 16px; padding: 18px 30px;">
-      <span style="font-size: 58px; font-weight: 900; color: var(--accent-green);">③</span>
-      <img src="public/images/logo/Mineo_logo_背景削除.png" style="height: 80px; object-fit: contain;" alt="mineo">
+    <li style="display: flex; align-items: center; gap: 28px; background: #FFFDE7; border-radius: 16px; padding: 24px 36px;">
+      <i class="fa-solid fa-plane-circle-check" style="color: #FB8C00; font-size: 64px; width: 84px; text-align: center;"></i>
+      <span style="font-size: 52px;"><span class="accent">JALマイル</span>を貯めている人</span>
     </li>
   </ul>
 </div>
 
-<!-- Slide ID: 8-0 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff 60%, #e0ecff 100%); justify-content: center;">
-  <div class="chapter-title" style="white-space: nowrap;">
-    試しやすい<br>格安SIM3選！
-  </div>
-  <img src="public/images/characters/モモコ_嬉しい_口開け_星無.png"
-       style="position: absolute; bottom: 0; left: 20px; height: 340px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="モモコ">
-  <img src="public/images/characters/ショウ_デフォルメ_笑顔.png"
-       style="position: absolute; bottom: 0; right: 20px; height: 340px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="ショウ">
-</div>
-
-<!-- Slide ID: 8 -->
-<div class="slide-container" style="justify-content: center; gap: 30px;">
-  <img src="public/images/logo/aeonmobile_logo.png" style="height: 90px; object-fit: contain;" alt="イオンモバイル">
-  <div class="terop-box" style="font-size: 60px;">
-    <span class="accent">無料お試しサービス</span>が使える！
-  </div>
-  <div style="display: flex; align-items: center; gap: 28px; background: #FCE4EC; border-radius: 16px; padding: 22px 36px;">
-    <i class="fa-solid fa-sim-card" style="font-size: 90px; color: var(--accent-red);"></i>
-    <div style="font-size: 50px; font-weight: 900; line-height: 1.35; text-align: left;">
-      データ通信専用SIMを<br><span class="accent">1週間まるごと</span>試せる
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 8-2 -->
-<div class="slide-container" style="justify-content: center; gap: 26px;">
-  <div class="terop-box" style="font-size: 65px;">
-    実際の<span style="color: var(--primary-color);">生活圏</span>で<span class="accent">速度を体感</span>
-  </div>
-  <ul style="width: 86%; display: flex; flex-direction: column; gap: 20px;">
-    <li style="display: flex; align-items: flex-start; gap: 20px; font-size: 60px;">
-      <i class="fa-solid fa-mobile-screen" style="color: var(--accent-green); margin-top: 8px;"></i>
-      <span>スマホ本体も<span class="accent-green">セットで貸出</span>あり</span>
+<!-- Slide ID: 28  （ahamo版がおすすめな人） -->
+<div class="slide-container std" style="justify-content: center; gap: 22px;">
+  <h2 style="font-size: 52px;">ahamo版がおすすめな人</h2>
+  <ul style="width: 100%; display: flex; flex-direction: column; gap: 22px;">
+    <li style="display: flex; align-items: flex-start; gap: 24px; background: #FDE3E7; border-radius: 16px; padding: 20px 32px;">
+      <span style="background: var(--primary-color); color:#fff; font-size:40px; font-weight:900; width:64px; height:64px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">①</span>
+      <span style="font-size: 44px;">海外でそのまま<span class="accent">追加料金なし</span>で使いたい人</span>
     </li>
-    <li style="display: flex; align-items: flex-start; gap: 20px; font-size: 60px;">
-      <i class="fa-solid fa-tower-cell" style="color: var(--primary-color); margin-top: 8px;"></i>
-      <span>回線は<span class="accent-blue">ドコモ回線・<br>au回線</span>から選べる</span>
+    <li style="display: flex; align-items: flex-start; gap: 24px; background: #FFFDE7; border-radius: 16px; padding: 20px 32px;">
+      <span style="background: #FB8C00; color:#fff; font-size:40px; font-weight:900; width:64px; height:64px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">②</span>
+      <span style="font-size: 44px;">毎月<span class="accent">30GB程度</span>を使う人</span>
+    </li>
+    <li style="display: flex; align-items: flex-start; gap: 24px; background: #E8F5E9; border-radius: 16px; padding: 20px 32px;">
+      <span style="background: var(--accent-green); color:#fff; font-size:40px; font-weight:900; width:64px; height:64px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">③</span>
+      <span style="font-size: 42px;">毎年「どこかにマイル」で<br>旅行を楽しみたい人</span>
     </li>
   </ul>
 </div>
 
-<!-- Slide ID: 9 -->
-<div class="slide-container" style="justify-content: flex-start; padding-top: 46px; gap: 24px;">
-  <div style="display: flex; align-items: center; gap: 20px;">
-    <i class="fa-solid fa-triangle-exclamation" style="font-size: 65px; color: #FB8C00;"></i>
-    <h2 style="font-size: 65px; margin-bottom: 0; padding-bottom: 6px;">お試しの注意点</h2>
-  </div>
-  <ul style="width: 92%; display: flex; flex-direction: column; gap: 16px;">
-    <li style="display: flex; align-items: flex-start; gap: 18px; font-size: 55px;">
-      <i class="fa-solid fa-id-card" style="color: var(--accent-red); margin-top: 6px;"></i>
-      <span><span class="accent">18歳以上</span>のみ利用可能</span>
+<!-- Slide ID: 28-2  （IIJmio版がおすすめな人） -->
+<div class="slide-container std" style="justify-content: center; gap: 22px;">
+  <h2 style="font-size: 50px;">IIJmio版がおすすめな人</h2>
+  <ul style="width: 100%; display: flex; flex-direction: column; gap: 22px;">
+    <li style="display: flex; align-items: flex-start; gap: 24px; background: #E3F2FD; border-radius: 16px; padding: 20px 32px;">
+      <span style="background: var(--accent-blue); color:#fff; font-size:40px; font-weight:900; width:64px; height:64px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">①</span>
+      <span style="font-size: 42px;">月2〜10GBの<span class="accent">ライトユーザー</span></span>
     </li>
-    <li style="display: flex; align-items: flex-start; gap: 18px; font-size: 55px;">
-      <i class="fa-solid fa-ban" style="color: var(--accent-red); margin-top: 6px;"></i>
-      <span><span class="accent">eSIMは対象外</span>・データ通信専用<br>（音声通話・SMSは不可）</span>
+    <li style="display: flex; align-items: flex-start; gap: 24px; background: #FFFDE7; border-radius: 16px; padding: 20px 32px;">
+      <span style="background: #FB8C00; color:#fff; font-size:40px; font-weight:900; width:64px; height:64px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">②</span>
+      <span style="font-size: 42px;">スマホ代をとにかく安く（<span class="accent">月850円〜</span>）</span>
     </li>
-    <li style="display: flex; align-items: flex-start; gap: 18px; font-size: 55px;">
-      <i class="fa-solid fa-store" style="color: var(--accent-red); margin-top: 6px;"></i>
-      <span>申し込みは<span class="accent">店頭のみ</span><br>（電話・ネット不可）</span>
+    <li style="display: flex; align-items: flex-start; gap: 24px; background: #E8F5E9; border-radius: 16px; padding: 20px 32px;">
+      <span style="background: var(--accent-green); color:#fff; font-size:40px; font-weight:900; width:64px; height:64px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">③</span>
+      <span style="font-size: 40px;">海外はたまにだし<br>別途Wi-Fiレンタルで大丈夫な人</span>
     </li>
   </ul>
 </div>
 
-<!-- Slide ID: 9-2 -->
-<div class="slide-container" style="justify-content: center; gap: 28px;">
-  <div class="warning-box" style="font-size: 56px; background: #FFEBEE; border-color: var(--accent-red);">
-    <i class="fa-solid fa-clock-rotate-left" style="color: var(--accent-red);"></i>
-    返却忘れは最大<span class="accent">33,000円</span>の違約金
-  </div>
-  <div style="display: flex; align-items: center; gap: 28px; background: #FFF3E0; border: 4px solid #FB8C00; border-radius: 16px; padding: 22px 34px;">
-    <i class="fa-solid fa-cloud-arrow-up" style="font-size: 90px; color: #FB8C00;"></i>
-    <div style="font-size: 48px; font-weight: 900; line-height: 1.35; text-align: left;">
-      撮った写真・動画は<br>返却前に<span style="color: #FB8C00;">バックアップ必須</span>
+<!-- Slide ID: 29  （選択基準まとめ） -->
+<div class="slide-container std" style="justify-content: center; gap: 26px;">
+  <h2 style="font-size: 54px;">選択基準まとめ</h2>
+  <div style="width: 100%; display: flex; flex-direction: column; gap: 26px;">
+    <div style="background: #FDE3E7; border-radius: 16px; padding: 24px 36px; font-size: 42px; font-weight: 800; line-height: 1.4;">
+      マイルも貯めたいし<br>海外でも追加料金なしで使いたい人<br>→ <span class="accent" style="font-size: 52px;">ahamo版</span>
+    </div>
+    <div style="background: #E3F2FD; border-radius: 16px; padding: 24px 36px; font-size: 42px; font-weight: 800; line-height: 1.4;">
+      マイルも貯めたいし<br>とにかく料金を安く抑えたい人<br>→ <span class="accent-blue" style="font-size: 52px;">IIJmio版</span>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 10 -->
-<div class="slide-container" style="justify-content: center; gap: 16px;">
-  <h2 style="font-size: 60px; margin-bottom: 8px;">イオンモバイル 当チャンネル評価</h2>
-  <img src="public/images/charts/イオンモバイル.png" style="height: 540px; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));" alt="イオンモバイルレーダーチャート">
+<!-- Slide ID: 30-0  （章転換：キャラクター） -->
+<div class="slide-container std" style="background: radial-gradient(circle at center, #fff 0%, #ffe3e8 100%); justify-content: center;">
+  <div class="chapter-title" style="font-size: 120px;">
+    まとめ
+  </div>
+  <img src="public/images/characters/sho/ショウ_デフォルメ_笑顔.png"
+       style="position: absolute; bottom: 0; left: 30px; height: 340px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="ショウ">
+  <img src="public/images/characters/momoko/モモコ_嬉しい_口開け_星無.png"
+       style="position: absolute; bottom: 0; right: 30px; height: 340px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="モモコ">
 </div>
 
-<!-- Slide ID: 10-2 -->
-<div class="slide-container" style="justify-content: center; gap: 28px;">
-  <img src="public/images/thumbnails/【月額800円〜】家族4人で乗り換えると衝撃の安さに！イオンモバイルの料金プランと5つのメリットを徹底解説.png"
-       style="max-height: 500px; object-fit: contain; border-radius: 12px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="イオンモバイル過去動画">
-  <div class="terop-box" style="font-size: 54px;">
-    イオンモバイルの<span class="accent">過去動画</span>もチェック！
-  </div>
-</div>
-
-<!-- Slide ID: 11-0 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff 50%, #e0ecff 100%); justify-content: center;">
-  <img src="public/images/characters/モモコ_嬉しい_口開け_星無.png"
-       style="position: absolute; bottom: 0; left: 40px; height: 540px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="モモコ">
-  <div style="position: absolute; top: 50%; left: 62%; transform: translate(-50%, -50%); white-space: nowrap; font-size: 104px; font-weight: 900; text-align: center; line-height: 1.3; z-index: 5; color: var(--text-dark);
-       text-shadow: 5px 5px 0px white, -5px -5px 0px white, 5px -5px 0px white, -5px 5px 0px white,
-                    0px 5px 0px var(--primary-color), 0px -5px 0px var(--primary-color),
-                    5px 0px 0px var(--primary-color), -5px 0px 0px var(--primary-color);">
-    2つ目は<br>povo2.0！
-  </div>
-</div>
-
-<!-- Slide ID: 11 -->
-<div class="slide-container" style="justify-content: center; gap: 30px;">
-  <img src="public/images/logo/Povo_logo_背景透過.png" style="height: 80px; object-fit: contain;" alt="povo2.0">
-  <div class="terop-box" style="font-size: 56px;">
-    事務手数料・契約解除料・<br>最低利用期間が<span class="accent">オール0</span>
-  </div>
-  <div style="display: flex; gap: 24px;">
-    <div style="background: #E3F2FD; border-radius: 14px; padding: 16px 28px; font-size: 44px; font-weight: 900;">事務手数料<br><span class="accent-blue">0円</span></div>
-    <div style="background: #E3F2FD; border-radius: 14px; padding: 16px 28px; font-size: 44px; font-weight: 900;">契約解除料<br><span class="accent-blue">0円</span></div>
-    <div style="background: #E3F2FD; border-radius: 14px; padding: 16px 28px; font-size: 44px; font-weight: 900;">最低利用期間<br><span class="accent-blue">なし</span></div>
-  </div>
-</div>
-
-<!-- Slide ID: 11-2 -->
-<div class="slide-container" style="justify-content: center; gap: 30px;">
-  <div class="terop-box" style="font-size: 54px;">
-    povo2.0は<span style="color: var(--primary-color);">auのオンライン専用プラン</span>
-  </div>
-  <div style="display: flex; align-items: center; gap: 30px; background: #E8F5E9; border: 4px solid var(--accent-green); border-radius: 16px; padding: 24px 36px;">
-    <i class="fa-solid fa-tower-cell" style="font-size: 110px; color: var(--accent-green);"></i>
-    <div style="font-size: 54px; font-weight: 900; line-height: 1.35; text-align: left;">
-      通信品質は<br><span class="accent-green">au本家と同等</span>
+<!-- Slide ID: 30  （Chapter 5 タイトルカード） -->
+<div class="slide-container std" style="background: linear-gradient(135deg, #fff 55%, #ffebed 100%);">
+  <div style="display: flex; align-items: center; gap: 56px;">
+    <div style="display: flex; flex-direction: column; align-items: center; flex-shrink: 0;">
+      <div style="font-size: 38px; font-weight: 900; letter-spacing: 8px; color: var(--primary-color); margin-bottom: 4px;">CHAPTER</div>
+      <div style="font-size: 240px; font-weight: 900; color: var(--primary-color); line-height: 0.8;">5</div>
+    </div>
+    <div style="width: 10px; align-self: stretch; background: var(--accent-yellow); border-radius: 8px; margin: 24px 0;"></div>
+    <div style="font-size: 96px; font-weight: 900; color: var(--text-dark); line-height: 1.3;">
+      まとめ
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 12 -->
-<div class="slide-container" style="justify-content: center; gap: 24px;">
-  <div style="display: flex; align-items: center; gap: 20px;">
-    <img src="public/images/logo/Povo_logo_背景透過.png" style="height: 80px; object-fit: contain;" alt="povo2.0">
-    <h2 style="font-size: 56px; margin-bottom: 0; padding-bottom: 6px;">トッピング例</h2>
-  </div>
-  <div style="background: #FFF8E1; border: 4px solid var(--accent-yellow); border-radius: 16px; padding: 16px 36px; font-size: 50px; font-weight: 900;">
-    基本料金は<span class="accent">0円</span>のプリペイド方式
-  </div>
-  <table style="font-size: 46px; width: 88%;">
-    <tr>
-      <th style="padding: 8px 12px;">トッピング</th>
-      <th style="padding: 8px 12px;">料金</th>
-    </tr>
-    <tr><td style="text-align:left;">データ3GB（30日間）</td><td><span class="accent">990円</span></td></tr>
-    <tr><td style="text-align:left;">データ使い放題（24時間）</td><td><span class="accent">330円</span></td></tr>
-  </table>
-  <div style="font-size: 40px; font-weight: 900; color: #666;">必要なときに必要なぶんだけ買い足せる</div>
-</div>
-
-<!-- Slide ID: 13 -->
-<div class="slide-container" style="justify-content: center; gap: 16px;">
-  <h2 style="font-size: 60px; margin-bottom: 8px;">povo2.0 当チャンネル評価</h2>
-  <img src="public/images/charts/povo2.0.png" style="height: 540px; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));" alt="povo2.0レーダーチャート">
-</div>
-
-<!-- Slide ID: 13-2 -->
-<div class="slide-container" style="justify-content: center; gap: 28px;">
-  <img src="public/images/thumbnails/スマホ代を0円にする方法。「povo2.0」なら維持費タダ？メリット・デメリットからahamo・楽天モバイル比較まで.png"
-       style="max-height: 500px; object-fit: contain; border-radius: 12px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="povo2.0過去動画">
-  <div class="terop-box" style="font-size: 54px;">
-    povo2.0の<span class="accent">過去動画</span>もチェック！
-  </div>
-</div>
-
-<!-- Slide ID: 14-0 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff 60%, #e0ecff 100%); justify-content: center;">
-  <div class="chapter-title" style="font-size: 110px;">
-    3つ目はmineo！
-  </div>
-  <img src="public/images/characters/ショウ_デフォルメ_笑顔.png"
-       style="position: absolute; bottom: 0; left: 20px; height: 330px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="ショウ">
-  <img src="public/images/characters/モモコ_嬉しい_口開け_星無.png"
-       style="position: absolute; bottom: 0; right: 20px; height: 330px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="モモコ">
-</div>
-
-<!-- Slide ID: 14 -->
-<div class="slide-container" style="justify-content: center; gap: 28px;">
-  <img src="public/images/logo/Mineo_logo_背景削除.png" style="height: 86px; object-fit: contain;" alt="mineo">
-  <div class="terop-box" style="font-size: 56px;">
-    運営者が<span class="accent">メイン回線</span>で愛用中！
-  </div>
-  <div style="display: flex; gap: 24px;">
-    <div style="background: #E8F5E9; border-radius: 14px; padding: 18px 32px; font-size: 46px; font-weight: 900;">契約解除料<br><span class="accent-green">なし</span></div>
-    <div style="background: #E8F5E9; border-radius: 14px; padding: 18px 32px; font-size: 46px; font-weight: 900;">最低利用期間<br><span class="accent-green">なし</span></div>
-  </div>
-</div>
-
-<!-- Slide ID: 14-2 -->
-<div class="slide-container" style="justify-content: center; gap: 30px;">
-  <div class="warning-box" style="font-size: 54px; background: #E8F5E9; border-color: var(--accent-green);">
-    <i class="fa-brands fa-youtube" style="color: var(--accent-red);"></i>
-    当チャンネル限定リンクで<br><span class="accent">事務手数料が無料</span>に！
-  </div>
-  <div style="display: flex; align-items: center; gap: 24px; background: #E3F2FD; border-radius: 16px; padding: 20px 34px; font-size: 48px; font-weight: 900;">
-    <i class="fa-solid fa-link" style="font-size: 70px; color: var(--primary-color);"></i>
-    <span>リンクは<span class="accent-blue">概要欄</span>に掲載</span>
-  </div>
-</div>
-
-<!-- Slide ID: 15 -->
-<div class="slide-container" style="justify-content: center; gap: 24px;">
-  <h2 style="font-size: 60px; margin-bottom: 4px;">mineo マイピタ料金</h2>
-  <img src="public/images/temp/mineo/mineo_マイピタ_料金表.png"
-       style="max-height: 430px; max-width: 92%; object-fit: contain; border-radius: 12px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.12));" alt="mineoマイピタ料金表">
-  <div style="font-size: 46px; font-weight: 900;">
-    無料の<span class="accent">パケット放題1Mbps</span>が付けられる！
-  </div>
-</div>
-
-<!-- Slide ID: 15-2 -->
-<div class="slide-container" style="justify-content: center; gap: 30px;">
-  <div style="display: flex; align-items: stretch; justify-content: center; gap: 30px; width: 92%;">
-    <div style="flex: 1; background: #ECEFF1; border-radius: 16px; padding: 24px 20px; text-align: center;">
-      <div style="font-size: 44px; font-weight: 900; color: #666;">プチ体験</div>
-      <div style="font-size: 56px; font-weight: 900; margin: 8px 0;">200MB</div>
-      <div style="font-size: 52px; font-weight: 900;">1,100円</div>
+<!-- Slide ID: 31  （今日のまとめ：2種類の比較） -->
+<div class="slide-container std" style="justify-content: center; gap: 24px;">
+  <h2 style="font-size: 56px;">今日のまとめ</h2>
+  <div style="width: 100%; display: flex; flex-direction: column; gap: 22px;">
+    <div style="background: #FDE3E7; border-radius: 16px; padding: 22px 32px; font-size: 38px; font-weight: 700; line-height: 1.4;">
+      <span style="font-weight: 900;"><span class="accent">①ahamo版</span></span>：30GBで2,970円・MNO回線<br>毎年マイル交換可・海外手続き無しOK
     </div>
-    <div style="display: flex; align-items: center; font-size: 60px; color: var(--accent-red); font-weight: 900;">＜</div>
-    <div style="flex: 1; background: #E8F5E9; border: 4px solid var(--accent-green); border-radius: 16px; padding: 24px 20px; text-align: center;">
-      <div style="font-size: 44px; font-weight: 900; color: var(--accent-green);">マイピタ3GB</div>
-      <div style="font-size: 56px; font-weight: 900; margin: 8px 0;">3GB</div>
-      <div style="font-size: 52px; font-weight: 900;"><span class="accent">1,298円</span></div>
+    <div style="background: #E3F2FD; border-radius: 16px; padding: 22px 32px; font-size: 38px; font-weight: 700; line-height: 1.4;">
+      <span style="font-weight: 900;"><span class="accent-blue">②IIJmio版</span></span>：2GBで850円〜・MVNO回線<br>10GBプランなら初年度2,300マイル<br>2年目以降も毎年1,800マイル
     </div>
   </div>
+</div>
+
+<!-- Slide ID: 32  （飛行機よく乗る人・現ahamoユーザー） -->
+<div class="slide-container std" style="justify-content: center; gap: 22px;">
   <div class="terop-box" style="font-size: 48px;">
-    パケット放題1Mbps付きの<br><span class="accent">マイピタ3GB</span>がお得！
+    飛行機よく乗る人は<span style="color: var(--primary-color);">JALモバイル</span>へ！
+  </div>
+  <div style="background: #FFFDE7; border-radius: 16px; padding: 24px 36px; font-size: 40px; font-weight: 700; line-height: 1.4; width: 100%;">
+    <span style="font-weight: 900;">現ahamoユーザーも要検討</span><br>
+    申込手数料2,200円はかかる<br><span style="font-size: 32px; color:#666;">（無料は新規・ドコモ以外からの乗り換えのみ）</span>が、<br>
+    同じ<span class="accent">2,970円</span>のまま<span class="accent">毎月125マイル</span>貯まる！
   </div>
 </div>
 
-<!-- Slide ID: 16 -->
-<div class="slide-container" style="justify-content: center; gap: 30px;">
-  <div class="terop-box" style="font-size: 54px;">
-    運営者は<span class="accent">パケット放題3Mbps</span>を愛用
+<!-- Slide ID: 33  （申し込みはこちら） -->
+<div class="slide-container std" style="justify-content: center; gap: 28px;">
+  <i class="fa-solid fa-square-arrow-up-right" style="font-size: 130px; color: var(--primary-color);"></i>
+  <div style="font-size: 64px; font-weight: 900; color: var(--text-dark); text-align: center; line-height: 1.3;">
+    申し込みはこちら！<br><span style="font-size: 48px;">概要欄リンクから確認を</span>
   </div>
-  <div style="display: flex; align-items: center; gap: 30px; background: #E8F5E9; border: 4px solid var(--accent-green); border-radius: 16px; padding: 24px 36px;">
-    <i class="fa-solid fa-gauge-high" style="font-size: 110px; color: var(--accent-green);"></i>
-    <div style="font-size: 52px; font-weight: 900; line-height: 1.4; text-align: left;">
-      使い切っても<span class="accent-green">速度が落ちにくい</span><br>便利すぎて離れられない！
-    </div>
+  <div style="display: flex; gap: 50px; align-items: center;">
+    <img src="public/images/logo/iijmio_logo.png" style="height: 70px; object-fit: contain;" alt="IIJmio版">
+    <img src="public/images/logo/Ahamo_logo.png" style="height: 60px; object-fit: contain;" alt="ahamo版">
   </div>
+  <div style="font-size: 34px; color: #666;">IIJmio版 → JALモバイル公式 / ahamo版 → JALモバイル公式</div>
 </div>
 
-<!-- Slide ID: 17 -->
-<div class="slide-container" style="justify-content: center; gap: 16px;">
-  <h2 style="font-size: 60px; margin-bottom: 8px;">mineo 当チャンネル評価</h2>
-  <img src="public/images/charts/mineo.png" style="height: 540px; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));" alt="mineoレーダーチャート">
-</div>
-
-<!-- Slide ID: 17-2 -->
-<div class="slide-container" style="justify-content: center; gap: 28px;">
-  <img src="public/images/thumbnails/【裏技】mineo歴8年が教える「実質使い放題」の極意！契約前に知らないと損する5つの節約術_サムネ.png"
-       style="max-height: 500px; object-fit: contain; border-radius: 12px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="mineo過去動画">
-  <div class="terop-box" style="font-size: 54px;">
-    mineoの<span class="accent">過去動画</span>もチェック！
-  </div>
-</div>
-
-<!-- Slide ID: 18-0 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff 55%, #ffe0e0 100%); justify-content: center;">
-  <div class="chapter-title" style="white-space: nowrap;">
-    短期解約を繰り返す<br>注意点！
-  </div>
-  <img src="public/images/characters/ショウ_デフォルメ_笑顔.png"
-       style="position: absolute; bottom: 0; left: 20px; height: 320px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="ショウ">
-  <img src="public/images/characters/モモコ_嬉しい_口開け_星無.png"
-       style="position: absolute; bottom: 0; right: 20px; height: 320px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="モモコ">
-</div>
-
-<!-- Slide ID: 18 -->
-<div class="slide-container" style="justify-content: center; gap: 36px;">
-  <div style="display: flex; align-items: center; gap: 36px;">
-    <i class="fa-solid fa-circle-exclamation" style="font-size: 200px; color: var(--accent-red);"></i>
-    <div style="font-size: 70px; font-weight: 900; line-height: 1.4; text-align: left;">
-      解除料が無くても<br><span class="accent">短期解約の繰り返し</span>はNG
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 18-2 -->
-<div class="slide-container" style="justify-content: center; gap: 28px;">
-  <div class="warning-box" style="font-size: 56px; background: #FFEBEE; border-color: var(--accent-red);">
-    短期解約の繰り返しは<br><span class="accent">ブラックリスト入り</span>のリスク
-  </div>
-  <div style="display: flex; align-items: center; gap: 28px; background: #ECEFF1; border-radius: 16px; padding: 22px 36px;">
-    <i class="fa-solid fa-user-xmark" style="font-size: 100px; color: var(--accent-red);"></i>
-    <div style="font-size: 50px; font-weight: 900; line-height: 1.35; text-align: left;">
-      その通信会社に<br><span class="accent">再契約できなくなる</span>ことも
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 18-3 -->
-<div class="slide-container" style="justify-content: center; gap: 30px;">
-  <div style="display: flex; align-items: center; gap: 36px;">
-    <img src="public/images/irasutoya/pose_atama_kakaeru_woman.png" style="height: 320px; object-fit: contain;" alt="頭を抱える女性">
-    <div style="font-size: 54px; font-weight: 900; line-height: 1.4; text-align: left;">
-      運営者も誤った短期解約で<br><span class="accent">約1年間</span>その会社に<br>再契約できなかった実体験
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 18-4 -->
-<div class="slide-container" style="justify-content: center; gap: 30px;">
-  <div style="display: flex; align-items: center; gap: 30px;">
-    <img src="public/images/irasutoya/family_happy_banzai.png" style="height: 300px; object-fit: contain;" alt="バンザイする家族">
-    <div style="font-size: 58px; font-weight: 900; line-height: 1.4; text-align: left;">
-      お試しは<br><span class="accent-green">「自分に合うか確かめる」</span><br>ために使おう
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 19-0 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff 60%, #e0ecff 100%); justify-content: center;">
-  <div class="chapter-title" style="white-space: nowrap;">
-    今日のまとめ！
-  </div>
-  <img src="public/images/characters/モモコ_嬉しい_口開け_星無.png"
-       style="position: absolute; bottom: 0; left: 20px; height: 340px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="モモコ">
-  <img src="public/images/characters/ショウ_デフォルメ_笑顔.png"
-       style="position: absolute; bottom: 0; right: 20px; height: 340px; object-fit: contain; z-index: 3; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));" alt="ショウ">
-</div>
-
-<!-- Slide ID: 19 -->
-<div class="slide-container" style="justify-content: center; gap: 28px;">
-  <div style="display: flex; align-items: center; gap: 20px;">
-    <div style="background: var(--primary-color); color: white; font-size: 50px; font-weight: 900; padding: 8px 32px; border-radius: 40px;">まとめ①</div>
-  </div>
-  <div style="font-size: 56px; font-weight: 900; line-height: 1.45; text-align: center;">
-    2026年7月から3社で<br><span class="accent">契約解除料が新設</span><br>＝事実上の1年縛り復活
-  </div>
-  <div class="warning-box" style="font-size: 46px; background: #E3F2FD; border-color: var(--primary-color);">
-    今後この流れは<span class="accent">広がる可能性大</span>
-  </div>
-</div>
-
-<!-- Slide ID: 19-2 -->
-<div class="slide-container" style="justify-content: center; gap: 26px;">
-  <div style="display: flex; align-items: center; gap: 20px;">
-    <div style="background: var(--accent-green); color: white; font-size: 50px; font-weight: 900; padding: 8px 32px; border-radius: 40px;">まとめ②</div>
-    <span style="font-size: 50px; font-weight: 900;">試しやすい3社</span>
-  </div>
-  <ul style="width: 90%; display: flex; flex-direction: column; gap: 18px;">
-    <li style="display: flex; align-items: center; gap: 24px; background: #FCE4EC; border-radius: 16px; padding: 16px 30px; font-size: 46px;">
-      <span style="font-weight: 900; color: var(--accent-red);">①</span>
-      <span><img src="public/images/logo/aeonmobile_logo.png" style="height: 46px; vertical-align: middle;" alt="イオンモバイル"> <span class="accent">無料お試し</span>あり</span>
+<!-- Slide ID: 34  （コメントで教えてね） -->
+<div class="slide-container std" style="justify-content: center; gap: 24px;">
+  <h2 style="font-size: 64px;">コメントで教えてね！</h2>
+  <ul style="width: 100%; display: flex; flex-direction: column; gap: 20px;">
+    <li style="display: flex; align-items: center; gap: 24px; background: #E3F2FD; border-radius: 16px; padding: 20px 32px;">
+      <i class="fa-solid fa-comment" style="color: var(--accent-blue); font-size: 48px; width: 64px; text-align: center;"></i>
+      <span style="font-size: 42px;">「IIJmio版を使っています」</span>
     </li>
-    <li style="display: flex; align-items: center; gap: 24px; background: #FFF8E1; border-radius: 16px; padding: 16px 30px; font-size: 46px;">
-      <span style="font-weight: 900; color: #FB8C00;">②</span>
-      <span><img src="public/images/logo/Povo_logo_背景透過.png" style="height: 60px; vertical-align: middle;" alt="povo2.0"> 手数料・解除料・縛り<span style="color:#FB8C00;">オール0</span></span>
+    <li style="display: flex; align-items: center; gap: 24px; background: #FDE3E7; border-radius: 16px; padding: 20px 32px;">
+      <i class="fa-solid fa-comment" style="color: var(--primary-color); font-size: 48px; width: 64px; text-align: center;"></i>
+      <span style="font-size: 42px;">「ahamo版に乗り換える予定！」</span>
     </li>
-    <li style="display: flex; align-items: center; gap: 24px; background: #E8F5E9; border-radius: 16px; padding: 16px 30px; font-size: 46px;">
-      <span style="font-weight: 900; color: var(--accent-green);">③</span>
-      <span><img src="public/images/logo/Mineo_logo_背景削除.png" style="height: 60px; vertical-align: middle;" alt="mineo"> 限定リンクで<span class="accent-green">手数料無料</span></span>
+    <li style="display: flex; align-items: center; gap: 24px; background: #FFFDE7; border-radius: 16px; padding: 20px 32px;">
+      <i class="fa-solid fa-comment" style="color: #FB8C00; font-size: 48px; width: 64px; text-align: center;"></i>
+      <span style="font-size: 40px;">「マイルに興味ないから本家派」</span>
     </li>
   </ul>
 </div>
 
-<!-- Slide ID: 20 -->
-<div class="slide-container" style="justify-content: center; gap: 30px;">
-  <div style="display: flex; align-items: center; gap: 36px;">
-    <i class="fa-solid fa-piggy-bank" style="font-size: 160px; color: var(--accent-green);"></i>
-    <div style="font-size: 60px; font-weight: 900; line-height: 1.4; text-align: left;">
-      月<span class="accent">3,000円</span>の節約＝<br>年間<span class="accent-green">36,000円</span>の節約に！
-    </div>
-  </div>
-  <div class="terop-box" style="font-size: 48px;">
-    まずは試して<span style="color: var(--primary-color);">固定費の節約</span>を！
-  </div>
-</div>
-
-<!-- Slide ID: 20-2 -->
-<div class="slide-container">
+<!-- Slide ID: 35  （注意喚起：投稿時点のもの / 定型スライド） -->
+<div class="slide-container std">
   <img src="public/images/slides/プランやキャンペーンは投稿時点のもの注意喚起.png" class="fullscreen-img">
 </div>
 
-<!-- Slide ID: 21 -->
-<div class="slide-container" style="background: linear-gradient(135deg, #fff 60%, #e3f0ff 100%); justify-content: center; gap: 30px;">
-  <i class="fa-solid fa-comments" style="font-size: 150px; color: var(--primary-color);"></i>
-  <div style="font-size: 66px; font-weight: 900; color: var(--text-dark);">コメント募集！</div>
-  <div class="terop-box" style="font-size: 48px;">
-    「自分は○○を使ってる」<br>「ここがわかりにくかった」など<br><span class="accent">お気軽にどうぞ</span>
-  </div>
-</div>
-
-<!-- Slide ID: 22 -->
-<div class="slide-container">
+<!-- Slide ID: 36  （ブログ・note案内 / 定型スライド） -->
+<div class="slide-container std">
   <img src="public/images/slides/ブログもやってます.png" class="fullscreen-img">
 </div>
 
-<!-- Slide ID: 23 -->
-<div class="slide-container">
+<!-- Slide ID: 37  （チャンネル登録・高評価のお願い / 定型スライド） -->
+<div class="slide-container std">
   <img src="public/images/slides/チャンネル登録と高評価よろしくお願いします.png" class="fullscreen-img">
 </div>
 
