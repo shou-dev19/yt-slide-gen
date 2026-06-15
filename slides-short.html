@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>1年縛り復活 縛りなしで試せる格安SIM3選 (Short)</title>
+<title>JALモバイル2種類 おすすめ診断 (Short)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
@@ -66,249 +66,195 @@
     }
     .thumb-title {
         font-size: 80px; font-weight: 900; color: #1a1a2e;
-        line-height: 1.25; margin-bottom: 22px; max-width: 900px; z-index: 2;
+        line-height: 1.25; margin-bottom: 22px; max-width: 920px; z-index: 2;
     }
-    .thumb-title .em { color: var(--red); }
-    .thumb-subband {
+    .thumb-title .hl { color: var(--blue); }
+    .thumb-vs-row {
+        display: flex; align-items: center; justify-content: center;
+        gap: 30px; margin-bottom: 28px; z-index: 2;
+    }
+    .thumb-vs-row .logo-chip {
+        background: #fff; border: 5px solid var(--blue); border-radius: 24px;
+        padding: 18px 28px; box-shadow: 6px 6px 0 rgba(0,82,204,0.18);
+        display: flex; align-items: center; justify-content: center;
+    }
+    .thumb-vs-row .logo-chip img { height: 92px; filter: none; }
+    .thumb-vs-row .vs-mark {
+        font-size: 76px; font-weight: 900; color: var(--red);
+        font-style: italic; text-shadow: 4px 4px 0 rgba(0,0,0,0.12);
+    }
+    .thumb-sub-band {
         font-size: 60px; font-weight: 900; color: #fff;
-        background: var(--blue); padding: 18px 70px;
-        border-radius: 12px; box-shadow: 4px 4px 0 rgba(0,0,0,0.2); z-index: 2;
+        background: var(--blue); padding: 18px 70px; border-radius: 12px;
+        box-shadow: 4px 4px 0 rgba(0,0,0,0.2); z-index: 2;
     }
-    .thumb-illust {
-        position: absolute; bottom: 40px; right: 40px;
-        height: 290px; z-index: 2;
-        filter: drop-shadow(0 12px 24px rgba(0,0,0,0.2));
-    }
-    .thumb-logos {
-        position: absolute; bottom: 70px; left: 50px;
-        display: flex; flex-direction: column; gap: 14px; z-index: 2;
-        background: rgba(255,255,255,0.92); border-radius: 18px;
-        padding: 18px 28px; box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-    }
-    .thumb-logos-row { display: flex; align-items: center; justify-content: center; gap: 20px; }
-    .thumb-logos img { height: 60px; object-fit: contain; filter: none; }
 
-    /* ===== Standard slides ===== */
-    .slide-standard {
-        padding: 90px 70px 60px;
-        background: var(--white);
-    }
+    /* ===== Standard slides (2-5) ===== */
     .watermark {
         position: absolute; top: -40px; left: 10px;
         font-size: 280px; font-weight: 900; color: var(--blue);
         opacity: 0.07; z-index: 0; line-height: 1;
     }
+    .slide-pad { padding: 80px 70px; }
     .slide-title {
         font-size: 62px; font-weight: 900; color: #1a1a2e;
-        border-bottom: 10px solid var(--blue);
-        padding-bottom: 14px; margin-bottom: 30px; z-index: 1;
+        border-bottom: 10px solid var(--blue); padding-bottom: 14px;
+        margin-bottom: 30px; z-index: 1;
     }
-    .slide-body {
-        display: flex; flex-direction: column; gap: 28px; z-index: 1;
-    }
+    .slide-title .hl { color: var(--blue); }
+    .slide-body { display: flex; flex-direction: column; gap: 28px; z-index: 1; }
+
     .report-header-card {
         display: flex; align-items: center; gap: 24px;
         background: linear-gradient(135deg, #0052cc, #003fa0);
         color: #fff; border-radius: 20px; padding: 28px 36px;
-        font-size: 48px; font-weight: 900;
     }
-    .report-header-card .rh-icon { font-size: 64px; }
+    .report-header-card .rh-logo { height: 96px; background:#fff; border-radius:14px; padding:10px 16px; filter:none; }
+    .report-header-card .rh-text { font-size: 44px; font-weight: 900; line-height: 1.3; }
+
     .info-card {
         display: flex; align-items: center; gap: 22px;
         padding: 22px 32px; border-radius: 0 16px 16px 0;
-        font-size: 46px; font-weight: 700; color: #1a1a2e;
+        font-size: 46px; font-weight: 700;
         background: #f0f5ff; border-left: 14px solid var(--blue);
     }
-    .info-card .ic-emoji { font-size: 50px; flex-shrink: 0; }
+    .info-card .ic-emoji { font-size: 52px; }
     .info-card.alert {
         background: #fff0f0; border-left-color: var(--red);
         color: var(--red); font-size: 50px; font-weight: 900;
     }
-    .info-card .ic-strong { color: var(--red); }
-    .feature-logo {
-        height: 130px; margin: 0 auto 10px; display: block;
-    }
-    .big-badge {
-        align-self: center; text-align: center;
-        background: linear-gradient(135deg, var(--blue), #003fa0);
-        color: #fff; border-radius: 24px; padding: 26px 40px;
-        font-size: 72px; font-weight: 900;
-        box-shadow: 6px 6px 0 rgba(0,0,0,0.15);
-    }
-    .big-badge .bb-sub { display: block; font-size: 40px; font-weight: 700; margin-top: 6px; }
-    .zero-row {
-        display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
-    }
-    .zero-pill {
-        background: #eaf3ff; border: 6px solid var(--blue);
-        border-radius: 18px; padding: 18px 26px;
-        font-size: 40px; font-weight: 900; color: var(--blue);
-        text-align: center;
-    }
-    .zero-pill .zp-num { display: block; font-size: 60px; color: var(--red); }
-    .slide-illust {
-        position: absolute; bottom: 40px; right: 40px; height: 260px;
-    }
+    .info-card .ic-num { color: var(--blue); font-weight: 900; }
 
-    /* ===== CTA slide ===== */
+    .list-item {
+        display: flex; align-items: center; gap: 22px;
+        font-size: 52px; font-weight: 700; color: #1a1a2e;
+    }
+    .list-item .li-emoji { font-size: 54px; }
+
+    .opt-chip-row { display: flex; flex-direction: column; gap: 28px; }
+    .opt-chip {
+        display: flex; align-items: center; gap: 28px;
+        background: #f0f5ff; border: 6px solid var(--blue); border-radius: 22px;
+        padding: 26px 34px;
+    }
+    .opt-chip .oc-logo { height: 84px; filter: none; flex-shrink: 0; }
+    .opt-chip .oc-label { font-size: 50px; font-weight: 900; color: var(--blue); }
+
+    .slide-illust {
+        position: absolute; bottom: 40px; right: 40px;
+    }
+    .slide-illust img { height: 260px; }
+
+    /* ===== CTA (Slide 6) ===== */
     .slide-cta {
-        background: linear-gradient(135deg, #0052cc, #003380);
         align-items: center; justify-content: center; text-align: center;
-        padding: 60px;
+        background: linear-gradient(135deg, #0052cc, #003380);
+        padding: 70px;
     }
-    .cta-logo { height: 120px; margin-bottom: 26px; filter: brightness(10); }
-    .cta-title {
-        font-size: 84px; font-weight: 900; color: #ffd700;
-        margin-bottom: 18px; line-height: 1.2;
-    }
-    .cta-sub {
-        font-size: 50px; font-weight: 700; color: #ffffff; margin-bottom: 20px; line-height: 1.4;
-    }
-    .cta-arrow {
-        font-size: 90px; color: #ffd700; margin-bottom: 16px;
-        animation: bounce 1s infinite;
-    }
+    .cta-title { font-size: 84px; font-weight: 900; color: #ffd700; line-height: 1.2; margin-bottom: 18px; }
+    .cta-sub { font-size: 50px; font-weight: 900; color: #fff; margin-bottom: 26px; }
+    .cta-banner-img { width: 940px; border-radius: 18px; box-shadow: 0 14px 40px rgba(0,0,0,0.35); margin-bottom: 22px; filter: none; }
+    .cta-arrow { font-size: 90px; color: #ffd700; animation: bounce 1s infinite; }
     @keyframes bounce {
         0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(20px); }
-    }
-    .cta-banner-img {
-        width: 940px; border-radius: 16px;
-        box-shadow: 0 14px 30px rgba(0,0,0,0.35);
+        50% { transform: translateY(-22px); }
     }
 </style>
 </head>
 <body>
 
-<!-- ===== Slide 1: Thumbnail ===== -->
+<!-- ===================== Slide 1 : Thumbnail ===================== -->
 <div class="slide-container slide-thumbnail">
-    <div class="thumb-top-strip">⚡ 2026年7月 ソフトバンク系3ブランドに激震 ⚡</div>
+    <div class="thumb-top-strip">⚡ 2026年最新 JALモバイル徹底比較 ⚡</div>
     <div class="thumb-accent-tri tl"></div>
     <div class="thumb-accent-tri br"></div>
-    <div class="thumb-tag">実質1年縛り復活</div>
-    <div class="thumb-title">でも<span class="em">縛りなし</span>で<br>気軽に試せる</div>
-    <div class="thumb-subband">格安SIM 3選</div>
-    <img class="thumb-illust" src="public/images/irasutoya/shinpai_man.png" alt="心配">
-    <div class="thumb-logos">
-        <div class="thumb-logos-row">
-            <img src="public/images/logo/Softbank_logo.png" alt="ソフトバンク">
+
+    <div class="thumb-tag">2種類！</div>
+    <div class="thumb-title">JALモバイル<br><span class="hl">どっちを選ぶ？</span></div>
+    <div class="thumb-vs-row">
+        <div class="logo-chip"><img src="public/images/logo/jalmobile-iijmio.png" alt="JALモバイル IIJmio版"></div>
+        <span class="vs-mark">VS</span>
+        <div class="logo-chip"><img src="public/images/logo/jalmobile-ahamo.png" alt="JALモバイル ahamo版"></div>
+    </div>
+    <div class="thumb-sub-band">かんたん おすすめ診断</div>
+</div>
+
+<!-- ===================== Slide 2 : 2種類ある ===================== -->
+<div class="slide-container slide-pad">
+    <div class="watermark">2</div>
+    <h2 class="slide-title">実は<span class="hl">2種類</span>あります</h2>
+    <div class="slide-body" style="margin-bottom: 120px;">
+        <div class="info-card"><span class="ic-emoji">📱</span>同じ「JALモバイル」でも中身は別物</div>
+        <div class="opt-chip-row">
+            <div class="opt-chip">
+                <img src="public/images/logo/jalmobile-iijmio.png" class="oc-logo" alt="IIJmio版">
+                <span class="oc-label">①&nbsp;IIJmio版</span>
+            </div>
+            <div class="opt-chip">
+                <img src="public/images/logo/jalmobile-ahamo.png" class="oc-logo" alt="ahamo版">
+                <span class="oc-label">②&nbsp;ahamo版</span>
+            </div>
         </div>
-        <div class="thumb-logos-row">
-            <img src="public/images/logo/Y!mobile.png" alt="ワイモバイル">
-            <img src="public/images/logo/LINEMO_logo.png" alt="LINEMO">
-        </div>
+    </div>
+    <div class="slide-illust" style="z-index: 2;">
+        <img src="public/images/irasutoya/pose_atama_kakaeru_woman.png" alt="迷う">
     </div>
 </div>
 
-<!-- ===== Slide 2: 契約解除料新設 ===== -->
-<div class="slide-container slide-standard">
-    <div class="watermark">1</div>
-    <h2 class="slide-title">2026年7月から変わる</h2>
+<!-- ===================== Slide 3 : IIJmio版 ===================== -->
+<div class="slide-container slide-pad">
+    <div class="watermark">3</div>
+    <h2 class="slide-title"><span class="hl">IIJmio版</span>の特徴</h2>
     <div class="slide-body" style="margin-bottom: 120px;">
         <div class="report-header-card">
-            <span class="rh-icon">📅</span>
-            <span>2026年7月スタート</span>
+            <img src="public/images/logo/jalmobile-iijmio.png" class="rh-logo" alt="IIJmio版">
+            <span class="rh-text">いわゆる<br>格安SIM</span>
         </div>
-        <div class="info-card">
-            <span class="ic-emoji">📱</span>
-            <span>ソフトバンク・ワイモバイル・LINEMO</span>
-        </div>
-        <div class="info-card alert">
-            <span class="ic-emoji">💸</span>
-            <span>1年以内の解約で<span class="ic-strong">契約解除料</span></span>
-        </div>
+        <div class="info-card alert"><span class="ic-emoji">💰</span>2GB&nbsp;<span class="ic-num">月850円〜</span></div>
+        <div class="info-card"><span class="ic-emoji">📉</span>大手キャリアよりずっと安い</div>
     </div>
     <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/seikyuusyo_shock.png" alt="請求にショック" style="height:260px;">
+        <img src="public/images/irasutoya/money_fueru.png" alt="節約">
     </div>
 </div>
 
-<!-- ===== Slide 3: 実質1年縛り復活 (Shock) ===== -->
-<div class="slide-container slide-standard">
-    <div class="watermark">2</div>
-    <h2 class="slide-title">つまり…</h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card alert" style="font-size:64px; padding:36px 40px;">
-            <span class="ic-emoji" style="font-size:70px;">⚠️</span>
-            <span>事実上の<br>「1年縛り」復活</span>
-        </div>
-        <div class="info-card">
-            <span class="ic-emoji">😱</span>
-            <span>気軽に試せなくなる…</span>
-        </div>
-    </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/animal_buta_shock.png" alt="ショック" style="height:280px;">
-    </div>
-</div>
-
-<!-- ===== Slide 4: イオンモバイル ===== -->
-<div class="slide-container slide-standard">
-    <div class="watermark">3</div>
-    <h2 class="slide-title">①縛りなしで試せる</h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <img class="feature-logo" src="public/images/logo/aeonmobile_logo.png" style="height: 100px;" alt="イオンモバイル">
-        <div class="big-badge">
-            データSIM 1週間無料
-            <span class="bb-sub">お試しできる！</span>
-        </div>
-        <div class="info-card">
-            <span class="ic-emoji">📶</span>
-            <span>自宅で電波が届くか確認できる</span>
-        </div>
-    </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/pose_anshin_woman.png" alt="安心" style="height:250px;">
-    </div>
-</div>
-
-<!-- ===== Slide 5: povo2.0 ===== -->
-<div class="slide-container slide-standard">
+<!-- ===================== Slide 4 : ahamo版 ===================== -->
+<div class="slide-container slide-pad">
     <div class="watermark">4</div>
-    <h2 class="slide-title">②縛りなしで試せる</h2>
+    <h2 class="slide-title"><span class="hl">ahamo版</span>の特徴</h2>
     <div class="slide-body" style="margin-bottom: 120px;">
-        <img class="feature-logo" src="public/images/logo/Povo_logo_背景透過.png" style="height: 140px;" alt="povo2.0">
-        <div class="zero-row">
-            <div class="zero-pill"><span class="zp-num">0</span>事務手数料</div>
-            <div class="zero-pill"><span class="zp-num">0</span>契約解除料</div>
-            <div class="zero-pill"><span class="zp-num">0</span>最低利用期間</div>
+        <div class="report-header-card">
+            <img src="public/images/logo/jalmobile-ahamo.png" class="rh-logo" alt="ahamo版">
+            <span class="rh-text">ドコモ回線<br>そのまま</span>
         </div>
-        <div class="info-card alert">
-            <span class="ic-emoji">⚡</span>
-            <span>電波は<span class="ic-strong">au本家</span>と同等！</span>
-        </div>
+        <div class="info-card alert"><span class="ic-emoji">📶</span>30GB&nbsp;<span class="ic-num">月2,970円</span></div>
+        <div class="info-card"><span class="ic-emoji">✈️</span>海外91か国 追加料金なし</div>
     </div>
     <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/smartphone_speed_5g.png" alt="高速通信" style="height:250px;">
+        <img src="public/images/irasutoya/smartphone_speed_5g.png" alt="高速通信">
     </div>
 </div>
 
-<!-- ===== Slide 6: mineo ===== -->
-<div class="slide-container slide-standard">
+<!-- ===================== Slide 5 : 毎年マイル ===================== -->
+<div class="slide-container slide-pad">
     <div class="watermark">5</div>
-    <h2 class="slide-title">③縛りなしで試せる</h2>
+    <h2 class="slide-title">どちらも<span class="hl">マイル</span>が貯まる</h2>
     <div class="slide-body" style="margin-bottom: 120px;">
-        <img class="feature-logo" src="public/images/logo/Mineo_logo_背景削除.png" alt="mineo">
-        <div class="zero-row">
-            <div class="zero-pill"><span class="zp-num">0</span>契約解除料</div>
-            <div class="zero-pill"><span class="zp-num">0</span>最低利用期間</div>
-        </div>
-        <div class="info-card alert">
-            <span class="ic-emoji">⭐</span>
-            <span>運営者が<span class="ic-strong">メイン回線</span>で愛用中</span>
-        </div>
+        <div class="info-card"><span class="ic-emoji">📲</span>使い続けるだけで毎年たまる</div>
+        <div class="info-card alert"><span class="ic-emoji">🎁</span>毎年マイルで国内旅行に交換可</div>
+        <div class="list-item"><span class="li-emoji">😍</span>実質タダで旅行できちゃう！</div>
     </div>
     <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/family_happy_banzai.png" alt="喜び" style="height:250px;">
+        <img src="public/images/irasutoya/family_happy_banzai.png" alt="喜び">
     </div>
 </div>
 
-<!-- ===== Slide 7: CTA ===== -->
+<!-- ===================== Slide 6 : CTA ===================== -->
 <div class="slide-container slide-cta">
-    <div class="cta-title">詳しくは<br>本編をチェック！</div>
-    <div class="cta-sub">新設される契約解除料の中身＆<br>試しやすい格安SIMを徹底解説</div>
+    <div class="cta-title">選び方は<br>本編で解説！</div>
+    <div class="cta-sub">自分に合うのはどっち？</div>
+    <img src="public/images/thumbnails/【2026年最新】JALモバイル2種類を徹底比較！「JALモバイル powered by ahamo」が提供開始_サムネ1.png" class="cta-banner-img" alt="本編サムネイル">
     <div class="cta-arrow">▼</div>
-    <img class="cta-banner-img" src="public/images/thumbnails/【2026年7月】ソフトバンク・ワイモバイル・LINEMOに1年縛り復活！気軽に試せる格安SIM3選_サムネ1.png" alt="本編サムネイル">
 </div>
 
 </body>
