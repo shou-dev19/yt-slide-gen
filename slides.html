@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>【JALモバイル完全比較】IIJmio版 vs ahamo版 スライド</title>
+  <title>【10月値上げ】mineo手数料改定の全貌！スライド</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
@@ -10,7 +10,7 @@
   <!-- 図鑑見開き（全スライド共通）の装丁 -->
   <link rel="stylesheet" href="templates/spread-base.css">
   <style>
-    /* ===== 通常スライド（1280x720）の基本デザイン：冒頭タイトル/速報のみで使用 ===== */
+    /* ===== 通常スライド（1280x720）：冒頭つかみ（速報/タイトル/チャンネル誘導）のみで使用 ===== */
     .slide-container.std {
       width: 1280px;
       height: 720px;
@@ -26,45 +26,15 @@
       padding: 40px;
       flex-shrink: 0;
     }
-    .std :root, .std {
-      --primary-color: #C8102E;
-      --accent-yellow: #FFD600;
-      --accent-red: #E53935;
-      --accent-green: #43A047;
-      --text-dark: #212121;
-    }
     body {
-      --primary-color: #C8102E;
+      --primary-color: #22a73f;
       --accent-yellow: #FFD600;
       --accent-red: #E53935;
-      --accent-green: #43A047;
+      --accent-green: #1c8b34;
       --text-dark: #212121;
     }
-    .std h1 {
-      font-size: 130px;
-      font-weight: 900;
-      color: var(--text-dark);
-      text-shadow: 4px 4px 0px white, -4px -4px 0px white, 4px -4px 0px white, -4px 4px 0px white,
-                   0px 4px 0px var(--primary-color), 0px -4px 0px var(--primary-color),
-                   4px 0px 0px var(--primary-color), -4px 0px 0px var(--primary-color);
-    }
-    .std h2 {
-      font-size: 90px;
-      font-weight: 900;
-      color: var(--text-dark);
-      border-bottom: 8px solid var(--accent-yellow);
-      margin-bottom: 24px;
-      padding-bottom: 8px;
-    }
-    .std p, .std li {
-      font-size: 64px;
-      line-height: 1.4;
-      color: var(--text-dark);
-    }
-    .std ul { list-style-type: none; padding: 0; }
     .accent { color: var(--accent-red); }
     .accent-green { color: var(--accent-green); }
-    .accent-blue { color: var(--primary-color); }
     .terop-box {
       background: rgba(255, 255, 255, 0.9);
       border-left: 16px solid var(--primary-color);
@@ -76,49 +46,40 @@
       line-height: 1.4;
       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
-
   </style>
 </head>
 <body>
 
-<!-- Slide ID: 1 -->
-<div class="slide-container std" style="background: linear-gradient(135deg, #fff 50%, #ffe3e8 100%); justify-content: center; gap: 24px;">
+<!-- Slide ID: 1  （つかみ：速報 / std） -->
+<div class="slide-container std" style="background: linear-gradient(135deg, #fff 50%, #e8f5e6 100%); justify-content: center; gap: 28px;">
   <div style="display: flex; gap: 16px; align-items: center;">
     <div style="background: var(--accent-red); color: white; font-size: 44px; font-weight: 900; padding: 8px 32px; border-radius: 40px;">
       <i class="fa-solid fa-bullhorn"></i> 速報
     </div>
     <div style="background: var(--primary-color); color: white; font-size: 44px; font-weight: 900; padding: 8px 32px; border-radius: 40px;">
-      2026年6月25日 誕生
+      2026年10月〜
     </div>
   </div>
-  <div style="font-size: 74px; font-weight: 900; color: var(--text-dark); line-height: 1.3; text-align: center;">
-    「JALモバイル<br><span style="color: var(--primary-color);">powered by ahamo</span>」<br>がリリース！？
-  </div>
-  <img src="public/images/temp/jalmobile_ahamo/バナースクショ.png"
-       style="max-height: 300px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15)); border-radius: 12px;" alt="JALモバイル powered by ahamo バナー">
-</div>
-
-<!-- Slide ID: 2 -->
-<div class="slide-container std" style="background: linear-gradient(135deg, #fff 55%, #ffe3e8 100%); justify-content: center; gap: 28px;">
-  <div style="font-size: 50px; font-weight: 900; color: var(--primary-color); letter-spacing: 2px;">【JALモバイル完全比較】</div>
-  <div style="font-size: 80px; font-weight: 900; color: var(--text-dark); line-height: 1.25; text-align: center;">
-    <span style="color: var(--accent-blue);">IIJmio版</span> vs <span style="color: var(--primary-color);">ahamo版</span>！<br>あなたにはどっちが向いてる？
-  </div>
-  <div style="display: flex; gap: 50px; align-items: center; margin: 4px 0;">
-    <img src="public/images/logo/iijmio_logo.png" style="height: 84px; object-fit: contain;" alt="IIJmio">
-    <i class="fa-solid fa-plane" style="font-size: 80px; color: var(--primary-color);"></i>
-    <img src="public/images/logo/Ahamo_logo.png" style="height: 70px; object-fit: contain;" alt="ahamo">
-  </div>
-  <div class="terop-box" style="font-size: 50px;">
-    2種類のJALモバイルを<span style="color: var(--primary-color);">徹底比較</span>！
+  <img src="public/images/logo/Mineo_logo_背景削除.png" style="height: 110px; object-fit: contain;" alt="mineo">
+  <div style="font-size: 80px; font-weight: 900; color: var(--text-dark); line-height: 1.3; text-align: center;">
+    mineoが2026年10月に<br><span class="accent">手数料値上げ</span>！？
   </div>
 </div>
 
-<!-- Slide ID: 3 -->
-<div class="slide-container std" style="background: linear-gradient(135deg, #fff 60%, #ffe3e8 100%);">
+<!-- Slide ID: 2  （つかみ：タイトル / std） -->
+<div class="slide-container std" style="background: linear-gradient(135deg, #fff 55%, #e8f5e6 100%); justify-content: center; gap: 28px;">
+  <div style="font-size: 48px; font-weight: 900; color: var(--primary-color); letter-spacing: 2px;">【10月値上げ】</div>
+  <div style="font-size: 70px; font-weight: 900; color: var(--text-dark); line-height: 1.28; text-align: center;">
+    mineo手数料改定の<span class="accent">全貌</span>！<br>でも<span style="color:var(--primary-color);">「ある人」</span>は<br>1円も損しない
+  </div>
+  <img src="public/images/logo/Mineo_logo_背景削除.png" style="height: 96px; object-fit: contain;" alt="mineo">
+</div>
+
+<!-- Slide ID: 3  （つかみ：チャンネル誘導 / std） -->
+<div class="slide-container std" style="background: linear-gradient(135deg, #fff 60%, #e8f5e6 100%);">
   <div style="text-align: center; width: 100%;">
     <i class="fa-solid fa-bell" style="font-size: 150px; color: var(--primary-color); margin-bottom: 24px;"></i>
-    <div style="font-size: 70px; font-weight: 900; color: var(--text-dark); line-height: 1.35; margin-bottom: 28px;">
+    <div style="font-size: 68px; font-weight: 900; color: var(--text-dark); line-height: 1.35; margin-bottom: 28px;">
       スマホ代節約の情報を<br><span style="color: var(--primary-color);">毎週発信中</span>
     </div>
     <div class="terop-box" style="font-size: 56px; display: inline-block;">
@@ -127,17 +88,17 @@
   </div>
 </div>
 
-<!-- Slide ID: 4  （目次見開き：図鑑スタイル 1920x1080） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+<!-- Slide ID: 4  （目次見開き） -->
+<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
-      <div class="page-head">格安SIM図鑑 目次 <small>この動画の流れ</small></div>
-      <ul class="agenda">
-        <li><span class="num">1</span>JALモバイルとは？<br>2種類の違い</li>
-        <li><span class="num">2</span>IIJmio版の独自評価</li>
-        <li><span class="num">3</span>ahamo版の独自評価</li>
-        <li><span class="num">4</span>あなたにおすすめは<br>どっち？</li>
+      <div class="page-head">格安SIM図鑑 もくじ <small>この動画の流れ</small></div>
+      <ul class="agenda" style="font-size:46px;">
+        <li><span class="num">1</span>2026年10月、<br>手数料はどう変わる？</li>
+        <li><span class="num">2</span>「ある人」は<br>1円も損しない理由</li>
+        <li><span class="num">3</span>おさらい！mineoって<br>どんな格安SIM？</li>
+        <li><span class="num">4</span>なぜソフトバンク回線だけ<br>eSIMが使えない？</li>
         <li><span class="num">5</span>まとめ</li>
       </ul>
       <span class="page-no">― 1 ―</span>
@@ -146,126 +107,112 @@
       <span class="index-tab">格安SIM図鑑</span>
       <div class="page-head">この動画でわかること</div>
       <ul class="benefits">
-        <li><span class="check">✓</span><span>自分に向いた<b>JALモバイル</b>がどちらか分かる</span></li>
-        <li><span class="check">✓</span><span><b>自分に合った</b>格安SIMのプランが見つかる</span></li>
-        <li><span class="check">✓</span><span>スマホ代でムダな<b>月額料金</b>を払わずに済む</span></li>
+        <li><span class="check">✓</span><span>mineoの手数料値上げで<br><b>自分が損するか</b>が分かる</span></li>
+        <li><span class="check">✓</span><span><b>eSIM無料化</b>の<br>本当の狙いが分かる</span></li>
       </ul>
       <span class="page-no">― 2 ―</span>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 5  （JALモバイルは2種類） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+<!-- Slide ID: 5  （Chapter1：手数料改定の概要） -->
+<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
-      <div class="page-head">JALモバイルは2種類ある</div>
+      <div class="page-head">2026年10月の手数料改定<small>変わるのは「手数料」だけ</small></div>
       <div class="page-body center">
-        <ul class="rows">
-          <li style="border-left-color:#1565C0;">
-            <i class="ic fa-solid fa-sim-card" style="color:#1565C0;"></i>
-            <span class="tx"><span style="color:#1565C0; font-weight:900;">① powered by IIJmio</span><span class="sub">2025年4月誕生 ・ MVNO（格安SIM）</span></span>
-          </li>
-          <li>
-            <i class="ic fa-solid fa-tower-cell"></i>
-            <span class="tx"><span style="color:var(--brand-deep); font-weight:900;">② powered by ahamo</span><span class="sub">2026年6月25日誕生 ・ MNO（ドコモ回線）</span></span>
-          </li>
-        </ul>
+        <div class="emph">月額料金は<br><span class="big">値上げなし</span></div>
+        <div class="note" style="margin-top:8px;">変わるのは契約時にかかる<br>初期費用まわりの「手数料」だけ。</div>
       </div>
       <span class="page-no">― 3 ―</span>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-head">まずは違いをざっくり</div>
+      <div class="page-head">対象になる人は？</div>
       <div class="page-body center">
-        <div class="lead">同じ「JALモバイル」でも<br>中身は<span class="em">全くの別物</span>！</div>
-        <div class="note" style="margin-top:8px;">回線も料金もサポートも違う。<br>自分に合うのはどっちかを見ていこう。</div>
+        <ul class="rows">
+          <li>
+            <i class="ic fa-solid fa-calendar-check"></i>
+            <span class="tx"><span class="em">2026年10月1日</span>以降の<br>申し込み分から適用</span>
+          </li>
+          <li style="border-left-color:#1565C0;">
+            <i class="ic fa-solid fa-user-check" style="color:#1565C0;"></i>
+            <span class="tx">今すでに使っている人の<br><span style="color:#1565C0;font-weight:900;">月額料金には影響なし</span></span>
+          </li>
+        </ul>
       </div>
       <span class="page-no">― 4 ―</span>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 6  （共通点：JALマイルが貯まる） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+<!-- Slide ID: 6  （比較表：手数料改定の中身） -->
+<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
-      <div class="page-head">共通点：JALマイルが貯まる</div>
+      <div class="page-head">mineo手数料改定<small>2026年10月1日〜</small></div>
       <div class="page-body center">
-        <ul class="rows">
-          <li>
-            <i class="ic fa-solid fa-plane-departure"></i>
-            <span class="tx">「どこかにマイル」が<span class="em"><br>1,500マイル</span>で交換可<span class="sub">（通常7,000マイル）</span></span>
-          </li>
-          <li style="border-left-color:#FB8C00;">
-            <i class="ic fa-solid fa-star" style="color:#FB8C00;"></i>
-            <span class="tx">Life Statusポイント<span class="em"><br>毎月1ポイント</span></span>
-          </li>
-        </ul>
+        <table class="sheet" style="font-size:38px;">
+          <thead>
+            <tr><th style="width:42%;">項目</th><th>現行</th><th>改定後</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>契約事務手数料</th><td>3,300円</td><td><span class="em">3,850円</span><br><span class="sub">＋550円</span></td></tr>
+            <tr><th>変更事務手数料</th><td>3,300円</td><td><span class="em">3,850円</span><br><span class="sub">＋550円</span></td></tr>
+            <tr><th>SIMカード<br>発行料</th><td>2,200円</td><td><span class="em">2,750円</span><br><span class="sub">＋550円</span></td></tr>
+          </tbody>
+        </table>
       </div>
       <span class="page-no">― 5 ―</span>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-head">フライトでさらにお得</div>
+      <div class="page-head">eSIMだけは逆に…</div>
       <div class="page-body center">
-        <ul class="rows">
-          <li style="border-left-color:#43A047;">
-            <i class="ic fa-solid fa-gift" style="color:#43A047;"></i>
-            <span class="tx">フライトボーナス<br>国内線<span style="color:#43A047;font-weight:900;">+50マイル</span> ・ <br>国際線<span style="color:#43A047;font-weight:900;">+100マイル</span></span>
-          </li>
-        </ul>
-        <div class="note" style="margin-top:8px;">JAL便によく乗る人ほど効果が大きい。</div>
+        <div class="emph">eSIMプロファイル発行料<br>440円 → <span class="big" style="color:#1c8b34;">0円</span><br>無料化！</div>
+        <div class="note" style="margin-top:8px;">値上げの中で、eSIMだけは<br>むしろ無料になる。</div>
       </div>
       <span class="page-no">― 6 ―</span>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 7  （ざっくり違い比較表） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+<!-- Slide ID: 7  （値上げ理由・eSIM無料化の狙い・eSIMとは） -->
+<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
-      <div class="page-head">2種類のJALモバイル<small>①</small></div>
+      <div class="page-head">なぜ値上げ＆eSIM無料化？</div>
       <div class="page-body center">
-        <table class="sheet">
-          <thead>
-            <tr><th style="width:26%;">比較項目</th><th style="color:#fff;">IIJmio版</th><th>ahamo版</th></tr>
-          </thead>
-          <tbody>
-            <tr><th>月額料金</th><td><span class="em">2GB 850円〜</span><br><span class="sub">容量を選べる</span></td><td>30GBで<br><span class="em">2,970円</span></td></tr>
-            <tr><th>回線</th><td>MVNO<br><span class="sub">（ドコモ・<br>au回線を借りる）</span></td><td>ドコモ回線<br><span class="sub">そのまま（MNO）</span></td></tr>
-            <tr><th>通話</th><td>5分・10分・<br>かけ放題から<br>選択</td><td>5分以内の<br>国内通話<br>無料</td></tr>
-          </tbody>
-        </table>
+        <ul class="rows">
+          <li style="border-left-color:#E53935;">
+            <i class="ic fa-solid fa-yen-sign" style="color:#E53935;"></i>
+            <span class="tx"><span style="color:#E53935;font-weight:900;">値上げの理由</span><span class="sub">物価高騰でサービス提供コストが上昇（mineo公式）</span></span>
+          </li>
+          <li>
+            <i class="ic fa-solid fa-mobile-screen-button"></i>
+            <span class="tx"><span style="color:var(--brand-deep);font-weight:900;">eSIM無料化の狙い</span><span class="sub">eSIMをもっと使いやすくして普及を後押し</span></span>
+          </li>
+        </ul>
       </div>
       <span class="page-no">― 7 ―</span>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-head">ざっくり比較 <small>②</small></div>
+      <div class="page-head">そもそもeSIMとは？</div>
       <div class="page-body center">
-        <table class="sheet">
-          <thead>
-            <tr><th style="width:26%;">比較項目</th><th>IIJmio版</th><th>ahamo版</th></tr>
-          </thead>
-          <tbody>
-            <tr><th>海外利用</th><td>海外eSIMの<br>追加購入が<br>必要</td><td><span style="color:#43A047;font-weight:900;">91の国と<br>地域で<br>追加料金なし</span></td></tr>
-            <tr><th>初期費用</th><td>約3,740円</td><td>通常2,200円<br><span class="sub">（キャンペーン中は<br>無料）</span></td></tr>
-          </tbody>
-        </table>
-        <div class="note" style="margin-top:12px;">次のページから1社ずつ詳しく解説！</div>
+        <div class="lead">物理カード不要で<br>スマホに<span class="em">直接設定</span>する<br>デジタルなSIM</div>
+        <div class="note" style="margin-top:8px;">カードを差し込まず、<br>スマホの中にダウンロードして使う。</div>
       </div>
       <span class="page-no">― 8 ―</span>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 8-0  （章扉：IIJmio版） -->
-<div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
+<!-- Slide ID: 8-0  （章扉：Chapter2） -->
+<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
@@ -278,297 +225,110 @@
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
       <div class="page-body center" style="align-items:center;">
-        <div class="big-title">JALモバイル<br><span class="em">IIJmio版</span></div>
-        <div class="lead" style="margin-top:24px; text-align:center; border-left:none; border-radius:999px; padding:14px 36px;">図鑑を開いて詳しく見ていこう</div>
+        <div class="big-title" style="font-size:84px;">「ある人」は<br><span class="em">1円も損しない</span><br>理由</div>
+        <div class="lead" style="margin-top:24px; text-align:center; border-left:none; border-radius:999px; padding:14px 36px;">手数料値上げでも大丈夫</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 8  （Chapter 2 タイトルカード） -->
-<div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
+<!-- Slide ID: 8  （Chapter2 タイトルカード） -->
+<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
       <div class="page-body center" style="align-items:center;">
-        <div class="kicker" style="font-size:34px; font-weight:900; letter-spacing:10px; color:var(--brand-deep);">CHAPTER</div>
+        <div style="font-size:34px; font-weight:900; letter-spacing:10px; color:var(--brand-deep);">CHAPTER</div>
         <div style="font-size:240px; font-weight:900; color:var(--brand); line-height:0.8; text-shadow:5px 5px 0 #fff;">2</div>
       </div>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
       <div class="page-body center">
-        <div class="big-title" style="text-align:left;">JALモバイル<br>powered by<br><span class="em">IIJmio</span> を解説</div>
+        <div class="big-title" style="text-align:left; font-size:84px;">手数料値上げでも<br><span class="em">1円も損しない</span><br>理由</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 9  （MVNOとは） -->
-<div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
+<!-- Slide ID: 9  （リンク経由なら契約事務手数料0円） -->
+<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
-      <div class="page-head">そもそもMVNOとは？</div>
+      <div class="page-head">限定リンク経由なら</div>
       <div class="page-body center">
-        <div class="lead">大手キャリアの回線を<span style="color:var(--brand-deep);">借りて</span><br>格安サービスを提供する<br>事業者</div>
-        <div class="note" style="margin-top:8px;">＝いわゆる「格安SIM」。<br>設備を持たない分、料金を安くできる。</div>
+        <div class="emph">契約事務手数料は<br><span class="big">もともと0円</span></div>
+        <div class="note" style="margin-top:8px;">当チャンネルはmineoと提携。<br>概要欄の限定リンクからの特典。<br>改定後も継続。</div>
       </div>
       <span class="page-no">― 9 ―</span>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-head">イメージ図</div>
-      <div class="visual">
-        <img src="public/images/common/格安SIMを車の道路で例えたイラスト.png" alt="格安SIMの仕組み" style="max-height:760px;">
+      <div class="page-head">だから値上げされても</div>
+      <div class="page-body center">
+        <div class="lead">3,850円に<br>値上げされても…<br><span class="em">影響なし！</span></div>
+        <div class="note" style="margin-top:8px;">元から0円なら、いくらに<br>上がっても痛くもかゆくもない。</div>
       </div>
       <span class="page-no">― 10 ―</span>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 10  （IIJmio版 料金プラン） -->
-<div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
+<!-- Slide ID: 9-2  （リンク＋eSIMなら初期費用0円） -->
+<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
-      <div class="page-head">IIJmio版 料金プラン<br><small>音声SIM・税込</small></div>
+      <div class="page-head">リンク経由＋eSIMなら</div>
       <div class="page-body center">
-        <table class="sheet" style="font-size:38px;">
-          <tbody>
-            <tr><th>2GB</th><td><span class="em">850円</span></td><th>5GB</th><td>950円</td></tr>
-            <tr><th>10GB</th><td>1,400円</td><th>15GB</th><td>1,600円</td></tr>
-            <tr><th>25GB</th><td>2,000円</td><th>35GB</th><td>2,400円</td></tr>
-            <tr><th>45GB</th><td>3,300円</td><th>55GB</th><td>3,900円</td></tr>
-          </tbody>
-        </table>
+        <ul class="rows">
+          <li>
+            <i class="ic fa-solid fa-link"></i>
+            <span class="tx">契約事務手数料<span style="color:var(--brand-deep);font-weight:900;"> 0円</span><span class="sub">チャンネル限定リンク特典</span></span>
+          </li>
+          <li style="border-left-color:#1565C0;">
+            <i class="ic fa-solid fa-mobile-screen-button" style="color:#1565C0;"></i>
+            <span class="tx">eSIMプロファイル発行料<span style="color:#1565C0;font-weight:900;"> 0円</span><span class="sub">今回の改定で無料化</span></span>
+          </li>
+        </ul>
       </div>
       <span class="page-no">― 11 ―</span>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-head">ここがポイント</div>
+      <div class="page-head">eSIMなら…</div>
       <div class="page-body center">
-        <div class="emph">使い方に合った容量を<br><span class="big">細かく選べる</span><br>最大の強み</div>
-        <div class="note" style="margin-top:8px;">少しだけ使う人も、たっぷり使う人も<br>ムダなく契約できる。</div>
+        <div class="emph">初期費用が<br><span class="big">完全0円</span></div>
+        <div class="note" style="margin-top:8px;">eSIM専用端末が増える今、<br>値上げどころか乗り換えの<br>ハードルはむしろ下がった。</div>
       </div>
       <span class="page-no">― 12 ―</span>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 11  （本家IIJmioと共通の機能） -->
-<div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
-  <div class="book">
-    <div class="spine"></div>
-    <div class="page left">
-      <div class="page-head">本家IIJmioと共通の機能</div>
-      <div class="page-body center">
-        <ul class="rows">
-          <li>
-            <i class="ic fa-solid fa-rotate-right"></i>
-            <span class="tx">余ったギガを<span class="em">翌月繰り越し</span></span>
-          </li>
-          <li style="border-left-color:#43A047;">
-            <i class="ic fa-solid fa-people-group" style="color:#43A047;"></i>
-            <span class="tx">家族で<span style="color:#43A047;font-weight:900;">データシェア</span>可能</span>
-          </li>
-        </ul>
-      </div>
-      <span class="page-no">― 13 ―</span>
-    </div>
-    <div class="page right">
-      <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-head">割引・特典</div>
-      <div class="page-body center">
-        <ul class="rows">
-          <li style="border-left-color:#FB8C00;">
-            <i class="ic fa-solid fa-yen-sign" style="color:#FB8C00;"></i>
-            <span class="tx">家族割引<span class="sub">1回線あたり100円割引</span></span>
-          </li>
-          <li>
-            <i class="ic fa-solid fa-medal"></i>
-            <span class="tx">長期利用特典あり</span>
-          </li>
-        </ul>
-      </div>
-      <span class="page-no">― 14 ―</span>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 12  （IIJmio版 独自特典4つ） -->
-<div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
-  <div class="book">
-    <div class="spine"></div>
-    <div class="page left">
-      <div class="page-head">IIJmio版 独自特典 <small>①②</small></div>
-      <div class="page-body center">
-        <ul class="rows">
-          <li>
-            <span class="badge">①</span>
-            <span class="tx">「どこかにマイル」が<span class="em"><br>1,500マイル</span>で交換可<span class="sub">（通常7,000マイル / 約78%OFF）</span></span>
-          </li>
-          <li style="border-left-color:#FB8C00;">
-            <span class="badge" style="background:#FB8C00;">②</span>
-            <span class="tx">毎月<span class="em">50マイル</span><span class="sub">（年間600マイル）</span></span>
-          </li>
-        </ul>
-      </div>
-      <span class="page-no">― 15 ―</span>
-    </div>
-    <div class="page right">
-      <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-head">IIJmio版 独自特典 <small>③④</small></div>
-      <div class="page-body center">
-        <ul class="rows">
-          <li style="border-left-color:#43A047;">
-            <span class="badge" style="background:#43A047;">③</span>
-            <span class="tx">Life Statusポイント<br>毎月1ポイント</span>
-          </li>
-          <li>
-            <span class="badge">④</span>
-            <span class="tx">フライトボーナスマイル<span class="sub">国内線+50 / 国際線+100</span></span>
-          </li>
-        </ul>
-      </div>
-      <span class="page-no">― 16 ―</span>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 13  （初年度マイル内訳・注意点） -->
-<div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
-  <div class="book">
-    <div class="spine"></div>
-    <div class="page left">
-      <div class="page-head">音声SIM 10GB 初年度マイル</div>
-      <div class="page-body center">
-        <div class="emph">新規契約<span class="em">500</span><br>＋（毎月50＋シークレット100）×12ヶ月<br>＝ 合計 <span class="big"><br>2,300マイル</span></div>
-      </div>
-      <span class="page-no">― 17 ―</span>
-    </div>
-    <div class="page right">
-      <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-head">注意点</div>
-      <div class="page-body center">
-        <div class="warn"><i class="ic fa-solid fa-triangle-exclamation"></i>シークレットマイルは<span class="em">毎月JMBアプリ内の操作が必要</span>！</div>
-        <div class="note" style="margin-top:8px;">操作を忘れると、その月の分は付与されない。</div>
-      </div>
-      <span class="page-no">― 18 ―</span>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 14  （2年目以降のマイル） -->
-<div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
-  <div class="book">
-    <div class="spine"></div>
-    <div class="page left">
-      <div class="page-head">2年目以降 <small>音声SIM 10GB</small></div>
-      <div class="page-body center">
-        <div class="emph">毎月50マイル＋シークレット100マイル＝<span class="em">150マイル</span><br>×12ヶ月 ＝ 年間 <span class="big"><br>1,800マイル</span></div>
-      </div>
-      <span class="page-no">― 19 ―</span>
-    </div>
-    <div class="page right">
-      <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-head">つまり</div>
-      <div class="page-body center">
-        <div class="lead"><i class="fa-solid fa-plane-departure" style="margin-right:10px;"></i>毎年「どこかにマイル」<br>（1,500マイル）に<br>交換できる！</div>
-      </div>
-      <span class="page-no">― 20 ―</span>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 15  （評価見開き：JALモバイル IIJmio版 / 図鑑 Layout B） -->
-<div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
-  <div class="book">
-    <div class="spine"></div>
-    <div class="page left">
-      <div class="head-left">
-        <img class="logo" src="public/images/logo/iijmio_logo.png" alt="JALモバイル IIJmio版">
-        <span class="file-no">JAL × IIJmio</span>
-        <div class="total">
-          <div class="label">総合評価</div>
-          <div class="grade">A</div>
-        </div>
-      </div>
-      <div class="cards">
-        <div class="card">
-          <div class="rank SS">SS</div>
-          <div class="card-name">データ料金</div>
-          <div class="line pro"><span class="tag">＋</span>2GBで月850円の圧倒的安さ</div>
-          <div class="line con"><span class="tag">－</span>特になし</div>
-        </div>
-        <div class="card">
-          <div class="rank B">B</div>
-          <div class="card-name">通信品質</div>
-          <div class="line pro"><span class="tag">＋</span>ドコモ・au回線が選べる</div>
-          <div class="line con"><span class="tag">－</span>昼12〜13時は速度低下</div>
-        </div>
-        <div class="card">
-          <div class="rank A">B</div>
-          <div class="card-name">初期費用</div>
-          <div class="line pro"><span class="tag">＋</span>キャンペーンで安くなることも</div>
-          <div class="line con"><span class="tag">－</span>通常は手数料3,300円＋発行約440円/エントリーパッケージは使えない</div>
-        </div>
-      </div>
-      <span class="page-no">― 21 ―</span>
-    </div>
-    <div class="page right">
-      <span class="index-tab">格安SIM図鑑</span>
-      <div class="head-right">
-        <img src="public/images/charts/JALモバイル(IIJmio).png" alt="JALモバイル IIJmio版 レーダーチャート">
-      </div>
-      <div class="cards">
-        <div class="card">
-          <div class="rank S">S</div>
-          <div class="card-name">通話料</div>
-          <div class="line pro"><span class="tag">＋</span>専用アプリなし30秒11円・かけ放題完備</div>
-          <div class="line con"><span class="tag">－</span>かけ放題オプションは別途料金</div>
-        </div>
-        <div class="card">
-          <div class="rank C">C</div>
-          <div class="card-name">店舗サポート</div>
-          <div class="line pro"><span class="tag">＋</span>オンライン完結</div>
-          <div class="line con"><span class="tag">－</span>対面サポートなし</div>
-        </div>
-        <div class="card">
-          <div class="rank S">S</div>
-          <div class="card-name">オプション</div>
-          <div class="line pro"><span class="tag">＋</span>JALマイル特典が豊富</div>
-          <div class="line con"><span class="tag">－</span>特典維持に条件あり</div>
-        </div>
-      </div>
-      <span class="page-no">― 22 ―</span>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 16-2  （IIJmioの過去動画 CTA） -->
-<div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
-  <div class="book">
-    <div class="spine"></div>
-    <div class="page left">
-      <div class="visual">
-        <img src="public/images/thumbnails/IIJmioって実際どうなの？元ユーザーが教える「損しない契約方法」と「お昼の速度」の真実.png" alt="IIJmio過去動画" style="max-height:760px;">
-      </div>
-    </div>
-    <div class="page right">
-      <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-body center" style="align-items:center;">
-        <div class="bigicon"><i class="fa-solid fa-circle-play"></i></div>
-        <div class="big-title" style="margin-top:18px;"><span class="em">IIJmio</span>の<br>解説動画もチェック！</div>
-        <div class="note" style="margin-top:18px;">本家IIJmioの実力は別動画で詳しく。</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 17-0  （章扉：ahamo版） -->
+<!-- Slide ID: 10  （注意：手数料改定の内容は変わる可能性） -->
 <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+  <div class="book">
+    <div class="spine"></div>
+    <div class="page left">
+      <div class="page-body center" style="align-items:center;">
+        <div class="bigicon"><i class="fa-solid fa-circle-info"></i></div>
+        <div class="big-title" style="margin-top:18px;">ご注意</div>
+      </div>
+    </div>
+    <div class="page right">
+      <span class="index-tab">格安SIM図鑑</span>
+      <div class="page-body center">
+        <div class="warn"><i class="ic fa-solid fa-triangle-exclamation"></i>手数料改定の内容は<br><span class="em">今後変わる可能性</span>あり</div>
+        <div class="note" style="margin-top:8px;">申し込み前に、概要欄のmineo公式<br>リンクから最新情報を必ず確認してください。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 11-0  （章扉：Chapter3） -->
+<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
@@ -581,15 +341,15 @@
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
       <div class="page-body center" style="align-items:center;">
-        <div class="big-title">JALモバイル<br><span class="em">ahamo版</span></div>
-        <div class="lead" style="margin-top:24px; text-align:center; border-left:none; border-radius:999px; padding:14px 36px;">図鑑を開いて詳しく見ていこう</div>
+        <div class="big-title">おさらい！<br>mineoって<br><span class="em">どんな格安SIM？</span></div>
+        <div class="lead" style="margin-top:24px; text-align:center; border-left:none; border-radius:999px; padding:14px 36px;">図鑑を開いて見ていこう</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 17  （Chapter 3 タイトルカード） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+<!-- Slide ID: 11  （Chapter3 タイトルカード） -->
+<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
@@ -601,236 +361,98 @@
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
       <div class="page-body center">
-        <div class="big-title" style="text-align:left;">JALモバイル<br>powered by<br><span class="em">ahamo</span> を解説</div>
+        <div class="big-title" style="text-align:left;">おさらい！<br>mineoって<br><span class="em">どんな格安SIM？</span></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 18  （ahamo版の基本スペック） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-  <div class="book">
-    <div class="spine"></div>
-    <div class="page left">
-      <div class="page-head">ahamo版の基本スペック</div>
-      <div class="page-body center">
-        <ul class="rows">
-          <li>
-            <i class="ic fa-solid fa-yen-sign"></i>
-            <span class="tx">月額<span class="em">2,970円</span>（税込）<br>データ<span class="em">30GB</span></span>
-          </li>
-          <li>
-            <i class="ic fa-solid fa-phone"></i>
-            <span class="tx">通話：<span class="em">5分以内無料</span></span>
-          </li>
-        </ul>
-      </div>
-      <span class="page-no">― 23 ―</span>
-    </div>
-    <div class="page right">
-      <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-head">最大の特徴</div>
-      <div class="page-body center">
-        <div class="lead"><i class="fa-solid fa-globe" style="margin-right:10px; color:#43A047;"></i>海外<span style="color:#43A047;">91の国と地域</span>で<br>追加料金なし</div>
-        <div class="note" style="margin-top:8px;">※15日を超えると速度制限あり。</div>
-      </div>
-      <span class="page-no">― 24 ―</span>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 19  （ahamo版 マイル付与） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-  <div class="book">
-    <div class="spine"></div>
-    <div class="page left">
-      <div class="page-head">ahamo版 マイル付与</div>
-      <div class="page-body center">
-        <div class="emph">毎月<span class="em">125マイル</span> × 12ヶ月<br>＝ 年間 <span class="big"><br>1,500マイル</span></div>
-      </div>
-      <span class="page-no">― 25 ―</span>
-    </div>
-    <div class="page right">
-      <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-head">つまり</div>
-      <div class="page-body center">
-        <div class="lead"><i class="fa-solid fa-plane-departure" style="margin-right:10px;"></i>毎年「どこかにマイル」<br>交換可能！</div>
-        <div class="note" style="margin-top:8px;">IIJmio版より手間なくマイルが貯まる。</div>
-      </div>
-      <span class="page-no">― 26 ―</span>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 20  （ahamo版 新規・MNP特典） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-  <div class="book">
-    <div class="spine"></div>
-    <div class="page left">
-      <div class="page-head">新規・MNP特典 <small>期間限定</small></div>
-      <div class="page-body center">
-        <ul class="rows">
-          <li style="border-left-color:#FB8C00;">
-            <i class="ic fa-solid fa-user-plus" style="color:#FB8C00;"></i>
-            <span class="tx">新規：<span class="em">1,000マイル</span></span>
-          </li>
-          <li>
-            <i class="ic fa-solid fa-arrow-right-arrow-left"></i>
-            <span class="tx">ドコモ以外からMNP：<span class="em">5,000マイル</span></span>
-          </li>
-        </ul>
-      </div>
-      <span class="page-no">― 27 ―</span>
-    </div>
-    <div class="page right">
-      <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-head">手数料も</div>
-      <div class="page-body center">
-        <ul class="rows">
-          <li style="border-left-color:#43A047;">
-            <i class="ic fa-solid fa-ticket" style="color:#43A047;"></i>
-            <span class="tx">オプション申込手数料<br>（通常2,200円）<br>→ 期間中<span style="color:#43A047;font-weight:900;">無料</span></span>
-          </li>
-        </ul>
-        <div class="warn" style="margin-top:8px;"><i class="ic fa-solid fa-circle-exclamation"></i>ahamoからの乗り換えは<br><span class="em">無料対象外</span></div>
-      </div>
-      <span class="page-no">― 28 ―</span>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 21  （ahamo版の強み 海外） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-  <div class="book">
-    <div class="spine"></div>
-    <div class="page left">
-      <div class="page-head">ahamo版の強み</div>
-      <div class="page-body center">
-        <div class="lead" style="text-align:center;">「海外でそのまま使える」</div>
-        <div class="emph" style="margin-top:8px;">91か国で<span class="em">追加手続きなし</span><br><span class="sub" style="font-size:30px;color:var(--ink-soft);">（30GBまで）</span></div>
-        <div class="note" style="margin-top:8px;">「海外の方が通信が安定する」という声も。</div>
-      </div>
-      <span class="page-no">― 29 ―</span>
-    </div>
-    <div class="page right">
-      <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-head">イメージ図</div>
-      <div class="visual">
-        <img src="public/images/common/海外利用のイメージ図.png" alt="海外利用イメージ" style="max-height:720px;">
-      </div>
-      <span class="page-no">― 30 ―</span>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 22  （注意点：海外速度制限） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-  <div class="book">
-    <div class="spine"></div>
-    <div class="page left">
-      <div class="page-body center" style="align-items:center;">
-        <div class="bigicon" style="color:#f0a020;"><i class="fa-solid fa-triangle-exclamation"></i></div>
-        <div class="big-title" style="margin-top:18px;">海外利用の<br><span class="em">注意点</span></div>
-      </div>
-      <span class="page-no">― 31 ―</span>
-    </div>
-    <div class="page right">
-      <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-body center">
-        <div class="warn"><i class="ic fa-solid fa-triangle-exclamation"></i>海外利用<span class="em">15日超</span>で<br>最大<span class="em">128kbps</span>に速度制限</div>
-        <div class="note" style="margin-top:8px;">長期滞在には別途、現地SIM等の対策が必要。</div>
-      </div>
-      <span class="page-no">― 32 ―</span>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 23  （評価見開き：JALモバイル ahamo版 / 図鑑 Layout B） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+<!-- Slide ID: 12  （評価見開き：mineo / 図鑑 Layout B） -->
+<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
       <div class="head-left">
-        <img class="logo" src="public/images/logo/Ahamo_logo.png" alt="JALモバイル ahamo版">
-        <span class="file-no">JAL × ahamo</span>
+        <img class="logo" src="public/images/logo/Mineo_logo_背景削除.png" alt="mineo">
+        <span class="file-no">mineo</span>
         <div class="total">
           <div class="label">総合評価</div>
-          <div class="grade">A</div>
+          <div class="grade">S</div>
         </div>
       </div>
       <div class="cards">
         <div class="card">
-          <div class="rank A">A</div>
+          <div class="rank SS">SS</div>
           <div class="card-name">データ料金</div>
-          <div class="line pro"><span class="tag">＋</span>30GBで2,970円はMNOとして<br>コスパ良</div>
-          <div class="line con"><span class="tag">－</span>小容量プランがない</div>
+          <div class="line pro"><span class="tag">＋</span>3GBが月1,298円〜・無制限のマイそくが月990円から</div>
+          <div class="line con"><span class="tag">－</span>特になし</div>
         </div>
         <div class="card">
-          <div class="rank S">S</div>
+          <div class="rank A">A</div>
           <div class="card-name">通信品質</div>
-          <div class="line pro"><span class="tag">＋</span>ドコモMNO回線で昼の速度は落ちづらい</div>
-          <div class="line con"><span class="tag">－</span>都心での通信品質悪化が顕著</div>
+          <div class="line pro"><span class="tag">＋</span>ドコモ・au・ソフトバンクの3回線対応で普段使いは快適</div>
+          <div class="line con"><span class="tag">－</span>平日12〜13時のお昼は速度が落ちやすい</div>
         </div>
         <div class="card">
-          <div class="rank S">S</div>
+          <div class="rank A">A</div>
           <div class="card-name">初期費用</div>
-          <div class="line pro"><span class="tag">＋</span>キャンペーンにより当分は手数料無料</div>
-          <div class="line con"><span class="tag">－</span>キャンペーン終了後は手数料発生</div>
+          <div class="line pro"><span class="tag">＋</span>当チャンネルのリンクなら事務手数料0円</div>
+          <div class="line con"><span class="tag">－</span>通常は事務手数料あり・10月から3,850円</div>
         </div>
       </div>
-      <span class="page-no">― 33 ―</span>
+      <span class="page-no">― 13 ―</span>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
       <div class="head-right">
-        <img src="public/images/charts/JALモバイル(ahamo).png" alt="JALモバイル ahamo版 レーダーチャート">
+        <img src="public/images/charts/mineo.png" alt="mineo レーダーチャート">
       </div>
       <div class="cards">
         <div class="card">
-          <div class="rank S">S</div>
+          <div class="rank A">A</div>
           <div class="card-name">通話料</div>
-          <div class="line pro"><span class="tag">＋</span>5分以内の国内通話無料</div>
-          <div class="line con"><span class="tag">－</span>5分超は30秒22円</div>
+          <div class="line pro"><span class="tag">＋</span>専用アプリを使えば11円/30秒</div>
+          <div class="line con"><span class="tag">－</span>かけ放題は別途月額料金がかかる</div>
         </div>
         <div class="card">
-          <div class="rank C">C</div>
+          <div class="rank A">A</div>
           <div class="card-name">店舗サポート</div>
-          <div class="line pro"><span class="tag">＋</span>オンライン完結</div>
-          <div class="line con"><span class="tag">－</span>対面サポートなし</div>
+          <div class="line pro"><span class="tag">＋</span>マイネ王などユーザーコミュニティが活発</div>
+          <div class="line con"><span class="tag">－</span>対面の実店舗サポートは限定的</div>
         </div>
         <div class="card">
-          <div class="rank S">S</div>
+          <div class="rank SS">SS</div>
           <div class="card-name">オプション</div>
-          <div class="line pro"><span class="tag">＋</span>海外91か国データ通信</div>
-          <div class="line con"><span class="tag">－</span>海外15日超で速度制限</div>
+          <div class="line pro"><span class="tag">＋</span>パケット放題でデータ使い放題・フリータンクなど独自機能が豊富</div>
+          <div class="line con"><span class="tag">－</span>特になし</div>
         </div>
       </div>
-      <span class="page-no">― 34 ―</span>
+      <span class="page-no">― 14 ―</span>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 24-2  （ahamoの過去動画 CTA） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+<!-- Slide ID: 12-2  （mineoの過去動画 CTA） -->
+<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
       <div class="visual">
-        <img src="public/images/thumbnails/【あなたはどっち？】ahamoで得する人・損する人の違いを分かりやすく解説します！_サムネ.png" alt="ahamo過去動画" style="max-height:760px;">
+        <img src="public/images/thumbnails/【2026年最新】月額660円で実質使い放題！mineoの最強キャンペーンを徹底解説.png" alt="mineo過去動画" style="max-height:760px;">
       </div>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
       <div class="page-body center" style="align-items:center;">
         <div class="bigicon"><i class="fa-solid fa-circle-play"></i></div>
-        <div class="big-title" style="margin-top:18px;"><span class="em">ahamo</span>の<br>解説動画も<br>チェック！</div>
-        <div class="note" style="margin-top:18px;">本家ahamoで得する人・損する人は別動画で。</div>
+        <div class="big-title" style="margin-top:18px;"><span class="em">mineo</span>の<br>解説動画もチェック！</div>
+        <div class="note" style="margin-top:18px;">mineoの実力は別動画で詳しく。</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 25-0  （章扉：おすすめ診断） -->
+<!-- Slide ID: 13-0  （章扉：Chapter4） -->
 <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
   <div class="book">
     <div class="spine"></div>
@@ -844,182 +466,293 @@
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
       <div class="page-body center" style="align-items:center;">
-        <div class="big-title">あなたに<br>おすすめなのは<span class="em">どっち？</span></div>
-        <div class="lead" style="margin-top:24px; text-align:center; border-left:none; border-radius:999px; padding:14px 36px;">ケース別に診断していこう</div>
+        <div class="big-title" style="font-size:80px;">謎！なぜ<br>ソフトバンク回線だけ<br><span class="em">eSIMが使えない？</span></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 25  （Chapter 4 タイトルカード） -->
+<!-- Slide ID: 13  （Chapter4 タイトルカード ＋ 3回線eSIM対応の比較表） -->
+<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+  <div class="book">
+    <div class="spine"></div>
+    <div class="page left">
+      <div class="page-head">mineoの3回線とeSIM対応</div>
+      <div class="page-body center">
+        <table class="sheet" style="font-size:40px;">
+          <thead>
+            <tr><th>プラン</th><th>回線</th><th>物理SIM</th><th>eSIM</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>Dプラン</th><td>ドコモ</td><td><span style="color:#1c8b34;">○</span></td><td><span style="color:#1c8b34;">○</span></td></tr>
+            <tr><th>Aプラン</th><td>au</td><td><span style="color:#1c8b34;">○</span></td><td><span style="color:#1c8b34;">○</span></td></tr>
+            <tr><th>Sプラン</th><td>ソフト<br>バンク</td><td><span style="color:#1c8b34;">○</span></td><td><span class="em">×</span><br><span class="sub">非対応</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <span class="page-no">― 15 ―</span>
+    </div>
+    <div class="page right">
+      <span class="index-tab">格安SIM図鑑</span>
+      <div class="page-body center">
+        <div class="lead">ソフトバンク回線の<br><span class="em">Sプランだけ</span><br>eSIMが使えない</div>
+        <div class="note" style="margin-top:8px;">物理SIMは使えるのに、eSIMだけ<br>非対応。発行料が0円になっても、<br>Sプランの人はそもそも使えない。</div>
+      </div>
+      <span class="page-no">― 16 ―</span>
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 14  （重要：公式は明言していない＝考察） -->
 <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
       <div class="page-body center" style="align-items:center;">
-        <div style="font-size:34px; font-weight:900; letter-spacing:10px; color:var(--brand-deep);">CHAPTER</div>
-        <div style="font-size:240px; font-weight:900; color:var(--brand); line-height:0.8; text-shadow:5px 5px 0 #fff;">4</div>
+        <div class="bigicon"><i class="fa-solid fa-circle-exclamation"></i></div>
+        <div class="big-title" style="margin-top:18px;">重要</div>
       </div>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
       <div class="page-body center">
-        <div class="big-title" style="text-align:left;">あなたには<br>どっちがおすすめ？<br><span class="em">ケース別診断</span></div>
+        <div class="warn"><i class="ic fa-solid fa-triangle-exclamation"></i>mineo公式は<br>「SプランにeSIMがない理由」を<br><span class="em">明言していません</span></div>
+        <div class="note" style="margin-top:8px;">ここからは“考えられる理由”の<br>考察として聞いてください。</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 26  （大前提） -->
+<!-- Slide ID: 15  （考えられる理由3つ：一覧） -->
 <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
-      <div class="page-head">まず大前提</div>
+      <div class="page-head">考えられる理由<small>（考察）</small></div>
       <div class="page-body center">
-        <div class="lead">JALマイルに興味がない人は<br>本家の<span style="color:var(--brand-deep);">ahamo</span>か<span style="color:#1565C0;">IIJmio</span>が<br>シンプルでおすすめ</div>
+        <ul class="rows">
+          <li><span class="badge">1</span><span class="tx">eSIM発行システムの<br>準備が後回し<span class="sub">ソフトバンクが自社を優先</span></span></li>
+          <li><span class="badge">2</span><span class="tx">コストが見合わない<span class="sub">ソフトバンク回線のMVNO・利用者が少ない</span></span></li>
+          <li><span class="badge">3</span><span class="tx">グループ内への囲い込み<span class="sub">自社のワイモバイル・LINEMOに来てほしい</span></span></li>
+        </ul>
       </div>
-      <span class="page-no">― 35 ―</span>
+      <span class="page-no">― 17 ―</span>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-body center" style="align-items:center;">
-        <div class="emph">スマホ代節約が目的なら<br><span class="big">格安SIM移行</span><br>が最優先！</div>
+      <div class="page-body center">
+        <div class="lead tight">大きく分けて<br><span class="em">3つの理由</span>が<br>考えられる</div>
+        <div class="note" style="margin-top:8px;">次のページから、ひとつずつ<br>順番に見ていこう。</div>
       </div>
-      <span class="page-no">― 36 ―</span>
+      <span class="page-no">― 18 ―</span>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 27  （JALモバイルがお得な人） -->
+<!-- Slide ID: 15-2  （理由①：準備が後回し） -->
 <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
-      <div class="page-head">JALモバイルがお得な人</div>
+      <div class="page-head">考えられる理由①<small>準備が後回し</small></div>
+      <div class="page-body center">
+        <div class="lead tight">格安SIMがeSIMを出すには<br>大元キャリアの<br><span class="em">システム連携</span>が必要</div>
+        <div class="note" style="margin-top:8px;">回線の大元（ドコモ・au・ソフトバンク）と<br>連携できて初めてeSIMを発行できる。</div>
+      </div>
+      <span class="page-no">― 19 ―</span>
+    </div>
+    <div class="page right">
+      <span class="index-tab">格安SIM図鑑</span>
+      <div class="page-head">ソフトバンクは…</div>
+      <div class="page-body center">
+        <ul class="rows">
+          <li style="border-left-color:#1565C0;">
+            <i class="ic fa-solid fa-circle-check" style="color:#1565C0;"></i>
+            <span class="tx">ドコモ・auは<br>eSIM用システムを<span style="color:#1565C0;font-weight:900;">早めに用意</span></span>
+          </li>
+          <li>
+            <i class="ic fa-solid fa-hourglass-half"></i>
+            <span class="tx">ソフトバンクは自社<br>（ワイモバイル・LINEMO）を優先し<span class="em">MVNOへの開放が後回し</span></span>
+          </li>
+        </ul>
+      </div>
+      <span class="page-no">― 20 ―</span>
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 15-3  （理由②：コストが見合わない） -->
+<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+  <div class="book">
+    <div class="spine"></div>
+    <div class="page left">
+      <div class="page-head">考えられる理由②<small>コストが見合わない</small></div>
+      <div class="page-body center">
+        <div class="lead tight">他社へのシステム貸し出しには<br><span class="em">莫大な開発費</span>がかかる</div>
+        <div class="note" style="margin-top:8px;">eSIMを他社に開放するための<br>仕組みづくりには大きなコストが必要。</div>
+      </div>
+      <span class="page-no">― 21 ―</span>
+    </div>
+    <div class="page right">
+      <span class="index-tab">格安SIM図鑑</span>
+      <div class="page-head">でも…</div>
+      <div class="page-body center">
+        <div class="emph">ソフトバンク回線の<br>MVNO・利用者数は<br><span class="big" style="font-size:72px;">ドコモ・auより<br>圧倒的に少ない</span></div>
+        <div class="note" style="margin-top:8px;">作っても使う人が少なく、<br>元が取れない…というのが本音かも。</div>
+      </div>
+      <span class="page-no">― 22 ―</span>
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 15-4  （画像スライド：mineoユーザー層 契約プラン割合） -->
+<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+  <div class="book">
+    <div class="spine"></div>
+    <div class="page left">
+      <div class="page-head">mineoの契約プラン割合</div>
+      <div class="visual" style="height:auto; flex:1;">
+        <img src="public/images/temp/mineo/mineoユーザー層まとめ_2025_契約プラン・タイプ.jpg" alt="mineoの契約プラン・タイプ別の割合（2024年11月／2025年11月）" style="max-height:680px;">
+      </div>
+      <div class="note" style="text-align:center;">出典：mineo公式スタッフブログ</div>
+      <span class="page-no">― 23 ―</span>
+    </div>
+    <div class="page right">
+      <span class="index-tab">格安SIM図鑑</span>
+      <div class="page-head">グラフが示すこと</div>
+      <div class="page-body center">
+        <ul class="rows">
+          <li style="border-left-color:#9e9e9e;">
+            <i class="ic fa-solid fa-chart-simple" style="color:#9e9e9e;"></i>
+            <span class="tx">ソフトバンク回線（Sプラン＝グレーの帯）は<span class="em">ごくわずか</span></span>
+          </li>
+          <li>
+            <i class="ic fa-solid fa-users"></i>
+            <span class="tx">大半が<span style="color:var(--brand-deep);font-weight:900;">ドコモ・au回線</span><span class="sub">A＝au・D＝ドコモ・S＝ソフトバンク</span></span>
+          </li>
+        </ul>
+      </div>
+      <span class="page-no">― 24 ―</span>
+    </div>
+  </div>
+</div>
+
+<!-- Slide ID: 15-5  （理由③：グループ内への囲い込み） -->
+<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+  <div class="book">
+    <div class="spine"></div>
+    <div class="page left">
+      <div class="page-head">考えられる理由③<small>囲い込み</small></div>
+      <div class="page-body center">
+        <div class="lead tight">他社に開放して客が流れるより<br><span class="em">自社グループに来てほしい</span></div>
+        <div class="note" style="margin-top:8px;">ライバルを増やしたくない、<br>という戦略的な理由。</div>
+      </div>
+      <span class="page-no">― 25 ―</span>
+    </div>
+    <div class="page right">
+      <span class="index-tab">格安SIM図鑑</span>
+      <div class="page-head">ソフトバンクには…</div>
       <div class="page-body center">
         <ul class="rows">
           <li>
-            <i class="ic fa-solid fa-plane"></i>
-            <span class="tx">飛行機に<span class="em">よく乗る</span>人</span>
+            <i class="ic fa-solid fa-mobile-screen-button"></i>
+            <span class="tx">安くてeSIM対応の<br><span style="color:var(--brand-deep);font-weight:900;">ワイモバイル・LINEMO</span>がある</span>
           </li>
-          <li style="border-left-color:#FB8C00;">
-            <i class="ic fa-solid fa-plane-circle-check" style="color:#FB8C00;"></i>
-            <span class="tx"><span class="em">JALマイル</span>を貯めている人</span>
+          <li style="border-left-color:#1565C0;">
+            <i class="ic fa-solid fa-house-user" style="color:#1565C0;"></i>
+            <span class="tx">eSIMを使いたい人は<br>うちのサブブランドへ、<br>という囲い込み</span>
           </li>
         </ul>
       </div>
-      <span class="page-no">― 37 ―</span>
-    </div>
-    <div class="page right">
-      <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-body center" style="align-items:center;">
-        <div class="bigicon"><i class="fa-solid fa-plane-up"></i></div>
-        <div class="lead" style="margin-top:18px; text-align:center;">逆に、<br>飛行機にあまり乗らない<br>なら本家プランの方が<br>お得なことも</div>
-      </div>
-      <span class="page-no">― 38 ―</span>
+      <span class="page-no">― 26 ―</span>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 28  （ahamo版がおすすめな人） -->
+<!-- Slide ID: 15-6  （3つの理由まとめ） -->
 <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
-      <div class="page-head">ahamo版がおすすめな人 <small>①②</small></div>
+      <div class="page-head">3つの理由まとめ</div>
       <div class="page-body center">
         <ul class="rows">
-          <li>
-            <span class="badge">①</span>
-            <span class="tx">海外でそのまま<span class="em">追加料金なし</span>で使いたい人</span>
-          </li>
-          <li style="border-left-color:#FB8C00;">
-            <span class="badge" style="background:#FB8C00;">②</span>
-            <span class="tx">毎月<span class="em">30GB程度</span>を使う人</span>
-          </li>
+          <li><span class="badge">1</span><span class="tx">準備の遅れ</span></li>
+          <li><span class="badge">2</span><span class="tx">コストが見合わない</span></li>
+          <li><span class="badge">3</span><span class="tx">グループ内への囲い込み</span></li>
         </ul>
       </div>
-      <span class="page-no">― 39 ―</span>
+      <span class="page-no">― 27 ―</span>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-head">ahamo版が<br>おすすめな人 <small>③</small></div>
+      <div class="page-head">今後は…</div>
       <div class="page-body center">
-        <ul class="rows">
-          <li style="border-left-color:#43A047;">
-            <span class="badge" style="background:#43A047;">③</span>
-            <span class="tx">毎年「どこかにマイル」で<br>旅行を楽しみたい人</span>
-          </li>
-        </ul>
-        <div class="note" style="margin-top:8px;">通信の安定とマイルを両取りしたい人向け。</div>
+        <div class="lead tight">ソフトバンク回線の格安SIMは<br><span class="em">物理SIMのみ</span>の状態が続く</div>
+        <div class="warn" style="margin-top:8px;"><i class="ic fa-solid fa-landmark"></i>総務省は他社へのeSIM開放を要請中<br>＝<span class="em">今後変わる可能性あり</span></div>
       </div>
-      <span class="page-no">― 40 ―</span>
+      <span class="page-no">― 28 ―</span>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 28-2  （IIJmio版がおすすめな人） -->
+<!-- Slide ID: 16  （ソフトバンク回線×eSIMならLINEMO ＋ レーダーチャート） -->
 <div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
-      <div class="page-head">IIJmio版がおすすめな人 <small>①②</small></div>
+      <div class="page-head">ソフトバンク回線×eSIMが<br>今すぐ欲しいなら</div>
       <div class="page-body center">
-        <ul class="rows">
-          <li>
-            <span class="badge">①</span>
-            <span class="tx">月2〜10GBの<span class="em"><br>ライトユーザー</span></span>
-          </li>
-          <li style="border-left-color:#FB8C00;">
-            <span class="badge" style="background:#FB8C00;">②</span>
-            <span class="tx">スマホ代をとにかく安く<span class="sub">（月850円〜）</span></span>
-          </li>
-        </ul>
+        <div class="emph"><span class="big" style="font-size:80px;">LINEMO</span><br>が現実的な選択肢</div>
+        <div class="note" style="margin-top:8px;">mineoのSプランにこだわるより、<br>同じソフトバンク回線のオンライン<br>専用プランLINEMOを選ぶのが現実的。</div>
       </div>
-      <span class="page-no">― 41 ―</span>
+      <span class="page-no">― 29 ―</span>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-head">IIJmio版が<br>おすすめな人 <small>③</small></div>
-      <div class="page-body center">
-        <ul class="rows">
-          <li style="border-left-color:#43A047;">
-            <span class="badge" style="background:#43A047;">③</span>
-            <span class="tx">海外はたまにだし<br>別途Wi-Fiレンタルで<br>大丈夫な人</span>
+      <div class="head-right">
+        <img src="public/images/charts/LINEMO.png" alt="LINEMO レーダーチャート">
+      </div>
+      <div class="page-body center" style="justify-content:flex-start; padding-top:10px;">
+        <ul class="rows" style="flex:0;">
+          <li>
+            <i class="ic fa-solid fa-mobile-screen-button"></i>
+            <span class="tx">eSIMにもちゃんと対応</span>
+          </li>
+          <li style="border-left-color:#1c8b34;">
+            <i class="ic fa-solid fa-signal" style="color:#1c8b34;"></i>
+            <span class="tx">通信品質は当チャンネル評価で<span style="color:#1c8b34;font-weight:900;">SS</span><span class="sub">初心者でも安心して使える品質</span></span>
           </li>
         </ul>
-        <div class="note" style="margin-top:8px;">とにかく月額を抑えたい人に向く。</div>
+        <div class="note">eSIMにこだわらないなら、mineoの<br>Sプランも物理SIMで普通に使える。</div>
       </div>
-      <span class="page-no">― 42 ―</span>
+      <span class="page-no">― 30 ―</span>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 29  （選択基準まとめ） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+<!-- Slide ID: 16-2  （LINEMOの過去動画 CTA） -->
+<div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
-      <div class="page-head">選択基準まとめ <small>その①</small></div>
-      <div class="page-body center">
-        <div class="emph">マイルも貯めたいし<br>海外でも追加料金なしで<br>使いたい<br>→ <span class="big">ahamo版</span></div>
+      <div class="visual">
+        <img src="public/images/thumbnails/LINE使い放題で月990円！LINEMO(ラインモ)のメリット・デメリットを徹底解説【ahamo・povo・楽天モバイル比較】.png" alt="LINEMO過去動画" style="max-height:760px;">
       </div>
-      <span class="page-no">― 43 ―</span>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-head">選択基準まとめ <small>その②</small></div>
-      <div class="page-body center">
-        <div class="emph" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb;">マイルも貯めたいし<br>とにかく料金を安く抑えたい<br>→ <span class="big">IIJmio版</span></div>
+      <div class="page-body center" style="align-items:center;">
+        <div class="bigicon"><i class="fa-solid fa-circle-play"></i></div>
+        <div class="big-title" style="margin-top:18px;"><span class="em">LINEMO</span>の<br>解説動画もチェック！</div>
+        <div class="note" style="margin-top:18px;">LINEMOの詳細は別動画で。</div>
       </div>
-      <span class="page-no">― 44 ―</span>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 30-0  （章扉：まとめ） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+<!-- Slide ID: 17-0  （章扉：Chapter5） -->
+<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
@@ -1032,15 +765,15 @@
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
       <div class="page-body center" style="align-items:center;">
-        <div class="big-title" style="font-size:110px;">まとめ</div>
-        <div class="lead" style="margin-top:24px; text-align:center; border-left:none; border-radius:999px; padding:14px 36px;">今日のポイントを振り返ろう</div>
+        <div class="big-title">まとめ</div>
+        <div class="lead" style="margin-top:24px; text-align:center; border-left:none; border-radius:999px; padding:14px 36px;">今日のポイントを振り返り</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 30  （Chapter 5 タイトルカード） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+<!-- Slide ID: 17  （Chapter5 タイトルカード） -->
+<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
@@ -1051,173 +784,142 @@
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-body center" style="align-items:center;">
-        <div class="big-title" style="font-size:110px;">まとめ</div>
+      <div class="page-body center">
+        <div class="big-title" style="text-align:left;">まとめ</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 31  （今日のまとめ：2種類の比較） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+<!-- Slide ID: 18  （今日のまとめ：4点） -->
+<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
-      <div class="page-head">今日のまとめ <small>ahamo版</small></div>
+      <div class="page-head">今日のまとめ<small>①②</small></div>
       <div class="page-body center">
-        <div class="emph">30GBで2,970円・MNO回線<br>毎年マイル交換可<br>海外手続き<span class="em">なしOK</span></div>
+        <ul class="rows">
+          <li><span class="badge">1</span><span class="tx">10月から手数料改定<span class="sub">事務手数料3,850円・SIM発行料2,750円に値上げ／eSIM発行料は0円に</span></span></li>
+          <li><span class="badge">2</span><span class="tx">限定リンク経由なら<span class="em">事務手数料0円</span><span class="sub">eSIMなら初期費用も完全0円で乗り換え可能</span></span></li>
+        </ul>
       </div>
-      <span class="page-no">― 45 ―</span>
+      <span class="page-no">― 31 ―</span>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-head">今日のまとめ <small>IIJmio版</small></div>
+      <div class="page-head">今日のまとめ<small>③④</small></div>
       <div class="page-body center">
-        <div class="emph" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb;">2GBで850円〜・MVNO回線<br>10GBプランなら初年度<br><span class="em">2,300マイル</span><br>2年目以降も毎年1,800マイル</div>
+        <ul class="rows">
+          <li><span class="badge">3</span><span class="tx">mineoは<span style="color:var(--brand-deep);font-weight:900;">総合Sランク</span><span class="sub">値上げ後もおすすめの優秀な格安SIM</span></span></li>
+          <li><span class="badge">4</span><span class="tx">Sプランは今もeSIM非対応<span class="sub">eSIMが要るならLINEMO</span></span></li>
+        </ul>
       </div>
-      <span class="page-no">― 46 ―</span>
+      <span class="page-no">― 32 ―</span>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 32  （飛行機よく乗る人・現ahamoユーザー） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-  <div class="book">
-    <div class="spine"></div>
-    <div class="page left">
-      <div class="page-head">こんな人は要チェック</div>
-      <div class="page-body center">
-        <div class="lead" style="text-align:center;">飛行機によく乗る人は<br><span style="color:var(--brand-deep);">JALモバイル</span>へ！</div>
-      </div>
-      <span class="page-no">― 47 ―</span>
-    </div>
-    <div class="page right">
-      <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-head">現ahamoユーザーも要検討</div>
-      <div class="page-body center">
-        <div class="emph">同じ<span class="em">2,970円</span>のまま<br>毎月<span class="big">125マイル</span><br>貯まる！</div>
-        <div class="note" style="margin-top:8px;">申込手数料2,200円はかかる<br>（無料は新規・ドコモ以外からの乗り換えのみ）。</div>
-      </div>
-      <span class="page-no">― 48 ―</span>
-    </div>
-  </div>
-</div>
-
-<!-- Slide ID: 33  （申し込みはこちら） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+<!-- Slide ID: 19  （申し込み案内 CTA） -->
+<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
       <div class="page-body center" style="align-items:center;">
-        <div class="bigicon"><i class="fa-solid fa-square-arrow-up-right"></i></div>
+        <div class="bigicon"><i class="fa-solid fa-arrow-pointer"></i></div>
         <div class="big-title" style="margin-top:18px;">申し込みは<br><span class="em">こちら！</span></div>
-        <div class="note" style="margin-top:14px;">概要欄のリンクから確認できます。</div>
       </div>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
-      <div class="page-body center" style="align-items:center;">
-        <div class="logos" style="flex-direction: column; gap: 48px;">
-          <img src="public/images/logo/jalmobile-iijmio.png" style="height: 300px;" alt="IIJmio版">
-          <img src="public/images/logo/jalmobile-ahamo.png" style="height: 300px;" alt="ahamo版">
-        </div>
+      <div class="page-body center">
+        <div class="lead">概要欄の<span class="em">限定リンク</span>から<br>申し込みページへ</div>
+        <div class="emph" style="margin-top:8px;">事務手数料<br><span class="big">0円</span>で申し込める</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 34  （コメントで教えてね） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+<!-- Slide ID: 20  （コメント案内） -->
+<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
       <div class="page-body center" style="align-items:center;">
         <div class="bigicon"><i class="fa-solid fa-comments"></i></div>
-        <div class="big-title" style="margin-top:18px;">コメントで<br>教えてね！</div>
+        <div class="big-title" style="margin-top:18px;">コメントで<br><span class="em">教えてね！</span></div>
       </div>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
       <div class="page-body center">
         <ul class="rows">
-          <li style="border-left-color:#1565C0;">
-            <i class="ic fa-solid fa-comment" style="color:#1565C0;"></i>
-            <span class="tx">「IIJmio版を使っています」</span>
-          </li>
-          <li>
-            <i class="ic fa-solid fa-comment"></i>
-            <span class="tx">「ahamo版に乗り換える予定！」</span>
-          </li>
-          <li style="border-left-color:#FB8C00;">
-            <i class="ic fa-solid fa-comment" style="color:#FB8C00;"></i>
-            <span class="tx">「マイルに興味ないから本家派」</span>
-          </li>
+          <li><i class="ic fa-solid fa-comment-dots"></i><span class="tx">「mineo使ってます」</span></li>
+          <li><i class="ic fa-solid fa-comment-dots"></i><span class="tx">「リンクから申し込みます」</span></li>
+          <li><i class="ic fa-solid fa-comment-dots"></i><span class="tx">「ソフトバンク回線で<br>eSIM使いたい！」</span></li>
         </ul>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 35  （注意喚起：投稿時点のもの） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+<!-- Slide ID: 21  （定型：投稿時点の注意喚起） -->
+<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
       <div class="page-body center" style="align-items:center;">
-        <div class="bigicon" style="color:#f0a020;"><i class="fa-solid fa-circle-info"></i></div>
+        <div class="bigicon"><i class="fa-solid fa-circle-info"></i></div>
         <div class="big-title" style="margin-top:18px;">ご注意</div>
       </div>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
       <div class="page-body center">
-        <div class="warn"><i class="ic fa-solid fa-triangle-exclamation"></i>料金・プラン・キャンペーンは<span class="em">投稿時点</span>の情報です</div>
-        <div class="note" style="margin-top:12px;">最新の内容は必ず各社公式サイトでご確認ください。</div>
+        <div class="warn"><i class="ic fa-solid fa-triangle-exclamation"></i>料金・手数料・キャンペーン情報は<br><span class="em">動画投稿時点</span>のものです</div>
+        <div class="note" style="margin-top:8px;">お申し込み前に必ず公式サイトの<br>最新情報をご確認ください。</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 36  （ブログ・note案内） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+<!-- Slide ID: 22  （定型：ブログ・note案内） -->
+<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
       <div class="page-body center" style="align-items:center;">
         <div class="bigicon"><i class="fa-solid fa-pen-nib"></i></div>
-        <div class="big-title" style="margin-top:18px;">ブログ・note<br>もやってます</div>
+        <div class="big-title" style="margin-top:18px;">ブログ・note<br>でも発信中！</div>
       </div>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
       <div class="page-body center">
-        <div class="lead">動画で紹介しきれない<br><span class="em">詳しい比較・最新情報</span>を<br>発信中</div>
-        <img src="public/images/common/ブログ_ヘッダー画像_スライド用.png" alt="ブログ・noteヘッダー" style="max-height:400px; max-width: 100%; object-fit: contain; border-radius: 18px; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.15)); margin: 16px auto 0; display: block;">
-        <div class="note" style="margin-top:16px; text-align:center;">概要欄のリンクからチェックしてみてください。</div>
+        <div class="lead">格安SIMの解説記事を<br><span class="em">更新中</span></div>
+        <div class="note" style="margin-top:8px;">概要欄のリンクから<br>ぜひ遊びに来てください。</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Slide ID: 37  （チャンネル登録・高評価のお願い） -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
+<!-- Slide ID: 23  （定型：チャンネル登録・高評価） -->
+<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
   <div class="book">
     <div class="spine"></div>
     <div class="page left">
       <div class="page-body center" style="align-items:center;">
         <div class="bigicon"><i class="fa-solid fa-bell"></i></div>
-        <div class="big-title" style="margin-top:18px;">チャンネル登録<br>＆<span class="em">高評価</span>を<br>おねがい<br>します！</div>
+        <div class="big-title" style="margin-top:18px;">チャンネル登録<br><span class="em">よろしく！</span></div>
       </div>
     </div>
     <div class="page right">
       <span class="index-tab">格安SIM図鑑</span>
       <div class="page-body center" style="align-items:center;">
-        <div style="font-size: 90px; font-weight: 900; color: var(--ink); text-align: center; margin-bottom: 20px;">ご視聴ありがとう<br>ございました！</div>
-        <div class="logos" style="gap:60px;">
-          <i class="fa-solid fa-thumbs-up" style="font-size:140px; color:var(--brand);"></i>
-          <i class="fa-solid fa-bell" style="font-size:140px; color:#FB8C00;"></i>
+        <div class="logos" style="font-size:160px; gap:64px;">
+          <i class="fa-solid fa-thumbs-up" style="color:#1565C0;"></i>
+          <i class="fa-solid fa-bell" style="color:var(--brand);"></i>
         </div>
-        <div class="lead" style="margin-top:24px; text-align:center;">スマホ代節約の情報を<br>毎週お届けします</div>
+        <div class="lead" style="margin-top:24px; text-align:center;">高評価とチャンネル登録を<br>よろしくお願いします！</div>
       </div>
     </div>
   </div>
