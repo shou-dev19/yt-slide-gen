@@ -148,8 +148,8 @@ Script file path: $ARGUMENTS (default: `台本.txt`)
 旧 `public/images/slides/*.png` の貼り付けは使わない。次の内容を見開きで作る：
 
 - **投稿時点の注意喚起**：左 `.bigicon`（ℹ）＋`.big-title`「ご注意」／右 `.warn`「料金・プラン・キャンペーンは投稿時点の情報」＋`.note`「最新は各社公式で確認」。
-- **ブログ／note案内**：左 `.bigicon`（ペン）＋`.big-title`／右 `.lead`＋`.note`。
-- **チャンネル登録・高評価**：左 `.bigicon`（ベル）＋`.big-title`／右 `.logos`（👍🔔）＋`.lead`。
+- **ブログ／note案内**：左 `.bigicon`（ペン）＋`.big-title`／右はページ上段に `public/images/common/ブログ_ヘッダー画像_スライド用.png`（`max-height:320px` 程度・角丸＋ドロップシャドウ）を置き、その下に `.lead`＋`.note`。
+- **チャンネル登録・高評価**：左 `.bigicon`（ベル）＋`.big-title`「チャンネル登録<br>よろしくお願いします！」／右 `.logos`（👍🔔）＋`.lead`。
 
 ## 7. 冒頭つかみスライド（std を許容する唯一の例外）
 
