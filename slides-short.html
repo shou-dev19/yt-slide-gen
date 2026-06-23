@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JALモバイル2種類 おすすめ診断 (Short)</title>
+<title>mineo手数料値上げでも初期費用0円 (Short)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
@@ -66,28 +66,27 @@
     }
     .thumb-title {
         font-size: 80px; font-weight: 900; color: #1a1a2e;
-        line-height: 1.25; margin-bottom: 22px; max-width: 920px; z-index: 2;
+        line-height: 1.25; margin-bottom: 26px; max-width: 940px; z-index: 2;
     }
     .thumb-title .hl { color: var(--blue); }
-    .thumb-vs-row {
-        display: flex; align-items: center; justify-content: center;
-        gap: 30px; margin-bottom: 28px; z-index: 2;
-    }
-    .thumb-vs-row .logo-chip {
-        background: #fff; border: 5px solid var(--blue); border-radius: 24px;
-        padding: 18px 28px; box-shadow: 6px 6px 0 rgba(0,82,204,0.18);
-        display: flex; align-items: center; justify-content: center;
-    }
-    .thumb-vs-row .logo-chip img { height: 132px; filter: none; }
-    .thumb-vs-row .vs-mark {
-        font-size: 76px; font-weight: 900; color: var(--red);
-        font-style: italic; text-shadow: 4px 4px 0 rgba(0,0,0,0.12);
-    }
+    .thumb-title .hl-red { color: var(--red); }
     .thumb-sub-band {
         font-size: 60px; font-weight: 900; color: #fff;
         background: var(--blue); padding: 18px 70px; border-radius: 12px;
-        box-shadow: 4px 4px 0 rgba(0,0,0,0.2); z-index: 2;
+        box-shadow: 4px 4px 0 rgba(0,0,0,0.2); margin-bottom: 30px; z-index: 2;
     }
+    .thumb-logo-wrap {
+        height: 190px; display: flex; align-items: center; justify-content: center; z-index: 2;
+    }
+    .thumb-logo-wrap img {
+        height: 150px; filter: none;
+        background: #fff; border-radius: 18px; padding: 14px 30px;
+        box-shadow: 4px 4px 0 rgba(0,82,204,0.18);
+    }
+    .thumb-illust {
+        position: absolute; bottom: 40px; right: 50px; z-index: 2;
+    }
+    .thumb-illust img { height: 290px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.18)); }
 
     /* ===== Standard slides (2-5) ===== */
     .watermark {
@@ -102,6 +101,7 @@
         margin-bottom: 30px; z-index: 1;
     }
     .slide-title .hl { color: var(--blue); }
+    .slide-title .hl-red { color: var(--red); }
     .slide-body { display: flex; flex-direction: column; gap: 28px; z-index: 1; }
 
     .report-header-card {
@@ -109,7 +109,7 @@
         background: linear-gradient(135deg, #0052cc, #003fa0);
         color: #fff; border-radius: 20px; padding: 28px 36px;
     }
-    .report-header-card .rh-logo { height: 156px; background:#fff; border-radius:14px; padding:10px 16px; filter:none; }
+    .report-header-card .rh-logo { height: 130px; background:#fff; border-radius:14px; padding:14px 22px; filter:none; }
     .report-header-card .rh-text { font-size: 44px; font-weight: 900; line-height: 1.3; }
 
     .info-card {
@@ -118,27 +118,30 @@
         font-size: 46px; font-weight: 700;
         background: #f0f5ff; border-left: 14px solid var(--blue);
     }
-    .info-card .ic-emoji { font-size: 52px; }
+    .info-card .ic-emoji { font-size: 52px; flex-shrink: 0; }
     .info-card.alert {
         background: #fff0f0; border-left-color: var(--red);
         color: var(--red); font-size: 50px; font-weight: 900;
     }
     .info-card .ic-num { color: var(--blue); font-weight: 900; }
+    .info-card .ic-free { color: var(--red); font-weight: 900; }
+    .info-card .strike { text-decoration: line-through; opacity: 0.7; }
 
     .list-item {
         display: flex; align-items: center; gap: 22px;
         font-size: 52px; font-weight: 700; color: #1a1a2e;
     }
-    .list-item .li-emoji { font-size: 54px; }
+    .list-item .li-emoji { font-size: 54px; flex-shrink: 0; }
 
-    .opt-chip-row { display: flex; flex-direction: column; gap: 28px; }
-    .opt-chip {
-        display: flex; align-items: center; gap: 28px;
+    .price-flow {
+        display: flex; align-items: center; justify-content: center; gap: 26px;
         background: #f0f5ff; border: 6px solid var(--blue); border-radius: 22px;
-        padding: 26px 34px;
+        padding: 30px 28px; font-weight: 900;
     }
-    .opt-chip .oc-logo { height: 84px; filter: none; flex-shrink: 0; }
-    .opt-chip .oc-label { font-size: 50px; font-weight: 900; color: var(--blue); }
+    .price-flow .pf-old { font-size: 54px; color: #6b7280; text-decoration: line-through; }
+    .price-flow .pf-arrow { font-size: 50px; color: var(--blue); }
+    .price-flow .pf-new { font-size: 64px; color: var(--red); }
+    .price-flow .pf-label { font-size: 38px; color: #1a1a2e; line-height: 1.2; }
 
     .slide-illust {
         position: absolute; bottom: 40px; right: 40px;
@@ -151,6 +154,7 @@
         background: linear-gradient(135deg, #0052cc, #003380);
         padding: 70px;
     }
+    .cta-logo { height: 120px; filter: brightness(10); margin-bottom: 26px; }
     .cta-title { font-size: 84px; font-weight: 900; color: #ffd700; line-height: 1.2; margin-bottom: 18px; }
     .cta-sub { font-size: 50px; font-weight: 900; color: #fff; margin-bottom: 26px; }
     .cta-banner-img { width: 940px; border-radius: 18px; box-shadow: 0 14px 40px rgba(0,0,0,0.35); margin-bottom: 22px; filter: none; }
@@ -165,84 +169,80 @@
 
 <!-- ===================== Slide 1 : Thumbnail ===================== -->
 <div class="slide-container slide-thumbnail">
-    <div class="thumb-top-strip">⚡ 2026年最新 JALモバイル徹底比較 ⚡</div>
+    <div class="thumb-top-strip">⚡ 2026年10月 mineo手数料改定 ⚡</div>
     <div class="thumb-accent-tri tl"></div>
     <div class="thumb-accent-tri br"></div>
 
-    <div class="thumb-tag">2種類！</div>
-    <div class="thumb-title">JALモバイル<br><span class="hl">どっちを選ぶ？</span></div>
-    <div class="thumb-vs-row">
-        <div class="logo-chip"><img src="public/images/logo/jalmobile-iijmio.png" alt="JALモバイル IIJmio版"></div>
-        <span class="vs-mark">VS</span>
-        <div class="logo-chip"><img src="public/images/logo/jalmobile-ahamo.png" alt="JALモバイル ahamo版"></div>
+    <div class="thumb-tag">値上げでも！</div>
+    <div class="thumb-title">mineo値上げでも<br><span class="hl-red">初期費用0円</span>で乗り換え</div>
+    <div class="thumb-sub-band">損しない申込み方法</div>
+    <div class="thumb-logo-wrap">
+        <img src="public/images/logo/Mineo_logo_背景削除.png" alt="mineo">
     </div>
-    <div class="thumb-sub-band">かんたん おすすめ診断</div>
+
+    <div class="thumb-illust">
+        <img src="public/images/irasutoya/pose_naruhodo_woman.png" alt="なるほど">
+    </div>
 </div>
 
-<!-- ===================== Slide 2 : 2種類ある ===================== -->
+<!-- ===================== Slide 2 : eSIM発行料 無料化 ===================== -->
 <div class="slide-container slide-pad">
     <div class="watermark">2</div>
-    <h2 class="slide-title">実は<span class="hl">2種類</span>あります</h2>
+    <h2 class="slide-title">値上げと同時に<span class="hl-red">無料化</span></h2>
     <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">📱</span>同じ「JALモバイル」でも<br>中身は別物</div>
-        <div class="opt-chip-row">
-            <div class="opt-chip">
-                <img src="public/images/logo/jalmobile-iijmio.png" class="oc-logo" alt="IIJmio版">
-                <span class="oc-label">①&nbsp;IIJmio版</span>
-            </div>
-            <div class="opt-chip">
-                <img src="public/images/logo/jalmobile-ahamo.png" class="oc-logo" alt="ahamo版">
-                <span class="oc-label">②&nbsp;ahamo版</span>
-            </div>
+        <div class="info-card"><span class="ic-emoji">💡</span>実はタダになる部分もある</div>
+        <div class="price-flow">
+            <div class="pf-label">eSIMプロファイル<br>発行料</div>
+            <span class="pf-old">440円</span>
+            <span class="pf-arrow">▶</span>
+            <span class="pf-new">0円</span>
         </div>
+        <div class="info-card alert"><span class="ic-emoji">🎉</span>eSIMなら発行料が無料に！</div>
     </div>
     <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/pose_atama_kakaeru_woman.png" alt="迷う">
+        <img src="public/images/irasutoya/internet_kanki_woman1.png" alt="喜び">
     </div>
 </div>
 
-<!-- ===================== Slide 3 : IIJmio版 ===================== -->
+<!-- ===================== Slide 3 : 手数料改定の中身 ===================== -->
 <div class="slide-container slide-pad">
     <div class="watermark">3</div>
-    <h2 class="slide-title"><span class="hl">IIJmio版</span>の特徴</h2>
+    <h2 class="slide-title">10月からの<span class="hl">手数料改定</span></h2>
     <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="report-header-card">
-            <img src="public/images/logo/jalmobile-iijmio.png" class="rh-logo" alt="IIJmio版">
-            <span class="rh-text">いわゆる<br>格安SIM</span>
-        </div>
-        <div class="info-card alert"><span class="ic-emoji">💰</span>2GB&nbsp;<span class="ic-num">月850円〜</span></div>
-        <div class="info-card"><span class="ic-emoji">📉</span>大手キャリアよりずっと安い</div>
+        <div class="info-card"><span class="ic-emoji">📈</span>契約事務手数料<br><span class="strike">3,300円</span>&nbsp;▶&nbsp;<span class="ic-num">3,850円</span></div>
+        <div class="info-card alert"><span class="ic-emoji">📉</span>eSIM発行料<br><span class="strike">440円</span>&nbsp;▶&nbsp;<span class="ic-free">0円</span></div>
+        <div class="list-item"><span class="li-emoji">💳</span>物理は値上げ・eSIMは無料</div>
     </div>
     <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/money_fueru.png" alt="節約">
+        <img src="public/images/irasutoya/pose_yubisashi_kakunin_businesswoman.png" alt="確認">
     </div>
 </div>
 
-<!-- ===================== Slide 4 : ahamo版 ===================== -->
+<!-- ===================== Slide 4 : 限定リンクで事務手数料0円 ===================== -->
 <div class="slide-container slide-pad">
     <div class="watermark">4</div>
-    <h2 class="slide-title"><span class="hl">ahamo版</span>の特徴</h2>
+    <h2 class="slide-title">限定リンクなら<span class="hl-red">0円</span></h2>
     <div class="slide-body" style="margin-bottom: 120px;">
         <div class="report-header-card">
-            <img src="public/images/logo/jalmobile-ahamo.png" class="rh-logo" alt="ahamo版">
-            <span class="rh-text">ドコモ回線<br>そのまま</span>
+            <img src="public/images/logo/Mineo_logo_背景削除.png" class="rh-logo" alt="mineo">
+            <span class="rh-text">当チャンネル<br>限定リンク</span>
         </div>
-        <div class="info-card alert"><span class="ic-emoji">📶</span>30GB&nbsp;<span class="ic-num">月2,970円</span></div>
-        <div class="info-card"><span class="ic-emoji">✈️</span>海外91か国 追加料金なし</div>
+        <div class="info-card alert"><span class="ic-emoji">✨</span>契約事務手数料が<span class="ic-free">もとから0円</span></div>
+        <div class="list-item"><span class="li-emoji">🙆</span>値上げされても関係なし！</div>
     </div>
     <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/smartphone_speed_5g.png" alt="高速通信">
+        <img src="public/images/irasutoya/present_open.png" alt="特典">
     </div>
 </div>
 
-<!-- ===================== Slide 5 : 毎年マイル ===================== -->
+<!-- ===================== Slide 5 : 限定リンク＋eSIMで初期費用0円 ===================== -->
 <div class="slide-container slide-pad">
     <div class="watermark">5</div>
-    <h2 class="slide-title">どちらも<span class="hl">マイル</span>が貯まる</h2>
+    <h2 class="slide-title">合わせ技で<span class="hl-red">初期費用0円</span></h2>
     <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">📲</span>使い続けるだけで毎年たまる</div>
-        <div class="info-card alert"><span class="ic-emoji">🎁</span>毎年マイルで国内旅行に交換可</div>
-        <div class="list-item"><span class="li-emoji">😍</span>実質タダで旅行できちゃう！</div>
+        <div class="info-card"><span class="ic-emoji">🔗</span>限定リンク&nbsp;＋&nbsp;eSIM</div>
+        <div class="info-card alert"><span class="ic-emoji">💯</span>初期費用は完全に<span class="ic-free">0円</span></div>
+        <div class="list-item"><span class="li-emoji">😍</span>値上げなのに、むしろお得！</div>
     </div>
     <div class="slide-illust" style="z-index: 2;">
         <img src="public/images/irasutoya/family_happy_banzai.png" alt="喜び">
@@ -251,9 +251,10 @@
 
 <!-- ===================== Slide 6 : CTA ===================== -->
 <div class="slide-container slide-cta">
-    <div class="cta-title">選び方は<br>本編で解説！</div>
-    <div class="cta-sub">自分に合うのはどっち？</div>
-    <img src="public/images/thumbnails/【2026年最新】JALモバイル2種類を徹底比較！「JALモバイル powered by ahamo」が提供開始_サムネ1-1.png" class="cta-banner-img" alt="本編サムネイル">
+    <img src="public/images/logo/Mineo_logo.png" class="cta-logo" alt="mineo">
+    <div class="cta-title">手数料改定の<br>全容は本編で！</div>
+    <div class="cta-sub">損しない乗り換え方法を解説</div>
+    <img src="public/images/thumbnails/【2026年最新】mineo10月手数料改定、契約時手数料3,850円もeSIMなら0円_サムネ1.png" class="cta-banner-img" alt="本編サムネイル">
     <div class="cta-arrow">▼</div>
 </div>
 
