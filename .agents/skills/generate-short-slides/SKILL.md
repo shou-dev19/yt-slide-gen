@@ -203,7 +203,7 @@ When a slide presents N selectable options (e.g., 乗り換え先4選), **split 
 
 ### F. CTA Slide (Last Slide)
 - **Theme**: `background: linear-gradient(135deg, #0052cc, #003380)`.
-- **Logo**: `height: 120px`, `margin-bottom: 26px`, `filter: brightness(10)` to make it white.
+- **Logo**: `height: 110px`, `margin-bottom: 12px`. Show the logo in its **original colors** on a white rounded card so it stays legible on the dark background: `filter: none; background: #fff; border-radius: 18px; padding: 8px 16px; box-shadow: 4px 4px 0 rgba(0,0,0,0.18);`. Do NOT use `filter: brightness(10)` (white-out) — brand logos must keep their original colors.
 - **Title** (`.cta-title`): `font-size: 84px`, color `#ffd700`.
 - **Sub-text** (`.cta-sub`): `font-size: 50px`, color `#ffffff`.
 - **Bounce arrow**: `font-size: 90px`, color `#ffd700`, `@keyframes bounce` animation.
