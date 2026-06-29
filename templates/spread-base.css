@@ -311,3 +311,24 @@ body {
 .card .rank { grid-row: 1 / span 3; align-self: center; width: 96px; height: 96px; border-radius: 20px; font-size: 48px; }
 .card-name { font-size: 42px; font-weight: 900; color: var(--ink); line-height: 1.1; }
 .card .line { font-size: 33px; font-weight: 500; line-height: 1.2; color: var(--ink); }
+
+/* ===========================================================================
+ * 日本語の自動折り返し（手 <br> への依存を減らす）
+ * ---------------------------------------------------------------------------
+ * 既定の折り返しは任意の文字位置で割れるため、本文クラスでは
+ *   word-break: auto-phrase … 文節（意味の切れ目）で折り返す
+ *   text-wrap: balance       … 折り返した各行の長さを均す
+ * を効かせ、「助詞の後や論理的まとまりで折る」手作業を CSS に肩代わりさせる。
+ * これらが効く本文クラスでは <br> は最後の微調整だけに使う（§8 参照）。
+ * 表（.sheet）はセル幅が固定で balance が崩れやすいので auto-phrase のみ。
+ * =========================================================================== */
+.line,
+.rows .tx, .rows .tx .sub,
+.page-head small,
+.lead, .warn, .note, .emph,
+.card-name,
+.agenda li, .benefits li {
+  word-break: auto-phrase;
+  text-wrap: balance;
+}
+.sheet th, .sheet td { word-break: auto-phrase; }
