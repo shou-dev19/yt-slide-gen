@@ -207,7 +207,11 @@ When a slide presents N selectable options (e.g., 乗り換え先4選), **split 
 - **Title** (`.cta-title`): `font-size: 84px`, color `#ffd700`.
 - **Sub-text** (`.cta-sub`): `font-size: 50px`, color `#ffffff`.
 - **Bounce arrow**: `font-size: 90px`, color `#ffd700`, `@keyframes bounce` animation.
-- **Banner image** (`.cta-banner-img`): `width: 940px`. Use the video's own thumbnail from `public/images/thumbnails/` — the file follows the naming convention `{動画タイトル}_サムネ1.png`. Do NOT use generic slides images (e.g. `public/images/slides/今すぐ本編動画をチェック.png`).
+- **Banner image** (`.cta-banner-img`): `width: 940px`. ショートは対応する**長尺動画への誘導**なので、バナーには**長尺動画のサムネイル**を使う（ショート自身のサムネは作らない）。探し方:
+    1. 入力の短尺台本 CSV は `.../{動画フォルダ}/short/{短尺タイトル}.csv` にある。その2つ上の `{動画フォルダ}/` 直下の `long/` ディレクトリ内にある**長尺台本 CSV のファイル名（拡張子なし）**を取得する。
+    2. `public/images/thumbnails/{長尺CSVのファイル名}_サムネ1.png` をバナーに指定する（`public/images/thumbnails/` はマスター `shared/assets/thumbnails/` から `bash scripts/sync-assets.sh` で配布される。長尺サムネが未配布なら同期してから参照する）。
+    3. 例: 短尺 `.../34_UQmobile手数料改定/short/UQmobileの手数料….csv` → 長尺 `.../34_UQmobile手数料改定/long/【2026年8月】UQ mobileが手数料を4,950円に値上げ！乗り換え候補3選を徹底解説.csv` → `public/images/thumbnails/【2026年8月】UQ mobileが手数料を4,950円に値上げ！乗り換え候補3選を徹底解説_サムネ1.png`。
+    - **該当する長尺サムネが見つからない場合のみ**、フォールバックとして `public/images/slides/今すぐ本編動画をチェック.png` を使う。
 
 ## 4. Image Selection & Assets
 - **No Placeholders**: Do NOT use placeholder boxes. Always select and use the most appropriate image asset from the `public/images/` directory.
