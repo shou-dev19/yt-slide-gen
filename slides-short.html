@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>mineo手数料値上げでも初期費用0円 (Short)</title>
+<title>UQ mobile手数料4,950円を0円にするテクニック (Short)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
@@ -59,13 +59,13 @@
     .thumb-accent-tri.tl { top:25px; left:25px; border-top:300px solid rgba(0,82,204,0.09); border-right:300px solid transparent; }
     .thumb-accent-tri.br { bottom:25px; right:25px; border-bottom:300px solid rgba(0,82,204,0.09); border-left:300px solid transparent; }
     .thumb-tag {
-        font-size: 80px; font-weight: 900; color: #fff;
+        font-size: 76px; font-weight: 900; color: #fff;
         background: var(--red); padding: 18px 54px;
         transform: rotate(-3deg); box-shadow: 8px 8px 0 rgba(0,0,0,0.25);
         margin-bottom: 28px; z-index: 2;
     }
     .thumb-title {
-        font-size: 80px; font-weight: 900; color: #1a1a2e;
+        font-size: 78px; font-weight: 900; color: #1a1a2e;
         line-height: 1.25; margin-bottom: 26px; max-width: 940px; z-index: 2;
     }
     .thumb-title .hl { color: var(--blue); }
@@ -143,6 +143,23 @@
     .price-flow .pf-new { font-size: 64px; color: var(--red); }
     .price-flow .pf-label { font-size: 38px; color: #1a1a2e; line-height: 1.2; }
 
+    /* ===== Option rows (Slide 5 : 乗り換え候補3選) ===== */
+    .opt-row {
+        display: flex; align-items: center; gap: 28px;
+        background: #f0f5ff; border-left: 14px solid var(--blue);
+        border-radius: 0 16px 16px 0; padding: 20px 30px;
+    }
+    .opt-logo-chip {
+        width: 240px; height: 96px; flex-shrink: 0;
+        background: #fff; border-radius: 14px;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 3px 3px 0 rgba(0,82,204,0.15);
+    }
+    .opt-logo-chip img { max-height: 68px; max-width: 210px; filter: none; }
+    .opt-reason { display: flex; flex-direction: column; }
+    .opt-reason .opt-tag { font-size: 34px; font-weight: 900; color: #fff; background: var(--red); border-radius: 8px; padding: 4px 16px; align-self: flex-start; margin-bottom: 8px; }
+    .opt-reason .opt-text { font-size: 46px; font-weight: 900; color: #1a1a2e; }
+
     .slide-illust {
         position: absolute; bottom: 40px; right: 40px;
     }
@@ -169,92 +186,97 @@
 
 <!-- ===================== Slide 1 : Thumbnail ===================== -->
 <div class="slide-container slide-thumbnail">
-    <div class="thumb-top-strip">⚡ 2026年10月 mineo手数料改定 ⚡</div>
+    <div class="thumb-top-strip">⚡ 2026年8月 UQ mobile 手数料改定 ⚡</div>
     <div class="thumb-accent-tri tl"></div>
     <div class="thumb-accent-tri br"></div>
 
-    <div class="thumb-tag">値上げでも！</div>
-    <div class="thumb-title">mineoに<br><span class="hl-red">初期費用0円</span>で乗り換える</div>
-    <div class="thumb-sub-band">損しない申込み方法</div>
+    <div class="thumb-tag">8月値上げ！</div>
+    <div class="thumb-title">手数料が<span class="hl-red">4,950円</span>に…<br>でも<span class="hl">0円</span>にできる</div>
+    <div class="thumb-sub-band">乗り換え候補3選！</div>
     <div class="thumb-logo-wrap">
-        <img src="public/images/logo/Mineo_logo.png" alt="mineo">
+        <img src="public/images/logo/UQ_logo_2.png" alt="UQ mobile">
     </div>
 
-    <div class="thumb-illust">
-        <img src="public/images/irasutoya/pose_naruhodo_woman.png" alt="なるほど">
+    <div class="thumb-illust" style="position: absolute; bottom: 5px;">
+        <img src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="驚き">
     </div>
 </div>
 
-<!-- ===================== Slide 2 : eSIM発行料 無料化 ===================== -->
+<!-- ===================== Slide 2 : 店頭事務手数料の値上げ ===================== -->
 <div class="slide-container slide-pad">
     <div class="watermark">2</div>
-    <h2 class="slide-title">値上げと同時に<span class="hl-red">無料化</span></h2>
+    <h2 class="slide-title">店頭手数料が<span class="hl-red">値上げ</span></h2>
     <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">💡</span>実はタダになる部分もある</div>
+        <div class="info-card"><span class="ic-emoji">🏪</span>UQ mobile 店頭の事務手数料</div>
         <div class="price-flow">
-            <div class="pf-label">eSIMプロファイル<br>発行料</div>
-            <span class="pf-old">440円</span>
+            <span class="pf-old">3,850円</span>
             <span class="pf-arrow">▶</span>
-            <span class="pf-new">0円</span>
+            <span class="pf-new">4,950円</span>
         </div>
-        <div class="info-card alert"><span class="ic-emoji">🎉</span>eSIMなら発行料が無料に！</div>
+        <div class="info-card alert"><span class="ic-emoji">📈</span>約3割の値上げ<br>（2026年8月1日〜）</div>
+    </div>
+    <div class="slide-illust" style="z-index: 2;">
+        <img src="public/images/irasutoya/business_man2_3_surprise.png" alt="驚き">
+    </div>
+</div>
+
+<!-- ===================== Slide 3 : eSIMをWebで申し込めば0円 ===================== -->
+<div class="slide-container slide-pad">
+    <div class="watermark">3</div>
+    <h2 class="slide-title">でも<span class="hl">eSIM</span>なら<span class="hl-red">0円</span></h2>
+    <div class="slide-body" style="margin-bottom: 120px;">
+        <div class="info-card"><span class="ic-emoji">🙆</span>慌てて乗り換えなくてOK</div>
+        <div class="info-card"><span class="ic-emoji">📱</span>eSIMをWebで申し込めば</div>
+        <div class="info-card alert"><span class="ic-emoji">🎉</span>事務手数料は<span class="ic-free">0円</span>にできる</div>
     </div>
     <div class="slide-illust" style="z-index: 2;">
         <img src="public/images/irasutoya/internet_kanki_woman1.png" alt="喜び">
     </div>
 </div>
 
-<!-- ===================== Slide 3 : 手数料改定の中身 ===================== -->
+<!-- ===================== Slide 4 : 本当に100Mbps必要？ ===================== -->
 <div class="slide-container slide-pad">
-    <div class="watermark">3</div>
-    <h2 class="slide-title">10月からの<span class="hl">手数料改定</span></h2>
+    <div class="watermark">4</div>
+    <h2 class="slide-title">本当に<span class="hl">100Mbps</span>必要？</h2>
     <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">📈</span>契約事務<br>手数料<br><span class="strike">3,300円</span>&nbsp;▶&nbsp;<span class="ic-num">3,850円</span></div>
-        <div class="info-card alert"><span class="ic-emoji">📉</span>eSIM発行料<br><span class="strike">440円</span>&nbsp;▶&nbsp;<span class="ic-free">0円</span></div>
-        <div class="list-item"><span class="li-emoji">💳</span>物理は値上げ・eSIMは無料</div>
+        <div class="info-card"><span class="ic-emoji">🔍</span>ネット検索は<span class="ic-num">約10Mbps</span></div>
+        <div class="info-card"><span class="ic-emoji">🎬</span>動画視聴は<span class="ic-num">約20Mbps</span>で快適</div>
+        <div class="list-item"><span class="li-emoji">👌</span>そんなに速くなくてもOK</div>
+    </div>
+    <div class="slide-illust" style="z-index: 2;">
+        <img src="public/images/irasutoya/pose_necchuu_smartphone_woman.png" alt="スマホ視聴">
+    </div>
+</div>
+
+<!-- ===================== Slide 5 : 乗り換え候補3選 ===================== -->
+<div class="slide-container slide-pad">
+    <div class="watermark">5</div>
+    <h2 class="slide-title">乗り換え候補<span class="hl-red">3選</span></h2>
+    <div class="slide-body" style="margin-bottom: 120px;">
+        <div class="opt-row">
+            <div class="opt-logo-chip"><img src="public/images/logo/Povo_logo.png" alt="povo2.0"></div>
+            <div class="opt-reason"><span class="opt-tag">速さ重視</span><span class="opt-text">povo2.0</span></div>
+        </div>
+        <div class="opt-row">
+            <div class="opt-logo-chip"><img src="public/images/logo/Rakuten_Mobile_logo.png" alt="楽天モバイル"></div>
+            <div class="opt-reason"><span class="opt-tag">お店で相談</span><span class="opt-text">楽天モバイル</span></div>
+        </div>
+        <div class="opt-row">
+            <div class="opt-logo-chip"><img src="public/images/logo/Mineo_logo.png" alt="mineo"></div>
+            <div class="opt-reason"><span class="opt-tag">安さ重視</span><span class="opt-text">mineo</span></div>
+        </div>
     </div>
     <div class="slide-illust" style="z-index: 2;">
         <img src="public/images/irasutoya/pose_yubisashi_kakunin_businesswoman.png" alt="確認">
     </div>
 </div>
 
-<!-- ===================== Slide 4 : 限定リンクで事務手数料0円 ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">4</div>
-    <h2 class="slide-title">限定リンクなら<span class="hl-red">0円</span></h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="report-header-card">
-            <img src="public/images/logo/Mineo_logo.png" class="rh-logo" alt="mineo">
-            <span class="rh-text">当チャンネル<br>限定リンク</span>
-        </div>
-        <div class="info-card alert"><span class="ic-emoji">✨</span>契約事務手数料が<span class="ic-free">もとから0円</span></div>
-        <div class="list-item"><span class="li-emoji">🙆</span>値上げされても関係なし！</div>
-    </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/present_open.png" alt="特典">
-    </div>
-</div>
-
-<!-- ===================== Slide 5 : 限定リンク＋eSIMで初期費用0円 ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">5</div>
-    <h2 class="slide-title">合わせ技で<span class="hl-red">初期費用0円</span></h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">🔗</span>限定リンク&nbsp;＋&nbsp;eSIM</div>
-        <div class="info-card alert"><span class="ic-emoji">💯</span>初期費用は完全に<span class="ic-free">0円</span></div>
-        <div class="list-item"><span class="li-emoji">😍</span>値上げなのに、むしろお得！</div>
-    </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/family_happy_banzai.png" alt="喜び">
-    </div>
-</div>
-
 <!-- ===================== Slide 6 : CTA ===================== -->
 <div class="slide-container slide-cta">
-    <img src="public/images/logo/Mineo_logo.png" class="cta-logo" alt="mineo">
-    <div class="cta-title">手数料改定の<br>全容は本編で！</div>
-    <div class="cta-sub">損しない乗り換え方法を解説</div>
-    <img src="public/images/thumbnails/【2026年最新】mineo10月手数料改定、契約時手数料3,850円もeSIMなら0円_サムネ1.png" class="cta-banner-img" alt="本編サムネイル">
+    <img src="public/images/logo/UQ_logo_2.png" class="cta-logo" alt="UQ mobile">
+    <div class="cta-title">料金・0円のコツは<br>本編で！</div>
+    <div class="cta-sub">自分に合う乗り換え先を解説</div>
+    <img src="public/images/thumbnails/【2026年8月】UQ mobileが手数料を4,950円に値上げ！乗り換え候補3選を徹底解説_サムネ1.png" class="cta-banner-img" alt="本編動画をチェック">
     <div class="cta-arrow">▼</div>
 </div>
 
