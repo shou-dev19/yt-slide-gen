@@ -263,7 +263,7 @@ body {
 .warn .em { color: var(--con); font-weight: 900; }
 
 /* --- 小注記 --- */
-.note { font-size: 36px; color: var(--ink-soft); font-weight: 600; line-height: 1.4; }
+.note { font-size: 44px; color: var(--ink-soft); font-weight: 600; line-height: 1.4; }
 
 /* --- 紙の表 --- */
 .sheet { width: 100%; border-collapse: collapse; font-size: 42px; }
