@@ -118,7 +118,9 @@ Script file path: $ARGUMENTS (default: `台本.txt`)
 - ランクの色は `.rank.SS/S/A/B/C` に従う（独自配色にしない）。pro は `＋`、con は `－`。
 - レーダーチャートは `.head-right img`（`height:100%`）で表示。評価バッジを別途並べない。
 
-### 評価見開き `N` には「料金プラン見開き `N-0`」を必ずセットで前に置く（必須）
+> **本パイプラインでの実態（重要）**：`generate-youtube-video` の本編は、`セリフ台本.txt` の各行の slideId を `slide_NN.png` に **1:1 で対応**させて表示する（`generate-scenario`）。ZukanSpread のカメラ演出（評価見開きと料金見開きをペアで寄せる仕組み）は**本編未統合**のため、下記の料金プラン見開き `N-0` は台本にその slideId が無ければ**参照されず表示されない**。したがって本編用途では、**評価は台本の単一 slideId（`N`）で自己完結する1見開き**（左＝ロゴ/社名＋レーダーチャート＋総合、右＝6観点＋代表プラン）にしてよい。ZukanSpread を統合した動画・デモを作るときだけ、次の `N-0` ペアを併せて作る。
+
+### （ZukanSpread 統合時）評価見開き `N` には「料金プラン見開き `N-0`」をセットで前に置く
 
 各キャリアの評価見開き `N`（Layout B）を作るときは、**その直前に料金プラン紹介の見開き `N-0` を必ずペアで作成する**（評価 `N` を単独で出さない）。`N-0` は「左＝ロゴ＋レーダーチャート／右＝料金プラン」の構成にする。
 
@@ -164,6 +166,7 @@ Script file path: $ARGUMENTS (default: `台本.txt`)
 - **集中線/サンバースト背景**（`repeating-conic-gradient` を薄く重ねる）や角の三角アクセント
 - **キャリアロゴ**（白カード載せ）＋関連する**いらすとや画像**（驚き・悲鳴などの感情イラスト）
 - 値上げ・比較モノは **Before→After の価格フロー**（旧価格に取り消し線 → 新価格をデカ文字）
+- **台本の「（イラスト：…）」指示を必ず反映する**：台本の「スライドに表示する内容」に `（イラスト：書類に埋もれるショウ）` のようなイラスト指示があれば、その内容に最も近い `public/images/irasutoya/`（または `common/`）の画像を選んで大きく配置する。指示があるのに画像が無い導入スライドは**不合格**。指示が無くても、導入は上記部品＋いらすとやで表紙級のリッチさにする（大見出し＋イラスト＋集中線＋バッジの2カラム構成が作りやすい）。
 
 ```css
 .slide-container.std { width:1280px;height:720px;border:10px solid var(--primary-color);background:white;box-sizing:border-box;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px;flex-shrink:0; }
@@ -184,6 +187,8 @@ body { --primary-color:#C8102E; --accent-red:#E53935; --text-dark:#212121; }
 
 - **プレースホルダ禁止**。`public/images/` から文脈に最適な既存画像を選ぶ（`GEMINI.md` に一覧）。
 - 選択優先度：`temp/<carrier>/`（キャンペーンバナー等の直接的画像） > `charts/`（レーダーチャート） > `thumbnails/`（過去動画CTA） > `logo/` > `irasutoya/`（状況イラスト） > `common/`（概念図）。
+- **ファイル名は実在ファイルと厳密一致させる**（`ls` で確認）。特にレーダーチャートは `public/images/charts/<正式社名>.png` で、社名の綴り・スペース・記号まで一致が必要（実在例: `UQ mobile.png`／`Y!mobile.png`／`楽天モバイル.png`／`日本通信SIM.png`／`povo2.0.png`）。`UQ.png` のような略称パスは**リンク切れ**になる。過去動画CTAサムネは `thumbnails/` の実ファイル名に動画タイトルで部分一致させる。
+- **余白埋めのいらすとや自動選定**：本文の少ないページは `irasutoya/` から文脈に合う画像で埋める（§10）。ジェネレータで作る場合は「キーワード→ファイル名」の対応表を持たせると安定する（例: 迷う/多すぎ→`pose_atama_kakaeru_woman.png`、損/手数料→`seikyuusyo_shock.png`、店舗→`kaden_tenin16_woman_ojigi.png`、自宅ネット→`internet_modem_router.png` 等）。
 - **外部出典の明記（必須）**：第三者サイトから取得した画像には取得元を正確に併記（例 `出典：Amazon.co.jp（IIJmio商品ページ）`。Amazon が権利者ではない点に注意）。キャプションは `.note` 相当の小さめ・グレーで画像直下に。
 
 ## 10. 自己チェック（重要）
