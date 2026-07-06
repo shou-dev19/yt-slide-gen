@@ -3,6 +3,7 @@ import pptxgen from 'pptxgenjs';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
+import { resolveBrowserExecutable } from './resolve_browser.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,20 +26,12 @@ async function main() {
         fs.mkdirSync(OUT_DIR, { recursive: true });
     }
 
-    const systemChromiumCandidates = [
-        '/usr/bin/chromium',
-        '/usr/bin/chromium-browser',
-        '/usr/bin/google-chrome',
-        '/usr/bin/google-chrome-stable',
-    ];
-    const systemChromium =
-        process.env.PUPPETEER_EXECUTABLE_PATH ||
-        systemChromiumCandidates.find((p) => fs.existsSync(p));
+    const executablePath = resolveBrowserExecutable();
 
     const browser = await puppeteer.launch({
         headless: 'new',
         args: ['--no-sandbox', '--disable-setuid-sandbox', '--font-render-hinting=none'],
-        ...(systemChromium ? { executablePath: systemChromium } : {}),
+        ...(executablePath ? { executablePath } : {}),
     });
     const page = await browser.newPage();
     await page.setViewport({ width: VIEWPORT_WIDTH, height: VIEWPORT_HEIGHT });

@@ -2,6 +2,7 @@ import puppeteer from 'puppeteer';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
+import { resolveBrowserExecutable } from './resolve_browser.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,18 +27,7 @@ async function main() {
         fs.mkdirSync(OUT_DIR, { recursive: true });
     }
 
-    // Determine the Chromium executable to use.
-    // On ARM64 Linux containers, Puppeteer's bundled Chromium is x64 and fails
-    // via Rosetta. Prefer a system-installed Chromium when available.
-    const systemChromiumCandidates = [
-        '/usr/bin/chromium',
-        '/usr/bin/chromium-browser',
-        '/usr/bin/google-chrome',
-        '/usr/bin/google-chrome-stable',
-    ];
-    const systemChromium =
-        process.env.PUPPETEER_EXECUTABLE_PATH ||
-        systemChromiumCandidates.find((p) => fs.existsSync(p));
+    const executablePath = resolveBrowserExecutable();
 
     const browser = await puppeteer.launch({
         headless: 'new',
@@ -46,7 +36,7 @@ async function main() {
             '--disable-setuid-sandbox',
             '--font-render-hinting=none',
         ],
-        ...(systemChromium ? { executablePath: systemChromium } : {}),
+        ...(executablePath ? { executablePath } : {}),
     });
     const page = await browser.newPage();
 
