@@ -40,4 +40,10 @@ if [ ! -L "/home/node/.gemini" ]; then
     ln -s "$(pwd)/.gemini" "/home/node/.gemini"
 fi
 
+# Install chrome-headless-shell for Puppeteer (the Debian-packaged Chromium
+# crashes on launch in this container; scripts/resolve_browser.js picks up
+# the headless shell from the Puppeteer cache automatically)
+echo "Installing chrome-headless-shell for Puppeteer..."
+npx --yes puppeteer browsers install chrome-headless-shell
+
 echo "Dev Container setup complete!"
