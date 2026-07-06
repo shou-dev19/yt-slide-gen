@@ -25,7 +25,7 @@
     "voicevox-docs"
   ],
   "sandbox": {
-    "enabled": true,
+    "enabled": false,
     "autoAllowBashIfSandboxed": true,
     "network": {
       "allowedDomains": ["github.com"]
