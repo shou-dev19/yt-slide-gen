@@ -27,6 +27,16 @@ async function main() {
         fs.mkdirSync(OUT_DIR, { recursive: true });
     }
 
+    // Remove stale PNGs from a previous video's run so bridge.sh never picks up
+    // leftover slide IDs that no longer exist in the current slides.html.
+    const staleFiles = fs.readdirSync(OUT_DIR).filter((f) => f.startsWith(FILE_PREFIX) && f.endsWith('.png'));
+    for (const f of staleFiles) {
+        fs.unlinkSync(path.join(OUT_DIR, f));
+    }
+    if (staleFiles.length > 0) {
+        console.log(`Removed ${staleFiles.length} stale PNG(s) from ${OUT_DIR}`);
+    }
+
     const executablePath = resolveBrowserExecutable();
 
     const browser = await puppeteer.launch({
