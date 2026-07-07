@@ -62,6 +62,77 @@
       transform: rotate(-2deg);
       box-shadow: 0 8px 16px rgba(0, 0, 0, .2);
     }
+
+    /* 評価一覧（Overview）用スタイル */
+    .axis-list {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .axis-item {
+      display: grid;
+      grid-template-columns: 80px 190px 1fr;
+      align-items: center;
+      gap: 12px;
+      background: #fff;
+      border: 3px solid #e7dcc2;
+      border-left: 12px solid var(--brand);
+      border-radius: 16px;
+      padding: 12px 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .axis-item .rank {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      font-size: 32px;
+      font-weight: 900;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .axis-name {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .axis-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .axis-line {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.25;
+      color: var(--ink);
+      word-break: auto-phrase;
+      text-wrap: balance;
+    }
+
+    .axis-line .tag {
+      display: inline-block;
+      width: 1.4em;
+      font-weight: 900;
+    }
+
+    .axis-line.pro .tag {
+      color: var(--pro);
+    }
+
+    .axis-line.con .tag {
+      color: var(--con);
+    }
   </style>
 </head>
 
@@ -71,7 +142,7 @@
     <div class="sunburst"></div>
 
     <div style="position:relative;z-index:1;display:flex;align-items:center;gap:20px;width:100%;padding:0 40px;">
-      <div style="flex:1.8;text-align:center;">
+      <div style="flex:1.8;text-align:left;">
         <div class="cover-badge" style="font-size:38px;padding:10px 30px;">速報</div>
         <div
           style="font-size:72px;font-weight:900;line-height:1.32;color:var(--text-dark);text-shadow:3px 3px 0 #fff;margin-top:26px;word-break:auto-phrase;text-wrap:balance;">
@@ -121,7 +192,7 @@
         <div class="page-head">格安SIM図鑑 もくじ</div>
         <ul class="agenda">
           <li><span class="num">1</span>楽天モバイルの「au回線終了」って何？</li>
-          <li><span class="num">2</span>あなたは圏外になる？楽天エリアのチェック方法</li>
+          <li><span class="num">2</span>あなたは圏外になる？生活圏のチェック方法</li>
           <li><span class="num">3</span>お金をかけない対策3つ</li>
           <li><span class="num">4</span>まとめ</li>
         </ul><span class="page-no">― 1 ―</span>
@@ -167,7 +238,7 @@
         </div><span class="page-no">― 3 ―</span>
       </div>
       <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">だから地下鉄でも<br>使えた</div>
+        <div class="page-head">だから地下鉄でも使えた</div>
         <ul class="rows">
           <li><span class="ic"><i class="fa-solid fa-tower-broadcast"></i></span>
             <div class="tx">自社の電波が届かない場所を<span class="em">自動で補完</span></div>
@@ -217,7 +288,7 @@
       </div>
       <div class="page right"><span class="index-tab">格安SIM図鑑</span>
         <div class="page-body center">
-          <div class="big-title">あなたは圏外になる？<br>楽天エリアの<br>チェック方法</div>
+          <div class="big-title">あなたは圏外になる？<br>生活圏の<br>チェック方法</div>
         </div>
       </div>
     </div>
@@ -236,7 +307,7 @@
           <div class="visual"
             style="flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; margin-top: 15px;">
             <img src="public/images/temp/rakuten/サービスエリアマップ_サンプル.png"
-              style="max-height: 600px; max-width: 100%; object-fit: contain; border-radius: 12px; border: 3px solid #e7dcc2; box-shadow: 0 8px 16px rgba(0,0,0,0.15);">
+              style="max-height: 520px; max-width: 100%; object-fit: contain; border-radius: 12px; border: 3px solid #e7dcc2; box-shadow: 0 8px 16px rgba(0,0,0,0.15);">
           </div>
         </div>
         <div class="note"
@@ -333,7 +404,7 @@
         <div class="page-body center">
           <img src="public/images/irasutoya/smartphone_nidaimochi_man.png"
             style="max-height:480px;max-width:80%;object-fit:contain;">
-          <div class="lead">楽天の電波が不安な人は<span class="em">②③のどちらか</span></div>
+          <div class="lead">気になるのは<span class="em">②③のどちらか</span></div>
         </div><span class="page-no">― 12 ―</span>
       </div>
     </div>
@@ -344,54 +415,68 @@
     <div class="book">
       <div class="spine"></div>
       <div class="page left">
-        <div class="head-left" style="height:260px;">
+        <div class="head-left">
           <img class="logo" src="public/images/logo/LINEMO_logo.png" alt="logo">
           <div class="total">
             <div class="label">総合評価</div>
             <div class="grade">A</div>
           </div>
         </div>
-        <div class="cards">
-          <div class="card">
-            <span class="rank S">S</span>
-            <div class="card-name">データ料金</div>
-            <div class="line pro"><span class="tag">＋</span>3GB 990円・30GBでも2,970円と分かりやすい</div>
-            <div class="line con"><span class="tag">－</span>特になし</div>
-          </div>
-          <div class="card">
-            <span class="rank SS">SS</span>
-            <div class="card-name">通信品質</div>
-            <div class="line pro"><span class="tag">＋</span>ソフトバンク回線で、お昼でも速度が落ちにくい</div>
-            <div class="line con"><span class="tag">－</span>特になし</div>
-          </div>
-          <div class="card">
-            <span class="rank C">C</span>
-            <div class="card-name">初期費用</div>
-            <div class="line pro"><span class="tag">＋</span>今だけの乗り換えキャンペーンで安くなることも</div>
-            <div class="line con"><span class="tag">－</span>通常は事務手数料3,850円がかかる</div>
-          </div>
+        <div class="visual"
+          style="flex: 1; display: flex; justify-content: center; align-items: center; min-height: 0; background: #fff; border: 4px solid var(--brand); border-radius: 22px; padding: 15px; box-shadow: inset 0 2px 8px rgba(0,0,0,0.05); margin-top: 15px;">
+          <img src="public/images/charts/LINEMO.png" style="max-height: 520px; max-width: 100%; object-fit: contain;">
         </div>
       </div>
       <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="head-right" style="height:260px;"><img src="public/images/charts/LINEMO.png" alt="chart"></div>
-        <div class="cards">
-          <div class="card">
+        <div class="page-head">観点別 評価一覧</div>
+        <div class="axis-list">
+          <div class="axis-item">
+            <span class="rank S">S</span>
+            <div class="axis-name">データ料金</div>
+            <div class="axis-lines">
+              <div class="axis-line pro"><span class="tag">＋</span>3GB 990円・30GBでも2,970円と分かりやすい</div>
+              <div class="axis-line con"><span class="tag">－</span>特になし</div>
+            </div>
+          </div>
+          <div class="axis-item">
+            <span class="rank SS">SS</span>
+            <div class="axis-name">通信品質</div>
+            <div class="axis-lines">
+              <div class="axis-line pro"><span class="tag">＋</span>ソフトバンク回線で、お昼でも速度が落ちにくい</div>
+              <div class="axis-line con"><span class="tag">－</span>特になし</div>
+            </div>
+          </div>
+          <div class="axis-item">
+            <span class="rank C">C</span>
+            <div class="axis-name">初期費用</div>
+            <div class="axis-lines">
+              <div class="axis-line pro"><span class="tag">＋</span>今だけの乗り換えキャンペーンで安くなることも</div>
+              <div class="axis-line con"><span class="tag">－</span>通常は事務手数料3,850円がかかる</div>
+            </div>
+          </div>
+          <div class="axis-item">
             <span class="rank B">B</span>
-            <div class="card-name">通話料</div>
-            <div class="line pro"><span class="tag">＋</span>5分以内の通話が無料のプランもある</div>
-            <div class="line con"><span class="tag">－</span>完全なかけ放題は別料金</div>
+            <div class="axis-name">通話料</div>
+            <div class="axis-lines">
+              <div class="axis-line pro"><span class="tag">＋</span>5分以内の通話が無料のプランもある</div>
+              <div class="axis-line con"><span class="tag">－</span>完全なかけ放題は別料金</div>
+            </div>
           </div>
-          <div class="card">
+          <div class="axis-item">
             <span class="rank A">A</span>
-            <div class="card-name">店舗サポート</div>
-            <div class="line pro"><span class="tag">＋</span>店頭スマホサポートが使える</div>
-            <div class="line con"><span class="tag">－</span>店頭スマホサポートは割高</div>
+            <div class="axis-name">店舗サポート</div>
+            <div class="axis-lines">
+              <div class="axis-line pro"><span class="tag">＋</span>店頭スマホサポートが使える</div>
+              <div class="axis-line con"><span class="tag">－</span>店頭スマホサポートは割高</div>
+            </div>
           </div>
-          <div class="card">
+          <div class="axis-item">
             <span class="rank A">A</span>
-            <div class="card-name">オプション</div>
-            <div class="line pro"><span class="tag">＋</span>LINEギガフリーでLINEがデータを消費しない</div>
-            <div class="line con"><span class="tag">－</span>特になし</div>
+            <div class="axis-name">オプション</div>
+            <div class="axis-lines">
+              <div class="axis-line pro"><span class="tag">＋</span>LINEギガフリーでLINEがデータを消費しない</div>
+              <div class="axis-line con"><span class="tag">－</span>特になし</div>
+            </div>
           </div>
         </div>
       </div>
@@ -457,59 +542,96 @@
     </div>
   </div>
 
+  <!-- Slide ID: 13-5 -->
+  <div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-body center">
+          <div class="bigicon"><i class="fa-solid fa-circle-play"></i></div>
+          <div class="big-title" style="font-size: 80px;">LINEMOの<br>解説動画もチェック！</div>
+        </div>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-body center">
+          <div class="visual"
+            style="flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0;">
+            <img src="public/images/thumbnails/LINE使い放題で月990円！LINEMO(ラインモ)のメリット・デメリットを徹底解説【ahamo・povo・楽天モバイル比較】.png"
+              style="max-width: 100%; max-height: 520px; object-fit: contain; border-radius: 18px; filter: drop-shadow(0 12px 22px rgba(0,0,0,0.25));">
+          </div>
+          <div class="note" style="text-align: center; margin-top: 20px;">概要欄のリンクからチェック！</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Slide ID: 14-0 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
     <div class="book">
       <div class="spine"></div>
       <div class="page left">
-        <div class="head-left" style="height:260px;">
+        <div class="head-left">
           <img class="logo" src="public/images/logo/Mineo_logo.png" alt="logo">
           <div class="total">
             <div class="label">総合評価</div>
             <div class="grade">A</div>
           </div>
         </div>
-        <div class="cards">
-          <div class="card">
-            <span class="rank SS">SS</span>
-            <div class="card-name">データ料金</div>
-            <div class="line pro"><span class="tag">＋</span>15GBで1,958円などデータもたっぷり安い</div>
-            <div class="line con"><span class="tag">－</span>特になし</div>
-          </div>
-          <div class="card">
-            <span class="rank A">A</span>
-            <div class="card-name">通信品質</div>
-            <div class="line pro"><span class="tag">＋</span>回線をau・ドコモ・ソフトバンクから選べる</div>
-            <div class="line con"><span class="tag">－</span>お昼など混雑時間帯は速度が落ちやすい傾向</div>
-          </div>
-          <div class="card">
-            <span class="rank A">A</span>
-            <div class="card-name">初期費用</div>
-            <div class="line pro"><span class="tag">＋</span>当チャンネル限定リンクなら事務手数料が無料</div>
-            <div class="line con"><span class="tag">－</span>SIM発行料440円はかかる</div>
-          </div>
+        <div class="visual"
+          style="flex: 1; display: flex; justify-content: center; align-items: center; min-height: 0; background: #fff; border: 4px solid var(--brand); border-radius: 22px; padding: 15px; box-shadow: inset 0 2px 8px rgba(0,0,0,0.05); margin-top: 15px;">
+          <img src="public/images/charts/mineo.png" style="max-height: 520px; max-width: 100%; object-fit: contain;">
         </div>
       </div>
       <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="head-right" style="height:260px;"><img src="public/images/charts/mineo.png" alt="chart"></div>
-        <div class="cards">
-          <div class="card">
-            <span class="rank A">A</span>
-            <div class="card-name">通話料</div>
-            <div class="line pro"><span class="tag">＋</span>かけ放題オプションもしっかり用意</div>
-            <div class="line con"><span class="tag">－</span>特になし</div>
-          </div>
-          <div class="card">
-            <span class="rank A">A</span>
-            <div class="card-name">店舗サポート</div>
-            <div class="line pro"><span class="tag">＋</span>店舗やユーザー同士のコミュニティで相談できる</div>
-            <div class="line con"><span class="tag">－</span>基本はWEB中心</div>
-          </div>
-          <div class="card">
+        <div class="page-head">観点別 評価一覧</div>
+        <div class="axis-list">
+          <div class="axis-item">
             <span class="rank SS">SS</span>
-            <div class="card-name">オプション</div>
-            <div class="line pro"><span class="tag">＋</span>3Mbps使い放題のパケット放題が無料で付く</div>
-            <div class="line con"><span class="tag">－</span>特になし</div>
+            <div class="axis-name">データ料金</div>
+            <div class="axis-lines">
+              <div class="axis-line pro"><span class="tag">＋</span>15GBで1,958円などデータもたっぷり安い</div>
+              <div class="axis-line con"><span class="tag">－</span>特になし</div>
+            </div>
+          </div>
+          <div class="axis-item">
+            <span class="rank A">A</span>
+            <div class="axis-name">通信品質</div>
+            <div class="axis-lines">
+              <div class="axis-line pro"><span class="tag">＋</span>回線をau・ドコモ・ソフトバンクから選べる</div>
+              <div class="axis-line con"><span class="tag">－</span>お昼など混雑時間帯は速度が落ちやすい傾向</div>
+            </div>
+          </div>
+          <div class="axis-item">
+            <span class="rank A">A</span>
+            <div class="axis-name">初期費用</div>
+            <div class="axis-lines">
+              <div class="axis-line pro"><span class="tag">＋</span>当チャンネル限定リンクなら事務手数料が無料</div>
+              <div class="axis-line con"><span class="tag">－</span>SIM発行料440円はかかる</div>
+            </div>
+          </div>
+          <div class="axis-item">
+            <span class="rank A">A</span>
+            <div class="axis-name">通話料</div>
+            <div class="axis-lines">
+              <div class="axis-line pro"><span class="tag">＋</span>かけ放題オプションもしっかり用意</div>
+              <div class="axis-line con"><span class="tag">－</span>特になし</div>
+            </div>
+          </div>
+          <div class="axis-item">
+            <span class="rank A">A</span>
+            <div class="axis-name">店舗サポート</div>
+            <div class="axis-lines">
+              <div class="axis-line pro"><span class="tag">＋</span>店舗やユーザー同士のコミュニティで相談できる</div>
+              <div class="axis-line con"><span class="tag">－</span>基本はWEB中心</div>
+            </div>
+          </div>
+          <div class="axis-item">
+            <span class="rank SS">SS</span>
+            <div class="axis-name">オプション</div>
+            <div class="axis-lines">
+              <div class="axis-line pro"><span class="tag">＋</span>3Mbps使い放題のパケット放題が無料で付く</div>
+              <div class="axis-line con"><span class="tag">－</span>特になし</div>
+            </div>
           </div>
         </div>
       </div>
@@ -575,59 +697,96 @@
     </div>
   </div>
 
+  <!-- Slide ID: 14-5 -->
+  <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-body center">
+          <div class="bigicon"><i class="fa-solid fa-circle-play"></i></div>
+          <div class="big-title" style="font-size: 80px;">mineoの<br>解説動画もチェック！</div>
+        </div>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-body center">
+          <div class="visual"
+            style="flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0;">
+            <img src="public/images/thumbnails/【裏技】mineo歴8年が教える「実質使い放題」の極意！契約前に知らないと損する5つの節約術_サムネ.png"
+              style="max-width: 100%; max-height: 520px; object-fit: contain; border-radius: 18px; filter: drop-shadow(0 12px 22px rgba(0,0,0,0.25));">
+          </div>
+          <div class="note" style="text-align: center; margin-top: 20px;">概要欄のリンクからチェック！</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Slide ID: 15-0 -->
   <div class="slide-container" style="--brand:#e65100;--brand-deep:#bf360c;--brand-soft:#ffe0cc">
     <div class="book">
       <div class="spine"></div>
       <div class="page left">
-        <div class="head-left" style="height:260px;">
+        <div class="head-left">
           <img class="logo" src="public/images/logo/Povo_logo.png" alt="logo">
           <div class="total">
             <div class="label">総合評価</div>
             <div class="grade">A</div>
           </div>
         </div>
-        <div class="cards">
-          <div class="card">
-            <span class="rank SS">SS</span>
-            <div class="card-name">データ料金</div>
-            <div class="line pro"><span class="tag">＋</span>基本料0円で、使う分だけ買えばいい</div>
-            <div class="line con"><span class="tag">－</span>特になし</div>
-          </div>
-          <div class="card">
-            <span class="rank SS">SS</span>
-            <div class="card-name">通信品質</div>
-            <div class="line pro"><span class="tag">＋</span>au回線そのままなので保険にできる</div>
-            <div class="line con"><span class="tag">－</span>特になし</div>
-          </div>
-          <div class="card">
-            <span class="rank SS">SS</span>
-            <div class="card-name">初期費用</div>
-            <div class="line pro"><span class="tag">＋</span>事務手数料0円・契約解除料0円・最低利用期間なし</div>
-            <div class="line con"><span class="tag">－</span>特になし</div>
-          </div>
+        <div class="visual"
+          style="flex: 1; display: flex; justify-content: center; align-items: center; min-height: 0; background: #fff; border: 4px solid var(--brand); border-radius: 22px; padding: 15px; box-shadow: inset 0 2px 8px rgba(0,0,0,0.05); margin-top: 15px;">
+          <img src="public/images/charts/povo2.0.png" style="max-height: 520px; max-width: 100%; object-fit: contain;">
         </div>
       </div>
       <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="head-right" style="height:260px;"><img src="public/images/charts/povo2.0.png" alt="chart"></div>
-        <div class="cards">
-          <div class="card">
+        <div class="page-head">観点別 評価一覧</div>
+        <div class="axis-list">
+          <div class="axis-item">
+            <span class="rank SS">SS</span>
+            <div class="axis-name">データ料金</div>
+            <div class="axis-lines">
+              <div class="axis-line pro"><span class="tag">＋</span>基本料0円で、使う分だけ買えばいい</div>
+              <div class="axis-line con"><span class="tag">－</span>特になし</div>
+            </div>
+          </div>
+          <div class="axis-item">
+            <span class="rank SS">SS</span>
+            <div class="axis-name">通信品質</div>
+            <div class="axis-lines">
+              <div class="axis-line pro"><span class="tag">＋</span>au回線そのままので保険にできる</div>
+              <div class="axis-line con"><span class="tag">－</span>特になし</div>
+            </div>
+          </div>
+          <div class="axis-item">
+            <span class="rank SS">SS</span>
+            <div class="axis-name">初期費用</div>
+            <div class="axis-lines">
+              <div class="axis-line pro"><span class="tag">＋</span>事務手数料0円・契約解除料0円・最低利用期間なし</div>
+              <div class="axis-line con"><span class="tag">－</span>特になし</div>
+            </div>
+          </div>
+          <div class="axis-item">
             <span class="rank B">B</span>
-            <div class="card-name">通話料</div>
-            <div class="line pro"><span class="tag">＋</span>必要な人だけ通話トッピングを足せる</div>
-            <div class="line con"><span class="tag">－</span>通話定額は別料金</div>
+            <div class="axis-name">通話料</div>
+            <div class="axis-lines">
+              <div class="axis-line pro"><span class="tag">＋</span>必要な人だけ通話トッピングを足せる</div>
+              <div class="axis-line con"><span class="tag">－</span>通話定額は別料金</div>
+            </div>
           </div>
-          <div class="card">
+          <div class="axis-item">
             <span class="rank C">C</span>
-            <div class="card-name">店舗サポート</div>
-            <div class="line pro"><span class="tag">＋</span>WEBだけで完結できる</div>
-            <div class="line con"><span class="tag">－</span>対面のサポートはない</div>
+            <div class="axis-name">店舗サポート</div>
+            <div class="axis-lines">
+              <div class="axis-line pro"><span class="tag">＋</span>WEBだけで完結できる</div>
+              <div class="axis-line con"><span class="tag">－</span>対面のサポートはない</div>
+            </div>
           </div>
-          <div class="card">
+          <div class="axis-item">
             <span class="rank S">S</span>
-            <div class="card-name">オプション</div>
-            <div class="line pro"><span class="tag">＋</span>データ使い放題24時間330円など必要な日だけ盛れる</div>
-            <div class="line con"><span class="tag">－</span>買い忘れると低速・180日間購入がないと利用停止</div>
+            <div class="axis-name">オプション</div>
+            <div class="axis-lines">
+              <div class="axis-line pro"><span class="tag">＋</span>データ使い放題24時間330円など必要な日だけ盛れる</div>
+              <div class="axis-line con"><span class="tag">－</span>買い忘れると低速・180日間購入がないと利用停止</div>
+            </div>
           </div>
         </div>
       </div>
@@ -656,7 +815,7 @@
           <div class="card">
             <span class="rank SS">SS</span>
             <div class="card-name">通信品質</div>
-            <div class="line pro"><span class="tag">＋</span>au回線そのままなので保険にできる</div>
+            <div class="line pro"><span class="tag">＋</span>au回線そのままので保険にできる</div>
             <div class="line con"><span class="tag">－</span>特になし</div>
           </div>
           <div class="card">
@@ -693,6 +852,29 @@
     </div>
   </div>
 
+  <!-- Slide ID: 15-5 -->
+  <div class="slide-container" style="--brand:#e65100;--brand-deep:#bf360c;--brand-soft:#ffe0cc">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-body center">
+          <div class="bigicon"><i class="fa-solid fa-circle-play"></i></div>
+          <div class="big-title" style="font-size: 80px;">povo2.0の<br>解説動画もチェック！</div>
+        </div>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-body center">
+          <div class="visual"
+            style="flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0;">
+            <img src="public/images/thumbnails/スマホ代を0円にする方法。「povo2.0」なら維持費タダ？メリット・デメリットからahamo・楽天モバイル比較まで.png"
+              style="max-width: 100%; max-height: 520px; object-fit: contain; border-radius: 18px; filter: drop-shadow(0 12px 22px rgba(0,0,0,0.25));">
+          </div>
+          <div class="note" style="text-align: center; margin-top: 20px;">概要欄のリンクからチェック！</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Slide ID: 16 -->
   <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
     <div class="book">
@@ -715,8 +897,8 @@
         <div class="page-body center">
           <div class="logos">
             <img src="public/images/logo/LINEMO_logo.png">
-            <img src="public/images/logo/Mineo_logo.png">
-            <img src="public/images/logo/Povo_logo.png">
+            <img src="public/images/logo/Mineo_logo.png" style="height: 160px;">
+            <img src="public/images/logo/Povo_logo.png" style="height: 160px;">
           </div>
           <div class="lead">まずは<span class="em">エリアマップ確認</span>から始めよう</div>
         </div><span class="page-no">― 14 ―</span>
@@ -754,7 +936,7 @@
             <div class="tx">楽天モバイルのau回線は<span class="em">2026年9月末</span>まで</div>
           </li>
           <li><span class="badge">②</span>
-            <div class="tx">まずは<span class="em">エリアマップ</span>で生活圏を確認</div>
+            <div class="tx">まずは<span class="em">エリアマップ</span>で楽天エリアを確認</div>
           </li>
           <li><span class="badge">③</span>
             <div class="tx">不安なら<span class="em">povo2.0</span>をお守りに</div>
