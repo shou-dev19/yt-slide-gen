@@ -1,1 +1,0 @@
-../../.agents/skills/generate-short-slides/SKILL.md
