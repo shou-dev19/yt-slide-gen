@@ -18,17 +18,16 @@
     ]
   },
   "enabledMcpjsonServers": [
-    "github",
     "playwright",
-    "context7",
-    "remotion-docs",
-    "voicevox-docs"
+    "context7"
   ],
   "sandbox": {
     "enabled": false,
     "autoAllowBashIfSandboxed": true,
     "network": {
-      "allowedDomains": ["github.com"]
+      "allowedDomains": [
+        "github.com"
+      ]
     }
   }
 }
