@@ -335,5 +335,60 @@
     </div>
   </div>
 
+  <!-- ============================================================
+       6. 速度レポート見開きテンプレ（みんそく連携／SKILL.md §3.5）
+       数値は shared/minsoku_speeds.json（週次自動更新）を正とする。
+       以下は 2026/7/10 取得の UQ mobile 実データを焼き込んだ見本。
+       ============================================================ -->
+  <!-- スライドID: 06 -->
+  <div class="slide-container speed-spread" style="--brand:#e4007f;--brand-deep:#ad0061;--brand-soft:#fde8f4">
+    <!-- スコープ付き調整（コピペで自己完結するようスライド内に持つ）：
+         字幕帯（ページ下20%）に収めるための締めサイズ -->
+    <style>
+      .speed-spread .head-left { height: 130px; margin-bottom: 10px; }
+      .speed-spread .head-left .logo { height: 86px; }
+      .speed-spread .page-head { font-size: 46px; margin-bottom: 16px; }
+      .speed-spread .emph { padding: 12px 24px; }
+      .speed-spread .emph .big { font-size: 80px; }
+      .speed-spread .page-body { gap: 18px; }
+      .speed-spread .sheet { font-size: 36px; }
+      .speed-spread .sheet th, .speed-spread .sheet td { padding: 10px 14px; }
+      .speed-spread .lead { font-size: 40px; white-space: nowrap; }
+      .speed-spread .note { font-size: 28px; }
+    </style>
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="head-left">
+          <img class="logo" src="public/images/logo/UQ_logo_2.png" alt="UQ mobile">
+        </div>
+        <div class="page-head">UQ mobileの通信速度</div>
+        <div class="page-body center">
+          <div class="emph">格安SIM速度ランキング<br>17社中 <span class="big">1位</span></div>
+          <div class="emph">平均ダウンロード速度<br><span class="big">144.78<small style="font-size:0.55em">Mbps</small></span></div>
+          <div class="note" style="text-align:center">平均アップロード 20.31Mbps ／ 平均Ping 38.82ms</div>
+        </div>
+        <span class="page-no">― 11 ―</span>
+      </div>
+      <div class="page right">
+        <span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">時間帯別の平均速度 <small style="white-space:nowrap">直近3ヶ月</small></div>
+        <div class="page-body">
+          <table class="sheet">
+            <tr><th>時間帯</th><th>下り</th><th>上り</th></tr>
+            <tr><td>朝</td><td>213.86Mbps</td><td>31.98Mbps</td></tr>
+            <tr><td>昼</td><td class="em">104.07Mbps</td><td>13.12Mbps</td></tr>
+            <tr><td>夕方</td><td>130.85Mbps</td><td>15.6Mbps</td></tr>
+            <tr><td>夜</td><td>113.28Mbps</td><td>18.19Mbps</td></tr>
+            <tr><td>深夜</td><td>152.41Mbps</td><td>19.8Mbps</td></tr>
+          </table>
+          <div class="lead">混みやすい<span class="em">お昼でも100Mbps超え</span>！</div>
+          <div class="note">※直近3ヶ月の平均｜取得日: 2026/7/10<br>出典: <span style="white-space:nowrap">みんなのネット回線速度(みんそく)</span></div>
+        </div>
+        <span class="page-no">― 12 ―</span>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
