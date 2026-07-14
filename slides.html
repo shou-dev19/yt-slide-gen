@@ -224,7 +224,7 @@
             transform: translateX(-50%) rotate(45deg)
         }
 
-.cta-icon {
+        .cta-icon {
             width: 190px;
             height: 190px;
             margin: 0 auto;
@@ -235,54 +235,62 @@
             background: var(--brand);
             border-radius: 50%;
             box-shadow: 0 14px 0 var(--brand-deep);
-    font-size: 96px
-}
+            font-size: 96px
+        }
 
-.product-shot {
-    height: 640px;
-}
+        .product-shot {
+            height: 640px;
+        }
 
-.product-shot img {
-    max-height: 620px;
-    border: 5px solid #fff;
-}
+        .product-shot img {
+            max-height: 620px;
+            border: 5px solid #fff;
+        }
 
-.related-thumbnails {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    gap: 18px;
-    height: 100%;
-    min-height: 0;
-}
+        .related-thumbnails {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 18px;
+            height: 100%;
+            min-height: 0;
+        }
 
-.related-thumbnails img {
-    width: 100%;
-    height: 100%;
-    min-height: 0;
-    object-fit: contain;
-    border-radius: 16px;
-    filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .18));
-}
+        .related-thumbnails img {
+            width: 100%;
+            height: 100%;
+            min-height: 0;
+            object-fit: contain;
+            border-radius: 16px;
+            filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .18));
+        }
 
-.detail-cards .card {
-    padding: 12px 20px;
-}
+        .detail-cards .card {
+            padding: 12px 20px;
+        }
 
-.detail-cards .card-name {
-    font-size: 34px;
-}
+        .detail-cards .card-name {
+            font-size: 34px;
+        }
 
-.detail-cards .card .line {
-    font-size: 27px;
-}
+        .detail-cards .card .line {
+            font-size: 27px;
+        }
 
-.attention-cards .card-name {
-    font-size: 42px;
-}
+        .attention-cards .card-name {
+            font-size: 42px;
+        }
 
-.attention-cards .card .line {
-    font-size: 32px;
-}
+        .attention-cards .card .rank {
+            grid-row: 1 / -1;
+        }
+
+        .attention-cards .card> :not(.rank) {
+            grid-column: 2;
+        }
+
+        .attention-cards .card .line {
+            font-size: 32px;
+        }
 
         .cards.compact {
             display: grid;
@@ -487,8 +495,7 @@
                 <div class="page-head">注目のトッピング</div>
                 <div class="page-body center">
                     <div class="visual product-shot">
-                        <img src="public/images/temp/povo/povo_12gb_5800.jpg"
-                            alt="データ追加12GB・365日間・5,800円">
+                        <img src="public/images/temp/povo/povo_12gb_5800.jpg" alt="データ追加12GB・365日間・5,800円">
                     </div>
                 </div>
                 <span class="page-no">― 7 ―</span>
@@ -516,8 +523,7 @@
                 <div class="page-head">使い放題をまとめ買い</div>
                 <div class="page-body center">
                     <div class="visual product-shot">
-                        <img src="public/images/temp/povo/povo_matomegai.jpg"
-                            alt="データ使い放題24時間・5回分まとめ買い">
+                        <img src="public/images/temp/povo/povo_matomegai.jpg" alt="データ使い放題24時間・5回分まとめ買い">
                     </div>
                 </div>
                 <span class="page-no">― 8 ―</span>
@@ -560,7 +566,7 @@
                 <div class="page-body center">
                     <div class="metric"><span class="unit">毎月最大</span><span class="value">1</span><span
                             class="unit">GB無料</span></div>
-                    <div class="emph">Data Oasis</div>
+                    <div class="emph">Povo Data Oasis</div>
                     <div class="note">対象場所の近くで利用できます</div>
                 </div>
                 <span class="page-no">― 9 ―</span>
@@ -587,7 +593,7 @@
                         <i class="fa-solid fa-circle-play">
                         </i>
                     </div>
-                    <div class="big-title" style="font-size:72px">Data Oasisも<br>チェック！</div>
+                    <div class="big-title" style="font-size:72px">Povo Data Oasisも<br>チェック！</div>
                     <div class="lead">毎月最大1GB無料の使い方を詳しく解説</div>
                 </div>
             </div>
@@ -740,8 +746,7 @@
                     <div class="related-thumbnails">
                         <img
                             src="public/images/thumbnails/スマホ代を0円にする方法。「povo2.0」なら維持費タダ？メリット・デメリットからahamo・楽天モバイル比較まで.png">
-                        <img
-                            src="public/images/thumbnails/【2026年最新】最強の2枚持ちおすすめ格安SIM組み合わせ3選！_サムネ1.png">
+                        <img src="public/images/thumbnails/【2026年最新】最強の2枚持ちおすすめ格安SIM組み合わせ3選！_サムネ2.png">
                     </div>
                 </div>
             </div>
@@ -852,9 +857,8 @@
                 <div class="page-head">関連動画</div>
                 <div class="page-body">
                     <div class="related-thumbnails">
-                        <img
-                            src="public/images/thumbnails/【2025年最新】楽天モバイルは繋がらない？1年以上使って分かった本音メリット・デメリットを全公開！_サムネ.png">
-                        <img src="public/images/thumbnails/【2026年最新】月額660円で実質使い放題！mineoの最強キャンペーンを徹底解説.png">
+                        <img src="public/images/thumbnails/【2025年最新】楽天モバイルは繋がらない？1年以上使って分かった本音メリット・デメリットを全公開！_サムネ.png">
+                        <img src="public/images/thumbnails/【裏技】mineo歴8年が教える「実質使い放題」の極意！契約前に知らないと損する5つの節約術_サムネ.png">
                     </div>
                 </div>
             </div>
