@@ -224,7 +224,7 @@
             transform: translateX(-50%) rotate(45deg)
         }
 
-        .cta-icon {
+.cta-icon {
             width: 190px;
             height: 190px;
             margin: 0 auto;
@@ -235,8 +235,54 @@
             background: var(--brand);
             border-radius: 50%;
             box-shadow: 0 14px 0 var(--brand-deep);
-            font-size: 96px
-        }
+    font-size: 96px
+}
+
+.product-shot {
+    height: 640px;
+}
+
+.product-shot img {
+    max-height: 620px;
+    border: 5px solid #fff;
+}
+
+.related-thumbnails {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 18px;
+    height: 100%;
+    min-height: 0;
+}
+
+.related-thumbnails img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: contain;
+    border-radius: 16px;
+    filter: drop-shadow(0 8px 14px rgba(0, 0, 0, .18));
+}
+
+.detail-cards .card {
+    padding: 12px 20px;
+}
+
+.detail-cards .card-name {
+    font-size: 34px;
+}
+
+.detail-cards .card .line {
+    font-size: 27px;
+}
+
+.attention-cards .card-name {
+    font-size: 42px;
+}
+
+.attention-cards .card .line {
+    font-size: 32px;
+}
 
         .cards.compact {
             display: grid;
@@ -438,11 +484,12 @@
         <div class="book">
             <div class="spine"></div>
             <div class="page left">
-                <div class="page-head">12GBを1年分まとめ買い</div>
+                <div class="page-head">注目のトッピング</div>
                 <div class="page-body center">
-                    <div class="emph"><span class="big">12GB</span><br>有効期間 365日</div>
-                    <div class="metric"><span class="value" style="font-size:96px;">5,800</span><span
-                            class="unit">円</span></div>
+                    <div class="visual product-shot">
+                        <img src="public/images/temp/povo/povo_12gb_5800.jpg"
+                            alt="データ追加12GB・365日間・5,800円">
+                    </div>
                 </div>
                 <span class="page-no">― 7 ―</span>
             </div>
@@ -468,8 +515,10 @@
             <div class="page left">
                 <div class="page-head">使い放題をまとめ買い</div>
                 <div class="page-body center">
-                    <div class="cta-icon"><i class="fa-solid fa-calendar-days"></i></div>
-                    <div class="emph"><span class="big" style="font-size:72px;">2026年7月9日〜</span><br>個数制限なし</div>
+                    <div class="visual product-shot">
+                        <img src="public/images/temp/povo/povo_matomegai.jpg"
+                            alt="データ使い放題24時間・5回分まとめ買い">
+                    </div>
                 </div>
                 <span class="page-no">― 8 ―</span>
             </div>
@@ -640,18 +689,22 @@
             <div class="page left">
                 <div class="page-head">強みの4項目</div>
                 <div class="page-body">
-                    <div class="cards">
+                    <div class="cards detail-cards">
                         <div class="card"><span class="rank SS">SS</span><span class="card-name">データ料金</span>
-                            <div class="line pro"><span class="tag">＋</span>基本料0円</div>
+                            <div class="line pro"><span class="tag">＋</span>基本料0円・必要なぶんだけ購入</div>
+                            <div class="line pro"><span class="tag">＋</span>12GB・365日なら実質月約484円</div>
                         </div>
                         <div class="card"><span class="rank SS">SS</span><span class="card-name">通信品質</span>
-                            <div class="line pro"><span class="tag">＋</span>au回線で安定</div>
+                            <div class="line pro"><span class="tag">＋</span>au回線をそのまま利用</div>
+                            <div class="line pro"><span class="tag">＋</span>混雑時間帯でも安定</div>
                         </div>
                         <div class="card"><span class="rank SS">SS</span><span class="card-name">初期費用</span>
-                            <div class="line pro"><span class="tag">＋</span>事務手数料0円</div>
+                            <div class="line pro"><span class="tag">＋</span>契約事務手数料0円</div>
+                            <div class="line pro"><span class="tag">＋</span>eSIMなら申し込み後すぐ使える</div>
                         </div>
                         <div class="card"><span class="rank S">S</span><span class="card-name">オプション</span>
-                            <div class="line pro"><span class="tag">＋</span>柔軟なトッピング</div>
+                            <div class="line pro"><span class="tag">＋</span>使い放題24時間など種類が豊富</div>
+                            <div class="line con"><span class="tag">−</span>180日間購入なしで利用停止に注意</div>
                         </div>
                     </div>
                 </div>
@@ -660,12 +713,16 @@
                 <span class="index-tab">格安SIM図鑑</span>
                 <div class="page-head">注意したい2項目</div>
                 <div class="page-body">
-                    <div class="cards">
+                    <div class="cards attention-cards">
                         <div class="card"><span class="rank B">B</span><span class="card-name">通話料</span>
-                            <div class="line con"><span class="tag">−</span>無料通話なし</div>
+                            <div class="line pro"><span class="tag">＋</span>5分かけ放題・かけ放題を選べる</div>
+                            <div class="line con"><span class="tag">−</span>標準では無料通話なし</div>
+                            <div class="line con"><span class="tag">−</span>通話トッピングは別料金</div>
                         </div>
                         <div class="card"><span class="rank C">C</span><span class="card-name">店舗</span>
-                            <div class="line con"><span class="tag">−</span>対面サポートなし</div>
+                            <div class="line pro"><span class="tag">＋</span>アプリで手続きが完結</div>
+                            <div class="line con"><span class="tag">−</span>実店舗の対面サポートなし</div>
+                            <div class="line con"><span class="tag">−</span>初期設定は自分で行う必要あり</div>
                         </div>
                     </div>
                 </div>
@@ -679,10 +736,12 @@
             </div>
             <div class="page left">
                 <div class="page-head">関連動画</div>
-                <div class="page-body center">
-                    <div class="visual">
+                <div class="page-body">
+                    <div class="related-thumbnails">
                         <img
                             src="public/images/thumbnails/スマホ代を0円にする方法。「povo2.0」なら維持費タダ？メリット・デメリットからahamo・楽天モバイル比較まで.png">
+                        <img
+                            src="public/images/thumbnails/【2026年最新】最強の2枚持ちおすすめ格安SIM組み合わせ3選！_サムネ1.png">
                     </div>
                 </div>
             </div>
@@ -753,16 +812,20 @@
         <div class="book">
             <div class="spine"></div>
             <div class="page left">
-                <div class="page-head">povoが向いていない人</div>
+                <div class="page-head">より合う選択肢も比較</div>
                 <div class="page-body">
                     <ul class="rows">
                         <li>
                             <span class="ic"><i class="fa-solid fa-database"></i></span>
-                            <div class="tx">毎月50GB以上使う</div>
+                            <div class="tx">毎月コンスタントに大容量を使う人
+                                <span class="sub">→ データ無制限系の他社プランも検討</span>
+                            </div>
                         </li>
                         <li>
                             <span class="ic"><i class="fa-solid fa-phone-volume"></i></span>
-                            <div class="tx">長時間の通話が多い</div>
+                            <div class="tx">電話を長く多くかける人
+                                <span class="sub">→ かけ放題込みの他社プランと比較</span>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -770,11 +833,11 @@
             </div>
             <div class="page right">
                 <span class="index-tab">格安SIM図鑑</span>
-                <div class="page-head">サポート重視も注意</div>
+                <div class="page-head">対面サポート重視なら</div>
                 <div class="page-body center">
                     <div class="warn"><span class="ic"><i class="fa-solid fa-store"></i></span><span
-                            class="em">店頭で相談したい</span>人には不向き</div>
-                    <div class="lead tight">他社の<span class="em">無制限・かけ放題</span>も比較</div>
+                            class="em">店員さんに相談しながら契約したい人</span></div>
+                    <div class="lead tight">店舗サポートのある<br><span class="em">他社プランも検討</span></div>
                 </div>
                 <span class="page-no">― 15 ―</span>
             </div>
@@ -787,8 +850,10 @@
             </div>
             <div class="page left">
                 <div class="page-head">関連動画</div>
-                <div class="page-body center">
-                    <div class="visual">
+                <div class="page-body">
+                    <div class="related-thumbnails">
+                        <img
+                            src="public/images/thumbnails/【2025年最新】楽天モバイルは繋がらない？1年以上使って分かった本音メリット・デメリットを全公開！_サムネ.png">
                         <img src="public/images/thumbnails/【2026年最新】月額660円で実質使い放題！mineoの最強キャンペーンを徹底解説.png">
                     </div>
                 </div>
@@ -968,7 +1033,7 @@
             </div>
             <div class="page right">
                 <span class="index-tab">格安SIM図鑑</span>
-                <div class="page-head">動画と合わせてチェック</div>
+                <div class="page-head">動画と合わせて<br>チェック</div>
                 <div class="page-body">
                     <ul class="rows">
                         <li><span class="ic"><i class="fa-solid fa-file-lines"></i></span>
@@ -992,7 +1057,7 @@
             <div class="spine"></div>
             <div class="page left">
                 <div class="page-body center">
-                    <div class="big-title" style="font-size:76px">ご視聴<br><span class="em">ありがとうございました！</span></div>
+                    <div class="big-title" style="font-size:76px">ご視聴<br><span class="em">ありがとう<br>ございました！</span></div>
                     <div class="pill-row"><span class="pill"><i class="fa-solid fa-thumbs-up"></i> 高評価</span><span
                             class="pill"><i class="fa-brands fa-youtube"></i> チャンネル登録</span></div>
                 </div>
