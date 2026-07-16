@@ -73,6 +73,8 @@ Script file path: $ARGUMENTS (default: `台本.txt`)
 
 ページ本文はこれらの部品を組み合わせて作る。per-slide の微調整は `style` 属性で。
 
+> **料金表記コンプライアンス（アクセストレード要請）**: 「※表示している料金はすべて月額・税込みの価格です」の注記は `spread-base.css` の `.slide-container.price-note::after` で用意済み。**料金を表示するスライドだけ**、その `<div class="slide-container ...">` に `price-note` クラスを足すと注記が下部中央に出る（オプトイン。例: `<div class="slide-container price-note" style="--brand:…">`）。料金を出さないスライドには付けない。CSS は spread-base.css 側にあるので per-slide で再定義しないこと。
+
 | クラス | 用途 |
 |---|---|
 | `.page-head`（`<small>` で副題） | ページ見出し（ブランド色の下線） |

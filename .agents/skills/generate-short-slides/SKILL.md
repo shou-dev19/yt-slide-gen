@@ -17,6 +17,17 @@ When generating HTML slides for YouTube shorts from a script (e.g., `台本.txt`
 - **Aspect Ratio**: 1:1 (`width: 1080px; height: 1080px;`).
 - **Layout**: Center content, use flexbox (`flex-row`, `flex-col`).
 - **Base Color scheme**: Trustworthy Blue (`#0052cc`), White (`#ffffff`), and Red (`#e63946`) for emphasis. Background outside slides: `#f0f4f8`. Slide background: `#ffffff`.
+- **料金表記コンプライアンス（アクセストレード要請）**: 料金が「月額・税込」である旨の注記パーツ。以下の `::after` ルールを `<style>` に**必ず**含めること（文言・配置は変更しない）。表示はオプトインで、**料金（円・月額など）を表示するスライドの `<div class="slide-container ...">` に `price-note` クラスを足したときだけ**注記が出る（例: `<div class="slide-container price-note">`）。料金を出さないスライドには付けない:
+```css
+.slide-container.price-note::after {
+    content: "※表示している料金はすべて月額・税込みの価格です";
+    position: absolute; right: 20px; bottom: 16px; z-index: 9999;
+    background: rgba(0,0,0,0.62); color: #fff;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 26px; font-weight: 700; letter-spacing: 0.02em; line-height: 1;
+    padding: 10px 20px; border-radius: 10px; white-space: nowrap; pointer-events: none;
+}
+```
 
 ## 2. Typography
 - **Fonts**: 'Inter', 'Noto Sans JP', sans-serif. Ensure Google Fonts are imported.

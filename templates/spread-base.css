@@ -71,6 +71,30 @@ body {
     radial-gradient(120% 120% at 50% 0%, #6b5d49 0%, #41382c 55%, #2d261d 100%);
 }
 
+/* ===== 料金表記コンプライアンス（アクセストレード要請） =====
+   料金が「月額・税込」である旨の注記。料金を表示するスライドだけ、
+   その .slide-container に class="price-note" を足すと注記が出る（オプトイン）。
+   字幕（bottom-center）やページ番号と衝突しないよう下部中央に小さく配置。 */
+.slide-container.price-note::after {
+  content: "※表示している料金はすべて月額・税込みの価格です";
+  position: absolute;
+  left: 50%;
+  bottom: 14px;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.62);
+  color: #fff;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  padding: 8px 16px;
+  border-radius: 8px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
 /* ===== 見開き本体 ===== */
 /* ほぼ全画面（1920x1080 に対し四辺に僅かな机の縁のみ）。下部の字幕余白は .page 側で確保する。 */
 .book {
