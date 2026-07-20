@@ -120,6 +120,11 @@ Script file path: $ARGUMENTS (default: `台本.txt`)
 - **右ページ**：`.index-tab` ＋ `.head-right` にレーダーチャート（`public/images/charts/<社名>.png`）／`.cards` に残り観点3枚。
 - ランクの色は `.rank.SS/S/A/B/C` に従う（独自配色にしない）。pro は `＋`、con は `－`。
 - レーダーチャートは `.head-right img`（`height:100%`）で表示。評価バッジを別途並べない。
+- **免責注記（必須）**：右ページの `.cards` の直後・`.page-no` の直前に `.note` で評価の前提を必ず明記する（省略不可）：
+  ```html
+  <div class="note" style="font-size:28px;text-align:center;">※本評価は当チャンネルの独断と偏見による独自評価であり、キャンペーン割引等は考慮していません</div>
+  ```
+  `.note` の既定サイズ（44px）は `.cards` を圧迫するため、上記のように `font-size:28px` へ縮小して使う。評価見開きが左右2ページとも `.cards` の見開き（`N-0` を使わない自己完結1見開き）の場合も右ページに1回だけ入れれば足りる（左右両方に重複表示しない）。
 
 > **本パイプラインでの実態（重要）**：`generate-youtube-video` の本編は、`セリフ台本.txt` の各行の slideId を `slide_NN.png` に **1:1 で対応**させて表示する（`generate-scenario`）。ZukanSpread のカメラ演出（評価見開きと料金見開きをペアで寄せる仕組み）は**本編未統合**のため、下記の料金プラン見開き `N-0` は台本にその slideId が未登録であれば表示されない。したがって本編用途では、**評価は台本の単一 slideId（`N`）で自己完結する1見開き**（左＝ロゴ画像［社名テキスト不可］＋レーダーチャート、右＝6観点＋代表プラン）にしてよい。ZukanSpread を統合した動画・デモを作るときだけ、次の `N-0` ペアを併せて作る。
 
