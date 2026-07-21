@@ -1,76 +1,665 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LINEMO トライアルキャンペーン2｜ショート</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet"><style>
-:root { --blue:#0052cc; --red:#e63946; --ink:#172b4d; --mint:#00a98f; }
-* { box-sizing:border-box; } body { margin:0; background:#f0f4f8; font-family:'Inter','Noto Sans JP',sans-serif; }
-.slide-container { width:1080px; height:1080px; position:relative; overflow:hidden; background:#fff; color:var(--ink); padding:58px 70px; isolation:isolate; }
-.slide-container img { object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,.13)); }.watermark { position:absolute; top:-74px; left:20px; z-index:-1; font-size:280px; line-height:1; font-weight:900; opacity:.07; color:var(--blue); }
-.slide-title { margin:0 0 30px; padding-bottom:20px; border-bottom:10px solid var(--blue); font-size:62px; line-height:1.15; font-weight:900; letter-spacing:-.04em; }.slide-title em,.warning-title em { color:var(--red); font-style:normal; }
-.slide-body { display:flex; flex-direction:column; gap:28px; }.slide-illust { position:absolute; z-index:2; right:40px; bottom:32px; height:260px; pointer-events:none; }.slide-illust.low-illust { bottom:6px; }.slide-illust.compact-illust { height:200px; }.slide-illust img { height:100%; max-width:310px; }
-.slide-container.price-note::after { content:"※表示している料金はすべて月額・税込みの価格です"; position:absolute; right:20px; bottom:16px; z-index:9999; background:rgba(0,0,0,.62); color:#fff; font-family:'Noto Sans JP',sans-serif; font-size:26px; font-weight:700; letter-spacing:.02em; line-height:1; padding:10px 20px; border-radius:10px; white-space:nowrap; pointer-events:none; }
-/* Thumbnail */
-.slide-thumbnail { border:25px solid var(--blue); padding:160px 65px 300px; display:flex; justify-content:center; background:repeating-conic-gradient(from 0deg at 52% 48%,rgba(0,82,204,.06) 0deg 2.5deg,transparent 2.5deg 16deg),radial-gradient(ellipse at 52% 48%,#fff 5%,#e8f3ff 45%,#c8dcff 100%); }.thumb-top-strip { position:absolute; top:25px; left:25px; right:25px; background:var(--blue); color:#fff; font-size:36px; font-weight:900; padding:18px 0; text-align:center; letter-spacing:.06em; z-index:3; }.thumb-accent-tri { position:absolute; width:0; height:0; }.thumb-accent-tri.tl { top:25px; left:25px; border-top:300px solid rgba(0,82,204,.09); border-right:300px solid transparent; }.thumb-accent-tri.br { bottom:25px; right:25px; border-bottom:300px solid rgba(0,82,204,.09); border-left:300px solid transparent; }.thumb-content { position:relative; z-index:1; text-align:center; }.thumb-tag { display:inline-block; color:#fff; background:var(--red); font-size:64px; font-weight:900; transform:rotate(-3deg); padding:18px 54px; box-shadow:8px 8px 0 rgba(0,0,0,.25); margin-bottom:28px; }.thumb-content h1 { font-size:80px; line-height:1.12; margin:0 0 22px; font-weight:900; letter-spacing:-.06em; }.thumb-content h1 em { font-style:normal; color:var(--red); }.thumb-free { display:inline-block; background:var(--blue); color:#fff; padding:18px 48px; border-radius:12px; font-size:56px; font-weight:900; box-shadow:4px 4px 0 rgba(0,0,0,.2); }.thumb-free b { color:#ffd700; }.thumb-illust { height:290px; bottom:4px; right:12px; }
-/* Information cards */
-.report-header-card { display:flex; align-items:center; gap:24px; background:linear-gradient(135deg,var(--blue),#003fa0); color:#fff; border-radius:20px; padding:24px 32px; font-size:38px; font-weight:700; line-height:1.22; margin-bottom:28px; }.report-header-card b { color:#ffd700; font-size:48px; }.report-icon { font-size:88px; font-weight:900; color:#ffd700; }.cards-fill { gap:28px; margin-right:18px; }.info-card { min-height:128px; display:flex; align-items:center; gap:22px; padding:26px 30px; border-radius:0 16px 16px 0; font-size:47px; font-weight:700; background:#f0f5ff; border-left:14px solid var(--blue); }.info-card b { color:var(--red); font-size:1.15em; }.info-card.alert { background:#fff0f0; border-left-color:var(--red); color:var(--red); font-size:52px; font-weight:900; }.number-chip { min-width:76px; height:76px; border-radius:50%; display:grid; place-items:center; background:var(--blue); color:#fff; font-size:42px; font-weight:900; }.number-chip.danger { background:var(--red); }.coverage-summary { width:650px; display:flex; align-items:center; gap:12px; margin-top:2px; padding:14px 20px; border:4px solid var(--blue); border-radius:16px; background:#fff; color:var(--blue); font-size:29px; font-weight:900; }.coverage-summary i { font-style:normal; color:#7b8ba6; }.coverage-summary b { margin-left:auto; color:var(--red); font-size:36px; white-space:nowrap; }
-.deadline-card { display:flex; flex-direction:column; align-items:center; padding:30px 24px; border-radius:22px; background:#fff0f0; border:7px solid var(--red); color:var(--red); text-align:center; }.deadline-card span { font-size:44px; font-weight:900; }.deadline-card b { font-size:72px; line-height:1.15; }.deadline-card small { color:var(--ink); font-size:38px; font-weight:700; margin-top:12px; }.plan-list { margin-top:36px; gap:42px; }.plan-info { min-height:175px; display:flex; flex-direction:column; justify-content:center; padding:28px 32px; border-left:14px solid var(--mint); border-radius:0 16px 16px 0; background:#e2faf5; }.plan-info span { font-size:34px; font-weight:700; color:#007e6b; }.plan-info b { font-size:50px; }
-/* Fees */
-.fee-grid { display:grid; grid-template-columns:1fr 1fr; gap:28px; }.fee-card { min-height:365px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:26px 20px; background:#f0f5ff; border:7px solid var(--blue); border-radius:24px; text-align:center; }.fee-card.strong { background:#e2faf5; border-color:var(--mint); }.fee-label { font-size:35px; font-weight:900; }.old-price { margin-top:26px; font-size:43px; color:#667085; text-decoration:line-through; }.fee-card b { font-size:76px; color:var(--red); line-height:1.08; }.fee-card.strong b { font-size:52px; color:#007e6b; margin-top:28px; }.fee-card small { font-size:28px; font-weight:700; margin-top:16px; }.campaign-table { margin-top:30px; height:210px; text-align:center; }.campaign-table img { height:100%; max-width:100%; border-radius:16px; }
-/* Warning */
-.warning-slide { background:#fff8f8; padding-top:146px; }.warning-banner { position:absolute; top:0; left:0; right:0; padding:22px 0; background:var(--red); color:#fff; text-align:center; font-size:62px; font-weight:900; }.warning-title { margin:0 0 28px; text-align:center; font-size:62px; line-height:1.18; font-weight:900; }.warning-box { border:10px solid var(--red); background:#fff0f0; padding:32px 34px; display:flex; flex-direction:column; gap:23px; border-radius:18px; }.w-title { font-size:53px; color:var(--red); font-weight:900; text-align:center; }.w-item { font-size:43px; font-weight:700; }.warning-foot { margin-top:32px; font-size:43px; color:var(--red); font-weight:900; }.warning-slide .slide-illust { height:240px; }
-/* CTA */
-.cta-slide { padding:40px 70px 24px; background:linear-gradient(135deg,#0052cc,#003380); color:#fff; }.cta-content { display:flex; flex-direction:column; align-items:center; text-align:center; }.cta-logo-card { background:#fff; border-radius:18px; padding:8px 16px; height:106px; box-shadow:4px 4px 0 rgba(0,0,0,.18); }.cta-logo { height:90px; width:240px; filter:none !important; }.cta-title { margin:22px 0 8px; color:#ffd700; font-size:73px; font-weight:900; line-height:1.12; letter-spacing:-.05em; }.cta-sub { margin:0 0 12px; font-size:42px; font-weight:900; }.three-patterns { display:flex; gap:12px; margin-bottom:18px; }.three-patterns span { padding:10px 17px; border:3px solid #fff; border-radius:14px; background:rgba(255,255,255,.14); font-size:29px; font-weight:900; }.cta-banner-img { width:800px; max-height:390px; object-fit:contain; border-radius:16px; }.bounce-arrow { color:#ffd700; font-size:74px; font-weight:900; line-height:.75; animation:bounce 1s infinite; } @keyframes bounce { 0%,100% { transform:translateY(0); } 50% { transform:translateY(12px); } }
-</style></head><body><!-- Slide ID: 1 -->
-<div class="slide-container slide-thumbnail">
-      <div class="thumb-top-strip">⚡ 7月限定 LINEMO キャンペーン ⚡</div>
-      <i class="thumb-accent-tri tl"></i><i class="thumb-accent-tri br"></i>
-      <div class="thumb-content">
-        <div class="thumb-tag">初期費用も月額も</div>
-        <h1>LINEMO<br><em>トライアル<br>キャンペーン2</em></h1>
-        <div class="thumb-free"><b>2ヶ月分</b> 無料！</div>
-      </div>
-      <div class="slide-illust thumb-illust"><img class="slide-art" src="public/images/irasutoya/present_open.png" alt="開いたプレゼント"></div>
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>LINEMO トライアルキャンペーン2｜ショート</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=Noto+Sans+JP:wght@700;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --blue: #0052cc;
+      --red: #e63946;
+      --ink: #172b4d;
+      --mint: #00a98f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f0f4f8;
+      font-family: 'Inter', 'Noto Sans JP', sans-serif;
+    }
+
+    .slide-container {
+      width: 1080px;
+      height: 1080px;
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+      color: var(--ink);
+      padding: 58px 70px;
+      isolation: isolate;
+    }
+
+    .slide-container img {
+      object-fit: contain;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, .13));
+    }
+
+    .watermark {
+      position: absolute;
+      top: -74px;
+      left: 20px;
+      z-index: -1;
+      font-size: 280px;
+      line-height: 1;
+      font-weight: 900;
+      opacity: .07;
+      color: var(--blue);
+    }
+
+    .slide-title {
+      margin: 0 0 30px;
+      padding-bottom: 20px;
+      border-bottom: 10px solid var(--blue);
+      font-size: 62px;
+      line-height: 1.15;
+      font-weight: 900;
+      letter-spacing: -.04em;
+    }
+
+    .slide-title em,
+    .warning-title em {
+      color: var(--red);
+      font-style: normal;
+    }
+
+    .slide-body {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .slide-illust {
+      position: absolute;
+      z-index: 2;
+      right: 40px;
+      bottom: 32px;
+      height: 260px;
+      pointer-events: none;
+    }
+
+    .slide-illust.low-illust {
+      bottom: 6px;
+    }
+
+    .slide-illust.compact-illust {
+      height: 200px;
+    }
+
+    .slide-illust img {
+      height: 100%;
+      max-width: 310px;
+    }
+
+    .slide-container.price-note::after {
+      content: "※表示している料金はすべて月額・税込みの価格です";
+      position: absolute;
+      right: 20px;
+      bottom: 16px;
+      z-index: 9999;
+      background: rgba(0, 0, 0, .62);
+      color: #fff;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      line-height: 1;
+      padding: 10px 20px;
+      border-radius: 10px;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    /* Thumbnail */
+    .slide-thumbnail {
+      border: 25px solid var(--blue);
+      padding: 160px 65px 300px;
+      display: flex;
+      justify-content: center;
+      background: repeating-conic-gradient(from 0deg at 52% 48%, rgba(0, 82, 204, .06) 0deg 2.5deg, transparent 2.5deg 16deg), radial-gradient(ellipse at 52% 48%, #fff 5%, #e8f3ff 45%, #c8dcff 100%);
+    }
+
+    .thumb-top-strip {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+      right: 25px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 36px;
+      font-weight: 900;
+      padding: 18px 0;
+      text-align: center;
+      letter-spacing: .06em;
+      z-index: 3;
+    }
+
+    .thumb-accent-tri {
+      position: absolute;
+      width: 0;
+      height: 0;
+    }
+
+    .thumb-accent-tri.tl {
+      top: 25px;
+      left: 25px;
+      border-top: 300px solid rgba(0, 82, 204, .09);
+      border-right: 300px solid transparent;
+    }
+
+    .thumb-accent-tri.br {
+      bottom: 25px;
+      right: 25px;
+      border-bottom: 300px solid rgba(0, 82, 204, .09);
+      border-left: 300px solid transparent;
+    }
+
+    .thumb-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .thumb-tag {
+      display: inline-block;
+      color: #fff;
+      background: var(--red);
+      font-size: 64px;
+      font-weight: 900;
+      transform: rotate(-3deg);
+      padding: 18px 54px;
+      box-shadow: 8px 8px 0 rgba(0, 0, 0, .25);
+      margin-bottom: 28px;
+    }
+
+    .thumb-content h1 {
+      font-size: 80px;
+      line-height: 1.12;
+      margin: 0 0 22px;
+      font-weight: 900;
+      letter-spacing: -.06em;
+    }
+
+    .thumb-content h1 em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .thumb-free {
+      display: inline-block;
+      background: var(--blue);
+      color: #fff;
+      padding: 18px 48px;
+      border-radius: 12px;
+      font-size: 56px;
+      font-weight: 900;
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, .2);
+    }
+
+    .thumb-free b {
+      color: #ffd700;
+    }
+
+    .thumb-illust {
+      height: 290px;
+      bottom: 4px;
+      right: 12px;
+    }
+
+    /* Information cards */
+    .report-header-card {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      background: linear-gradient(135deg, var(--blue), #003fa0);
+      color: #fff;
+      border-radius: 20px;
+      padding: 24px 32px;
+      font-size: 38px;
+      font-weight: 700;
+      line-height: 1.22;
+      margin-bottom: 28px;
+    }
+
+    .report-header-card b {
+      color: #ffd700;
+      font-size: 48px;
+    }
+
+    .report-icon {
+      font-size: 88px;
+      font-weight: 900;
+      color: #ffd700;
+    }
+
+    .cards-fill {
+      gap: 28px;
+      margin-right: 18px;
+    }
+
+    .info-card {
+      min-height: 128px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      padding: 26px 30px;
+      border-radius: 0 16px 16px 0;
+      font-size: 47px;
+      font-weight: 700;
+      background: #f0f5ff;
+      border-left: 14px solid var(--blue);
+    }
+
+    .info-card b {
+      color: var(--red);
+      font-size: 1.15em;
+    }
+
+    .info-card.alert {
+      background: #fff0f0;
+      border-left-color: var(--red);
+      color: var(--red);
+      font-size: 52px;
+      font-weight: 900;
+    }
+
+    .number-chip {
+      min-width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--blue);
+      color: #fff;
+      font-size: 42px;
+      font-weight: 900;
+    }
+
+    .number-chip.danger {
+      background: var(--red);
+    }
+
+    .coverage-summary {
+      width: 650px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 2px;
+      padding: 14px 20px;
+      border: 4px solid var(--blue);
+      border-radius: 16px;
+      background: #fff;
+      color: var(--blue);
+      font-size: 29px;
+      font-weight: 900;
+    }
+
+    .coverage-summary i {
+      font-style: normal;
+      color: #7b8ba6;
+    }
+
+    .coverage-summary b {
+      margin-left: auto;
+      color: var(--red);
+      font-size: 36px;
+      white-space: nowrap;
+    }
+
+    .deadline-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 24px;
+      border-radius: 22px;
+      background: #fff0f0;
+      border: 7px solid var(--red);
+      color: var(--red);
+      text-align: center;
+    }
+
+    .deadline-card span {
+      font-size: 44px;
+      font-weight: 900;
+    }
+
+    .deadline-card b {
+      font-size: 72px;
+      line-height: 1.15;
+    }
+
+    .deadline-card small {
+      color: var(--ink);
+      font-size: 38px;
+      font-weight: 700;
+      margin-top: 12px;
+    }
+
+    .plan-list {
+      margin-top: 36px;
+      gap: 42px;
+    }
+
+    .plan-info {
+      min-height: 175px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 28px 32px;
+      border-left: 14px solid var(--mint);
+      border-radius: 0 16px 16px 0;
+      background: #e2faf5;
+    }
+
+    .plan-info span {
+      font-size: 34px;
+      font-weight: 700;
+      color: #007e6b;
+    }
+
+    .plan-info b {
+      font-size: 50px;
+    }
+
+    /* Fees */
+    .fee-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .fee-card {
+      min-height: 365px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 26px 20px;
+      background: #f0f5ff;
+      border: 7px solid var(--blue);
+      border-radius: 24px;
+      text-align: center;
+    }
+
+    .fee-card.strong {
+      background: #e2faf5;
+      border-color: var(--mint);
+    }
+
+    .fee-label {
+      font-size: 35px;
+      font-weight: 900;
+    }
+
+    .old-price {
+      margin-top: 26px;
+      font-size: 43px;
+      color: #667085;
+      text-decoration: line-through;
+    }
+
+    .fee-card b {
+      font-size: 76px;
+      color: var(--red);
+      line-height: 1.08;
+    }
+
+    .fee-card.strong b {
+      font-size: 52px;
+      color: #007e6b;
+      margin-top: 28px;
+    }
+
+    .fee-card small {
+      font-size: 28px;
+      font-weight: 700;
+      margin-top: 16px;
+    }
+
+    .campaign-table {
+      margin-top: 30px;
+      height: 210px;
+      text-align: center;
+    }
+
+    .campaign-table img {
+      height: 100%;
+      max-width: 100%;
+      border-radius: 16px;
+    }
+
+    /* Warning */
+    .warning-slide {
+      background: #fff8f8;
+      padding-top: 146px;
+    }
+
+    .warning-banner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 22px 0;
+      background: var(--red);
+      color: #fff;
+      text-align: center;
+      font-size: 62px;
+      font-weight: 900;
+    }
+
+    .warning-title {
+      margin: 0 0 28px;
+      text-align: center;
+      font-size: 62px;
+      line-height: 1.18;
+      font-weight: 900;
+    }
+
+    .warning-box {
+      border: 10px solid var(--red);
+      background: #fff0f0;
+      padding: 32px 34px;
+      display: flex;
+      flex-direction: column;
+      gap: 23px;
+      border-radius: 18px;
+    }
+
+    .w-title {
+      font-size: 53px;
+      color: var(--red);
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .w-item {
+      font-size: 43px;
+      font-weight: 700;
+    }
+
+    .warning-foot {
+      margin-top: 32px;
+      font-size: 43px;
+      color: var(--red);
+      font-weight: 900;
+    }
+
+    .warning-slide .slide-illust {
+      height: 240px;
+    }
+
+    /* CTA */
+    .cta-slide {
+      padding: 40px 70px 24px;
+      background: linear-gradient(135deg, #0052cc, #003380);
+      color: #fff;
+    }
+
+    .cta-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .cta-logo-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 8px 16px;
+      height: 106px;
+      box-shadow: 4px 4px 0 rgba(0, 0, 0, .18);
+    }
+
+    .cta-logo {
+      height: 90px;
+      width: 240px;
+      filter: none !important;
+    }
+
+    .cta-title {
+      margin: 22px 0 8px;
+      color: #ffd700;
+      font-size: 73px;
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: -.05em;
+    }
+
+    .cta-sub {
+      margin: 0 0 12px;
+      font-size: 42px;
+      font-weight: 900;
+    }
+
+    .three-patterns {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .three-patterns span {
+      padding: 10px 17px;
+      border: 3px solid #fff;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .14);
+      font-size: 29px;
+      font-weight: 900;
+    }
+
+    .cta-banner-img {
+      width: 800px;
+      max-height: 390px;
+      object-fit: contain;
+      border-radius: 16px;
+    }
+
+    .bounce-arrow {
+      color: #ffd700;
+      font-size: 74px;
+      font-weight: 900;
+      line-height: .75;
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(12px);
+      }
+    }
+  </style>
+</head>
+
+<body><!-- Slide ID: 1 -->
+  <div class="slide-container slide-thumbnail">
+    <div class="thumb-top-strip">⚡ 7月限定 LINEMO キャンペーン ⚡</div>
+    <i class="thumb-accent-tri tl"></i><i class="thumb-accent-tri br"></i>
+    <div class="thumb-content">
+      <div class="thumb-tag">初期費用も月額も</div>
+      <h1>LINEMO<br><em>トライアル<br>キャンペーン2</em></h1>
+      <div class="thumb-free"><b>2ヶ月分</b> 無料！</div>
     </div>
-<!-- Slide ID: 2 -->
-<div class="slide-container ">
-      <div class="watermark">2</div><h2 class="slide-title">無料になるのは <em>3つ！</em></h2>
-      <div class="report-header-card"><span class="report-icon">¥</span><span>契約時も・利用中も・解約時も<br><b>負担なし</b></span></div>
-      <div class="slide-body cards-fill">
-        <div class="info-card"><span class="number-chip">1</span><span>契約事務手数料 <b>無料</b></span></div>
-        <div class="info-card"><span class="number-chip">2</span><span>2ヶ月分の月額 <b>無料</b></span></div>
-        <div class="info-card alert"><span class="number-chip danger">3</span><span>解約金まで <b>無料</b></span></div>
-        <div class="coverage-summary"><span>契約</span><i>→</i><span>利用</span><i>→</i><span>解約</span><b>ぜんぶ 0円</b></div>
-      </div>
-      <div class="slide-illust low-illust compact-illust" style="z-index:2;"><img class="slide-art" src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="驚く男性"></div>
+    <div class="slide-illust thumb-illust"><img class="slide-art" src="public/images/irasutoya/present_open.png"
+        alt="開いたプレゼント"></div>
+  </div>
+  <!-- Slide ID: 2 -->
+  <div class="slide-container ">
+    <div class="watermark">2</div>
+    <h2 class="slide-title">無料になるのは <em>3つ！</em></h2>
+    <div class="report-header-card"><span class="report-icon">¥</span><span>契約時も・利用中も・解約時も<br><b>負担なし</b></span></div>
+    <div class="slide-body cards-fill">
+      <div class="info-card"><span class="number-chip">1</span><span>契約事務手数料 <b>無料</b></span></div>
+      <div class="info-card"><span class="number-chip">2</span><span>2ヶ月分の月額料金 <b>無料</b></span></div>
+      <div class="info-card alert"><span class="number-chip danger">3</span><span>解約金まで <b>無料</b></span></div>
+      <div class="coverage-summary"><span>契約</span><i>→</i><span>利用</span><i>→</i><span>解約</span><b>ぜんぶ 0円</b></div>
     </div>
-<!-- Slide ID: 3 -->
-<div class="slide-container ">
-      <div class="watermark">3</div><h2 class="slide-title">期間と対象プランを確認</h2>
-      <div class="deadline-card"><span>期間限定</span><b>2026年 7月31日まで</b><small>7月1日〜7月31日</small></div>
-      <div class="slide-body plan-list">
-        <div class="plan-info"><span>対象プラン</span><b>LINEMO ベストプラン</b></div>
-        <div class="plan-info"><span>対象プラン</span><b>LINEMO ベストプランV</b></div>
-      </div>
-      <div class="slide-illust low-illust compact-illust" style="z-index:2;"><img class="slide-art" src="public/images/irasutoya/pose_yubisashi_kakunin_businesswoman.png" alt="確認するビジネスウーマン"></div>
+    <div class="slide-illust low-illust compact-illust" style="z-index:2;"><img class="slide-art"
+        src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="驚く男性"></div>
+  </div>
+  <!-- Slide ID: 3 -->
+  <div class="slide-container ">
+    <div class="watermark">3</div>
+    <h2 class="slide-title">期間と対象プランを確認</h2>
+    <div class="deadline-card"><span>期間限定</span><b>2026年 7月31日まで</b><small>7月1日〜7月31日</small></div>
+    <div class="slide-body plan-list">
+      <div class="plan-info"><span>対象プラン</span><b>LINEMO ベストプラン</b></div>
+      <div class="plan-info"><span>対象プラン</span><b>LINEMO ベストプランV</b></div>
     </div>
-<!-- Slide ID: 4 -->
-<div class="slide-container price-note">
-      <div class="watermark">4</div><h2 class="slide-title">2つの費用が <em>0円</em>に！</h2>
-      <div class="slide-body fee-grid">
-        <div class="fee-card"><span class="fee-label">① 契約時</span><span class="old-price">通常 3,850円</span><b>無料</b><small>契約事務手数料</small></div>
-        <div class="fee-card strong"><span class="fee-label">② 開通後</span><b>2ヶ月分<br>月額料金が無料</b><small>対象条件は公式サイトで確認</small></div>
-      </div>
-      <div class="campaign-table"><img class="slide-art" src="public/images/temp/linemo/トライアルキャンペーン2_割引対象期間_表.png" alt="トライアルキャンペーン2の割引対象期間"></div>
+    <div class="slide-illust low-illust compact-illust" style="z-index:2;"><img class="slide-art"
+        src="public/images/irasutoya/pose_yubisashi_kakunin_businesswoman.png" alt="確認するビジネスウーマン"></div>
+  </div>
+  <!-- Slide ID: 4 -->
+  <div class="slide-container price-note">
+    <div class="watermark">4</div>
+    <h2 class="slide-title">2つの費用が <em>0円</em>に！</h2>
+    <div class="slide-body fee-grid">
+      <div class="fee-card"><span class="fee-label">① 契約時</span><span class="old-price">通常
+          3,850円</span><b>無料</b><small>契約事務手数料</small></div>
+      <div class="fee-card strong"><span class="fee-label">②
+          開通後</span><b>2ヶ月分<br>月額料金が無料</b><small>対象条件は公式サイトで確認</small></div>
     </div>
-<!-- Slide ID: 5 -->
-<div class="slide-container warning-slide">
-      <div class="warning-banner">⚠ 解約前に確認！</div><div class="watermark">5</div>
-      <h2 class="warning-title">もし合わなくても<br><em>解約金まで無料！</em></h2>
-      <div class="warning-box"><div class="w-title">割引期間中なら安心</div><div class="w-item">✓ 発生する契約解除料も無料</div><div class="w-item">✓ 気軽に使い心地を試せる</div></div>
-      <div class="warning-foot">格安SIM初心者こそ、今がチャンス</div>
-      <div class="slide-illust"><img class="slide-art" src="public/images/irasutoya/pose_anshin_woman.png" alt="安心する女性"></div>
+    <div class="campaign-table"><img class="slide-art" src="public/images/temp/linemo/トライアルキャンペーン2_割引対象期間_表.png"
+        alt="トライアルキャンペーン2の割引対象期間"></div>
+  </div>
+  <!-- Slide ID: 5 -->
+  <div class="slide-container warning-slide">
+    <div class="warning-banner">⚠ 解約前に確認！</div>
+    <div class="watermark">5</div>
+    <h2 class="warning-title">もし合わなくても<br><em>解約金まで無料！</em></h2>
+    <div class="warning-box">
+      <div class="w-title">割引期間中なら安心</div>
+      <div class="w-item">✓ 発生する契約解除料も無料</div>
+      <div class="w-item">✓ 気軽に使い心地を試せる</div>
     </div>
-<!-- Slide ID: 6 -->
-<div class="slide-container cta-slide">
-      <div class="cta-content"><div class="cta-logo-card"><img class="cta-logo" src="public/images/logo/LINEMO_logo.png" alt="LINEMO ロゴ"></div>
+    <div class="warning-foot">格安SIM初心者こそ、今がチャンス</div>
+    <div class="slide-illust"><img class="slide-art" src="public/images/irasutoya/pose_anshin_woman.png" alt="安心する女性">
+    </div>
+  </div>
+  <!-- Slide ID: 6 -->
+  <div class="slide-container cta-slide">
+    <div class="cta-content">
+      <div class="cta-logo-card"><img class="cta-logo" src="public/images/logo/LINEMO_logo.png" alt="LINEMO ロゴ"></div>
       <h2 class="cta-title">申し込み方法は<br>本編でチェック！</h2>
-      <p class="cta-sub">対象は3パターン</p><div class="three-patterns"><span>新規契約</span><span>乗り換え</span><span>プラン変更</span></div>
-      <img class="cta-banner-img" src="public/images/thumbnails/【7月31日まで】LINEMOが実質無料で試せるトライアルキャンペーン2_サムネ1.png" alt="LINEMOトライアルキャンペーン2 本編サムネイル" onerror="this.onerror=null;this.src='public/images/thumbnails/37_LINEMOトライアルキャンペーン2_サムネ1.png'"><div class="bounce-arrow">↓</div></div>
-    </div></body></html>
+      <p class="cta-sub">対象は3パターン</p>
+      <div class="three-patterns"><span>新規契約</span><span>乗り換え</span><span>プラン変更</span></div>
+      <img class="cta-banner-img" src="public/images/thumbnails/【7月31日まで】LINEMOが実質無料で試せるトライアルキャンペーン2_サムネ1.png"
+        alt="LINEMOトライアルキャンペーン2 本編サムネイル"
+        onerror="this.onerror=null;this.src='public/images/thumbnails/37_LINEMOトライアルキャンペーン2_サムネ1.png'">
+      <div class="bounce-arrow">↓</div>
+    </div>
+  </div>
+</body>
+
+</html>
