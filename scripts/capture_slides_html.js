@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { resolveBrowserExecutable } from './resolve_browser.js';
+import { copyCapturedSlides } from './copy_captured_slides.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -13,6 +14,16 @@ const OUT_DIR = path.join(PROJECT_ROOT, 'out');
 // Get mode from command line args
 const mode = process.argv[2] === 'short' ? 'short' : 'long';
 const isShort = mode === 'short';
+const SLIDE_DEST_DIR = path.resolve(
+    PROJECT_ROOT,
+    '..',
+    'video-studio',
+    'video',
+    'public',
+    'temp',
+    mode,
+    'slides',
+);
 
 const SLIDE_HTML_PATH = isShort ? path.join(PROJECT_ROOT, 'slides-short.html') : path.join(PROJECT_ROOT, 'slides.html');
 const SLIDE_SELECTOR = '.slide-container';
@@ -114,6 +125,17 @@ async function main() {
     }
 
     await browser.close();
+
+    const { copiedCount, removedCount } = copyCapturedSlides({
+        sourceDir: OUT_DIR,
+        destinationDir: SLIDE_DEST_DIR,
+        mode,
+    });
+    console.log(`Removed ${removedCount} old PNG(s) from ${SLIDE_DEST_DIR}`);
+    console.log(`Copied ${copiedCount} ${mode} slide PNG(s) to ${SLIDE_DEST_DIR}`);
 }
 
-main().catch(console.error);
+main().catch((error) => {
+    console.error(error);
+    process.exitCode = 1;
+});
