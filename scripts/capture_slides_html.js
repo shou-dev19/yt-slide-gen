@@ -4,6 +4,7 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { resolveBrowserExecutable } from './resolve_browser.js';
 import { copyCapturedSlides } from './copy_captured_slides.js';
+import { measureSlideWhitespace, findOverThreshold } from './measure_whitespace.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -109,6 +110,8 @@ async function main() {
 
     console.log(`Found ${slideIds.length} slides.`);
 
+    const whitespaceResults = [];
+
     for (let i = 0; i < slideIds.length; i++) {
         const id = slideIds[i];
         console.log(`Processing Slide ID: ${id}`);
@@ -121,10 +124,34 @@ async function main() {
             const outFile = path.join(OUT_DIR, `${FILE_PREFIX}${paddedId}.png`);
             await slideElement.screenshot({ path: outFile });
             console.log(`Saved: ${outFile}`);
+
+            // 余白率の計測（SKILL.md §10「ページの1/3以上が空白なら不合格」の機械判定）
+            const pages = await measureSlideWhitespace(page, SLIDE_SELECTOR, i);
+            whitespaceResults.push({ id, file: `${FILE_PREFIX}${paddedId}.png`, pages });
         }
     }
 
     await browser.close();
+
+    // --- 余白レポートの出力 ---
+    const reportPath = path.join(OUT_DIR, `${FILE_PREFIX}whitespace-report.json`);
+    const overThreshold = findOverThreshold(whitespaceResults);
+    fs.writeFileSync(
+        reportPath,
+        JSON.stringify({ mode, threshold: Number((1 / 3).toFixed(3)), slides: whitespaceResults, overThreshold }, null, 2),
+    );
+    console.log(`\n余白レポート: ${reportPath}`);
+    if (overThreshold.length === 0) {
+        console.log('✅ 下端の空きが 1/3 以上のページはありません。');
+    } else {
+        console.warn(`⚠️  下端の空きが 1/3 以上のページ: ${overThreshold.length} 件`);
+        for (const o of overThreshold) {
+            console.warn(
+                `  - ${o.id} (${o.label}): 下端の空き ${(o.bottomGapRatio * 100).toFixed(0)}% / 総余白 ${(o.whitespaceRatio * 100).toFixed(0)}%`,
+            );
+        }
+        console.warn('  SKILL.md §10 の優先順位（①台本から不足内容を追記 → ②文字・アイコン拡大 → ③隣ページと再配分 → ④いらすとや）で埋めること。');
+    }
 
     const { copiedCount, removedCount } = copyCapturedSlides({
         sourceDir: OUT_DIR,

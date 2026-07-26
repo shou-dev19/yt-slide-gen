@@ -14,6 +14,7 @@ npm run export-pptx [/ export-short-pptx]  # スライドHTML → PPTX
 
 - キャプチャ対象は各 HTML 内の `.slide-container` 要素（1要素=1枚、1920×1080）。
 - キャプチャ実行時に `out/` の同プレフィックス PNG を**全削除してから**生成する（前回動画の残骸を bridge.sh が拾わないため）。
+- キャプチャと同時に**余白率を計測**し `out/{slide_|short_slide_}whitespace-report.json` に出力する（`scripts/measure_whitespace.js`）。判定は各ページの **`bottomGapRatio`（内容の最下端から内容領域の下端までの空き）が 1/3 以上で不合格**。総余白率で判定すると章扉・CTA のような中央寄せレイアウトが軒並み引っかかるため、判定には使わず参考値として出すだけにしている。閾値超過があれば警告を出す（終了コードは0）。
 - ブラウザは `scripts/resolve_browser.js` が解決する（ARM64 コンテナではシステムの Chromium を使用）。Puppeteer の bundled Chromium 前提のコードを書かないこと。
 
 ## File Roles
