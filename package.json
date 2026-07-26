@@ -11,7 +11,8 @@
     "capture-slides-html": "node scripts/capture_slides_html.js",
     "capture-short-slides-html": "node scripts/capture_slides_html.js short",
     "export-pptx": "node scripts/export_pptx.js",
-    "export-short-pptx": "node scripts/export_pptx.js short"
+    "export-short-pptx": "node scripts/export_pptx.js short",
+    "test": "node --test scripts/*.test.js"
   },
   "dependencies": {
     "pptxgenjs": "^4.0.1",
