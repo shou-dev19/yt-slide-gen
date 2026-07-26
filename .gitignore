@@ -38,5 +38,6 @@ dist-ssr
 /public/images/thumbnails/
 
 
-# キャプチャ時に出力される余白計測レポート（成果物ではなく検査ログ）
+# キャプチャ時に出力される計測レポート（成果物ではなく検査ログ）
 out/*whitespace-report.json
+out/*layout-report.json
