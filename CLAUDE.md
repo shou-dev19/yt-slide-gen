@@ -20,6 +20,8 @@ npm run export-pptx [/ export-short-pptx]  # スライドHTML → PPTX
   - **見切れ**: `overflow` が visible 以外の要素で、**自分の直接のテキスト**が `scrollWidth/Height` 超過で切られているもの。子孫まで対象にすると、角の菱形アクセントのように意図的に枠外へ抜く装飾を持つコンテナが毎回引っかかる。
   - **はみ出し**: 見開き（`.page`）は**内容領域**が枠（下部 padding ＝字幕帯への侵入を検出したい）、std・ショートは**要素の外形**が枠（`.watermark` や `.slide-illust` を padding 領域へ意図的に絶対配置する書式のため）。
 - ブラウザは `scripts/resolve_browser.js` が解決する（ARM64 コンテナではシステムの Chromium を使用）。Puppeteer の bundled Chromium 前提のコードを書かないこと。
+- スライド生成時は、着手前に直近の `video/long-*` ブランチの `slides.html` を `git show "<branch>:slides.html"` で読み、構成を踏襲する（`generate-html-slides` スキル §0）。ゼロから作り直すと過去に確立した構成が毎回失われる。
+- `台本.txt` は `bridge.sh a` が撒いた**コピー**。マスターは `packages/scenario-gen/archive/videos/.../<タイトル>.csv` で、マスター側でスライドIDを振り直してもここは古いまま残る。**スライドIDの照合はマスターCSVに対して行う**こと。
 
 ## File Roles
 

@@ -45,6 +45,10 @@
 
 body {
   font-family: 'M PLUS Rounded 1c', sans-serif;
+  /* 動画は縮小視聴されるため、既定を太字寄りにする。
+     Web フォントが読めなかった場合のフォールバック（IPAGothic 等）は
+     ウェイトを持たず細く出るので、per-slide で軽いウェイトへ落とさないこと。 */
+  font-weight: 700;
   background: #2b2622;
   display: flex;
   flex-direction: column;
@@ -267,7 +271,7 @@ body {
 }
 .rows .tx { font-size: 48px; font-weight: 700; line-height: 1.35; color: var(--ink); }
 .rows .tx .em { color: var(--con); font-weight: 900; }
-.rows .tx .sub { display: block; font-size: 34px; color: var(--ink-soft); font-weight: 600; margin-top: 6px; }
+.rows .tx .sub { display: block; font-size: 34px; color: var(--ink-soft); font-weight: 700; margin-top: 6px; }
 
 /* --- 強調ボックス（数値／結論） --- */
 .emph {
@@ -287,7 +291,7 @@ body {
 .warn .em { color: var(--con); font-weight: 900; }
 
 /* --- 小注記 --- */
-.note { font-size: 44px; color: var(--ink-soft); font-weight: 600; line-height: 1.4; }
+.note { font-size: 44px; color: var(--ink-soft); font-weight: 700; line-height: 1.4; }
 
 /* --- 紙の表 --- */
 .sheet { width: 100%; border-collapse: collapse; font-size: 42px; }
@@ -295,7 +299,7 @@ body {
 .sheet th { background: var(--brand); color: #fff; font-weight: 900; }
 .sheet td { color: var(--ink); font-weight: 700; background: #fff; }
 .sheet .em { color: var(--con); font-weight: 900; }
-.sheet .sub { font-size: 30px; color: var(--ink-soft); font-weight: 600; }
+.sheet .sub { font-size: 30px; color: var(--ink-soft); font-weight: 700; }
 
 /* --- ページ中央の大見出し --- */
 .big-title { font-size: 104px; font-weight: 900; line-height: 1.22; color: var(--ink); text-align: center; text-shadow: 4px 4px 0 #fff; }
@@ -334,7 +338,7 @@ body {
 }
 .card .rank { grid-row: 1 / span 3; align-self: center; width: 96px; height: 96px; border-radius: 20px; font-size: 48px; }
 .card-name { font-size: 42px; font-weight: 900; color: var(--ink); line-height: 1.1; }
-.card .line { font-size: 33px; font-weight: 500; line-height: 1.2; color: var(--ink); }
+.card .line { font-size: 36px; font-weight: 700; line-height: 1.2; color: var(--ink); }
 
 /* ===========================================================================
  * 日本語の自動折り返し（手 <br> への依存を減らす）
