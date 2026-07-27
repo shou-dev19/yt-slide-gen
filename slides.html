@@ -16,18 +16,24 @@
       justify-content:center;align-items:center;padding:42px;flex-shrink:0;color:var(--text-dark);
     }
     .sunburst { position:absolute;inset:0;background:repeating-conic-gradient(from 0deg at 54% 44%,rgba(200,16,46,.085) 0 5deg,transparent 5deg 10deg); }
-    .std-grid { position:relative;z-index:1;width:100%;display:grid;grid-template-columns:minmax(0,1.75fr) minmax(260px,.65fr);align-items:center;gap:20px; }
-    .std-copy h1 { font-size:91px;line-height:1.12;font-weight:900;margin:18px 0 24px;text-shadow:4px 4px 0 #fff;letter-spacing:-2px; }
-    .std-copy h1 span { color:var(--accent-red);font-size:116px;white-space:nowrap; }
-    .std-kicker { font-size:38px;font-weight:900;margin-top:20px; }
-    .cover-badge { position:relative;z-index:2;width:fit-content;background:#C8102E;color:#fff;font-size:34px;font-weight:900;padding:10px 28px;border-radius:8px;transform:rotate(-2deg);box-shadow:0 8px 16px #0003;align-self:flex-start; }
-    .std-hero { width:100%;max-height:440px;object-fit:contain;filter:drop-shadow(0 16px 16px #0003); }
-    .std-hero.compact { max-height:350px;align-self:end; }
-    .logo-strip { display:flex;align-items:center;gap:16px;background:#fff;border:4px solid #eadfd8;border-radius:18px;padding:14px 20px;box-shadow:0 8px 20px #0002; }
-    .logo-strip img { max-width:30%;height:54px;object-fit:contain; }
-    .price-flow { display:grid;grid-template-columns:auto auto auto auto auto auto;align-items:center;gap:9px;background:#fff;border:4px solid #C8102E;border-radius:18px;padding:16px;font-size:24px;font-weight:900;box-shadow:0 8px 20px #0002; }
-    .price-flow strong { color:#E53935;font-size:32px;white-space:nowrap; }.price-flow i{color:#777}
-    .title-grid .std-copy h1 { font-size:72px;line-height:1.2 }.title-grid .std-copy h1 span{font-size:104px}
+    /* 導入スライドは「テキストが主役」。いらすとやは右下のアクセントとして絶対配置し、
+       テキストの段組みを押しのけない（＝テキストは全幅を使って中央寄せできる）。 */
+    .std-copy { position:relative;z-index:1;width:100%;display:flex;flex-direction:column;align-items:center;text-align:center; }
+    .std-copy h1 { font-size:96px;line-height:1.12;font-weight:900;margin:18px 0 26px;text-shadow:4px 4px 0 #fff;letter-spacing:-2px; }
+    .std-copy h1 span { color:var(--accent-red);font-size:120px;white-space:nowrap; }
+    .std-kicker { font-size:50px;font-weight:900;margin-top:22px; }
+    .cover-badge { position:relative;z-index:2;width:fit-content;background:#C8102E;color:#fff;font-size:46px;font-weight:900;padding:12px 34px;border-radius:10px;transform:rotate(-2deg);box-shadow:0 8px 16px #0003; }
+    .std-hero { position:absolute;right:16px;bottom:16px;z-index:0;height:300px;width:auto;object-fit:contain;filter:drop-shadow(0 16px 16px #0003); }
+    .std-hero.compact { height:290px; }
+    .logo-strip { width:fit-content;display:flex;align-items:center;gap:26px;background:#fff;border:4px solid #eadfd8;border-radius:18px;padding:14px 26px;box-shadow:0 8px 20px #0002; }
+    .logo-strip img { height:62px;object-fit:contain; }
+    /* 社名はテキストだと小さく潰れるのでロゴ画像で見せる（各社ロゴ＋価格の縦積みを vs で並べる）。 */
+    .price-flow { width:fit-content;display:flex;align-items:center;gap:22px;background:#fff;border:4px solid #C8102E;border-radius:18px;padding:16px 26px;box-shadow:0 8px 20px #0002; }
+    .pf-item { display:flex;flex-direction:column;align-items:center;gap:8px; }
+    .pf-item img { height:44px;max-width:230px;object-fit:contain; }
+    .price-flow strong { color:#E53935;font-size:42px;white-space:nowrap; }
+    .price-flow i { color:#999;font-size:30px;font-weight:900; }
+    .std-copy.title-grid h1 { font-size:86px;line-height:1.18 }.std-copy.title-grid h1 span{font-size:112px}
     /* 評価見開き（N）。レーダーチャートは N-0 側に原寸で置くため、
        右ページの .head-right は罫線を左右で揃えるための空スペーサーとして残す。 */
     .eval-page { padding:28px 42px 250px; }
@@ -88,27 +94,29 @@
 <!-- Slide ID: 1 -->
 <div class="slide-container std">
   <div class="sunburst"></div>
-  <div class="std-grid">
-    <div class="std-copy">
-      <div class="cover-badge">迷子、続出！</div>
-      <div class="std-kicker">同じ「無制限」なのに…</div>
-      <h1>結局どれが<br><span>お得なの？</span></h1>
-      <div class="logo-strip"><img src="public/images/logo/Mobile_logo_1line_magenta.png"><img src="public/images/logo/Mineo_logo.png"><img src="public/images/logo/Povo_logo.png"></div>
-    </div>
-    <img class="std-hero" src="public/images/irasutoya/pose_atama_kakaeru_woman.png" alt="プラン選びに迷う人">
+  <img class="std-hero" src="public/images/irasutoya/pose_atama_kakaeru_woman.png" alt="プラン選びに迷う人">
+  <div class="std-copy">
+    <div class="cover-badge">迷子、続出！</div>
+    <div class="std-kicker">同じ「無制限」なのに…</div>
+    <h1>結局どれが<br><span>お得なの？</span></h1>
+    <div class="logo-strip"><img src="public/images/logo/Mobile_logo_1line_magenta.png"><img src="public/images/logo/Mineo_logo.png"><img src="public/images/logo/Povo_logo.png"></div>
   </div>
 </div>
 <!-- Slide ID: 2 -->
 <div class="slide-container std price-note">
   <div class="sunburst"></div>
-  <div class="cover-badge">2026年 最新比較</div>
-  <div class="std-grid title-grid">
-    <div class="std-copy">
-      <div class="std-kicker">3つの無制限を徹底比較</div>
-      <h1><span>月250円</span>から<br>本当の使い放題まで</h1>
-      <div class="price-flow"><b>楽天モバイル</b><strong>3,278円</strong><i>vs</i><b>mineo</b><strong>250円〜</strong><i>vs</i><b>povo</b><strong>1日330円</strong></div>
+  <img class="std-hero compact" src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="価格差に驚く人">
+  <div class="std-copy title-grid">
+    <div class="cover-badge">2026年 最新比較</div>
+    <div class="std-kicker">3つの無制限を徹底比較</div>
+    <h1><span>月250円</span>から<br>本当の使い放題まで</h1>
+    <div class="price-flow">
+      <div class="pf-item"><img src="public/images/logo/Mobile_logo_1line_magenta.png" alt="楽天モバイル"><strong>3,278円</strong></div>
+      <i>vs</i>
+      <div class="pf-item"><img src="public/images/logo/Mineo_logo.png" alt="mineo"><strong>250円〜</strong></div>
+      <i>vs</i>
+      <div class="pf-item"><img src="public/images/logo/Povo_logo.png" alt="povo"><strong>1日330円</strong></div>
     </div>
-    <img class="std-hero compact" src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="価格差に驚く人">
   </div>
 </div>
 <!-- Slide ID: 3 -->
