@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import { resolveBrowserExecutable } from './resolve_browser.js';
 import { copyCapturedSlides } from './copy_captured_slides.js';
 import { measureSlideWhitespace, findOverThreshold } from './measure_whitespace.js';
+import { measureSlideLayout, findIllustrationDominant, collectOverflow } from './measure_layout.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -111,6 +112,7 @@ async function main() {
     console.log(`Found ${slideIds.length} slides.`);
 
     const whitespaceResults = [];
+    const layoutResults = [];
 
     for (let i = 0; i < slideIds.length; i++) {
         const id = slideIds[i];
@@ -128,6 +130,10 @@ async function main() {
             // 余白率の計測（SKILL.md §10「ページの1/3以上が空白なら不合格」の機械判定）
             const pages = await measureSlideWhitespace(page, SLIDE_SELECTOR, i);
             whitespaceResults.push({ id, file: `${FILE_PREFIX}${paddedId}.png`, pages });
+
+            // いらすとや主役化（§7・§9）とテキスト見切れ・はみ出し（§10）の機械判定
+            const layout = await measureSlideLayout(page, SLIDE_SELECTOR, i);
+            layoutResults.push({ id, file: `${FILE_PREFIX}${paddedId}.png`, ...layout });
         }
     }
 
@@ -151,6 +157,52 @@ async function main() {
             );
         }
         console.warn('  SKILL.md §10 の優先順位（①台本から不足内容を追記 → ②文字・アイコン拡大 → ③隣ページと再配分 → ④いらすとや）で埋めること。');
+    }
+
+    // --- レイアウトレポート（いらすとや主役化 / 見切れ・はみ出し）の出力 ---
+    const layoutReportPath = path.join(OUT_DIR, `${FILE_PREFIX}layout-report.json`);
+    const dominant = findIllustrationDominant(layoutResults);
+    const { clipped, outOfBounds } = collectOverflow(layoutResults);
+    fs.writeFileSync(
+        layoutReportPath,
+        JSON.stringify({ mode, slides: layoutResults, illustrationDominant: dominant, clipped, outOfBounds }, null, 2),
+    );
+    console.log(`\nレイアウトレポート: ${layoutReportPath}`);
+
+    if (dominant.length === 0) {
+        console.log('✅ いらすとやが主役になっているページはありません。');
+    } else {
+        console.warn(`⚠️  いらすとやが主役になっているページ: ${dominant.length} 件`);
+        for (const d of dominant) {
+            console.warn(
+                `  - ${d.id} (${d.label}): ${d.reasons.join(' / ')}` +
+                ` — イラスト ${(d.illustrationAreaRatio * 100).toFixed(0)}% / テキスト ${(d.textAreaRatio * 100).toFixed(0)}%` +
+                ` [${d.images.join(', ')}]`,
+            );
+        }
+        console.warn('  SKILL.md §7・§9（主役はテキスト。いらすとやは脇役）に沿って、台本の情報をテキスト・表・部品として足すこと。');
+    }
+
+    if (clipped.length === 0 && outOfBounds.length === 0) {
+        console.log('✅ テキストの見切れ・はみ出しはありません。');
+    } else {
+        if (clipped.length > 0) {
+            console.warn(`⚠️  テキストが見切れている箇所: ${clipped.length} 件`);
+            for (const c of clipped) {
+                const dir = [c.clippedXPx > 0 ? `横 ${c.clippedXPx}px` : null, c.clippedYPx > 0 ? `縦 ${c.clippedYPx}px` : null]
+                    .filter(Boolean)
+                    .join(' / ');
+                console.warn(`  - ${c.id} (${c.label}) ${c.path}: ${dir} 切れ 「${c.text}」`);
+            }
+        }
+        if (outOfBounds.length > 0) {
+            console.warn(`⚠️  内容領域からはみ出している箇所: ${outOfBounds.length} 件`);
+            for (const o of outOfBounds) {
+                const dirs = Object.entries(o.overflowPx).map(([k, v]) => `${k} ${v}px`).join(' / ');
+                console.warn(`  - ${o.id} (${o.label}) ${o.path}: ${dirs} 「${o.text}」`);
+            }
+        }
+        console.warn('  SKILL.md §10（オーバーフロー厳禁・下端の字幕帯に本文を置かない）に沿って、フォント縮小・行数削減・隣ページへの分割で直すこと。');
     }
 
     const { copiedCount, removedCount } = copyCapturedSlides({
