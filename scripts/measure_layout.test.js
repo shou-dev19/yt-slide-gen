@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { findIllustrationDominant, collectOverflow } from './measure_layout.js';
+import { findIllustrationDominant, collectOverflow, collectBrokenIcons } from './measure_layout.js';
 
 const page = (over = {}) => ({
     label: 'left',
@@ -77,4 +77,33 @@ test('collectOverflow: スライドIDを付けて見切れ・はみ出しを集�
     assert.deepEqual(clipped.map((c) => c.id), ['A']);
     assert.deepEqual(outOfBounds.map((o) => o.id), ['B']);
     assert.equal(outOfBounds[0].overflowPx.bottom, 190);
+});
+
+test('collectBrokenIcons: スライドIDを付けて未定義アイコンを集約する', () => {
+    // 実例: fa-gauge-simple-low は Pro 限定で、6.5.0 Free には定義が無い。
+    const results = [
+        {
+            id: '4-1',
+            brokenIcons: [
+                {
+                    label: 'left',
+                    path: 'div.page-body > div.emph > i',
+                    classes: 'fa-solid fa-gauge-simple-low',
+                    iconClasses: ['fa-gauge-simple-low'],
+                },
+            ],
+        },
+        { id: '4-2', brokenIcons: [] },
+    ];
+
+    const broken = collectBrokenIcons(results);
+
+    assert.equal(broken.length, 1);
+    assert.equal(broken[0].id, '4-1');
+    assert.deepEqual(broken[0].iconClasses, ['fa-gauge-simple-low']);
+});
+
+test('collectBrokenIcons: brokenIcons を持たない結果でも落ちない', () => {
+    // 旧フォーマットのレポートを読み込んだ場合や、計測が null を返した場合の後方互換。
+    assert.deepEqual(collectBrokenIcons([{ id: '1' }]), []);
 });

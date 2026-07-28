@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 import { resolveBrowserExecutable } from './resolve_browser.js';
 import { copyCapturedSlides } from './copy_captured_slides.js';
 import { measureSlideWhitespace, findOverThreshold } from './measure_whitespace.js';
-import { measureSlideLayout, findIllustrationDominant, collectOverflow } from './measure_layout.js';
+import { measureSlideLayout, findIllustrationDominant, collectOverflow, collectBrokenIcons } from './measure_layout.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -131,7 +131,7 @@ async function main() {
             const pages = await measureSlideWhitespace(page, SLIDE_SELECTOR, i);
             whitespaceResults.push({ id, file: `${FILE_PREFIX}${paddedId}.png`, pages });
 
-            // いらすとや主役化（§7・§9）とテキスト見切れ・はみ出し（§10）の機械判定
+            // いらすとや主役化（§7・§9）／テキスト見切れ・はみ出し（§10）／未定義アイコン（§9）の機械判定
             const layout = await measureSlideLayout(page, SLIDE_SELECTOR, i);
             layoutResults.push({ id, file: `${FILE_PREFIX}${paddedId}.png`, ...layout });
         }
@@ -163,9 +163,10 @@ async function main() {
     const layoutReportPath = path.join(OUT_DIR, `${FILE_PREFIX}layout-report.json`);
     const dominant = findIllustrationDominant(layoutResults);
     const { clipped, outOfBounds } = collectOverflow(layoutResults);
+    const brokenIcons = collectBrokenIcons(layoutResults);
     fs.writeFileSync(
         layoutReportPath,
-        JSON.stringify({ mode, slides: layoutResults, illustrationDominant: dominant, clipped, outOfBounds }, null, 2),
+        JSON.stringify({ mode, slides: layoutResults, illustrationDominant: dominant, clipped, outOfBounds, brokenIcons }, null, 2),
     );
     console.log(`\nレイアウトレポート: ${layoutReportPath}`);
 
@@ -203,6 +204,18 @@ async function main() {
             }
         }
         console.warn('  SKILL.md §10（オーバーフロー厳禁・下端の字幕帯に本文を置かない）に沿って、フォント縮小・行数削減・隣ページへの分割で直すこと。');
+    }
+
+    if (brokenIcons.length === 0) {
+        console.log('✅ 表示されていない FontAwesome アイコンはありません。');
+    } else {
+        console.warn(`⚠️  表示されていない FontAwesome アイコン: ${brokenIcons.length} 件`);
+        for (const b of brokenIcons) {
+            const names = b.iconClasses.length > 0 ? b.iconClasses.join(', ') : b.classes;
+            console.warn(`  - ${b.id} (${b.label}) ${b.path}: ${names}`);
+        }
+        console.warn('  Free 版に存在しない名前（Pro 限定アイコンや綴り間違い）です。実在する近縁アイコンを探して差し替えること:');
+        console.warn("    curl -s https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css | grep -o '\\.fa-<語幹>[a-z0-9-]*:before'");
     }
 
     const { copiedCount, removedCount } = copyCapturedSlides({
