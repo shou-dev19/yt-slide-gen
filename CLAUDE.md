@@ -8,7 +8,10 @@
 npm run capture-slides-html         # slides.html       → out/slide_NN.png (long)
 npm run capture-short-slides-html   # slides-short.html → out/short_slide_NN.png (short)
 npm run export-pptx [/ export-short-pptx]  # スライドHTML → PPTX
+npm run format                      # *.html を prettier で整形
 ```
+
+スライドHTML（`slides*.html`）は AI エージェントが Edit/Write すると **PostToolUse hook が prettier を自動実行**して整形する（設定は `.claude/settings.json`）。整形は VS Code の保存時整形と同じ prettier（`devDependencies` に固定）を使うので、手動保存とエージェント編集で差分が出ない。
 
 ## 非自明な値・挙動
 
