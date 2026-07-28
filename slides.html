@@ -391,7 +391,8 @@
       .blog-header {
         width: 100%;
         height: auto;
-        max-height: 540px;
+        /* .blog-note を読めるサイズまで上げるぶん、ヘッダー画像で縦を譲る。 */
+        max-height: 480px;
         object-fit: contain;
         border-radius: 18px;
         filter: drop-shadow(0 12px 20px #0003);
@@ -400,13 +401,15 @@
       .blog-link {
         width: 100%;
         padding: 18px 24px;
-        font-size: 38px;
+        font-size: 40px;
         line-height: 1.25;
         text-align: center;
       }
 
+      /* 28px ではスマホ視聴で読めなかった。§10.2 の下限（30px）も下回っていたので、
+         .note の既定（44px）に近い 40px まで戻す。 */
       .blog-note {
-        font-size: 28px;
+        font-size: 40px;
         text-align: center;
       }
 
