@@ -1,5 +1,6 @@
 /**
- * レンダリング済みの DOM から「いらすとや主役化」と「テキストの見切れ・はみ出し」を計測する。
+ * レンダリング済みの DOM から「いらすとや主役化」「テキストの見切れ・はみ出し」
+ * 「FontAwesome の未定義アイコン」を計測する。
  *
  * 背景:
  *   generate-html-slides の SKILL.md は §7「イラストが見出しより大きい・目立つ構図は不合格」
@@ -20,6 +21,12 @@
  *   - **はみ出し（outOfBounds）**: 内容領域の外へ出ている要素。`.page` の padding-bottom は
  *     字幕帯用に空けた紙面（SKILL.md §10「本の下端より下は字幕帯」）なので、ここへ本文が
  *     侵入していれば検出される。
+ *   - **未定義アイコン（brokenIcons）**: `fa-solid` 等のスタイルクラスを持つ要素のうち、
+ *     `::before` の content が空のもの。FontAwesome は具体名のクラス（`.fa-xxx:before`）で
+ *     content を与えるので、Free に無い名前（`fa-gauge-simple-low` などの Pro 限定アイコン）や
+ *     綴り間違いを書くと**何のエラーも出ずにアイコンだけが消える**。要素は幅0になるだけで
+ *     レイアウトも崩れないため、上の3つの判定にも掛からず目視でしか気づけなかった
+ *     （実際に Slide 4-1 で1つ欠けたまま出荷寸前まで気づけなかった）。
  */
 
 /** ブラウザ内で実行される計測関数の本体（page.evaluate に渡す）。 */
@@ -122,6 +129,15 @@ const measureInPage = (slideSelector, index, opts) => {
         return { left: r.left, right: r.right, top: r.top, bottom: r.bottom, width: r.width, height: r.height };
     };
 
+    /**
+     * FontAwesome の「スタイルクラス」。これを持つ要素はアイコンを描くつもりの要素とみなす。
+     * FA6（fa-solid 等）と FA5 の旧記法（fas/far/fab）の両方を拾う。
+     */
+    const FA_STYLE_CLASS = /^(fa-(solid|regular|brands|light|thin|duotone|sharp|classic)|fa[srlbd]?)$/;
+    const isIconEl = (el) => Array.from(el.classList).some((c) => FA_STYLE_CLASS.test(c));
+    /** content が実質空＝グリフが出ていない状態。ブラウザ差を吸収して判定する。 */
+    const isEmptyContent = (v) => !v || v === 'none' || v === 'normal' || v === '""' || v === "''";
+
     const measurePage = (pageEl, label, isPage) => {
         const box = contentBox(pageEl);
         if (box.width <= 0 || box.height <= 0) return null;
@@ -134,6 +150,7 @@ const measureInPage = (slideSelector, index, opts) => {
         let headline = null;
         const clippedCandidates = []; // { el, entry } — 最内側の絞り込みに要素の包含関係を使う
         const outOfBounds = [];
+        const brokenIcons = [];
 
         const elements = [pageEl, ...pageEl.querySelectorAll('*')];
         for (const el of elements) {
@@ -163,6 +180,20 @@ const measureInPage = (slideSelector, index, opts) => {
             }
 
             if (el === pageEl) continue;
+
+            // --- FontAwesome の未定義アイコン ---
+            // **必ず下の「幅0ならスキップ」より前に置く。** グリフが出ないアイコンは
+            // 幅0になるため、後ろに置くと検出対象から漏れる。
+            if (isIconEl(el) && isEmptyContent(getComputedStyle(el, '::before').content)) {
+                const classes = Array.from(el.classList);
+                brokenIcons.push({
+                    label,
+                    path: describe(el),
+                    classes: classes.join(' '),
+                    // スタイルクラスを除いた「アイコン名」候補。差し替え対象を示す。
+                    iconClasses: classes.filter((c) => c.startsWith('fa-') && !FA_STYLE_CLASS.test(c)),
+                });
+            }
 
             const rect = el.getBoundingClientRect();
             if (rect.width <= 0 || rect.height <= 0) continue;
@@ -242,6 +273,7 @@ const measureInPage = (slideSelector, index, opts) => {
             },
             clipped,
             outOfBounds,
+            brokenIcons,
         };
     };
 
@@ -258,15 +290,17 @@ const measureInPage = (slideSelector, index, opts) => {
     const pages = [];
     let clipped = [];
     let outOfBounds = [];
+    let brokenIcons = [];
     for (const [el, label] of targets) {
         const result = measurePage(el, label, pageEls.length > 0);
         if (!result) continue;
         pages.push(result.page);
         clipped = clipped.concat(result.clipped);
         outOfBounds = outOfBounds.concat(result.outOfBounds);
+        brokenIcons = brokenIcons.concat(result.brokenIcons);
     }
 
-    return { pages, clipped, outOfBounds, isSpread: pageEls.length > 0 };
+    return { pages, clipped, outOfBounds, brokenIcons, isSpread: pageEls.length > 0 };
 };
 
 /**
@@ -292,7 +326,7 @@ export const DEFAULT_LAYOUT_OPTIONS = {
 
 /**
  * 1スライドのレイアウトを計測する。
- * @returns {Promise<{pages:object[], clipped:object[], outOfBounds:object[], isSpread:boolean}>}
+ * @returns {Promise<{pages:object[], clipped:object[], outOfBounds:object[], brokenIcons:object[], isSpread:boolean}>}
  */
 export async function measureSlideLayout(page, slideSelector, index, options = DEFAULT_LAYOUT_OPTIONS) {
     const merged = { ...DEFAULT_LAYOUT_OPTIONS, ...options };
@@ -301,6 +335,7 @@ export async function measureSlideLayout(page, slideSelector, index, options = D
             pages: [],
             clipped: [],
             outOfBounds: [],
+            brokenIcons: [],
             isSpread: false,
         }
     );
@@ -366,4 +401,21 @@ export function collectOverflow(results) {
         for (const o of r.outOfBounds) outOfBounds.push({ id: r.id, ...o });
     }
     return { clipped, outOfBounds };
+}
+
+/**
+ * 未定義の FontAwesome アイコンをスライド横断で集計する。
+ *
+ * 対応する規則: SKILL.md §9「FontAwesome のアイコン名は Free 版に存在するものだけ使う」。
+ * Pro 限定アイコン（`-low` などの階調バリエーション）や綴り間違いを書くと、エラーは出ず
+ * アイコンだけが黙って消える。
+ *
+ * @param {{id:string, brokenIcons?:object[]}[]} results
+ */
+export function collectBrokenIcons(results) {
+    const broken = [];
+    for (const r of results) {
+        for (const b of r.brokenIcons || []) broken.push({ id: r.id, ...b });
+    }
+    return broken;
 }
