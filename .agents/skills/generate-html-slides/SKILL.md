@@ -244,6 +244,13 @@ body { --primary-color:#C8102E; --accent-red:#E53935; --text-dark:#212121; }
 
 - **プレースホルダ禁止**。`public/images/` から文脈に最適な既存画像を選ぶ（`GEMINI.md` に一覧）。
 - 選択優先度：`temp/<carrier>/`（キャンペーンバナー等の直接的画像） > `charts/`（レーダーチャート） > `thumbnails/`（過去動画CTA） > `logo/` > `irasutoya/`（状況イラスト） > `common/`（概念図）。
+- **FontAwesome のアイコン名は Free 版に存在するものだけ使う**。未定義のクラスを書いてもエラーは出ず、`::before` の content が空になって**アイコンだけが黙って消える**（キャプチャの機械判定にも掛からないので目視でしか気づけない）。`-low` / `-simple-low` のような階調バリエーションや業種系アイコンは **Pro 限定**のことが多い（実際に `fa-gauge-simple-low` が Free に無く、Slide 4-1 のアイコンが1つだけ欠けた）。生成後に次のコマンドで突き合わせ、**出力が空**であることを確認する：
+  ```bash
+  curl -s https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css > /tmp/fa.css
+  comm -13 <(grep -o '\.fa-[a-z0-9-]*:before' /tmp/fa.css | sed 's/^\.//;s/:before$//' | sort -u) \
+           <(grep -o 'fa-\(solid\|regular\|brands\) fa-[a-z0-9-]*' slides.html | sed 's/.* //' | sort -u)
+  ```
+  何か出力されたらそれが未定義のアイコン。`grep -o '\.fa-<語幹>[a-z0-9-]*:before' /tmp/fa.css` で実在する近縁アイコンを探して差し替える。
 - **ファイル名は実在ファイルと厳密一致させる**（`ls` で確認）。特にレーダーチャートは `public/images/charts/<正式社名>.png` で、社名の綴り・スペース・記号まで一致が必要（実在例: `UQ mobile.png`／`Y!mobile.png`／`楽天モバイル.png`／`日本通信SIM.png`／`povo2.0.png`）。`UQ.png` のような略称パスは**リンク切れ**になる。過去動画CTAサムネは `thumbnails/` の実ファイル名に動画タイトルで部分一致させる。
 - **いらすとやは余白埋めの最終手段（使いすぎ厳禁）**：本編でいらすとやを使ってよいのは、台本の情報をすべて載せてもなお余白が大きいページだけ（§10 の優先順位に従う）。**片ページ丸ごと汎用イラストだけの構成は禁止**。目安：1見開きに1枚まで・同一画像はデッキ全体で2回まで。使う場合は文脈に合う画像を選ぶ（例: 迷う/多すぎ→`pose_atama_kakaeru_woman.png`、損/手数料→`seikyuusyo_shock.png`、店舗→`kaden_tenin16_woman_ojigi.png`、自宅ネット→`internet_modem_router.png` 等。ジェネレータで作る場合は「キーワード→ファイル名」の対応表を持たせると安定する）。
 - **外部出典の明記（必須）**：第三者サイトから取得した画像には取得元を正確に併記（例 `出典：Amazon.co.jp（IIJmio商品ページ）`。Amazon が権利者ではない点に注意）。キャプションは `.note` 相当の小さめ・グレーで画像直下に。
