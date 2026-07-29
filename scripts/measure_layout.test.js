@@ -2,10 +2,12 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
     measureShortSpread,
+    measureImagePaths,
     findIllustrationDominant,
     collectOverflow,
     collectBrokenIcons,
     collectShortSpreadViolations,
+    collectImagePathViolations,
 } from './measure_layout.js';
 
 const page = (over = {}) => ({
@@ -227,4 +229,95 @@ test('collectShortSpreadViolations: スライドIDを付けて違反だけを集
     assert.equal(violations[0].id, '2');
     assert.deepEqual(violations[0].reasons, ['見開き構造', '図鑑装丁クラス']);
     assert.deepEqual(violations[0].evidence.classes, ['paper-slide']);
+});
+
+const imageSlide = (images) => ({
+    querySelectorAll: (selector) => selector === 'img' ? images : [],
+});
+
+const image = (rawSrc, normalizedSrc = `file:///project/${rawSrc}`) => ({
+    src: normalizedSrc,
+    getAttribute: (name) => name === 'src' ? rawSrc : null,
+});
+
+test('measureImagePaths: file URI・絶対パス・外部URL・親参照を理由付きで検出する', async () => {
+    const result = await measureImagePaths(
+        fakePage([
+            imageSlide([
+                image('file:///project/public/images/a.png'),
+                image('/project/public/images/b.png'),
+                image('http://example.com/c.png'),
+                image('https://example.com/d.png'),
+                image('../video-studio/e.png'),
+            ]),
+        ]),
+        '.slide-container',
+        0,
+    );
+
+    assert.deepEqual(result, [
+        { reasons: ['file:// URI'], src: 'file:///project/public/images/a.png' },
+        { reasons: ['絶対パス'], src: '/project/public/images/b.png' },
+        { reasons: ['外部URL'], src: 'http://example.com/c.png' },
+        { reasons: ['外部URL'], src: 'https://example.com/d.png' },
+        { reasons: ['.. を含むパッケージ外参照'], src: '../video-studio/e.png' },
+    ]);
+});
+
+test('measureImagePaths: public/ 以外の相対パスも検出し、日本語を含む public/ パスは許可する', async () => {
+    const result = await measureImagePaths(
+        fakePage([
+            imageSlide([
+                image('images/local.png'),
+                image('public/images/thumbnails/【2026年最新】格安SIM_サムネ1.png'),
+            ]),
+        ]),
+        '.slide-container',
+        0,
+    );
+
+    assert.deepEqual(result, [
+        { reasons: ['public/ で始まらない相対パス'], src: 'images/local.png' },
+    ]);
+});
+
+test('measureImagePaths: element.src ではなく getAttribute の生値を判定する', async () => {
+    const result = await measureImagePaths(
+        fakePage([
+            imageSlide([
+                image(
+                    'public/images/logo/Mineo_logo.png',
+                    'file:///project/public/images/logo/Mineo_logo.png',
+                ),
+            ]),
+        ]),
+        '.slide-container',
+        0,
+    );
+
+    assert.deepEqual(result, []);
+});
+
+test('collectImagePathViolations: スライドIDを付けて違反だけを集約する', () => {
+    const violations = collectImagePathViolations([
+        {
+            id: '6',
+            imagePaths: [
+                {
+                    reasons: ['file:// URI'],
+                    src: 'file:///project/public/images/logo.png',
+                },
+            ],
+        },
+        { id: '7', imagePaths: [] },
+        { id: '8' },
+    ]);
+
+    assert.deepEqual(violations, [
+        {
+            id: '6',
+            reasons: ['file:// URI'],
+            src: 'file:///project/public/images/logo.png',
+        },
+    ]);
 });

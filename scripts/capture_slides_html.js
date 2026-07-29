@@ -8,10 +8,12 @@ import { measureSlideWhitespace, findOverThreshold } from './measure_whitespace.
 import {
     measureSlideLayout,
     measureShortSpread,
+    measureImagePaths,
     findIllustrationDominant,
     collectOverflow,
     collectBrokenIcons,
     collectShortSpreadViolations,
+    collectImagePathViolations,
 } from './measure_layout.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -142,11 +144,14 @@ async function main() {
             const layout = await measureSlideLayout(page, SLIDE_SELECTOR, i);
             // ショートで禁止されている見開き構造・図鑑装丁（generate-short-slides §0）の機械判定
             const shortSpread = isShort ? await measureShortSpread(page, SLIDE_SELECTOR, i) : null;
+            // 画像パス規約（generate-short-slides §4）の機械判定。long / short 共通。
+            const imagePaths = await measureImagePaths(page, SLIDE_SELECTOR, i);
             layoutResults.push({
                 id,
                 file: `${FILE_PREFIX}${paddedId}.png`,
                 ...layout,
                 ...(isShort ? { shortSpread } : {}),
+                imagePaths,
             });
         }
     }
@@ -179,6 +184,7 @@ async function main() {
     const { clipped, outOfBounds } = collectOverflow(layoutResults);
     const brokenIcons = collectBrokenIcons(layoutResults);
     const shortSpreadViolations = isShort ? collectShortSpreadViolations(layoutResults) : [];
+    const imagePathViolations = collectImagePathViolations(layoutResults);
     fs.writeFileSync(
         layoutReportPath,
         JSON.stringify(
@@ -190,6 +196,7 @@ async function main() {
                 outOfBounds,
                 brokenIcons,
                 ...(isShort ? { shortSpreadViolations } : {}),
+                imagePathViolations,
             },
             null,
             2,
@@ -243,6 +250,18 @@ async function main() {
         }
         console.warn('  Free 版に存在しない名前（Pro 限定アイコンや綴り間違い）です。実在する近縁アイコンを探して差し替えること:');
         console.warn("    curl -s https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css | grep -o '\\.fa-<語幹>[a-z0-9-]*:before'");
+    }
+
+    if (imagePathViolations.length === 0) {
+        console.log('✅ 規約違反の画像パスはありません。');
+    } else {
+        console.warn(`⚠️  規約違反の画像パス: ${imagePathViolations.length} 件`);
+        for (const violation of imagePathViolations) {
+            console.warn(`  - ${violation.id}: ${violation.reasons.join(' / ')} — src="${violation.src}"`);
+        }
+        console.warn(
+            '  generate-short-slides の SKILL.md §4（画像パスは public/ 始まりの相対パス。絶対パス・file://・他パッケージ参照は禁止）を参照して直すこと。',
+        );
     }
 
     const { copiedCount, removedCount } = copyCapturedSlides({

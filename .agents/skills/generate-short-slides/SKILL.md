@@ -253,6 +253,22 @@ When a slide presents N selectable options (e.g., 乗り換え先4選), **split 
     - **該当する長尺サムネが見つからない場合のみ**、フォールバックとして `public/images/slides/今すぐ本編動画をチェック.png` を使う。
 
 ## 4. Image Selection & Assets
+
+### 画像パスは `public/` 始まりの相対パス（絶対パス・`file://` 禁止）
+
+`src` 属性は**必ず `public/images/...` のようにリポジトリ相対（`slides-short.html` から見た相対）で書く**。次はすべて禁止:
+
+- ❌ `file:///workspaces/yt-factory/packages/slide-gen/public/images/...`（絶対 file URI）
+- ❌ `/workspaces/...` で始まる絶対パス
+- ❌ `../video-studio/...` のような**他パッケージへの参照**
+
+理由: キャプチャは `file://` で HTML を開くため絶対パスでも**ローカルでは一見動いてしまい、目視でも機械判定でも気づけない**。しかし絶対パスは (1) 別マシン・CI で解決不能、(2) 日本語ファイル名が URL エンコードされて読めなくなり後の手修正が困難、(3) パッケージ外参照はアセット配布（`sync-assets.sh`）の管理外になる、という問題を起こす。**Python の `Path.as_uri()` や `resolve()` の結果をそのまま `src` に入れないこと。** ファイル存在チェックは絶対パスで行ってよいが、HTML に書き出す値は相対パスに戻す。
+
+**必要なアセットが `public/images/` に無い場合**、他パッケージを絶対パスで直接参照して回避してはいけない。次のいずれかで解決する:
+
+1. `public/images/` にある代替アセットを選ぶ（例: CTA のロゴは §3 F のとおり**その動画で扱う MVNO のブランドロゴ**を `public/images/logo/` から選ぶ。チャンネルアイコンを他パッケージから引っ張ってこない）
+2. 恒久的に必要なら、マスター `shared/assets/` に追加して `bash scripts/sync-assets.sh` で配布してから相対パスで参照する
+
 - **No Placeholders**: Do NOT use placeholder boxes. Always select and use the most appropriate image asset from the `public/images/` directory.
 - **Selection Logic**: Analyze the script (e.g., `台本.txt`) to determine the context and select an image from `public/images/GEMINI.md` that matches:
     - **Logos**: Use `public/images/logo/` for MVNO or carrier mentions.

@@ -29,10 +29,6 @@ LONG_THUMBNAIL = (
     / "thumbnails"
     / "【2026年最新】格安SIMの無制限プラン比較！最安は月250円_サムネ1.png"
 )
-CHANNEL_LOGO = Path(
-    "/workspaces/yt-factory/packages/video-studio/video/public/backgrounds/"
-    "Youtubeチャンネル用アイコン.png"
-)
 
 
 @dataclass(frozen=True)
@@ -51,9 +47,10 @@ def esc(value: str) -> str:
 
 
 def file_url(path: Path) -> str:
-    if not path.is_file():
+    absolute_path = path.resolve()
+    if not absolute_path.is_file():
         raise FileNotFoundError(f"Required file is missing: {path}")
-    return path.resolve().as_uri()
+    return absolute_path.relative_to(PROJECT_DIR.resolve()).as_posix()
 
 
 def asset(relative_path: str) -> str:
@@ -265,7 +262,7 @@ def render_cta(slide: Slide) -> str:
 <div class="slide-container cta-slide price-note">
   <div class="cta-content">
     <div class="cta-logo-card">
-      <img class="cta-logo" src="{file_url(CHANNEL_LOGO)}" alt="格安SIM図鑑チャンネルロゴ">
+      <img class="cta-logo" src="{asset("logo/Mineo_logo.png")}" alt="mineo ロゴ">
     </div>
     <h2 class="cta-title">Bの正解は<br>本編で！</h2>
     <div class="cta-sub">
@@ -898,19 +895,18 @@ img {
 .cta-logo-card {
   display: grid;
   place-items: center;
-  width: 116px;
+  width: 300px;
   height: 116px;
   margin-bottom: 8px;
-  padding: 8px;
+  padding: 8px 20px;
   border-radius: 18px;
   background: #fff;
   box-shadow: 4px 4px 0 rgba(0,0,0,0.18);
 }
 
 .cta-logo {
-  width: 100px;
-  height: 100px;
-  border-radius: 12px;
+  width: 260px;
+  height: 90px;
   filter: none;
 }
 
