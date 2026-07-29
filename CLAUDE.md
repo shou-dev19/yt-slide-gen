@@ -24,7 +24,10 @@ npm run format                      # *.html を prettier で整形
   - **はみ出し**: 見開き（`.page`）は**内容領域**が枠（下部 padding ＝字幕帯への侵入を検出したい）、std・ショートは**要素の外形**が枠（`.watermark` や `.slide-illust` を padding 領域へ意図的に絶対配置する書式のため）。
   - **未定義アイコン**: `fa-solid` 等のスタイルクラスを持つ要素で `::before` の content が空のもの。Free に無い名前（Pro 限定の `-low` 系など）や綴り間違いは**エラーが出ずアイコンだけ消える**。要素が幅0になるだけなので他の3判定には掛からない。判定は**幅0スキップより前**に置くこと（後ろだと検出漏れする）。
 - ブラウザは `scripts/resolve_browser.js` が解決する（ARM64 コンテナではシステムの Chromium を使用）。Puppeteer の bundled Chromium 前提のコードを書かないこと。
-- スライド生成時は、着手前に直近の `video/long-*` ブランチの `slides.html` を `git show "<branch>:slides.html"` で読み、構成を踏襲する（`generate-html-slides` スキル §0）。ゼロから作り直すと過去に確立した構成が毎回失われる。
+- スライド生成時は、着手前に**直近の同種ブランチ**の完成デッキを `git show` で読み、構成を踏襲する。ゼロから作り直すと過去に確立した構成が毎回失われる。
+  - long: `video/long-*` の `slides.html`（`generate-html-slides` スキル §0）
+  - short: `video/short-*` の `slides-short.html`（`generate-short-slides` スキル §0）
+- **見開き（2ページ）構成は long 専用。short では使わない**（1080×1080 を左右に割ると文字が半分になりスマホで読めない）。short は1スライド＝1画面の単ページ構成。キャプチャ時に機械判定され、違反すると警告が出る（`scripts/measure_layout.js`）。
 - `台本.txt` は `bridge.sh a` が撒いた**コピー**。マスターは `packages/scenario-gen/archive/videos/.../<タイトル>.csv` で、マスター側でスライドIDを振り直してもここは古いまま残る。**スライドIDの照合はマスターCSVに対して行う**こと。
 
 ## File Roles

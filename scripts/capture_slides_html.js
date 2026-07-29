@@ -5,7 +5,14 @@ import { fileURLToPath } from 'url';
 import { resolveBrowserExecutable } from './resolve_browser.js';
 import { copyCapturedSlides } from './copy_captured_slides.js';
 import { measureSlideWhitespace, findOverThreshold } from './measure_whitespace.js';
-import { measureSlideLayout, findIllustrationDominant, collectOverflow, collectBrokenIcons } from './measure_layout.js';
+import {
+    measureSlideLayout,
+    measureShortSpread,
+    findIllustrationDominant,
+    collectOverflow,
+    collectBrokenIcons,
+    collectShortSpreadViolations,
+} from './measure_layout.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -133,7 +140,14 @@ async function main() {
 
             // いらすとや主役化（§7・§9）／テキスト見切れ・はみ出し（§10）／未定義アイコン（§9）の機械判定
             const layout = await measureSlideLayout(page, SLIDE_SELECTOR, i);
-            layoutResults.push({ id, file: `${FILE_PREFIX}${paddedId}.png`, ...layout });
+            // ショートで禁止されている見開き構造・図鑑装丁（generate-short-slides §0）の機械判定
+            const shortSpread = isShort ? await measureShortSpread(page, SLIDE_SELECTOR, i) : null;
+            layoutResults.push({
+                id,
+                file: `${FILE_PREFIX}${paddedId}.png`,
+                ...layout,
+                ...(isShort ? { shortSpread } : {}),
+            });
         }
     }
 
@@ -164,9 +178,22 @@ async function main() {
     const dominant = findIllustrationDominant(layoutResults);
     const { clipped, outOfBounds } = collectOverflow(layoutResults);
     const brokenIcons = collectBrokenIcons(layoutResults);
+    const shortSpreadViolations = isShort ? collectShortSpreadViolations(layoutResults) : [];
     fs.writeFileSync(
         layoutReportPath,
-        JSON.stringify({ mode, slides: layoutResults, illustrationDominant: dominant, clipped, outOfBounds, brokenIcons }, null, 2),
+        JSON.stringify(
+            {
+                mode,
+                slides: layoutResults,
+                illustrationDominant: dominant,
+                clipped,
+                outOfBounds,
+                brokenIcons,
+                ...(isShort ? { shortSpreadViolations } : {}),
+            },
+            null,
+            2,
+        ),
     );
     console.log(`\nレイアウトレポート: ${layoutReportPath}`);
 
@@ -225,6 +252,28 @@ async function main() {
     });
     console.log(`Removed ${removedCount} old PNG(s) from ${SLIDE_DEST_DIR}`);
     console.log(`Copied ${copiedCount} ${mode} slide PNG(s) to ${SLIDE_DEST_DIR}`);
+
+    if (isShort) {
+        if (shortSpreadViolations.length === 0) {
+            console.log('✅ 見開き構造・図鑑装丁を使用しているショートはありません。');
+        } else {
+            console.warn(`⚠️  見開き構造・図鑑装丁を使用しているショート: ${shortSpreadViolations.length} 件`);
+            for (const violation of shortSpreadViolations) {
+                const evidence = [];
+                if (violation.reasons.includes('見開き構造')) {
+                    evidence.push(`.page ${violation.evidence.pageCount} 個`);
+                    if (violation.evidence.hasLeftAndRight) evidence.push('.page.left / .page.right');
+                }
+                if (violation.reasons.includes('図鑑装丁クラス')) {
+                    evidence.push(violation.evidence.classes.map((className) => `.${className}`).join(', '));
+                }
+                console.warn(`  - ${violation.id}: ${violation.reasons.join(' / ')} — ${evidence.join(' / ')}`);
+            }
+            console.warn(
+                '  generate-short-slides の SKILL.md §0（見開き構成・図鑑装丁の使用禁止。直近の video/short-* ブランチの slides-short.html を踏襲する）を参照して直すこと。',
+            );
+        }
+    }
 }
 
 main().catch((error) => {

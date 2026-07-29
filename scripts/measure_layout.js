@@ -1,6 +1,6 @@
 /**
  * レンダリング済みの DOM から「いらすとや主役化」「テキストの見切れ・はみ出し」
- * 「FontAwesome の未定義アイコン」を計測する。
+ * 「FontAwesome の未定義アイコン」「ショートで禁止されている見開き・図鑑装丁」を計測する。
  *
  * 背景:
  *   generate-html-slides の SKILL.md は §7「イラストが見出しより大きい・目立つ構図は不合格」
@@ -303,6 +303,32 @@ const measureInPage = (slideSelector, index, opts) => {
     return { pages, clipped, outOfBounds, brokenIcons, isSpread: pageEls.length > 0 };
 };
 
+/** ショートで禁止されている見開き構造・図鑑装丁を DOM から検出する。 */
+const measureShortSpreadInPage = (slideSelector, index) => {
+    const slide = document.querySelectorAll(slideSelector)[index];
+    if (!slide) return null;
+
+    const pageCount = slide.querySelectorAll('.page').length;
+    const hasLeftAndRight = Boolean(slide.querySelector('.page.left') && slide.querySelector('.page.right'));
+    const spreadBaseClasses = ['short-spread', 'paper-slide', 'paper-grain'];
+    const classes = spreadBaseClasses.filter(
+        (className) => slide.classList.contains(className) || slide.querySelector(`.${className}`),
+    );
+
+    const reasons = [];
+    if (pageCount >= 2 || hasLeftAndRight) reasons.push('見開き構造');
+    if (classes.length > 0) reasons.push('図鑑装丁クラス');
+
+    return {
+        reasons,
+        evidence: {
+            pageCount,
+            hasLeftAndRight,
+            classes,
+        },
+    };
+};
+
 /**
  * 内容ではない装飾クロム。ノンブル・図鑑インデックスタブ（long）に加え、ショートの
  * `.watermark`（`top:-40px` / `opacity:0.07` の巨大な番号。枠外へ抜けるのが意図）も除く。
@@ -337,6 +363,25 @@ export async function measureSlideLayout(page, slideSelector, index, options = D
             outOfBounds: [],
             brokenIcons: [],
             isSpread: false,
+        }
+    );
+}
+
+/**
+ * ショート1スライドに、長尺専用の見開き構造・図鑑装丁が使われていないかを計測する。
+ * 呼び出し側で short モードのときだけ実行する。
+ *
+ * @returns {Promise<{reasons:string[], evidence:{pageCount:number, hasLeftAndRight:boolean, classes:string[]}}>}
+ */
+export async function measureShortSpread(page, slideSelector, index) {
+    return (
+        (await page.evaluate(measureShortSpreadInPage, slideSelector, index)) || {
+            reasons: [],
+            evidence: {
+                pageCount: 0,
+                hasLeftAndRight: false,
+                classes: [],
+            },
         }
     );
 }
@@ -418,4 +463,21 @@ export function collectBrokenIcons(results) {
         for (const b of r.brokenIcons || []) broken.push({ id: r.id, ...b });
     }
     return broken;
+}
+
+/**
+ * ショートで禁止されている見開き構造・図鑑装丁の検出結果をスライド横断で集計する。
+ *
+ * 対応する規則: generate-short-slides の SKILL.md §0「見開き（2ページ）構成はショートでは
+ * 使用禁止」「装丁（見た目）も長尺と共用しないこと」。
+ *
+ * @param {{id:string, shortSpread?:{reasons:string[], evidence:object}}[]} results
+ */
+export function collectShortSpreadViolations(results) {
+    const violations = [];
+    for (const r of results) {
+        if (!r.shortSpread || r.shortSpread.reasons.length === 0) continue;
+        violations.push({ id: r.id, ...r.shortSpread });
+    }
+    return violations;
 }
