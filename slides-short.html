@@ -207,6 +207,39 @@ img {
   height: 286px;
 }
 
+/* いらすとや左側の余白に、扱う3ブランドのロゴを横並びで置く */
+.thumb-logo-row {
+  position: absolute;
+  left: 52px;
+  bottom: 62px;
+  z-index: 2;
+  display: flex;
+  gap: 14px;
+}
+
+.thumb-logo-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 220px;
+  height: 120px;
+  padding: 12px 16px;
+  overflow: hidden;
+  border: 4px solid var(--blue);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 5px 5px 0 rgba(0,82,204,0.18);
+}
+
+/* 素材ごとに縦横比が大きく違うため、% ではなく px で上限を切る */
+.thumb-logo-card img {
+  width: auto;
+  height: auto;
+  max-width: 164px;
+  max-height: 64px;
+  filter: none;
+}
+
 /* Slide 2 */
 .report-header-card {
   display: flex;
@@ -695,6 +728,11 @@ img {
     <div class="thumb-tag">正解は3択</div>
     <h1>無制限プラン<br><em>あなたに合うのはどれ？</em></h1>
     <div class="thumb-sub-band">動画派？ <b>SNS派？</b></div>
+  </div>
+  <div class="thumb-logo-row">
+    <span class="thumb-logo-card"><img src="public/images/logo/Mobile_logo_1line_magenta.png" alt="楽天モバイル"></span>
+    <span class="thumb-logo-card"><img src="public/images/logo/Mineo_logo.png" alt="mineo"></span>
+    <span class="thumb-logo-card"><img src="public/images/logo/Povo_logo.png" alt="povo"></span>
   </div>
   <div class="slide-illust thumb-illust" style="z-index: 2;">
     <img src="public/images/irasutoya/smartphone04_laugh.png" alt="スマートフォンを楽しむ人">

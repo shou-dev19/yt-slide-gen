@@ -127,6 +127,11 @@ def render_thumbnail(slide: Slide) -> str:
     <h1>{esc(title)}<br><em>あなたに合うのはどれ？</em></h1>
     <div class="thumb-sub-band">動画派？ <b>SNS派？</b></div>
   </div>
+  <div class="thumb-logo-row">
+    <span class="thumb-logo-card"><img src="{asset("logo/Mobile_logo_1line_magenta.png")}" alt="楽天モバイル"></span>
+    <span class="thumb-logo-card"><img src="{asset("logo/Mineo_logo.png")}" alt="mineo"></span>
+    <span class="thumb-logo-card"><img src="{asset("logo/Povo_logo.png")}" alt="povo"></span>
+  </div>
   <div class="slide-illust thumb-illust" style="z-index: 2;">
     <img src="{asset("irasutoya/smartphone04_laugh.png")}" alt="スマートフォンを楽しむ人">
   </div>
@@ -482,6 +487,39 @@ img {
   right: 38px;
   bottom: 14px;
   height: 286px;
+}
+
+/* いらすとや左側の余白に、扱う3ブランドのロゴを横並びで置く */
+.thumb-logo-row {
+  position: absolute;
+  left: 52px;
+  bottom: 62px;
+  z-index: 2;
+  display: flex;
+  gap: 14px;
+}
+
+.thumb-logo-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 196px;
+  height: 88px;
+  padding: 12px 16px;
+  overflow: hidden;
+  border: 4px solid var(--blue);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 5px 5px 0 rgba(0,82,204,0.18);
+}
+
+/* 素材ごとに縦横比が大きく違うため、% ではなく px で上限を切る */
+.thumb-logo-card img {
+  width: auto;
+  height: auto;
+  max-width: 164px;
+  max-height: 58px;
+  filter: none;
 }
 
 /* Slide 2 */
