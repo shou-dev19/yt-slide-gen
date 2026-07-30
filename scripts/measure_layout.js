@@ -1,6 +1,7 @@
 /**
  * レンダリング済みの DOM から「いらすとや主役化」「テキストの見切れ・はみ出し」
- * 「FontAwesome の未定義アイコン」を計測する。
+ * 「FontAwesome の未定義アイコン」「ショートで禁止されている見開き・図鑑装丁」
+ * 「画像パスの規約違反」を計測する。
  *
  * 背景:
  *   generate-html-slides の SKILL.md は §7「イラストが見出しより大きい・目立つ構図は不合格」
@@ -27,6 +28,10 @@
  *     綴り間違いを書くと**何のエラーも出ずにアイコンだけが消える**。要素は幅0になるだけで
  *     レイアウトも崩れないため、上の3つの判定にも掛からず目視でしか気づけなかった
  *     （実際に Slide 4-1 で1つ欠けたまま出荷寸前まで気づけなかった）。
+ *   - **画像パス（imagePaths）**: `.slide-container` 配下の全 `<img>` について、ブラウザが
+ *     絶対 URL に正規化する `element.src` ではなく `getAttribute('src')` の生値を調べる。
+ *     `public/` 始まり以外の参照は、ローカルの `file://` キャプチャで偶然表示できても
+ *     別マシンや CI で再現しないため違反として報告する。
  */
 
 /** ブラウザ内で実行される計測関数の本体（page.evaluate に渡す）。 */
@@ -303,6 +308,55 @@ const measureInPage = (slideSelector, index, opts) => {
     return { pages, clipped, outOfBounds, brokenIcons, isSpread: pageEls.length > 0 };
 };
 
+/** ショートで禁止されている見開き構造・図鑑装丁を DOM から検出する。 */
+const measureShortSpreadInPage = (slideSelector, index) => {
+    const slide = document.querySelectorAll(slideSelector)[index];
+    if (!slide) return null;
+
+    const pageCount = slide.querySelectorAll('.page').length;
+    const hasLeftAndRight = Boolean(slide.querySelector('.page.left') && slide.querySelector('.page.right'));
+    const spreadBaseClasses = ['short-spread', 'paper-slide', 'paper-grain'];
+    const classes = spreadBaseClasses.filter(
+        (className) => slide.classList.contains(className) || slide.querySelector(`.${className}`),
+    );
+
+    const reasons = [];
+    if (pageCount >= 2 || hasLeftAndRight) reasons.push('見開き構造');
+    if (classes.length > 0) reasons.push('図鑑装丁クラス');
+
+    return {
+        reasons,
+        evidence: {
+            pageCount,
+            hasLeftAndRight,
+            classes,
+        },
+    };
+};
+
+/** スライド内の画像が `public/` 始まりの素直な相対パスだけを使っているか検出する。 */
+const measureImagePathsInPage = (slideSelector, index) => {
+    const slide = document.querySelectorAll(slideSelector)[index];
+    if (!slide) return null;
+
+    const violations = [];
+    for (const image of slide.querySelectorAll('img')) {
+        const src = image.getAttribute('src') || '';
+        const reasons = [];
+
+        if (/^file:\/\//i.test(src)) reasons.push('file:// URI');
+        if (src.startsWith('/')) reasons.push('絶対パス');
+        if (/^https?:\/\//i.test(src)) reasons.push('外部URL');
+        if (src.includes('..')) reasons.push('.. を含むパッケージ外参照');
+        if (reasons.length === 0 && !src.startsWith('public/')) {
+            reasons.push('public/ で始まらない相対パス');
+        }
+
+        if (reasons.length > 0) violations.push({ reasons, src });
+    }
+    return violations;
+};
+
 /**
  * 内容ではない装飾クロム。ノンブル・図鑑インデックスタブ（long）に加え、ショートの
  * `.watermark`（`top:-40px` / `opacity:0.07` の巨大な番号。枠外へ抜けるのが意図）も除く。
@@ -339,6 +393,35 @@ export async function measureSlideLayout(page, slideSelector, index, options = D
             isSpread: false,
         }
     );
+}
+
+/**
+ * ショート1スライドに、長尺専用の見開き構造・図鑑装丁が使われていないかを計測する。
+ * 呼び出し側で short モードのときだけ実行する。
+ *
+ * @returns {Promise<{reasons:string[], evidence:{pageCount:number, hasLeftAndRight:boolean, classes:string[]}}>}
+ */
+export async function measureShortSpread(page, slideSelector, index) {
+    return (
+        (await page.evaluate(measureShortSpreadInPage, slideSelector, index)) || {
+            reasons: [],
+            evidence: {
+                pageCount: 0,
+                hasLeftAndRight: false,
+                classes: [],
+            },
+        }
+    );
+}
+
+/**
+ * 1スライド内の画像パス規約違反を計測する。
+ * long / short の両モードで呼び出す。
+ *
+ * @returns {Promise<{reasons:string[], src:string}[]>}
+ */
+export async function measureImagePaths(page, slideSelector, index) {
+    return (await page.evaluate(measureImagePathsInPage, slideSelector, index)) || [];
 }
 
 /**
@@ -418,4 +501,39 @@ export function collectBrokenIcons(results) {
         for (const b of r.brokenIcons || []) broken.push({ id: r.id, ...b });
     }
     return broken;
+}
+
+/**
+ * ショートで禁止されている見開き構造・図鑑装丁の検出結果をスライド横断で集計する。
+ *
+ * 対応する規則: generate-short-slides の SKILL.md §0「見開き（2ページ）構成はショートでは
+ * 使用禁止」「装丁（見た目）も長尺と共用しないこと」。
+ *
+ * @param {{id:string, shortSpread?:{reasons:string[], evidence:object}}[]} results
+ */
+export function collectShortSpreadViolations(results) {
+    const violations = [];
+    for (const r of results) {
+        if (!r.shortSpread || r.shortSpread.reasons.length === 0) continue;
+        violations.push({ id: r.id, ...r.shortSpread });
+    }
+    return violations;
+}
+
+/**
+ * `public/` 始まりでない画像パスの検出結果をスライド横断で集計する。
+ *
+ * 対応する規則: generate-short-slides の SKILL.md §4「画像パスは `public/` 始まりの
+ * 相対パス。絶対パス・`file://`・他パッケージ参照は禁止」。
+ *
+ * @param {{id:string, imagePaths?:{reasons:string[], src:string}[]}[]} results
+ */
+export function collectImagePathViolations(results) {
+    const violations = [];
+    for (const r of results) {
+        for (const violation of r.imagePaths || []) {
+            violations.push({ id: r.id, ...violation });
+        }
+    }
+    return violations;
 }

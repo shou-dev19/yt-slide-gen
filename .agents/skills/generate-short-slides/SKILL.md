@@ -11,6 +11,34 @@ Script file path: $ARGUMENTS (default: `台本.txt`)
 
 When generating HTML slides for YouTube shorts from a script (e.g., `台本.txt`), adhere strictly to the following design and structural requirements.
 
+## 0. 着手前に「直近の完成ショートデッキ」を必ず読む
+
+**ゼロから発明しない。** 生成に着手する前に、直近のショート動画で完成・納品済みのスライドを読み、構成と部品の使い方をそのまま踏襲する。これを飛ばすと毎回レイアウトが作り直しになり、同じ手直し指摘を繰り返すことになる（実績あり）。
+
+```bash
+git branch -a | grep 'video/short-'                          # 直近のショートブランチを確認
+git show "<branch>:slides-short.html" | grep -n 'Slide ID'    # 構成（何を何枚で見せたか）を俯瞰
+git show "<branch>:slides-short.html"                         # 実装を読む
+```
+
+### 🚫 見開き（2ページ）構成はショートでは使用禁止
+
+ノート見開き・図鑑見開き（`spread-base.css` / `.short-spread` / 1つの `.slide-container` 内に `.page.left` と `.page.right` を並べる構成）は**長尺専用**である。ショートは以下の理由で必ず**1スライド＝1画面の単ページ構成**にする:
+
+- ショートはスマホ全画面の縦長で視聴され、1080×1080 を左右に割ると文字が半分のサイズになって読めない。
+- 1枚あたりの表示時間が数秒しかないため、左右2ページ分の情報量は処理しきれない。
+
+**装丁（見た目）も長尺と共用しないこと。** `templates/spread-base.css` の紙テクスチャ・ノート罫線・製本枠（`.paper-slide` / `.paper-grain` / 濃茶の外枠）は図鑑見開き用であり、ショートでは使わない。ショートは §1 の配色（`body: #f0f4f8` / `.slide-container: #ffffff`）に従った**白背景＋青赤アクセント**が正。構成だけ単ページにして装丁を図鑑のまま残すのも不可。
+
+ショートの標準構成（直近デッキで確立済み。これを踏襲する）:
+
+| スライド | クラス | 構成 |
+|---|---|---|
+| 1枚目 | `slide-container slide-thumbnail` | 表紙。大見出し＋集中線背景＋バッジ |
+| 中間 | `slide-container`（＋料金を出すなら `price-note`） | `.watermark`（連番）→ `h2.slide-title` → `.slide-body`（`.info-card` / `.fee-grid` 等のカード群）→ `.slide-illust`（右下・脇役） |
+| 注意喚起 | `slide-container warning-slide` | `.warning-banner` → `.warning-title` → `.warning-box` |
+| 最終 | `slide-container cta-slide` | `.cta-content` 内に logo → title → sub → banner → arrow を**縦積み**（§3 F 参照） |
+
 ## 1. Output Format & Structure
 - **Output File**: Default to `slides-short.html` unless specified otherwise.
 - **Slide Class**: Every slide `<div>` **must** use the class `slide-container`. The capture script (`capture_slides_html.js`) locates slides by querying `.slide-container`, so any slide missing this class will be skipped.
@@ -225,6 +253,22 @@ When a slide presents N selectable options (e.g., 乗り換え先4選), **split 
     - **該当する長尺サムネが見つからない場合のみ**、フォールバックとして `public/images/slides/今すぐ本編動画をチェック.png` を使う。
 
 ## 4. Image Selection & Assets
+
+### 画像パスは `public/` 始まりの相対パス（絶対パス・`file://` 禁止）
+
+`src` 属性は**必ず `public/images/...` のようにリポジトリ相対（`slides-short.html` から見た相対）で書く**。次はすべて禁止:
+
+- ❌ `file:///workspaces/yt-factory/packages/slide-gen/public/images/...`（絶対 file URI）
+- ❌ `/workspaces/...` で始まる絶対パス
+- ❌ `../video-studio/...` のような**他パッケージへの参照**
+
+理由: キャプチャは `file://` で HTML を開くため絶対パスでも**ローカルでは一見動いてしまい、目視でも機械判定でも気づけない**。しかし絶対パスは (1) 別マシン・CI で解決不能、(2) 日本語ファイル名が URL エンコードされて読めなくなり後の手修正が困難、(3) パッケージ外参照はアセット配布（`sync-assets.sh`）の管理外になる、という問題を起こす。**Python の `Path.as_uri()` や `resolve()` の結果をそのまま `src` に入れないこと。** ファイル存在チェックは絶対パスで行ってよいが、HTML に書き出す値は相対パスに戻す。
+
+**必要なアセットが `public/images/` に無い場合**、他パッケージを絶対パスで直接参照して回避してはいけない。次のいずれかで解決する:
+
+1. `public/images/` にある代替アセットを選ぶ（例: CTA のロゴは §3 F のとおり**その動画で扱う MVNO のブランドロゴ**を `public/images/logo/` から選ぶ。チャンネルアイコンを他パッケージから引っ張ってこない）
+2. 恒久的に必要なら、マスター `shared/assets/` に追加して `bash scripts/sync-assets.sh` で配布してから相対パスで参照する
+
 - **No Placeholders**: Do NOT use placeholder boxes. Always select and use the most appropriate image asset from the `public/images/` directory.
 - **Selection Logic**: Analyze the script (e.g., `台本.txt`) to determine the context and select an image from `public/images/GEMINI.md` that matches:
     - **Logos**: Use `public/images/logo/` for MVNO or carrier mentions.

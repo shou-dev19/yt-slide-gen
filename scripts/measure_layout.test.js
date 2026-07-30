@@ -1,6 +1,14 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { findIllustrationDominant, collectOverflow, collectBrokenIcons } from './measure_layout.js';
+import {
+    measureShortSpread,
+    measureImagePaths,
+    findIllustrationDominant,
+    collectOverflow,
+    collectBrokenIcons,
+    collectShortSpreadViolations,
+    collectImagePathViolations,
+} from './measure_layout.js';
 
 const page = (over = {}) => ({
     label: 'left',
@@ -106,4 +114,210 @@ test('collectBrokenIcons: スライドIDを付けて未定義アイコンを集�
 test('collectBrokenIcons: brokenIcons を持たない結果でも落ちない', () => {
     // 旧フォーマットのレポートを読み込んだ場合や、計測が null を返した場合の後方互換。
     assert.deepEqual(collectBrokenIcons([{ id: '1' }]), []);
+});
+
+const shortSlide = ({
+    pageCount = 0,
+    hasLeft = false,
+    hasRight = false,
+    ownClasses = [],
+    descendantClasses = [],
+} = {}) => ({
+    classList: {
+        contains: (className) => ownClasses.includes(className),
+    },
+    querySelectorAll: (selector) => selector === '.page' ? Array.from({ length: pageCount }, () => ({})) : [],
+    querySelector: (selector) => {
+        if (selector === '.page.left') return hasLeft ? {} : null;
+        if (selector === '.page.right') return hasRight ? {} : null;
+        return descendantClasses.includes(selector.slice(1)) ? {} : null;
+    },
+});
+
+const fakePage = (slides) => ({
+    evaluate: async (measure, slideSelector, index) => {
+        const previousDocument = globalThis.document;
+        globalThis.document = {
+            querySelectorAll: (selector) => selector === slideSelector ? slides : [],
+        };
+        try {
+            return measure(slideSelector, index);
+        } finally {
+            globalThis.document = previousDocument;
+        }
+    },
+});
+
+test('measureShortSpread: .page が2つ以上あれば見開き構造として検出する', async () => {
+    const result = await measureShortSpread(fakePage([shortSlide({ pageCount: 2 })]), '.slide-container', 0);
+
+    assert.deepEqual(result.reasons, ['見開き構造']);
+    assert.equal(result.evidence.pageCount, 2);
+    assert.equal(result.evidence.hasLeftAndRight, false);
+});
+
+test('measureShortSpread: .page.left と .page.right が揃っていれば見開き構造として検出する', async () => {
+    const result = await measureShortSpread(
+        fakePage([shortSlide({ pageCount: 1, hasLeft: true, hasRight: true })]),
+        '.slide-container',
+        0,
+    );
+
+    assert.deepEqual(result.reasons, ['見開き構造']);
+    assert.equal(result.evidence.hasLeftAndRight, true);
+});
+
+test('measureShortSpread: 自身と子孫の spread-base 由来クラスを図鑑装丁として検出する', async () => {
+    const result = await measureShortSpread(
+        fakePage([
+            shortSlide({
+                ownClasses: ['short-spread'],
+                descendantClasses: ['paper-slide', 'paper-grain'],
+            }),
+        ]),
+        '.slide-container',
+        0,
+    );
+
+    assert.deepEqual(result.reasons, ['図鑑装丁クラス']);
+    assert.deepEqual(result.evidence.classes, ['short-spread', 'paper-slide', 'paper-grain']);
+});
+
+test('measureShortSpread: 単ページで図鑑装丁クラスがなければ検出しない', async () => {
+    const result = await measureShortSpread(fakePage([shortSlide()]), '.slide-container', 0);
+
+    assert.deepEqual(result, {
+        reasons: [],
+        evidence: {
+            pageCount: 0,
+            hasLeftAndRight: false,
+            classes: [],
+        },
+    });
+});
+
+test('collectShortSpreadViolations: スライドIDを付けて違反だけを集約する', () => {
+    const results = [
+        {
+            id: '2',
+            shortSpread: {
+                reasons: ['見開き構造', '図鑑装丁クラス'],
+                evidence: {
+                    pageCount: 2,
+                    hasLeftAndRight: true,
+                    classes: ['paper-slide'],
+                },
+            },
+        },
+        {
+            id: '3',
+            shortSpread: {
+                reasons: [],
+                evidence: {
+                    pageCount: 0,
+                    hasLeftAndRight: false,
+                    classes: [],
+                },
+            },
+        },
+        { id: '4' },
+    ];
+
+    const violations = collectShortSpreadViolations(results);
+
+    assert.equal(violations.length, 1);
+    assert.equal(violations[0].id, '2');
+    assert.deepEqual(violations[0].reasons, ['見開き構造', '図鑑装丁クラス']);
+    assert.deepEqual(violations[0].evidence.classes, ['paper-slide']);
+});
+
+const imageSlide = (images) => ({
+    querySelectorAll: (selector) => selector === 'img' ? images : [],
+});
+
+const image = (rawSrc, normalizedSrc = `file:///project/${rawSrc}`) => ({
+    src: normalizedSrc,
+    getAttribute: (name) => name === 'src' ? rawSrc : null,
+});
+
+test('measureImagePaths: file URI・絶対パス・外部URL・親参照を理由付きで検出する', async () => {
+    const result = await measureImagePaths(
+        fakePage([
+            imageSlide([
+                image('file:///project/public/images/a.png'),
+                image('/project/public/images/b.png'),
+                image('http://example.com/c.png'),
+                image('https://example.com/d.png'),
+                image('../video-studio/e.png'),
+            ]),
+        ]),
+        '.slide-container',
+        0,
+    );
+
+    assert.deepEqual(result, [
+        { reasons: ['file:// URI'], src: 'file:///project/public/images/a.png' },
+        { reasons: ['絶対パス'], src: '/project/public/images/b.png' },
+        { reasons: ['外部URL'], src: 'http://example.com/c.png' },
+        { reasons: ['外部URL'], src: 'https://example.com/d.png' },
+        { reasons: ['.. を含むパッケージ外参照'], src: '../video-studio/e.png' },
+    ]);
+});
+
+test('measureImagePaths: public/ 以外の相対パスも検出し、日本語を含む public/ パスは許可する', async () => {
+    const result = await measureImagePaths(
+        fakePage([
+            imageSlide([
+                image('images/local.png'),
+                image('public/images/thumbnails/【2026年最新】格安SIM_サムネ1.png'),
+            ]),
+        ]),
+        '.slide-container',
+        0,
+    );
+
+    assert.deepEqual(result, [
+        { reasons: ['public/ で始まらない相対パス'], src: 'images/local.png' },
+    ]);
+});
+
+test('measureImagePaths: element.src ではなく getAttribute の生値を判定する', async () => {
+    const result = await measureImagePaths(
+        fakePage([
+            imageSlide([
+                image(
+                    'public/images/logo/Mineo_logo.png',
+                    'file:///project/public/images/logo/Mineo_logo.png',
+                ),
+            ]),
+        ]),
+        '.slide-container',
+        0,
+    );
+
+    assert.deepEqual(result, []);
+});
+
+test('collectImagePathViolations: スライドIDを付けて違反だけを集約する', () => {
+    const violations = collectImagePathViolations([
+        {
+            id: '6',
+            imagePaths: [
+                {
+                    reasons: ['file:// URI'],
+                    src: 'file:///project/public/images/logo.png',
+                },
+            ],
+        },
+        { id: '7', imagePaths: [] },
+        { id: '8' },
+    ]);
+
+    assert.deepEqual(violations, [
+        {
+            id: '6',
+            reasons: ['file:// URI'],
+            src: 'file:///project/public/images/logo.png',
+        },
+    ]);
 });
