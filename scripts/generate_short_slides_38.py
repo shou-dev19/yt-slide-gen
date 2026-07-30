@@ -128,7 +128,7 @@ def render_thumbnail(slide: Slide) -> str:
     <div class="thumb-sub-band">動画派？ <b>SNS派？</b></div>
   </div>
   <div class="thumb-logo-row">
-    <span class="thumb-logo-card"><img src="{asset("logo/Mobile_logo_1line_magenta.png")}" alt="楽天モバイル"></span>
+    <span class="thumb-logo-card wide"><img src="{asset("logo/Mobile_logo_1line_magenta.png")}" alt="楽天モバイル"></span>
     <span class="thumb-logo-card"><img src="{asset("logo/Mineo_logo.png")}" alt="mineo"></span>
     <span class="thumb-logo-card"><img src="{asset("logo/Povo_logo.png")}" alt="povo"></span>
   </div>
@@ -489,23 +489,24 @@ img {
   height: 286px;
 }
 
-/* いらすとや左側の余白に、扱う3ブランドのロゴを横並びで置く */
+/* いらすとや左側の余白に、扱う3ブランドのロゴを2段（1段目=楽天モバイル、2段目=mineo・povo）で置く */
 .thumb-logo-row {
   position: absolute;
   left: 52px;
-  bottom: 62px;
+  bottom: 52px;
   z-index: 2;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 14px;
+  width: 500px;
 }
 
 .thumb-logo-card {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 196px;
-  height: 88px;
-  padding: 12px 16px;
+  height: 112px;
+  padding: 14px 18px;
   overflow: hidden;
   border: 4px solid var(--blue);
   border-radius: 16px;
@@ -513,13 +514,22 @@ img {
   box-shadow: 5px 5px 0 rgba(0,82,204,0.18);
 }
 
+/* 1段目の楽天モバイルは横幅いっぱいに使う */
+.thumb-logo-card.wide {
+  grid-column: 1 / -1;
+}
+
 /* 素材ごとに縦横比が大きく違うため、% ではなく px で上限を切る */
 .thumb-logo-card img {
   width: auto;
   height: auto;
-  max-width: 164px;
-  max-height: 58px;
+  max-width: 200px;
+  max-height: 80px;
   filter: none;
+}
+
+.thumb-logo-card.wide img {
+  max-width: 400px;
 }
 
 /* Slide 2 */

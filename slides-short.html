@@ -207,23 +207,24 @@ img {
   height: 286px;
 }
 
-/* いらすとや左側の余白に、扱う3ブランドのロゴを横並びで置く */
+/* いらすとや左側の余白に、扱う3ブランドのロゴを2段（1段目=楽天モバイル、2段目=mineo・povo）で置く */
 .thumb-logo-row {
   position: absolute;
   left: 52px;
-  bottom: 62px;
+  bottom: 52px;
   z-index: 2;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 14px;
+  width: 500px;
 }
 
 .thumb-logo-card {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 220px;
-  height: 120px;
-  padding: 12px 16px;
+  height: 112px;
+  padding: 14px 18px;
   overflow: hidden;
   border: 4px solid var(--blue);
   border-radius: 16px;
@@ -231,13 +232,22 @@ img {
   box-shadow: 5px 5px 0 rgba(0,82,204,0.18);
 }
 
+/* 1段目の楽天モバイルは横幅いっぱいに使う */
+.thumb-logo-card.wide {
+  grid-column: 1 / -1;
+}
+
 /* 素材ごとに縦横比が大きく違うため、% ではなく px で上限を切る */
 .thumb-logo-card img {
   width: auto;
   height: auto;
-  max-width: 164px;
-  max-height: 64px;
+  max-width: 200px;
+  max-height: 80px;
   filter: none;
+}
+
+.thumb-logo-card.wide img {
+  max-width: 400px;
 }
 
 /* Slide 2 */
@@ -500,7 +510,7 @@ img {
   border-left: 14px solid var(--blue);
   border-radius: 0 16px 16px 0;
   background: #edf4ff;
-  font-size: 48px;
+  font-size: 36px;
   font-weight: 900;
 }
 
@@ -562,13 +572,13 @@ img {
 }
 
 .wifi-lead {
-  width: 740px;
+  width: 680px;
   margin-bottom: 18px;
   padding: 24px 28px;
   border-left: 14px solid var(--brand);
   border-radius: 0 16px 16px 0;
   background: var(--brand-soft);
-  font-size: 46px;
+  font-size: 38px;
   font-weight: 900;
   line-height: 1.3;
 }
@@ -593,7 +603,7 @@ img {
   border-left: 11px solid var(--brand);
   border-radius: 0 15px 15px 0;
   background: #fff;
-  font-size: 42px;
+  font-size: 31px;
   font-weight: 900;
 }
 
@@ -681,7 +691,7 @@ img {
   gap: 2px;
   margin-bottom: 12px;
   color: #fff;
-  font-size: 42px;
+  font-size: 35px;
   font-weight: 900;
   line-height: 1.22;
 }
@@ -730,7 +740,7 @@ img {
     <div class="thumb-sub-band">動画派？ <b>SNS派？</b></div>
   </div>
   <div class="thumb-logo-row">
-    <span class="thumb-logo-card"><img src="public/images/logo/Mobile_logo_1line_magenta.png" alt="楽天モバイル"></span>
+    <span class="thumb-logo-card wide"><img src="public/images/logo/Mobile_logo_1line_magenta.png" alt="楽天モバイル"></span>
     <span class="thumb-logo-card"><img src="public/images/logo/Mineo_logo.png" alt="mineo"></span>
     <span class="thumb-logo-card"><img src="public/images/logo/Povo_logo.png" alt="povo"></span>
   </div>
@@ -860,7 +870,7 @@ img {
       <strong>月250円〜のmineo</strong>
       <span>＋ povoの2枚持ちも徹底解説</span>
     </div>
-    <img class="cta-banner-img" style="margin-top: 24px;" src="public/images/thumbnails/【2026年最新】格安SIMの無制限プラン比較！最安は月250円_サムネ1.png" alt="格安SIM無制限プラン比較の長尺動画サムネイル">
+    <img class="cta-banner-img" src="public/images/thumbnails/【2026年最新】格安SIMの無制限プラン比較！最安は月250円_サムネ1.png" alt="格安SIM無制限プラン比較の長尺動画サムネイル">
     <div class="cta-arrow">↓</div>
   </div>
 </div>
