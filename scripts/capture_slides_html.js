@@ -264,13 +264,17 @@ async function main() {
         );
     }
 
-    const { copiedCount, removedCount } = copyCapturedSlides({
-        sourceDir: OUT_DIR,
-        destinationDir: SLIDE_DEST_DIR,
-        mode,
-    });
-    console.log(`Removed ${removedCount} old PNG(s) from ${SLIDE_DEST_DIR}`);
-    console.log(`Copied ${copiedCount} ${mode} slide PNG(s) to ${SLIDE_DEST_DIR}`);
+    if (process.env.SLIDE_GEN_SKIP_COPY === '1') {
+        console.log('Skipped copying captured PNGs outside slide-gen (SLIDE_GEN_SKIP_COPY=1).');
+    } else {
+        const { copiedCount, removedCount } = copyCapturedSlides({
+            sourceDir: OUT_DIR,
+            destinationDir: SLIDE_DEST_DIR,
+            mode,
+        });
+        console.log(`Removed ${removedCount} old PNG(s) from ${SLIDE_DEST_DIR}`);
+        console.log(`Copied ${copiedCount} ${mode} slide PNG(s) to ${SLIDE_DEST_DIR}`);
+    }
 
     if (isShort) {
         if (shortSpreadViolations.length === 0) {
