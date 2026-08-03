@@ -42,6 +42,14 @@
     .inference{font-size:42px}.competition-lead{font-size:39px;padding:21px;text-align:center}.competition-icon{font-size:145px}.competition-table{font-size:34px}.competition-table th,.competition-table td{padding:13px 10px}.competition-table td:first-child{font-size:30px}
     .campaign-name{font-size:40px;font-weight:900;color:var(--ink-soft)}.campaign-title{text-align:center}.end-date{font-size:44px;display:flex;align-items:center;justify-content:center}.end-date strong{font-size:62px;color:var(--con)}.both-possible{font-size:46px;padding:24px}
     .calendar-icon{font-size:195px}.mindset-title{font-size:72px}.habit{width:100%}.habit .big{font-size:100px}
+    /* 料金プラン見開き（N-0）。左＝ロゴ＋レーダーチャート／右＝料金表。 */
+    .plan-page{padding:28px 42px 250px}.plan-page .head-left{height:130px;margin-bottom:14px;padding-bottom:10px}.plan-page .head-left .logo{height:78px;max-width:430px}
+    .plan-chart{flex:1;display:flex;align-items:center;justify-content:center;min-height:0}.plan-chart img{max-height:100%;max-width:100%;object-fit:contain}
+    .plan-page .page-head{font-size:48px;white-space:nowrap}.plan-sheet{font-size:40px}.plan-sheet th,.plan-sheet td{padding:18px 14px}.plan-note{font-size:30px;text-align:center;line-height:1.3;margin-top:4px}
+    /* 評価見開き（N）。レーダーチャートは N-0 側に置くため .head-right は罫線を揃える空スペーサー。 */
+    .eval-page{padding:28px 42px 250px}.eval-page .head-left,.eval-page .head-right{height:120px;margin-bottom:12px;padding-bottom:10px}.eval-page .head-left .logo{height:72px;max-width:430px}
+    .eval-page .total .grade{font-size:84px}.eval-page .total .label{font-size:24px}
+    .eval-page .cards{gap:12px}.eval-page .card{grid-template-columns:96px 1fr;gap:4px 18px;padding:12px 22px;border-left-width:12px}.eval-page .card .rank{width:88px;height:88px;font-size:42px;border-radius:18px}.eval-page .card-name{font-size:36px}.eval-page .card .line{font-size:30px;line-height:1.18}
     .score-stack{width:100%;display:flex;flex-direction:column;gap:18px}.score-card{display:flex;align-items:center;gap:28px;background:#fff;border:4px solid #e7dcc2;border-left:14px solid var(--brand);border-radius:18px;padding:16px 26px}.score-card .rank{width:90px;height:90px;border-radius:18px;font-size:46px;flex:none}.score-name{font-size:48px;font-weight:900}.balance-icon{font-size:155px}.eval-note{font-size:28px;text-align:center}.compare-cap{width:100%;padding:26px}.price-gap{font-size:42px;width:100%;text-align:center}
     .quality-stack{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:20px}.quality-card{background:#fff;border:4px solid #e7dcc2;border-radius:20px;padding:22px;display:flex;align-items:center;gap:20px}.quality-card .rank{width:90px;height:90px;border-radius:18px;font-size:42px;flex:none}.quality-card b{font-size:38px}.position-text{font-size:42px;width:100%}.position-text .big{font-size:78px}
     .cta-visual img{width:100%;max-height:620px}.cta-play{font-size:175px}.cta-title{font-size:72px}.cta-lead{font-size:44px;text-align:center;padding:24px}
@@ -117,32 +125,47 @@
 <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="page-head">おすすめの心構え</div><div class="page-body center"><div class="bigicon calendar-icon"><i class="fa-solid fa-calendar-check"></i></div><div class="big-title mindset-title">自動適用でも<br>完全放置はしない</div></div><span class="page-no">― 13 ―</span></div><div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">おすすめの確認習慣</div><div class="page-body center"><div class="emph habit"><span class="big">ときどき</span><br>公式サイトで最新容量を確認</div><div class="lead compact-lead">「いつの間にか終了」を防ぐ習慣に</div></div><span class="page-no">― 14 ―</span></div></div></div>
 <!-- Slide ID: 15-0 -->
 <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="divider"><div class="kicker">CHAPTER</div><div class="num">4</div><div class="seal">FILE No.04</div></div></div><div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-body center"><div class="big-title chapter-title">他の格安SIMと比べて<br>どう見える？</div><div class="lead chapter-lead">容量・料金・通信品質で比較</div></div></div></div></div>
-<!-- Slide ID: 15 -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="page-head">ahamoの独自評価<small>一部抜粋</small></div><div class="page-body center">
-      <img class="brand-logo" src="public/images/logo/Ahamo_logo.png" alt="ahamo">
-      <div class="score-stack"><div class="score-card"><div class="rank S">S</div><div class="score-name">通信品質</div></div><div class="score-card"><div class="rank S">S</div><div class="score-name">初期費用</div></div><div class="score-card"><div class="rank A">A</div><div class="score-name">データ料金</div></div></div>
-    </div><span class="page-no">― 15 ―</span></div><div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">ahamoの位置づけ</div><div class="page-body center">
-      <div class="bigicon balance-icon"><i class="fa-solid fa-scale-balanced"></i></div>
-      <div class="emph"><span class="big">バランス型</span><br>料金・品質・始めやすさに強み</div>
-      <div class="note eval-note">※本評価は当チャンネルの独断と偏見による独自評価であり、キャンペーン割引等は考慮していません</div>
+<!-- Slide ID: 16-0 -->
+<div class="slide-container price-note" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left plan-page">
+      <div class="head-left"><img class="logo" src="public/images/logo/Ahamo_logo.png" alt="ahamo"></div>
+      <div class="plan-chart"><img src="public/images/charts/ahamo.png" alt="ahamoの評価チャート"></div>
+    <span class="page-no">― 15 ―</span></div><div class="page right plan-page"><span class="index-tab">格安SIM図鑑</span><div class="page-head">ahamoの料金プラン</div><div class="page-body center">
+      <table class="sheet plan-sheet"><thead><tr><th>プラン</th><th>データ容量</th><th>月額料金</th></tr></thead><tbody><tr><td>ahamo</td><td>40GB</td><td class="em">2,970円</td></tr><tr><td>ahamo大盛り</td><td>120GB</td><td class="em">4,950円</td></tr></tbody></table>
+      <div class="note plan-note">容量は2026年8月1日の増量後（申込不要で自動適用）<br>どちらも5分以内の国内通話が無料で込み</div>
     </div><span class="page-no">― 16 ―</span></div></div></div>
 <!-- Slide ID: 16 -->
+<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left eval-page">
+      <div class="head-left"><img class="logo" src="public/images/logo/Ahamo_logo.png" alt="ahamo"><div class="total"><div class="label">総合評価</div><div class="grade">S</div></div></div>
+      <div class="cards">
+        <div class="card"><div class="rank A">A</div><div class="card-name">データ料金</div><div class="line pro"><span class="tag">＋</span>増量で2,970円のまま40GBに</div><div class="line con"><span class="tag">－</span>容量あたりの安さは他社に一歩劣る</div></div>
+        <div class="card"><div class="rank S">S</div><div class="card-name">通信品質</div><div class="line pro"><span class="tag">＋</span>ドコモの回線をそのまま使える</div><div class="line con"><span class="tag">－</span>povo2.0・LINEMOのSSには届かない</div></div>
+        <div class="card"><div class="rank S">S</div><div class="card-name">初期費用</div><div class="line pro"><span class="tag">＋</span>契約事務手数料0円で申し込める</div><div class="line con"><span class="tag">－</span>1年以内の解約で契約解除料1,100円</div></div>
+      </div>
+    <span class="page-no">― 17 ―</span></div><div class="page right eval-page"><span class="index-tab">格安SIM図鑑</span><div class="head-right"></div>
+      <div class="cards">
+        <div class="card"><div class="rank S">S</div><div class="card-name">通話料</div><div class="line pro"><span class="tag">＋</span>5分以内の国内通話が無料で込み</div><div class="line con"><span class="tag">－</span>5分を超えると30秒22円</div></div>
+        <div class="card"><div class="rank A">A</div><div class="card-name">店舗サポート</div><div class="line pro"><span class="tag">＋</span>ドコモショップの店頭サポートあり</div><div class="line con"><span class="tag">－</span>基本はオンライン専用・店頭は有料</div></div>
+        <div class="card"><div class="rank A">A</div><div class="card-name">オプション</div><div class="line pro"><span class="tag">＋</span>大盛りで120GBまで増やせる</div><div class="line con"><span class="tag">－</span>データ繰越に対応していない</div></div>
+      </div>
+      <div class="note eval-note">※本評価は当チャンネルの独断と偏見による独自評価であり、キャンペーン割引等は考慮していません</div>
+    <span class="page-no">― 18 ―</span></div></div></div>
+<!-- Slide ID: 17 -->
 <div class="slide-container price-note" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="page-head">料金2,970円クラス</div><div class="page-body center">
       <img class="brand-logo" src="public/images/logo/Ahamo_logo.png" alt="ahamo">
       <div class="emph compare-cap"><span class="big">40GB</span><br>月額2,970円</div>
-    </div><span class="page-no">― 17 ―</span></div><div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">LINEMO<br>ベストプランV</div><div class="page-body center">
+    </div><span class="page-no">― 19 ―</span></div><div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">LINEMO<br>ベストプランV</div><div class="page-body center">
       <img class="brand-logo" src="public/images/logo/LINEMO_logo.png" alt="LINEMO">
       <div class="emph compare-cap"><span class="big">30GB</span><br>月額2,970円</div>
       <div class="lead compact-lead"><span class="em">同額で10GB差</span></div>
-    </div><span class="page-no">― 18 ―</span></div></div></div>
-<!-- Slide ID: 17 -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="page-head">通信品質の独自評価</div><div class="page-body center"><div class="quality-stack"><div class="quality-card"><div class="rank SS">SS</div><b>povo2.0</b></div><div class="quality-card"><div class="rank SS">SS</div><b>LINEMO</b></div><div class="quality-card"><div class="rank S">S</div><b>ahamo</b></div><div class="quality-card"><div class="rank A">A</div><b>楽天モバイル</b></div></div></div><span class="page-no">― 19 ―</span></div><div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">ahamoの位置づけ</div><div class="page-body center">
-      <div class="emph position-text">povo2.0・LINEMOより下<br><span class="big">ahamo：S</span><br>楽天モバイルより上</div>
-      <div class="warn"><span class="ic"><i class="fa-solid fa-location-dot"></i></span>エリアによって体感は異なります</div>
     </div><span class="page-no">― 20 ―</span></div></div></div>
 <!-- Slide ID: 18 -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="visual cta-visual"><img src="public/images/thumbnails/【2026年最新】ドコモの通信品質が4キャリア中最下位。乗り換え先4社を比較_サムネ1.png" alt="過去動画のサムネイル"></div></div><div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-body center"><div class="bigicon cta-play"><i class="fa-solid fa-circle-play"></i></div><div class="big-title cta-title">ドコモの通信品質を<br>過去動画で詳しく解説</div><div class="lead cta-lead">概要欄・関連動画からチェック！</div></div></div></div></div>
+<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="page-head">通信品質の独自評価</div><div class="page-body center"><div class="quality-stack"><div class="quality-card"><div class="rank SS">SS</div><b>povo2.0</b></div><div class="quality-card"><div class="rank SS">SS</div><b>LINEMO</b></div><div class="quality-card"><div class="rank S">S</div><b>ahamo</b></div><div class="quality-card"><div class="rank A">A</div><b>楽天モバイル</b></div></div></div><span class="page-no">― 21 ―</span></div><div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">ahamoの位置づけ</div><div class="page-body center">
+      <div class="emph position-text">povo2.0・LINEMOより下<br><span class="big">ahamo：S</span><br>楽天モバイルより上</div>
+      <div class="warn"><span class="ic"><i class="fa-solid fa-location-dot"></i></span>エリアによって体感は異なります</div>
+    </div><span class="page-no">― 22 ―</span></div></div></div>
 <!-- Slide ID: 19 -->
+<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="visual cta-visual"><img src="public/images/thumbnails/【2026年最新】ドコモの通信品質が4キャリア中最下位。乗り換え先4社を比較_サムネ3.png" alt="過去動画のサムネイル"></div></div><div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-body center"><div class="bigicon cta-play"><i class="fa-solid fa-circle-play"></i></div><div class="big-title cta-title">ドコモの通信品質を<br>過去動画で詳しく解説</div><div class="lead cta-lead">概要欄・関連動画からチェック！</div></div></div></div></div>
+<!-- Slide ID: 20 -->
 <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="page-head">増量で起こり得ること</div><div class="page-body center flow-body">
       <div class="flow-step"><i class="fa-solid fa-database"></i><b>使える容量が増える</b></div>
       <i class="fa-solid fa-arrow-down flow-arrow"></i>
@@ -152,7 +175,7 @@
       <div class="warn outlook-warn"><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span>
       通信品質への影響は<br><strong>今後の様子を見る必要あり</strong></div>
     </div><span class="page-no">― 24 ―</span></div></div></div>
-<!-- Slide ID: 20 -->
+<!-- Slide ID: 21 -->
 <div class="slide-container price-note" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="page-head">楽天モバイル</div><div class="page-body center">
       <img class="brand-logo" src="public/images/logo/Mobile_logo_1line_magenta.png" alt="楽天モバイル">
       <div class="emph compare-cap"><span class="big">無制限</span><br>月額3,278円</div>
@@ -161,7 +184,7 @@
       <div class="emph compare-cap"><span class="big">120GB</span><br>月額4,950円</div>
       <div class="warn price-gap"><span class="ic"><i class="fa-solid fa-coins"></i></span>差額 <strong>1,672円</strong></div>
     </div><span class="page-no">― 26 ―</span></div></div></div>
-<!-- Slide ID: 21 -->
+<!-- Slide ID: 22 -->
 <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="page-head">大盛り増量の恩恵</div><div class="page-body center">
       <div class="warn opinion"><span class="ic"><i class="fa-solid fa-user-pen"></i></span><b>ショウの見解</b></div>
       <div class="emph ten-gb"><span class="big">110→120GB</span><br>10GB差で足りる人は限定的</div>
@@ -172,11 +195,11 @@
       <div class="decision-row"><b>データ無制限</b><span>楽天モバイル</span></div>
       <div class="mini-cta"><img src="public/images/thumbnails/【あなたはどっち？】ahamoで得する人・損する人の違いを分かりやすく解説します！_サムネ.png" alt="ahamoで得する人・損する人"><b>自分に合うタイプは過去動画で！</b></div>
     </div><span class="page-no">― 28 ―</span></div></div></div>
-<!-- Slide ID: 22-0 -->
+<!-- Slide ID: 23-0 -->
 <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="divider"><div class="kicker">CHAPTER</div><div class="num">5</div><div class="seal">FILE No.05</div></div></div><div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-body center"><div class="big-title chapter-title">まとめ</div><div class="lead chapter-lead">増量のポイントを最終確認</div></div></div></div></div>
-<!-- Slide ID: 23 -->
-<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="page-head">今日のまとめ<small>①②</small></div><div class="page-body"><ul class="rows"><li><span class="badge">1</span><div class="tx">ahamoは8月1日から料金そのままでデータ増量</div></li><li><span class="badge">2</span><div class="tx">通常30GB→40GB・大盛り110GB→120GB・ドコモmini4GB→6GB・10GB→12GB</div></li></ul></div><span class="page-no">― 29 ―</span></div><div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">今日のまとめ<small>③④</small></div><div class="page-body"><ul class="rows"><li><span class="badge">3</span><div class="tx">申込不要・自動適用だが終了時期は未発表</div></li><li><span class="badge">4</span><div class="tx">容量に不安があった人は40GBスタートで検討OK</div></li></ul></div><span class="page-no">― 30 ―</span></div></div></div>
 <!-- Slide ID: 24 -->
+<div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="page-head">今日のまとめ<small>①②</small></div><div class="page-body"><ul class="rows"><li><span class="badge">1</span><div class="tx">ahamoは8月1日から料金そのままでデータ増量</div></li><li><span class="badge">2</span><div class="tx">通常30GB→40GB・大盛り110GB→120GB・ドコモmini4GB→6GB・10GB→12GB</div></li></ul></div><span class="page-no">― 29 ―</span></div><div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">今日のまとめ<small>③④</small></div><div class="page-body"><ul class="rows"><li><span class="badge">3</span><div class="tx">申込不要・自動適用だが終了時期は未発表</div></li><li><span class="badge">4</span><div class="tx">容量に不安があった人は40GBスタートで検討OK</div></li></ul></div><span class="page-no">― 30 ―</span></div></div></div>
+<!-- Slide ID: 25 -->
 <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="page-body center">
       <img class="brand-logo" src="public/images/logo/Ahamo_logo.png" alt="ahamo">
       <div class="bigicon link-icon"><i class="fa-solid fa-arrow-pointer"></i></div>
@@ -184,18 +207,18 @@
     </div></div><div class="page right"><span class="index-tab">格安SIM図鑑</span>
       <div class="page-body center"><div class="big-title cta-title">ahamoの<br>申し込みはこちら！</div>
       <div class="lead cta-lead">概要欄リンクから<br>最新プランを確認</div></div></div></div></div>
-<!-- Slide ID: 25 -->
+<!-- Slide ID: 26 -->
 <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="page-body center">
       <div class="bigicon comment-icon"><i class="fa-solid fa-comments"></i></div>
       <div class="big-title cta-title">コメントで<br>教えてね！</div></div></div><div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">コメント例</div><div class="page-body"><ul class="rows"><li><span class="ic"><i class="fa-solid fa-comment-dots"></i></span><div class="tx">ahamo使ってます</div></li><li><span class="ic"><i class="fa-solid fa-comment-dots"></i></span><div class="tx">40GBになって助かる</div></li><li><span class="ic"><i class="fa-solid fa-comment-dots"></i></span><div class="tx">ドコモminiも増量されたんだ</div></li></ul></div></div></div></div>
-<!-- Slide ID: 26 -->
+<!-- Slide ID: 27 -->
 <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="page-body center">
       <div class="bigicon info-icon"><i class="fa-solid fa-circle-info"></i></div>
       <div class="big-title">ご注意</div></div></div><div class="page right"><span class="index-tab">格安SIM図鑑</span>
       <div class="page-body center"><div class="warn posting-note"><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span>
       料金・データ容量は<br><strong>動画投稿時点</strong>の情報です</div>
       <div class="lead cta-lead">お申し込み前に<br><span class="em">公式サイトの最新情報</span>を確認</div></div></div></div></div>
-<!-- Slide ID: 27 -->
+<!-- Slide ID: 28 -->
 <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="page-body center">
       <div class="bigicon pen-icon"><i class="fa-solid fa-pen-nib"></i></div>
       <div class="big-title blog-title">ブログ・noteも<br>更新中！</div></div></div><div class="page right"><span class="index-tab">格安SIM図鑑</span>
@@ -203,7 +226,7 @@
       <img class="blog-image" src="public/images/common/ブログ_ヘッダー画像_スライド用.png" alt="ブログ">
       <div class="lead cta-lead">詳しい格安SIM記事は<br>概要欄リンクからぜひ！</div>
       <div class="note blog-note">動画とあわせて、じっくり読めます</div></div></div></div></div>
-<!-- Slide ID: 28 -->
+<!-- Slide ID: 29 -->
 <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div><div class="page left"><div class="page-body center">
       <div class="bigicon bell-icon"><i class="fa-solid fa-bell"></i></div>
       <div class="big-title final-title">チャンネル登録<br>よろしくお願いします！</div></div></div><div class="page right"><span class="index-tab">格安SIM図鑑</span>
