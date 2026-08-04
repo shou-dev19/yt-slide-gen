@@ -1,284 +1,597 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UQ mobile手数料4,950円を0円にするテクニック (Short)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
-<style>
-    :root {
-        --blue: #0052cc;
-        --blue-dark: #003380;
-        --red: #e63946;
-        --white: #ffffff;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-        font-family: 'Inter', 'Noto Sans JP', sans-serif;
-        background: #f0f4f8;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 40px;
-        padding: 40px;
-    }
-    .slide-container {
-        width: 1080px;
-        height: 1080px;
-        background: var(--white);
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-    }
-    .flex-row { display: flex; flex-direction: row; }
-    .flex-col { display: flex; flex-direction: column; }
-    img { object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ahamoが月額そのまま40GBに増量 - Shorts Slides</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&amp;family=Noto+Sans+JP:wght@700;900&amp;display=swap" rel="stylesheet">
+  <style>
+:root {
+  --blue: #0052cc;
+  --blue-dark: #003380;
+  --blue-soft: #eaf3ff;
+  --red: #e63946;
+  --ink: #172b4d;
+  --muted: #5b6780;
+}
 
-    /* ===== Thumbnail (Slide 1) ===== */
-    .slide-thumbnail {
-        align-items: center;
-        justify-content: flex-start;
-        text-align: center;
-        border: 25px solid var(--blue);
-        padding-top: 160px;
-        padding-bottom: 300px;
-        background:
-            repeating-conic-gradient(from 0deg at 52% 48%, rgba(0,82,204,0.06) 0deg 2.5deg, transparent 2.5deg 16deg),
-            radial-gradient(ellipse at 52% 48%, #ffffff 5%, #e8f3ff 45%, #c8dcff 100%);
-    }
-    .thumb-top-strip {
-        position: absolute; top: 25px; left: 25px; right: 25px;
-        background: var(--blue); color: #fff;
-        font-size: 36px; font-weight: 900; padding: 18px 0;
-        text-align: center; letter-spacing: 0.06em; z-index: 3;
-    }
-    .thumb-accent-tri { position: absolute; width: 0; height: 0; z-index: 1; }
-    .thumb-accent-tri.tl { top:25px; left:25px; border-top:300px solid rgba(0,82,204,0.09); border-right:300px solid transparent; }
-    .thumb-accent-tri.br { bottom:25px; right:25px; border-bottom:300px solid rgba(0,82,204,0.09); border-left:300px solid transparent; }
-    .thumb-tag {
-        font-size: 76px; font-weight: 900; color: #fff;
-        background: var(--red); padding: 18px 54px;
-        transform: rotate(-3deg); box-shadow: 8px 8px 0 rgba(0,0,0,0.25);
-        margin-bottom: 28px; z-index: 2;
-    }
-    .thumb-title {
-        font-size: 78px; font-weight: 900; color: #1a1a2e;
-        line-height: 1.25; margin-bottom: 26px; max-width: 940px; z-index: 2;
-    }
-    .thumb-title .hl { color: var(--blue); }
-    .thumb-title .hl-red { color: var(--red); }
-    .thumb-sub-band {
-        font-size: 60px; font-weight: 900; color: #fff;
-        background: var(--blue); padding: 18px 70px; border-radius: 12px;
-        box-shadow: 4px 4px 0 rgba(0,0,0,0.2); margin-bottom: 30px; z-index: 2;
-    }
-    .thumb-logo-wrap {
-        height: 190px; display: flex; align-items: center; justify-content: center; z-index: 2;
-    }
-    .thumb-logo-wrap img {
-        height: 150px; filter: none;
-        background: #fff; border-radius: 18px; padding: 14px 30px;
-        box-shadow: 4px 4px 0 rgba(0,82,204,0.18);
-    }
-    .thumb-illust {
-        position: absolute; bottom: 40px; right: 50px; z-index: 2;
-    }
-    .thumb-illust img { height: 290px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.18)); }
+* { box-sizing: border-box; }
 
-    /* ===== Standard slides (2-5) ===== */
-    .watermark {
-        position: absolute; top: -40px; left: 10px;
-        font-size: 280px; font-weight: 900; color: var(--blue);
-        opacity: 0.07; z-index: 0; line-height: 1;
-    }
-    .slide-pad { padding: 80px 70px; }
-    .slide-title {
-        font-size: 62px; font-weight: 900; color: #1a1a2e;
-        border-bottom: 10px solid var(--blue); padding-bottom: 14px;
-        margin-bottom: 30px; z-index: 1;
-    }
-    .slide-title .hl { color: var(--blue); }
-    .slide-title .hl-red { color: var(--red); }
-    .slide-body { display: flex; flex-direction: column; gap: 28px; z-index: 1; }
+body {
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  background: #f0f4f8;
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+}
 
-    .report-header-card {
-        display: flex; align-items: center; gap: 24px;
-        background: linear-gradient(135deg, #0052cc, #003fa0);
-        color: #fff; border-radius: 20px; padding: 28px 36px;
-    }
-    .report-header-card .rh-logo { height: 130px; background:#fff; border-radius:14px; padding:14px 22px; filter:none; }
-    .report-header-card .rh-text { font-size: 44px; font-weight: 900; line-height: 1.3; }
+.slide-container {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 1080px;
+  height: 1080px;
+  flex-shrink: 0;
+  padding: 58px 70px;
+  background: #ffffff;
+  color: var(--ink);
+}
 
-    .info-card {
-        display: flex; align-items: center; gap: 22px;
-        padding: 22px 32px; border-radius: 0 16px 16px 0;
-        font-size: 46px; font-weight: 700;
-        background: #f0f5ff; border-left: 14px solid var(--blue);
-    }
-    .info-card .ic-emoji { font-size: 52px; flex-shrink: 0; }
-    .info-card.alert {
-        background: #fff0f0; border-left-color: var(--red);
-        color: var(--red); font-size: 50px; font-weight: 900;
-    }
-    .info-card .ic-num { color: var(--blue); font-weight: 900; }
-    .info-card .ic-free { color: var(--red); font-weight: 900; }
-    .info-card .strike { text-decoration: line-through; opacity: 0.7; }
+.slide-container.price-note::after {
+    content: "※表示している料金はすべて月額・税込みの価格です";
+    position: absolute; right: 20px; bottom: 16px; z-index: 9999;
+    background: rgba(0,0,0,0.62); color: #fff;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 26px; font-weight: 700; letter-spacing: 0.02em; line-height: 1;
+    padding: 10px 20px; border-radius: 10px; white-space: nowrap; pointer-events: none;
+}
 
-    .list-item {
-        display: flex; align-items: center; gap: 22px;
-        font-size: 52px; font-weight: 700; color: #1a1a2e;
-    }
-    .list-item .li-emoji { font-size: 54px; flex-shrink: 0; }
+img {
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+}
 
-    .price-flow {
-        display: flex; align-items: center; justify-content: center; gap: 26px;
-        background: #f0f5ff; border: 6px solid var(--blue); border-radius: 22px;
-        padding: 30px 28px; font-weight: 900;
-    }
-    .price-flow .pf-old { font-size: 54px; color: #6b7280; text-decoration: line-through; }
-    .price-flow .pf-arrow { font-size: 50px; color: var(--blue); }
-    .price-flow .pf-new { font-size: 64px; color: var(--red); }
-    .price-flow .pf-label { font-size: 38px; color: #1a1a2e; line-height: 1.2; }
+.watermark {
+  position: absolute;
+  top: -74px;
+  left: 20px;
+  z-index: -1;
+  color: var(--blue);
+  font-family: 'Inter', sans-serif;
+  font-size: 280px;
+  font-weight: 900;
+  line-height: 1;
+  opacity: 0.07;
+}
 
-    /* ===== Option rows (Slide 5 : 乗り換え候補3選) ===== */
-    .opt-row {
-        display: flex; align-items: center; gap: 28px;
-        background: #f0f5ff; border-left: 14px solid var(--blue);
-        border-radius: 0 16px 16px 0; padding: 20px 30px;
-    }
-    .opt-logo-chip {
-        width: 240px; height: 96px; flex-shrink: 0;
-        background: #fff; border-radius: 14px;
-        display: flex; align-items: center; justify-content: center;
-        box-shadow: 3px 3px 0 rgba(0,82,204,0.15);
-    }
-    .opt-logo-chip img { max-height: 68px; max-width: 210px; filter: none; }
-    .opt-reason { display: flex; flex-direction: column; }
-    .opt-reason .opt-tag { font-size: 34px; font-weight: 900; color: #fff; background: var(--red); border-radius: 8px; padding: 4px 16px; align-self: flex-start; margin-bottom: 8px; }
-    .opt-reason .opt-text { font-size: 46px; font-weight: 900; color: #1a1a2e; }
+.slide-title {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 30px;
+  padding: 0 0 20px;
+  border-bottom: 10px solid var(--blue);
+  color: var(--ink);
+  font-size: 62px;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+}
 
-    .slide-illust {
-        position: absolute; bottom: 40px; right: 40px;
-    }
-    .slide-illust img { height: 260px; }
+.slide-title em { color: var(--red); font-style: normal; }
 
-    /* ===== CTA (Slide 6) ===== */
-    .slide-cta {
-        align-items: center; justify-content: center; text-align: center;
-        background: linear-gradient(135deg, #0052cc, #003380);
-        padding: 70px;
-    }
-    .cta-logo { height: 110px; filter: none; background: #fff; border-radius: 18px; padding: 8px 16px; box-shadow: 4px 4px 0 rgba(0,0,0,0.18); margin-bottom: 12px; }
-    .cta-title { font-size: 84px; font-weight: 900; color: #ffd700; line-height: 1.2; margin-bottom: 18px; }
-    .cta-sub { font-size: 50px; font-weight: 900; color: #fff; margin-bottom: 26px; }
-    .cta-banner-img { width: 840px; border-radius: 18px; box-shadow: 0 14px 40px rgba(0,0,0,0.35); margin-bottom: 22px; filter: none; }
-    .cta-arrow { font-size: 90px; color: #ffd700; animation: bounce 1s infinite; }
-    @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-22px); }
-    }
-</style>
+.slide-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.slide-illust {
+  position: absolute;
+  right: 40px;
+  bottom: 32px;
+  height: 260px;
+  pointer-events: none;
+}
+
+.slide-illust img { height: 100%; max-width: 310px; }
+
+.info-card {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 22px 32px;
+  border-left: 14px solid var(--blue);
+  border-radius: 0 16px 16px 0;
+  background: #f0f5ff;
+  font-size: 46px;
+  font-weight: 700;
+}
+
+.info-card > span {
+  display: grid;
+  place-items: center;
+  min-width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  font-size: 42px;
+  font-weight: 900;
+}
+
+.info-card.alert {
+  border-left-color: var(--red);
+  background: #fff0f0;
+  color: var(--red);
+  font-size: 50px;
+  font-weight: 900;
+}
+
+.info-card.alert > span { background: var(--red); }
+
+.date-badge {
+  align-self: flex-start;
+  padding: 10px 30px;
+  border-radius: 999px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 40px;
+  font-weight: 900;
+}
+
+/* Slide 1: thumbnail */
+.slide-thumbnail {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 160px 58px 300px;
+  border: 25px solid var(--blue);
+  background:
+    repeating-conic-gradient(from 0deg at 52% 48%, rgba(0,82,204,0.06) 0deg 2.5deg, transparent 2.5deg 16deg),
+    radial-gradient(ellipse at 52% 48%, #ffffff 5%, #e8f3ff 45%, #c8dcff 100%);
+  text-align: center;
+}
+
+.thumb-top-strip {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  right: 25px;
+  z-index: 3;
+  padding: 18px 0;
+  background: var(--blue);
+  color: #fff;
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.thumb-accent-tri { position: absolute; width: 0; height: 0; }
+.thumb-accent-tri.tl { top: 25px; left: 25px; border-top: 300px solid rgba(0,82,204,0.09); border-right: 300px solid transparent; }
+.thumb-accent-tri.br { right: 25px; bottom: 25px; border-bottom: 300px solid rgba(0,82,204,0.09); border-left: 300px solid transparent; }
+
+.thumb-content { position: relative; z-index: 2; }
+
+.thumb-tag {
+  display: inline-block;
+  margin-bottom: 28px;
+  padding: 18px 54px;
+  transform: rotate(-3deg);
+  background: var(--red);
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.25);
+  color: #fff;
+  font-size: 72px;
+  font-weight: 900;
+}
+
+.thumb-content h1 {
+  max-width: 900px;
+  margin: 0 auto 22px;
+  color: #17213d;
+  font-size: 80px;
+  font-weight: 900;
+  line-height: 1.18;
+  letter-spacing: -0.055em;
+}
+
+.thumb-content h1 em { color: var(--red); font-style: normal; font-size: 108px; }
+
+.thumb-sub-band {
+  display: inline-block;
+  padding: 18px 60px;
+  border-radius: 12px;
+  background: var(--blue);
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+  color: #fff;
+  font-size: 52px;
+  font-weight: 900;
+}
+
+.thumb-logo-wrap {
+  position: absolute;
+  left: 55px;
+  bottom: 62px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 430px;
+  height: 170px;
+  padding: 18px 28px;
+  border: 5px solid var(--blue);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 6px 7px 0 rgba(0,82,204,0.18);
+}
+
+.thumb-logo-wrap img { width: 350px; max-height: 125px; filter: none; }
+.thumb-illust { right: 44px; bottom: 28px; height: 286px; }
+
+/* Slide 2: news */
+.report-header-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 126px;
+  padding: 22px 34px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color: #fff;
+  font-size: 43px;
+  font-weight: 900;
+}
+
+.report-icon {
+  padding: 12px 20px;
+  border: 4px solid #fff;
+  border-radius: 12px;
+  color: #ffd700;
+  font-family: 'Inter', sans-serif;
+  font-size: 32px;
+  letter-spacing: 0.06em;
+}
+
+.news-body { padding-right: 94px; margin-bottom: 120px; }
+.news-body .info-card strong { font-size: 58px; }
+.news-illust { height: 235px; }
+
+.question-callout {
+  position: absolute;
+  left: 70px;
+  bottom: 58px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  width: 735px;
+  padding: 20px 30px 23px;
+  border: 6px solid var(--blue);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 8px 9px 0 rgba(0,82,204,0.16);
+}
+
+.question-callout::after {
+  content: "";
+  position: absolute;
+  right: -34px;
+  bottom: 28px;
+  border-width: 22px 0 22px 34px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--blue);
+}
+
+.question-callout span { color: var(--muted); font-size: 32px; font-weight: 900; }
+.question-callout strong { color: var(--blue); font-size: 43px; font-weight: 900; line-height: 1.2; white-space: nowrap; }
+
+/* Slide 3: before/after */
+.brand-line {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: fit-content;
+  margin-bottom: 28px;
+  padding: 14px 28px;
+  border: 4px solid #c9daf5;
+  border-radius: 18px;
+  background: #fff;
+  font-size: 32px;
+}
+
+.brand-line img { width: 220px; height: 66px; filter: none; }
+
+.before-after {
+  display: grid;
+  grid-template-columns: 1fr 145px 1fr;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 26px;
+}
+
+.capacity-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 300px;
+  padding: 26px 18px;
+  border: 7px solid #b7c3d8;
+  border-radius: 24px;
+  background: #f5f7fb;
+  box-shadow: 0 12px 24px rgba(23,43,77,0.1);
+}
+
+.capacity-card.after { border-color: var(--red); background: #fff1f2; transform: scale(1.04); }
+.card-label { padding: 7px 18px; border-radius: 99px; background: #7a8799; color: #fff; font-size: 25px; font-weight: 900; }
+.after .card-label { background: var(--red); }
+.capacity-card strong { margin: 16px 0 6px; font-size: 91px; font-weight: 900; line-height: 1; }
+.capacity-card.after strong { color: var(--red); }
+.capacity-card small { font-size: 32px; font-weight: 900; }
+.growth-arrow { display: flex; flex-direction: column; align-items: center; color: var(--red); }
+.growth-arrow span { font-size: 29px; font-weight: 900; white-space: nowrap; }
+.growth-arrow b { font-size: 82px; line-height: 1; }
+
+.highlight-block {
+  width: 72%;
+  padding: 18px 24px;
+  border-radius: 15px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 46px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.highlight-block strong { color: #ffd700; font-size: 58px; }
+.savings-illust { right: 25px; bottom: 73px; height: 218px; }
+
+/* Slide 4: automatic application */
+.procedure-body { width: 80%; margin-bottom: 120px; }
+
+.auto-stamp {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 22px 30px;
+  border: 7px solid var(--blue);
+  border-radius: 20px;
+  background: var(--blue-soft);
+  box-shadow: 7px 8px 0 rgba(0,82,204,0.16);
+}
+
+.auto-stamp span { padding: 10px 16px; border-radius: 10px; background: var(--blue); color: #fff; font-size: 28px; font-weight: 900; }
+.auto-stamp strong { color: var(--blue); font-size: 60px; font-weight: 900; }
+
+.procedure-flow { display: flex; align-items: center; gap: 18px; font-size: 52px; }
+.flow-card { padding: 14px 24px; border: 4px solid #cbd4e4; border-radius: 15px; background: #fff; font-size: 38px; font-weight: 900; }
+.flow-card.zero { border-color: var(--red); background: #fff0f0; color: var(--red); font-size: 50px; }
+.confirm-illust { right: 30px; bottom: 28px; height: 280px; }
+
+/* Slide 5: carrier comparison */
+.compare-kicker {
+  width: fit-content;
+  margin: -4px auto 28px;
+  padding: 11px 28px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 34px;
+  font-weight: 900;
+}
+
+.carrier-compare {
+  display: grid;
+  grid-template-columns: 1fr 75px 1fr;
+  gap: 14px;
+  align-items: center;
+}
+
+.carrier-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 394px;
+  padding: 28px 18px 24px;
+  border: 5px solid #cbd4e4;
+  border-radius: 22px;
+  background: #f7f9fc;
+  text-align: center;
+}
+
+.carrier-card.winner { border: 8px solid var(--blue); background: linear-gradient(155deg, #eaf3ff, #d4e8ff); box-shadow: 0 16px 34px rgba(0,82,204,0.22); }
+.winner-tag { position: absolute; top: -24px; padding: 8px 24px; border-radius: 99px; background: var(--red); color: #fff; font-size: 27px; font-weight: 900; white-space: nowrap; }
+.carrier-logo { display: grid; place-items: center; width: 100%; height: 90px; margin-bottom: 15px; padding: 12px; border-radius: 13px; background: #fff; }
+.carrier-logo img { max-width: 300px; max-height: 65px; filter: none; }
+.carrier-card h3 { min-height: 84px; margin: 0 0 4px; font-size: 29px; line-height: 1.08; }
+.carrier-card h3 span { font-size: 24px; }
+.carrier-card strong { color: var(--red); font-size: 82px; font-weight: 900; line-height: 1.15; }
+.carrier-card small { font-size: 30px; font-weight: 900; }
+.versus { color: var(--red); font-size: 38px; font-weight: 900; font-style: italic; text-align: center; }
+.compare-verdict { width: 80%; margin-top: 24px; padding: 16px 24px; border-radius: 14px; background: var(--blue); color: #fff; font-size: 37px; text-align: center; }
+.compare-verdict strong { color: #ffd700; }
+.compare-illust { right: 18px; bottom: 76px; height: 190px; }
+
+/* Slide 6: warning */
+.warning-slide { padding: 0 70px 58px; background: #fff8f8; }
+.warning-banner { margin: 0 -70px 26px; padding: 22px 0; background: var(--red); color: #fff; font-size: 62px; font-weight: 900; text-align: center; }
+.warning-title { margin: 0 0 24px; color: #b0001e; font-size: 58px; font-weight: 900; line-height: 1.15; text-align: center; }
+
+.warning-box {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  padding: 30px 36px;
+  border: 10px solid var(--red);
+  border-radius: 22px;
+  background: #fff0f0;
+  text-align: center;
+}
+
+.campaign-label { align-self: center; padding: 7px 22px; border-radius: 99px; background: var(--red); color: #fff; font-size: 28px; font-weight: 900; }
+.w-title { color: #b0001e; font-size: 44px; font-weight: 900; line-height: 1.25; letter-spacing: -0.035em; white-space: nowrap; }
+.warning-divider { height: 5px; border-radius: 3px; background: rgba(230,57,70,0.25); }
+.w-item { display: flex; align-items: center; justify-content: center; gap: 16px; color: var(--red); font-size: 50px; font-weight: 900; }
+.w-item span { font-size: 58px; }
+.warning-callout { width: 73%; margin-top: 22px; padding: 15px 24px; border-radius: 14px; background: var(--ink); color: #fff; font-size: 34px; font-weight: 900; text-align: center; }
+.warning-illust { right: 28px; bottom: 26px; height: 246px; }
+
+/* Slide 7: CTA */
+.cta-slide { padding: 28px 60px 22px; background: linear-gradient(135deg, var(--blue), var(--blue-dark)); }
+.cta-content { display: flex; flex-direction: column; align-items: center; height: 100%; text-align: center; }
+
+.cta-logo-card {
+  display: grid;
+  place-items: center;
+  height: 112px;
+  margin-bottom: 10px;
+  padding: 8px 22px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.18);
+}
+
+.cta-logo { width: 300px; height: 92px; filter: none; }
+.cta-title { margin: 0 0 6px; color: #ffd700; font-size: 76px; font-weight: 900; line-height: 1.1; }
+.cta-sub { display: flex; flex-direction: column; gap: 7px; width: 860px; margin-bottom: 12px; color: #fff; font-size: 32px; font-weight: 900; }
+.cta-sub span { padding: 7px 18px; border: 3px solid rgba(255,255,255,0.55); border-radius: 12px; background: rgba(255,255,255,0.1); white-space: nowrap; }
+.cta-banner-img { width: 820px; max-height: 460px; border: 7px solid #fff; border-radius: 18px; box-shadow: 0 18px 42px rgba(0,0,0,0.4); filter: none; }
+.cta-arrow { margin-top: 6px; color: #ffd700; font-size: 84px; font-weight: 900; line-height: 0.82; animation: bounce 1s infinite; }
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+  </style>
 </head>
 <body>
-
-<!-- ===================== Slide 1 : Thumbnail ===================== -->
-<div class="slide-container slide-thumbnail">
-    <div class="thumb-top-strip">⚡ 2026年8月 UQ mobile 手数料改定 ⚡</div>
-    <div class="thumb-accent-tri tl"></div>
-    <div class="thumb-accent-tri br"></div>
-
-    <div class="thumb-tag">8月値上げ！</div>
-    <div class="thumb-title">手数料が<span class="hl-red">4,950円</span>に…<br>でも<span class="hl">0円</span>にできる</div>
-    <div class="thumb-sub-band">乗り換え候補3選！</div>
-    <div class="thumb-logo-wrap">
-        <img src="public/images/logo/UQ_logo_2.png" alt="UQ mobile">
-    </div>
-
-    <div class="thumb-illust" style="position: absolute; bottom: 5px;">
-        <img src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="驚き">
-    </div>
+<!-- Slide ID: 1 -->
+<!-- CSV表示内容: テロップ：【速報】ahamoが月額そのままで40GBに増量！／サブ：8月1日から適用 -->
+<div class="slide-container slide-thumbnail" data-slide-id="1">
+  <div class="thumb-top-strip">⚡ 2026年8月1日 ahamo速報 ⚡</div>
+  <i class="thumb-accent-tri tl"></i>
+  <i class="thumb-accent-tri br"></i>
+  <div class="thumb-content">
+    <div class="thumb-tag">月額そのまま</div>
+    <h1>ahamoが<br><em>40GB</em>に増量！</h1>
+    <div class="thumb-sub-band">8月1日から適用</div>
+  </div>
+  <div class="thumb-logo-wrap"><img src="public/images/logo/Ahamo_logo.png" alt="ahamo"></div>
+  <div class="slide-illust thumb-illust" style="z-index: 2;"><img src="public/images/irasutoya/smartphone04_laugh.png" alt="容量増を喜ぶスマホユーザー"></div>
 </div>
-
-<!-- ===================== Slide 2 : 店頭事務手数料の値上げ ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">2</div>
-    <h2 class="slide-title">店頭手数料が<span class="hl-red">値上げ</span></h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">🏪</span>UQ mobile 店頭の事務手数料</div>
-        <div class="price-flow">
-            <span class="pf-old">3,850円</span>
-            <span class="pf-arrow">▶</span>
-            <span class="pf-new">4,950円</span>
-        </div>
-        <div class="info-card alert"><span class="ic-emoji">📈</span>約3割の値上げ<br>（2026年8月1日〜）</div>
+<!-- Slide ID: 2 -->
+<!-- CSV表示内容: ニュース一文／ドコモが2026年8月1日からahamoのデータ容量を10GB増量 -->
+<div class="slide-container" data-slide-id="2">
+  <div class="watermark">2</div>
+  <h2 class="slide-title">ahamoが<em>10GB増量</em></h2>
+  <div class="slide-body news-body">
+    <div class="report-header-card">
+      <span class="report-icon">NEWS</span>
+      <span>ドコモが公式発表</span>
     </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/business_man2_3_surprise.png" alt="驚き">
-    </div>
+    <div class="date-badge">2026年8月1日から</div>
+    <div class="info-card alert"><span>↑</span><b>データ容量 <strong>+10GB</strong></b></div>
+    <div class="info-card"><span>📱</span><b>ahamo通常プランが対象</b></div>
+  </div>
+  <div class="question-callout">
+    <span>そのぶんだけ</span>
+    <strong>料金も上がるんじゃないの？</strong>
+  </div>
+  <div class="slide-illust news-illust" style="z-index: 2;"><img src="public/images/irasutoya/smartphone_talk03_man.png" alt="スマホで速報を確認する人"></div>
 </div>
-
-<!-- ===================== Slide 3 : eSIMをWebで申し込めば0円 ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">3</div>
-    <h2 class="slide-title">でも<span class="hl">eSIM</span>なら<span class="hl-red">0円</span></h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">🙆</span>慌てて乗り換えなくてOK</div>
-        <div class="info-card"><span class="ic-emoji">📱</span>eSIMをWebで申し込めば</div>
-        <div class="info-card alert"><span class="ic-emoji">🎉</span>事務手数料は<span class="ic-free">0円</span>にできる</div>
-    </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/internet_kanki_woman1.png" alt="喜び">
-    </div>
+<!-- Slide ID: 3 -->
+<!-- CSV表示内容: ahamo通常プラン／Before：30GB・月額2,970円／After：40GB・月額2,970円（据え置き） -->
+<div class="slide-container price-note" data-slide-id="3">
+  <div class="watermark">3</div>
+  <h2 class="slide-title">料金据え置きで<em>40GB</em></h2>
+  <div class="brand-line"><img src="public/images/logo/Ahamo_logo.png" alt="ahamo"><strong>ahamo通常プラン</strong></div>
+  <div class="before-after">
+    <section class="capacity-card before">
+      <span class="card-label">BEFORE</span>
+      <strong>30GB</strong>
+      <small>月額 2,970円</small>
+    </section>
+    <div class="growth-arrow"><span>+10GB</span><b>➡</b></div>
+    <section class="capacity-card after">
+      <span class="card-label">AFTER</span>
+      <strong>40GB</strong>
+      <small>月額 2,970円</small>
+    </section>
+  </div>
+  <div class="highlight-block">月額は<strong>据え置き</strong>！</div>
+  <div class="slide-illust savings-illust" style="z-index: 2;"><img src="public/images/common/スマホ代見直しの節約効果を示すイラスト.png" alt="スマホ代のお得な変化"></div>
 </div>
-
-<!-- ===================== Slide 4 : 本当に100Mbps必要？ ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">4</div>
-    <h2 class="slide-title">本当に<span class="hl">100Mbps</span>必要？</h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">🔍</span>ネット検索は<span class="ic-num">約10Mbps</span></div>
-        <div class="info-card"><span class="ic-emoji">🎬</span>動画視聴は<span class="ic-num">約20Mbps</span>で快適</div>
-        <div class="list-item"><span class="li-emoji">👌</span>そんなに速くなくてもOK</div>
+<!-- Slide ID: 4 -->
+<!-- CSV表示内容: 手続き不要／8月1日から自動適用／今使っている人は何もしなくてOK -->
+<div class="slide-container" data-slide-id="4">
+  <div class="watermark">4</div>
+  <h2 class="slide-title">手続き不要</h2>
+  <div class="slide-body procedure-body">
+    <div class="date-badge">8月1日</div>
+    <div class="auto-stamp"><span>AUTO</span><strong>自動適用</strong></div>
+    <div class="info-card alert"><span>✓</span><b>今使っている人は何もしなくてOK</b></div>
+    <div class="procedure-flow">
+      <span class="flow-card">申し込み</span><b>→</b><span class="flow-card zero">0回</span>
     </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/pose_necchuu_smartphone_woman.png" alt="スマホ視聴">
-    </div>
+  </div>
+  <div class="slide-illust confirm-illust" style="z-index: 2;"><img src="public/images/irasutoya/pose_yubisashi_kakunin_businesswoman.png" alt="手続き不要を確認する人"></div>
 </div>
-
-<!-- ===================== Slide 5 : 乗り換え候補3選 ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">5</div>
-    <h2 class="slide-title">乗り換え候補<span class="hl-red">3選</span></h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="opt-row">
-            <div class="opt-logo-chip"><img src="public/images/logo/Povo_logo.png" alt="povo2.0"></div>
-            <div class="opt-reason"><span class="opt-tag">速さ重視</span><span class="opt-text">povo2.0</span></div>
-        </div>
-        <div class="opt-row">
-            <div class="opt-logo-chip"><img src="public/images/logo/Rakuten_Mobile_logo.png" alt="楽天モバイル"></div>
-            <div class="opt-reason"><span class="opt-tag">お店で相談</span><span class="opt-text">楽天モバイル</span></div>
-        </div>
-        <div class="opt-row">
-            <div class="opt-logo-chip"><img src="public/images/logo/Mineo_logo.png" alt="mineo"></div>
-            <div class="opt-reason"><span class="opt-tag">安さ重視</span><span class="opt-text">mineo</span></div>
-        </div>
-    </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/pose_yubisashi_kakunin_businesswoman.png" alt="確認">
-    </div>
+<!-- Slide ID: 5 -->
+<!-- CSV表示内容: 料金2,970円クラスの容量比較／ahamo：40GB／LINEMO ベストプランV：30GB -->
+<div class="slide-container price-note" data-slide-id="5">
+  <div class="watermark">5</div>
+  <h2 class="slide-title">同額でも<em>10GB差</em></h2>
+  <div class="compare-kicker">2,970円クラスの容量比較</div>
+  <div class="carrier-compare">
+    <section class="carrier-card winner">
+      <span class="winner-tag">+10GB リード</span>
+      <div class="carrier-logo"><img src="public/images/logo/Ahamo_logo.png" alt="ahamo"></div>
+      <strong>40GB</strong><small>月額 2,970円</small>
+    </section>
+    <div class="versus">VS</div>
+    <section class="carrier-card">
+      <div class="carrier-logo"><img src="public/images/logo/LINEMO_logo.png" alt="LINEMO"></div>
+      <h3>LINEMO<br><span>ベストプランV</span></h3>
+      <strong>30GB</strong><small>月額 2,970円</small>
+    </section>
+  </div>
+  <div class="compare-verdict">容量では <strong>ahamoが一歩リード</strong></div>
+  <div class="slide-illust compare-illust" style="z-index: 2;"><img src="public/images/irasutoya/pose_naruhodo_woman.png" alt="容量を比較する人"></div>
 </div>
-
-<!-- ===================== Slide 6 : CTA ===================== -->
-<div class="slide-container slide-cta">
-    <img src="public/images/logo/UQ_logo_2.png" class="cta-logo" alt="UQ mobile">
-    <div class="cta-title">料金・0円のコツは<br>本編で！</div>
-    <div class="cta-sub">自分に合う乗り換え先を解説</div>
-    <img src="public/images/thumbnails/【2026年8月】UQ mobileが手数料を4,950円に値上げ！乗り換え候補3選を徹底解説_サムネ1.png" class="cta-banner-img" alt="本編動画をチェック">
-    <div class="cta-arrow">▼</div>
+<!-- Slide ID: 6 -->
+<!-- CSV表示内容: 注意点／正式名称は「データ増量おためしキャンペーン」／終了時期は未発表 -->
+<div class="slide-container warning-slide" data-slide-id="6">
+  <div class="warning-banner">⚠ 注意点</div>
+  <h2 class="warning-title">「永続増量」<br>とは限らない</h2>
+  <div class="warning-box">
+    <div class="campaign-label">正式名称</div>
+    <div class="w-title">「データ増量おためしキャンペーン」</div>
+    <div class="warning-divider"></div>
+    <div class="w-item"><span>⚠</span><b>終了時期未発表</b></div>
+  </div>
+  <div class="warning-callout">いつか元の30GBに戻る可能性も</div>
+  <div class="slide-illust warning-illust" style="z-index: 2;"><img src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="キャンペーンの注意点に驚く人"></div>
 </div>
-
+<!-- Slide ID: 7 -->
+<!-- CSV表示内容: 本編で解説／①大盛り・ドコモminiはどれだけ増えた？／②元に戻ったときの備え方／③他社と比べた今の選び方 -->
+<div class="slide-container cta-slide" data-slide-id="7">
+  <div class="cta-content">
+    <div class="cta-logo-card"><img class="cta-logo" src="public/images/logo/Ahamo_logo.png" alt="ahamo"></div>
+    <h2 class="cta-title">本編で解説</h2>
+    <div class="cta-sub">
+      <span>①大盛り・ドコモminiはどれだけ増えた？</span><span>②元に戻ったときの備え方</span><span>③他社と比べた今の選び方</span>
+    </div>
+    <img class="cta-banner-img" src="public/images/thumbnails/39_【2026年8月】ahamoが月額そのままで40GBに増量！？今後の選び方まで徹底解説_サムネ1.png" alt="ahamo増量を徹底解説する長尺動画のサムネイル">
+    <div class="cta-arrow">↓</div>
+  </div>
+</div>
 </body>
 </html>

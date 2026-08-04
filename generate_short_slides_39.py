@@ -1,0 +1,782 @@
+#!/usr/bin/env python3
+"""Generate the seven short-form ahamo slides for video 39 from its CSV."""
+
+from __future__ import annotations
+
+import csv
+import html
+import re
+from collections import OrderedDict
+from pathlib import Path
+
+
+ROOT = Path("/workspaces/yt-factory/packages/slide-gen")
+CSV_PATH = Path(
+    "/workspaces/yt-factory/packages/scenario-gen/archive/videos/"
+    "39_【2026年8月】ahamoが月額そのままで40GBに増量！？今後の選び方まで徹底解説/"
+    "short/8月1日からahamoが40GBに、手続きは不要.csv"
+)
+LONG_DIR = CSV_PATH.parent.parent / "long"
+OUTPUT_PATH = ROOT / "slides-short.html"
+IMAGES = ROOT / "public/images"
+
+
+def esc(value: str) -> str:
+    return html.escape(value, quote=True)
+
+
+def rel_asset(path: Path) -> str:
+    if not path.is_file():
+        raise FileNotFoundError(f"Required asset not found: {path}")
+    return path.relative_to(ROOT).as_posix()
+
+
+def load_slides() -> OrderedDict[str, str]:
+    slides: OrderedDict[str, str] = OrderedDict()
+    with CSV_PATH.open(encoding="utf-8-sig", newline="") as source:
+        for row in csv.DictReader(source):
+            slide_id = row["スライドID"].strip()
+            content = row["スライドに表示する内容"].strip()
+            if not slide_id or slide_id.endswith("-0"):
+                continue
+            if content == "同上":
+                if slide_id not in slides:
+                    raise ValueError(f"Slide ID {slide_id} uses 同上 before its source row")
+                continue
+            if slide_id in slides and slides[slide_id] != content:
+                raise ValueError(f"Slide ID {slide_id} has conflicting display content")
+            slides[slide_id] = content
+
+    expected = [str(number) for number in range(1, 8)]
+    if list(slides) != expected:
+        raise ValueError(f"Expected slide IDs {expected}, got {list(slides)}")
+    return slides
+
+
+def load_dialogues() -> dict[str, list[str]]:
+    """Keep the spoken context available for visual supplements not in display notes."""
+    dialogues: dict[str, list[str]] = {}
+    with CSV_PATH.open(encoding="utf-8-sig", newline="") as source:
+        for row in csv.DictReader(source):
+            slide_id = row["スライドID"].strip()
+            dialogue = row["セリフ"].strip()
+            if not slide_id or slide_id.endswith("-0") or not dialogue:
+                continue
+            dialogues.setdefault(slide_id, []).append(dialogue)
+    return dialogues
+
+
+def split_exact(value: str, count: int) -> list[str]:
+    parts = [part.strip() for part in value.split("／")]
+    if len(parts) != count:
+        raise ValueError(f"Expected {count} display parts, got {len(parts)}: {value}")
+    return parts
+
+
+def remove_prefix(value: str, prefix: str) -> str:
+    if not value.startswith(prefix):
+        raise ValueError(f"Expected prefix {prefix!r}: {value}")
+    return value.removeprefix(prefix).strip()
+
+
+def cta_thumbnail_asset() -> Path:
+    long_csvs = sorted(LONG_DIR.glob("*.csv"))
+    if len(long_csvs) != 1:
+        raise ValueError(f"Expected one long-form CSV in {LONG_DIR}, got {len(long_csvs)}")
+
+    exact = IMAGES / "thumbnails" / f"{long_csvs[0].stem}_サムネ1.png"
+    if exact.is_file():
+        return exact
+
+    video_number = CSV_PATH.parent.parent.name.split("_", 1)[0]
+    numbered = IMAGES / "thumbnails" / f"{video_number}_{long_csvs[0].stem}_サムネ1.png"
+    if numbered.is_file():
+        return numbered
+
+    fallback = IMAGES / "slides/今すぐ本編動画をチェック.png"
+    return fallback
+
+
+def slide_frame(slide_id: str, raw: str, body: str, classes: str = "") -> str:
+    class_names = " ".join(filter(None, ["slide-container", classes]))
+    return f'''<!-- Slide ID: {slide_id} -->
+<!-- CSV表示内容: {esc(raw)} -->
+<div class="{class_names}" data-slide-id="{slide_id}">
+{body}
+</div>'''
+
+
+def render(slides: OrderedDict[str, str], dialogues: dict[str, list[str]]) -> str:
+    ahamo_logo = rel_asset(IMAGES / "logo/Ahamo_logo.png")
+    linemo_logo = rel_asset(IMAGES / "logo/LINEMO_logo.png")
+    happy = rel_asset(IMAGES / "irasutoya/smartphone04_laugh.png")
+    news = rel_asset(IMAGES / "irasutoya/smartphone_talk03_man.png")
+    savings = rel_asset(IMAGES / "common/スマホ代見直しの節約効果を示すイラスト.png")
+    confirm = rel_asset(IMAGES / "irasutoya/pose_yubisashi_kakunin_businesswoman.png")
+    compare = rel_asset(IMAGES / "irasutoya/pose_naruhodo_woman.png")
+    shock = rel_asset(IMAGES / "irasutoya/bikkuri_me_tobideru_man.png")
+    banner = rel_asset(cta_thumbnail_asset())
+
+    thumb_main, thumb_sub = split_exact(remove_prefix(slides["1"], "テロップ："), 2)
+    thumb_main = remove_prefix(thumb_main, "【速報】")
+    thumb_sub = remove_prefix(thumb_sub, "サブ：")
+
+    news_line = remove_prefix(slides["2"], "ニュース一文／")
+    news_match = re.fullmatch(
+        r"ドコモが(?P<date>\d{4}年\d{1,2}月\d{1,2}日)からahamoのデータ容量を(?P<gain>\d+GB)増量",
+        news_line,
+    )
+    if not news_match:
+        raise ValueError(f"Unexpected news display content: {news_line}")
+    if len(dialogues.get("2", [])) < 2:
+        raise ValueError("Slide ID 2 needs the viewer's follow-up question")
+    price_question = dialogues["2"][1].removeprefix("えっ、")
+    question_match = re.fullmatch(
+        r"(?P<context>そのぶんだけ)(?P<question>料金も上がるんじゃないの？)",
+        price_question,
+    )
+    if not question_match:
+        raise ValueError(f"Unexpected Slide ID 2 follow-up: {price_question}")
+
+    plan_name, before_raw, after_raw = split_exact(slides["3"], 3)
+    before_match = re.fullmatch(r"Before：(?P<data>\d+GB)・月額(?P<price>[\d,]+円)", before_raw)
+    after_match = re.fullmatch(
+        r"After：(?P<data>\d+GB)・月額(?P<price>[\d,]+円)（(?P<note>[^)]+)）",
+        after_raw,
+    )
+    if not before_match or not after_match:
+        raise ValueError(f"Unexpected before/after display content: {slides['3']}")
+
+    procedure_title, procedure_date, procedure_result = split_exact(slides["4"], 3)
+    procedure_date = procedure_date.removesuffix("から自動適用")
+
+    compare_title, ahamo_raw, linemo_raw = split_exact(slides["5"], 3)
+    compare_price = remove_prefix(compare_title, "料金").removesuffix("クラスの容量比較")
+    ahamo_data = remove_prefix(ahamo_raw, "ahamo：")
+    linemo_data = remove_prefix(linemo_raw, "LINEMO ベストプランV：")
+
+    warning_title, warning_name, warning_end = split_exact(slides["6"], 3)
+    warning_name = remove_prefix(warning_name, "正式名称は")
+    warning_end = warning_end.replace("は", "", 1)
+
+    cta_title, *cta_items = split_exact(slides["7"], 4)
+
+    docs = [
+        slide_frame(
+            "1",
+            slides["1"],
+            f'''  <div class="thumb-top-strip">⚡ 2026年8月1日 ahamo速報 ⚡</div>
+  <i class="thumb-accent-tri tl"></i>
+  <i class="thumb-accent-tri br"></i>
+  <div class="thumb-content">
+    <div class="thumb-tag">月額そのまま</div>
+    <h1>ahamoが<br><em>40GB</em>に増量！</h1>
+    <div class="thumb-sub-band">{esc(thumb_sub)}</div>
+  </div>
+  <div class="thumb-logo-wrap"><img src="{ahamo_logo}" alt="ahamo"></div>
+  <div class="slide-illust thumb-illust" style="z-index: 2;"><img src="{happy}" alt="容量増を喜ぶスマホユーザー"></div>''',
+            "slide-thumbnail",
+        ),
+        slide_frame(
+            "2",
+            slides["2"],
+            f'''  <div class="watermark">2</div>
+  <h2 class="slide-title">ahamoが<em>10GB増量</em></h2>
+  <div class="slide-body news-body">
+    <div class="report-header-card">
+      <span class="report-icon">NEWS</span>
+      <span>ドコモが公式発表</span>
+    </div>
+    <div class="date-badge">{esc(news_match.group('date'))}から</div>
+    <div class="info-card alert"><span>↑</span><b>データ容量 <strong>+{esc(news_match.group('gain'))}</strong></b></div>
+    <div class="info-card"><span>📱</span><b>ahamo通常プランが対象</b></div>
+  </div>
+  <div class="question-callout">
+    <span>{esc(question_match.group('context'))}</span>
+    <strong>{esc(question_match.group('question'))}</strong>
+  </div>
+  <div class="slide-illust news-illust" style="z-index: 2;"><img src="{news}" alt="スマホで速報を確認する人"></div>''',
+        ),
+        slide_frame(
+            "3",
+            slides["3"],
+            f'''  <div class="watermark">3</div>
+  <h2 class="slide-title">料金据え置きで<em>40GB</em></h2>
+  <div class="brand-line"><img src="{ahamo_logo}" alt="ahamo"><strong>{esc(plan_name)}</strong></div>
+  <div class="before-after">
+    <section class="capacity-card before">
+      <span class="card-label">BEFORE</span>
+      <strong>{esc(before_match.group('data'))}</strong>
+      <small>月額 {esc(before_match.group('price'))}</small>
+    </section>
+    <div class="growth-arrow"><span>+10GB</span><b>➡</b></div>
+    <section class="capacity-card after">
+      <span class="card-label">AFTER</span>
+      <strong>{esc(after_match.group('data'))}</strong>
+      <small>月額 {esc(after_match.group('price'))}</small>
+    </section>
+  </div>
+  <div class="highlight-block">月額は<strong>{esc(after_match.group('note'))}</strong>！</div>
+  <div class="slide-illust savings-illust" style="z-index: 2;"><img src="{savings}" alt="スマホ代のお得な変化"></div>''',
+            "price-note",
+        ),
+        slide_frame(
+            "4",
+            slides["4"],
+            f'''  <div class="watermark">4</div>
+  <h2 class="slide-title">{esc(procedure_title)}</h2>
+  <div class="slide-body procedure-body">
+    <div class="date-badge">{esc(procedure_date)}</div>
+    <div class="auto-stamp"><span>AUTO</span><strong>自動適用</strong></div>
+    <div class="info-card alert"><span>✓</span><b>{esc(procedure_result)}</b></div>
+    <div class="procedure-flow">
+      <span class="flow-card">申し込み</span><b>→</b><span class="flow-card zero">0回</span>
+    </div>
+  </div>
+  <div class="slide-illust confirm-illust" style="z-index: 2;"><img src="{confirm}" alt="手続き不要を確認する人"></div>''',
+        ),
+        slide_frame(
+            "5",
+            slides["5"],
+            f'''  <div class="watermark">5</div>
+  <h2 class="slide-title">同額でも<em>10GB差</em></h2>
+  <div class="compare-kicker">{esc(compare_price)}クラスの容量比較</div>
+  <div class="carrier-compare">
+    <section class="carrier-card winner">
+      <span class="winner-tag">+10GB リード</span>
+      <div class="carrier-logo"><img src="{ahamo_logo}" alt="ahamo"></div>
+      <strong>{esc(ahamo_data)}</strong><small>月額 {esc(compare_price)}</small>
+    </section>
+    <div class="versus">VS</div>
+    <section class="carrier-card">
+      <div class="carrier-logo"><img src="{linemo_logo}" alt="LINEMO"></div>
+      <h3>LINEMO<br><span>ベストプランV</span></h3>
+      <strong>{esc(linemo_data)}</strong><small>月額 {esc(compare_price)}</small>
+    </section>
+  </div>
+  <div class="compare-verdict">容量では <strong>ahamoが一歩リード</strong></div>
+  <div class="slide-illust compare-illust" style="z-index: 2;"><img src="{compare}" alt="容量を比較する人"></div>''',
+            "price-note",
+        ),
+        slide_frame(
+            "6",
+            slides["6"],
+            f'''  <div class="warning-banner">⚠ {esc(warning_title)}</div>
+  <h2 class="warning-title">「永続増量」<br>とは限らない</h2>
+  <div class="warning-box">
+    <div class="campaign-label">正式名称</div>
+    <div class="w-title">{esc(warning_name)}</div>
+    <div class="warning-divider"></div>
+    <div class="w-item"><span>⚠</span><b>{esc(warning_end)}</b></div>
+  </div>
+  <div class="warning-callout">いつか元の30GBに戻る可能性も</div>
+  <div class="slide-illust warning-illust" style="z-index: 2;"><img src="{shock}" alt="キャンペーンの注意点に驚く人"></div>''',
+            "warning-slide",
+        ),
+        slide_frame(
+            "7",
+            slides["7"],
+            f'''  <div class="cta-content">
+    <div class="cta-logo-card"><img class="cta-logo" src="{ahamo_logo}" alt="ahamo"></div>
+    <h2 class="cta-title">{esc(cta_title)}</h2>
+    <div class="cta-sub">
+      <span>{esc(cta_items[0])}</span><span>{esc(cta_items[1])}</span><span>{esc(cta_items[2])}</span>
+    </div>
+    <img class="cta-banner-img" src="{banner}" alt="ahamo増量を徹底解説する長尺動画のサムネイル">
+    <div class="cta-arrow">↓</div>
+  </div>''',
+            "cta-slide",
+        ),
+    ]
+
+    return f'''<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ahamoが月額そのまま40GBに増量 - Shorts Slides</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&amp;family=Noto+Sans+JP:wght@700;900&amp;display=swap" rel="stylesheet">
+  <style>
+:root {{
+  --blue: #0052cc;
+  --blue-dark: #003380;
+  --blue-soft: #eaf3ff;
+  --red: #e63946;
+  --ink: #172b4d;
+  --muted: #5b6780;
+}}
+
+* {{ box-sizing: border-box; }}
+
+body {{
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  background: #f0f4f8;
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+}}
+
+.slide-container {{
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  width: 1080px;
+  height: 1080px;
+  flex-shrink: 0;
+  padding: 58px 70px;
+  background: #ffffff;
+  color: var(--ink);
+}}
+
+.slide-container.price-note::after {{
+    content: "※表示している料金はすべて月額・税込みの価格です";
+    position: absolute; right: 20px; bottom: 16px; z-index: 9999;
+    background: rgba(0,0,0,0.62); color: #fff;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 26px; font-weight: 700; letter-spacing: 0.02em; line-height: 1;
+    padding: 10px 20px; border-radius: 10px; white-space: nowrap; pointer-events: none;
+}}
+
+img {{
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+}}
+
+.watermark {{
+  position: absolute;
+  top: -74px;
+  left: 20px;
+  z-index: -1;
+  color: var(--blue);
+  font-family: 'Inter', sans-serif;
+  font-size: 280px;
+  font-weight: 900;
+  line-height: 1;
+  opacity: 0.07;
+}}
+
+.slide-title {{
+  position: relative;
+  z-index: 1;
+  margin: 0 0 30px;
+  padding: 0 0 20px;
+  border-bottom: 10px solid var(--blue);
+  color: var(--ink);
+  font-size: 62px;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+}}
+
+.slide-title em {{ color: var(--red); font-style: normal; }}
+
+.slide-body {{
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}}
+
+.slide-illust {{
+  position: absolute;
+  right: 40px;
+  bottom: 32px;
+  height: 260px;
+  pointer-events: none;
+}}
+
+.slide-illust img {{ height: 100%; max-width: 310px; }}
+
+.info-card {{
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 22px 32px;
+  border-left: 14px solid var(--blue);
+  border-radius: 0 16px 16px 0;
+  background: #f0f5ff;
+  font-size: 46px;
+  font-weight: 700;
+}}
+
+.info-card > span {{
+  display: grid;
+  place-items: center;
+  min-width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  font-size: 42px;
+  font-weight: 900;
+}}
+
+.info-card.alert {{
+  border-left-color: var(--red);
+  background: #fff0f0;
+  color: var(--red);
+  font-size: 50px;
+  font-weight: 900;
+}}
+
+.info-card.alert > span {{ background: var(--red); }}
+
+.date-badge {{
+  align-self: flex-start;
+  padding: 10px 30px;
+  border-radius: 999px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 40px;
+  font-weight: 900;
+}}
+
+/* Slide 1: thumbnail */
+.slide-thumbnail {{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 160px 58px 300px;
+  border: 25px solid var(--blue);
+  background:
+    repeating-conic-gradient(from 0deg at 52% 48%, rgba(0,82,204,0.06) 0deg 2.5deg, transparent 2.5deg 16deg),
+    radial-gradient(ellipse at 52% 48%, #ffffff 5%, #e8f3ff 45%, #c8dcff 100%);
+  text-align: center;
+}}
+
+.thumb-top-strip {{
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  right: 25px;
+  z-index: 3;
+  padding: 18px 0;
+  background: var(--blue);
+  color: #fff;
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-align: center;
+}}
+
+.thumb-accent-tri {{ position: absolute; width: 0; height: 0; }}
+.thumb-accent-tri.tl {{ top: 25px; left: 25px; border-top: 300px solid rgba(0,82,204,0.09); border-right: 300px solid transparent; }}
+.thumb-accent-tri.br {{ right: 25px; bottom: 25px; border-bottom: 300px solid rgba(0,82,204,0.09); border-left: 300px solid transparent; }}
+
+.thumb-content {{ position: relative; z-index: 2; }}
+
+.thumb-tag {{
+  display: inline-block;
+  margin-bottom: 28px;
+  padding: 18px 54px;
+  transform: rotate(-3deg);
+  background: var(--red);
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.25);
+  color: #fff;
+  font-size: 72px;
+  font-weight: 900;
+}}
+
+.thumb-content h1 {{
+  max-width: 900px;
+  margin: 0 auto 22px;
+  color: #17213d;
+  font-size: 80px;
+  font-weight: 900;
+  line-height: 1.18;
+  letter-spacing: -0.055em;
+}}
+
+.thumb-content h1 em {{ color: var(--red); font-style: normal; font-size: 108px; }}
+
+.thumb-sub-band {{
+  display: inline-block;
+  padding: 18px 60px;
+  border-radius: 12px;
+  background: var(--blue);
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+  color: #fff;
+  font-size: 52px;
+  font-weight: 900;
+}}
+
+.thumb-logo-wrap {{
+  position: absolute;
+  left: 55px;
+  bottom: 62px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 430px;
+  height: 170px;
+  padding: 18px 28px;
+  border: 5px solid var(--blue);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 6px 7px 0 rgba(0,82,204,0.18);
+}}
+
+.thumb-logo-wrap img {{ width: 350px; max-height: 125px; filter: none; }}
+.thumb-illust {{ right: 44px; bottom: 28px; height: 286px; }}
+
+/* Slide 2: news */
+.report-header-card {{
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 126px;
+  padding: 22px 34px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color: #fff;
+  font-size: 43px;
+  font-weight: 900;
+}}
+
+.report-icon {{
+  padding: 12px 20px;
+  border: 4px solid #fff;
+  border-radius: 12px;
+  color: #ffd700;
+  font-family: 'Inter', sans-serif;
+  font-size: 32px;
+  letter-spacing: 0.06em;
+}}
+
+.news-body {{ padding-right: 94px; margin-bottom: 120px; }}
+.news-body .info-card strong {{ font-size: 58px; }}
+.news-illust {{ height: 235px; }}
+
+.question-callout {{
+  position: absolute;
+  left: 70px;
+  bottom: 58px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  width: 735px;
+  padding: 20px 30px 23px;
+  border: 6px solid var(--blue);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 8px 9px 0 rgba(0,82,204,0.16);
+}}
+
+.question-callout::after {{
+  content: "";
+  position: absolute;
+  right: -34px;
+  bottom: 28px;
+  border-width: 22px 0 22px 34px;
+  border-style: solid;
+  border-color: transparent transparent transparent var(--blue);
+}}
+
+.question-callout span {{ color: var(--muted); font-size: 32px; font-weight: 900; }}
+.question-callout strong {{ color: var(--blue); font-size: 43px; font-weight: 900; line-height: 1.2; white-space: nowrap; }}
+
+/* Slide 3: before/after */
+.brand-line {{
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: fit-content;
+  margin-bottom: 28px;
+  padding: 14px 28px;
+  border: 4px solid #c9daf5;
+  border-radius: 18px;
+  background: #fff;
+  font-size: 32px;
+}}
+
+.brand-line img {{ width: 220px; height: 66px; filter: none; }}
+
+.before-after {{
+  display: grid;
+  grid-template-columns: 1fr 145px 1fr;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 26px;
+}}
+
+.capacity-card {{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 300px;
+  padding: 26px 18px;
+  border: 7px solid #b7c3d8;
+  border-radius: 24px;
+  background: #f5f7fb;
+  box-shadow: 0 12px 24px rgba(23,43,77,0.1);
+}}
+
+.capacity-card.after {{ border-color: var(--red); background: #fff1f2; transform: scale(1.04); }}
+.card-label {{ padding: 7px 18px; border-radius: 99px; background: #7a8799; color: #fff; font-size: 25px; font-weight: 900; }}
+.after .card-label {{ background: var(--red); }}
+.capacity-card strong {{ margin: 16px 0 6px; font-size: 91px; font-weight: 900; line-height: 1; }}
+.capacity-card.after strong {{ color: var(--red); }}
+.capacity-card small {{ font-size: 32px; font-weight: 900; }}
+.growth-arrow {{ display: flex; flex-direction: column; align-items: center; color: var(--red); }}
+.growth-arrow span {{ font-size: 29px; font-weight: 900; white-space: nowrap; }}
+.growth-arrow b {{ font-size: 82px; line-height: 1; }}
+
+.highlight-block {{
+  width: 72%;
+  padding: 18px 24px;
+  border-radius: 15px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 46px;
+  font-weight: 900;
+  text-align: center;
+}}
+
+.highlight-block strong {{ color: #ffd700; font-size: 58px; }}
+.savings-illust {{ right: 25px; bottom: 73px; height: 218px; }}
+
+/* Slide 4: automatic application */
+.procedure-body {{ width: 80%; margin-bottom: 120px; }}
+
+.auto-stamp {{
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 22px 30px;
+  border: 7px solid var(--blue);
+  border-radius: 20px;
+  background: var(--blue-soft);
+  box-shadow: 7px 8px 0 rgba(0,82,204,0.16);
+}}
+
+.auto-stamp span {{ padding: 10px 16px; border-radius: 10px; background: var(--blue); color: #fff; font-size: 28px; font-weight: 900; }}
+.auto-stamp strong {{ color: var(--blue); font-size: 60px; font-weight: 900; }}
+
+.procedure-flow {{ display: flex; align-items: center; gap: 18px; font-size: 52px; }}
+.flow-card {{ padding: 14px 24px; border: 4px solid #cbd4e4; border-radius: 15px; background: #fff; font-size: 38px; font-weight: 900; }}
+.flow-card.zero {{ border-color: var(--red); background: #fff0f0; color: var(--red); font-size: 50px; }}
+.confirm-illust {{ right: 30px; bottom: 28px; height: 280px; }}
+
+/* Slide 5: carrier comparison */
+.compare-kicker {{
+  width: fit-content;
+  margin: -4px auto 28px;
+  padding: 11px 28px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: #fff;
+  font-size: 34px;
+  font-weight: 900;
+}}
+
+.carrier-compare {{
+  display: grid;
+  grid-template-columns: 1fr 75px 1fr;
+  gap: 14px;
+  align-items: center;
+}}
+
+.carrier-card {{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 394px;
+  padding: 28px 18px 24px;
+  border: 5px solid #cbd4e4;
+  border-radius: 22px;
+  background: #f7f9fc;
+  text-align: center;
+}}
+
+.carrier-card.winner {{ border: 8px solid var(--blue); background: linear-gradient(155deg, #eaf3ff, #d4e8ff); box-shadow: 0 16px 34px rgba(0,82,204,0.22); }}
+.winner-tag {{ position: absolute; top: -24px; padding: 8px 24px; border-radius: 99px; background: var(--red); color: #fff; font-size: 27px; font-weight: 900; white-space: nowrap; }}
+.carrier-logo {{ display: grid; place-items: center; width: 100%; height: 90px; margin-bottom: 15px; padding: 12px; border-radius: 13px; background: #fff; }}
+.carrier-logo img {{ max-width: 300px; max-height: 65px; filter: none; }}
+.carrier-card h3 {{ min-height: 84px; margin: 0 0 4px; font-size: 29px; line-height: 1.08; }}
+.carrier-card h3 span {{ font-size: 24px; }}
+.carrier-card strong {{ color: var(--red); font-size: 82px; font-weight: 900; line-height: 1.15; }}
+.carrier-card small {{ font-size: 30px; font-weight: 900; }}
+.versus {{ color: var(--red); font-size: 38px; font-weight: 900; font-style: italic; text-align: center; }}
+.compare-verdict {{ width: 80%; margin-top: 24px; padding: 16px 24px; border-radius: 14px; background: var(--blue); color: #fff; font-size: 37px; text-align: center; }}
+.compare-verdict strong {{ color: #ffd700; }}
+.compare-illust {{ right: 18px; bottom: 76px; height: 190px; }}
+
+/* Slide 6: warning */
+.warning-slide {{ padding: 0 70px 58px; background: #fff8f8; }}
+.warning-banner {{ margin: 0 -70px 26px; padding: 22px 0; background: var(--red); color: #fff; font-size: 62px; font-weight: 900; text-align: center; }}
+.warning-title {{ margin: 0 0 24px; color: #b0001e; font-size: 58px; font-weight: 900; line-height: 1.15; text-align: center; }}
+
+.warning-box {{
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  padding: 30px 36px;
+  border: 10px solid var(--red);
+  border-radius: 22px;
+  background: #fff0f0;
+  text-align: center;
+}}
+
+.campaign-label {{ align-self: center; padding: 7px 22px; border-radius: 99px; background: var(--red); color: #fff; font-size: 28px; font-weight: 900; }}
+.w-title {{ color: #b0001e; font-size: 44px; font-weight: 900; line-height: 1.25; letter-spacing: -0.035em; white-space: nowrap; }}
+.warning-divider {{ height: 5px; border-radius: 3px; background: rgba(230,57,70,0.25); }}
+.w-item {{ display: flex; align-items: center; justify-content: center; gap: 16px; color: var(--red); font-size: 50px; font-weight: 900; }}
+.w-item span {{ font-size: 58px; }}
+.warning-callout {{ width: 73%; margin-top: 22px; padding: 15px 24px; border-radius: 14px; background: var(--ink); color: #fff; font-size: 34px; font-weight: 900; text-align: center; }}
+.warning-illust {{ right: 28px; bottom: 26px; height: 246px; }}
+
+/* Slide 7: CTA */
+.cta-slide {{ padding: 28px 60px 22px; background: linear-gradient(135deg, var(--blue), var(--blue-dark)); }}
+.cta-content {{ display: flex; flex-direction: column; align-items: center; height: 100%; text-align: center; }}
+
+.cta-logo-card {{
+  display: grid;
+  place-items: center;
+  height: 112px;
+  margin-bottom: 10px;
+  padding: 8px 22px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.18);
+}}
+
+.cta-logo {{ width: 300px; height: 92px; filter: none; }}
+.cta-title {{ margin: 0 0 6px; color: #ffd700; font-size: 76px; font-weight: 900; line-height: 1.1; }}
+.cta-sub {{ display: flex; flex-direction: column; gap: 7px; width: 860px; margin-bottom: 12px; color: #fff; font-size: 32px; font-weight: 900; }}
+.cta-sub span {{ padding: 7px 18px; border: 3px solid rgba(255,255,255,0.55); border-radius: 12px; background: rgba(255,255,255,0.1); white-space: nowrap; }}
+.cta-banner-img {{ width: 820px; max-height: 460px; border: 7px solid #fff; border-radius: 18px; box-shadow: 0 18px 42px rgba(0,0,0,0.4); filter: none; }}
+.cta-arrow {{ margin-top: 6px; color: #ffd700; font-size: 84px; font-weight: 900; line-height: 0.82; animation: bounce 1s infinite; }}
+
+@keyframes bounce {{
+  0%, 100% {{ transform: translateY(0); }}
+  50% {{ transform: translateY(10px); }}
+}}
+  </style>
+</head>
+<body>
+{chr(10).join(docs)}
+</body>
+</html>
+'''
+
+
+def main() -> None:
+    slides = load_slides()
+    dialogues = load_dialogues()
+    OUTPUT_PATH.write_text(render(slides, dialogues), encoding="utf-8")
+    print(f"Generated {len(slides)} slides: {OUTPUT_PATH}")
+    print("Slide IDs:", ", ".join(slides))
+
+
+if __name__ == "__main__":
+    main()
