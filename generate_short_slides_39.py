@@ -189,7 +189,7 @@ def render(slides: OrderedDict[str, str], dialogues: dict[str, list[str]]) -> st
     </div>
     <div class="date-badge">{esc(news_match.group('date'))}から</div>
     <div class="info-card alert"><span>↑</span><b>データ容量 <strong>+{esc(news_match.group('gain'))}</strong></b></div>
-    <div class="info-card"><span>📱</span><b>ahamo通常プランが対象</b></div>
+    <div class="info-card"><span>📱</span><b>大盛りオプションなしが対象</b></div>
   </div>
   <div class="question-callout">
     <span>{esc(question_match.group('context'))}</span>
