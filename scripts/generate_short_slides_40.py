@@ -1,0 +1,491 @@
+#!/usr/bin/env python3
+"""Generate the video 40 short deck from its master scenario CSV.
+
+The CSV is the source of truth.  Each distinct slideId becomes exactly one
+`.slide-container`; repeated dialogue rows for the same ID reuse the first
+non-"同上" value in the display-content column.
+"""
+
+from __future__ import annotations
+
+import csv
+import html
+import subprocess
+from collections import OrderedDict
+from dataclasses import dataclass
+from pathlib import Path
+
+
+PROJECT_DIR = Path("/workspaces/yt-factory/packages/slide-gen")
+INPUT_CSV = Path(
+    "/workspaces/yt-factory/packages/scenario-gen/archive/videos/"
+    "40_楽天モバイルのauローミング終了正式決定/short/"
+    "【2026年9月末】楽天モバイルのauローミングが終了.csv"
+)
+OUTPUT_HTML = Path("/workspaces/yt-factory/packages/slide-gen/slides-short.html")
+ASSET_ROOT = Path("/workspaces/yt-factory/packages/slide-gen")
+PRETTIER = Path("/workspaces/yt-factory/packages/slide-gen/node_modules/.bin/prettier")
+
+
+RAKUTEN_LOGO = "public/images/logo/Mobile_logo_1line_magenta.png"
+POVO_LOGO = "public/images/logo/Povo_logo.png"
+AU_LOGO = "public/images/logo/au_logo.png"
+THUMBNAIL = (
+    "public/images/thumbnails/"
+    "35_【2026年10月】楽天モバイルのau回線ローミング終了！？"
+    "今やるべき3つの対策_サムネ1.png"
+)
+
+
+@dataclass(frozen=True)
+class SlideSpec:
+    slide_id: str
+    display: str
+
+    @property
+    def parts(self) -> list[str]:
+        return [part.strip() for part in self.display.split("／") if part.strip()]
+
+
+def esc(value: str) -> str:
+    return html.escape(value, quote=True)
+
+
+def comment_text(value: str) -> str:
+    return value.replace("--", "—")
+
+
+def without_prefix(value: str, prefix: str) -> str:
+    if not value.startswith(prefix):
+        raise ValueError(f"Expected prefix {prefix!r} in {value!r}")
+    return value[len(prefix) :].strip()
+
+
+def read_slides(path: Path) -> list[SlideSpec]:
+    grouped: OrderedDict[str, list[str]] = OrderedDict()
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        required = {"スライドに表示する内容", "スライドID"}
+        missing = required.difference(reader.fieldnames or [])
+        if missing:
+            raise ValueError(f"CSV is missing columns: {sorted(missing)}")
+        for row in reader:
+            slide_id = row["スライドID"].strip()
+            display = row["スライドに表示する内容"].strip()
+            if not slide_id:
+                continue
+            grouped.setdefault(slide_id, []).append(display)
+
+    slides: list[SlideSpec] = []
+    for slide_id, values in grouped.items():
+        concrete = [value for value in values if value and value != "同上"]
+        if not concrete:
+            raise ValueError(f"Slide {slide_id} has no concrete display content")
+        unique = list(dict.fromkeys(concrete))
+        if len(unique) != 1:
+            raise ValueError(f"Slide {slide_id} has conflicting display content: {unique}")
+        slides.append(SlideSpec(slide_id=slide_id, display=unique[0]))
+    return slides
+
+
+def render_slide_1(spec: SlideSpec) -> str:
+    if len(spec.parts) != 2:
+        raise ValueError(f"Slide 1 expected 2 content parts: {spec.parts}")
+    headline = without_prefix(spec.parts[0], "テロップ：")
+    headline = headline.replace("【速報】", "", 1).strip()
+    subtitle = without_prefix(spec.parts[1], "サブ：")
+    headline_html = esc(headline).replace(
+        "au回線ローミング", '<span class="hl-red">au回線ローミング</span>'
+    ).replace("2026年9月末", '<span class="date-em">2026年9月末</span>')
+    return f"""<!-- Slide ID: {esc(spec.slide_id)} -->
+<!-- CSV表示内容: {comment_text(spec.display)} -->
+<div class="slide-container slide-thumbnail" data-slide-id="{esc(spec.slide_id)}">
+  <div class="thumb-top-strip">⚡ 2026年8月7日 正式決定 ⚡</div>
+  <i class="thumb-accent-tri tl"></i><i class="thumb-accent-tri br"></i>
+  <div class="thumb-content">
+    <div class="thumb-tag">速報</div>
+    <h1>{headline_html}</h1>
+    <div class="thumb-sub-band">{esc(subtitle)}</div>
+  </div>
+  <div class="thumb-logo-wrap"><img src="{RAKUTEN_LOGO}" alt="楽天モバイル"></div>
+  <div class="slide-illust thumb-illust" style="z-index: 2;"><img src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="正式決定に驚く人"></div>
+</div>"""
+
+
+def render_slide_2(spec: SlideSpec) -> str:
+    if len(spec.parts) != 3:
+        raise ValueError(f"Slide 2 expected 3 content parts: {spec.parts}")
+    date_news = spec.parts[1]
+    date_news_html = esc(date_news).replace(" KDDIが", " KDDIが<br>", 1)
+    announcement = spec.parts[2].replace("楽天モバイルへの", "楽天モバイルへの ")
+    return f"""<!-- Slide ID: {esc(spec.slide_id)} -->
+<!-- CSV表示内容: {comment_text(spec.display)} -->
+<div class="slide-container news-slide" data-slide-id="{esc(spec.slide_id)}">
+  <div class="watermark">2</div>
+  <h2 class="slide-title">KDDIが<em>終了を正式表明</em></h2>
+  <div class="slide-body news-body">
+    <div class="report-header-card"><span class="report-icon">NEWS</span><strong>{date_news_html}</strong></div>
+    <div class="logos network-flow">
+      <div class="logo-card"><img src="{AU_LOGO}" alt="au"><span>KDDI</span></div>
+      <span class="flow-arrow">→</span>
+      <div class="logo-card"><img src="{RAKUTEN_LOGO}" alt="楽天モバイル"><span>ローミング提供</span></div>
+    </div>
+    <div class="emph deadline-emph"><span>{esc(announcement.replace('を9月末で終了', 'を'))}</span><b>2026年9月末で終了</b></div>
+  </div>
+  <div class="slide-illust news-illust" style="z-index: 2;"><img src="public/images/irasutoya/smartphone_talk03_man.png" alt="スマホでニュースを見る人"></div>
+</div>"""
+
+
+def render_slide_3(spec: SlideSpec) -> str:
+    if len(spec.parts) != 3:
+        raise ValueError(f"Slide 3 expected 3 content parts: {spec.parts}")
+    ended = without_prefix(spec.parts[1], "終了：")
+    continued = without_prefix(spec.parts[2], "期間限定で継続：")
+    def split_detail(value: str) -> tuple[str, str]:
+        if "（" not in value:
+            return value, "電波の届きにくい一部地域"
+        main, detail = value.split("（", 1)
+        return main, detail.rstrip("）")
+
+    ended_main, ended_detail = split_detail(ended)
+    continued_main, continued_detail = split_detail(continued)
+    ended_detail_html = (
+        esc(ended_detail)
+        .replace("東京23区の外、", "東京23区の外、<br>", 1)
+        .replace("神奈川・埼玉・千葉の", "神奈川・埼玉・千葉の<br>", 1)
+    )
+    continued_main_html = esc(continued_main).replace("山間部などの", "山間部などの<br>", 1)
+    continued_detail_html = esc(continued_detail).replace(
+        "電波の届きにくい", "電波の届きにくい<br>", 1
+    )
+    return f"""<!-- Slide ID: {esc(spec.slide_id)} -->
+<!-- CSV表示内容: {comment_text(spec.display)} -->
+<div class="slide-container area-slide" data-slide-id="{esc(spec.slide_id)}">
+  <div class="watermark">3</div>
+  <h2 class="slide-title">先に終わるのは<em>都市部</em></h2>
+  <div class="slide-body area-body">
+    <div class="area-grid">
+      <section class="area-card end-card"><span class="area-label">終了</span><div class="area-icon">🏙️</div><h3>{esc(ended_main)}</h3><p>{ended_detail_html}</p></section>
+      <section class="area-card keep-card"><span class="area-label">期間限定で継続</span><div class="area-icon">⛰️</div><h3>{continued_main_html}</h3><p>{continued_detail_html}</p></section>
+    </div>
+  </div>
+  <div class="slide-illust map-illust" style="z-index: 2;"><img src="public/images/common/日本全国で回線が繋がるイメージイラスト.png" alt="日本の通信エリア"></div>
+</div>"""
+
+
+def render_slide_4(spec: SlideSpec) -> str:
+    if len(spec.parts) != 3:
+        raise ValueError(f"Slide 4 expected 3 content parts: {spec.parts}")
+    return f"""<!-- Slide ID: {esc(spec.slide_id)} -->
+<!-- CSV表示内容: {comment_text(spec.display)} -->
+<div class="slide-container reassurance-slide" data-slide-id="{esc(spec.slide_id)}">
+  <div class="watermark">4</div>
+  <h2 class="slide-title">落ち着いて<em>確認</em></h2>
+  <div class="slide-body reassurance-body">
+    <div class="emph signal-emph"><span class="signal-icon">📶</span><b>{esc(spec.parts[1])}</b></div>
+    <ul class="rows compact-rows">
+      <li><span class="badge">✓</span><span class="tx">{esc(spec.parts[2])}</span></li>
+      <li><span class="badge">!</span><span class="tx">よく行く場所が<br><span class="em">楽天回線エリア内か確認</span></span></li>
+    </ul>
+  </div>
+  <div class="slide-illust reassurance-illust" style="z-index: 2;"><img src="public/images/irasutoya/pose_anshin_woman.png" alt="落ち着いて確認する人"></div>
+</div>"""
+
+
+def render_slide_5(spec: SlideSpec) -> str:
+    if len(spec.parts) != 3:
+        raise ValueError(f"Slide 5 expected 3 content parts: {spec.parts}")
+    action = without_prefix(spec.parts[0], "対策：")
+    fees = spec.parts[1].split("・")
+    network = spec.parts[2].replace("＝", "＝<br>")
+    return f"""<!-- Slide ID: {esc(spec.slide_id)} -->
+<!-- CSV表示内容: {comment_text(spec.display)} -->
+<div class="slide-container price-note povo-slide" data-slide-id="{esc(spec.slide_id)}">
+  <div class="watermark">5</div>
+  <h2 class="slide-title">対策は<em>povo2.0</em>を2枚目に</h2>
+  <div class="slide-body povo-body">
+    <div class="povo-hero"><div class="povo-logo-card"><img src="{POVO_LOGO}" alt="povo2.0"></div><div class="shield">🛡️</div><strong>{esc(action.replace('povo2.0を', ''))}</strong></div>
+    <div class="fee-grid">
+      <div class="fee-card"><span>基本料</span><b>{esc(fees[0].replace('基本料', ''))}</b></div>
+      <div class="fee-card"><span>事務手数料</span><b>{esc(fees[1].replace('事務手数料', ''))}</b></div>
+    </div>
+    <div class="lead tight network-lead">{network}</div>
+  </div>
+  <div class="slide-illust povo-illust" style="z-index: 2;"><img src="public/images/irasutoya/smartphone_nidaimochi_man.png" alt="2回線を持つ人"></div>
+</div>"""
+
+
+def render_slide_6(spec: SlideSpec) -> str:
+    if len(spec.parts) != 2:
+        raise ValueError(f"Slide 6 expected 2 content parts: {spec.parts}")
+    warning = spec.parts[1]
+    expected_warning = "180日間トッピングを購入しないと利用停止になる"
+    if warning != expected_warning:
+        raise ValueError(f"Slide 6 warning changed unexpectedly: {warning!r}")
+    return f"""<!-- Slide ID: {esc(spec.slide_id)} -->
+<!-- CSV表示内容: {comment_text(spec.display)} -->
+<div class="slide-container warning-slide" data-slide-id="{esc(spec.slide_id)}">
+  <div class="warning-banner">⚠ {esc(spec.parts[0])}</div>
+  <h2 class="warning-title"><em>180日</em>ルールに注意</h2>
+  <div class="warning-box">
+    <div class="warning-clock">180<span>日間</span></div>
+    <div class="warning-flow"><span>トッピングを<br>購入しない</span><b>→</b><strong>利用停止<br>になる</strong></div>
+  </div>
+  <div class="warning-callout">定期的にトッピングを購入しよう</div>
+  <div class="slide-illust warning-illust" style="z-index: 2;"><img src="public/images/irasutoya/business_man2_3_surprise.png" alt="180日ルールに驚く人"></div>
+</div>"""
+
+
+def render_slide_7(spec: SlideSpec) -> str:
+    if len(spec.parts) != 4:
+        raise ValueError(f"Slide 7 expected 4 content parts: {spec.parts}")
+    topics = "".join(f"<span>{esc(part)}</span>" for part in spec.parts[1:])
+    return f"""<!-- Slide ID: {esc(spec.slide_id)} -->
+<!-- CSV表示内容: {comment_text(spec.display)} -->
+<div class="slide-container cta-slide" data-slide-id="{esc(spec.slide_id)}">
+  <div class="cta-content">
+    <div class="cta-logo-card"><img class="cta-logo" src="{RAKUTEN_LOGO}" alt="楽天モバイル"></div>
+    <h2 class="cta-title">{esc(spec.parts[0])}</h2>
+    <div class="cta-sub">{topics}</div>
+    <img class="cta-banner-img" src="{THUMBNAIL}" alt="楽天モバイルのauローミング終了対策を解説する本編動画">
+    <div class="cta-arrow">↓</div>
+  </div>
+</div>"""
+
+
+RENDERERS = {
+    "1": render_slide_1,
+    "2": render_slide_2,
+    "3": render_slide_3,
+    "4": render_slide_4,
+    "5": render_slide_5,
+    "6": render_slide_6,
+    "7": render_slide_7,
+}
+
+
+SHORT_CSS = r"""
+:root {
+  --brand: #bf0000;
+  --brand-deep: #8f0018;
+  --brand-soft: #fff0f3;
+  --blue: #0052cc;
+  --blue-dark: #003380;
+  --blue-soft: #eaf3ff;
+  --red: #e63946;
+  --con: #e63946;
+  --ink: #172b4d;
+  --ink-soft: #5b6780;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  background: #f0f4f8;
+  font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  font-weight: 700;
+}
+
+.slide-container {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: block;
+  width: 1080px;
+  height: 1080px;
+  flex-shrink: 0;
+  padding: 58px 70px;
+  background: #fff;
+  color: var(--ink);
+}
+
+.slide-container.price-note::after {
+    content: "※表示している料金はすべて月額・税込みの価格です";
+    position: absolute; right: 20px; bottom: 16px; z-index: 9999;
+    left: auto; transform: none;
+    background: rgba(0,0,0,0.62); color: #fff;
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 26px; font-weight: 700; letter-spacing: 0.02em; line-height: 1;
+    padding: 10px 20px; border-radius: 10px; white-space: nowrap; pointer-events: none;
+}
+
+img { object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
+.watermark { position: absolute; top: -74px; left: 20px; z-index: -1; color: var(--blue); font: 900 280px/1 'Inter', sans-serif; opacity: .07; }
+.slide-title { position: relative; z-index: 1; margin: 0 0 30px; padding: 0 0 20px; border-bottom: 10px solid var(--blue); color: var(--ink); font-size: 62px; font-weight: 900; line-height: 1.15; letter-spacing: -.045em; }
+.slide-title em, .warning-title em { color: var(--red); font-style: normal; }
+.slide-body { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 26px; }
+.slide-illust { position: absolute; right: 34px; bottom: 30px; height: 250px; pointer-events: none; }
+.slide-illust img { height: 100%; max-width: 320px; }
+
+/* Reusable card components, defined locally for the single-screen short layout. */
+.lead { padding: 22px 28px; border-left: 12px solid var(--brand); border-radius: 16px; background: var(--brand-soft); color: var(--ink); font-size: 42px; font-weight: 900; line-height: 1.3; }
+.lead .em { color: var(--con); }
+.lead.tight { font-size: 38px; }
+.rows { display: flex; flex: 1; flex-direction: column; justify-content: space-evenly; gap: 18px; list-style: none; }
+.rows li { display: flex; align-items: center; gap: 20px; padding: 20px 26px; border: 3px solid #e7dcc2; border-left: 12px solid var(--brand); border-radius: 16px; background: #fff; box-shadow: 0 5px 12px rgba(0,0,0,.05); }
+.rows .badge { display: flex; flex-shrink: 0; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 14px; background: var(--brand); color: #fff; font-size: 38px; font-weight: 900; }
+.rows .tx { color: var(--ink); font-size: 42px; font-weight: 700; line-height: 1.25; }
+.rows .tx .em { color: var(--red); }
+.emph { padding: 28px 34px; border: 5px solid var(--brand); border-radius: 20px; background: var(--brand-soft); color: var(--ink); font-size: 44px; font-weight: 800; line-height: 1.25; text-align: center; }
+.warn { padding: 22px 28px; border: 5px solid #f0a020; border-radius: 16px; background: #fff5e6; color: var(--ink); font-size: 40px; font-weight: 700; line-height: 1.3; }
+.warn .ic { margin-right: 12px; color: #f0a020; }
+.logos { display: flex; align-items: center; justify-content: center; gap: 26px; flex-wrap: nowrap; }
+.logos img { height: auto; object-fit: contain; }
+.rows .tx, .lead, .warn, .emph { word-break: auto-phrase; text-wrap: balance; }
+
+/* Slide 1 */
+.slide-thumbnail { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 160px 54px 300px; border: 25px solid var(--blue); background: repeating-conic-gradient(from 0deg at 52% 48%, rgba(0,82,204,.06) 0deg 2.5deg, transparent 2.5deg 16deg), radial-gradient(ellipse at 52% 48%, #fff 5%, #e8f3ff 45%, #c8dcff 100%); text-align: center; }
+.thumb-top-strip { position: absolute; top: 25px; left: 25px; right: 25px; z-index: 3; padding: 18px 0; background: var(--blue); color: #fff; font-size: 36px; font-weight: 900; letter-spacing: .06em; }
+.thumb-accent-tri { position: absolute; width: 0; height: 0; }
+.thumb-accent-tri.tl { top: 25px; left: 25px; border-top: 300px solid rgba(0,82,204,.09); border-right: 300px solid transparent; }
+.thumb-accent-tri.br { right: 25px; bottom: 25px; border-bottom: 300px solid rgba(0,82,204,.09); border-left: 300px solid transparent; }
+.thumb-content { position: relative; z-index: 2; }
+.thumb-tag { display: inline-block; margin-bottom: 24px; padding: 14px 52px; transform: rotate(-3deg); background: var(--red); box-shadow: 8px 8px 0 rgba(0,0,0,.25); color: #fff; font-size: 72px; font-weight: 900; }
+.thumb-content h1 { max-width: 930px; margin: 0 auto 22px; color: #17213d; font-size: 70px; font-weight: 900; line-height: 1.2; letter-spacing: -.055em; }
+.thumb-content h1 .hl-red { display: block; color: var(--red); font-size: 84px; }
+.thumb-content h1 .date-em { color: var(--blue); }
+.thumb-sub-band { display: inline-block; padding: 16px 52px; border-radius: 12px; background: var(--blue); box-shadow: 4px 4px 0 rgba(0,0,0,.2); color: #fff; font-size: 50px; font-weight: 900; }
+.thumb-logo-wrap { position: absolute; left: 48px; bottom: 72px; z-index: 2; display: grid; place-items: center; width: 470px; height: 145px; padding: 20px 25px; border: 5px solid #bf0000; border-radius: 20px; background: #fff; box-shadow: 6px 7px 0 rgba(191,0,0,.16); }
+.thumb-logo-wrap img { width: 400px; max-height: 92px; filter: none; }
+.thumb-illust { right: 42px; bottom: 24px; height: 284px; }
+
+/* Slide 2 */
+.news-body { gap: 34px; }
+.report-header-card { display: flex; align-items: center; gap: 24px; min-height: 136px; padding: 26px 34px; border-radius: 20px; background: linear-gradient(135deg, var(--blue), var(--blue-dark)); color: #fff; font-size: 42px; font-weight: 900; }
+.report-icon { padding: 10px 18px; border: 4px solid #fff; border-radius: 12px; color: #ffd700; font: 900 30px/1 'Inter', sans-serif; letter-spacing: .06em; }
+.network-flow { justify-content: center; }
+.logo-card { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 355px; height: 180px; padding: 20px 24px; border: 4px solid #cfdbef; border-radius: 18px; background: #fff; box-shadow: 0 8px 20px rgba(23,43,77,.1); }
+.logo-card img { max-width: 285px; max-height: 82px; filter: none; }
+.logo-card span { margin-top: 10px; color: var(--ink-soft); font-size: 30px; }
+.flow-arrow { color: var(--red); font-size: 64px; font-weight: 900; }
+.deadline-emph { display: flex; flex-direction: column; gap: 12px; padding: 34px 38px; }
+.deadline-emph span { font-size: 38px; line-height: 1.2; }
+.deadline-emph b { color: var(--red); font-size: 76px; line-height: 1.15; }
+.news-illust { right: 20px; bottom: 18px; height: 215px; opacity: .96; }
+
+/* Slide 3 */
+.area-body { gap: 20px; }
+.area-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.area-card { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 600px; padding: 70px 28px 42px; border: 6px solid; border-radius: 22px; text-align: center; }
+.area-card.end-card { border-color: var(--red); background: #fff2f2; }
+.area-card.keep-card { border-color: #2e9e4f; background: #effaf2; }
+.area-label { position: absolute; top: -18px; left: 50%; transform: translateX(-50%); padding: 9px 26px; border-radius: 999px; background: var(--red); color: #fff; font-size: 31px; font-weight: 900; white-space: nowrap; }
+.keep-card .area-label { background: #2e9e4f; }
+.area-icon { font-size: 104px; line-height: 1; }
+.area-card h3 { margin: 22px 0 18px; font-size: 52px; font-weight: 900; line-height: 1.2; }
+.area-card p { color: var(--ink-soft); font-size: 34px; line-height: 1.4; }
+.map-illust { right: 18px; bottom: 30px; height: 230px; }
+
+/* Slide 4 */
+.reassurance-body { width: 86%; gap: 30px; }
+.signal-emph { display: flex; align-items: center; gap: 24px; padding: 34px 38px; text-align: left; }
+.signal-icon { font-size: 82px; }
+.signal-emph b { color: var(--red); font-size: 53px; line-height: 1.22; }
+.compact-rows { min-height: 374px; gap: 22px; }
+.compact-rows li { padding: 24px 30px; }
+.compact-rows .badge { width: 70px; height: 70px; font-size: 42px; }
+.compact-rows .tx { font-size: 46px; line-height: 1.22; }
+.reassurance-illust { right: 20px; bottom: 18px; height: 260px; }
+
+/* Slide 5 */
+.povo-body { gap: 20px; }
+.povo-hero { display: grid; grid-template-columns: 300px 92px 1fr; align-items: center; gap: 16px; padding: 18px 24px; border: 5px solid #ffd000; border-radius: 20px; background: #fffbea; }
+.povo-logo-card { display: grid; place-items: center; height: 118px; padding: 14px; border-radius: 16px; background: #fff; }
+.povo-logo-card img { max-width: 255px; max-height: 90px; filter: none; }
+.shield { font-size: 68px; }
+.povo-hero strong { font-size: 45px; line-height: 1.2; }
+.fee-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.fee-card { display: flex; flex-direction: column; align-items: center; padding: 20px; border: 5px solid var(--blue); border-radius: 18px; background: var(--blue-soft); }
+.fee-card span { font-size: 31px; }
+.fee-card b { color: var(--red); font-size: 78px; line-height: 1.1; }
+.network-lead { width: 76%; }
+.network-lead br { display: none; }
+.povo-illust { right: 18px; bottom: 55px; height: 220px; }
+
+/* Slide 6 */
+.warning-slide { padding: 0 70px 58px; background: #fff8f8; }
+.warning-banner { margin: 0 -70px 22px; padding: 22px 0; background: var(--red); color: #fff; font-size: 62px; font-weight: 900; text-align: center; }
+.warning-title { margin: 0 0 20px; color: #b0001e; font-size: 60px; font-weight: 900; line-height: 1.15; text-align: center; }
+.warning-box { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; width: 100%; min-height: 430px; padding: 44px 48px; border: 10px solid var(--red); border-radius: 22px; background: #fff0f0; text-align: center; }
+.warning-clock { display: flex; align-items: baseline; color: var(--red); font: italic 900 132px/1 'Inter', sans-serif; }
+.warning-clock span { font-size: 46px; }
+.warning-flow { display: flex; align-items: center; justify-content: center; gap: 26px; font-size: 46px; font-weight: 900; line-height: 1.15; }
+.warning-flow b { color: var(--red); font-size: 62px; }
+.warning-flow strong { padding: 16px 24px; border-radius: 12px; background: var(--red); color: #fff; font-size: 50px; line-height: 1.12; }
+.warning-callout { width: 73%; margin-top: 30px; padding: 22px 28px; border-radius: 14px; background: var(--ink); color: #fff; font-size: 38px; font-weight: 900; text-align: center; }
+.warning-illust { right: 25px; bottom: 22px; height: 280px; }
+
+/* Slide 7 */
+.cta-slide { padding: 25px 60px 18px; background: linear-gradient(135deg, var(--blue), var(--blue-dark)); }
+.cta-content { display: flex; flex-direction: column; align-items: center; height: 100%; text-align: center; }
+.cta-logo-card { display: grid; place-items: center; height: 100px; margin-bottom: 8px; padding: 8px 20px; border-radius: 18px; background: #fff; box-shadow: 4px 4px 0 rgba(0,0,0,.18); }
+.cta-logo { width: 320px; height: 78px; filter: none; }
+.cta-title { margin: 0 0 6px; color: #ffd700; font-size: 72px; font-weight: 900; line-height: 1.1; }
+.cta-sub { display: flex; flex-direction: column; gap: 5px; width: 900px; margin-bottom: 10px; color: #fff; font-size: 29px; font-weight: 900; }
+.cta-sub span { padding: 5px 16px; border: 3px solid rgba(255,255,255,.55); border-radius: 12px; background: rgba(255,255,255,.1); white-space: nowrap; }
+.cta-banner-img { width: 800px; max-height: 448px; border: 7px solid #fff; border-radius: 18px; box-shadow: 0 18px 42px rgba(0,0,0,.4); filter: none; }
+.cta-arrow { margin-top: 3px; color: #ffd700; font-size: 74px; font-weight: 900; line-height: .82; animation: bounce 1s infinite; }
+@keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+"""
+
+
+def build_document(slides: list[SlideSpec]) -> str:
+    actual_ids = [slide.slide_id for slide in slides]
+    if actual_ids != list(RENDERERS):
+        raise ValueError(f"Expected slide IDs {list(RENDERERS)}, got {actual_ids}")
+    rendered = "\n".join(RENDERERS[slide.slide_id](slide) for slide in slides)
+    return f"""<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>楽天モバイルのauローミング終了正式決定 - Shorts Slides</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&amp;family=Noto+Sans+JP:wght@700;900&amp;display=swap" rel="stylesheet">
+  <style>
+{SHORT_CSS}
+  </style>
+</head>
+<body>
+{rendered}
+</body>
+</html>
+"""
+
+
+def validate_assets() -> None:
+    assets = [
+        RAKUTEN_LOGO,
+        POVO_LOGO,
+        AU_LOGO,
+        THUMBNAIL,
+        "public/images/irasutoya/bikkuri_me_tobideru_man.png",
+        "public/images/irasutoya/smartphone_talk03_man.png",
+        "public/images/common/日本全国で回線が繋がるイメージイラスト.png",
+        "public/images/irasutoya/pose_anshin_woman.png",
+        "public/images/irasutoya/smartphone_nidaimochi_man.png",
+        "public/images/irasutoya/business_man2_3_surprise.png",
+    ]
+    missing = [asset for asset in assets if not (ASSET_ROOT / asset).is_file()]
+    if missing:
+        raise FileNotFoundError(f"Missing assets: {missing}")
+
+
+def main() -> None:
+    validate_assets()
+    slides = read_slides(INPUT_CSV)
+    document = build_document(slides)
+    OUTPUT_HTML.write_text(document, encoding="utf-8")
+    subprocess.run([str(PRETTIER), "--write", str(OUTPUT_HTML)], check=True)
+    print(f"Generated {len(slides)} slides: {OUTPUT_HTML}")
+
+
+if __name__ == "__main__":
+    main()
