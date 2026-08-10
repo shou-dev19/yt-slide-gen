@@ -133,7 +133,7 @@ git show "<branch>:slides.html"                       # 実装を読む
 評価見開き／社名／総合:rank／観点:rank(＋pro／－con) を6観点
 ```
 
-- データは原則 `shared/sim_evaluations.json` と `primary-information.md` から取る（未登録キャリアは台本側のランク・所感を使う）。
+- ランクは原則 `shared/sim_evaluations.json` から取り、プラス点・マイナス点は**台本のテロップ文字列（`評価見開き／…（＋pro／－con）`）をそのまま使う**（台本側で根拠照合済みのため、スライド生成時に書き換えない）。`sim_evaluations.json` 未登録のキャリアは台本側のランク・所感を使う。
 - **6観点固定順**：データ料金・通信品質・初期費用・通話料・店舗サポート・オプション。
 - **左ページ**：`.head-left`（ロゴ＋`.total`総合評価）／`.cards` に観点3枚（`.card` = `.rank` + `.card-name` + `.line.pro` + `.line.con`）。
   - **レーダーチャートを表示するスライドでは、画面左上（`.head-left`）に必ず各社のロゴ画像（`<img class="logo" src="public/images/logo/..." alt="...">`）を表示する。社名テキストの `.file-no` バッジ（楕円）による代用は不可。** ロゴと社名の二重表示を避け、ロゴに統一すること。料金プラン見開き `N-0`・評価見開き `N` の両方でこのルールを適用する。
