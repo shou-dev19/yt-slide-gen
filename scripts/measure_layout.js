@@ -16,6 +16,14 @@
  *     占有面積比と、テキスト要素の占有面積比を矩形の和で求める。加えて、ページ内で最大の
  *     font-size を持つテキスト要素を「見出し」とみなし、イラスト面積との比を出す。
  *     面積の和は座標圧縮による厳密な矩形和集合で、入れ子要素の二重計上を避ける。
+ *   - **いらすとやの隠れ（visibleRatio）**: 主役化とは**逆向き**の失敗。テキストで埋まっている
+ *     スライドに `position:absolute` でイラストを敷くと、大半がテキストの下に潜って切れ端だけが
+ *     見える状態になる（実際に導入スライド1・2で発生）。イラストを格子状にサンプリングし、
+ *     `elementsFromPoint` のスタックで「手前に、その点を実際に塗っている要素があるか」を見て、
+ *     見えている点の割合を可視率として出す。母数は canvas で取った**絵のある画素**だけに絞る
+ *     （いらすとやの PNG は透明余白が広く、そこへの重なりまで数えると良品と不良品が同値に潰れる）。
+ *     面積判定はイラストが小さく・隠れるほど合格に近づくため、この失敗は既存の3判定のどれにも
+ *     掛からず、目視でしか気づけなかった。
  *   - **見切れ（clipped）**: `overflow` が visible 以外の要素で `scrollWidth/Height` が
  *     `clientWidth/Height` を超えるもの。実際にブラウザが内容を切り落としている状態そのもの。
  *     入れ子で親子とも該当する場合は、原因に近い最内側の要素だけを残す。
@@ -36,7 +44,7 @@
 
 /** ブラウザ内で実行される計測関数の本体（page.evaluate に渡す）。 */
 const measureInPage = (slideSelector, index, opts) => {
-    const { excludeSelectors, illustrationSrcPattern, tolerancePx, boundsTolerancePx } = opts;
+    const { excludeSelectors, illustrationSrcPattern, tolerancePx, boundsTolerancePx, visibilitySampleSteps } = opts;
     const slide = document.querySelectorAll(slideSelector)[index];
     if (!slide) return null;
 
@@ -117,6 +125,139 @@ const measureInPage = (slideSelector, index, opts) => {
         const bottom = Math.min(r.bottom, box.bottom);
         if (right - left <= 0 || bottom - top <= 0) return null;
         return { left, right, top, bottom };
+    };
+
+    const containsPoint = (r, x, y) => x >= r.left && x <= r.right && y >= r.top && y <= r.bottom;
+
+    /**
+     * その点で「実際に何かを描いている」要素か。
+     *
+     * **要素の box をそのまま塗りつぶし扱いにしてはいけない。** 中央寄せの見出し（`.std-copy` /
+     * `h1`）はテキストが中央にあってもブロックの box は全幅に広がるので、box で判定すると
+     * 右下に置いたイラストが「テキストに覆われている」と誤判定される（良品デッキ2本で
+     * 可視率 0.145 / 0.245 と出た。目視ではイラストは完全に見えている）。
+     * そこでテキストは `Range.getClientRects()` で**実際の行ボックス（グリフの並び）**を取り、
+     * 背景・画像は box で判定する。
+     */
+    const paintsAt = (el, x, y) => {
+        const style = getComputedStyle(el);
+        if (style.visibility === 'hidden' || Number(style.opacity) === 0) return false;
+
+        // 不透明・半透明の背景色や背景画像を持つ要素（チップ・帯・カード）は box 全体を塗る。
+        const bgAlpha = (style.backgroundColor.match(/rgba?\(([^)]+)\)/) || [])[1];
+        const alpha = bgAlpha ? Number(bgAlpha.split(',')[3] ?? 1) : 0;
+        if (alpha > 0.1) return true;
+        if (style.backgroundImage && style.backgroundImage !== 'none') return true;
+        // 画像・アイコングリフ（::before で描く FontAwesome）は自身の box を塗るとみなす。
+        if (el.tagName.toLowerCase() === 'img' || el.tagName.toLowerCase() === 'svg') return true;
+        if (!isEmptyContent(getComputedStyle(el, '::before').content)) return true;
+
+        // 直接のテキストノードは、行ボックス（グリフの実際の位置）に点が入るときだけ塗る。
+        for (const node of el.childNodes) {
+            if (node.nodeType !== 3 || !node.nodeValue.trim()) continue;
+            const range = document.createRange();
+            range.selectNodeContents(node);
+            for (const r of range.getClientRects()) {
+                if (containsPoint(r, x, y)) return true;
+            }
+        }
+        return false;
+    };
+
+    /**
+     * `<img>` の**実際に絵が描かれている画素**（alpha > 0）のマスクを、要素の box と同じ座標系で作る。
+     *
+     * いらすとやの PNG は四辺（と多くは中央付近も）に広い透明余白を持つ。矩形をそのまま母数にすると
+     * 「透明な部分に他要素が重なっただけ」で可視率が下がり、良品と不良品が同じ値に潰れる
+     * （実測: 良品 0.735 / 不良品 0.733）。そこで母数を「絵のある画素」に絞る。
+     *
+     * `object-fit: contain` によるレターボックスを含めて box 座標へ写すため、box と同じ大きさの
+     * canvas に contain 相当の矩形で描く。file:// の画像は canvas を汚染するので、
+     * `--allow-file-access-from-files` 付きで起動していない場合は `getImageData` が例外になる。
+     * その場合は null を返し、呼び出し側は矩形全体を母数にしたフォールバックで測る。
+     */
+    const drawnAlphaMask = (img, width, height) => {
+        const w = Math.max(1, Math.round(width));
+        const h = Math.max(1, Math.round(height));
+        const natW = img.naturalWidth;
+        const natH = img.naturalHeight;
+        if (!natW || !natH) return null;
+
+        const canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
+        if (!ctx) return null;
+
+        // object-fit の既定は fill だが、このデッキ群では contain を使うため両方に対応する。
+        const fit = getComputedStyle(img).objectFit;
+        if (fit === 'contain' || fit === 'scale-down') {
+            const scale = Math.min(w / natW, h / natH);
+            const dw = natW * scale;
+            const dh = natH * scale;
+            ctx.drawImage(img, (w - dw) / 2, (h - dh) / 2, dw, dh);
+        } else if (fit === 'cover') {
+            const scale = Math.max(w / natW, h / natH);
+            const dw = natW * scale;
+            const dh = natH * scale;
+            ctx.drawImage(img, (w - dw) / 2, (h - dh) / 2, dw, dh);
+        } else {
+            ctx.drawImage(img, 0, 0, w, h);
+        }
+
+        try {
+            return { data: ctx.getImageData(0, 0, w, h).data, width: w, height: h };
+        } catch {
+            return null; // canvas が汚染されている（file:// アクセス許可なしで起動）
+        }
+    };
+
+    /**
+     * 要素が他要素に覆われずに見えている面積の割合（可視率）を測る。
+     *
+     * 矩形を `visibilitySampleSteps` × `visibilitySampleSteps` の格子に割り、各セルの中心で
+     * `document.elementsFromPoint`（重なり順に並んだスタック）を取る。対象より手前にある要素の
+     * うち、その点で実際に描いているもの（`paintsAt`）が1つでもあれば、その点は覆われている。
+     * 重なり順の解釈はブラウザに任せるので、z-index / DOM順 / stacking context を自前で
+     * 解釈する必要がない。
+     *
+     * 母数は**絵が描かれている点だけ**（`drawnAlphaMask`）。マスクが取れない環境では矩形全体を
+     * 母数にフォールバックし、その旨を `maskUsed:false` で返す（透明余白のぶん厳しめに出る）。
+     *
+     * ビューポート外・hit-test に現れない点は**母数から除く**（覆われている扱いにしない）。
+     * 全点が除かれた場合は測定不能として null を返し、判定対象から外す。
+     */
+    const visibleRatioOf = (el, rect, elementRect) => {
+        const width = rect.right - rect.left;
+        const height = rect.bottom - rect.top;
+        if (width <= 0 || height <= 0) return { ratio: null, maskUsed: false };
+
+        const mask = el.complete ? drawnAlphaMask(el, elementRect.width, elementRect.height) : null;
+        const alphaAt = (x, y) => {
+            if (!mask) return 255;
+            const mx = Math.floor(((x - elementRect.left) / elementRect.width) * mask.width);
+            const my = Math.floor(((y - elementRect.top) / elementRect.height) * mask.height);
+            if (mx < 0 || my < 0 || mx >= mask.width || my >= mask.height) return 0;
+            return mask.data[(my * mask.width + mx) * 4 + 3];
+        };
+
+        let sampled = 0;
+        let visible = 0;
+        for (let i = 0; i < visibilitySampleSteps; i++) {
+            const x = rect.left + ((i + 0.5) * width) / visibilitySampleSteps;
+            if (x < 0 || x >= window.innerWidth) continue;
+            for (let j = 0; j < visibilitySampleSteps; j++) {
+                const y = rect.top + ((j + 0.5) * height) / visibilitySampleSteps;
+                if (y < 0 || y >= window.innerHeight) continue;
+                if (alphaAt(x, y) < 128) continue; // 絵が無い（透明な）点は母数に入れない
+                const stack = document.elementsFromPoint(x, y);
+                const selfIndex = stack.indexOf(el);
+                if (selfIndex === -1) continue; // hit-test に現れない＝測れない点
+                sampled++;
+                if (!stack.slice(0, selfIndex).some((above) => paintsAt(above, x, y))) visible++;
+            }
+        }
+        return { ratio: sampled === 0 ? null : visible / sampled, maskUsed: Boolean(mask), sampled };
     };
 
     /**
@@ -232,10 +373,16 @@ const measureInPage = (slideSelector, index, opts) => {
 
             if (isImg && (el.getAttribute('src') || '').includes(illustrationSrcPattern)) {
                 illustrationRects.push(clippedRect);
+                const visible = visibleRatioOf(el, clippedRect, rect);
                 illustrationImages.push({
                     src: (el.getAttribute('src') || '').split('/').pop(),
                     widthRatio: Number(((clippedRect.right - clippedRect.left) / box.width).toFixed(3)),
                     heightPx: Math.round(clippedRect.bottom - clippedRect.top),
+                    // 絵のある画素のうち、他要素に覆われず見えている割合
+                    //（§7・§9「隠れたイラストは置かない」の判定用）
+                    visibleRatio: visible.ratio === null ? null : Number(visible.ratio.toFixed(3)),
+                    // 絵の画素マスクを使えたか（false のときは矩形全体が母数＝厳しめの値）
+                    visibleRatioMasked: visible.maskUsed,
                 });
             } else if (isText) {
                 textRects.push(clippedRect);
@@ -296,13 +443,30 @@ const measureInPage = (slideSelector, index, opts) => {
     let clipped = [];
     let outOfBounds = [];
     let brokenIcons = [];
-    for (const [el, label] of targets) {
-        const result = measurePage(el, label, pageEls.length > 0);
-        if (!result) continue;
-        pages.push(result.page);
-        clipped = clipped.concat(result.clipped);
-        outOfBounds = outOfBounds.concat(result.outOfBounds);
-        brokenIcons = brokenIcons.concat(result.brokenIcons);
+
+    // 可視率は hit-test で測るので、計測前に次の2つを整える（どちらも描画には影響しないので
+    // スクリーンショットの結果は変わらない）。
+    //   1. 対象スライドをビューポート中央へスクロールする。`elementFromPoint` はビューポート座標
+    //      でしか引けないため、画面外にあるスライドは可視率が測れない（null になる）。
+    //   2. `pointer-events:none` を打ち消す。この指定を持つ要素は hit-test をすり抜けるので、
+    //      イラストの上に重なっていても「見えている」と誤判定される。
+    slide.scrollIntoView({ block: 'center', inline: 'center' });
+    const hitTestStyle = document.createElement('style');
+    hitTestStyle.textContent = '*{pointer-events:auto!important}';
+    document.head.appendChild(hitTestStyle);
+
+    try {
+        for (const [el, label] of targets) {
+            const result = measurePage(el, label, pageEls.length > 0);
+            if (!result) continue;
+            pages.push(result.page);
+            clipped = clipped.concat(result.clipped);
+            outOfBounds = outOfBounds.concat(result.outOfBounds);
+            brokenIcons = brokenIcons.concat(result.brokenIcons);
+        }
+    } finally {
+        // 同じ page で後続スライドを撮影するので、副作用を必ず戻す。
+        hitTestStyle.remove();
     }
 
     return { pages, clipped, outOfBounds, brokenIcons, isSpread: pageEls.length > 0 };
@@ -376,6 +540,12 @@ export const DEFAULT_LAYOUT_OPTIONS = {
      * 100px 単位で出る（検証用の壊れたスライドでは 190px / 218px）ので、取りこぼしはない。
      */
     boundsTolerancePx: 12,
+    /**
+     * 可視率のサンプリング分割数（縦横それぞれ）。40 なら最大1600点。絵のある画素だけを母数に
+     * するとサンプル数が目減りするので、粗くしすぎない（いらすとやは 200〜300px 角程度なので、
+     * 1点あたり数 px 四方の粒度になる）。
+     */
+    visibilitySampleSteps: 40,
 };
 
 /**
@@ -470,6 +640,70 @@ export function findIllustrationDominant(results, { areaRatio = 0.4 } = {}) {
         }
     }
     return over;
+}
+
+/**
+ * 他要素の下に潜って隠れているいらすとや画像を抽出する。
+ *
+ * 対応する規則: §7「テキストで埋まっているスライドにいらすとやを無理に置かない。8割以上見せられる
+ * 空きが確保できないなら置かない」／§9「隠れたイラストを置くくらいなら無いほうが良い」。
+ *
+ * `findIllustrationDominant` と**逆向き**の失敗を見る。イラストが小さく・隠れているほど面積比は
+ * 下がるため主役化判定は必ず合格になり、この失敗は既存の判定では検出できない。
+ *
+ * 校正（2026-08-11。良品＝評価ループを通過して納品済みのデッキ＝全ページ合格が正解）:
+ *   不良例（LINEMO 衛星通信デッキの修正前。「いらすとやが完全に隠れている」とユーザー指摘を受けた版）
+ *     スライド1 std: business_man2_3_surprise.png 0.532
+ *     スライド2 std: present_open.png             0.679
+ *   良品
+ *     video/long-39（ahamo 増量）  スライド1/2/3: 0.979 / 0.998 / 1
+ *     video/long-38（無制限比較）  スライド1・6-2: 0.975 / 1
+ *     video/long-37（LINEMOトライアル）スライド1/2: 1 / 1
+ *     video/long-41 の前デッキ（89枚）いらすとや6枚: 全て 1
+ *   良品は 0.975 以上、不良例は 0.68 以下と大きく開くので、閾値は SKILL.md §7 の目安と同じ
+ *   **0.8**（8割見えているか）に置く。両側に十分な余裕がある。
+ *
+ * なお、絵の画素マスクを使えなかった測定（`visibleRatioMasked !== true`。ブラウザを
+ * `--allow-file-access-from-files` なしで起動した場合）は、透明余白まで母数に入って
+ * 不当に低く出るため**判定しない**（上記の校正でも、マスク無しでは良品が 0.735 まで落ちて
+ * 不良例 0.733 と見分けが付かなかった）。
+ *
+ * @param {{id:string, pages:object[]}[]} results
+ */
+export function findIllustrationOccluded(results, { minVisibleRatio = 0.8 } = {}) {
+    const occluded = [];
+    for (const { id, pages } of results) {
+        for (const p of pages || []) {
+            for (const img of p.illustrationImages || []) {
+                // 測定不能（ビューポート外など）・マスク無しの測定は判定対象から外す。
+                if (typeof img.visibleRatio !== 'number') continue;
+                if (img.visibleRatioMasked !== true) continue;
+                if (img.visibleRatio >= minVisibleRatio) continue;
+                occluded.push({ id, label: p.label, src: img.src, visibleRatio: img.visibleRatio });
+            }
+        }
+    }
+    return occluded;
+}
+
+/**
+ * 絵の画素マスクが使えず、可視率の判定をスキップした画像を数える。
+ *
+ * `--allow-file-access-from-files` の付け忘れなどで判定が黙って無効化されるのを防ぐため、
+ * キャプチャ時に件数を表示する。
+ *
+ * @param {{id:string, pages:object[]}[]} results
+ */
+export function countUnmaskedIllustrations(results) {
+    let count = 0;
+    for (const { pages } of results) {
+        for (const p of pages || []) {
+            for (const img of p.illustrationImages || []) {
+                if (typeof img.visibleRatio === 'number' && img.visibleRatioMasked !== true) count++;
+            }
+        }
+    }
+    return count;
 }
 
 /**

@@ -4,6 +4,8 @@ import {
     measureShortSpread,
     measureImagePaths,
     findIllustrationDominant,
+    findIllustrationOccluded,
+    countUnmaskedIllustrations,
     collectOverflow,
     collectBrokenIcons,
     collectShortSpreadViolations,
@@ -64,6 +66,71 @@ test('findIllustrationDominant: 閾値は引数で変更できる', () => {
 
     assert.deepEqual(findIllustrationDominant(results), []);
     assert.equal(findIllustrationDominant(results, { areaRatio: 0.25 }).length, 1);
+});
+
+/** 可視率つきのいらすとや画像を1枚だけ持つページ。 */
+const illustPage = (visibleRatio, over = {}, imageOver = {}) =>
+    page({
+        illustrationImages: [
+            {
+                src: 'business_man2_3_surprise.png',
+                widthRatio: 0.19,
+                heightPx: 285,
+                visibleRatio,
+                visibleRatioMasked: true,
+                ...imageOver,
+            },
+        ],
+        ...over,
+    });
+
+test('findIllustrationOccluded: 可視率が閾値を下回る画像を検出する', () => {
+    // 実測値（修正前の導入スライド1。テキスト・チップの下に潜って絵の半分が消えていた）
+    const results = [{ id: '1', pages: [illustPage(0.532, { label: 'std' })] }];
+
+    const occluded = findIllustrationOccluded(results);
+
+    assert.equal(occluded.length, 1);
+    assert.deepEqual(occluded[0], {
+        id: '1',
+        label: 'std',
+        src: 'business_man2_3_surprise.png',
+        visibleRatio: 0.532,
+    });
+});
+
+test('findIllustrationOccluded: 可視率が閾値以上なら合格', () => {
+    // 実測値（納品済みデッキ video/long-38 のスライド1。チップと少し重なるが絵はほぼ全面見えている）
+    const results = [{ id: '3', pages: [illustPage(0.975)] }];
+
+    assert.deepEqual(findIllustrationOccluded(results), []);
+});
+
+test('findIllustrationOccluded: 可視率が測れなかった画像は対象外', () => {
+    // ビューポート外などで hit-test できなかったケース。隠れていると決めつけない。
+    const results = [{ id: '4', pages: [illustPage(null)] }, { id: '5', pages: [page()] }];
+
+    assert.deepEqual(findIllustrationOccluded(results), []);
+});
+
+test('findIllustrationOccluded: 絵の画素マスク無しの測定は判定しない', () => {
+    // マスク無しでは透明余白まで母数に入り、良品でも 0.735 まで落ちて不良例と見分けが付かない。
+    const results = [{ id: '6', pages: [illustPage(0.735, {}, { visibleRatioMasked: false })] }];
+
+    assert.deepEqual(findIllustrationOccluded(results), []);
+    assert.equal(countUnmaskedIllustrations(results), 1);
+});
+
+test('findIllustrationOccluded: 閾値は引数で変更できる', () => {
+    const results = [{ id: '2', pages: [illustPage(0.85)] }];
+
+    assert.deepEqual(findIllustrationOccluded(results), []);
+    assert.equal(findIllustrationOccluded(results, { minVisibleRatio: 0.9 }).length, 1);
+});
+
+test('findIllustrationOccluded: pages / illustrationImages を持たない結果でも落ちない', () => {
+    assert.deepEqual(findIllustrationOccluded([{ id: '7' }, { id: '8', pages: [{ label: 'left' }] }]), []);
+    assert.equal(countUnmaskedIllustrations([{ id: '7' }, { id: '8', pages: [{ label: 'left' }] }]), 0);
 });
 
 test('collectOverflow: スライドIDを付けて見切れ・はみ出しを集約する', () => {

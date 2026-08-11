@@ -10,6 +10,8 @@ import {
     measureShortSpread,
     measureImagePaths,
     findIllustrationDominant,
+    findIllustrationOccluded,
+    countUnmaskedIllustrations,
     collectOverflow,
     collectBrokenIcons,
     collectShortSpreadViolations,
@@ -67,6 +69,9 @@ async function main() {
             '--no-sandbox',
             '--disable-setuid-sandbox',
             '--font-render-hinting=none',
+            // いらすとやの可視率計測が、画像を canvas に描いて透明画素を除くために必要
+            // （file:// の画像は既定で canvas を汚染し getImageData が失敗する）。
+            '--allow-file-access-from-files',
         ],
         ...(executablePath ? { executablePath } : {}),
     });
@@ -181,6 +186,7 @@ async function main() {
     // --- レイアウトレポート（いらすとや主役化 / 見切れ・はみ出し）の出力 ---
     const layoutReportPath = path.join(OUT_DIR, `${FILE_PREFIX}layout-report.json`);
     const dominant = findIllustrationDominant(layoutResults);
+    const occluded = findIllustrationOccluded(layoutResults);
     const { clipped, outOfBounds } = collectOverflow(layoutResults);
     const brokenIcons = collectBrokenIcons(layoutResults);
     const shortSpreadViolations = isShort ? collectShortSpreadViolations(layoutResults) : [];
@@ -192,6 +198,7 @@ async function main() {
                 mode,
                 slides: layoutResults,
                 illustrationDominant: dominant,
+                illustrationOccluded: occluded,
                 clipped,
                 outOfBounds,
                 brokenIcons,
@@ -216,6 +223,21 @@ async function main() {
             );
         }
         console.warn('  SKILL.md §7・§9（主役はテキスト。いらすとやは脇役）に沿って、台本の情報をテキスト・表・部品として足すこと。');
+    }
+
+    const unmasked = countUnmaskedIllustrations(layoutResults);
+    if (unmasked > 0) {
+        // 判定が黙って無効化されている状態。ブラウザ起動オプションの回帰を疑う。
+        console.warn(`⚠️  可視率を判定できなかったいらすとや画像: ${unmasked} 件（--allow-file-access-from-files が効いていない可能性）`);
+    }
+    if (occluded.length === 0) {
+        console.log('✅ 他要素に隠れているいらすとや画像はありません。');
+    } else {
+        console.warn(`⚠️  他要素に隠れているいらすとや画像: ${occluded.length} 件`);
+        for (const o of occluded) {
+            console.warn(`  - ${o.id} (${o.label}): 可視率 ${(o.visibleRatio * 100).toFixed(0)}% [${o.src}]`);
+        }
+        console.warn('  SKILL.md §7・§9 に沿って、テキストで埋まっているならイラストを削除すること（位置をずらして見せるのは最後の手段）。');
     }
 
     if (clipped.length === 0 && outOfBounds.length === 0) {
