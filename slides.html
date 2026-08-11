@@ -116,10 +116,10 @@
       .orbit {
         position: absolute;
         z-index: 1;
-        left: 35px;
-        bottom: 28px;
-        width: 260px;
-        height: 190px;
+        left: 600px;
+        top: 6px;
+        width: 240px;
+        height: 140px;
         border: 5px dashed #06c755;
         border-radius: 50%;
         transform: rotate(-12deg);
@@ -357,6 +357,10 @@
       .eval-head {
         height: 122px;
       }
+      /* 右ページに見出しがない評価見開きで、左ページの head-left と高さを揃える空きヘッダ */
+      .head-right.eval-head {
+        padding-bottom: 14px;
+      }
       .plan-head .logo,
       .eval-head .logo {
         height: 72px;
@@ -397,11 +401,11 @@
         min-height: 0;
       }
       .eval-detail-page .eval-card {
-        flex: 0 0 auto;
+        flex: 1 1 auto;
         min-height: 0;
         grid-template-columns: 82px 1fr;
         gap: 2px 14px;
-        padding: 10px 14px;
+        padding: 8px 14px;
       }
       .eval-detail-page .card .rank {
         width: 72px;
@@ -413,13 +417,13 @@
         font-size: 36px;
       }
       .eval-detail-page .card .line {
-        font-size: 36px;
-        line-height: 1.13;
+        font-size: 32px;
+        line-height: 1.1;
       }
       .eval-note {
-        font-size: 28px;
+        font-size: 30px;
         text-align: center;
-        margin-top: 8px;
+        margin-top: 6px;
       }
       .cta-visual img {
         max-height: 650px;
@@ -533,7 +537,7 @@
       }
       .blog-note,
       .final-note {
-        font-size: 30px;
+        font-size: 50px;
         text-align: center;
       }
       .blog-page {
@@ -579,7 +583,9 @@
       <div class="std-copy">
         <div class="std-kicker">LINEMOが9月1日からサービス拡充</div>
         <h1>
-          <span>月額料金そのまま</span>で<br />衛星通信 ＆ 海外<span>7日間</span>
+          <span>月額料金そのまま</span>で<br />衛星通信 ＆ 海外<span
+            >7日間</span
+          >
         </h1>
         <div class="std-chips">
           <b>既存ユーザーも対象</b><b>圏外の保険</b><b>海外データ無制限</b>
@@ -637,11 +643,13 @@
             <li>
               <span class="check">✓</span>自分に関係のある話かどうかが分かる
             </li>
-            <li><span class="check">✓</span>9月までに把握しておくべきことが分かる</li>
+            <li>
+              <span class="check">✓</span>9月までに把握しておくべきことが分かる
+            </li>
           </ul>
           <div class="emph agenda-answer">
-            把握しておくべきは<span class="big">2つ</span><br />Starlink Directの申込 ＋
-            海外データ通信は7日以内
+            把握しておくべきは<span class="big">2つ</span><br />Starlink
+            Directの申込が必要 ＋ 海外データ通信は7日以内
           </div>
         </div>
       </div>
@@ -667,7 +675,9 @@
             <div class="big-title chapter-title">
               9月1日から<br />何が変わるの？
             </div>
-            <div class="lead chapter-lead">月額料金そのままで、2つの特典を追加</div>
+            <div class="lead chapter-lead">
+              月額料金そのままで、2つの特典を追加
+            </div>
           </div>
         </div>
       </div>
@@ -702,7 +712,7 @@
               <i class="fa-solid fa-earth-asia"></i>
             </div>
             <div class="lead service-lead">
-              海外あんしん定額<br>「定額国L」
+              海外あんしん定額<br />「定額国L」
             </div>
             <div class="emph">
               <span class="big">最大7日間分</span><br />追加料金なし
@@ -1012,7 +1022,7 @@
           <span class="index-tab">格安SIM図鑑</span>
           <div class="page-body center">
             <div class="big-title chapter-title">
-              海外データ通信が<br />毎月最大7日間分<br>無料で使える
+              海外データ通信が<br />毎月最大7日間分<br />無料で使える
             </div>
             <div class="lead chapter-lead">海外旅行は「7日以内」が重要</div>
           </div>
@@ -1316,6 +1326,7 @@
         </div>
         <div class="page right eval-page eval-detail-page">
           <span class="index-tab">格安SIM図鑑</span>
+          <div class="head-right eval-head"></div>
           <div class="cards three-cards">
             <div class="card eval-card">
               <div class="rank B">B</div>
@@ -1574,8 +1585,8 @@
               </li>
             </ul>
             <div class="emph final-actions">
-              今やることは<span class="big">2つ</span
-              ><br />①衛星の申込　②海外は7日以内
+              把握しておくべきことは<span class="big">2つ</span><br />①Starlink
+              Directの申込が必要　②海外データ通信は7日以内
             </div>
           </div>
           <span class="page-no">― 26 ―</span>
