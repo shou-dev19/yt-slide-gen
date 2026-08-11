@@ -1,2576 +1,1692 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-
-<head>
-  <meta charset="UTF-8">
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="templates/spread-base.css">
-  <style>
-    .slide-container.std {
-      width: 1280px;
-      height: 720px;
-      border: 10px solid var(--primary-color);
-      background: white;
-      box-sizing: border-box;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 40px;
-      flex-shrink: 0;
-    }
-
-    body {
-      --primary-color: #C8102E;
-      --accent-red: #E53935;
-      --text-dark: #212121;
-    }
-
-    .terop-box {
-      background: rgba(255, 255, 255, .95);
-      border-left: 16px solid var(--primary-color);
-      padding: 20px 36px;
-      font-size: 56px;
-      font-weight: 900;
-      color: var(--text-dark);
-      text-align: center;
-      line-height: 1.4;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, .12);
-      border-radius: 8px;
-    }
-
-    .sunburst {
-      position: absolute;
-      inset: 0;
-      background: repeating-conic-gradient(from 0deg at 50% 42%, rgba(200, 16, 46, .06) 0deg 5deg, transparent 5deg 10deg);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .cover-badge {
-      display: inline-block;
-      background: var(--primary-color);
-      color: #fff;
-      font-weight: 900;
-      font-size: 32px;
-      padding: 8px 26px;
-      border-radius: 8px;
-      transform: rotate(-2deg);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, .2);
-    }
-  </style>
-</head>
-
-<body>
-  <!-- Slide ID: 1 -->
-  <div class="slide-container std" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="sunburst"></div>
-    <div style="position:relative;z-index:1;display:flex;align-items:center;gap:20px;width:100%;padding:0 40px;">
-      <div style="flex:1.8;text-align:left;">
-        <div class="cover-badge" style="font-size:40px;padding:10px 30px;">格安SIM、多すぎ問題</div>
-        <div
-          style="font-size:74px;font-weight:900;line-height:1.3;color:var(--text-dark);text-shadow:3px 3px 0 #fff;margin-top:26px;word-break:auto-phrase;text-wrap:balance;">
-          格安SIMが多すぎて、結局<span style="color:var(--accent-red);">どれが自分に合うの…？</span></div>
-      </div>
-      <div style="flex:.55;display:flex;justify-content:center;align-items:center;"><img
-          src="public/images/irasutoya/pose_atama_kakaeru_woman.png"
-          style="max-height:420px;max-width:100%;object-fit:contain;"></div>
-    </div>
-  </div>
-  <!-- Slide ID: 2 -->
-  <div class="slide-container std" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="sunburst"></div>
-    <div style="position:relative;z-index:1;display:flex;align-items:center;gap:20px;width:100%;padding:0 40px;">
-      <div style="flex:1.8;text-align:left;">
-        <div class="cover-badge" style="font-size:40px;padding:10px 30px;">発信者でも、迷うんです…</div>
-        <div
-          style="font-size:68px;font-weight:900;line-height:1.32;color:var(--text-dark);text-shadow:3px 3px 0 #fff;margin-top:26px;word-break:auto-phrase;text-wrap:balance;">
-          日々発信している僕でも料金プランやキャンペーンの変動で<span style="color:var(--accent-red);">頭がこんがらがる</span>時がある</div>
-      </div>
-      <div style="flex:.55;display:flex;justify-content:center;align-items:center;"><img
-          src="public/images/irasutoya/businessman2_kangaechu.png"
-          style="max-height:420px;max-width:100%;object-fit:contain;"></div>
-    </div>
-  </div>
-  <!-- Slide ID: 2-5 -->
-  <div class="slide-container std" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="sunburst"></div>
-    <div style="position:relative;z-index:1;text-align:center;padding:0 40px;">
-      <div class="cover-badge" style="font-size:38px;padding:10px 30px;">2026年7月・最新版</div>
-      <div
-        style="font-size:98px;font-weight:900;line-height:1.22;color:var(--text-dark);text-shadow:4px 4px 0 #fff;margin-top:24px;">
-        格安SIM<span style="color:var(--accent-red);">15種類</span>を<br>一気に<span style="color:var(--accent-red);">診断</span>！
-      </div>
-      <div
-        style="margin-top:28px;font-size:54px;font-weight:900;color:var(--text-dark);word-break:auto-phrase;text-wrap:balance;">
-        たった<span style="color:var(--accent-red);">3〜5問</span>で、あなたに合う<span
-          style="color:var(--accent-red);">1枚</span>が必ず見つかる</div>
-    </div>
-  </div>
-  <!-- Slide ID: 3 -->
-  <div class="slide-container std" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="sunburst"></div>
-    <div style="position:relative;z-index:1;text-align:center;padding:0 40px;">
-      <div class="cover-badge" style="font-size:38px;padding:10px 30px;">スマホ代節約情報を毎週発信中！</div>
-      <div
-        style="font-size:88px;font-weight:900;line-height:1.25;color:var(--text-dark);text-shadow:4px 4px 0 #fff;margin-top:24px;">
-        チャンネル<span style="color:var(--accent-red);">登録</span>、<br>よろしくお願いします！</div>
-      <div
-        style="margin-top:30px;display:inline-flex;align-items:center;gap:20px;background:var(--accent-red);color:#fff;font-size:46px;font-weight:900;padding:18px 52px;border-radius:999px;box-shadow:0 10px 22px rgba(0,0,0,.25);">
-        <i class="fa-solid fa-bell"></i>チャンネル登録<i class="fa-solid fa-hand-pointer"></i>
-      </div>
-      <div style="margin-top:20px;font-size:38px;font-weight:800;color:var(--text-dark);">まだの方はぜひ登録してお待ちください！</div>
-    </div>
-  </div>
-  <!-- Slide ID: 4-0 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="divider">
-          <div class="kicker">CHAPTER</div>
-          <div class="num">1</div>
-          <div class="seal">FILE No.01</div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>【2026年9月】LINEMO 衛星通信＆海外データ通信</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="templates/spread-base.css" />
+    <style>
+      body {
+        --primary-color: #06c755;
+        --accent-red: #e53935;
+        --text-dark: #202124;
+      }
+      .slide-container.std {
+        width: 1280px;
+        height: 720px;
+        border: 10px solid var(--primary-color);
+        background: #f9fff9;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 42px;
+        color: var(--text-dark);
+      }
+      .std-rays {
+        position: absolute;
+        inset: -35%;
+        background: repeating-conic-gradient(
+          from -12deg at 50% 50%,
+          rgba(6, 199, 85, 0.13) 0 6deg,
+          transparent 6deg 13deg
+        );
+      }
+      .std-ribbon {
+        position: absolute;
+        z-index: 4;
+        left: 22px;
+        top: 28px;
+        background: #e53935;
+        color: #fff;
+        font-size: 44px;
+        font-weight: 900;
+        padding: 10px 38px;
+        transform: rotate(-3deg);
+        box-shadow: 0 9px 0 #a92222;
+      }
+      .std-brand {
+        position: absolute;
+        z-index: 3;
+        right: 46px;
+        top: 32px;
+        width: 270px;
+        height: 82px;
+        object-fit: contain;
+        background: #fff;
+        padding: 12px 24px;
+        border-radius: 18px;
+        box-shadow: 0 9px 22px #0002;
+      }
+      .std-copy {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-top: 62px;
+      }
+      .std-kicker {
+        font-size: 48px;
+        font-weight: 900;
+        margin-bottom: 8px;
+        text-shadow: 3px 3px #fff;
+        max-width: 1040px;
+        line-height: 1.25;
+      }
+      .std-copy h1 {
+        font-size: 88px;
+        line-height: 1.08;
+        font-weight: 900;
+        letter-spacing: -3px;
+        text-shadow: 5px 5px #fff;
+        margin: 8px 0 22px;
+      }
+      .std-copy h1 span {
+        color: #e53935;
+        font-size: 104px;
+        white-space: nowrap;
+      }
+      .std-chips {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .std-chips b {
+        font-size: 44px;
+        background: #fff;
+        border: 5px solid #06c755;
+        border-radius: 999px;
+        padding: 7px 22px;
+        box-shadow: 0 8px 16px #0002;
+      }
+      .orbit {
+        position: absolute;
+        z-index: 1;
+        left: 35px;
+        bottom: 28px;
+        width: 260px;
+        height: 190px;
+        border: 5px dashed #06c755;
+        border-radius: 50%;
+        transform: rotate(-12deg);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        color: #06a94a;
+        font-size: 70px;
+        opacity: 0.82;
+      }
+      .orbit i:last-child {
+        color: #1689d4;
+        font-size: 62px;
+        transform: rotate(28deg);
+      }
+      .agenda-five {
+        gap: 10px;
+      }
+      .agenda-five li {
+        font-size: 44px;
+        gap: 18px;
+      }
+      .agenda-five .num {
+        width: 70px;
+        height: 70px;
+        font-size: 40px;
+      }
+      .benefit-two {
+        gap: 18px;
+      }
+      .benefit-two li {
+        font-size: 48px;
+      }
+      .agenda-answer {
+        padding: 22px 28px;
+      }
+      .agenda-answer .big {
+        font-size: 78px;
+      }
+      .chapter-title {
+        font-size: 88px;
+      }
+      .chapter-lead {
+        font-size: 48px;
+        text-align: center;
+        margin-top: 24px;
+      }
+      .service-icon {
+        font-size: 180px;
+      }
+      .service-lead {
+        font-size: 48px;
+        text-align: center;
+        padding: 22px;
+      }
+      .old-price {
+        padding: 24px;
+      }
+      .old-price .big {
+        font-size: 72px;
+      }
+      .feature-logo {
+        width: 100%;
+        height: 95px;
+        object-fit: contain;
+      }
+      .feature-logo.large {
+        height: 120px;
+      }
+      .user-icon {
+        font-size: 190px;
+      }
+      .centered-lead {
+        text-align: center;
+      }
+      .satellite-diagram {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 42px;
+        font-size: 180px;
+        color: var(--brand);
+      }
+      .satellite-diagram .signal {
+        font-size: 110px;
+        letter-spacing: 12px;
+        color: #1689d4;
+        transform: rotate(90deg);
+      }
+      .sky-warn {
+        text-align: center;
+      }
+      .compact-rows .rows {
+        gap: 10px;
+      }
+      .compact-rows .rows li {
+        padding: 14px 20px;
+      }
+      .compact-rows .rows .ic {
+        width: 70px;
+      }
+      .service-page .service-icon {
+        font-size: 150px;
+      }
+      .service-page .emph {
+        padding: 24px;
+      }
+      .target-page .user-icon {
+        font-size: 140px;
+      }
+      .target-page .emph,
+      .target-page .lead {
+        padding: 24px;
+      }
+      .season {
+        font-size: 42px;
+        font-weight: 900;
+        letter-spacing: 8px;
+        border-radius: 999px;
+        padding: 10px 38px;
+      }
+      .season.autumn {
+        background: #ef8b2c;
+        color: #fff;
+      }
+      .season.winter {
+        background: #3f87c8;
+        color: #fff;
+      }
+      .action-box {
+        width: 100%;
+        padding: 30px;
+      }
+      .action-warn {
+        text-align: center;
+      }
+      .subscribe-icon {
+        font-size: 230px;
+      }
+      .subscribe-title {
+        font-size: 80px;
+      }
+      .subscribe-copy {
+        text-align: center;
+      }
+      .youtube-pill {
+        font-size: 58px;
+        font-weight: 900;
+        color: #fff;
+        background: #e62117;
+        padding: 24px 42px;
+        border-radius: 999px;
+        box-shadow: 0 9px 0 #a71610;
+      }
+      .overseas-visual {
+        height: auto;
+        flex: 1;
+      }
+      .overseas-visual img {
+        max-height: 560px;
+      }
+      .source-note {
+        font-size: 30px;
+        text-align: center;
+      }
+      .trip-value {
+        padding: 28px;
+      }
+      .trip-value .big {
+        font-size: 88px;
+      }
+      .plane-icon {
+        font-size: 150px;
+      }
+      .travel-overview .emph {
+        padding: 24px;
+      }
+      .travel-overview .rows {
+        gap: 10px;
+      }
+      .travel-overview .rows li {
+        padding: 14px 20px;
+      }
+      .benefit-page .plane-icon {
+        font-size: 120px;
+      }
+      .benefit-page .lead {
+        padding: 22px;
+      }
+      .conditions-page {
+        gap: 14px;
+      }
+      .conditions-page .rows {
+        gap: 10px;
+      }
+      .conditions-page .rows li {
+        padding: 14px 20px;
+      }
+      .conditions-page .warn {
+        padding: 24px 28px;
+      }
+      .travel-table th,
+      .travel-table td {
+        padding: 20px 14px;
+      }
+      .autumn-trap {
+        text-align: center;
+      }
+      .winter-all {
+        text-align: center;
+      }
+      .speed-box {
+        padding: 28px;
+      }
+      .speed-box .big {
+        font-size: 76px;
+      }
+      .speed-note {
+        font-size: 30px;
+        text-align: center;
+      }
+      .speed-page {
+        gap: 14px;
+      }
+      .speed-page .lead,
+      .speed-page .emph {
+        padding: 22px 28px;
+      }
+      .plan-page,
+      .eval-page {
+        padding-left: 42px;
+        padding-right: 42px;
+      }
+      .plan-head,
+      .eval-head {
+        height: 122px;
+      }
+      .plan-head .logo,
+      .eval-head .logo {
+        height: 72px;
+      }
+      .plan-head .file-no {
+        margin-left: auto;
+      }
+      .plan-chart {
+        height: 570px;
+      }
+      .plan-chart img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 8px 15px #0002);
+      }
+      .plan-body {
+        gap: 24px;
+      }
+      .linemo-plan-table {
+        font-size: 38px;
+      }
+      .linemo-plan-table th,
+      .linemo-plan-table td {
+        padding: 19px 12px;
+      }
+      .plan-lead {
+        font-size: 46px;
+        text-align: center;
+        padding: 22px 28px;
+      }
+      .eval-head .total .grade {
+        font-size: 80px;
+      }
+      .three-cards {
+        justify-content: space-between;
+        gap: 8px;
+        min-height: 0;
+      }
+      .eval-detail-page .eval-card {
+        flex: 0 0 auto;
+        min-height: 0;
+        grid-template-columns: 82px 1fr;
+        gap: 2px 14px;
+        padding: 10px 14px;
+      }
+      .eval-detail-page .card .rank {
+        width: 72px;
+        height: 72px;
+        border-radius: 16px;
+        font-size: 38px;
+      }
+      .eval-detail-page .card-name {
+        font-size: 36px;
+      }
+      .eval-detail-page .card .line {
+        font-size: 36px;
+        line-height: 1.13;
+      }
+      .eval-note {
+        font-size: 28px;
+        text-align: center;
+        margin-top: 8px;
+      }
+      .cta-visual img {
+        max-height: 650px;
+      }
+      .cta-play {
+        font-size: 180px;
+      }
+      .cta-title {
+        font-size: 72px;
+      }
+      .home-icon {
+        font-size: 170px;
+      }
+      .insurance-box {
+        padding: 28px;
+      }
+      .insurance-box .big {
+        font-size: 68px;
+      }
+      .who-page .home-icon {
+        font-size: 100px;
+      }
+      .who-page .lead {
+        padding: 20px;
+      }
+      .who-page .insurance-box {
+        padding: 16px;
+      }
+      .timeline {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .timeline-item {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        align-items: center;
+        border: 5px solid var(--brand);
+        background: #fff;
+        border-radius: 20px;
+        padding: 19px 24px;
+      }
+      .timeline-item span {
+        font-size: 38px;
+        font-weight: 900;
+        color: var(--brand-deep);
+      }
+      .timeline-item b {
+        font-size: 44px;
+      }
+      .timeline-item.future {
+        border-style: dashed;
+      }
+      .timeline-arrow {
+        font-size: 46px;
+        color: var(--brand);
+      }
+      .low-price {
+        padding: 28px;
+      }
+      .linemo-strength .feature-logo.large {
+        height: 70px;
+      }
+      .linemo-strength .emph,
+      .linemo-strength .lead {
+        padding: 18px;
+      }
+      .final-actions {
+        padding: 28px;
+      }
+      .final-actions .big {
+        font-size: 76px;
+      }
+      .summary-page {
+        gap: 14px;
+      }
+      .summary-page .rows {
+        flex: 0 0 auto;
+      }
+      .summary-page .rows li {
+        padding: 14px 20px;
+      }
+      .summary-page .final-actions {
+        padding: 20px;
+      }
+      .info-icon {
+        font-size: 230px;
+      }
+      .caution-title {
+        font-size: 100px;
+      }
+      .posting-warn {
+        text-align: center;
+      }
+      .official-lead {
+        text-align: center;
+      }
+      .blog-image {
+        width: 100%;
+        height: auto;
+        max-height: 320px;
+        object-fit: contain;
+        border-radius: 18px;
+        filter: drop-shadow(0 12px 20px #0003);
+      }
+      .blog-lead {
+        text-align: center;
+        padding: 24px;
+      }
+      .blog-note,
+      .final-note {
+        font-size: 30px;
+        text-align: center;
+      }
+      .blog-page {
+        gap: 14px;
+      }
+      .blog-page .blog-image {
+        max-height: 280px;
+      }
+      .blog-page .blog-lead {
+        padding: 20px;
+      }
+      .bell-icon {
+        font-size: 210px;
+      }
+      .final-title {
+        font-size: 68px;
+      }
+      .emoji-cta {
+        display: flex;
+        gap: 70px;
+        justify-content: center;
+      }
+      .emoji-cta span {
+        font-size: 130px;
+      }
+      .thanks {
+        font-size: 56px;
+        text-align: center;
+        color: var(--brand-deep);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Slide ID: 1 -->
+    <div class="slide-container std">
+      <div class="std-rays"></div>
+      <div class="std-ribbon">2026年9月1日から</div>
+      <img
+        class="std-brand"
+        src="public/images/logo/LINEMO_logo.png"
+        alt="LINEMO"
+      />
+      <div class="std-copy">
+        <div class="std-kicker">LINEMOが9月1日からサービス拡充</div>
+        <h1>
+          <span>月額料金そのまま</span>で<br />衛星通信 ＆ 海外<span>7日間</span>
+        </h1>
+        <div class="std-chips">
+          <b>既存ユーザーも対象</b><b>圏外の保険</b><b>海外データ無制限</b>
         </div>
       </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="big-title">本編スタート！前提条件の<br>おさらい</div>
+      <div class="orbit">
+        <i class="fa-solid fa-satellite-dish"></i
+        ><i class="fa-solid fa-plane"></i>
+      </div>
+    </div>
+    <!-- Slide ID: 2 -->
+    <div class="slide-container std">
+      <div class="std-rays"></div>
+      <div class="std-ribbon">LINEMO サービス拡充</div>
+      <img
+        class="std-brand"
+        src="public/images/logo/LINEMO_logo.png"
+        alt="LINEMO"
+      />
+      <div class="std-copy">
+        <div class="std-kicker">
+          【2026年9月】LINEMOが月額料金そのままで衛星通信＆海外無制限！？今やるべき2つ
+        </div>
+        <h1><span>衛星通信</span>と<br /><span>海外無制限</span>が追加</h1>
+        <div class="std-chips">
+          <b>9月に申し込む</b><b>海外は7日以内</b><b>今やるべき2つ</b>
         </div>
       </div>
-    </div>
-  </div>
-  <!-- Slide ID: 5 -->
-  <div class="slide-container" style="--brand:#E60012;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">比較の前提条件</div>
-        <div class="page-body center">
-          <div class="emph"><span style="font-size:44px;">本動画は各社の</span><br><span class="big">常設プラン</span><br><span
-              style="font-size:44px;">（通常料金）のみで比較</span></div>
-        </div><span class="page-no">― 5 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">特殊条件は除外</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-xmark"></i></span>
-              <div class="tx">期間限定キャンペーンの価格</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-xmark"></i></span>
-              <div class="tx">自宅ネットとのセット割の価格</div>
-            </li>
-          </ul>
-          <div class="warn"><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span>例外：<span
-              class="em">UQ mobile・Y!mobile</span>のみセット割前提で評価</div>
-        </div><span class="page-no">― 6 ―</span>
+      <div class="orbit">
+        <i class="fa-solid fa-satellite-dish"></i
+        ><i class="fa-solid fa-plane"></i>
       </div>
     </div>
-  </div>
-  <!-- Slide ID: 6 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">なぜ常設プランだけ？</div>
-        <div class="page-body center">
-          <div class="emph">キャンペーンは<br><span class="em" style="font-size:64px;">時期でコロコロ変動</span></div>
-        </div><span class="page-no">― 7 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <div class="lead">長期的に自分に合った1枚を判断するには<span class="em">常設プラン比較が最も公平</span></div>
-          <div style="display:flex;align-items:center;justify-content:center;flex:1;"><img
-              src="public/images/irasutoya/dentaku_kaden3_woman.png"
-              style="max-height:360px;max-width:75%;object-fit:contain;"></div>
-        </div><span class="page-no">― 8 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 7 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">例外はこの2社</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-store"></i></span>
-              <div class="tx">UQ mobile<span class="sub">自宅セット割（au系）前提で評価</span></div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-store"></i></span>
-              <div class="tx">Y!mobile<span class="sub">おうち割光セット（ソフトバンク系）前提で評価</span></div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 9 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">なぜセット割前提？</div>
-        <div class="page-body center">
-          <div class="lead">実質、<span class="em">セット割引後の価格が前提</span>のようなサブブランドだから</div>
-          <div class="warn"><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span>割引なしで見ると料金が<span
-              class="em">割高すぎる</span></div>
-        </div><span class="page-no">― 10 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 7-2 -->
-  <div class="slide-container" style="--brand:#333333;--brand-deep:#111111;--brand-soft:#eeeeee">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">15種類の数え方</div>
-        <div class="page-body center">
-          <div class="emph"><span style="font-size:44px;">『会社の数』ではなく</span><br><span class="em"
-              style="font-size:50px;">『選べるサービスの種類』</span><br><span style="font-size:44px;">として15種類をカウント</span></div>
-        </div><span class="page-no">― 11 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">サブブランドも含む</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-mobile-screen-button"></i></span>
-              <div class="tx">ahamo<span class="sub">ドコモのオンライン専用プラン</span></div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-mobile-screen-button"></i></span>
-              <div class="tx">povo2.0<span class="sub">auのオンライン専用プラン</span></div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-mobile-screen-button"></i></span>
-              <div class="tx">LINEMO<span class="sub">ソフトバンクのオンライン専用プラン</span></div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 12 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 8 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">チャンネルの基本方針</div>
-        <div class="page-body center">
-          <div class="emph"><span style="font-size:44px;">4つの要素は</span><br><span class="big"
-              style="font-size:76px;">別々に考える</span><br><span style="font-size:44px;">のがシンプル</span></div>
-          <div class="warn"><span class="ic"><i
-                class="fa-solid fa-triangle-exclamation"></i></span>回線や決済を縛る割引・「実質◯◯円」プランは計算が複雑で初心者に不向き</div>
-        </div><span class="page-no">― 13 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">4つの要素</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-sim-card"></i></span>
-              <div class="tx">モバイル回線</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-mobile-screen-button"></i></span>
-              <div class="tx">スマホ端末</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-wifi"></i></span>
-              <div class="tx">自宅ネット回線</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-credit-card"></i></span>
-              <div class="tx">支払い方法</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 14 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 9-0 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="divider">
-          <div class="kicker">CHAPTER</div>
-          <div class="num">2</div>
-          <div class="seal">FILE No.02</div>
+    <!-- Slide ID: 4 -->
+    <div
+      class="slide-container"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-head">格安SIM図鑑 もくじ</div>
+          <ol class="agenda agenda-five">
+            <li><span class="num">1</span>9月1日から何が変わるの？</li>
+            <li><span class="num">2</span>衛星でつながるってどういうこと？</li>
+            <li><span class="num">3</span>海外のデータ通信が毎月最大7日間</li>
+            <li><span class="num">4</span>LINEMOを図鑑で評価</li>
+            <li><span class="num">5</span>まとめ</li>
+          </ol>
         </div>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="big-title">診断チャート全体図と6項目評価</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 10 -->
-  <div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">診断チャート全体図</div>
-        <div class="page-body center">
-          <div class="emph"><span style="font-size:44px;">まず</span><br><span class="big"
-              style="font-size:60px;">店舗サポートは必須？</span><br><span style="font-size:40px;">で大きく2ルートに分岐</span></div>
-        </div><span class="page-no">― 17 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">2つの入口</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">YES → 実店舗派ルート（UQ／Y!mobile／楽天／イオン／BIC SIM）</div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-head">この動画でわかること</div>
+          <ul class="benefits benefit-two">
+            <li>
+              <span class="check">✓</span>自分に関係のある話かどうかが分かる
             </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">NO → オンライン派ルート（Q5へ）</div>
-            </li>
+            <li><span class="check">✓</span>9月までに把握しておくべきことが分かる</li>
           </ul>
-        </div><span class="page-no">― 18 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 11 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">対象は15種類 <small>①</small></div>
-        <div class="page-body top">
-          <ul class="rows" style="gap:12px;justify-content:flex-start;">
-            <li style="padding:10px 24px;gap:18px;"><span class="badge"
-                style="width:60px;height:60px;font-size:34px;border-radius:12px;">1</span>
-              <div class="tx" style="font-size:42px;">UQ mobile</div>
-            </li>
-            <li style="padding:10px 24px;gap:18px;"><span class="badge"
-                style="width:60px;height:60px;font-size:34px;border-radius:12px;">2</span>
-              <div class="tx" style="font-size:42px;">Y!mobile</div>
-            </li>
-            <li style="padding:10px 24px;gap:18px;"><span class="badge"
-                style="width:60px;height:60px;font-size:34px;border-radius:12px;">3</span>
-              <div class="tx" style="font-size:42px;">楽天モバイル</div>
-            </li>
-            <li style="padding:10px 24px;gap:18px;"><span class="badge"
-                style="width:60px;height:60px;font-size:34px;border-radius:12px;">4</span>
-              <div class="tx" style="font-size:42px;">イオンモバイル</div>
-            </li>
-            <li style="padding:10px 24px;gap:18px;"><span class="badge"
-                style="width:60px;height:60px;font-size:34px;border-radius:12px;">5</span>
-              <div class="tx" style="font-size:42px;">BIC SIM</div>
-            </li>
-            <li style="padding:10px 24px;gap:18px;"><span class="badge"
-                style="width:60px;height:60px;font-size:34px;border-radius:12px;">6</span>
-              <div class="tx" style="font-size:42px;">ahamo</div>
-            </li>
-            <li style="padding:10px 24px;gap:18px;"><span class="badge"
-                style="width:60px;height:60px;font-size:34px;border-radius:12px;">7</span>
-              <div class="tx" style="font-size:42px;">LINEMO</div>
-            </li>
-            <li style="padding:10px 24px;gap:18px;"><span class="badge"
-                style="width:60px;height:60px;font-size:34px;border-radius:12px;">8</span>
-              <div class="tx" style="font-size:42px;">povo2.0</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 19 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">対象は15種類 <small>②</small></div>
-        <div class="page-body top">
-          <ul class="rows" style="gap:12px;justify-content:flex-start;">
-            <li style="padding:10px 24px;gap:18px;"><span class="badge"
-                style="width:60px;height:60px;font-size:34px;border-radius:12px;">9</span>
-              <div class="tx" style="font-size:42px;">mineo</div>
-            </li>
-            <li style="padding:10px 24px;gap:18px;"><span class="badge"
-                style="width:60px;height:60px;font-size:34px;border-radius:12px;">10</span>
-              <div class="tx" style="font-size:42px;">日本通信SIM</div>
-            </li>
-            <li style="padding:10px 24px;gap:18px;"><span class="badge"
-                style="width:60px;height:60px;font-size:34px;border-radius:12px;">11</span>
-              <div class="tx" style="font-size:42px;">IIJmio</div>
-            </li>
-            <li style="padding:10px 24px;gap:18px;"><span class="badge"
-                style="width:60px;height:60px;font-size:34px;border-radius:12px;">12</span>
-              <div class="tx" style="font-size:42px;">HISモバイル</div>
-            </li>
-            <li style="padding:10px 24px;gap:18px;"><span class="badge"
-                style="width:60px;height:60px;font-size:34px;border-radius:12px;">13</span>
-              <div class="tx" style="font-size:42px;">NUROモバイル</div>
-            </li>
-            <li style="padding:10px 24px;gap:18px;"><span class="badge"
-                style="width:60px;height:60px;font-size:34px;border-radius:12px;">14</span>
-              <div class="tx" style="font-size:42px;">JALモバイル(IIJmio)</div>
-            </li>
-            <li style="padding:10px 24px;gap:18px;"><span class="badge"
-                style="width:60px;height:60px;font-size:34px;border-radius:12px;">15</span>
-              <div class="tx" style="font-size:42px;">JALモバイル(ahamo)</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 20 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 12 -->
-  <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">6つの評価項目</div>
-        <div class="page-body">
-          <ul class="rows" style="gap: 8px;">
-            <li><span class="ic"><i class="fa-solid fa-yen-sign"></i></span>
-              <div class="tx">データ容量に対する料金</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-signal"></i></span>
-              <div class="tx">通信品質</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-receipt"></i></span>
-              <div class="tx">初期費用</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-phone"></i></span>
-              <div class="tx">通話料</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-store"></i></span>
-              <div class="tx">店舗サポート</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-gear"></i></span>
-              <div class="tx">オプション</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 21 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">5段階で評価</div>
-        <div class="page-body center">
-          <div class="emph"><span class="big">SS</span>＞ S ＞ A ＞ B ＞ <span class="em">C</span><br><span
-              style="font-size:40px;">6項目の平均を総合評価に</span></div>
-        </div><span class="page-no">― 22 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 13-0 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="divider">
-          <div class="kicker">CHAPTER</div>
-          <div class="num">3</div>
-          <div class="seal">FILE No.03</div>
-        </div>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="big-title">店舗派ルート</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 14 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">Q2</div>
-        <div class="page-body center">
-          <div class="emph">自宅のネット回線を<br><span class="em">auひかり・SoftBank光</span>などに<br><span class="big"
-              style="font-size:72px;">切り替えられる？</span></div>
-        </div><span class="page-no">― 25 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="badge" style="font-size:32px;">YES</span>
-              <div class="tx">Q3へ<span class="sub">UQ mobile／Y!mobileの二択</span></div>
-            </li>
-            <li><span class="badge" style="font-size:32px;">NO</span>
-              <div class="tx">Q4へ<span class="sub">セット割なしで選べる格安SIMへ</span></div>
-            </li>
-          </ul>
-          <div style="display:flex;align-items:center;justify-content:center;"><img
-              src="public/images/irasutoya/internet_modem_router.png"
-              style="max-height:260px;max-width:65%;object-fit:contain;"></div>
-        </div><span class="page-no">― 26 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 15 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">UQ・Y!mobileの注意点</div>
-        <div class="page-body center">
-          <div class="emph">家族割・自宅ネット割なしでは<br><span class="big" style="color:var(--con);">割高</span><br><span
-              style="font-size:40px;">（データ料金の評価はB）</span></div>
-        </div><span class="page-no">― 27 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="lead">セット割を使える人だけが<span class="em">本来の恩恵</span>を受けられる</div>
-          <div class="lead">自宅ネットを切り替えられる人だけ<span class="em">Q3へ進む</span></div>
-        </div><span class="page-no">― 28 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 16-0 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="divider">
-          <div class="kicker">CHAPTER</div>
-          <div class="num">4</div>
-          <div class="seal">FILE No.04</div>
-        </div>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="big-title">Q3：UQ mobileとY!mobileの<br>選び方</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 17 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">au系に切り替えるなら</div>
-        <div class="page-body center">
-          <div class="lead tight">auひかり・BIGLOBE光・J:COMなどに切り替えられる人</div>
-          <div class="emph"><span class="big" style="font-size:80px;">UQ mobile</span><br><span
-              style="font-size:44px;">に決定！</span></div>
-        </div><span class="page-no">― 31 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">ソフトバンク系なら</div>
-        <div class="page-body center">
-          <div class="lead tight">SoftBank光・SoftBank Airなどに切り替えられる人</div>
-          <div class="emph"><span class="big" style="font-size:80px;">Y!mobile</span><br><span
-              style="font-size:44px;">に決定！</span></div>
-        </div><span class="page-no">― 32 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 18 -->
-  <div class="slide-container" style="--brand:#E4007F;--brand-deep:#a8005e;--brand-soft:#fde3f0">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="head-left"><img class="logo" src="public/images/logo/UQ_logo_2.png" alt="UQ mobile"></div>
-        <div class="visual" style="height:auto;flex:1;"><img src="public/images/charts/UQ mobile.png"
-            style="max-height:760px;max-width:100%;"></div><span class="page-no">― 33 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">6項目評価</div>
-        <div class="cards">
-          <div class="card">
-            <div class="rank B">B</div>
-            <div class="card-name">データ料金</div>
-            <div class="line">標準的</div>
+          <div class="emph agenda-answer">
+            把握しておくべきは<span class="big">2つ</span><br />Starlink Directの申込 ＋
+            海外データ通信は7日以内
           </div>
-          <div class="card">
-            <div class="rank SS">SS</div>
-            <div class="card-name">通信品質</div>
-            <div class="line">業界トップ級</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">初期費用</div>
-            <div class="line">良好</div>
-          </div>
-          <div class="card">
-            <div class="rank B">B</div>
-            <div class="card-name">通話料</div>
-            <div class="line">標準的</div>
-          </div>
-          <div class="card">
-            <div class="rank SS">SS</div>
-            <div class="card-name">店舗サポート</div>
-            <div class="line">業界トップ級</div>
-          </div>
-          <div class="card">
-            <div class="rank B">B</div>
-            <div class="card-name">オプション</div>
-            <div class="line">標準的</div>
-          </div>
-        </div>
-        <div class="note" style="margin-top:6px;">代表プラン：トクトクプラン2 5GB 1,628円・30GB 2,728円（自宅セット割＋auPAYカード支払い割適用後）</div>
-        <span class="page-no">― 34 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 19 -->
-  <div class="slide-container" style="--brand:#E4007F;--brand-deep:#a8005e;--brand-soft:#fde3f0">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="visual" style="flex-direction:column;"><img
-            src="public/images/thumbnails/【2026年最新】UQ mobileの評判は？爆速データ通信と、事務手数料3,850円を0円にする裏技.png"
-            style="max-height:620px;margin:10px 0;"></div><span class="page-no">― 35 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="bigicon" style="font-size:150px;"><i class="fa-solid fa-circle-play"></i></div>
-          <div class="big-title" style="font-size:64px;">この動画も<br><span class="em">チェック！</span></div>
-          <div class="note" style="text-align:center;">【2026年最新】UQ mobileの評判は？爆速データ通信と、事務手数料3,850円を0円にする裏技</div>
-        </div><span class="page-no">― 36 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 20 -->
-  <div class="slide-container" style="--brand:#E4007F;--brand-deep:#a8005e;--brand-soft:#fde3f0">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">UQ mobile おすすめプラン</div>
-        <div class="page-body center">
-          <table class="sheet">
-            <tr>
-              <th>トクトク<br>プラン2</th>
-              <th>通常 <br>月額(税込)</th>
-              <th>割引後 <br>月額(税込)</th>
-            </tr>
-            <tr>
-              <td>5GB</td>
-              <td>2,948円</td>
-              <td class="em">1,628円</td>
-            </tr>
-            <tr>
-              <td>30GB</td>
-              <td>4,048円</td>
-              <td class="em">2,728円</td>
-            </tr>
-          </table>
-        </div><span class="page-no">― 37 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">適用される割引</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-house-signal"></i></span>
-              <div class="tx">自宅セット割 <span class="em">−1,100円</span></div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-credit-card"></i></span>
-              <div class="tx"><span style="white-space:nowrap">auPAYカード</span><span
-                  style="white-space:nowrap">支払い割</span> <span class="em">−220円</span></div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-receipt"></i></span>
-              <div class="tx">合計初期費用 3,850円</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 38 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 21 -->
-  <div class="slide-container" style="--brand:#E60012;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="head-left"><img class="logo" src="public/images/logo/Y!mobile.png" alt="Y!mobile"></div>
-        <div class="visual" style="height:auto;flex:1;"><img src="public/images/charts/Y!mobile.png"
-            style="max-height:760px;max-width:100%;"></div><span class="page-no">― 39 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">6項目評価</div>
-        <div class="cards">
-          <div class="card">
-            <div class="rank B">B</div>
-            <div class="card-name">データ料金</div>
-            <div class="line">標準的</div>
-          </div>
-          <div class="card">
-            <div class="rank SS">SS</div>
-            <div class="card-name">通信品質</div>
-            <div class="line">業界トップ級</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">初期費用</div>
-            <div class="line">良好</div>
-          </div>
-          <div class="card">
-            <div class="rank B">B</div>
-            <div class="card-name">通話料</div>
-            <div class="line">標準的</div>
-          </div>
-          <div class="card">
-            <div class="rank SS">SS</div>
-            <div class="card-name">店舗サポート</div>
-            <div class="line">業界トップ級</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">オプション</div>
-            <div class="line">良好</div>
-          </div>
-        </div>
-        <div class="note" style="margin-top:6px;">代表プラン：シンプル3S 5GB 858円・シンプル3M 30GB 1,958円・シンプル3L 35GB
-          3,058円（おうち割光セットA＋PayPayカード割適用後）</div><span class="page-no">― 40 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 22 -->
-  <div class="slide-container" style="--brand:#06C755;--brand-deep:#048c3d;--brand-soft:#e3f7ec">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="visual" style="flex-direction:column;"><img
-            src="public/images/thumbnails/【2026年最新】ワイモバ値上げ。楽天・LINEMO・mineo・イオン比較完全版_サムネ1.png"
-            style="max-height:620px;margin:10px 0;"></div><span class="page-no">― 41 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="bigicon" style="font-size:150px;"><i class="fa-solid fa-circle-play"></i></div>
-          <div class="big-title" style="font-size:64px;">この動画も<br><span class="em">チェック！</span></div>
-          <div class="note" style="text-align:center;">【2026年最新】ワイモバ値上げ。楽天・LINEMO・mineo・イオン比較完全版</div>
-        </div><span class="page-no">― 42 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 23 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">Y!mobile おすすめプラン</div>
-        <div class="page-body center">
-          <table class="sheet">
-            <tr>
-              <th>シンプル3</th>
-              <th>通常<br>月額(税込)</th>
-              <th>割引後<br>月額(税込)</th>
-            </tr>
-            <tr>
-              <td>S 5GB</td>
-              <td>3,278円</td>
-              <td class="em">858円</td>
-            </tr>
-            <tr>
-              <td>M 30GB</td>
-              <td>4,378円</td>
-              <td class="em">1,958円</td>
-            </tr>
-            <tr>
-              <td>L 35GB</td>
-              <td>5,478円</td>
-              <td class="em">3,058円</td>
-            </tr>
-          </table>
-        </div><span class="page-no">― 43 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">適用される割引</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-house-signal"></i></span>
-              <div class="tx">おうち割光セット(A) <span class="em">−1,650円</span></div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-credit-card"></i></span>
-              <div class="tx">PayPayカード割（ゴールド） <span class="em">−770円</span></div>
-            </li>
-          </ul>
-          <div class="warn"><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span>店頭契約は事務手数料<span
-              class="em">4,950円</span></div>
-        </div><span class="page-no">― 44 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 24 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-body center">
-          <div class="warn" style="font-size:52px;"><span class="ic"><i
-                class="fa-solid fa-triangle-exclamation"></i></span>自宅ネット割・家族割なしだと<span class="em">割高</span></div>
-          <div class="lead">その場合は<span class="em">別の選択肢</span>を強くおすすめ</div>
-        </div><span class="page-no">― 45 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="lead">自宅ネットは変えられないけど<span class="em">店舗サポートはほしい</span>人へ</div>
-          <div class="emph"><span style="font-size:44px;">これから紹介する</span><br><span class="em"
-              style="font-size:56px;">格安SIMたちがおすすめ</span></div>
-        </div><span class="page-no">― 46 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 25-0 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="divider">
-          <div class="kicker">CHAPTER</div>
-          <div class="num">5</div>
-          <div class="seal">FILE No.05</div>
-        </div>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="big-title">Q4：店舗派×<br>自宅ネット<br>切替なし</div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Slide ID: 26 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">Q4：毎月20GB以上使う？</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="badge" style="font-size:32px;">YES</span>
-              <div class="tx"><span class="em">楽天モバイル</span>に決定<span class="sub">20GB以上使う人</span></div>
-            </li>
-            <li><span class="badge" style="font-size:32px;">NO</span>
-              <div class="tx">Q4bへ<span class="sub">〜20GBの人はよく行く店舗で分岐</span></div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 49 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head" style="font-size:52px;">Q4b：よく行く店舗は？</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-cart-shopping"></i></span>
-              <div class="tx">全国のイオンで相談したい→<span class="em">イオンモバイル</span></div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-store"></i></span>
-              <div class="tx">ビックカメラなど家電量販店でOK→<span class="em">BIC SIM</span></div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 50 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 27 -->
-  <div class="slide-container" style="--brand:#BF0000;--brand-deep:#8a0000;--brand-soft:#fde3e3">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="head-left"><img class="logo" src="public/images/logo/Mobile_logo_1line_magenta.png" alt="楽天モバイル">
-        </div>
-        <div class="visual" style="height:auto;flex:1;"><img src="public/images/charts/楽天モバイル.png"
-            style="max-height:760px;max-width:100%;"></div><span class="page-no">― 51 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">6項目評価</div>
-        <div class="cards">
-          <div class="card">
-            <div class="rank S">S</div>
-            <div class="card-name">データ料金</div>
-            <div class="line">かなり優秀</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">通信品質</div>
-            <div class="line">良好</div>
-          </div>
-          <div class="card">
-            <div class="rank S">S</div>
-            <div class="card-name">初期費用</div>
-            <div class="line">かなり優秀</div>
-          </div>
-          <div class="card">
-            <div class="rank SS">SS</div>
-            <div class="card-name">通話料</div>
-            <div class="line">業界トップ級</div>
-          </div>
-          <div class="card">
-            <div class="rank S">S</div>
-            <div class="card-name">店舗サポート</div>
-            <div class="line">かなり優秀</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">オプション</div>
-            <div class="line">良好</div>
+    <!-- Slide ID: 5-0 -->
+    <div
+      class="slide-container"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-body center">
+            <div class="divider">
+              <span class="kicker">CHAPTER</span><span class="num">1</span
+              ><span class="seal">FILE No.01</span>
+            </div>
           </div>
         </div>
-        <div class="note" style="margin-top:6px;">代表プラン：Rakuten最強プラン 3GB 1,078円・20GB 2,178円・無制限 3,278円</div><span
-          class="page-no">― 52 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 28 -->
-  <div class="slide-container" style="--brand:#BF0000;--brand-deep:#8a0000;--brand-soft:#fde3e3">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="visual" style="flex-direction:column;"><img
-            src="public/images/thumbnails/【2025年最新】楽天モバイルは繋がらない？1年以上使って分かった本音メリット・デメリットを全公開！_サムネ.png"
-            style="max-height:620px;margin:10px 0;"></div><span class="page-no">― 53 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="bigicon" style="font-size:150px;"><i class="fa-solid fa-circle-play"></i></div>
-          <div class="big-title" style="font-size:64px;">この動画も<br><span class="em">チェック！</span></div>
-          <div class="note" style="text-align:center;">【2025年最新】楽天モバイルは繋がらない？1年以上使って分かった本音メリット・デメリットを全公開！</div>
-        </div><span class="page-no">― 54 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 29 -->
-  <div class="slide-container" style="--brand:#BF0000;--brand-deep:#8a0000;--brand-soft:#fde3e3">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">楽天モバイル おすすめプラン</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">Rakuten最強プラン 3GBまで月額1,078円（税込）</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">20GBまで月額2,178円（税込）</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">無制限 月額3,278円（税込）</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 55 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">Rakuten Linkアプリで国内通話無料</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">初期費用0円</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 56 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 30 -->
-  <div class="slide-container" style="--brand:#E6007E;--brand-deep:#a8005e;--brand-soft:#fde3f0">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="head-left"><img class="logo" src="public/images/logo/aeonmobile_logo.png" alt="イオンモバイル"></div>
-        <div class="visual" style="height:auto;flex:1;"><img src="public/images/charts/イオンモバイル.png"
-            style="max-height:760px;max-width:100%;"></div><span class="page-no">― 57 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">6項目評価</div>
-        <div class="cards">
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">データ料金</div>
-            <div class="line">良好</div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-body center">
+            <div class="big-title chapter-title">
+              9月1日から<br />何が変わるの？
+            </div>
+            <div class="lead chapter-lead">月額料金そのままで、2つの特典を追加</div>
           </div>
-          <div class="card">
-            <div class="rank B">B</div>
-            <div class="card-name">通信品質</div>
-            <div class="line">標準的</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">初期費用</div>
-            <div class="line">良好</div>
-          </div>
-          <div class="card">
-            <div class="rank S">S</div>
-            <div class="card-name">通話料</div>
-            <div class="line">かなり優秀</div>
-          </div>
-          <div class="card">
-            <div class="rank S">S</div>
-            <div class="card-name">店舗サポート</div>
-            <div class="line">かなり優秀</div>
-          </div>
-          <div class="card">
-            <div class="rank S">S</div>
-            <div class="card-name">オプション</div>
-            <div class="line">かなり優秀</div>
-          </div>
-        </div>
-        <div class="note" style="margin-top:6px;">代表プラン：音声プラン 5GB 1,298円・10GB 1,848円・20GB 1,958円</div><span
-          class="page-no">― 58 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 31 -->
-  <div class="slide-container" style="--brand:#E6007E;--brand-deep:#a8005e;--brand-soft:#fde3f0">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="visual" style="flex-direction:column;"><img
-            src="public/images/thumbnails/【月額800円〜】家族4人で乗り換えると衝撃の安さに！イオンモバイルの料金プランと5つのメリットを徹底解説.png"
-            style="max-height:620px;margin:10px 0;"></div><span class="page-no">― 59 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="bigicon" style="font-size:150px;"><i class="fa-solid fa-circle-play"></i></div>
-          <div class="big-title" style="font-size:64px;">この動画も<br><span class="em">チェック！</span></div>
-          <div class="note" style="text-align:center;">【月額800円〜】家族4人で乗り換えると衝撃の安さに！イオンモバイルの料金プランと5つのメリットを徹底解説</div>
-        </div><span class="page-no">― 60 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 32 -->
-  <div class="slide-container" style="--brand:#E6007E;--brand-deep:#a8005e;--brand-soft:#fde3f0">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">イオンモバイル 音声プラン(抜粋) 0.5GB 月額803円（税込）</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">5GB 月額1,298円（税込）</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">10GB 月額1,848円（税込）</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 61 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">20GB 月額1,958円（税込）</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">0.5GB〜200GBまで細かく選択可</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">税込200円ごとに4 WAON POINT付与</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 62 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 32-2 -->
-  <div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="head-left"><img class="logo" src="public/images/logo/bicsim_logo.png" alt="BIC SIM"></div>
-        <div class="visual" style="height:auto;flex:1;"><img src="public/images/charts/BIC SIM.png"
-            style="max-height:760px;max-width:100%;"></div><span class="page-no">― 63 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">6項目評価</div>
-        <div class="cards">
-          <div class="card">
-            <div class="rank SS">SS</div>
-            <div class="card-name">データ料金</div>
-            <div class="line">業界トップ級</div>
-          </div>
-          <div class="card">
-            <div class="rank B">B</div>
-            <div class="card-name">通信品質</div>
-            <div class="line">標準的</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">初期費用</div>
-            <div class="line">良好</div>
-          </div>
-          <div class="card">
-            <div class="rank S">S</div>
-            <div class="card-name">通話料</div>
-            <div class="line">かなり優秀</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">店舗サポート</div>
-            <div class="line">良好</div>
-          </div>
-          <div class="card">
-            <div class="rank S">S</div>
-            <div class="card-name">オプション</div>
-            <div class="line">かなり優秀</div>
-          </div>
-        </div>
-        <div class="note" style="margin-top:6px;">代表プラン：ギガプラン 5GB 950円・10GB 1,400円（中身はほぼIIJmio）</div><span
-          class="page-no">― 64 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 33-0 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="divider">
-          <div class="kicker">CHAPTER</div>
-          <div class="num">6</div>
-          <div class="seal">FILE No.06</div>
-        </div>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="big-title">オンライン派×<br>通信品質ルート</div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Slide ID: 34 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">Q5</div>
-        <div class="page-body center">
-          <div class="emph"><span style="font-size:44px;">オンライン派に質問</span><br><span class="big"
-              style="font-size:64px;">通信品質とコスパ<br>どっちを優先？</span></div>
-        </div><span class="page-no">― 67 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-signal"></i></span>
-              <div class="tx">通信品質重視→<span class="em">Q6へ</span><span class="sub">昼休みでも速くサクサク使いたい</span></div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-yen-sign"></i></span>
-              <div class="tx">コスパ重視→<span class="em">Q7へ</span><span class="sub">とにかく安く済ませたい</span></div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 68 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 35 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">Q6：使用用途は？</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-plane"></i></span>
-              <div class="tx">海外利用が多い→<span class="em">ahamo</span><span class="sub">JALマイルを貯めるならJALモバイル版</span></div>
-            </li>
-          </ul>
-          <div style="display:flex;align-items:center;justify-content:center;"><img
-              src="public/images/common/海外利用のイメージ図.png"
-              style="max-height:300px;max-width:75%;object-fit:contain;border-radius:14px;"></div>
-        </div><span class="page-no">― 69 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-comment-dots"></i></span>
-              <div class="tx">LINEの利用が多い→<span class="em">LINEMO</span></div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-mobile-screen-button"></i></span>
-              <div class="tx">どちらでもない→<span class="em">povo2.0</span></div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 70 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 36 -->
-  <div class="slide-container" style="--brand:#333333;--brand-deep:#111111;--brand-soft:#eeeeee">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="head-left"><img class="logo" src="public/images/logo/Ahamo_logo.png" alt="ahamo"></div>
-        <div class="visual" style="height:auto;flex:1;"><img src="public/images/charts/ahamo.png"
-            style="max-height:760px;max-width:100%;"></div><span class="page-no">― 71 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">6項目評価</div>
-        <div class="cards">
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">データ料金</div>
-            <div class="line">良好</div>
+    <!-- Slide ID: 6 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-head">追加サービス<small>①</small></div>
+          <div class="page-body center">
+            <div class="bigicon service-icon">
+              <i class="fa-solid fa-satellite-dish"></i>
+            </div>
+            <div class="lead service-lead">
+              SoftBank Starlink Direct（衛星との直接通信）
+            </div>
+            <div class="emph old-price">
+              <span class="big">月額1,650円</span><br />→ 全額割引
+            </div>
           </div>
-          <div class="card">
-            <div class="rank S">S</div>
-            <div class="card-name">通信品質</div>
-            <div class="line">かなり優秀</div>
-          </div>
-          <div class="card">
-            <div class="rank S">S</div>
-            <div class="card-name">初期費用</div>
-            <div class="line">かなり優秀</div>
-          </div>
-          <div class="card">
-            <div class="rank S">S</div>
-            <div class="card-name">通話料</div>
-            <div class="line">かなり優秀</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">店舗サポート</div>
-            <div class="line">良好</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">オプション</div>
-            <div class="line">良好</div>
-          </div>
+          <span class="page-no">― 1 ―</span>
         </div>
-        <div class="note" style="margin-top:6px;">代表プラン：ahamo 30GB 2,970円（5分以内通話無料込み）</div><span class="page-no">― 72
-          ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 37 -->
-  <div class="slide-container" style="--brand:#333333;--brand-deep:#111111;--brand-soft:#eeeeee">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="visual" style="flex-direction:column;"><img
-            src="public/images/thumbnails/【あなたはどっち？】ahamoで得する人・損する人の違いを分かりやすく解説します！_サムネ.png"
-            style="max-height:620px;margin:10px 0;"></div><span class="page-no">― 73 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="bigicon" style="font-size:150px;"><i class="fa-solid fa-circle-play"></i></div>
-          <div class="big-title" style="font-size:64px;">この動画も<br><span class="em">チェック！</span></div>
-          <div class="note" style="text-align:center;">【あなたはどっち？】ahamoで得する人・損する人の違いを分かりやすく解説します！</div>
-        </div><span class="page-no">― 74 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 38 -->
-  <div class="slide-container" style="--brand:#333333;--brand-deep:#111111;--brand-soft:#eeeeee">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">ahamo 料金プラン</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">ahamo 30GB <br>月額2,970円（税込）（5分以内通話無料込み）</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">ahamo大盛り 110GB 月額4,950円(税込)</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 75 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">海外データ通信30GBまで追加料金なしで使える</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">初期費用0円</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 76 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 38-2 -->
-  <div class="slide-container" style="--brand:#333333;--brand-deep:#111111;--brand-soft:#eeeeee">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="visual" style="flex-direction:column;"><img
-            src="public/images/thumbnails/【2026年最新】JALモバイル2種類を徹底比較！「JALモバイル powered by ahamo」が提供開始_サムネ1.png"
-            style="max-height:620px;margin:10px 0;"></div><span class="page-no">― 77 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head" style="font-size:46px;">JALモバイル powered by ahamo</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-sim-card"></i></span>
-              <div class="tx">プラン内容はahamoと同じ<span class="sub">月額30GB 2,970円（税込）・5分通話無料・海外30GB込み</span></div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-plane"></i></span>
-              <div class="tx">利用に応じて<span class="em">JALマイル</span>が貯まる</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-play"></i></span>
-              <div class="tx">飛行機に乗らない人は本家ahamoでOK<span class="sub">詳細は過去動画をチェック！</span></div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 78 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 39 -->
-  <div class="slide-container" style="--brand:#06C755;--brand-deep:#048c3d;--brand-soft:#e3f7ec">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="head-left"><img class="logo" src="public/images/logo/LINEMO_logo.png" alt="LINEMO"></div>
-        <div class="visual" style="height:auto;flex:1;"><img src="public/images/charts/LINEMO.png"
-            style="max-height:760px;max-width:100%;"></div><span class="page-no">― 79 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">6項目評価</div>
-        <div class="cards">
-          <div class="card">
-            <div class="rank S">S</div>
-            <div class="card-name">データ料金</div>
-            <div class="line">かなり優秀</div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-head">追加サービス<small>②</small></div>
+          <div class="page-body center service-page">
+            <div class="bigicon service-icon">
+              <i class="fa-solid fa-earth-asia"></i>
+            </div>
+            <div class="lead service-lead">
+              海外あんしん定額<br>「定額国L」
+            </div>
+            <div class="emph">
+              <span class="big">最大7日間分</span><br />追加料金なし
+            </div>
           </div>
-          <div class="card">
-            <div class="rank SS">SS</div>
-            <div class="card-name">通信品質</div>
-            <div class="line">業界トップ級</div>
-          </div>
-          <div class="card">
-            <div class="rank C">C</div>
-            <div class="card-name">初期費用</div>
-            <div class="line">やや弱い</div>
-          </div>
-          <div class="card">
-            <div class="rank B">B</div>
-            <div class="card-name">通話料</div>
-            <div class="line">標準的</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">店舗サポート</div>
-            <div class="line">良好</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">オプション</div>
-            <div class="line">良好</div>
-          </div>
-        </div>
-        <div class="note" style="margin-top:6px;">代表プラン：ベストプランV 30GB 2,970円（5分通話無料込み）・ベストプラン 3GB 990円</div><span
-          class="page-no">― 80 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 40 -->
-  <div class="slide-container" style="--brand:#BF0000;--brand-deep:#8a0000;--brand-soft:#fde3e3">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="visual" style="flex-direction:column;"><img
-            src="public/images/thumbnails/LINE使い放題で月990円！LINEMO(ラインモ)のメリット・デメリットを徹底解説【ahamo・povo・楽天モバイル比較】.png"
-            style="max-height:620px;margin:10px 0;"></div><span class="page-no">― 81 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="bigicon" style="font-size:150px;"><i class="fa-solid fa-circle-play"></i></div>
-          <div class="big-title" style="font-size:64px;">この動画も<br><span class="em">チェック！</span></div>
-          <div class="note" style="text-align:center;">LINE使い放題で月990円！LINEMOラインモのメリット・デメリットを徹底解説【ahamo・povo・楽天モバイル比較】
-          </div>
-        </div><span class="page-no">― 82 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 41 -->
-  <div class="slide-container" style="--brand:#06C755;--brand-deep:#048c3d;--brand-soft:#e3f7ec">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">LINEMO 料金プラン</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">ベストプラン 3GB 月額990円（税込）</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">10GB 月額2,090円（税込）（段階制）</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">ベストプランV 30GB 月額2,970円（税込）（5分通話無料込み）</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 83 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">LINEギガフリーでLINEのトーク・通話・スタンプがデータ消費ゼロ</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">初期費用3,850円</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 84 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 42 -->
-  <div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="head-left"><img class="logo" style="height: 100px;" src="public/images/logo/Povo_logo.png"
-            alt="povo2.0"></div>
-        <div class="visual" style="height:auto;flex:1;"><img src="public/images/charts/povo2.0.png"
-            style="max-height:760px;max-width:100%;"></div><span class="page-no">― 85 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">6項目評価</div>
-        <div class="cards">
-          <div class="card">
-            <div class="rank SS">SS</div>
-            <div class="card-name">データ料金</div>
-            <div class="line">業界トップ級</div>
-          </div>
-          <div class="card">
-            <div class="rank SS">SS</div>
-            <div class="card-name">通信品質</div>
-            <div class="line">業界トップ級</div>
-          </div>
-          <div class="card">
-            <div class="rank SS">SS</div>
-            <div class="card-name">初期費用</div>
-            <div class="line">業界トップ級</div>
-          </div>
-          <div class="card">
-            <div class="rank B">B</div>
-            <div class="card-name">通話料</div>
-            <div class="line">標準的</div>
-          </div>
-          <div class="card">
-            <div class="rank C">C</div>
-            <div class="card-name">店舗サポート</div>
-            <div class="line">やや弱い</div>
-          </div>
-          <div class="card">
-            <div class="rank S">S</div>
-            <div class="card-name">オプション</div>
-            <div class="line">かなり優秀</div>
-          </div>
-        </div>
-        <div class="note" style="margin-top:6px;">代表プラン：基本料0円＋データ追加3GB 990円・30GB 2,780円・使い放題24時間330円</div><span
-          class="page-no">― 86 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 43 -->
-  <div class="slide-container" style="--brand:#BF0000;--brand-deep:#8a0000;--brand-soft:#fde3e3">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="visual" style="flex-direction:column;"><img
-            src="public/images/thumbnails/スマホ代を0円にする方法。「povo2.0」なら維持費タダ？メリット・デメリットからahamo・楽天モバイル比較まで.png"
-            style="max-height:620px;margin:10px 0;"></div><span class="page-no">― 87 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="bigicon" style="font-size:150px;"><i class="fa-solid fa-circle-play"></i></div>
-          <div class="big-title" style="font-size:64px;">この動画も<br><span class="em">チェック！</span></div>
-          <div class="note" style="text-align:center;">スマホ代を0円にする方法。「povo2.0</div>
-        </div><span class="page-no">― 88 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 44 -->
-  <div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">povo2.0 おすすめ運用</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">基本料0円＋トッピングで自由設計</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">データ追加3GB 990円（税込）(30日間)</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">データ追加30GB 2,780円（税込）(30日間)</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 89 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">データ使い放題24時間330円（税込）</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">必要なときだけ使う柔軟運用が可能</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">サブスクトッピングもある</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 90 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 45-0 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="divider">
-          <div class="kicker">CHAPTER</div>
-          <div class="num">7</div>
-          <div class="seal">FILE No.07</div>
-        </div>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="big-title">オンライン派×<br>コスパ重視<br>ルート</div>
+          <span class="page-no">― 2 ―</span>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Slide ID: 46 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">Q7</div>
-        <div class="page-body center">
-          <div class="emph"><span style="font-size:44px;">コスパ重視派に質問</span><br>毎月<span class="big">50GB以上</span><br>使う？
+    <!-- Slide ID: 7 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-head">対象プランは2つ</div>
+          <div class="page-body">
+            <img
+              class="feature-logo"
+              src="public/images/logo/LINEMO_logo.png"
+              alt="LINEMO"
+            />
+            <ul class="rows">
+              <li>
+                <span class="badge">1</span>
+                <div class="tx">
+                  LINEMOベストプラン<span class="sub"
+                    >3GBまで990円／10GBまで2,090円</span
+                  >
+                </div>
+              </li>
+              <li>
+                <span class="badge">2</span>
+                <div class="tx">
+                  LINEMOベストプランV<span class="sub"
+                    >30GB・5分通話無料込みで2,970円</span
+                  >
+                </div>
+              </li>
+            </ul>
           </div>
-        </div><span class="page-no">― 93 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="badge" style="font-size:32px;">YES</span>
-              <div class="tx">無制限系プランへ<span class="sub">Q7-2：必要な通信速度で分岐</span></div>
-            </li>
-            <li><span class="badge" style="font-size:32px;">NO</span>
-              <div class="tx">容量別に最適化<span class="sub">Q7-3：ライト／ミドル／ヘビーで分岐</span></div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 94 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 47 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">Q7-2：必要な速度は？</div>
-        <div class="page-body center">
-          <div class="emph"><span style="font-size:44px;">50GB以上使う人は</span><br><span class="big"
-              style="font-size:72px;">通信速度</span><span style="font-size:44px;">で分岐</span></div>
-        </div><span class="page-no">― 95 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-gauge-high"></i></span>
-              <div class="tx">3Mbps以上必須→<span class="em">楽天モバイル 無制限</span></div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-gauge"></i></span>
-              <div class="tx">3Mbps以下でOK→<span class="em">mineo</span><span class="sub">マイピタ3GB＋パケット放題3Mbps</span></div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 96 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 48 -->
-  <div class="slide-container" style="--brand:#BF0000;--brand-deep:#8a0000;--brand-soft:#fde3e3">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">楽天モバイル</div>
-        <div class="page-body center">
-          <div class="emph">Rakuten最強プラン<br>ギガ無制限 月額<span class="big">3,278円</span>（税込）</div>
-          <div class="lead">50GB超えるなら<span class="em">無制限が最強コスパ</span></div>
-        </div><span class="page-no">― 97 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-store"></i></span>
-              <div class="tx">店舗サポートあり</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-gauge-high"></i></span>
-              <div class="tx">繋がれば格安SIMより速い</div>
-            </li>
-          </ul>
-          <div class="warn"><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span>安定した通信にはまだ<span
-              class="em">不安が残る</span>点は注意</div>
-        </div><span class="page-no">― 98 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 49 -->
-  <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="head-left"><img class="logo" style="height: 100px;" src="public/images/logo/Mineo_logo.png"
-            alt="mineo"></div>
-        <div class="visual" style="height:auto;flex:1;"><img src="public/images/charts/mineo.png"
-            style="max-height:760px;max-width:100%;"></div><span class="page-no">― 99 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">6項目評価</div>
-        <div class="cards">
-          <div class="card">
-            <div class="rank SS">SS</div>
-            <div class="card-name">データ料金</div>
-            <div class="line">業界トップ級</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">通信品質</div>
-            <div class="line">良好</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">初期費用</div>
-            <div class="line">良好</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">通話料</div>
-            <div class="line">良好</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">店舗サポート</div>
-            <div class="line">良好</div>
-          </div>
-          <div class="card">
-            <div class="rank SS">SS</div>
-            <div class="card-name">オプション</div>
-            <div class="line">業界トップ級</div>
-          </div>
+          <span class="page-no">― 3 ―</span>
         </div>
-        <div class="note" style="margin-top:6px;">代表プラン：マイピタ3GB 1,298円＋パケット放題3Mbps 385円＝1,683円</div><span
-          class="page-no">― 100 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 50 -->
-  <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="visual" style="flex-direction:column;"><img
-            src="public/images/thumbnails/【裏技】mineo歴8年が教える「実質使い放題」の極意！契約前に知らないと損する5つの節約術_サムネ.png"
-            style="max-height:330px;margin:10px 0;"><img
-            src="public/images/thumbnails/【2026年最新】mineo10月手数料改定、契約時手数料3,850円もeSIMなら0円_サムネ1.png"
-            style="max-height:330px;margin:10px 0;"></div><span class="page-no">― 101 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="bigicon" style="font-size:150px;"><i class="fa-solid fa-circle-play"></i></div>
-          <div class="big-title" style="font-size:64px;">この動画も<br><span class="em">チェック！</span></div>
-          <div class="note" style="text-align:center;">【裏技】mineo歴8年が教える「実質使い放題」の極意！契約前に知らないと損する5つの節約術</div>
-          <div class="note" style="text-align:center;">【2026年最新】mineo10月手数料改定、契約時手数料3,850円もeSIMなら0円</div>
-        </div><span class="page-no">― 102 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 51 -->
-  <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">mineo おすすめプラン</div>
-        <div class="page-body center">
-          <div class="emph"><span style="font-size:38px;">マイピタ3GB 月額1,298円（税込）＋パケット放題3Mbps 月額385円（税込）</span><br>＝<span
-              class="big" style="font-size:76px;">1,683円</span><span style="font-size:44px;">で実質使い放題</span></div>
-          <div class="note">15GB以上のプランならパケット放題3Mbpsは無料</div>
-        </div><span class="page-no">― 103 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-play"></i></span>
-              <div class="tx">3Mbpsあれば標準画質のYouTubeもOK</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-tower-cell"></i></span>
-              <div class="tx">ドコモ・au・ソフトバンクの3回線から選択可</div>
-            </li>
-          </ul>
-          <div class="warn"><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span>3日で10GB以上使うと<span
-              class="em">速度制限</span>あり</div>
-        </div><span class="page-no">― 104 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 51-2 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">当チャンネル限定特典</div>
-        <div class="page-body center">
-          <div class="emph"><span style="font-size:42px;">mineoの契約事務手数料</span><br><span
-              style="font-size:52px;">3,300円が</span><span class="big">無料</span></div>
-          <div class="note">SIM発行料440円は別途かかります</div>
-        </div><span class="page-no">― 105 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="bigicon" style="font-size:170px;"><i class="fa-solid fa-link"></i></div>
-          <div class="lead" style="text-align:center;">限定申し込みリンクは<br><span class="em">概要欄・固定コメント</span>から</div>
-        </div><span class="page-no">― 106 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 52-0 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="divider">
-          <div class="kicker">CHAPTER</div>
-          <div class="num">8</div>
-          <div class="seal">FILE No.08</div>
-        </div>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="big-title">オンライン×<br>コスパ×<br>ライトユーザールート</div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-head">既存ユーザーも対象</div>
+          <div class="page-body center target-page">
+            <div class="bigicon user-icon">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <div class="emph"><span class="big">契約し直し不要</span></div>
+            <div class="lead centered-lead">
+              月額料金は据え置き<br />既存ユーザーにも適用
+            </div>
+          </div>
+          <span class="page-no">― 4 ―</span>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Slide ID: 53 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">Q7-3</div>
-        <div class="page-body center">
-          <div class="emph"><span style="font-size:44px;">50GB未満の人は</span><br><span class="big"
-              style="font-size:68px;">データ量で3分岐</span></div>
-        </div><span class="page-no">― 109 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="badge" style="width:150px;font-size:34px;">ライト</span>
-              <div class="tx">〜3GB</div>
-            </li>
-            <li><span class="badge" style="width:150px;font-size:34px;">ミドル</span>
-              <div class="tx">3GB超〜20GB</div>
-            </li>
-            <li><span class="badge" style="width:150px;font-size:34px;">ヘビー</span>
-              <div class="tx">20GB超〜50GB</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 110 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 54 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">Q7-4：ライト×重視点</div>
-        <div class="page-body center">
-          <div class="emph"><span style="font-size:44px;">〜3GBのライトユーザーは</span><br><span class="big"
-              style="font-size:68px;">重視点で3分岐</span></div>
-        </div><span class="page-no">― 111 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-phone"></i></span>
-              <div class="tx">通話が多い→<span class="em">日本通信SIM</span><span class="sub">合理的シンプル290</span></div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-yen-sign"></i></span>
-              <div class="tx">シンプルな安さ→<span class="em">HISモバイル</span><span class="sub">自由自在2.0 3GB 770円</span></div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 112 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 55 -->
-  <div class="slide-container" style="--brand:#003399;--brand-deep:#00205e;--brand-soft:#e3ebf7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="head-left"><img class="logo" style="height: 120px;" src="public/images/logo/nihon_tsushin.jpg"
-            alt="日本通信SIM"></div>
-        <div class="visual" style="height:auto;flex:1;"><img src="public/images/charts/日本通信SIM.png"
-            style="max-height:760px;max-width:100%;"></div><span class="page-no">― 113 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">6項目評価</div>
-        <div class="cards">
-          <div class="card">
-            <div class="rank SS">SS</div>
-            <div class="card-name">データ料金</div>
-            <div class="line">業界トップ級</div>
-          </div>
-          <div class="card">
-            <div class="rank B">B</div>
-            <div class="card-name">通信品質</div>
-            <div class="line">標準的</div>
-          </div>
-          <div class="card">
-            <div class="rank B">B</div>
-            <div class="card-name">初期費用</div>
-            <div class="line">標準的</div>
-          </div>
-          <div class="card">
-            <div class="rank S">S</div>
-            <div class="card-name">通話料</div>
-            <div class="line">かなり優秀</div>
-          </div>
-          <div class="card">
-            <div class="rank C">C</div>
-            <div class="card-name">店舗サポート</div>
-            <div class="line">やや弱い</div>
-          </div>
-          <div class="card">
-            <div class="rank C">C</div>
-            <div class="card-name">オプション</div>
-            <div class="line">やや弱い</div>
+    <!-- Slide ID: 8-0 -->
+    <div
+      class="slide-container"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-body center">
+            <div class="divider">
+              <span class="kicker">CHAPTER</span><span class="num">2</span
+              ><span class="seal">FILE No.02</span>
+            </div>
           </div>
         </div>
-        <div class="note" style="margin-top:6px;">代表プラン：合理的シンプル290 1GB 290円（通話準かけ放題+390円で計680円）</div><span
-          class="page-no">― 114 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 56 -->
-  <div class="slide-container" style="--brand:#003399;--brand-deep:#00205e;--brand-soft:#e3ebf7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="visual" style="flex-direction:column;"><img
-            src="public/images/thumbnails/【2026年最新】20GBで1,390円！？日本通信SIMの「SS級」コスパを徹底解剖！メリット・デメリット全公開.png"
-            style="max-height:620px;margin:10px 0;"></div><span class="page-no">― 115 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="bigicon" style="font-size:150px;"><i class="fa-solid fa-circle-play"></i></div>
-          <div class="big-title" style="font-size:64px;">この動画も<br><span class="em">チェック！</span></div>
-          <div class="note" style="text-align:center;">【2026年最新】20GBで1,390円！？日本通信SIMの「SS級</div>
-        </div><span class="page-no">― 116 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 57 -->
-  <div class="slide-container" style="--brand:#003399;--brand-deep:#00205e;--brand-soft:#e3ebf7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">日本通信SIM おすすめプラン</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-sim-card"></i></span>
-              <div class="tx">合理的シンプル290<span class="sub">1GB 月額290円（税込）／1GB追加ごとに＋220円</span></div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-phone"></i></span>
-              <div class="tx">通話準かけ放題オプション ＋390円</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 117 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="emph"><span style="font-size:44px;">準かけ放題を付けても</span>合計<br>月額<span
-              class="big">680円</span>（税込）<span style="font-size:48px;">の破格</span></div>
-          <div class="lead">通話をかけることが多い人は<span class="em">これ一択</span></div>
-        </div><span class="page-no">― 118 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 58 -->
-  <div class="slide-container" style="--brand:#E60012;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="head-left"><img class="logo" src="public/images/logo/hismobile_logo.png" alt="HISモバイル"></div>
-        <div class="visual" style="height:auto;flex:1;"><img src="public/images/charts/HISモバイル.png"
-            style="max-height:760px;max-width:100%;"></div><span class="page-no">― 119 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">6項目評価</div>
-        <div class="cards">
-          <div class="card">
-            <div class="rank SS">SS</div>
-            <div class="card-name">データ料金</div>
-            <div class="line">業界トップ級</div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-body center">
+            <div class="big-title chapter-title">
+              衛星でつながるって<br />どういうこと？
+            </div>
+            <div class="lead chapter-lead">圏外で使えること・使えないこと</div>
           </div>
-          <div class="card">
-            <div class="rank B">B</div>
-            <div class="card-name">通信品質</div>
-            <div class="line">標準的</div>
-          </div>
-          <div class="card">
-            <div class="rank B">B</div>
-            <div class="card-name">初期費用</div>
-            <div class="line">標準的</div>
-          </div>
-          <div class="card">
-            <div class="rank S">S</div>
-            <div class="card-name">通話料</div>
-            <div class="line">かなり優秀</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">店舗サポート</div>
-            <div class="line">良好</div>
-          </div>
-          <div class="card">
-            <div class="rank C">C</div>
-            <div class="card-name">オプション</div>
-            <div class="line">やや弱い</div>
-          </div>
-        </div>
-        <div class="note" style="margin-top:6px;">代表プラン：自由自在2.0 3GB 770円・7GB 990円（通話30秒9円）</div><span class="page-no">―
-          120 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 59 -->
-  <div class="slide-container" style="--brand:#E60012;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="visual" style="flex-direction:column;"><img
-            src="public/images/thumbnails/旅行会社のSIMと侮るな。ドコモ回線で「7GB 990円」のHISモバイルが実は最強説。.png"
-            style="max-height:620px;margin:10px 0;"></div><span class="page-no">― 121 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="bigicon" style="font-size:150px;"><i class="fa-solid fa-circle-play"></i></div>
-          <div class="big-title" style="font-size:64px;">この動画も<br><span class="em">チェック！</span></div>
-          <div class="note" style="text-align:center;">旅行会社のSIMと侮るな。ドコモ回線で7GB 990円のHISモバイルが実は最強説。</div>
-        </div><span class="page-no">― 122 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 60 -->
-  <div class="slide-container" style="--brand:#E60012;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">HISモバイル おすすめプラン</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">自由自在2.0 1GB 月額550円（税込）</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">3GB 月額770円（税込）</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">7GB 月額990円（税込）</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 123 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">通話料は30秒9円で業界最安</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">合計初期費用3,300円</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 124 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 61-0 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="divider">
-          <div class="kicker">CHAPTER</div>
-          <div class="num">9</div>
-          <div class="seal">FILE No.09</div>
-        </div>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="big-title">コスパ×<br>ミドルユーザールート</div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Slide ID: 62 -->
-  <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">Q7-5：ミドル×重視点</div>
-        <div class="page-body">
-          <div class="emph" style="font-size:44px;">3GB超〜20GBのミドルユーザーも<span class="em">重視点で3分岐</span></div>
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-phone"></i></span>
-              <div class="tx">通話が多い→<span class="em">日本通信SIM</span><span class="sub">合理的みんなのプラン 20GB
-                  1,390円（5分or月70分通話無料込み）</span></div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 127 ―</span>
+    <!-- Slide ID: 9 -->
+    <div
+      class="slide-container"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-head">SoftBank Starlink Direct</div>
+          <div class="page-body center">
+            <div class="satellite-diagram">
+              <i class="fa-solid fa-satellite"></i
+              ><span class="signal">⋮⋮⋮</span
+              ><i class="fa-solid fa-mobile-screen-button"></i>
+            </div>
+            <div class="lead centered-lead">
+              スマホが通信衛星と直接つながる仕組み
+            </div>
+          </div>
+          <span class="page-no">― 5 ―</span>
+        </div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-head">特別な機械はいらない</div>
+          <div class="page-body">
+            <ul class="rows">
+              <li>
+                <span class="ic"
+                  ><i class="fa-solid fa-mobile-screen-button"></i
+                ></span>
+                <div class="tx">
+                  専用のアンテナや機械は不要<span class="sub"
+                    >普段のスマホをそのまま利用</span
+                  >
+                </div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-mountain-sun"></i></span>
+                <div class="tx">
+                  空が見えていれば圏外エリアでも通信できる<span class="sub"
+                    >山・海など地上の電波が届かない場所</span
+                  >
+                </div>
+              </li>
+            </ul>
+            <div class="warn sky-warn">
+              <span class="ic"><i class="fa-solid fa-cloud-sun"></i></span
+              >空が見える場所が基本
+            </div>
+          </div>
+          <span class="page-no">― 6 ―</span>
+        </div>
       </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-yen-sign"></i></span>
-              <div class="tx">ドコモ・au回線でコスパ重視→<span class="em">IIJmio</span><span class="sub">ギガプラン</span></div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-infinity"></i></span>
-              <div class="tx">ソフトバンク回線・残データを気にしたくない→<span class="em">mineo</span><span class="sub">パケット放題 3Mbps</span>
+    </div>
+    <!-- Slide ID: 10 -->
+    <div
+      class="slide-container"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-head">できること<small>メッセージ中心</small></div>
+          <div class="page-body compact-rows">
+            <ul class="rows">
+              <li>
+                <span class="ic"><i class="fa-solid fa-comment-sms"></i></span>
+                <div class="tx">
+                  SMS<span class="sub">電話番号で送る短いメッセージ</span>
+                </div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-comments"></i></span>
+                <div class="tx">
+                  RCS（＋メッセージ）<span class="sub"
+                    >写真・スタンプにも対応するSMSの進化版</span
+                  >
+                </div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-paper-plane"></i></span>
+                <div class="tx">
+                  国際SMS<span class="sub">海外あてのSMS</span>
+                </div>
+              </li>
+              <li>
+                <span class="ic"
+                  ><i class="fa-solid fa-mobile-screen"></i
+                ></span>
+                <div class="tx">
+                  一部の対象アプリ<span class="sub"
+                    >LINE・PayPay・災害用伝言板など</span
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+          <span class="page-no">― 7 ―</span>
+        </div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-head">できないこと<small>重要な3点</small></div>
+          <div class="page-body compact-rows">
+            <ul class="rows">
+              <li>
+                <span class="ic"><i class="fa-solid fa-phone-slash"></i></span>
+                <div class="tx">
+                  音声通話・緊急通報は利用不可<span class="sub"
+                    >圏外で電話できる機能ではない</span
+                  >
+                </div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-video-slash"></i></span>
+                <div class="tx">
+                  動画視聴や大容量通信は対象外<span class="sub"
+                    >動画視聴・大容量通信は対象外</span
+                  >
+                </div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-building"></i></span>
+                <div class="tx">
+                  遮へい物がある場所<span class="sub"
+                    >利用不可・不安定になる場合あり</span
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+          <span class="page-no">― 8 ―</span>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 11 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-head">2026年9月1日〜冬</div>
+          <div class="page-body center">
+            <div class="season autumn">AUTUMN</div>
+            <div class="emph action-box">
+              <span class="big">申込が必要</span><br />月額1,650円を全額割引
+            </div>
+            <div class="warn action-warn">
+              <span class="ic"
+                ><i class="fa-solid fa-triangle-exclamation"></i></span
+              >申し込まないと使えません
+            </div>
+          </div>
+          <span class="page-no">― 9 ―</span>
+        </div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-head">2026年冬以降<small>予定</small></div>
+          <div class="page-body center">
+            <div class="season winter">WINTER</div>
+            <div class="emph action-box">
+              <span class="big">申込不要</span><br />追加料金なし
+            </div>
+            <div class="lead centered-lead">
+              対応機種・OSは<br />公式サイトで確認
+            </div>
+          </div>
+          <span class="page-no">― 10 ―</span>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 11-3 -->
+    <div
+      class="slide-container"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-body center">
+            <div class="bigicon subscribe-icon">
+              <i class="fa-solid fa-bell"></i>
+            </div>
+            <div class="big-title subscribe-title">
+              速報を<br />見逃さない！
+            </div>
+          </div>
+        </div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-head">条件変更も<br />すばやくお届け</div>
+          <div class="page-body center">
+            <div class="lead subscribe-copy">
+              申込期限・対象条件・新サービスの変更を分かりやすく解説
+            </div>
+            <div class="youtube-pill">
+              <i class="fa-brands fa-youtube"></i> チャンネル登録
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 12-0 -->
+    <div
+      class="slide-container"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-body center">
+            <div class="divider">
+              <span class="kicker">CHAPTER</span><span class="num">3</span
+              ><span class="seal">FILE No.03</span>
+            </div>
+          </div>
+        </div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-body center">
+            <div class="big-title chapter-title">
+              海外データ通信が<br />毎月最大7日間分<br>無料で使える
+            </div>
+            <div class="lead chapter-lead">海外旅行は「7日以内」が重要</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 13 -->
+    <div
+      class="slide-container"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-head">海外あんしん定額<br />「定額国L」</div>
+          <div class="page-body">
+            <div class="visual overseas-visual">
+              <img
+                src="public/images/common/海外利用のイメージ図.png"
+                alt="海外利用のイメージ"
+              />
+            </div>
+            <div class="note source-note">
+              対象の国・地域は2026年8月7日時点。渡航前に公式サイトで確認
+            </div>
+          </div>
+          <span class="page-no">― 11 ―</span>
+        </div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-head">海外データ無制限</div>
+          <div class="page-body center travel-overview">
+            <div class="emph">
+              <span class="big">200以上</span><br />の国・地域が対象
+            </div>
+            <ul class="rows">
+              <li>
+                <span class="badge">1</span>
+                <div class="tx">
+                  1日間〜31日間から日数を選ぶ<span class="sub"
+                    >旅行先に合わせて選択</span
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+          <span class="page-no">― 12 ―</span>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 14 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-head">毎月の無料枠</div>
+          <div class="page-body center benefit-page">
+            <div class="emph trip-value">
+              <span class="big">最大7日間</span><br />6,860円分が追加料金なし
+            </div>
+            <div class="bigicon plane-icon">
+              <i class="fa-solid fa-plane-departure"></i>
+            </div>
+            <div class="lead centered-lead">
+              約1週間の旅行なら<br />データ通信料0円の計算
+            </div>
+          </div>
+          <span class="page-no">― 13 ―</span>
+        </div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-head">利用前に必要なこと</div>
+          <div class="page-body conditions-page">
+            <ul class="rows">
+              <li>
+                <span class="badge">1</span>
+                <div class="tx">
+                  「世界対応ケータイ」へ加入<span class="sub"
+                    >渡航前に設定</span
+                  >
+                </div>
+              </li>
+              <li>
+                <span class="badge">2</span>
+                <div class="tx">
+                  専用ウェブサイトから利用開始の手続き<span class="sub"
+                    >専用サイトで利用開始</span
+                  >
+                </div>
+              </li>
+            </ul>
+            <div class="warn">
+              <span class="ic"><i class="fa-solid fa-phone-slash"></i></span
+              >海外での音声通話・SMS・国際SMSは対象外
+            </div>
+          </div>
+          <span class="page-no">― 14 ―</span>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 15 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-head">9月〜冬は選び方に注意</div>
+          <div class="page-body center">
+            <table class="sheet travel-table">
+              <thead>
+                <tr>
+                  <th>選ぶプラン</th>
+                  <th>割引</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1〜7日間<br /><span class="sub">980〜6,860円</span></td>
+                  <td class="em">対象</td>
+                </tr>
+                <tr>
+                  <td>
+                    8〜31日間<br /><span class="sub">7,840〜30,380円</span>
+                  </td>
+                  <td>対象外</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="warn autumn-trap">
+              <span class="ic"
+                ><i class="fa-solid fa-triangle-exclamation"></i></span
+              >秋は<span class="em">7日以内</span>を選ぶ
+            </div>
+          </div>
+          <span class="page-no">― 15 ―</span>
+        </div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-head">冬以降 ＋ 速度ルール</div>
+          <div class="page-body center speed-page">
+            <div class="lead winter-all">
+              冬以降：1〜31日間の全プランで<br /><span class="em"
+                >最大7日間分が無料</span
+              >
+            </div>
+            <div class="emph speed-box">
+              <span class="big">24時間で10GB</span
+              ><br />超過後は次の区切りまで最大4.5Mbps
+            </div>
+            <div class="note speed-note">
+              4.5Mbpsは地図・SNS・標準画質動画の利用が目安
+            </div>
+          </div>
+          <span class="page-no">― 16 ―</span>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 16-0 -->
+    <div
+      class="slide-container"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-body center">
+            <div class="divider">
+              <span class="kicker">CHAPTER</span><span class="num">4</span
+              ><span class="seal">FILE No.04</span>
+            </div>
+          </div>
+        </div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-body center">
+            <div class="big-title chapter-title">LINEMOを<br />図鑑で評価</div>
+            <div class="lead chapter-lead">6観点で強みと注意点をチェック</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 17-0 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left plan-page">
+          <div class="head-left plan-head">
+            <img
+              class="logo"
+              src="public/images/logo/LINEMO_logo.png"
+              alt="LINEMO"
+            /><span class="file-no">LINEMO</span>
+          </div>
+          <div class="visual plan-chart">
+            <img
+              src="public/images/charts/LINEMO.png"
+              alt="LINEMOレーダーチャート"
+            />
+          </div>
+          <span class="page-no">― 17 ―</span>
+        </div>
+        <div class="page right plan-page">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-head">LINEMOの料金プラン</div>
+          <div class="page-body center plan-body">
+            <table class="sheet linemo-plan-table">
+              <thead>
+                <tr>
+                  <th>プラン</th>
+                  <th>データ容量</th>
+                  <th>月額</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td rowspan="2">LINEMO<br />ベストプラン</td>
+                  <td>3GBまで</td>
+                  <td class="em">990円</td>
+                </tr>
+                <tr>
+                  <td>10GBまで</td>
+                  <td class="em">2,090円</td>
+                </tr>
+                <tr>
+                  <td>LINEMO<br />ベストプランV</td>
+                  <td>30GB</td>
+                  <td class="em">2,970円</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="lead plan-lead">
+              小容量から30GBまで<br />使い方に合わせて選べる
+            </div>
+          </div>
+          <span class="page-no">― 18 ―</span>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 17 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left eval-page eval-detail-page">
+          <div class="head-left eval-head">
+            <img
+              class="logo"
+              src="public/images/logo/LINEMO_logo.png"
+              alt="LINEMO"
+            />
+            <div class="total">
+              <div class="label">総合評価</div>
+              <div class="grade">A</div>
+            </div>
+          </div>
+          <div class="cards three-cards">
+            <div class="card eval-card">
+              <div class="rank S">S</div>
+              <div class="card-name">データ料金</div>
+              <div class="line pro">
+                <span class="tag">＋</span
+                >3GBで990円、30GBで2,970円は格安SIMと比較しても十分に安い。
               </div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 128 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 63 -->
-  <div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="head-left"><img class="logo" src="public/images/logo/iijmio_logo.png" alt="IIJmio"></div>
-        <div class="visual" style="height:auto;flex:1;"><img src="public/images/charts/IIJmio.png"
-            style="max-height:760px;max-width:100%;"></div><span class="page-no">― 129 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">6項目評価</div>
-        <div class="cards">
-          <div class="card">
-            <div class="rank SS">SS</div>
-            <div class="card-name">データ料金</div>
-            <div class="line">業界トップ級</div>
+              <div class="line con">
+                <span class="tag">－</span
+                >データ繰越に対応しておらず、余ったデータは翌月に持ち越せない
+              </div>
+            </div>
+            <div class="card eval-card">
+              <div class="rank SS">SS</div>
+              <div class="card-name">通信品質</div>
+              <div class="line pro">
+                <span class="tag">＋</span
+                >ソフトバンクの回線で、お昼の混雑する時間帯でも速度が落ちにくい
+              </div>
+              <div class="line con"><span class="tag">－</span>特になし</div>
+            </div>
+            <div class="card eval-card">
+              <div class="rank C">C</div>
+              <div class="card-name">初期費用</div>
+              <div class="line pro">
+                <span class="tag">＋</span
+                >乗り換えキャンペーンで安くなることもある
+              </div>
+              <div class="line con">
+                <span class="tag">－</span>初期費用の合計が3,850円かかる
+              </div>
+            </div>
           </div>
-          <div class="card">
-            <div class="rank B">B</div>
-            <div class="card-name">通信品質</div>
-            <div class="line">標準的</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">初期費用</div>
-            <div class="line">良好</div>
-          </div>
-          <div class="card">
-            <div class="rank S">S</div>
-            <div class="card-name">通話料</div>
-            <div class="line">かなり優秀</div>
-          </div>
-          <div class="card">
-            <div class="rank B">B</div>
-            <div class="card-name">店舗サポート</div>
-            <div class="line">標準的</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">オプション</div>
-            <div class="line">良好</div>
-          </div>
+          <span class="page-no">― 19 ―</span>
         </div>
-        <div class="note" style="margin-top:6px;">代表プラン：ギガプラン 5GB 950円・10GB 1,400円</div><span class="page-no">― 130
-          ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 64 -->
-  <div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="visual" style="flex-direction:column;"><img
-            src="public/images/thumbnails/IIJmioって実際どうなの？元ユーザーが教える「損しない契約方法」と「お昼の速度」の真実.png"
-            style="max-height:330px;margin:10px 0;"></div><span class="page-no">― 131 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="bigicon" style="font-size:150px;"><i class="fa-solid fa-circle-play"></i></div>
-          <div class="big-title" style="font-size:64px;">この動画も<br><span class="em">チェック！</span></div>
-          <div class="note" style="text-align:center;">IIJmioって実際どうなの？元ユーザーが教える「損しない契約方法</div>
-        </div><span class="page-no">― 132 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 65 -->
-  <div class="slide-container" style="--brand:#1565C0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">IIJmio おすすめプラン</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">ギガプラン音声SIM 5GB 月額950円（税込）</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">10GB 月額1,400円（税込）</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">ドコモ回線・au回線が選べる</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 133 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">最低限のオプションもあり老舗の安心感</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">合計初期費用約3,733円</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 134 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 65-2 -->
-  <div class="slide-container" style="--brand:#333333;--brand-deep:#111111;--brand-soft:#eeeeee">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="visual" style="flex-direction:column;"><img
-            src="public/images/thumbnails/【2026年最新】JALモバイル2種類を徹底比較！「JALモバイル powered by ahamo」が提供開始_サムネ1.png"
-            style="max-height:620px;margin:10px 0;"></div><span class="page-no">― 135 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="bigicon" style="font-size:150px;"><i class="fa-solid fa-circle-play"></i></div>
-          <div class="big-title" style="font-size:64px;">この動画も<br><span class="em">チェック！</span></div>
-          <div class="note" style="text-align:center;">【2026年最新】JALモバイル2種類を徹底比較！「JALモバイル powered by ahamo</div>
-        </div><span class="page-no">― 136 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 65-3 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">mineo（パケット放題）</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">ソフトバンク回線を使いたい(eSIMは選べない)</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">残りデータ量を気にしたくない人向け</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 137 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">マイピタ3GB 1,298円＋パケット放題3Mbps 385円<br>＝月額1,683円（税込）で実質使い放題<br>（最大3Mbps）</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">ドコモ・au・ソフトバンクの3回線から選択可</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 138 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 66-0 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="divider">
-          <div class="kicker">CHAPTER</div>
-          <div class="num">10</div>
-          <div class="seal">FILE No.10</div>
-        </div>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="big-title">コスパ×<br>ヘビーユーザールート</div>
+        <div class="page right eval-page eval-detail-page">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="cards three-cards">
+            <div class="card eval-card">
+              <div class="rank B">B</div>
+              <div class="card-name">通話料</div>
+              <div class="line pro">
+                <span class="tag">＋</span
+                >LINEMOベストプランVは5分以内の通話無料が込み
+              </div>
+              <div class="line con">
+                <span class="tag">－</span
+                >LINEMOベストプランは無料通話が付かず、かけ放題オプションは別料金
+              </div>
+            </div>
+            <div class="card eval-card">
+              <div class="rank A">A</div>
+              <div class="card-name">店舗サポート</div>
+              <div class="line pro">
+                <span class="tag">＋</span
+                >店頭スマホサポートでお店でも相談できる
+              </div>
+              <div class="line con">
+                <span class="tag">－</span>有料で割高、基本はオンライン中心
+              </div>
+            </div>
+            <div class="card eval-card">
+              <div class="rank A">A</div>
+              <div class="card-name">オプション</div>
+              <div class="line pro">
+                <span class="tag">＋</span
+                >LINEギガフリーが便利で、9月からは衛星通信と海外データ通信も追加料金なし
+              </div>
+              <div class="line con">
+                <span class="tag">－</span
+                >留守番電話や割込通話などの基本オプションは有料
+              </div>
+            </div>
+          </div>
+          <div class="note eval-note">
+            ※本評価は当チャンネルの独断と偏見による独自評価であり、キャンペーン割引等は考慮していません
+          </div>
+          <span class="page-no">― 20 ―</span>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Slide ID: 67 -->
-  <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">Q7-6：ヘビー×用途</div>
-        <div class="page-body center">
-          <div class="emph"><span style="font-size:42px;">20GB超〜50GBのヘビーユーザーは</span><br><span class="big"
-              style="font-size:68px;">用途で3分岐</span></div>
-        </div><span class="page-no">― 141 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-hashtag"></i></span>
-              <div class="tx">SNSヘビー→<span class="em">NUROモバイル</span><span class="sub">NEOプラン</span></div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-phone"></i></span>
-              <div class="tx">通話が多い→<span class="em">日本通信SIM</span><span class="sub">合理的50GBプラン</span></div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-gauge"></i></span>
-              <div class="tx">ドコモ以外＋速度妥協OK→<span class="em">mineo</span><span class="sub">マイピタ・マイそく</span></div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 142 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 68 -->
-  <div class="slide-container" style="--brand:#ED6C00;--brand-deep:#b34f00;--brand-soft:#ffeed9">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="head-left"><img class="logo" src="public/images/logo/nuromobile_logo.png" alt="NUROモバイル"></div>
-        <div class="visual" style="height:auto;flex:1;"><img src="public/images/charts/NUROモバイル.png"
-            style="max-height:760px;max-width:100%;"></div><span class="page-no">― 143 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">6項目評価</div>
-        <div class="cards">
-          <div class="card">
-            <div class="rank SS">SS</div>
-            <div class="card-name">データ料金</div>
-            <div class="line">業界トップ級</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">通信品質</div>
-            <div class="line">良好</div>
-          </div>
-          <div class="card">
-            <div class="rank A">A</div>
-            <div class="card-name">初期費用</div>
-            <div class="line">良好</div>
-          </div>
-          <div class="card">
-            <div class="rank S">S</div>
-            <div class="card-name">通話料</div>
-            <div class="line">かなり優秀</div>
-          </div>
-          <div class="card">
-            <div class="rank C">C</div>
-            <div class="card-name">店舗サポート</div>
-            <div class="line">やや弱い</div>
-          </div>
-          <div class="card">
-            <div class="rank S">S</div>
-            <div class="card-name">オプション</div>
-            <div class="line">かなり優秀</div>
+    <!-- Slide ID: 17-5 -->
+    <div
+      class="slide-container"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="visual cta-visual">
+            <img
+              src="public/images/thumbnails/LINE使い放題で月990円！LINEMO(ラインモ)のメリット・デメリットを徹底解説【ahamo・povo・楽天モバイル比較】.png"
+              alt="LINEMOの過去動画サムネイル"
+            />
           </div>
         </div>
-        <div class="note" style="margin-top:6px;">代表プラン：NEOプラン 35GB(40GB) 2,699円（SNSカウントフリー）</div><span
-          class="page-no">― 144 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 69 -->
-  <div class="slide-container" style="--brand:#ED6C00;--brand-deep:#b34f00;--brand-soft:#ffeed9">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="visual" style="flex-direction:column;"><img
-            src="public/images/thumbnails/【月額792円〜】SNS使い放題＆初期費用実質0円！NUROモバイルのメリット6選を徹底解説.png"
-            style="max-height:620px;margin:10px 0;"></div><span class="page-no">― 145 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="bigicon" style="font-size:150px;"><i class="fa-solid fa-circle-play"></i></div>
-          <div class="big-title" style="font-size:64px;">この動画も<br><span class="em">チェック！</span></div>
-          <div class="note" style="text-align:center;">【月額792円〜】SNS使い放題＆初期費用実質0円！NUROモバイルのメリット6選を徹底解説</div>
-        </div><span class="page-no">― 146 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 70 -->
-  <div class="slide-container" style="--brand:#ED6C00;--brand-deep:#b34f00;--brand-soft:#ffeed9">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head" style="font-size:48px;">NUROモバイル おすすめプラン</div>
-        <div class="page-body center">
-          <div class="emph">NEOプラン<br>35GB <br>月額<span class="big" style="font-size:80px;">2,699円</span>（税込）</div>
-          <div class="note">Gigaプラスで3カ月ごとに15GB追加→実質40GB使える計算</div>
-        </div><span class="page-no">― 147 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-head">NEOデータフリー</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-hashtag"></i></span>
-              <div class="tx">LINE・X・Instagram・TikTokが<span class="em">カウントフリー</span></div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-thumbs-up"></i></span>
-              <div class="tx">SNSでデータが減らない＝<span class="em">実質さらに大容量</span></div>
-            </li>
-          </ul>
-          <div class="lead tight">SNSヘビーユーザーには<span class="em">最強の選択肢</span></div>
-        </div><span class="page-no">― 148 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 71 -->
-  <div class="slide-container" style="--brand:#003399;--brand-deep:#00205e;--brand-soft:#e3ebf7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">日本通信SIM ヘビー向け</div>
-        <div class="page-body center">
-          <div class="emph">合理的50GBプラン<br>50GB <br>月額<span class="big" style="font-size:80px;">2,178円</span>（税込）</div>
-        </div><span class="page-no">― 149 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-phone"></i></span>
-              <div class="tx">5分かけ放題 or <span style="white-space:nowrap">月70分</span>無料通話込み</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-yen-sign"></i></span>
-              <div class="tx">50GBで2,000円台前半は<span class="em">超破格</span></div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 150 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 72 -->
-  <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head">mineo ヘビーユーザー向け<br>運用</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">マイピタ3GB＋パケット放題3Mbps 月額1,683円（税込）</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">マイそくライト 月額660円(300kbps)（税込）</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">マイそくスタンダード 月額990円(1.5Mbps)（税込）</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 151 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">au・ソフトバンク回線も選べる</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-circle-check"></i></span>
-              <div class="tx">月-金12-13時は速度制限あり</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 152 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 73-0 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="divider">
-          <div class="kicker">CHAPTER</div>
-          <div class="num">11</div>
-          <div class="seal">FILE No.11</div>
-        </div>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="big-title">まとめ</div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-body center">
+            <div class="bigicon cta-play">
+              <i class="fa-solid fa-circle-play"></i>
+            </div>
+            <div class="big-title cta-title">
+              LINEMOの<br />詳しい特徴も解説
+            </div>
+            <div class="lead centered-lead">
+              メリット・デメリットは<br />過去動画もチェック！
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Slide ID: 74 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-body center">
-          <div class="emph"><span style="font-size:48px;">たった</span><span class="big">3〜5問</span><span
-              style="font-size:48px;">で</span><br><span style="font-size:48px;">15種類から</span><span class="em"
-              style="font-size:60px;">ぴったりの1枚</span><br><span style="font-size:48px;">が見つかる</span></div>
-        </div><span class="page-no">― 155 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="big-title" style="font-size:88px;">完全診断<br>チャート</div>
-          <div class="lead" style="text-align:center;">気になる質問のチャプターから<span class="em">見返してOK！</span></div>
-        </div><span class="page-no">― 156 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 75 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-body center">
-          <div class="emph"><span style="font-size:44px;">固定費の削減は</span><br>まず<span class="big">80点</span><span
-              style="font-size:48px;">でOK</span></div>
-          <div class="lead">この診断チャートで1枚選べば<span class="em">きっと約80点</span>は取れる</div>
-        </div><span class="page-no">― 157 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <div class="lead">90〜100点を目指すなら<span class="em">デュアルSIM運用</span>にチャレンジ</div>
-          <div style="display:flex;align-items:center;justify-content:center;flex:1;"><img
-              src="public/images/irasutoya/smartphone_nidaimochi_man.png"
-              style="max-height:340px;max-width:75%;object-fit:contain;"></div>
-        </div><span class="page-no">― 158 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 75-2 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="visual" style="flex-direction:column;"><img
-            src="public/images/thumbnails/【2026年最新】最強の2枚持ちおすすめ格安SIM組み合わせ3選！_サムネ2.png"
-            style="max-height:620px;margin:10px 0;"></div><span class="page-no">― 159 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="bigicon" style="font-size:150px;"><i class="fa-solid fa-circle-play"></i></div>
-          <div class="big-title" style="font-size:64px;">この動画も<br><span class="em">チェック！</span></div>
-          <div class="note" style="text-align:center;">【2026年最新】最強の2枚持ちおすすめ格安SIM組み合わせ3選！</div>
-        </div><span class="page-no">― 160 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 76 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-body center">
-          <div class="bigicon" style="font-size:170px;"><i class="fa-solid fa-comments"></i></div>
-          <div class="lead">実際に相談を受けた時も<span class="em">この診断チャートの流れ</span>で質問しておすすめしている</div>
-        </div><span class="page-no">― 161 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="emph">残念ながら<br><span class="em" style="font-size:60px;">万人に適した<br>格安SIMはない</span></div>
-          <div class="lead">診断チャートで<span class="em">自分に合った1枚</span>を見つけてほしい</div>
-        </div><span class="page-no">― 162 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 77 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-body center">
-          <div class="bigicon" style="font-size:180px;"><i class="fa-solid fa-link"></i></div>
-          <div class="big-title" style="font-size:76px;">申し込みは<br>概要欄から</div>
-        </div><span class="page-no">― 163 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="lead">Amazonで<span class="em">エントリーパッケージ</span>を買えば事務手数料3,000円超を節約できるSIMもあり</div>
-          <div class="note">各社のホームページ・申し込みリンクは概要欄に全て掲載</div>
-        </div><span class="page-no">― 164 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 78 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-head" style="font-size:52px;">コメント欄で待ってます！</div>
-        <div class="page-body">
-          <ul class="rows">
-            <li><span class="ic"><i class="fa-solid fa-comment"></i></span>
-              <div class="tx">「今はこの<span style="white-space:nowrap">格安SIM</span>を使ってるよ」</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-comment"></i></span>
-              <div class="tx">「こういう場合はどれを選べばいい？」</div>
-            </li>
-            <li><span class="ic"><i class="fa-solid fa-comment"></i></span>
-              <div class="tx">「これに乗り換えることにした」</div>
-            </li>
-          </ul>
-        </div><span class="page-no">― 165 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="lead" style="text-align:center;">気軽に書き込んでもらえると<span class="em">嬉しいです！</span></div>
-          <div style="display:flex;align-items:center;justify-content:center;"><img
-              src="public/images/irasutoya/smartphone_talk08_woman.png"
-              style="max-height:340px;max-width:70%;object-fit:contain;"></div>
-        </div><span class="page-no">― 166 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 79 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-body center">
-          <div class="bigicon"><i class="fa-solid fa-circle-info"></i></div>
-          <div class="big-title" style="font-size:88px;">ご注意</div>
-        </div><span class="page-no">― 167 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="warn"><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span>料金プラン・キャンペーン情報は<span
-              class="em">動画投稿時点</span>のもの</div>
-          <div class="lead">申し込む際は必ず<span class="em">公式サイトの最新情報</span>をチェック</div>
-        </div><span class="page-no">― 168 ―</span>
-      </div>
-    </div>
-  </div>
-  <!-- Slide ID: 80 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-body center">
-          <div class="bigicon"><i class="fa-solid fa-pen-nib"></i></div>
-          <div class="big-title" style="font-size:76px;">note・ブログでも<br>解説中！</div>
-        </div><span class="page-no">― 169 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body">
-          <div style="display:flex;justify-content:center;"><img src="public/images/common/ブログ_ヘッダー画像_スライド用.png"
-              style="max-height:600px;width:auto;max-width:100%;object-fit:contain;border-radius:18px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.2));">
+    <!-- Slide ID: 18-0 -->
+    <div
+      class="slide-container"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-body center">
+            <div class="divider">
+              <span class="kicker">CHAPTER</span><span class="num">5</span
+              ><span class="seal">FILE No.05</span>
+            </div>
           </div>
-          <div class="lead">テキストでゆっくり確認したい方は<span class="em">概要欄のリンク</span>から遊びにきてね</div>
-        </div><span class="page-no">― 170 ―</span>
+        </div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-body center">
+            <div class="big-title chapter-title">まとめ</div>
+            <div class="lead chapter-lead">得する人と、今やるべき2つ</div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <!-- Slide ID: 81 -->
-  <div class="slide-container" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-    <div class="book">
-      <div class="spine"></div>
-      <div class="page left">
-        <div class="page-body center">
-          <div class="bigicon"><i class="fa-solid fa-bell"></i></div>
-          <div class="big-title" style="font-size:76px;">チャンネル登録<br>よろしく<br>お願いします！</div>
-        </div><span class="page-no">― 171 ―</span>
-      </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
-        <div class="page-body center">
-          <div class="logos" style="font-size:120px;color:var(--brand);"><i class="fa-solid fa-thumbs-up"></i><i
-              class="fa-solid fa-bell"></i></div>
-          <div class="lead" style="text-align:center;">ご視聴いただき<br>ありがとうございました！</div>
-          <div class="note" style="text-align:center;">スマホ代の節約情報を毎週発信中！</div>
-        </div><span class="page-no">― 172 ―</span>
+    <!-- Slide ID: 19 -->
+    <div
+      class="slide-container"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-head">今回の拡充で得をする人</div>
+          <div class="page-body compact-rows">
+            <ul class="rows">
+              <li>
+                <span class="badge">1</span>
+                <div class="tx">
+                  LINEMOの対象2プランを利用中<span class="sub"
+                    >いまの契約のまま対象</span
+                  >
+                </div>
+              </li>
+              <li>
+                <span class="badge">2</span>
+                <div class="tx">
+                  キャンプ・登山・釣りに行く<span class="sub"
+                    >圏外でのメッセージが保険に</span
+                  >
+                </div>
+              </li>
+              <li>
+                <span class="badge">3</span>
+                <div class="tx">
+                  年1〜2回、海外へ行く<span class="sub"
+                    >毎月最大7日間分が無料</span
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+          <span class="page-no">― 21 ―</span>
+        </div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-head">急いで乗り換えなくていい人</div>
+          <div class="page-body center who-page">
+            <div class="bigicon home-icon">
+              <i class="fa-solid fa-house-signal"></i>
+            </div>
+            <div class="lead centered-lead">
+              自宅や職場のWi-Fi中心で、海外にも行かない人
+            </div>
+            <div class="emph insurance-box">
+              衛星通信は<span class="big">もしもの保険</span
+              ><br />これ目当てで慌てなくてOK
+            </div>
+          </div>
+          <span class="page-no">― 22 ―</span>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-
+    <!-- Slide ID: 20 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-head">
+            衛星との直接通信<small>各社の開始時期</small>
+          </div>
+          <div class="page-body center">
+            <div class="timeline">
+              <div class="timeline-item done">
+                <span>2025年4月</span><b>au</b>
+              </div>
+              <div class="timeline-arrow">
+                <i class="fa-solid fa-arrow-down"></i>
+              </div>
+              <div class="timeline-item done">
+                <span>2026年4月</span><b>ソフトバンク・ドコモ</b>
+              </div>
+              <div class="timeline-arrow">
+                <i class="fa-solid fa-arrow-down"></i>
+              </div>
+              <div class="timeline-item future">
+                <span>2026年内予定</span><b>楽天モバイル</b>
+              </div>
+            </div>
+          </div>
+          <span class="page-no">― 23 ―</span>
+        </div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-head">LINEMOの強み</div>
+          <div class="page-body center linemo-strength">
+            <img
+              class="feature-logo large"
+              src="public/images/logo/LINEMO_logo.png"
+              alt="LINEMO"
+            />
+            <div class="emph low-price">
+              <span class="big">月990円〜</span><br />衛星通信が追加料金なし
+            </div>
+            <div class="lead centered-lead">
+              衛星通信そのものは<br />LINEMOだけの機能ではない
+            </div>
+          </div>
+          <span class="page-no">― 24 ―</span>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 21 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-head">今日のまとめ<small>①②</small></div>
+          <div class="page-body compact-rows">
+            <ul class="rows">
+              <li>
+                <span class="badge">1</span>
+                <div class="tx">
+                  9月1日からLINEMOベストプラン・ベストプランVが月額料金そのままで拡充<span
+                    class="sub"
+                    >既存ユーザーにも適用</span
+                  >
+                </div>
+              </li>
+              <li>
+                <span class="badge">2</span>
+                <div class="tx">
+                  衛星通信は9月〜冬は申し込みが必要（月額1,650円を全額割引）<span
+                    class="sub"
+                    >冬以降は申し込み不要</span
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+          <span class="page-no">― 25 ―</span>
+        </div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-head">まとめ③・結論</div>
+          <div class="page-body summary-page">
+            <ul class="rows">
+              <li>
+                <span class="badge">3</span>
+                <div class="tx">
+                  海外は毎月最大7日間分が追加料金なし。冬までは7日間以内のプランを選ぶこと<span
+                    class="sub"
+                    >冬以降は全プラン毎月最大7日間分追加料金なし</span
+                  >
+                </div>
+              </li>
+            </ul>
+            <div class="emph final-actions">
+              今やることは<span class="big">2つ</span
+              ><br />①衛星の申込　②海外は7日以内
+            </div>
+          </div>
+          <span class="page-no">― 26 ―</span>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 22 -->
+    <div
+      class="slide-container"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-body center">
+            <div class="bigicon info-icon">
+              <i class="fa-solid fa-circle-info"></i>
+            </div>
+            <div class="big-title caution-title">ご注意</div>
+          </div>
+        </div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-head">投稿時点の情報です</div>
+          <div class="page-body center">
+            <div class="warn posting-warn">
+              <span class="ic"
+                ><i class="fa-solid fa-triangle-exclamation"></i></span
+              >料金・サービス内容・提供時期・条件は変わる可能性があります
+            </div>
+            <div class="lead official-lead">
+              詳細は<span class="em">LINEMO公式サイト</span
+              >で確認<br />概要欄にリンクがあります
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 23 -->
+    <div
+      class="slide-container"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-head">コメントで教えてね！</div>
+          <div class="page-body">
+            <ul class="rows">
+              <li>
+                <span class="ic"><i class="fa-solid fa-comment-dots"></i></span>
+                <div class="tx">キャンプでいつも圏外</div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-comment-dots"></i></span>
+                <div class="tx">海外でSIMを買うのが面倒</div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-comment-dots"></i></span>
+                <div class="tx">LINEMOを使っています</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-head">ブログ・note</div>
+          <div class="page-body center blog-page">
+            <img
+              class="blog-image"
+              src="public/images/common/ブログ_ヘッダー画像_スライド用.png"
+              alt="ブログ・note"
+            />
+            <div class="lead blog-lead">
+              詳しい格安SIM記事は<br />概要欄リンクからぜひ！
+            </div>
+            <div class="note blog-note">動画とあわせて、じっくり読めます</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 24 -->
+    <div
+      class="slide-container"
+      style="--brand: #06c755; --brand-deep: #008f3c; --brand-soft: #e3f9ec"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
+          <div class="page-body center">
+            <div class="bigicon bell-icon">
+              <i class="fa-solid fa-bell"></i>
+            </div>
+            <div class="big-title final-title">
+              チャンネル登録<br />よろしくお願いします！
+            </div>
+          </div>
+        </div>
+        <div class="page right">
+          <span class="index-tab">格安SIM図鑑</span>
+          <div class="page-body center">
+            <div class="emoji-cta"><span>👍</span><span>🔔</span></div>
+            <div class="lead thanks">
+              ご視聴いただき<br />ありがとうございました！
+            </div>
+            <div class="note final-note">
+              次回も一緒にスマホ代を節約しましょう
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
