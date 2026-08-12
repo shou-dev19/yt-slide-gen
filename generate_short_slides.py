@@ -1,14 +1,115 @@
-<!doctype html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>LINEMOが衛星通信に対応 - Shorts Slides</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&amp;family=Noto+Sans+JP:wght@700;900&amp;display=swap" rel="stylesheet" />
-    <style>
+#!/usr/bin/env python3
+"""Generate the LINEMO satellite-communication short deck from its scenario CSV."""
 
+from __future__ import annotations
+
+import argparse
+import csv
+import html
+from collections import OrderedDict
+from dataclasses import dataclass
+from pathlib import Path
+
+
+WORKDIR = Path("/workspaces/yt-factory/packages/slide-gen")
+DEFAULT_SCENARIO = Path(
+    "/workspaces/yt-factory/packages/scenario-gen/archive/videos/"
+    "41_【2026年9月】LINEMOが月額そのままで衛星通信＆海外無制限！？知らないと損する2つのこと/"
+    "short/【9月1日から】LINEMOが衛星通信に対応.csv"
+)
+DEFAULT_OUTPUT = WORKDIR / "slides-short.html"
+
+LINEMO_LOGO = "public/images/logo/LINEMO_logo.png"
+THUMBNAIL = (
+    "public/images/thumbnails/"
+    "41_【2026年9月】LINEMOが月額そのままで衛星通信＆海外無制限！？今やるべき2つのこと_サムネ1.png"
+)
+ASSETS = {
+    "surprised": "public/images/irasutoya/bikkuri_me_tobideru_man.png",
+    "phone": "public/images/irasutoya/smartphone_talk03_man.png",
+    "happy_phone": "public/images/irasutoya/smartphone04_laugh.png",
+    "warning": "public/images/irasutoya/business_man2_3_surprise.png",
+    "application_check": "public/images/irasutoya/pose_yubisashi_kakunin_businesswoman.png",
+}
+
+
+@dataclass(frozen=True)
+class Slide:
+    slide_id: str
+    raw_content: str
+    parts: tuple[str, ...]
+
+
+def esc(value: str) -> str:
+    return html.escape(value, quote=True)
+
+
+def semantic_lines(value: str, line_end_markers: tuple[str, ...]) -> str:
+    """Escape text and lock its wrapping to intentional phrase boundaries."""
+    lines: list[str] = []
+    remainder = value
+    for marker in line_end_markers:
+        before, separator, after = remainder.partition(marker)
+        if not separator:
+            raise ValueError(f"semantic line marker {marker!r} is missing from {value!r}")
+        lines.append(before + separator)
+        remainder = after
+    lines.append(remainder)
+    if any(not line for line in lines):
+        raise ValueError(f"semantic line split produced an empty line: {value!r}")
+    return "".join(f'<span class="semantic-line">{esc(line)}</span>' for line in lines)
+
+
+def parse_slides(csv_path: Path) -> list[Slide]:
+    """Resolve 同上 and collapse dialogue rows to one display record per slide ID."""
+    grouped: OrderedDict[str, str] = OrderedDict()
+    previous_content = ""
+    with csv_path.open("r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        required = {"スライドに表示する内容", "スライドID"}
+        if not reader.fieldnames or not required.issubset(reader.fieldnames):
+            raise ValueError(f"CSV is missing required columns: {sorted(required)}")
+        for line_number, row in enumerate(reader, start=2):
+            slide_id = (row.get("スライドID") or "").strip()
+            content = (row.get("スライドに表示する内容") or "").strip()
+            if not slide_id:
+                raise ValueError(f"line {line_number}: empty slide ID")
+            if slide_id.endswith("-0"):
+                raise ValueError(f"line {line_number}: N-0 spread ID is not allowed: {slide_id}")
+            if content == "同上":
+                if not previous_content:
+                    raise ValueError(f"line {line_number}: 同上 has no preceding content")
+                content = previous_content
+            else:
+                previous_content = content
+            if slide_id in grouped and grouped[slide_id] != content:
+                raise ValueError(
+                    f"slide {slide_id} has conflicting display content: "
+                    f"{grouped[slide_id]!r} != {content!r}"
+                )
+            grouped.setdefault(slide_id, content)
+
+    slides = [
+        Slide(slide_id=sid, raw_content=content, parts=tuple(content.split("／")))
+        for sid, content in grouped.items()
+    ]
+    expected = [str(number) for number in range(1, len(slides) + 1)]
+    actual = [slide.slide_id for slide in slides]
+    if actual != expected:
+        raise ValueError(f"slide IDs must be consecutive: expected {expected}, got {actual}")
+    if len(slides) != 6:
+        raise ValueError(f"this deck expects 6 unique slide IDs, got {len(slides)}")
+    return slides
+
+
+def assert_assets_exist() -> None:
+    relative_assets = [LINEMO_LOGO, THUMBNAIL, *ASSETS.values()]
+    missing = [path for path in relative_assets if not (WORKDIR / path).is_file()]
+    if missing:
+        raise FileNotFoundError(f"missing assets: {missing}")
+
+
+CSS = r"""
 :root {
   --blue: #0052cc;
   --blue-deep: #003380;
@@ -538,45 +639,63 @@ img {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(8px); }
 }
+"""
 
-    </style>
-  </head>
-  <body>
-    <!-- Slide ID: 1 -->
-    <!-- CSV表示内容: テロップ：LINEMOが月額そのままで衛星通信に対応／2026年9月1日から -->
-    <div class="slide-container slide-thumbnail" data-slide-id="1">
-      <div class="thumb-top-strip">⚡ 2026年9月1日から サービス開始 ⚡</div>
+
+def slide_comment(slide: Slide) -> str:
+    return (
+        f'    <!-- Slide ID: {esc(slide.slide_id)} -->\n'
+        f'    <!-- CSV表示内容: {esc(slide.raw_content)} -->'
+    )
+
+
+def render_slide_1(slide: Slide) -> str:
+    _, date = slide.parts
+    return f"""{slide_comment(slide)}
+    <div class="slide-container slide-thumbnail" data-slide-id="{esc(slide.slide_id)}">
+      <div class="thumb-top-strip">⚡ {esc(date)} サービス開始 ⚡</div>
       <i class="thumb-accent-tri tl"></i><i class="thumb-accent-tri br"></i>
       <div class="thumb-content">
         <div class="thumb-tag">月額そのまま</div>
         <h1 class="thumb-title"><span class="brand-line">LINEMOが</span><span class="impact-line">衛星通信に対応！</span></h1>
         <div class="thumb-sub-band">圏外でもLINEが送れる</div>
       </div>
-      <div class="thumb-logo-wrap"><img src="public/images/logo/LINEMO_logo.png" alt="LINEMO" /></div>
-      <div class="slide-illust thumb-illust" style="z-index: 2;"><img src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="新サービスに驚く人" /></div>
-    </div>
-    <!-- Slide ID: 2 -->
-    <!-- CSV表示内容: ニュース一文／2026年8月7日 ソフトバンクが発表／9月1日からLINEMOベストプラン・LINEMOベストプランVを拡充／月額料金は据え置き・今使っている人にも適用 -->
-    <div class="slide-container news-slide" data-slide-id="2">
-      <div class="watermark">2</div>
+      <div class="thumb-logo-wrap"><img src="{LINEMO_LOGO}" alt="LINEMO" /></div>
+      <div class="slide-illust thumb-illust" style="z-index: 2;"><img src="{ASSETS['surprised']}" alt="新サービスに驚く人" /></div>
+    </div>"""
+
+
+def render_slide_2(slide: Slide) -> str:
+    _, announced, expansion, benefits = slide.parts
+    unchanged, existing = benefits.split("・", 1)
+    start = expansion.split("から", 1)[0]
+    unchanged_subject, unchanged_value = unchanged.split("は", 1)
+    return f"""{slide_comment(slide)}
+    <div class="slide-container news-slide" data-slide-id="{esc(slide.slide_id)}">
+      <div class="watermark">{esc(slide.slide_id)}</div>
       <h2 class="slide-title">9月から<em>サービス拡充</em></h2>
       <div class="slide-body news-body" style="margin-bottom: 120px;">
         <div class="report-header-card">
-          <img src="public/images/logo/LINEMO_logo.png" alt="LINEMO" />
-          <div class="report-copy"><small>NEWS</small>2026年8月7日 ソフトバンクが発表</div>
+          <img src="{LINEMO_LOGO}" alt="LINEMO" />
+          <div class="report-copy"><small>NEWS</small>{esc(announced)}</div>
         </div>
         <div class="plan-ribbon"><span>LINEMOベストプラン</span><span class="plus">＋</span><span>ベストプランV</span></div>
         <div class="news-highlights">
-          <div class="news-highlight"><span>サービス開始</span><strong>9月1日</strong><small>2プラン同時に拡充</small></div>
-          <div class="news-highlight"><span>月額料金は</span><strong>据え置き</strong><small>✓ 今使っている人にも適用</small></div>
+          <div class="news-highlight"><span>サービス開始</span><strong>{esc(start)}</strong><small>2プラン同時に拡充</small></div>
+          <div class="news-highlight"><span>{esc(unchanged_subject)}は</span><strong>{esc(unchanged_value)}</strong><small>✓ {esc(existing)}</small></div>
         </div>
       </div>
-      <div class="slide-illust news-illust" style="z-index: 2;"><img src="public/images/irasutoya/smartphone_talk03_man.png" alt="スマホで発表を見る人" /></div>
-    </div>
-    <!-- Slide ID: 3 -->
-    <!-- CSV表示内容: SoftBank Starlink Directとは／スマホが通信衛星と直接つながる仕組み／専用のアンテナは不要／空が見えていれば圏外でもSMS・プラスメッセージ・LINEでメッセージを送れる -->
-    <div class="slide-container starlink-slide" data-slide-id="3">
-      <div class="watermark">3</div>
+      <div class="slide-illust news-illust" style="z-index: 2;"><img src="{ASSETS['phone']}" alt="スマホで発表を見る人" /></div>
+    </div>"""
+
+
+def render_slide_3(slide: Slide) -> str:
+    _, mechanism, antenna, available = slide.parts
+    mechanism_lines = semantic_lines(mechanism, ("と",))
+    available_lines = semantic_lines(available, ("圏外でも", "LINEで"))
+    return f"""{slide_comment(slide)}
+    <div class="slide-container starlink-slide" data-slide-id="{esc(slide.slide_id)}">
+      <div class="watermark">{esc(slide.slide_id)}</div>
       <h2 class="slide-title"><span class="green">Starlink Direct</span>とは？</h2>
       <div class="slide-body" style="margin-bottom: 120px;">
         <div class="orbit-panel">
@@ -585,53 +704,117 @@ img {
           <div class="orbit-node"><div class="orbit-symbol">📱</div><strong>いつもの<br />スマホ</strong></div>
         </div>
         <div class="feature-grid">
-          <div class="feature-card"><b>📡 専用機器なし</b><p>専用のアンテナは不要</p></div>
-          <div class="feature-card"><b>🌤️ 空が見えれば</b><p><span class="semantic-line">スマホが通信衛星と</span><span class="semantic-line">直接つながる仕組み</span></p></div>
-          <div class="feature-card wide"><b>圏外でもメッセージ</b><p><span class="semantic-line">空が見えていれば圏外でも</span><span class="semantic-line">SMS・プラスメッセージ・LINEで</span><span class="semantic-line">メッセージを送れる</span></p></div>
+          <div class="feature-card"><b>📡 専用機器なし</b><p>{esc(antenna)}</p></div>
+          <div class="feature-card"><b>🌤️ 空が見えれば</b><p>{mechanism_lines}</p></div>
+          <div class="feature-card wide"><b>圏外でもメッセージ</b><p>{available_lines}</p></div>
         </div>
       </div>
-      <div class="slide-illust starlink-illust" style="z-index: 2;"><img src="public/images/irasutoya/smartphone04_laugh.png" alt="衛星通信でメッセージを送る人" /></div>
-    </div>
-    <!-- Slide ID: 4 -->
-    <!-- CSV表示内容: 注意点／音声通話と緊急通報は利用できない／データ通信は一部の対象アプリのみ（LINE・PayPay・災害用伝言板など）／遮へい物のない場所が前提 -->
-    <div class="slide-container limits-slide" data-slide-id="4">
-      <div class="watermark">4</div>
+      <div class="slide-illust starlink-illust" style="z-index: 2;"><img src="{ASSETS['happy_phone']}" alt="衛星通信でメッセージを送る人" /></div>
+    </div>"""
+
+
+def render_slide_4(slide: Slide) -> str:
+    _, no_calls, limited_apps, clear_sky = slide.parts
+    no_calls_lines = semantic_lines(no_calls, ("は",))
+    return f"""{slide_comment(slide)}
+    <div class="slide-container limits-slide" data-slide-id="{esc(slide.slide_id)}">
+      <div class="watermark">{esc(slide.slide_id)}</div>
       <h2 class="slide-title">衛星通信の<em>注意点</em></h2>
       <div class="slide-body limit-body">
-        <div class="limit-card"><span class="limit-mark">×</span><div><strong><span class="semantic-line">音声通話と緊急通報は</span><span class="semantic-line">利用できない</span></strong><p>電話の代わりではありません</p></div></div>
-        <div class="limit-card"><span class="limit-mark">!</span><div><strong>データ通信は対象アプリのみ</strong><p>データ通信は一部の対象アプリのみ（LINE・PayPay・災害用伝言板など）</p></div></div>
-        <div class="limit-card"><span class="limit-mark">☁</span><div><strong>遮へい物のない場所が前提</strong><p>屋内や障害物の近くではつながりにくい</p></div></div>
+        <div class="limit-card"><span class="limit-mark">×</span><div><strong>{no_calls_lines}</strong><p>電話の代わりではありません</p></div></div>
+        <div class="limit-card"><span class="limit-mark">!</span><div><strong>データ通信は対象アプリのみ</strong><p>{esc(limited_apps)}</p></div></div>
+        <div class="limit-card"><span class="limit-mark">☁</span><div><strong>{esc(clear_sky)}</strong><p>屋内や障害物の近くではつながりにくい</p></div></div>
       </div>
       <div class="insurance-note">あくまで「メッセージの保険」</div>
-      <div class="slide-illust limit-illust" style="z-index: 2;"><img src="public/images/irasutoya/business_man2_3_surprise.png" alt="利用条件に驚く人" /></div>
-    </div>
-    <!-- Slide ID: 5 -->
-    <!-- CSV表示内容: 要注意／2026年9月1日〜2026年冬（予定）はオプションの申し込みが必要／月額1,650円を全額割引／2026年冬（予定）以降は申し込み不要になる予定 -->
-    <div class="slide-container warning-slide price-note" data-slide-id="5">
+      <div class="slide-illust limit-illust" style="z-index: 2;"><img src="{ASSETS['warning']}" alt="利用条件に驚く人" /></div>
+    </div>"""
+
+
+def render_slide_5(slide: Slide) -> str:
+    _, period, fee, after_winter = slide.parts
+    period_lines = semantic_lines(period, ("は",))
+    return f"""{slide_comment(slide)}
+    <div class="slide-container warning-slide price-note" data-slide-id="{esc(slide.slide_id)}">
       <div class="warning-banner">⚠ 要注意</div>
       <h2 class="warning-title">開始直後は<em>申し込み必須</em></h2>
       <div class="warning-box">
-        <div class="period-badge"><span class="semantic-line">2026年9月1日〜2026年冬（予定）は</span><span class="semantic-line">オプションの申し込みが必要</span></div>
+        <div class="period-badge">{period_lines}</div>
         <div class="application-flow">
           <div class="flow-card"><span>オプション</span><strong>自分で<br />申し込む</strong></div>
           <div class="flow-arrow">→</div>
           <div class="flow-card green"><span>月額1,650円</span><strong>全額割引<br />実質0円</strong></div>
         </div>
-        <div class="winter-note">❄️ 2026年冬（予定）以降は申し込み不要になる予定</div>
+        <div class="winter-note">❄️ {esc(after_winter)}</div>
       </div>
       <div class="warning-callout">9月に入ったら まず申し込み！</div>
-      <div class="slide-illust warning-illust" style="z-index: 2;"><img src="public/images/irasutoya/pose_yubisashi_kakunin_businesswoman.png" alt="申し込みを確認する人" /></div>
-    </div>
-    <!-- Slide ID: 6 -->
-    <!-- CSV表示内容: 本編で解説／①海外データ通信の落とし穴（冬までは7日間以内のプランを選ぶこと）／②昔のスマホプラン・ミニプランの人はどうなる？／③LINEMOの6項目評価 -->
-    <div class="slide-container cta-slide" data-slide-id="6">
+      <div class="slide-illust warning-illust" style="z-index: 2;"><img src="{ASSETS['application_check']}" alt="申し込みを確認する人" /></div>
+    </div>"""
+
+
+def render_slide_6(slide: Slide) -> str:
+    _, point1, point2, point3 = slide.parts
+    return f"""{slide_comment(slide)}
+    <div class="slide-container cta-slide" data-slide-id="{esc(slide.slide_id)}">
       <div class="cta-content">
-        <div class="cta-logo-card"><img class="cta-logo" src="public/images/logo/LINEMO_logo.png" alt="LINEMO" /></div>
+        <div class="cta-logo-card"><img class="cta-logo" src="{LINEMO_LOGO}" alt="LINEMO" /></div>
         <h2 class="cta-title">本編で解説</h2>
-        <div class="cta-sub"><span>①海外データ通信の落とし穴（冬までは7日間以内のプランを選ぶこと）</span><span>②昔のスマホプラン・ミニプランの人はどうなる？</span><span>③LINEMOの6項目評価</span></div>
-        <img class="cta-banner-img" src="public/images/thumbnails/41_【2026年9月】LINEMOが月額そのままで衛星通信＆海外無制限！？今やるべき2つのこと_サムネ1.png" alt="LINEMOの衛星通信と海外データ通信を解説する本編動画" />
+        <div class="cta-sub"><span>{esc(point1)}</span><span>{esc(point2)}</span><span>{esc(point3)}</span></div>
+        <img class="cta-banner-img" src="{THUMBNAIL}" alt="LINEMOの衛星通信と海外データ通信を解説する本編動画" />
         <div class="cta-arrow">↓</div>
       </div>
-    </div>
+    </div>"""
+
+
+RENDERERS = {
+    "1": render_slide_1,
+    "2": render_slide_2,
+    "3": render_slide_3,
+    "4": render_slide_4,
+    "5": render_slide_5,
+    "6": render_slide_6,
+}
+
+
+def render_document(slides: list[Slide]) -> str:
+    rendered = "\n".join(RENDERERS[slide.slide_id](slide) for slide in slides)
+    return f"""<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LINEMOが衛星通信に対応 - Shorts Slides</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&amp;family=Noto+Sans+JP:wght@700;900&amp;display=swap" rel="stylesheet" />
+    <style>
+{CSS}
+    </style>
+  </head>
+  <body>
+{rendered}
   </body>
 </html>
+"""
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--scenario", type=Path, default=DEFAULT_SCENARIO)
+    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    args = parser.parse_args()
+
+    scenario = args.scenario
+    output = args.output
+    if not scenario.is_absolute() or not output.is_absolute():
+        parser.error("--scenario and --output must be absolute paths")
+    if output.parent != WORKDIR:
+        parser.error(f"output must be directly inside {WORKDIR}")
+
+    assert_assets_exist()
+    slides = parse_slides(scenario)
+    output.write_text(render_document(slides), encoding="utf-8")
+    print(f"generated {len(slides)} slides: {output}")
+
+
+if __name__ == "__main__":
+    main()
