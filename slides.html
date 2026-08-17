@@ -1,166 +1,1481 @@
 <!doctype html>
-<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>【放置は損】無料オプション終了後の自動課金</title>
-<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="templates/spread-base.css">
-<style>
-body{--primary-color:#c8102e;--accent-red:#e53935;--text-dark:#202124}
-.slide-container.std{width:1280px;height:720px;border:10px solid var(--primary-color);background:#fffaf5;box-sizing:border-box;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:42px;color:var(--text-dark)}
-.std-rays{position:absolute;inset:-35%;background:repeating-conic-gradient(from -12deg at 50% 50%,rgba(200,16,46,.11) 0 6deg,transparent 6deg 13deg)}
-.std-ribbon{position:absolute;z-index:4;left:22px;top:28px;background:#e53935;color:#fff;font-size:44px;font-weight:900;padding:10px 38px;transform:rotate(-3deg);box-shadow:0 9px 0 #a92222}
-.std-stamp{position:absolute;z-index:3;right:34px;top:34px;font-size:44px;font-weight:900;letter-spacing:2px;color:#981027;background:#fff;border:5px solid #c8102e;border-radius:18px;padding:9px 18px;box-shadow:0 8px 18px #0002}
-.std-copy{position:relative;z-index:3;width:100%;display:flex;flex-direction:column;align-items:center;text-align:center;margin-top:54px}
-.std-kicker{font-size:48px;font-weight:900;margin-bottom:5px;text-shadow:3px 3px #fff;max-width:1050px;line-height:1.25}
-.std-copy h1{font-size:88px;line-height:1.08;font-weight:900;letter-spacing:-3px;text-shadow:5px 5px #fff;margin:8px 0 20px}
-.std-copy h1 span{color:#e53935;font-size:108px;white-space:nowrap}
-.std-chips{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;max-width:1000px}
-.std-chips b{font-size:44px;background:#fff;border:5px solid #c8102e;border-radius:999px;padding:7px 20px;box-shadow:0 8px 16px #0002}
-.std-hero{position:absolute;z-index:1;right:2px;bottom:-20px;width:260px;height:285px;object-fit:contain;filter:drop-shadow(0 14px 15px #0003)}
-.agenda-four{gap:14px}.agenda-four li{font-size:46px;gap:18px}.agenda-four .num{width:72px;height:72px;font-size:40px}
-.benefit-two{gap:16px}.benefit-two li{font-size:46px}.agenda-answer{padding:18px 24px;font-size:46px}.agenda-answer .big{font-size:74px}
-.chapter-title{font-size:86px}.chapter-lead{font-size:48px;text-align:center;margin-top:24px}
-.centered{text-align:center}.centered-note{text-align:center;font-size:30px}.compact-center{gap:14px}.compact-center .emph,.compact-center .lead,.compact-center .warn{padding:22px 28px}
-.gift-icon,.clock-icon{font-size:160px}.flow-arrow{font-size:62px;color:var(--brand);text-align:center}.flow-warn{text-align:center}
-.compare-page{gap:18px}.compare-page .emph,.compare-page .lead,.compare-page .warn{padding:24px 30px}.status-pill{align-self:center;border-radius:999px;padding:12px 32px;font-size:48px;font-weight:900;color:#fff}.status-pill.zero{background:#2e9e4f}.status-pill.bill{background:#e3603a}
-.target-icon{font-size:175px}.compact-rows .rows{gap:10px}.compact-rows .rows li{padding:16px 22px}.compact-rows .rows .tx{font-size:44px}.compact-rows .rows .tx .sub{font-size:32px}
-.price-page{gap:16px}.price-page .lead{padding:18px 24px}.price-table{font-size:38px}.price-table th,.price-table td{padding:17px 12px}.compact-price{font-size:34px}.compact-price th,.compact-price td{padding:11px 9px}.source-note{font-size:28px;text-align:center}
-.data-page{gap:12px}.equation{display:flex;align-items:center;gap:18px;justify-content:center}.equation>div{background:#fff;border:5px solid var(--brand);border-radius:20px;padding:22px;text-align:center}.equation>div.hot{background:var(--brand-soft)}.equation b{display:block;font-size:52px;color:var(--brand-deep)}.equation span{display:block;font-size:34px}.equation i{font-size:55px;color:var(--brand)}.result-box{padding:20px}.result-box .big{font-size:82px}.data-icon{font-size:130px}.data-page .lead,.data-page .warn{padding:20px 26px}
-.story-page{gap:14px}.story-step{width:100%;display:flex;align-items:center;gap:24px;background:#fff;border:5px solid var(--brand);border-radius:20px;padding:26px}.story-step span{width:72px;height:72px;border-radius:16px;background:var(--brand);color:#fff;font-size:46px;font-weight:900;display:flex;align-items:center;justify-content:center}.story-step b{font-size:46px}.story-step.warn-step{border-color:#f0a020;background:#fff5e6}.phone-icon{font-size:145px}.story-page .lead,.story-page .emph{padding:22px 28px}
-.decision-page{gap:12px}.decision-main{padding:20px}.decision-main .big{font-size:70px}.decision-page .rows{gap:10px}.decision-page .rows li{padding:16px 22px}.decision-page .rows .tx{font-size:42px}.decision-page .rows .tx .sub{font-size:30px}.decision-page .lead{padding:20px 24px}
-.habit-page{gap:16px}.calendar-icon{font-size:160px}.habit-page .emph,.habit-page .lead{padding:22px 28px}.calendar-card{background:#fff;border:6px solid var(--brand);border-radius:22px;overflow:hidden;text-align:center}.calendar-card span{display:block;background:var(--brand);color:#fff;font-size:36px;font-weight:900;padding:10px}.calendar-card b{display:block;font-size:56px;padding:30px;color:var(--brand-deep)}
-.saving-page{gap:16px}.money-flow{display:flex;align-items:center;justify-content:center;gap:22px}.money-flow>div{display:flex;flex-direction:column;align-items:center;gap:10px;background:#fff;border:5px solid var(--brand);border-radius:20px;padding:22px}.money-flow>div i{font-size:92px;color:var(--brand)}.money-flow>div b{font-size:38px}.money-flow>i{font-size:56px;color:var(--brand)}.saving-page .lead,.saving-page .warn,.saving-page .emph{padding:20px 26px}.leak-icon{font-size:130px}
-.bell-icon{font-size:220px}.subscribe-title{font-size:74px}.youtube-pill{font-size:58px;font-weight:900;color:#fff;background:#e62117;padding:24px 42px;border-radius:999px;box-shadow:0 9px 0 #a71610}
-.page-head small{white-space:nowrap}
-.intro-logo{height:115px}.intro-logo .logo{height:68px}.mineo-chart{flex:1;min-height:0}.mineo-chart img{max-height:560px}.mineo-plan-page{gap:14px}.mineo-plan-table{height:auto;flex:1;min-height:0}.mineo-plan-table img{max-height:440px}.mineo-plan-page .lead{padding:18px 22px}
-.eval-page{padding-left:38px;padding-right:38px}.eval-head{height:110px}.eval-head .logo{height:62px}.eval-head .total .grade{font-size:74px}.three-cards{justify-content:space-between;gap:7px;min-height:0}.eval-card{flex:0 0 auto;min-height:0;grid-template-columns:72px 1fr;gap:1px 12px;padding:8px 12px}.eval-page .card .rank{width:64px;height:64px;border-radius:14px;font-size:34px}.eval-page .card-name{font-size:34px}.eval-page .card .line{font-size:30px;line-height:1.08}.eval-note{font-size:28px;text-align:center;margin-top:6px}
-.cta-visual img{max-height:650px}.cta-play{font-size:180px}.cta-title{font-size:72px}
-.japan-logo{height:120px}.japan-logo .logo{height:75px}.japan-page{gap:18px}.japan-page .emph,.japan-page .lead{padding:24px 28px}.japan-table{font-size:36px}.japan-table th,.japan-table td{padding:17px 10px}
-.summary-page{gap:12px}.summary-page .rows{gap:10px}.summary-page .rows li{padding:14px 18px}.summary-page .rows .tx{font-size:39px}.summary-page .rows .tx .sub{font-size:30px}.summary-page .lead{padding:18px 22px}
-.company-note{gap:18px}.text-logos{gap:18px}.text-logos span{background:#fff;border:5px solid var(--brand);border-radius:18px;padding:18px;font-size:43px;font-weight:900}.brand-logos img{height:90px}.company-note .warn,.company-note .lead{padding:24px 28px}
-.info-icon{font-size:230px}.caution-title{font-size:100px}.posting-warn{text-align:center}.comment-icon{font-size:220px}.comment-title{font-size:86px}.comment-page .rows{gap:12px}.comment-page .rows li{padding:18px 22px}.comment-page .rows .tx{font-size:40px}.pen-icon{font-size:220px}.blog-title{font-size:72px}.blog-image{width:100%;height:auto;max-height:320px;object-fit:contain;border-radius:18px;filter:drop-shadow(0 12px 20px #0003)}.blog-page{gap:16px}.blog-page .lead{padding:22px 26px}
-.final-bell{font-size:210px}.final-title{font-size:68px}.emoji-cta{display:flex;gap:70px;justify-content:center}.emoji-cta span{font-size:130px}.thanks{font-size:56px;text-align:center;color:var(--brand-deep)}.final-note{font-size:30px;text-align:center}
-</style>
-</head><body>
-<!-- Slide ID: 1 -->
-<div class="slide-container std price-note"><div class="std-rays"></div><div class="std-ribbon">放置は損</div>
-  <div class="std-stamp"><i class="fa-solid fa-receipt"></i> OPTION CHECK</div>
-  <div class="std-copy"><div class="std-kicker">その「無料オプション」いつの間にか<br>有料になっていませんか？</div><h1>その無料<br><span>有料</span>になってない？</h1>
-    <div class="std-chips"><b>3ヶ月無料</b><b>半年間無料</b><b>自動課金を確認</b></div>
-  </div><img class="std-hero" src="public/images/irasutoya/seikyuusyo_shock.png" alt="請求に驚く人">
-</div><!-- Slide ID: 2 -->
-<div class="slide-container std price-note"><div class="std-rays"></div><div class="std-ribbon">無料期間のあとに注意</div>
-  <div class="std-stamp"><i class="fa-solid fa-receipt"></i> OPTION CHECK</div>
-  <div class="std-copy"><div class="std-kicker">使う？ 外す？ 自分で判断できる</div><h1>毎月<span>500円〜1,980円</span><br>そのまま自動課金</h1>
-    <div class="std-chips"><b>通常料金を知る</b><b>使っているか確認</b><b>ムダ払いを止める</b></div>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>【放置は損】無料オプション終了後の自動課金</title>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="templates/spread-base.css">
+  <style>
+    body {
+      --primary-color: #c8102e;
+      --accent-red: #e53935;
+      --text-dark: #202124
+    }
+
+    .slide-container.std {
+      width: 1280px;
+      height: 720px;
+      border: 10px solid var(--primary-color);
+      background: #fffaf5;
+      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 42px;
+      color: var(--text-dark)
+    }
+
+    .std-rays {
+      position: absolute;
+      inset: -35%;
+      background: repeating-conic-gradient(from -12deg at 50% 50%, rgba(200, 16, 46, .11) 0 6deg, transparent 6deg 13deg)
+    }
+
+    .std-ribbon {
+      position: absolute;
+      z-index: 4;
+      left: 22px;
+      top: 28px;
+      background: #e53935;
+      color: #fff;
+      font-size: 44px;
+      font-weight: 900;
+      padding: 10px 38px;
+      transform: rotate(-3deg);
+      box-shadow: 0 9px 0 #a92222
+    }
+
+    .std-stamp {
+      position: absolute;
+      z-index: 3;
+      right: 34px;
+      top: 34px;
+      font-size: 44px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #981027;
+      background: #fff;
+      border: 5px solid #c8102e;
+      border-radius: 18px;
+      padding: 9px 18px;
+      box-shadow: 0 8px 18px #0002
+    }
+
+    .std-copy {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-top: 54px
+    }
+
+    .std-kicker {
+      font-size: 48px;
+      font-weight: 900;
+      margin-bottom: 5px;
+      text-shadow: 3px 3px #fff;
+      max-width: 1050px;
+      line-height: 1.25
+    }
+
+    .std-copy h1 {
+      font-size: 88px;
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: -3px;
+      text-shadow: 5px 5px #fff;
+      margin: 8px 0 20px
+    }
+
+    .std-copy h1 span {
+      color: #e53935;
+      font-size: 108px;
+      white-space: nowrap
+    }
+
+    .std-chips {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      max-width: 1000px
+    }
+
+    .std-chips b {
+      font-size: 44px;
+      background: #fff;
+      border: 5px solid #c8102e;
+      border-radius: 999px;
+      padding: 7px 20px;
+      box-shadow: 0 8px 16px #0002
+    }
+
+    .std-hero {
+      position: absolute;
+      z-index: 1;
+      right: 2px;
+      bottom: -20px;
+      width: 260px;
+      height: 285px;
+      object-fit: contain;
+      filter: drop-shadow(0 14px 15px #0003)
+    }
+
+    .agenda-four {
+      gap: 14px
+    }
+
+    .agenda-four li {
+      font-size: 46px;
+      gap: 18px
+    }
+
+    .agenda-four .num {
+      width: 72px;
+      height: 72px;
+      font-size: 40px
+    }
+
+    .benefit-two {
+      gap: 16px
+    }
+
+    .benefit-two li {
+      font-size: 46px
+    }
+
+    .agenda-answer {
+      padding: 18px 24px;
+      font-size: 46px
+    }
+
+    .agenda-answer .big {
+      font-size: 74px
+    }
+
+    .chapter-title {
+      font-size: 86px
+    }
+
+    .chapter-lead {
+      font-size: 48px;
+      text-align: center;
+      margin-top: 24px
+    }
+
+    .centered {
+      text-align: center
+    }
+
+    .centered-note {
+      text-align: center;
+      font-size: 30px
+    }
+
+    .compact-center {
+      gap: 14px
+    }
+
+    .compact-center .emph,
+    .compact-center .lead,
+    .compact-center .warn {
+      padding: 22px 28px
+    }
+
+    .gift-icon,
+    .clock-icon {
+      font-size: 160px
+    }
+
+    .flow-arrow {
+      font-size: 62px;
+      color: var(--brand);
+      text-align: center
+    }
+
+    .flow-warn {
+      text-align: center
+    }
+
+    .compare-page {
+      gap: 18px
+    }
+
+    .compare-page .emph,
+    .compare-page .lead,
+    .compare-page .warn {
+      padding: 24px 30px
+    }
+
+    .status-pill {
+      align-self: center;
+      border-radius: 999px;
+      padding: 12px 32px;
+      font-size: 48px;
+      font-weight: 900;
+      color: #fff
+    }
+
+    .status-pill.zero {
+      background: #2e9e4f
+    }
+
+    .status-pill.bill {
+      background: #e3603a
+    }
+
+    .target-icon {
+      font-size: 175px
+    }
+
+    .compact-rows .rows {
+      gap: 10px
+    }
+
+    .compact-rows .rows li {
+      padding: 16px 22px
+    }
+
+    .compact-rows .rows .tx {
+      font-size: 44px
+    }
+
+    .compact-rows .rows .tx .sub {
+      font-size: 32px
+    }
+
+    .price-page {
+      gap: 16px
+    }
+
+    .price-page .lead {
+      padding: 18px 24px
+    }
+
+    .price-table {
+      font-size: 38px
+    }
+
+    .price-table th,
+    .price-table td {
+      padding: 17px 12px
+    }
+
+    .compact-price {
+      font-size: 34px
+    }
+
+    .compact-price th,
+    .compact-price td {
+      padding: 11px 9px
+    }
+
+    .source-note {
+      font-size: 28px;
+      text-align: center
+    }
+
+    .data-page {
+      gap: 12px
+    }
+
+    .equation {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      justify-content: center
+    }
+
+    .equation>div {
+      background: #fff;
+      border: 5px solid var(--brand);
+      border-radius: 20px;
+      padding: 22px;
+      text-align: center
+    }
+
+    .equation>div.hot {
+      background: var(--brand-soft)
+    }
+
+    .equation b {
+      display: block;
+      font-size: 52px;
+      color: var(--brand-deep)
+    }
+
+    .equation span {
+      display: block;
+      font-size: 34px
+    }
+
+    .equation i {
+      font-size: 55px;
+      color: var(--brand)
+    }
+
+    .result-box {
+      padding: 20px
+    }
+
+    .result-box .big {
+      font-size: 82px
+    }
+
+    .data-icon {
+      font-size: 130px
+    }
+
+    .data-page .lead,
+    .data-page .warn {
+      padding: 20px 26px
+    }
+
+    .story-page {
+      gap: 14px
+    }
+
+    .story-step {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      background: #fff;
+      border: 5px solid var(--brand);
+      border-radius: 20px;
+      padding: 26px
+    }
+
+    .story-step span {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      background: var(--brand);
+      color: #fff;
+      font-size: 46px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .story-step b {
+      font-size: 46px
+    }
+
+    .story-step.warn-step {
+      border-color: #f0a020;
+      background: #fff5e6
+    }
+
+    .phone-icon {
+      font-size: 145px
+    }
+
+    .story-page .lead,
+    .story-page .emph {
+      padding: 22px 28px
+    }
+
+    .decision-page {
+      gap: 12px
+    }
+
+    .decision-main {
+      padding: 20px
+    }
+
+    .decision-main .big {
+      font-size: 70px
+    }
+
+    .decision-page .rows {
+      gap: 10px
+    }
+
+    .decision-page .rows li {
+      padding: 16px 22px
+    }
+
+    .decision-page .rows .tx {
+      font-size: 42px
+    }
+
+    .decision-page .rows .tx .sub {
+      font-size: 30px
+    }
+
+    .decision-page .lead {
+      padding: 20px 24px
+    }
+
+    .habit-page {
+      gap: 16px
+    }
+
+    .calendar-icon {
+      font-size: 160px
+    }
+
+    .habit-page .emph,
+    .habit-page .lead {
+      padding: 22px 28px
+    }
+
+    .calendar-card {
+      background: #fff;
+      border: 6px solid var(--brand);
+      border-radius: 22px;
+      overflow: hidden;
+      text-align: center
+    }
+
+    .calendar-card span {
+      display: block;
+      background: var(--brand);
+      color: #fff;
+      font-size: 36px;
+      font-weight: 900;
+      padding: 10px
+    }
+
+    .calendar-card b {
+      display: block;
+      font-size: 56px;
+      padding: 30px;
+      color: var(--brand-deep)
+    }
+
+    .saving-page {
+      gap: 16px
+    }
+
+    .money-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px
+    }
+
+    .money-flow>div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      border: 5px solid var(--brand);
+      border-radius: 20px;
+      padding: 22px
+    }
+
+    .money-flow>div i {
+      font-size: 92px;
+      color: var(--brand)
+    }
+
+    .money-flow>div b {
+      font-size: 38px
+    }
+
+    .money-flow>i {
+      font-size: 56px;
+      color: var(--brand)
+    }
+
+    .saving-page .lead,
+    .saving-page .warn,
+    .saving-page .emph {
+      padding: 20px 26px
+    }
+
+    .leak-icon {
+      font-size: 130px
+    }
+
+    .bell-icon {
+      font-size: 220px
+    }
+
+    .subscribe-title {
+      font-size: 74px
+    }
+
+    .youtube-pill {
+      font-size: 58px;
+      font-weight: 900;
+      color: #fff;
+      background: #e62117;
+      padding: 24px 42px;
+      border-radius: 999px;
+      box-shadow: 0 9px 0 #a71610
+    }
+
+    .page-head small {
+      white-space: nowrap
+    }
+
+    .intro-logo {
+      height: 115px
+    }
+
+    .intro-logo .logo {
+      height: 68px
+    }
+
+    .mineo-chart {
+      flex: 1;
+      min-height: 0
+    }
+
+    .mineo-chart img {
+      max-height: 560px
+    }
+
+    .mineo-plan-page {
+      gap: 14px
+    }
+
+    .mineo-plan-table {
+      height: auto;
+      flex: 1;
+      min-height: 0
+    }
+
+    .mineo-plan-table img {
+      max-height: 440px
+    }
+
+    .mineo-plan-page .lead {
+      padding: 18px 22px
+    }
+
+    .eval-page {
+      padding-left: 38px;
+      padding-right: 38px
+    }
+
+    .eval-head {
+      height: 110px
+    }
+
+    .eval-head .logo {
+      height: 62px
+    }
+
+    .eval-head .total .grade {
+      font-size: 74px
+    }
+
+    .three-cards {
+      justify-content: space-between;
+      gap: 7px;
+      min-height: 0
+    }
+
+    .eval-card {
+      flex: 0 0 auto;
+      min-height: 0;
+      grid-template-columns: 72px 1fr;
+      gap: 1px 12px;
+      padding: 8px 12px
+    }
+
+    .eval-page .card .rank {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      font-size: 34px
+    }
+
+    .eval-page .card-name {
+      font-size: 34px
+    }
+
+    .eval-page .card .line {
+      font-size: 30px;
+      line-height: 1.08
+    }
+
+    .eval-note {
+      font-size: 28px;
+      text-align: center;
+      margin-top: 6px
+    }
+
+    .cta-visual img {
+      max-height: 650px
+    }
+
+    .cta-play {
+      font-size: 180px
+    }
+
+    .cta-title {
+      font-size: 72px
+    }
+
+    .japan-logo {
+      height: 120px
+    }
+
+    .japan-logo .logo {
+      height: 75px
+    }
+
+    .japan-page {
+      gap: 18px
+    }
+
+    .japan-page .emph,
+    .japan-page .lead {
+      padding: 24px 28px
+    }
+
+    .japan-table {
+      font-size: 36px
+    }
+
+    .japan-table th,
+    .japan-table td {
+      padding: 17px 10px
+    }
+
+    .summary-page {
+      gap: 12px
+    }
+
+    .summary-page .rows {
+      gap: 10px
+    }
+
+    .summary-page .rows li {
+      padding: 14px 18px
+    }
+
+    .summary-page .rows .tx {
+      font-size: 39px
+    }
+
+    .summary-page .rows .tx .sub {
+      font-size: 30px
+    }
+
+    .summary-page .lead {
+      padding: 18px 22px
+    }
+
+    .company-note {
+      gap: 18px
+    }
+
+    .text-logos {
+      gap: 18px
+    }
+
+    .text-logos span {
+      background: #fff;
+      border: 5px solid var(--brand);
+      border-radius: 18px;
+      padding: 18px;
+      font-size: 43px;
+      font-weight: 900
+    }
+
+    .brand-logos img {
+      height: 90px
+    }
+
+    .company-note .warn,
+    .company-note .lead {
+      padding: 24px 28px
+    }
+
+    .info-icon {
+      font-size: 230px
+    }
+
+    .caution-title {
+      font-size: 100px
+    }
+
+    .posting-warn {
+      text-align: center
+    }
+
+    .comment-icon {
+      font-size: 220px
+    }
+
+    .comment-title {
+      font-size: 86px
+    }
+
+    .comment-page .rows {
+      gap: 12px
+    }
+
+    .comment-page .rows li {
+      padding: 18px 22px
+    }
+
+    .comment-page .rows .tx {
+      font-size: 40px
+    }
+
+    .pen-icon {
+      font-size: 220px
+    }
+
+    .blog-title {
+      font-size: 72px
+    }
+
+    .blog-image {
+      width: 100%;
+      height: auto;
+      max-height: 320px;
+      object-fit: contain;
+      border-radius: 18px;
+      filter: drop-shadow(0 12px 20px #0003)
+    }
+
+    .blog-page {
+      gap: 16px
+    }
+
+    .blog-page .lead {
+      padding: 22px 26px
+    }
+
+    .final-bell {
+      font-size: 210px
+    }
+
+    .final-title {
+      font-size: 68px
+    }
+
+    .emoji-cta {
+      display: flex;
+      gap: 70px;
+      justify-content: center
+    }
+
+    .emoji-cta span {
+      font-size: 130px
+    }
+
+    .thanks {
+      font-size: 56px;
+      text-align: center;
+      color: var(--brand-deep)
+    }
+
+    .final-note {
+      font-size: 30px;
+      text-align: center
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Slide ID: 1 -->
+  <div class="slide-container std price-note">
+    <div class="std-rays"></div>
+    <div class="std-ribbon">放置は損</div>
+    <div class="std-stamp"><i class="fa-solid fa-receipt"></i> OPTION CHECK</div>
+    <div class="std-copy" style="margin-bottom: 50px;">
+      <h1>その「無料オプション」<br>いつの間にか<br><span>有料</span>になっていませんか？</h1>
+      <div class="std-chips"><b>3ヶ月無料</b><b>半年間無料</b><b>自動課金を確認</b></div>
+    </div><img class="std-hero" src="public/images/irasutoya/seikyuusyo_shock.png" alt="請求に驚く人">
+  </div><!-- Slide ID: 2 -->
+  <div class="slide-container std price-note">
+    <div class="std-rays"></div>
+    <div class="std-ribbon">無料期間のあとに注意</div>
+    <div class="std-stamp"><i class="fa-solid fa-receipt"></i> OPTION CHECK</div>
+    <div class="std-copy">
+      <div class="std-kicker">使う？ 外す？ 自分で判断できる</div>
+      <h1>毎月<span>500円〜1,980円</span><br>そのまま自動課金</h1>
+      <div class="std-chips"><b>通常料金を知る</b><b>使っているか確認</b><b>ムダ払いを止める</b></div>
+    </div>
+  </div><!-- Slide ID: 4 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-head">格安SIM図鑑 もくじ</div>
+        <ol class="agenda agenda-four">
+          <li><span class="num">1</span>その「無料」には終わりがある</li>
+          <li><span class="num">2</span>無料期間が終わると毎月いくら増える？</li>
+          <li><span class="num">3</span>続ける？外す？の判断基準</li>
+          <li><span class="num">4</span>「ずっと無料」という選択肢</li>
+        </ol>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">この動画でわかること</div>
+        <ul class="benefits benefit-two">
+          <li><span class="check">✓</span>無料期間が終わったら毎月いくら増えるかが分かる</li>
+          <li><span class="check">✓</span>続けるか外すかを自分で判断できる</li>
+        </ul>
+        <div class="emph agenda-answer">やることは<span class="big">2つ</span><br>通常料金を知る ＋ 利用状況を確認</div>
+      </div>
+    </div>
+  </div><!-- Slide ID: 5-0 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-body center">
+          <div class="divider"><span class="kicker">CHAPTER</span><span class="num">1</span><span class="seal">FILE
+              No.01</span></div>
+        </div>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-body center">
+          <div class="big-title chapter-title">その「無料」には<br>終わりがある</div>
+          <div class="lead chapter-lead">「無料だから安心」の落とし穴</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- Slide ID: 6 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-head">無料オプションの入口</div>
+        <div class="page-body center compact-center">
+          <div class="bigicon gift-icon"><i class="fa-solid fa-gift"></i></div>
+          <div class="lead centered">申し込み時のキャンペーンで「◯ヶ月無料」の案内</div>
+          <div class="emph">無料だから<br><span class="em">とりあえず付ける</span></div>
+        </div><span class="page-no">― 1 ―</span>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">無料期間が終わると</div>
+        <div class="page-body center compact-center">
+          <div class="bigicon clock-icon"><i class="fa-solid fa-clock"></i></div>
+          <div class="flow-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+          <div class="warn flow-warn"><span class="ic"><i
+                class="fa-solid fa-triangle-exclamation"></i></span>期間が終わった翌月から、通常料金が毎月かかりはじめる</div>
+        </div><span class="page-no">― 2 ―</span>
+      </div>
+    </div>
+  </div><!-- Slide ID: 7 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-head">無料</div>
+        <div class="page-body center compare-page">
+          <div class="status-pill zero"><i class="fa-solid fa-circle-check"></i> 請求</div>
+          <div class="emph"><span class="big">0円</span></div>
+          <div class="lead centered">請求そのものがゼロ</div>
+        </div><span class="page-no">― 3 ―</span>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">実質無料の落とし穴</div>
+        <div class="page-body center compare-page">
+          <div class="status-pill bill"><i class="fa-solid fa-receipt"></i> 請求</div>
+          <div class="emph">請求はいったん発生</div>
+          <div class="warn"><span class="ic"><i class="fa-solid fa-eye-slash"></i></span>有料化しても<br>請求書の見た目は変わりにくい</div>
+        </div><span class="page-no">― 4 ―</span>
+      </div>
+    </div>
+  </div><!-- Slide ID: 8 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-head">対象になる人</div>
+        <div class="page-body center compact-center">
+          <div class="bigicon target-icon"><i class="fa-solid fa-user-check"></i></div>
+          <div class="lead centered"><span class="em">申し込みのときに「無料期間つき」のオプションを付けた人だけ</span></div>
+        </div><span class="page-no">― 5 ―</span>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">まずマイページで確認</div>
+        <div class="page-body compact-rows">
+          <ul class="rows">
+            <li><span class="badge">1</span>
+              <div class="tx">付けたオプション<span class="sub">契約中のサービス一覧を見る</span></div>
+            </li>
+            <li><span class="badge">2</span>
+              <div class="tx">いつ終わるかは申し込んだ日によって人それぞれ<span class="sub">終了日は人によって違う</span></div>
+            </li>
+          </ul>
+          <div class="note centered-note">※何も付けていない人は当てはまりません</div>
+        </div><span class="page-no">― 6 ―</span>
+      </div>
+    </div>
+  </div><!-- Slide ID: 9-0 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-body center">
+          <div class="divider"><span class="kicker">CHAPTER</span><span class="num">2</span><span class="seal">FILE
+              No.02</span></div>
+        </div>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-body center">
+          <div class="big-title chapter-title">無料期間が終わると毎月いくら増える？</div>
+          <div class="lead chapter-lead">通常料金を具体例でチェック</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- Slide ID: 10 -->
+  <div class="slide-container price-note" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-head">通話料金<small>LINEMO</small></div>
+        <div class="page-body center price-page">
+          <table class="sheet price-table">
+            <thead>
+              <tr>
+                <th>オプション</th>
+                <th>月額</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>通話準定額</td>
+                <td class="em">550円</td>
+              </tr>
+              <tr>
+                <td>通話定額</td>
+                <td class="em">1,650円</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="lead centered">無料終了後は<br>毎月の固定費になる</div>
+        </div><span class="page-no">― 7 ―</span>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">通話料金<small>IIJmio・ahamo</small></div>
+        <div class="page-body center price-page">
+          <table class="sheet price-table compact-price">
+            <thead>
+              <tr>
+                <th>会社／オプション</th>
+                <th>月額</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>IIJmio 5分＋</td>
+                <td class="em">500円</td>
+              </tr>
+              <tr>
+                <td>IIJmio 10分＋</td>
+                <td class="em">700円</td>
+              </tr>
+              <tr>
+                <td>IIJmio かけ放題＋</td>
+                <td class="em">1,400円</td>
+              </tr>
+              <tr>
+                <td>ahamo かけ放題</td>
+                <td class="em">1,100円</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="note source-note">※2026年8月時点・各社公式サイトで確認</div>
+        </div><span class="page-no">― 8 ―</span>
+      </div>
+    </div>
+  </div><!-- Slide ID: 11 -->
+  <div class="slide-container price-note" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-head">データ増量系<small>ahamo</small></div>
+        <div class="page-body center data-page">
+          <div class="equation">
+            <div><b>30GB</b><span>月額2,970円</span></div><i class="fa-solid fa-plus"></i>
+            <div class="hot"><b>大盛り</b><span>月額1,980円</span></div>
+          </div>
+          <div class="flow-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+          <div class="emph result-box"><span class="big">110GB</span><br>月額4,950円</div>
+        </div><span class="page-no">― 9 ―</span>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">使い切れないなら<br>見直し</div>
+        <div class="page-body center data-page">
+          <div class="bigicon data-icon"><i class="fa-solid fa-chart-column"></i></div>
+          <div class="lead centered">毎月110GBを使うなら価値あり</div>
+          <div class="warn centered"><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span>使わなければ<span
+              class="em">毎月1,980円</span>がムダに</div>
+          <div class="note source-note">※2026年8月時点・ahamo公式サイトで確認</div>
+        </div><span class="page-no">― 10 ―</span>
+      </div>
+    </div>
+  </div><!-- Slide ID: 12-0 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-body center">
+          <div class="divider"><span class="kicker">CHAPTER</span><span class="num">3</span><span class="seal">FILE
+              No.03</span></div>
+        </div>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-body center">
+          <div class="big-title chapter-title">続ける？外す？の<br>判断基準</div>
+          <div class="lead chapter-lead">高い・安いではなく、使っているか</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- Slide ID: 13 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-head">実はショウも失敗</div>
+        <div class="page-body center story-page">
+          <div class="story-step"><span>1</span><b>かけ放題が6ヶ月無料</b></div>
+          <div class="flow-arrow"><i class="fa-solid fa-arrow-down"></i></div>
+          <div class="story-step warn-step"><span>2</span><b>解約を忘れて2ヶ月課金</b></div>
+        </div><span class="page-no">― 11 ―</span>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">使わないなら価値なし</div>
+        <div class="page-body center story-page">
+          <div class="bigicon phone-icon"><i class="fa-solid fa-phone-slash"></i></div>
+          <div class="lead centered">ほとんど電話をしないので、まったく活かせなかった</div>
+          <div class="emph">詳しい人でも忘れる<br><span class="em">請求額は一度確認</span></div>
+        </div><span class="page-no">― 12 ―</span>
+      </div>
+    </div>
+  </div><!-- Slide ID: 14 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-head">判断は1つだけ</div>
+        <div class="page-body decision-page">
+          <div class="emph decision-main">そのオプションを<br><span class="big">実際に使っている？</span></div>
+          <ul class="rows">
+            <li><span class="badge">✓</span>
+              <div class="tx">使っている → 続ける<span class="sub">払う価値がある</span></div>
+            </li>
+            <li><span class="badge">×</span>
+              <div class="tx">付けただけ → 外す<span class="sub">見直し候補</span></div>
+            </li>
+          </ul>
+        </div><span class="page-no">― 13 ―</span>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">先月の利用実績を見る</div>
+        <div class="page-body decision-page">
+          <ul class="rows">
+            <li><span class="ic"><i class="fa-solid fa-phone"></i></span>
+              <div class="tx">かけ放題<span class="sub">先月どれくらい電話したか</span></div>
+            </li>
+            <li><span class="ic"><i class="fa-solid fa-database"></i></span>
+              <div class="tx">データ増量<span class="sub">先月の使用量が、増やした容量に届いているか</span></div>
+            </li>
+          </ul>
+          <div class="lead centered">高いか安いかではなく<br><span class="em">使っているか</span>で決める</div>
+        </div><span class="page-no">― 14 ―</span>
+      </div>
+    </div>
+  </div><!-- Slide ID: 15 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-head">解約し忘れ防止</div>
+        <div class="page-body center habit-page">
+          <div class="bigicon calendar-icon"><i class="fa-solid fa-calendar-check"></i></div>
+          <div class="emph"><span class="big">申し込んだ日</span><br>すぐカレンダーへ登録</div>
+        </div><span class="page-no">― 15 ―</span>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">予定名はこれだけ</div>
+        <div class="page-body center habit-page">
+          <div class="calendar-card"><span>予定</span><b>オプションを解約する</b></div>
+          <div class="lead centered">無料期間が終わる少し前の日付にしておくと安心</div>
+          <div class="note centered-note">※動画配信サービスなどの「数ヶ月無料」も同じ手が使えます</div>
+        </div><span class="page-no">― 16 ―</span>
+      </div>
+    </div>
+  </div><!-- Slide ID: 16 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-head">節約はスタート</div>
+        <div class="page-body center saving-page">
+          <div class="money-flow">
+            <div><i class="fa-solid fa-mobile-screen-button"></i><b>固定費を下げる</b></div><i
+              class="fa-solid fa-arrow-right"></i>
+            <div><i class="fa-solid fa-piggy-bank"></i><b>貯蓄・新NISA</b></div>
+          </div>
+          <div class="lead centered">浮いたお金を<br>自分と家族のために使う</div>
+        </div><span class="page-no">― 17 ―</span>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">使わないオプションは逆効果</div>
+        <div class="page-body center saving-page">
+          <div class="bigicon leak-icon"><i class="fa-solid fa-wallet"></i></div>
+          <div class="warn centered"><span class="ic"><i
+                class="fa-solid fa-triangle-exclamation"></i></span>使っていないオプションは、その効果を打ち消してしまう</div>
+          <div class="emph">毎月の固定費を<br><span class="em">もう一度チェック</span></div>
+        </div><span class="page-no">― 18 ―</span>
+      </div>
+    </div>
+  </div><!-- Slide ID: 16-2 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-body center">
+          <div class="bigicon bell-icon"><i class="fa-solid fa-bell"></i></div>
+          <div class="big-title subscribe-title">値上げ・改悪の<br>速報を見逃さない</div>
+        </div>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">毎週わかりやすく解説</div>
+        <div class="page-body center">
+          <div class="lead centered">スマホ代を節約する<br>細かいコツもお届け</div>
+          <div class="youtube-pill"><i class="fa-brands fa-youtube"></i> チャンネル登録</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- Slide ID: 17-0 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-body center">
+          <div class="divider"><span class="kicker">CHAPTER</span><span class="num">4</span><span class="seal">FILE
+              No.04</span></div>
+        </div>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-body center">
+          <div class="big-title chapter-title">「ずっと無料」という選択肢</div>
+          <div class="lead chapter-lead">無料期間を気にしない選び方</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- Slide ID: 18-0 -->
+  <div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="head-left intro-logo"><img class="logo" src="public/images/logo/Mineo_logo.png" alt="mineo"></div>
+        <div class="page-body center">
+          <div class="visual mineo-chart"><img class="radar-chart-image" src="public/images/charts/mineo.png"
+              alt="mineo 総合評価レーダーチャート"></div>
+        </div><span class="page-no">― 19 ―</span>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">mineoの料金プラン</div>
+        <div class="page-body center mineo-plan-page">
+          <div class="visual mineo-plan-table"><img src="public/images/temp/mineo/mineo_マイピタ_料金表のみ.png"
+              alt="mineo マイピタ料金表"></div>
+          <div class="lead centered">15GB以上なら<br><span class="em">3Mbps使い放題がずっと無料</span></div>
+        </div><span class="page-no">― 20 ―</span>
+      </div>
+    </div>
+  </div><!-- Slide ID: 18 -->
+  <div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left eval-page">
+        <div class="head-left eval-head"><img class="logo" src="public/images/logo/Mineo_logo.png" alt="mineo">
+          <div class="total">
+            <div class="label">総合評価</div>
+            <div class="grade">S</div>
+          </div>
+        </div>
+        <div class="cards three-cards">
+          <div class="card eval-card">
+            <div class="rank SS">SS</div>
+            <div class="card-name">データ料金</div>
+            <div class="line pro"><span class="tag">＋</span>マイピタ15GB 1,958円・30GB 2,178円で、パケット放題3Mbpsが無料で付いてくる</div>
+            <div class="line con"><span class="tag">－</span>特になし</div>
+          </div>
+          <div class="card eval-card">
+            <div class="rank A">A</div>
+            <div class="card-name">通信品質</div>
+            <div class="line pro"><span class="tag">＋</span>回線をau・ドコモ・ソフトバンクの3つから選べる</div>
+            <div class="line con"><span class="tag">－</span>平日のお昼など、混雑する時間帯は速度が落ちやすい傾向がある</div>
+          </div>
+          <div class="card eval-card">
+            <div class="rank A">A</div>
+            <div class="card-name">初期費用</div>
+            <div class="line pro"><span class="tag">＋</span>当チャンネル限定リンクなら契約事務手数料が無料。2026年10月の改定後も無料のまま</div>
+            <div class="line con"><span class="tag">－</span>通常の申し込みでは契約事務手数料がかかり、2026年10月以降は3,850円に改定される</div>
+          </div>
+        </div><span class="page-no">― 21 ―</span>
+      </div>
+      <div class="page right eval-page"><span class="index-tab">格安SIM図鑑</span>
+        <div class="cards three-cards">
+          <div class="card eval-card">
+            <div class="rank A">A</div>
+            <div class="card-name">通話料</div>
+            <div class="line pro"><span class="tag">＋</span>かけ放題オプションもしっかり用意されている</div>
+            <div class="line con"><span class="tag">－</span>基本料金に無料通話分は含まれておらず、電話をよく使うなら別途オプション料金がかかる</div>
+          </div>
+          <div class="card eval-card">
+            <div class="rank A">A</div>
+            <div class="card-name">店舗サポート</div>
+            <div class="line pro"><span class="tag">＋</span>一部の店舗や、ユーザー同士のコミュニティで相談できる</div>
+            <div class="line con"><span class="tag">－</span>基本はWEB中心</div>
+          </div>
+          <div class="card eval-card">
+            <div class="rank SS">SS</div>
+            <div class="card-name">オプション</div>
+            <div class="line pro"><span class="tag">＋</span>3Mbps使い放題のパケット放題が、15GB以上のプランに無料で付いてくる＝何ヶ月だけではなく、ずっと無料</div>
+            <div class="line con"><span class="tag">－</span>特になし</div>
+          </div>
+        </div>
+        <div class="note eval-note">※本評価は当チャンネルの独断と偏見による独自評価であり、キャンペーン割引等は考慮していません</div><span class="page-no">― 22
+          ―</span>
+      </div>
+    </div>
+  </div><!-- Slide ID: 18-5 -->
+  <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="visual cta-visual"><img
+            src="public/images/thumbnails/【裏技】mineo歴8年が教える「実質使い放題」の極意！契約前に知らないと損する5つの節約術_サムネ.png" alt="mineoの過去動画サムネイル">
+        </div>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-body center">
+          <div class="bigicon cta-play"><i class="fa-solid fa-circle-play"></i></div>
+          <div class="big-title cta-title">mineoを<br>もっと詳しく</div>
+          <div class="lead centered">特徴・使い心地は<br>過去動画もチェック！</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- Slide ID: 18-6 -->
+  <div class="slide-container price-note" style="--brand:#1565c0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="head-left japan-logo"><img class="logo" src="public/images/logo/nihon_tsushin.jpg" alt="日本通信SIM">
+        </div>
+        <div class="page-body center japan-page">
+          <div class="emph"><span class="big">通話込み</span><br>5分かけ放題 または 70分無料通話</div>
+          <div class="lead centered">プラン料金にずっと含まれる</div>
+        </div><span class="page-no">― 23 ―</span>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">対象の2プラン</div>
+        <div class="page-body center japan-page">
+          <table class="sheet japan-table">
+            <thead>
+              <tr>
+                <th>プラン</th>
+                <th>容量</th>
+                <th>月額</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>合理的<br>みんなのプラン</td>
+                <td>20GB</td>
+                <td class="em">1,390円</td>
+              </tr>
+              <tr>
+                <td>合理的<br>50GBプラン</td>
+                <td>50GB</td>
+                <td class="em">2,178円</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="note centered-note">単体なら月390円｜無料期間ではなく、ずっと込み</div>
+        </div><span class="page-no">― 24 ―</span>
+      </div>
+    </div>
+  </div><!-- Slide ID: 19-0 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-body center">
+          <div class="divider"><span class="kicker">CHAPTER</span><span class="num">5</span><span class="seal">FILE
+              No.05</span></div>
+        </div>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-body center">
+          <div class="big-title chapter-title">まとめ</div>
+          <div class="lead chapter-lead">今日からできる4つをおさらい</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- Slide ID: 20 -->
+  <div class="slide-container price-note" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-head">今日のまとめ<small>①②</small></div>
+        <div class="page-body summary-page">
+          <ul class="rows">
+            <li><span class="badge">1</span>
+              <div class="tx">無料期間つきのオプションは、期間が終わると通常料金が毎月かかりはじめる<span class="sub">終了後は通常料金が毎月かかる</span></div>
+            </li>
+            <li><span class="badge">2</span>
+              <div class="tx">かけ放題系は月500円〜1,650円、データ増量系は月1,980円になることも<span class="sub">通話系500〜1,650円／データ増量1,980円も</span>
+              </div>
+            </li>
+          </ul>
+        </div><span class="page-no">― 25 ―</span>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">今日のまとめ<small>③④</small></div>
+        <div class="page-body summary-page">
+          <ul class="rows">
+            <li><span class="badge">3</span>
+              <div class="tx">判断基準は「実際に使っているか」だけ<span class="sub">実際に使っているかで決める</span></div>
+            </li>
+            <li><span class="badge">4</span>
+              <div class="tx">申し込んだ日に、カレンダーへ「オプションを解約する」を登録<span class="sub">無料終了前に見直す予定を入れる</span></div>
+            </li>
+          </ul>
+          <div class="lead centered">まずはマイページで<br><span class="em">契約中オプションを確認</span></div>
+        </div><span class="page-no">― 26 ―</span>
+      </div>
+    </div>
+  </div><!-- Slide ID: 21 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-head">今回の具体例について</div>
+        <div class="page-body center company-note">
+          <div class="logos text-logos"><span>LINEMO</span><span>IIJmio</span><span>ahamo</span></div>
+          <div class="warn centered"><span class="ic"><i
+                class="fa-solid fa-circle-info"></i></span>オプションが「悪い」という話ではありません</div>
+        </div><span class="page-no">― 27 ―</span>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">実際に使って良かった<br>オプション</div>
+        <div class="page-body center company-note">
+          <div class="logos brand-logos"><img src="public/images/logo/Mineo_logo.png" alt="mineo"><img
+              src="public/images/logo/nihon_tsushin.jpg" alt="日本通信SIM"></div>
+          <div class="lead centered">ショウが実際に使い<br>良いと感じたオプション</div>
+          <div class="note centered-note">自分の使い方に合うかで判断してください</div>
+        </div><span class="page-no">― 28 ―</span>
+      </div>
+    </div>
+  </div><!-- Slide ID: 22 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="visual cta-visual"><img src="public/images/thumbnails/38_【2026年最新】格安SIMの無制限プラン比較！最安は月250円_サムネ1.png"
+            alt="過去動画サムネイル"></div>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-body center">
+          <div class="bigicon cta-play"><i class="fa-solid fa-circle-play"></i></div>
+          <div class="big-title cta-title">おすすめ格安SIMも<br>動画で解説中！</div>
+          <div class="lead centered">ジャンル別の再生リストも<br>ご用意しています</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- Slide ID: 23 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-body center">
+          <div class="bigicon info-icon"><i class="fa-solid fa-circle-info"></i></div>
+          <div class="big-title caution-title">ご注意</div>
+        </div>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">投稿時点の情報です</div>
+        <div class="page-body center">
+          <div class="warn posting-warn"><span class="ic"><i
+                class="fa-solid fa-triangle-exclamation"></i></span>※料金・オプション情報は動画投稿時点のものです。お申し込み前に必ず各社公式サイトの最新情報をご確認ください。
+          </div>
+          <div class="lead centered">申し込み前に<br><span class="em">各社公式サイト</span>で確認</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- Slide ID: 24 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-body center">
+          <div class="bigicon comment-icon"><i class="fa-solid fa-comments"></i></div>
+          <div class="big-title comment-title">コメントで<br>教えてね！</div>
+        </div>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">みんなの体験を募集中</div>
+        <div class="page-body comment-page">
+          <ul class="rows">
+            <li><span class="ic"><i class="fa-solid fa-comment-dots"></i></span>
+              <div class="tx">使っていないオプションがあった</div>
+            </li>
+            <li><span class="ic"><i class="fa-solid fa-comment-dots"></i></span>
+              <div class="tx">かけ放題をずっと払ってた</div>
+            </li>
+            <li><span class="ic"><i class="fa-solid fa-comment-dots"></i></span>
+              <div class="tx">カレンダー登録やってみます</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div><!-- Slide ID: 25 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-body center">
+          <div class="bigicon pen-icon"><i class="fa-solid fa-pen-nib"></i></div>
+          <div class="big-title blog-title">ブログ・noteでも<br>詳しく比較</div>
+        </div>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-head">概要欄リンクからぜひ</div>
+        <div class="page-body center blog-page"><img class="blog-image" src="public/images/common/ブログ_ヘッダー画像_スライド用.png"
+            alt="ブログ・note">
+          <div class="lead centered">格安SIMの料金を<br>じっくり読んで比較できます</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- Slide ID: 26 -->
+  <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="page-body center">
+          <div class="bigicon final-bell"><i class="fa-solid fa-bell"></i></div>
+          <div class="big-title final-title">チャンネル登録<br>よろしくお願いします！</div>
+        </div>
+      </div>
+      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+        <div class="page-body center">
+          <div class="emoji-cta"><span>👍</span><span>🔔</span></div>
+          <div class="lead thanks">ご視聴いただき<br>ありがとうございました！</div>
+          <div class="note final-note">次回も一緒にスマホ代を節約しましょう</div>
+        </div>
+      </div>
+    </div>
   </div>
-</div><!-- Slide ID: 4 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-head">格安SIM図鑑 もくじ</div><ol class="agenda agenda-four"><li><span class="num">1</span>その「無料」には終わりがある</li><li><span class="num">2</span>無料期間が終わると毎月いくら増える？</li><li><span class="num">3</span>続ける？外す？の判断基準</li><li><span class="num">4</span>「ずっと無料」という選択肢</li></ol></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">この動画でわかること</div><ul class="benefits benefit-two"><li><span class="check">✓</span>無料期間が終わったら毎月いくら増えるかが分かる</li><li><span class="check">✓</span>続けるか外すかを自分で判断できる</li></ul><div class="emph agenda-answer">やることは<span class="big">2つ</span><br>通常料金を知る ＋ 利用状況を確認</div></div>
-</div></div><!-- Slide ID: 5-0 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-body center"><div class="divider"><span class="kicker">CHAPTER</span><span class="num">1</span><span class="seal">FILE No.01</span></div></div></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-body center"><div class="big-title chapter-title">その「無料」には<br>終わりがある</div><div class="lead chapter-lead">「無料だから安心」の落とし穴</div></div></div>
-</div></div><!-- Slide ID: 6 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-head">無料オプションの入口</div><div class="page-body center compact-center"><div class="bigicon gift-icon"><i class="fa-solid fa-gift"></i></div><div class="lead centered">申し込み時のキャンペーンで「◯ヶ月無料」の案内</div><div class="emph">無料だから<br><span class="em">とりあえず付ける</span></div></div><span class="page-no">― 1 ―</span></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">無料期間が終わると</div><div class="page-body center compact-center"><div class="bigicon clock-icon"><i class="fa-solid fa-clock"></i></div><div class="flow-arrow"><i class="fa-solid fa-arrow-down"></i></div><div class="warn flow-warn"><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span>期間が終わった翌月から、通常料金が毎月かかりはじめる</div></div><span class="page-no">― 2 ―</span></div>
-</div></div><!-- Slide ID: 7 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-head">無料</div><div class="page-body center compare-page"><div class="status-pill zero"><i class="fa-solid fa-circle-check"></i> 請求</div><div class="emph"><span class="big">0円</span></div><div class="lead centered">請求そのものがゼロ</div></div><span class="page-no">― 3 ―</span></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">実質無料の落とし穴</div><div class="page-body center compare-page"><div class="status-pill bill"><i class="fa-solid fa-receipt"></i> 請求</div><div class="emph">請求はいったん発生</div><div class="warn"><span class="ic"><i class="fa-solid fa-eye-slash"></i></span>有料化しても<br>請求書の見た目は変わりにくい</div></div><span class="page-no">― 4 ―</span></div>
-</div></div><!-- Slide ID: 8 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-head">対象になる人</div><div class="page-body center compact-center"><div class="bigicon target-icon"><i class="fa-solid fa-user-check"></i></div><div class="lead centered"><span class="em">申し込みのときに「無料期間つき」のオプションを付けた人だけ</span></div></div><span class="page-no">― 5 ―</span></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">まずマイページで確認</div><div class="page-body compact-rows"><ul class="rows"><li><span class="badge">1</span><div class="tx">付けたオプション<span class="sub">契約中のサービス一覧を見る</span></div></li><li><span class="badge">2</span><div class="tx">いつ終わるかは申し込んだ日によって人それぞれ<span class="sub">終了日は人によって違う</span></div></li></ul><div class="note centered-note">※何も付けていない人は当てはまりません</div></div><span class="page-no">― 6 ―</span></div>
-</div></div><!-- Slide ID: 9-0 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-body center"><div class="divider"><span class="kicker">CHAPTER</span><span class="num">2</span><span class="seal">FILE No.02</span></div></div></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-body center"><div class="big-title chapter-title">無料期間が終わると毎月いくら増える？</div><div class="lead chapter-lead">通常料金を具体例でチェック</div></div></div>
-</div></div><!-- Slide ID: 10 -->
-<div class="slide-container price-note" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-head">通話料金<small>LINEMO</small></div><div class="page-body center price-page"><table class="sheet price-table"><thead><tr><th>オプション</th><th>月額</th></tr></thead><tbody><tr><td>通話準定額</td><td class="em">550円</td></tr><tr><td>通話定額</td><td class="em">1,650円</td></tr></tbody></table><div class="lead centered">無料終了後は<br>毎月の固定費になる</div></div><span class="page-no">― 7 ―</span></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">通話料金<small>IIJmio・ahamo</small></div><div class="page-body center price-page"><table class="sheet price-table compact-price"><thead><tr><th>会社／オプション</th><th>月額</th></tr></thead><tbody><tr><td>IIJmio 5分＋</td><td class="em">500円</td></tr><tr><td>IIJmio 10分＋</td><td class="em">700円</td></tr><tr><td>IIJmio かけ放題＋</td><td class="em">1,400円</td></tr><tr><td>ahamo かけ放題</td><td class="em">1,100円</td></tr></tbody></table><div class="note source-note">※2026年8月時点・各社公式サイトで確認</div></div><span class="page-no">― 8 ―</span></div>
-</div></div><!-- Slide ID: 11 -->
-<div class="slide-container price-note" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-head">データ増量系<small>ahamo</small></div><div class="page-body center data-page"><div class="equation"><div><b>30GB</b><span>月額2,970円</span></div><i class="fa-solid fa-plus"></i><div class="hot"><b>大盛り</b><span>月額1,980円</span></div></div><div class="flow-arrow"><i class="fa-solid fa-arrow-down"></i></div><div class="emph result-box"><span class="big">110GB</span><br>月額4,950円</div></div><span class="page-no">― 9 ―</span></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">使い切れないなら<br>見直し</div><div class="page-body center data-page"><div class="bigicon data-icon"><i class="fa-solid fa-chart-column"></i></div><div class="lead centered">毎月110GBを使うなら価値あり</div><div class="warn centered"><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span>使わなければ<span class="em">毎月1,980円</span>がムダに</div><div class="note source-note">※2026年8月時点・ahamo公式サイトで確認</div></div><span class="page-no">― 10 ―</span></div>
-</div></div><!-- Slide ID: 12-0 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-body center"><div class="divider"><span class="kicker">CHAPTER</span><span class="num">3</span><span class="seal">FILE No.03</span></div></div></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-body center"><div class="big-title chapter-title">続ける？外す？の<br>判断基準</div><div class="lead chapter-lead">高い・安いではなく、使っているか</div></div></div>
-</div></div><!-- Slide ID: 13 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-head">実はショウも失敗</div><div class="page-body center story-page"><div class="story-step"><span>1</span><b>かけ放題が6ヶ月無料</b></div><div class="flow-arrow"><i class="fa-solid fa-arrow-down"></i></div><div class="story-step warn-step"><span>2</span><b>解約を忘れて2ヶ月課金</b></div></div><span class="page-no">― 11 ―</span></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">使わないなら価値なし</div><div class="page-body center story-page"><div class="bigicon phone-icon"><i class="fa-solid fa-phone-slash"></i></div><div class="lead centered">ほとんど電話をしないので、まったく活かせなかった</div><div class="emph">詳しい人でも忘れる<br><span class="em">請求額は一度確認</span></div></div><span class="page-no">― 12 ―</span></div>
-</div></div><!-- Slide ID: 14 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-head">判断は1つだけ</div><div class="page-body decision-page"><div class="emph decision-main">そのオプションを<br><span class="big">実際に使っている？</span></div><ul class="rows"><li><span class="badge">✓</span><div class="tx">使っている → 続ける<span class="sub">払う価値がある</span></div></li><li><span class="badge">×</span><div class="tx">付けただけ → 外す<span class="sub">見直し候補</span></div></li></ul></div><span class="page-no">― 13 ―</span></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">先月の利用実績を見る</div><div class="page-body decision-page"><ul class="rows"><li><span class="ic"><i class="fa-solid fa-phone"></i></span><div class="tx">かけ放題<span class="sub">先月どれくらい電話したか</span></div></li><li><span class="ic"><i class="fa-solid fa-database"></i></span><div class="tx">データ増量<span class="sub">先月の使用量が、増やした容量に届いているか</span></div></li></ul><div class="lead centered">高いか安いかではなく<br><span class="em">使っているか</span>で決める</div></div><span class="page-no">― 14 ―</span></div>
-</div></div><!-- Slide ID: 15 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-head">解約し忘れ防止</div><div class="page-body center habit-page"><div class="bigicon calendar-icon"><i class="fa-solid fa-calendar-check"></i></div><div class="emph"><span class="big">申し込んだ日</span><br>すぐカレンダーへ登録</div></div><span class="page-no">― 15 ―</span></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">予定名はこれだけ</div><div class="page-body center habit-page"><div class="calendar-card"><span>予定</span><b>オプションを解約する</b></div><div class="lead centered">無料期間が終わる少し前の日付にしておくと安心</div><div class="note centered-note">※動画配信サービスなどの「数ヶ月無料」も同じ手が使えます</div></div><span class="page-no">― 16 ―</span></div>
-</div></div><!-- Slide ID: 16 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-head">節約はスタート</div><div class="page-body center saving-page"><div class="money-flow"><div><i class="fa-solid fa-mobile-screen-button"></i><b>固定費を下げる</b></div><i class="fa-solid fa-arrow-right"></i><div><i class="fa-solid fa-piggy-bank"></i><b>貯蓄・新NISA</b></div></div><div class="lead centered">浮いたお金を<br>自分と家族のために使う</div></div><span class="page-no">― 17 ―</span></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">使わないオプションは逆効果</div><div class="page-body center saving-page"><div class="bigicon leak-icon"><i class="fa-solid fa-wallet"></i></div><div class="warn centered"><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span>使っていないオプションは、その効果を打ち消してしまう</div><div class="emph">毎月の固定費を<br><span class="em">もう一度チェック</span></div></div><span class="page-no">― 18 ―</span></div>
-</div></div><!-- Slide ID: 16-2 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-body center"><div class="bigicon bell-icon"><i class="fa-solid fa-bell"></i></div><div class="big-title subscribe-title">値上げ・改悪の<br>速報を見逃さない</div></div></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">毎週わかりやすく解説</div><div class="page-body center"><div class="lead centered">スマホ代を節約する<br>細かいコツもお届け</div><div class="youtube-pill"><i class="fa-brands fa-youtube"></i> チャンネル登録</div></div></div>
-</div></div><!-- Slide ID: 17-0 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-body center"><div class="divider"><span class="kicker">CHAPTER</span><span class="num">4</span><span class="seal">FILE No.04</span></div></div></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-body center"><div class="big-title chapter-title">「ずっと無料」という選択肢</div><div class="lead chapter-lead">無料期間を気にしない選び方</div></div></div>
-</div></div><!-- Slide ID: 18-0 -->
-<div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="head-left intro-logo"><img class="logo" src="public/images/logo/Mineo_logo.png" alt="mineo"></div><div class="page-body center"><div class="visual mineo-chart"><img class="radar-chart-image" src="public/images/charts/mineo.png" alt="mineo 総合評価レーダーチャート"></div></div><span class="page-no">― 19 ―</span></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">mineoの料金プラン</div><div class="page-body center mineo-plan-page"><div class="visual mineo-plan-table"><img src="public/images/temp/mineo/mineo_マイピタ_料金表のみ.png" alt="mineo マイピタ料金表"></div><div class="lead centered">15GB以上なら<br><span class="em">3Mbps使い放題がずっと無料</span></div></div><span class="page-no">― 20 ―</span></div>
-</div></div><!-- Slide ID: 18 -->
-<div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div>
-  <div class="page left eval-page"><div class="head-left eval-head"><img class="logo" src="public/images/logo/Mineo_logo.png" alt="mineo"><div class="total"><div class="label">総合評価</div><div class="grade">S</div></div></div><div class="cards three-cards"><div class="card eval-card"><div class="rank SS">SS</div><div class="card-name">データ料金</div><div class="line pro"><span class="tag">＋</span>マイピタ15GB 1,958円・30GB 2,178円で、パケット放題3Mbpsが無料で付いてくる</div><div class="line con"><span class="tag">－</span>特になし</div></div><div class="card eval-card"><div class="rank A">A</div><div class="card-name">通信品質</div><div class="line pro"><span class="tag">＋</span>回線をau・ドコモ・ソフトバンクの3つから選べる</div><div class="line con"><span class="tag">－</span>平日のお昼など、混雑する時間帯は速度が落ちやすい傾向がある</div></div><div class="card eval-card"><div class="rank A">A</div><div class="card-name">初期費用</div><div class="line pro"><span class="tag">＋</span>当チャンネル限定リンクなら契約事務手数料が無料。2026年10月の改定後も無料のまま</div><div class="line con"><span class="tag">－</span>通常の申し込みでは契約事務手数料がかかり、2026年10月以降は3,850円に改定される</div></div></div><span class="page-no">― 21 ―</span></div>
-  <div class="page right eval-page"><span class="index-tab">格安SIM図鑑</span><div class="cards three-cards"><div class="card eval-card"><div class="rank A">A</div><div class="card-name">通話料</div><div class="line pro"><span class="tag">＋</span>かけ放題オプションもしっかり用意されている</div><div class="line con"><span class="tag">－</span>基本料金に無料通話分は含まれておらず、電話をよく使うなら別途オプション料金がかかる</div></div><div class="card eval-card"><div class="rank A">A</div><div class="card-name">店舗サポート</div><div class="line pro"><span class="tag">＋</span>一部の店舗や、ユーザー同士のコミュニティで相談できる</div><div class="line con"><span class="tag">－</span>基本はWEB中心</div></div><div class="card eval-card"><div class="rank SS">SS</div><div class="card-name">オプション</div><div class="line pro"><span class="tag">＋</span>3Mbps使い放題のパケット放題が、15GB以上のプランに無料で付いてくる＝何ヶ月だけではなく、ずっと無料</div><div class="line con"><span class="tag">－</span>特になし</div></div></div><div class="note eval-note">※本評価は当チャンネルの独断と偏見による独自評価であり、キャンペーン割引等は考慮していません</div><span class="page-no">― 22 ―</span></div>
-</div></div><!-- Slide ID: 18-5 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="visual cta-visual"><img src="public/images/thumbnails/【裏技】mineo歴8年が教える「実質使い放題」の極意！契約前に知らないと損する5つの節約術_サムネ.png" alt="mineoの過去動画サムネイル"></div></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-body center"><div class="bigicon cta-play"><i class="fa-solid fa-circle-play"></i></div><div class="big-title cta-title">mineoを<br>もっと詳しく</div><div class="lead centered">特徴・使い心地は<br>過去動画もチェック！</div></div></div>
-</div></div><!-- Slide ID: 18-6 -->
-<div class="slide-container price-note" style="--brand:#1565c0;--brand-deep:#0d47a1;--brand-soft:#e3f0fb"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="head-left japan-logo"><img class="logo" src="public/images/logo/nihon_tsushin.jpg" alt="日本通信SIM"></div><div class="page-body center japan-page"><div class="emph"><span class="big">通話込み</span><br>5分かけ放題 または 70分無料通話</div><div class="lead centered">プラン料金にずっと含まれる</div></div><span class="page-no">― 23 ―</span></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">対象の2プラン</div><div class="page-body center japan-page"><table class="sheet japan-table"><thead><tr><th>プラン</th><th>容量</th><th>月額</th></tr></thead><tbody><tr><td>合理的<br>みんなのプラン</td><td>20GB</td><td class="em">1,390円</td></tr><tr><td>合理的<br>50GBプラン</td><td>50GB</td><td class="em">2,178円</td></tr></tbody></table><div class="note centered-note">単体なら月390円｜無料期間ではなく、ずっと込み</div></div><span class="page-no">― 24 ―</span></div>
-</div></div><!-- Slide ID: 19-0 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-body center"><div class="divider"><span class="kicker">CHAPTER</span><span class="num">5</span><span class="seal">FILE No.05</span></div></div></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-body center"><div class="big-title chapter-title">まとめ</div><div class="lead chapter-lead">今日からできる4つをおさらい</div></div></div>
-</div></div><!-- Slide ID: 20 -->
-<div class="slide-container price-note" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-head">今日のまとめ<small>①②</small></div><div class="page-body summary-page"><ul class="rows"><li><span class="badge">1</span><div class="tx">無料期間つきのオプションは、期間が終わると通常料金が毎月かかりはじめる<span class="sub">終了後は通常料金が毎月かかる</span></div></li><li><span class="badge">2</span><div class="tx">かけ放題系は月500円〜1,650円、データ増量系は月1,980円になることも<span class="sub">通話系500〜1,650円／データ増量1,980円も</span></div></li></ul></div><span class="page-no">― 25 ―</span></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">今日のまとめ<small>③④</small></div><div class="page-body summary-page"><ul class="rows"><li><span class="badge">3</span><div class="tx">判断基準は「実際に使っているか」だけ<span class="sub">実際に使っているかで決める</span></div></li><li><span class="badge">4</span><div class="tx">申し込んだ日に、カレンダーへ「オプションを解約する」を登録<span class="sub">無料終了前に見直す予定を入れる</span></div></li></ul><div class="lead centered">まずはマイページで<br><span class="em">契約中オプションを確認</span></div></div><span class="page-no">― 26 ―</span></div>
-</div></div><!-- Slide ID: 21 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-head">今回の具体例について</div><div class="page-body center company-note"><div class="logos text-logos"><span>LINEMO</span><span>IIJmio</span><span>ahamo</span></div><div class="warn centered"><span class="ic"><i class="fa-solid fa-circle-info"></i></span>オプションが「悪い」という話ではありません</div></div><span class="page-no">― 27 ―</span></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">実際に使って良かった<br>オプション</div><div class="page-body center company-note"><div class="logos brand-logos"><img src="public/images/logo/Mineo_logo.png" alt="mineo"><img src="public/images/logo/nihon_tsushin.jpg" alt="日本通信SIM"></div><div class="lead centered">ショウが実際に使い<br>良いと感じたオプション</div><div class="note centered-note">自分の使い方に合うかで判断してください</div></div><span class="page-no">― 28 ―</span></div>
-</div></div><!-- Slide ID: 22 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="visual cta-visual"><img src="public/images/thumbnails/38_【2026年最新】格安SIMの無制限プラン比較！最安は月250円_サムネ1.png" alt="過去動画サムネイル"></div></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-body center"><div class="bigicon cta-play"><i class="fa-solid fa-circle-play"></i></div><div class="big-title cta-title">おすすめ格安SIMも<br>動画で解説中！</div><div class="lead centered">ジャンル別の再生リストも<br>ご用意しています</div></div></div>
-</div></div><!-- Slide ID: 23 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-body center"><div class="bigicon info-icon"><i class="fa-solid fa-circle-info"></i></div><div class="big-title caution-title">ご注意</div></div></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">投稿時点の情報です</div><div class="page-body center"><div class="warn posting-warn"><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span>※料金・オプション情報は動画投稿時点のものです。お申し込み前に必ず各社公式サイトの最新情報をご確認ください。</div><div class="lead centered">申し込み前に<br><span class="em">各社公式サイト</span>で確認</div></div></div>
-</div></div><!-- Slide ID: 24 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-body center"><div class="bigicon comment-icon"><i class="fa-solid fa-comments"></i></div><div class="big-title comment-title">コメントで<br>教えてね！</div></div></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">みんなの体験を募集中</div><div class="page-body comment-page"><ul class="rows"><li><span class="ic"><i class="fa-solid fa-comment-dots"></i></span><div class="tx">使っていないオプションがあった</div></li><li><span class="ic"><i class="fa-solid fa-comment-dots"></i></span><div class="tx">かけ放題をずっと払ってた</div></li><li><span class="ic"><i class="fa-solid fa-comment-dots"></i></span><div class="tx">カレンダー登録やってみます</div></li></ul></div></div>
-</div></div><!-- Slide ID: 25 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-body center"><div class="bigicon pen-icon"><i class="fa-solid fa-pen-nib"></i></div><div class="big-title blog-title">ブログ・noteでも<br>詳しく比較</div></div></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-head">概要欄リンクからぜひ</div><div class="page-body center blog-page"><img class="blog-image" src="public/images/common/ブログ_ヘッダー画像_スライド用.png" alt="ブログ・note"><div class="lead centered">格安SIMの料金を<br>じっくり読んで比較できます</div></div></div>
-</div></div><!-- Slide ID: 26 -->
-<div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7"><div class="book"><div class="spine"></div>
-  <div class="page left"><div class="page-body center"><div class="bigicon final-bell"><i class="fa-solid fa-bell"></i></div><div class="big-title final-title">チャンネル登録<br>よろしくお願いします！</div></div></div>
-  <div class="page right"><span class="index-tab">格安SIM図鑑</span><div class="page-body center"><div class="emoji-cta"><span>👍</span><span>🔔</span></div><div class="lead thanks">ご視聴いただき<br>ありがとうございました！</div><div class="note final-note">次回も一緒にスマホ代を節約しましょう</div></div></div>
-</div></div>
-</body></html>
+</body>
+
+</html>
