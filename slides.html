@@ -689,6 +689,23 @@
       margin-top: 6px
     }
 
+    /* 評価見開き: 左右のカードの上下位置・高さを揃える。
+       右ページは左と同じ高さの見出し帯（空の head-right eval-head）を置き、
+       左ページは右の eval-note（78px＋上余白6px）ぶん下を空けて
+       カード領域を左右で同寸にし、各行は左右で高いほうに合わせる。 */
+    .eval-page.left .cards {
+      margin-bottom: 84px
+    }
+
+    .three-cards .eval-card:nth-child(1) {
+      min-height: 161px
+    }
+
+    .three-cards .eval-card:nth-child(2),
+    .three-cards .eval-card:nth-child(3) {
+      min-height: 193px
+    }
+
     .cta-visual img {
       max-height: 650px
     }
@@ -1337,6 +1354,7 @@
         </div><span class="page-no">― 21 ―</span>
       </div>
       <div class="page right eval-page"><span class="index-tab">格安SIM図鑑</span>
+        <div class="head-right eval-head"></div>
         <div class="cards three-cards">
           <div class="card eval-card">
             <div class="rank A">A</div>
@@ -1386,7 +1404,7 @@
         <div class="head-left japan-logo"><img class="logo" src="public/images/logo/nihon_tsushin.jpg" alt="日本通信SIM">
         </div>
         <div class="page-body center japan-page">
-          <div class="emph"><span class="big">通話込み</span><br>5分かけ放題 または 70分無料通話</div>
+          <div class="emph"><span class="big">通話込み</span><br>5分かけ放題 または <br>70分無料通話</div>
           <div class="lead centered">プラン料金にずっと含まれる</div>
         </div><span class="page-no">― 23 ―</span>
       </div>
@@ -1414,7 +1432,7 @@
               </tr>
             </tbody>
           </table>
-          <div class="note centered-note">単体なら月390円｜無料期間ではなく、ずっと込み</div>
+          <div class="note centered-note">単体なら月390円｜無料期間はなく、ずっと込み</div>
         </div><span class="page-no">― 24 ―</span>
       </div>
     </div>
@@ -1458,7 +1476,7 @@
         <div class="page-body summary-page">
           <ul class="rows">
             <li><span class="badge">3</span>
-              <div class="tx">判断基準は「実際に使っているか」だけ<span class="sub">実際に使っているかで決める</span></div>
+              <div class="tx">判断基準は「実際に使っているか」だけ<span class="sub">シンプルに考える</span></div>
             </li>
             <li><span class="badge">4</span>
               <div class="tx">申し込んだ日に、カレンダーへ「オプションを解約する」を登録<span class="sub">無料終了前に見直す予定を入れる</span></div>
@@ -1520,9 +1538,9 @@
         <div class="page-head">投稿時点の情報です</div>
         <div class="page-body center">
           <div class="warn posting-warn"><span class="ic"><i
-                class="fa-solid fa-triangle-exclamation"></i></span>※料金・オプション情報は動画投稿時点のものです。お申し込み前に必ず各社公式サイトの最新情報をご確認ください。
+                class="fa-solid fa-triangle-exclamation"></i></span>※料金・オプション情報は動画投稿時点のものです。
           </div>
-          <div class="lead centered">申し込み前に<br><span class="em">各社公式サイト</span>で確認</div>
+          <div class="lead centered">申し込み前に必ず<br><span class="em">各社公式サイト</span>を確認</div>
         </div>
       </div>
     </div>
