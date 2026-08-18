@@ -718,6 +718,76 @@
       font-size: 72px
     }
 
+    /* Slide 22: 特定の一本ではなく、再生リスト全体へ誘導する動画棚 */
+    .playlist-page .page-head {
+      font-size: 54px;
+      margin-bottom: 16px
+    }
+
+    .playlist-list {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      justify-content: space-between;
+      min-height: 0
+    }
+
+    .playlist-card {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      align-items: center;
+      gap: 22px;
+      padding: 8px 18px 8px 8px;
+      border: 4px solid var(--brand);
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 5px 0 rgba(152, 16, 39, .14)
+    }
+
+    .playlist-card img {
+      width: 180px;
+      height: 101px;
+      object-fit: cover;
+      border-radius: 10px
+    }
+
+    .playlist-card .tx {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.25;
+      color: var(--ink)
+    }
+
+    .playlist-cta .cta-play {
+      font-size: 166px
+    }
+
+    .playlist-cta .cta-title {
+      font-size: 68px
+    }
+
+    .playlist-cta .lead {
+      padding: 24px 30px;
+      font-size: 42px
+    }
+
+    .playlist-route {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: var(--brand-deep);
+      font-size: 32px;
+      font-weight: 900
+    }
+
+    .playlist-route .pill {
+      padding: 9px 18px;
+      border: 3px solid var(--brand);
+      border-radius: 999px;
+      background: var(--brand-soft)
+    }
+
     .japan-logo {
       height: 120px
     }
@@ -1512,15 +1582,22 @@
   <div class="slide-container" style="--brand:#c8102e;--brand-deep:#981027;--brand-soft:#fde3e7">
     <div class="book">
       <div class="spine"></div>
-      <div class="page left">
-        <div class="visual cta-visual"><img src="public/images/thumbnails/38_【2026年最新】格安SIMの無制限プラン比較！最安は月250円_サムネ1.png"
-            alt="過去動画サムネイル"></div>
+      <div class="page left playlist-page">
+        <div class="page-head">テーマから動画を選べます</div>
+        <div class="page-body top playlist-list">
+          <div class="playlist-card"><img src="public/images/thumbnails/41_【2026年9月】LINEMOが月額そのままで衛星通信＆海外無制限！？今やるべき2つのこと_サムネ1.png" alt="格安SIMニュースのサムネイル"><div class="tx">【速報】格安SIMニュース・<br>新プラン解説</div></div>
+          <div class="playlist-card"><img src="public/images/thumbnails/【月最大1GB無料】povo Data Oasis×東京メトロで毎日0円チャージする方法_サムネ1.png" alt="スマホ代節約のサムネイル"><div class="tx">【攻略】スマホ代を極限まで下げる裏技</div></div>
+          <div class="playlist-card"><img src="public/images/thumbnails/【月700円】IIJmio 25GB＋10分かけ放題6ヶ月無料！6月8日までの神キャンペーン_サムネ2.png" alt="キャンペーン情報のサムネイル"><div class="tx">【お得】キャンペーン最新情報</div></div>
+          <div class="playlist-card"><img src="public/images/thumbnails/【2026年最新】格安SIMの無制限プラン比較！最安は月250円_サムネ1.png" alt="格安SIM比較のサムネイル"><div class="tx">【比較】自分にぴったりの格安SIMが<br>見つかる動画</div></div>
+          <div class="playlist-card"><img src="public/images/thumbnails/【裏技】mineo歴8年が教える「実質使い放題」の極意！契約前に知らないと損する5つの節約術_サムネ.png" alt="格安SIM各社解説のサムネイル"><div class="tx">格安SIM各社・プラン別徹底解説</div></div>
+        </div>
       </div>
-      <div class="page right"><span class="index-tab">格安SIM図鑑</span>
+      <div class="page right playlist-cta"><span class="index-tab">格安SIM図鑑</span>
         <div class="page-body center">
           <div class="bigicon cta-play"><i class="fa-solid fa-circle-play"></i></div>
-          <div class="big-title cta-title">おすすめ格安SIMも<br>動画で解説中！</div>
-          <div class="lead centered">ジャンル別の再生リストも<br>ご用意しています</div>
+          <div class="big-title cta-title">気になるテーマを<br>もっと深掘り！</div>
+          <div class="lead centered">過去動画・再生リストから<br>あなたに合う1本を見つけよう</div>
+          <div class="playlist-route"><span class="pill">動画一覧</span><span>・</span><span class="pill">再生リスト</span></div>
         </div>
       </div>
     </div>
