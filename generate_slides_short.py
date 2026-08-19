@@ -1,14 +1,24 @@
-<!doctype html>
-<html lang="ja">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>無料オプション終了後の自動課金 - Shorts Slides</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&amp;family=Noto+Sans+JP:wght@700;900&amp;display=swap" rel="stylesheet" />
-    <style>
+#!/usr/bin/env python3
+"""Generate the short-form HTML deck for video 42 from its scenario CSV."""
 
+from __future__ import annotations
+
+import csv
+import html
+from pathlib import Path
+
+
+WORK_DIR = Path("/workspaces/yt-factory/packages/slide-gen")
+SOURCE_CSV = Path(
+    "/workspaces/yt-factory/packages/scenario-gen/archive/videos/"
+    "42_【放置は損】その「無料オプション」終わると毎月いくら？月500円〜1,980円の自動課金/"
+    "short/スマホ代急増、犯人は無料オプション？.csv"
+)
+OUTPUT_HTML = Path("/workspaces/yt-factory/packages/slide-gen/slides-short.html")
+IMAGE_ROOT = Path("/workspaces/yt-factory/packages/slide-gen/public/images")
+
+
+CSS = r"""
 :root {
   --blue: #0052cc;
   --blue-deep: #003380;
@@ -244,144 +254,309 @@ img {
 .cta-banner-img { width: 850px; max-height: 480px; border: 7px solid #fff; border-radius: 18px; box-shadow: 0 18px 42px rgba(0,0,0,.4); object-fit: contain; filter: none; }
 .cta-arrow { margin-top: 7px; color: #ffd700; font-size: 68px; font-weight: 900; line-height: .82; animation: bounce 1s infinite; }
 @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+"""
 
-    </style>
-  </head>
-  <body>
-<!-- スライドID: 1 -->
-<!-- CSV表示内容: タイトル：無料オプション、無料期間が終わったらいくら？／無料→有料の切り替わりを大きく表示 -->
-<div class="slide-container slide-thumbnail" data-slide-id="1">
-  <div class="thumb-top-strip">⚡ 放置すると自動課金かも ⚡</div>
+
+def esc(value: str) -> str:
+    return html.escape(value, quote=True)
+
+
+def parts(row: dict[str, str]) -> list[str]:
+    return [part.strip() for part in row["スライドに表示する内容"].split("／") if part.strip()]
+
+
+def after_label(value: str) -> str:
+    return value.split("：", 1)[1].strip() if "：" in value else value.strip()
+
+
+def fee_heading_html(heading: str) -> str:
+    """Keep the established term 通常料金 intact while splitting long fee labels."""
+    suffix = "通常料金"
+    if heading.endswith(suffix) and heading != suffix:
+        prefix = heading[: -len(suffix)]
+        return (
+            f'<span class="semantic-line">{esc(prefix)}</span>'
+            f'<span class="semantic-line">{esc(suffix)}</span>'
+        )
+    return f'<span class="semantic-line">{esc(heading)}</span>'
+
+
+def diagnosis_prompt_html(prompt: str) -> str:
+    """Keep the action phrase together when the diagnostic question wraps."""
+    return esc(prompt).replace(
+        "無料期間つきオプションを付けたまま？",
+        "無料期間つきオプションを<br />付けたまま？",
+    )
+
+
+def asset(relative_path: str) -> str:
+    absolute_path = IMAGE_ROOT / relative_path
+    if not absolute_path.is_file():
+        raise FileNotFoundError(f"Required asset is missing: {absolute_path}")
+    return f"public/images/{relative_path}"
+
+
+def source_comment(row: dict[str, str]) -> str:
+    return f"<!-- CSV表示内容: {esc(row['スライドに表示する内容'])} -->"
+
+
+def wrap_slide(row: dict[str, str], classes: str, inner: str) -> str:
+    slide_id = esc(row["スライドID"])
+    return (
+        f"<!-- スライドID: {slide_id} -->\n"
+        f"{source_comment(row)}\n"
+        f'<div class="slide-container {classes}" data-slide-id="{slide_id}">\n{inner}\n</div>'
+    )
+
+
+def render_1(row: dict[str, str]) -> str:
+    display = parts(row)
+    question = after_label(display[0])
+    question_lines = question.replace("、無料期間が", "<br />無料期間が").replace("終わったら", "<span class=\"impact-line\">終わったら") + "</span>"
+    transition = display[1].replace("を大きく表示", "")
+    return wrap_slide(
+        row,
+        "slide-thumbnail",
+        f"""  <div class="thumb-top-strip">⚡ 放置すると自動課金かも ⚡</div>
   <i class="thumb-accent-tri tl"></i><i class="thumb-accent-tri br"></i>
   <div class="thumb-content">
     <div class="thumb-tag">放置は損！</div>
-    <h1 class="thumb-title">無料オプション<br />無料期間が<span class="impact-line">終わったらいくら？</span></h1>
-    <div class="switch-band" aria-label="無料→有料の切り替わり"><span class="switch-pill">無料</span><span class="switch-arrow">→</span><span class="switch-pill paid">有料</span></div>
+    <h1 class="thumb-title">{question_lines}</h1>
+    <div class="switch-band" aria-label="{esc(transition)}"><span class="switch-pill">無料</span><span class="switch-arrow">→</span><span class="switch-pill paid">有料</span></div>
   </div>
   <div class="thumb-sticker">無料期間の「終了後」を確認</div>
-  <div class="slide-illust thumb-illust"><img src="public/images/irasutoya/seikyuusyo_shock.png" alt="請求額に驚く人" /></div>
-</div>
+  <div class="slide-illust thumb-illust"><img src="{asset('irasutoya/seikyuusyo_shock.png')}" alt="請求額に驚く人" /></div>""",
+    )
 
-<!-- スライドID: 2 -->
-<!-- CSV表示内容: 診断：無料期間つきオプションを付けたまま？／はい・わからない -->
-<div class="slide-container diagnosis-slide" data-slide-id="2">
-  <div class="watermark">2</div>
+
+def render_2(row: dict[str, str]) -> str:
+    display = parts(row)
+    prompt = after_label(display[0])
+    prompt_html = diagnosis_prompt_html(prompt)
+    choices = display[1].split("・")
+    return wrap_slide(
+        row,
+        "diagnosis-slide",
+        f"""  <div class="watermark">2</div>
   <h2 class="slide-title">まずは<em>30秒診断</em></h2>
   <div class="slide-body" style="margin-bottom: 120px;">
-    <div class="diagnosis-panel"><div class="diagnosis-label">CHECK</div><div class="diagnosis-question">無料期間つきオプションを<br />付けたまま？</div></div>
-    <div class="choice-row"><div class="choice-card">✓ はい</div><div class="choice-card unknown">？ わからない</div></div>
+    <div class="diagnosis-panel"><div class="diagnosis-label">CHECK</div><div class="diagnosis-question">{prompt_html}</div></div>
+    <div class="choice-row"><div class="choice-card">✓ {esc(choices[0])}</div><div class="choice-card unknown">？ {esc(choices[1])}</div></div>
     <div class="auto-note">無料期間が終わると<br />自動で通常料金に切り替わるものも</div>
   </div>
-  <div class="slide-illust diagnosis-illust"><img src="public/images/irasutoya/pose_atama_kakaeru_woman.png" alt="契約内容がわからず困る人" /></div>
-</div>
+  <div class="slide-illust diagnosis-illust"><img src="{asset('irasutoya/pose_atama_kakaeru_woman.png')}" alt="契約内容がわからず困る人" /></div>""",
+    )
 
-<!-- スライドID: 3 -->
-<!-- CSV表示内容: 申込画面の無料オプション欄にチェックが入るイメージ -->
-<div class="slide-container checkbox-slide" data-slide-id="3">
-  <div class="watermark">3</div>
+
+def render_3(row: dict[str, str]) -> str:
+    description = parts(row)[0]
+    return wrap_slide(
+        row,
+        "checkbox-slide",
+        f"""  <div class="watermark">3</div>
   <h2 class="slide-title">申込時の<em>チェック欄</em></h2>
   <div class="slide-body" style="margin-bottom: 120px;">
-    <div class="phone-mock" aria-label="申込画面の無料オプション欄にチェックが入るイメージ">
+    <div class="phone-mock" aria-label="{esc(description)}">
       <div class="phone-head">お申し込み内容の確認</div>
       <div class="option-row"><span class="check-box">✓</span><div class="option-copy"><strong>無料オプション</strong><span>無料期間つき・申込時に追加</span></div></div>
       <div class="trial-summary"><span>無料期間中<br /><strong>0円</strong></span><span class="trial-summary-arrow">→</span><span>終了後は<br /><strong>通常料金</strong></span></div>
     </div>
     <div class="notice-strip">「無料だから」で付けたままかも？</div>
   </div>
-  <div class="slide-illust checkbox-illust"><img src="public/images/irasutoya/smartphone_blank_tenin_woman.png" alt="スマホの申込画面を案内する人" /></div>
-</div>
+  <div class="slide-illust checkbox-illust"><img src="{asset('irasutoya/smartphone_blank_tenin_woman.png')}" alt="スマホの申込画面を案内する人" /></div>""",
+    )
 
-<!-- スライドID: 4 -->
-<!-- CSV表示内容: 通話系の通常料金：月500円〜1,650円／毎月の請求へ -->
-<div class="slide-container fee-slide price-note" data-slide-id="4">
-  <div class="watermark">4</div>
+
+def render_4(row: dict[str, str]) -> str:
+    display = parts(row)
+    heading, amount = display[0].split("：", 1)
+    billing = display[1]
+    heading_html = fee_heading_html(heading)
+    return wrap_slide(
+        row,
+        "fee-slide price-note",
+        f"""  <div class="watermark">4</div>
   <h2 class="slide-title">通話系は<em>毎月課金</em></h2>
   <div class="slide-body" style="margin-bottom: 120px;">
-    <div class="fee-hero"><div class="fee-kind" aria-label="通話系の通常料金"><span class="semantic-line">通話系の</span><span class="semantic-line">通常料金</span></div><div class="fee-amount">月500円〜1,650円<small>無料期間の終了後</small></div></div>
-    <div class="charge-flow"><div class="flow-card">🎁 無料期間<br />終了</div><div class="flow-arrow">→</div><div class="flow-card danger">💳 毎月の請求へ</div></div>
+    <div class="fee-hero"><div class="fee-kind" aria-label="{esc(heading)}">{heading_html}</div><div class="fee-amount">{esc(amount)}<small>無料期間の終了後</small></div></div>
+    <div class="charge-flow"><div class="flow-card">🎁 無料期間<br />終了</div><div class="flow-arrow">→</div><div class="flow-card danger">💳 {esc(billing)}</div></div>
     <div class="recurring-warning">⚠ 自分で外さない限り<br />毎月ずっとかかる</div>
   </div>
-  <div class="slide-illust fee-illust"><img src="public/images/irasutoya/smartphone_talk03_man.png" alt="通話オプションを使う人" /></div>
-</div>
+  <div class="slide-illust fee-illust"><img src="{asset('irasutoya/smartphone_talk03_man.png')}" alt="通話オプションを使う人" /></div>""",
+    )
 
-<!-- スライドID: 5 -->
-<!-- CSV表示内容: 使っていない通話オプションから毎月500円が出ていく図 -->
-<div class="slide-container leak-slide price-note" data-slide-id="5">
-  <div class="watermark">5</div>
+
+def render_5(row: dict[str, str]) -> str:
+    description = parts(row)[0]
+    return wrap_slide(
+        row,
+        "leak-slide price-note",
+        f"""  <div class="watermark">5</div>
   <h2 class="slide-title">使ってないのに<em>毎月500円</em></h2>
   <div class="slide-body" style="margin-bottom: 120px;">
-    <div class="leak-panel" aria-label="使っていない通話オプションから毎月500円が出ていく図">
+    <div class="leak-panel" aria-label="{esc(description)}">
       <div class="leak-side"><span>通話オプション</span><strong>未使用</strong></div><div class="leak-arrow">→</div><div class="leak-side"><span>毎月の請求</span><strong>−500円</strong></div>
     </div>
     <div class="waste-callout"><span class="semantic-line">使っていなければ</span><span class="semantic-line">その500円、もったいない！</span></div>
   </div>
-  <div class="slide-illust leak-illust"><img src="public/images/irasutoya/money_fueru.png" alt="毎月出ていくお金" /></div>
-</div>
+  <div class="slide-illust leak-illust"><img src="{asset('irasutoya/money_fueru.png')}" alt="毎月出ていくお金" /></div>""",
+    )
 
-<!-- スライドID: 6 -->
-<!-- CSV表示内容: データ増量系の通常料金：月1,980円／無料期間終了→翌月の請求増 -->
-<div class="slide-container data-slide price-note" data-slide-id="6">
-  <div class="watermark">6</div>
+
+def render_6(row: dict[str, str]) -> str:
+    display = parts(row)
+    heading, amount = display[0].split("：", 1)
+    transition = display[1]
+    heading_html = fee_heading_html(heading)
+    return wrap_slide(
+        row,
+        "data-slide price-note",
+        f"""  <div class="watermark">6</div>
   <h2 class="slide-title">データ増量は<em>月1,980円</em>も</h2>
   <div class="slide-body" style="margin-bottom: 120px;">
-    <div class="fee-hero data-fee"><div class="fee-kind" aria-label="データ増量系の通常料金"><span class="semantic-line">データ増量系の</span><span class="semantic-line">通常料金</span></div><div class="fee-amount">月1,980円<small>通常料金</small></div></div>
-    <div class="billing-timeline" aria-label="無料期間終了→翌月の請求増"><div class="timeline-step">無料期間<br />終了</div><div class="timeline-arrow">→</div><div class="timeline-step">翌月</div><div class="timeline-arrow">→</div><div class="timeline-step danger">請求<br />＋1,980円</div></div>
+    <div class="fee-hero data-fee"><div class="fee-kind" aria-label="{esc(heading)}">{heading_html}</div><div class="fee-amount">{esc(amount)}<small>通常料金</small></div></div>
+    <div class="billing-timeline" aria-label="{esc(transition)}"><div class="timeline-step">無料期間<br />終了</div><div class="timeline-arrow">→</div><div class="timeline-step">翌月</div><div class="timeline-arrow">→</div><div class="timeline-step danger">請求<br />＋1,980円</div></div>
     <div class="next-month-warning">⚠ 無料期間が終わった翌月から<br />請求が増える場合も</div>
   </div>
-  <div class="slide-illust data-illust"><img src="public/images/irasutoya/osatsu_money_yamadumi.png" alt="増えていく請求額" /></div>
-</div>
+  <div class="slide-illust data-illust"><img src="{asset('irasutoya/osatsu_money_yamadumi.png')}" alt="増えていく請求額" /></div>""",
+    )
 
-<!-- スライドID: 7 -->
-<!-- CSV表示内容: 請求額に＋1,980円と表示／モモコが請求画面を見て驚く -->
-<div class="slide-container bill-slide price-note" data-slide-id="7">
-  <div class="watermark">7</div>
+
+def render_7(row: dict[str, str]) -> str:
+    description = parts(row)[0]
+    return wrap_slide(
+        row,
+        "bill-slide price-note",
+        f"""  <div class="watermark">7</div>
   <h2 class="slide-title">スマホ代急増の<em>犯人？</em></h2>
   <div class="slide-body" style="margin-bottom: 120px;">
-    <div class="bill-sheet" aria-label="請求額に＋1,980円と表示"><div class="bill-head"><span>今月のご請求</span><span>明細</span></div><div class="bill-row"><span>基本料金・通信料</span><span>••••円</span></div><div class="bill-row plus"><span>データ増量</span><strong>＋1,980円</strong></div></div>
+    <div class="bill-sheet" aria-label="{esc(description)}"><div class="bill-head"><span>今月のご請求</span><span>明細</span></div><div class="bill-row"><span>基本料金・通信料</span><span>••••円</span></div><div class="bill-row plus"><span>データ増量</span><strong>＋1,980円</strong></div></div>
     <div class="bill-result">「急に高い！」は<br />無料期間終了が原因かも</div>
   </div>
-  <div class="slide-illust bill-illust"><img src="public/images/irasutoya/seikyuusyo_shock.png" alt="請求画面を見て驚く人" /></div>
-</div>
+  <div class="slide-illust bill-illust"><img src="{asset('irasutoya/seikyuusyo_shock.png')}" alt="請求画面を見て驚く人" /></div>""",
+    )
 
-<!-- スライドID: 8 -->
-<!-- CSV表示内容: マイページ確認リスト：オプション名／無料終了日／終了後の月額 -->
-<div class="slide-container check-slide" data-slide-id="8">
-  <div class="watermark">8</div>
-  <h2 class="slide-title">マイページ確認リスト<em>3項目</em></h2>
+
+def render_8(row: dict[str, str]) -> str:
+    display = parts(row)
+    label, first_item = display[0].split("：", 1)
+    items = [first_item, *display[1:]]
+    rows_html = "\n".join(
+        f'      <div class="check-row"><span class="check-num">{index}</span><span class="check-text">{esc(item)}</span></div>'
+        for index, item in enumerate(items, 1)
+    )
+    return wrap_slide(
+        row,
+        "check-slide",
+        f"""  <div class="watermark">8</div>
+  <h2 class="slide-title">{esc(label)}<em>3項目</em></h2>
   <div class="slide-body" style="margin-bottom: 120px;">
     <div class="checklist">
-      <div class="check-row"><span class="check-num">1</span><span class="check-text">オプション名</span></div>
-      <div class="check-row"><span class="check-num">2</span><span class="check-text">無料終了日</span></div>
-      <div class="check-row"><span class="check-num">3</span><span class="check-text">終了後の月額</span></div>
+{rows_html}
     </div>
     <div class="mypage-tip">📱 マイページの<br />「契約中オプション」へ</div>
   </div>
-  <div class="slide-illust check-illust"><img src="public/images/irasutoya/pose_yubisashi_kakunin_businesswoman.png" alt="確認項目を指差す人" /></div>
-</div>
+  <div class="slide-illust check-illust"><img src="{asset('irasutoya/pose_yubisashi_kakunin_businesswoman.png')}" alt="確認項目を指差す人" /></div>""",
+    )
 
-<!-- スライドID: 9 -->
-<!-- CSV表示内容: 通話回数とデータ使用量を思い浮かべ、スマホでマイページを開くモモコ -->
-<div class="slide-container warning-slide" data-slide-id="9">
-  <div class="warning-banner">⚠ 使っているか確認</div>
+
+def render_9(row: dict[str, str]) -> str:
+    description = parts(row)[0]
+    return wrap_slide(
+        row,
+        "warning-slide",
+        f"""  <div class="warning-banner">⚠ 使っているか確認</div>
   <h2 class="warning-title">続ける前に<em>利用実績</em>を見る</h2>
-  <div class="warning-box" aria-label="通話回数とデータ使用量を思い浮かべ、スマホでマイページを開くモモコ">
+  <div class="warning-box" aria-label="{esc(description)}">
     <div class="usage-grid"><div class="usage-card">📞<b>通話回数</b>本当に使った？</div><div class="usage-card">📶<b>データ使用量</b>増量が必要？</div></div>
     <div class="action-strip">スマホでマイページを開く</div>
   </div>
   <div class="warning-callout">今日のうちに確認！</div>
-  <div class="slide-illust warning-illust"><img src="public/images/irasutoya/pose_necchuu_smartphone_woman.png" alt="スマホでマイページを確認する人" /></div>
-</div>
+  <div class="slide-illust warning-illust"><img src="{asset('irasutoya/pose_necchuu_smartphone_woman.png')}" alt="スマホでマイページを確認する人" /></div>""",
+    )
 
-<!-- スライドID: 10 -->
-<!-- CSV表示内容: 本編で解説：続ける・外すの判断基準／カレンダー登録法／ずっと無料の選択肢 -->
-<div class="slide-container cta-slide" data-slide-id="10">
-  <div class="cta-content">
+
+def render_10(row: dict[str, str]) -> str:
+    display = parts(row)
+    title, first_item = display[0].split("：", 1)
+    items = [first_item, *display[1:]]
+    items_html = "".join(f"<span>{esc(index)} {esc(item)}</span>" for index, item in zip(("①", "②", "③"), items, strict=True))
+    thumbnail = asset(
+        "thumbnails/42_【放置は損】その「無料オプション」終わると毎月いくら？"
+        "月500円〜1,980円の自動課金_サムネ1.png"
+    )
+    return wrap_slide(
+        row,
+        "cta-slide",
+        f"""  <div class="cta-content">
     <div class="cta-logo-card"><span class="cta-logo-mark">✓</span><span>スマホ料金チェック</span></div>
-    <h2 class="cta-title">本編で解説</h2>
-    <div class="cta-sub"><span>① 続ける・外すの判断基準</span><span>② カレンダー登録法</span><span>③ ずっと無料の選択肢</span></div>
-    <img class="cta-banner-img" src="public/images/thumbnails/42_【放置は損】その「無料オプション」終わると毎月いくら？月500円〜1,980円の自動課金_サムネ1.png" alt="無料オプション終了後の料金を解説する本編動画" />
+    <h2 class="cta-title">{esc(title)}</h2>
+    <div class="cta-sub">{items_html}</div>
+    <img class="cta-banner-img" src="{thumbnail}" alt="無料オプション終了後の料金を解説する本編動画" />
     <div class="cta-arrow">↓</div>
-  </div>
-</div>
+  </div>""",
+    )
+
+
+RENDERERS = {
+    "1": render_1,
+    "2": render_2,
+    "3": render_3,
+    "4": render_4,
+    "5": render_5,
+    "6": render_6,
+    "7": render_7,
+    "8": render_8,
+    "9": render_9,
+    "10": render_10,
+}
+
+
+def read_rows() -> list[dict[str, str]]:
+    with SOURCE_CSV.open("r", encoding="utf-8-sig", newline="") as csv_file:
+        rows = list(csv.DictReader(csv_file))
+    if not rows:
+        raise ValueError(f"No rows found in {SOURCE_CSV}")
+    slide_ids = [row["スライドID"].strip() for row in rows]
+    if len(slide_ids) != len(set(slide_ids)):
+        raise ValueError(f"Slide IDs must be unique for a short deck: {slide_ids}")
+    if any(slide_id.endswith("-0") for slide_id in slide_ids):
+        raise ValueError(f"N-0 price spreads are not supported in short decks: {slide_ids}")
+    if set(slide_ids) != set(RENDERERS):
+        raise ValueError(f"Renderer/CSV ID mismatch: CSV={slide_ids}, renderers={list(RENDERERS)}")
+    return rows
+
+
+def build_html(rows: list[dict[str, str]]) -> str:
+    slides = "\n\n".join(RENDERERS[row["スライドID"]](row) for row in rows)
+    return f"""<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>無料オプション終了後の自動課金 - Shorts Slides</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&amp;family=Noto+Sans+JP:wght@700;900&amp;display=swap" rel="stylesheet" />
+    <style>
+{CSS}
+    </style>
+  </head>
+  <body>
+{slides}
   </body>
 </html>
+"""
+
+
+def main() -> None:
+    if WORK_DIR != OUTPUT_HTML.parent:
+        raise ValueError(f"Output must stay in the slide-gen work directory: {OUTPUT_HTML}")
+    rows = read_rows()
+    document = build_html(rows)
+    OUTPUT_HTML.write_text(document, encoding="utf-8")
+    print(f"Generated {len(rows)} slides: {OUTPUT_HTML}")
+
+
+if __name__ == "__main__":
+    main()
