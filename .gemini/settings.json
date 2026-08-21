@@ -1,54 +1,43 @@
 {
-  "mcpServers": {
-    "github-mcp-server": {
-      "command": "docker",
-      "args": [
-        "run",
-        "-i",
-        "--rm",
-        "-e",
-        "GITHUB_PERSONAL_ACCESS_TOKEN",
-        "ghcr.io/github/github-mcp-server"
-      ]
+    "mcpServers": {
+        "playwright": {
+            "command": "npx",
+            "args": [
+                "@playwright/mcp@latest"
+            ]
+        },
+        "context7": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@upstash/context7-mcp"
+            ]
+        },
+        "js-genai-docs": {
+            "command": "npx",
+            "args": [
+                "mcp-remote",
+                "https://gitmcp.io/googleapis/js-genai"
+            ]
+        },
+        "pptx-gen-js-docs": {
+            "command": "npx",
+            "args": [
+                "mcp-remote",
+                "https://gitmcp.io/gitbrent/PptxGenJS/"
+            ]
+        }
     },
-    "playwright": {
-      "command": "npx",
-      "args": [
-        "@playwright/mcp@latest"
-      ]
+    "hasSeenIdeIntegrationNudge": true,
+    "ide": {
+        "enabled": true
     },
-    "context7": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@upstash/context7-mcp"
-      ]
+    "security": {
+        "auth": {
+            "selectedType": "oauth-personal"
+        }
     },
-    "js-genai-docs": {
-      "command": "npx",
-      "args": [
-        "mcp-remote",
-        "https://gitmcp.io/googleapis/js-genai"
-      ]
-    },
-    "pptx-gen-js-docs": {
-      "command": "npx",
-      "args": [
-        "mcp-remote",
-        "https://gitmcp.io/gitbrent/PptxGenJS/"
-      ]
+    "general": {
+        "previewFeatures": true
     }
-  },
-  "hasSeenIdeIntegrationNudge": true,
-  "ide": {
-    "enabled": true
-  },
-  "security": {
-    "auth": {
-      "selectedType": "oauth-personal"
-    }
-  },
-  "general": {
-    "previewFeatures": true
-  }
 }

@@ -6,8 +6,8 @@ description: List of available MCP servers and their capabilities.
 
 Antigravityから以下のMCPサーバーを利用可能です：
 
-- **github-mcp-server**: GitHubリポジトリとの対話（Issue, PR, ファイル操作など）を可能にします。
-    - [Source](https://github.com/github/github-mcp-server)
+> GitHub 操作（Issue / PR / ファイル）は MCP ではなく **`gh` CLI** を使う。github MCP は 2026-08-21 に全ハーネスから撤去した。
+
 - **playwright**: ブラウザ自動化によるテストや検証を可能にします。
     - [Source](https://github.com/microsoft/playwright-mcp)
 - **context7**: ライブラリのドキュメント検索などを提供します (Upstash Context7)。
