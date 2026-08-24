@@ -1,0 +1,1032 @@
+{
+  "dominant": [],
+  "occluded": [],
+  "overflow": {
+    "clipped": [],
+    "outOfBounds": []
+  },
+  "broken": [],
+  "images": [],
+  "layouts": [
+    {
+      "id": "1",
+      "pages": [
+        {
+          "label": "std",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.52,
+          "headlineFontSize": 102,
+          "headlineText": "auローミング終了",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": false,
+      "imagePaths": []
+    },
+    {
+      "id": "1-2",
+      "pages": [
+        {
+          "label": "std",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.396,
+          "headlineFontSize": 102,
+          "headlineText": "「2枚目」",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": false,
+      "imagePaths": []
+    },
+    {
+      "id": "2",
+      "pages": [
+        {
+          "label": "std",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.416,
+          "headlineFontSize": 102,
+          "headlineText": "楽天モバイル",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": false,
+      "imagePaths": []
+    },
+    {
+      "id": "4",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.526,
+          "headlineFontSize": 60,
+          "headlineText": "格安SIM図鑑 もくじ",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.592,
+          "headlineFontSize": 60,
+          "headlineText": "この動画でわかること",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "5-0",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.14,
+          "headlineFontSize": 280,
+          "headlineText": "1",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.542,
+          "headlineFontSize": 104,
+          "headlineText": "10月から何が変わる？",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "6",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.527,
+          "headlineFontSize": 60,
+          "headlineText": "10月から何が変わる？（1分でおさらい）",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.512,
+          "headlineFontSize": 60,
+          "headlineText": "選ぶ前に押さえるポイント",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "6-2",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.142,
+          "headlineFontSize": 60,
+          "headlineText": "詳しく解説した過去動画",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.435,
+          "headlineFontSize": 70,
+          "headlineText": "auローミング終了の 解説動画もチェック！",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "7-0",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.14,
+          "headlineFontSize": 280,
+          "headlineText": "2",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.706,
+          "headlineFontSize": 104,
+          "headlineText": "楽天モバイルにデュアルSIMが効くワケ",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "8",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.559,
+          "headlineFontSize": 72,
+          "headlineText": "SIMを2枚",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.466,
+          "headlineFontSize": 60,
+          "headlineText": "使い方はシンプル",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "9",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.658,
+          "headlineFontSize": 72,
+          "headlineText": "つながらない時だけ",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.466,
+          "headlineFontSize": 60,
+          "headlineText": "選び方は用途別",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "10-0",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.14,
+          "headlineFontSize": 280,
+          "headlineText": "3",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.542,
+          "headlineFontSize": 104,
+          "headlineText": "用途別・おすすめの2枚目3選",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "11",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.462,
+          "headlineFontSize": 60,
+          "headlineText": "おすすめ①「とにかく通信品質が命」ならpovo2.0",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.408,
+          "headlineFontSize": 60,
+          "headlineText": "選ぶ前に押さえるポイント",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "11-1",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.408,
+          "headlineFontSize": 60,
+          "headlineText": "ショウの実体験",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.365,
+          "headlineFontSize": 60,
+          "headlineText": "選ぶ前に押さえるポイント",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "11-2",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.412,
+          "headlineFontSize": 60,
+          "headlineText": "povo2.0の維持費",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.414,
+          "headlineFontSize": 60,
+          "headlineText": "選ぶ前に押さえるポイント",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "11-3",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.142,
+          "headlineFontSize": 60,
+          "headlineText": "詳しく解説した過去動画",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.435,
+          "headlineFontSize": 70,
+          "headlineText": "povo data oasisを 詳しく解説！",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "12",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.385,
+          "headlineFontSize": 60,
+          "headlineText": "おすすめ②「とにかく安さが命」なら日本通信SIM",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.348,
+          "headlineFontSize": 60,
+          "headlineText": "選ぶ前に押さえるポイント",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "12-1",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.473,
+          "headlineFontSize": 60,
+          "headlineText": "それでもドコモ回線が効く理由",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.365,
+          "headlineFontSize": 60,
+          "headlineText": "選ぶ前に押さえるポイント",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "12-2",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.142,
+          "headlineFontSize": 60,
+          "headlineText": "詳しく解説した過去動画",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.435,
+          "headlineFontSize": 70,
+          "headlineText": "日本通信SIMの 解説動画もチェック！",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "13",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.642,
+          "headlineFontSize": 60,
+          "headlineText": "おすすめ③「回線を選びたい（特にソフトバンク）」ならmineo",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.322,
+          "headlineFontSize": 60,
+          "headlineText": "選ぶ前に押さえるポイント",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "13-1",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.473,
+          "headlineFontSize": 60,
+          "headlineText": "mineo「マイそく」は最大速度で選ぶプラン",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.527,
+          "headlineFontSize": 60,
+          "headlineText": "選ぶ前に押さえるポイント",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "13-2",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.334,
+          "headlineFontSize": 60,
+          "headlineText": "ショウ自身のmineoの使い方",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.455,
+          "headlineFontSize": 60,
+          "headlineText": "選ぶ前に押さえるポイント",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "13-3",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.142,
+          "headlineFontSize": 60,
+          "headlineText": "詳しく解説した過去動画",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.435,
+          "headlineFontSize": 70,
+          "headlineText": "mineoの節約術も チェック！",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "13-4",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.395,
+          "headlineFontSize": 60,
+          "headlineText": "チャンネル登録で値上げ・改悪・終了の速報を見逃さない！",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.365,
+          "headlineFontSize": 60,
+          "headlineText": "選ぶ前に押さえるポイント",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "14-0",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.14,
+          "headlineFontSize": 280,
+          "headlineText": "4",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.542,
+          "headlineFontSize": 104,
+          "headlineText": "始める前の注意点",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "15",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.419,
+          "headlineFontSize": 60,
+          "headlineText": "始める前に確認しておきたいこと",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.365,
+          "headlineFontSize": 60,
+          "headlineText": "選ぶ前に押さえるポイント",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "15-2",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.48,
+          "headlineFontSize": 60,
+          "headlineText": "mineoは当チャンネル限定リンクなら事務手数料3,300円が無料",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.365,
+          "headlineFontSize": 60,
+          "headlineText": "選ぶ前に押さえるポイント",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "16",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.25,
+          "headlineFontSize": 60,
+          "headlineText": "当チャンネルの考え方",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.365,
+          "headlineFontSize": 60,
+          "headlineText": "選ぶ前に押さえるポイント",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "17-0",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.14,
+          "headlineFontSize": 280,
+          "headlineText": "5",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.542,
+          "headlineFontSize": 104,
+          "headlineText": "今日の内容をおさらい",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "18",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.37,
+          "headlineFontSize": 60,
+          "headlineText": "今日のまとめ",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.539,
+          "headlineFontSize": 60,
+          "headlineText": "自分に合う2枚目を選ぼう",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "19",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.164,
+          "headlineFontSize": 104,
+          "headlineText": "ご注意",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.618,
+          "headlineFontSize": 60,
+          "headlineText": "お申し込み前に",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "20",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.356,
+          "headlineFontSize": 60,
+          "headlineText": "コメントで教えてね！",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.429,
+          "headlineFontSize": 60,
+          "headlineText": "たとえばこんなコメント",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "21",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.444,
+          "headlineFontSize": 72,
+          "headlineText": "暮らしにゆとり",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.607,
+          "headlineFontSize": 60,
+          "headlineText": "浮いた分を未来へ",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "21-1",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.222,
+          "headlineFontSize": 70,
+          "headlineText": "自分に合う1枚が分かる",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.773,
+          "headlineFontSize": 72,
+          "headlineText": "毎週発信中",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "22",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.221,
+          "headlineFontSize": 70,
+          "headlineText": "ブログ・noteでも比較中！",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.356,
+          "headlineFontSize": 60,
+          "headlineText": "リンクは概要欄へ",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    },
+    {
+      "id": "23",
+      "pages": [
+        {
+          "label": "left",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.221,
+          "headlineFontSize": 70,
+          "headlineText": "チャンネル登録よろしくお願いします！",
+          "illustrationVsHeadline": null
+        },
+        {
+          "label": "right",
+          "illustrationCount": 0,
+          "illustrationImages": [],
+          "illustrationAreaRatio": 0,
+          "textAreaRatio": 0.498,
+          "headlineFontSize": 190,
+          "headlineText": "👍 🔔",
+          "illustrationVsHeadline": null
+        }
+      ],
+      "clipped": [],
+      "outOfBounds": [],
+      "brokenIcons": [],
+      "isSpread": true,
+      "imagePaths": []
+    }
+  ]
+}

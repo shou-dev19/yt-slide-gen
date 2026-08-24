@@ -1,0 +1,649 @@
+{
+  "over": [],
+  "whitespace": [
+    {
+      "id": "1",
+      "pages": [
+        {
+          "label": "std",
+          "areaHeight": 636,
+          "coveredHeight": 636,
+          "whitespaceRatio": 0,
+          "bottomGapRatio": 0
+        }
+      ]
+    },
+    {
+      "id": "1-2",
+      "pages": [
+        {
+          "label": "std",
+          "areaHeight": 636,
+          "coveredHeight": 636,
+          "whitespaceRatio": 0,
+          "bottomGapRatio": 0
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "pages": [
+        {
+          "label": "std",
+          "areaHeight": 636,
+          "coveredHeight": 636,
+          "whitespaceRatio": 0,
+          "bottomGapRatio": 0
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 407,
+          "whitespaceRatio": 0.474,
+          "bottomGapRatio": 0.07
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 458,
+          "whitespaceRatio": 0.408,
+          "bottomGapRatio": 0
+        }
+      ]
+    },
+    {
+      "id": "5-0",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 378,
+          "whitespaceRatio": 0.512,
+          "bottomGapRatio": 0.221
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 419,
+          "whitespaceRatio": 0.458,
+          "bottomGapRatio": 0.215
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 539,
+          "whitespaceRatio": 0.304,
+          "bottomGapRatio": 0.085
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 545,
+          "whitespaceRatio": 0.295,
+          "bottomGapRatio": 0.082
+        }
+      ]
+    },
+    {
+      "id": "6-2",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 563,
+          "whitespaceRatio": 0.272,
+          "bottomGapRatio": 0.121
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 336,
+          "whitespaceRatio": 0.565,
+          "bottomGapRatio": 0.066
+        }
+      ]
+    },
+    {
+      "id": "7-0",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 378,
+          "whitespaceRatio": 0.512,
+          "bottomGapRatio": 0.221
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 546,
+          "whitespaceRatio": 0.294,
+          "bottomGapRatio": 0.133
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 433,
+          "whitespaceRatio": 0.441,
+          "bottomGapRatio": 0.045
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 543,
+          "whitespaceRatio": 0.298,
+          "bottomGapRatio": 0.058
+        }
+      ]
+    },
+    {
+      "id": "9",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 509,
+          "whitespaceRatio": 0.342,
+          "bottomGapRatio": 0.094
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 543,
+          "whitespaceRatio": 0.298,
+          "bottomGapRatio": 0.058
+        }
+      ]
+    },
+    {
+      "id": "10-0",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 378,
+          "whitespaceRatio": 0.512,
+          "bottomGapRatio": 0.221
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 419,
+          "whitespaceRatio": 0.458,
+          "bottomGapRatio": 0.215
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 543,
+          "whitespaceRatio": 0.299,
+          "bottomGapRatio": 0.058
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 443,
+          "whitespaceRatio": 0.428,
+          "bottomGapRatio": 0.126
+        }
+      ]
+    },
+    {
+      "id": "11-1",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 456,
+          "whitespaceRatio": 0.41,
+          "bottomGapRatio": 0.12
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 343,
+          "whitespaceRatio": 0.556,
+          "bottomGapRatio": 0.263
+        }
+      ]
+    },
+    {
+      "id": "11-2",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 450,
+          "whitespaceRatio": 0.419,
+          "bottomGapRatio": 0.123
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 443,
+          "whitespaceRatio": 0.428,
+          "bottomGapRatio": 0.126
+        }
+      ]
+    },
+    {
+      "id": "11-3",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 563,
+          "whitespaceRatio": 0.273,
+          "bottomGapRatio": 0.121
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 336,
+          "whitespaceRatio": 0.565,
+          "bottomGapRatio": 0.066
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 443,
+          "whitespaceRatio": 0.428,
+          "bottomGapRatio": 0.126
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 398,
+          "whitespaceRatio": 0.486,
+          "bottomGapRatio": 0.145
+        }
+      ]
+    },
+    {
+      "id": "12-1",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 488,
+          "whitespaceRatio": 0.37,
+          "bottomGapRatio": 0.107
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 343,
+          "whitespaceRatio": 0.556,
+          "bottomGapRatio": 0.263
+        }
+      ]
+    },
+    {
+      "id": "12-2",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 563,
+          "whitespaceRatio": 0.272,
+          "bottomGapRatio": 0.121
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 336,
+          "whitespaceRatio": 0.565,
+          "bottomGapRatio": 0.066
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 628,
+          "whitespaceRatio": 0.189,
+          "bottomGapRatio": 0.047
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 398,
+          "whitespaceRatio": 0.486,
+          "bottomGapRatio": 0.145
+        }
+      ]
+    },
+    {
+      "id": "13-1",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 488,
+          "whitespaceRatio": 0.37,
+          "bottomGapRatio": 0.107
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 539,
+          "whitespaceRatio": 0.304,
+          "bottomGapRatio": 0.085
+        }
+      ]
+    },
+    {
+      "id": "13-2",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 454,
+          "whitespaceRatio": 0.414,
+          "bottomGapRatio": 0.087
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 494,
+          "whitespaceRatio": 0.362,
+          "bottomGapRatio": 0.104
+        }
+      ]
+    },
+    {
+      "id": "13-3",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 563,
+          "whitespaceRatio": 0.272,
+          "bottomGapRatio": 0.121
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 336,
+          "whitespaceRatio": 0.565,
+          "bottomGapRatio": 0.066
+        }
+      ]
+    },
+    {
+      "id": "13-4",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 388,
+          "whitespaceRatio": 0.499,
+          "bottomGapRatio": 0.234
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 343,
+          "whitespaceRatio": 0.556,
+          "bottomGapRatio": 0.263
+        }
+      ]
+    },
+    {
+      "id": "14-0",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 378,
+          "whitespaceRatio": 0.512,
+          "bottomGapRatio": 0.221
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 419,
+          "whitespaceRatio": 0.458,
+          "bottomGapRatio": 0.215
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 395,
+          "whitespaceRatio": 0.49,
+          "bottomGapRatio": 0.23
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 343,
+          "whitespaceRatio": 0.556,
+          "bottomGapRatio": 0.263
+        }
+      ]
+    },
+    {
+      "id": "15-2",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 432,
+          "whitespaceRatio": 0.441,
+          "bottomGapRatio": 0.205
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 343,
+          "whitespaceRatio": 0.556,
+          "bottomGapRatio": 0.263
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 254,
+          "whitespaceRatio": 0.671,
+          "bottomGapRatio": 0.32
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 343,
+          "whitespaceRatio": 0.556,
+          "bottomGapRatio": 0.263
+        }
+      ]
+    },
+    {
+      "id": "17-0",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 378,
+          "whitespaceRatio": 0.512,
+          "bottomGapRatio": 0.221
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 419,
+          "whitespaceRatio": 0.458,
+          "bottomGapRatio": 0.215
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 399,
+          "whitespaceRatio": 0.485,
+          "bottomGapRatio": 0.145
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 539,
+          "whitespaceRatio": 0.304,
+          "bottomGapRatio": 0.085
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 127,
+          "whitespaceRatio": 0.836,
+          "bottomGapRatio": 0.187
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 478,
+          "whitespaceRatio": 0.382,
+          "bottomGapRatio": 0.108
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 276,
+          "whitespaceRatio": 0.644,
+          "bottomGapRatio": 0.113
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 543,
+          "whitespaceRatio": 0.299,
+          "bottomGapRatio": 0.058
+        }
+      ]
+    },
+    {
+      "id": "21",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 344,
+          "whitespaceRatio": 0.556,
+          "bottomGapRatio": 0.084
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 470,
+          "whitespaceRatio": 0.393,
+          "bottomGapRatio": 0.111
+        }
+      ]
+    },
+    {
+      "id": "21-1",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 176,
+          "whitespaceRatio": 0.772,
+          "bottomGapRatio": 0.161
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 598,
+          "whitespaceRatio": 0.227,
+          "bottomGapRatio": 0.056
+        }
+      ]
+    },
+    {
+      "id": "22",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 171,
+          "whitespaceRatio": 0.779,
+          "bottomGapRatio": 0.168
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 596,
+          "whitespaceRatio": 0.23,
+          "bottomGapRatio": 0.053
+        }
+      ]
+    },
+    {
+      "id": "23",
+      "pages": [
+        {
+          "label": "left",
+          "areaHeight": 774,
+          "coveredHeight": 171,
+          "whitespaceRatio": 0.779,
+          "bottomGapRatio": 0.168
+        },
+        {
+          "label": "right",
+          "areaHeight": 774,
+          "coveredHeight": 479,
+          "whitespaceRatio": 0.381,
+          "bottomGapRatio": 0.081
+        }
+      ]
+    }
+  ]
+}
