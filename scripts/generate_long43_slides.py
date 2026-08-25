@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import csv
 import html
+import re
 from pathlib import Path
 
 ROOT = Path('/workspaces/yt-factory/packages/slide-gen')
@@ -132,7 +133,7 @@ def chapter(slide_id: str, display: str, number: int, style: str = RED) -> str:
 def std(slide_id: str, kicker: str, title: str, chips: list[str]) -> str:
     chip_html = ''.join(f'<span>{e(x)}</span>' for x in chips)
     return f'''<!-- Slide ID: {slide_id} -->
-<div class="slide-container std" style="{RED}">
+<div class="slide-container std intro-enlarged" style="{RED}">
   <div class="std-rays"></div><div class="std-corner">2026年10月</div>
   <div class="std-copy"><div class="std-kicker">{e(kicker)}</div><h1>{title}</h1><div class="std-chips">{chip_html}</div></div>
 </div>'''
@@ -149,16 +150,17 @@ def agenda(slide_id: str, display: str, page_no: int) -> str:
     parts = split_display(display)
     chapters = [x for x in parts if x.startswith('第')]
     benefits_text = next(x for x in parts if x.startswith('【この動画'))
-    benefit_parts = benefits_text.replace('【この動画でわかること】', '').split('  ')
+    benefit_parts = re.split(r'\s+(?=[②③④⑤⑥])', benefits_text.replace('【この動画でわかること】', ''))
     left = page('left', '格安SIM図鑑 もくじ', '<ul class="agenda">' + ''.join(f'<li><span class="num">{i}</span>{e(x)}</li>' for i, x in enumerate(chapters, 1)) + '</ul>', page_no)
-    right = page('right', 'この動画でわかること', '<ul class="benefits">' + ''.join(f'<li><span class="check">✓</span>{e(x)}</li>' for x in benefit_parts) + '</ul><div class="emph agenda-answer">楽天モバイルはそのまま。<br><span class="em">安い2枚目</span>を足せばいい！</div>', page_no + 1, tab=True)
+    right = page('right', 'この動画でわかること', '<ul class="benefits benefits-strong">' + ''.join(f'<li><span class="check">✓</span>{e(x)}</li>' for x in benefit_parts) + '</ul><div class="emph agenda-answer">楽天モバイルはそのまま。<br><span class="em">安い2枚目</span>を足せばいい！</div>', page_no + 1, tab=True)
     return spread(slide_id, left, right, RED)
 
 
 def dual_sim(slide_id: str, display: str, page_no: int) -> str:
     parts = split_display(display)
     left = page('left', '2枚持ち<br>（デュアルSIM）とは？', '<div class="bigicon"><i class="fa-solid fa-mobile-screen-button"></i></div><div class="emph">スマホ1台に<br><span class="big">SIMを2枚</span></div>', page_no)
-    right = page('right', '使い方はシンプル', rows(parts[1:]), page_no + 1, tab=True)
+    facts = [item.replace('もう1枚べつの', 'もう1枚別の') for item in parts[1:]]
+    right = page('right', '使い方はシンプル', rows(facts), page_no + 1, tab=True)
     return spread(slide_id, left, right, RED)
 
 
@@ -222,6 +224,18 @@ def mineo_usage(slide_id: str, page_no: int) -> str:
     return spread(slide_id, left, right, GREEN, price=True)
 
 
+def mineo_dual_sim_notice(slide_id: str, page_no: int) -> str:
+    """Show eSIM availability by mineo network before recommending a SIM pairing."""
+    # This is a decision slide: keep the plan table legible on the left and
+    # the S-plan pairing warning as the single action on the right.  Adding a
+    # lead below either side previously pushed text into the subtitle band.
+    left_body = '''<table class="sheet compact-sheet dual-sim-esim-sheet"><tr><th>mineoのプラン</th><th>eSIM対応</th></tr><tr><td>Sプラン<br><small>ソフトバンク回線</small></td><td><span class="em">未提供</span></td></tr><tr><td>Aプラン<br><small>au回線</small></td><td>対応</td></tr><tr><td>Dプラン<br><small>ドコモ回線</small></td><td>対応</td></tr></table>'''
+    right_body = '''<div class="warn"><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span>Sプランを選ぶなら<br><span class="em">楽天モバイル側をeSIMに</span></div><div class="emph">mineo Sプランは<br><span class="big">物理SIM</span>で使う</div>'''
+    left = page('left', 'デュアルSIMでの注意', left_body, page_no)
+    right = page('right', 'Sプランを選ぶなら<br>組み合わせを確認', right_body, page_no + 1, tab=True)
+    return spread(slide_id, left, right, GREEN)
+
+
 def preflight(slide_id: str, page_no: int) -> str:
     left = page('left', '始める前に<br>確認しておきたいこと', '''<table class="sheet compact-sheet full-sheet"><tr><th>確認すること</th><th>見るポイント</th></tr><tr><td>スマホ</td><td>デュアルSIM対応<br>（物理2枚 / 物理＋eSIM）</td></tr><tr><td>申し込み</td><td>初期費用の有無</td></tr></table>''', page_no)
     right_body = '''<div class="warn"><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span>契約時には事務手数料など<br><span class="em">初期費用</span>がかかる場合も</div><div class="visual support-illustration"><img src="public/images/irasutoya/kaden_tenin16_woman_ojigi.png" alt="契約前に確認する案内イメージ"></div>'''
@@ -278,8 +292,8 @@ def build(display: dict[str, str]) -> list[str]:
     pages = 1
     deck: list[str] = []
     ctas = {
-        '6-2': ('public/images/thumbnails/35_【2026年10月】楽天モバイルのau回線ローミング終了！？今やるべき3つの対策_サムネ1.png', 'auローミング終了の\n解説動画もチェック！'),
-        '11-3': ('public/images/thumbnails/【月最大1GB無料】povo Data Oasis×東京メトロで毎日0円チャージする方法_サムネ1.png', 'povo data oasisを\n詳しく解説！'),
+        '6-2': ('public/images/thumbnails/35_【2026年10月】楽天モバイルのau回線ローミング終了！？今やるべき3つの対策_サムネ2.png', 'auローミング終了の\n解説動画もチェック！'),
+        '11-3': ('public/images/thumbnails/【月最大1GB無料】povo Data Oasis×東京メトロで毎日0円チャージする方法_サムネ4.png', 'povo data oasisを\n詳しく解説！'),
         '12-2': ('public/images/thumbnails/【2026年最新】20GBで1,390円！？日本通信SIMの「SS級」コスパを徹底解剖！メリット・デメリット全公開.png', '日本通信SIMの\n解説動画もチェック！'),
         '13-3': ('public/images/thumbnails/【裏技】mineo歴8年が教える「実質使い放題」の極意！契約前に知らないと損する5つの節約術_サムネ.png', 'mineoの節約術も\nチェック！'),
     }
@@ -316,6 +330,8 @@ def build(display: dict[str, str]) -> list[str]:
             deck.append(mineo_speed(slide_id, pages)); pages += 2; continue
         if slide_id == '13-2':
             deck.append(mineo_usage(slide_id, pages)); pages += 2; continue
+        if slide_id == '13-0':
+            deck.append(mineo_dual_sim_notice(slide_id, pages)); pages += 2; continue
         if slide_id == '15':
             deck.append(preflight(slide_id, pages)); pages += 2; continue
         if slide_id == '15-2':
@@ -349,17 +365,21 @@ body{{--primary-color:#C8102E;--accent-red:#E53935;--text-dark:#212121}}
 .std-kicker{{font-size:48px;font-weight:900;line-height:1.2;margin-bottom:9px;text-shadow:3px 3px #fff}}
 .std-copy h1{{font-size:86px;line-height:1.12;font-weight:900;letter-spacing:-3px;text-shadow:5px 5px #fff;margin:4px 0 22px}}.std-copy h1 span{{color:#E53935;font-size:102px;white-space:nowrap}}
 .std-chips{{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;max-width:1100px}}.std-chips span{{font-size:42px;background:#fff;border:5px solid #C8102E;border-radius:999px;padding:8px 23px;box-shadow:0 8px 16px #0002;font-weight:900}}
+/* 導入3枚は、スマホ視聴でも一目で読めるように全テキストを一段拡大 */
+.slide-container.std.intro-enlarged .std-corner{{font-size:42px;padding:10px 22px}}.slide-container.std.intro-enlarged .std-kicker{{font-size:54px;margin-bottom:12px}}.slide-container.std.intro-enlarged .std-copy h1{{font-size:94px;line-height:1.1;margin:5px 0 26px}}.slide-container.std.intro-enlarged .std-copy h1 span{{font-size:112px}}.slide-container.std.intro-enlarged .std-chips{{gap:16px;max-width:1160px}}.slide-container.std.intro-enlarged .std-chips span{{font-size:46px;padding:9px 25px}}
+.benefits.benefits-strong li{{font-weight:900;font-size:40px;}}
 .page-head{{word-break:auto-phrase;text-wrap:balance;line-height:1.18}}
 .page .rows{{gap:14px}}.page .rows li{{padding:18px 24px}}.page .rows .tx{{font-size:40px;line-height:1.28}}.page .rows .ic{{font-size:48px;width:60px}}.page .rows .badge{{width:64px;height:64px;font-size:38px}}
 .agenda li{{font-size:42px;gap:17px}}.agenda .num{{width:64px;height:64px;font-size:38px}}.benefits li{{font-size:38px;gap:15px}}.benefits .check{{font-size:48px}}.agenda-answer{{font-size:38px;padding:19px 24px}}.cta-title{{font-size:70px}}.blog-image{{height:330px}}.blog-image img{{width:100%;height:auto;max-height:320px;object-fit:contain}}.page .bigicon{{font-size:190px}}.page .lead{{font-size:42px;padding:24px 28px}}.page .emph{{font-size:45px;padding:27px 30px}}.page .emph .big{{font-size:72px}}
 .brand-lockup{{display:flex;align-items:center;justify-content:center;gap:24px;min-height:118px;padding:14px 20px;background:#fff;border:3px solid var(--brand);border-radius:18px;box-shadow:0 5px 12px #00000012}}.brand-lockup img{{max-width:300px;max-height:82px;object-fit:contain}}.brand-lockup span{{font-size:34px;font-weight:900;line-height:1.25;color:var(--ink);text-align:center}}
 .compact-sheet{{font-size:42px}}.compact-sheet th,.compact-sheet td{{padding:15px 12px}}.support-illustration{{height:240px}}.support-illustration img{{max-height:230px}}
+.dual-sim-esim-sheet{{flex:1;margin:12px 0}}.dual-sim-esim-sheet tr{{height:25%}}
 .full-sheet{{height:100%}}.full-sheet tr{{height:33%}}
 .network-pair{{display:flex;align-items:center;justify-content:center;gap:30px;padding:18px 8px}}.network-pair img{{width:235px;height:76px;object-fit:contain}}.network-pair i{{font-size:52px;color:var(--brand)}}
 .fee-flow{{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;padding:28px 18px;border:5px solid var(--brand);border-radius:22px;background:var(--brand-soft);font-size:34px;font-weight:900}}.fee-flow strong{{font-size:56px;color:var(--con);white-space:nowrap}}.fee-flow .free{{color:var(--brand-deep)}}.fee-flow i{{font-size:40px;color:var(--brand-deep)}}
 .sim-equation{{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:24px 12px;border:5px solid var(--brand);border-radius:22px;background:var(--brand-soft);font-size:38px;font-weight:900;text-align:center;line-height:1.2}}.sim-equation span{{padding:14px 16px;background:#fff;border-radius:15px;box-shadow:0 3px 8px #0002}}.sim-equation small{{font-size:30px;color:var(--ink-soft)}}.sim-equation b{{font-size:52px;color:var(--brand-deep)}}.sim-equation strong{{font-size:58px;color:var(--con)}}
 </style></head><body>\n{''.join(deck)}\n</body></html>'''
-    OUT.write_text(document, encoding='utf-8')
+    OUT.write_text(document + '\n', encoding='utf-8')
     print(f'Generated {len(deck)} slides: {OUT}')
 
 
