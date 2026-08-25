@@ -127,6 +127,7 @@ async function main() {
 
     const whitespaceResults = [];
     const layoutResults = [];
+    const kindResults = [];
 
     for (let i = 0; i < slideIds.length; i++) {
         const id = slideIds[i];
@@ -158,6 +159,17 @@ async function main() {
                 ...(isShort ? { shortSpread } : {}),
                 imagePaths,
             });
+
+            const { kind } = await page.evaluate((slide) => {
+                const hasChart = slide.querySelector('img[src*="images/charts/"]') !== null;
+                const hasDivider = slide.querySelector('.divider') !== null;
+                return {
+                    hasChart,
+                    hasDivider,
+                    kind: hasChart ? 'eval-radar' : hasDivider ? 'chapter-divider' : 'other',
+                };
+            }, slideElement);
+            kindResults.push({ id: paddedId, kind });
         }
     }
 
@@ -182,6 +194,14 @@ async function main() {
         }
         console.warn('  SKILL.md §10 の優先順位（①台本から不足内容を追記 → ②文字・アイコン拡大 → ③隣ページと再配分 → ④いらすとや）で埋めること。');
     }
+
+    // --- スライド種別マニフェストの出力 ---
+    const kindReportPath = path.join(OUT_DIR, `${FILE_PREFIX}kind-report.json`);
+    fs.writeFileSync(
+        kindReportPath,
+        JSON.stringify({ mode, slides: Object.fromEntries(kindResults.map((k) => [k.id, k.kind])) }, null, 2),
+    );
+    console.log(`\nスライド種別マニフェスト: ${kindReportPath}`);
 
     // --- レイアウトレポート（いらすとや主役化 / 見切れ・はみ出し）の出力 ---
     const layoutReportPath = path.join(OUT_DIR, `${FILE_PREFIX}layout-report.json`);
@@ -291,6 +311,9 @@ async function main() {
         destinationDir: SLIDE_DEST_DIR,
         mode,
     });
+    const kindReportDestination = path.join(path.dirname(SLIDE_DEST_DIR), 'slide_kind-report.json');
+    fs.copyFileSync(kindReportPath, kindReportDestination);
+    console.log(`Copied slide kind report to ${kindReportDestination}`);
     console.log(`Removed ${removedCount} old PNG(s) from ${SLIDE_DEST_DIR}`);
     console.log(`Copied ${copiedCount} ${mode} slide PNG(s) to ${SLIDE_DEST_DIR}`);
 

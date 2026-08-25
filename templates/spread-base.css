@@ -189,14 +189,6 @@ body {
   align-self: flex-start;
 }
 
-/* ページ番号 */
-.page-no {
-  position: absolute; bottom: 18px;
-  font-size: 24px; font-weight: 700; color: var(--ink-soft);
-}
-.left  .page-no { left: 60px; }
-.right .page-no { right: 60px; }
-
 /* ===== 評価ランクバッジ（共通パレット） ===== */
 .rank {
   color: #fff; font-weight: 900;
@@ -358,6 +350,7 @@ body {
  * =========================================================================== */
 .line,
 .rows .tx, .rows .tx .sub,
+.page-head,
 .page-head small,
 .lead, .warn, .note, .emph,
 .card-name,

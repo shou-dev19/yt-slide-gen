@@ -41,3 +41,4 @@ dist-ssr
 # キャプチャ時に出力される計測レポート（成果物ではなく検査ログ）
 out/*whitespace-report.json
 out/*layout-report.json
+out/*kind-report.json

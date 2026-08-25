@@ -110,8 +110,8 @@ const measureInPage = (slideSelector, index, excludeSelectors) => {
     return single ? [single] : [];
 };
 
-/** ノンブル・図鑑インデックスタブなど、内容ではない装飾クロム。 */
-export const DEFAULT_EXCLUDE_SELECTORS = ['.page-no', '.index-tab'];
+/** 図鑑インデックスタブなど、内容ではない装飾クロム。 */
+export const DEFAULT_EXCLUDE_SELECTORS = ['.index-tab'];
 
 /**
  * 1スライドの余白を計測する。
