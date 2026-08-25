@@ -258,7 +258,7 @@ def channel_principle(slide_id: str, page_no: int) -> str:
 def special(slide_id: str, display: str, page_no: int) -> str:
     if slide_id == '13-4':
         left = page('left', '', '<div class="bigicon"><i class="fa-solid fa-bell"></i></div><div class="big-title cta-title">値上げ・改悪・終了の<br><span class="em">速報</span>を見逃さない！</div>', page_no)
-        right = page('right', 'チャンネル登録で安心', '<div class="bigicon"><i class="fa-solid fa-square-plus"></i></div><div class="lead" style="text-align:center">料金・サービスの変化を<br><span class="em">毎週お届け</span>します</div><div class="note" style="text-align:center">見逃したくない方は登録ボタンをタップ</div>', page_no + 1, tab=True)
+        right = page('right', 'チャンネル登録で安心', '<div class="youtube-subscribe" role="img" aria-label="チャンネル登録ボタン"><span class="youtube-play" aria-hidden="true"></span><span>チャンネル登録</span></div><div class="lead" style="text-align:center">料金・サービスの変化を<br><span class="em">毎週お届け</span>します</div><div class="note" style="text-align:center">見逃したくない方は登録ボタンをタップ</div>', page_no + 1, tab=True)
         return spread(slide_id, left, right, GREEN)
     if slide_id == '19':
         left = page('left', '', '<div class="bigicon"><i class="fa-solid fa-circle-info"></i></div><div class="big-title">ご注意</div>', page_no)
@@ -376,6 +376,7 @@ body{{--primary-color:#C8102E;--accent-red:#E53935;--text-dark:#212121}}
 .dual-sim-esim-sheet{{flex:1;margin:12px 0}}.dual-sim-esim-sheet tr{{height:25%}}
 .full-sheet{{height:100%}}.full-sheet tr{{height:33%}}
 .network-pair{{display:flex;align-items:center;justify-content:center;gap:30px;padding:18px 8px}}.network-pair img{{width:235px;height:76px;object-fit:contain}}.network-pair i{{font-size:52px;color:var(--brand)}}
+.youtube-subscribe{{display:inline-flex;align-self:center;align-items:center;justify-content:center;gap:22px;min-width:530px;padding:25px 42px;box-sizing:border-box;border:6px solid #c90024;border-radius:999px;background:#ff0033;color:#fff;font-size:54px;font-weight:900;line-height:1;letter-spacing:.04em;text-shadow:0 2px 0 #a9001f;box-shadow:0 12px 0 #97001b,0 18px 22px #0003}}.youtube-play{{position:relative;display:block;width:62px;height:44px;flex:0 0 auto;border-radius:12px;background:#fff;box-shadow:inset 0 -3px 0 #ddd}}.youtube-play::after{{content:"";position:absolute;left:24px;top:11px;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:17px solid #ff0033}}
 .fee-flow{{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;padding:28px 18px;border:5px solid var(--brand);border-radius:22px;background:var(--brand-soft);font-size:34px;font-weight:900}}.fee-flow strong{{font-size:56px;color:var(--con);white-space:nowrap}}.fee-flow .free{{color:var(--brand-deep)}}.fee-flow i{{font-size:40px;color:var(--brand-deep)}}
 .sim-equation{{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:24px 12px;border:5px solid var(--brand);border-radius:22px;background:var(--brand-soft);font-size:38px;font-weight:900;text-align:center;line-height:1.2}}.sim-equation span{{padding:14px 16px;background:#fff;border-radius:15px;box-shadow:0 3px 8px #0002}}.sim-equation small{{font-size:30px;color:var(--ink-soft)}}.sim-equation b{{font-size:52px;color:var(--brand-deep)}}.sim-equation strong{{font-size:58px;color:var(--con)}}
 </style></head><body>\n{''.join(deck)}\n</body></html>'''
