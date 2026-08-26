@@ -1,284 +1,706 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UQ mobile手数料4,950円を0円にするテクニック (Short)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
-<style>
-    :root {
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>楽天モバイル2枚持ちの正解は、月額0円のpovo2.0 - Shorts Slides</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
         --blue: #0052cc;
-        --blue-dark: #003380;
+        --blue-deep: #003380;
+        --blue-soft: #eaf3ff;
         --red: #e63946;
-        --white: #ffffff;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-        font-family: 'Inter', 'Noto Sans JP', sans-serif;
-        background: #f0f4f8;
+        --red-deep: #b0001e;
+        --red-soft: #fff0f0;
+        --yellow: #ffd700;
+        --ink: #172b4d;
+        --muted: #5b6780;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 40px;
+        margin: 0;
         padding: 40px;
-    }
-    .slide-container {
+        background: #f0f4f8;
+        font-family: "Inter", "Noto Sans JP", sans-serif;
+        font-weight: 700;
+      }
+      .slide-container {
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        display: block;
         width: 1080px;
         height: 1080px;
-        background: var(--white);
+        flex-shrink: 0;
+        padding: 58px 70px;
+        background: #fff;
+        color: var(--ink);
+      }
+      .slide-container.price-note::after {
+        content: "※表示している料金はすべて月額・税込みの価格です";
+        position: absolute;
+        right: 20px;
+        bottom: 16px;
+        z-index: 9999;
+        background: rgba(0, 0, 0, 0.62);
+        color: #fff;
+        font-family: "Noto Sans JP", sans-serif;
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        line-height: 1;
+        padding: 10px 20px;
+        border-radius: 10px;
+        white-space: nowrap;
+        pointer-events: none;
+      }
+      img {
+        object-fit: contain;
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.12));
+      }
+      .watermark {
+        position: absolute;
+        top: -74px;
+        left: 20px;
+        z-index: -1;
+        color: var(--blue);
+        font:
+          900 280px/1 "Inter",
+          sans-serif;
+        opacity: 0.07;
+      }
+      .slide-title {
         position: relative;
-        overflow: hidden;
+        z-index: 1;
+        margin: 0 0 30px;
+        padding: 0 0 20px;
+        border-bottom: 10px solid var(--blue);
+        color: var(--ink);
+        font-size: 62px;
+        font-weight: 900;
+        line-height: 1.15;
+        letter-spacing: -0.045em;
+      }
+      .slide-title span {
+        color: var(--red);
+      }
+      .slide-body {
+        position: relative;
+        z-index: 1;
         display: flex;
         flex-direction: column;
-    }
-    .flex-row { display: flex; flex-direction: row; }
-    .flex-col { display: flex; flex-direction: column; }
-    img { object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
-
-    /* ===== Thumbnail (Slide 1) ===== */
-    .slide-thumbnail {
+        gap: 26px;
+      }
+      .slide-illust {
+        position: absolute;
+        right: 34px;
+        bottom: 30px;
+        z-index: 2;
+        height: 250px;
+        pointer-events: none;
+      }
+      .slide-illust img {
+        height: 100%;
+        max-width: 330px;
+      }
+      /* Thumbnail */
+      .slide-thumbnail {
+        display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        text-align: center;
+        padding: 154px 48px 300px;
         border: 25px solid var(--blue);
-        padding-top: 160px;
-        padding-bottom: 300px;
         background:
-            repeating-conic-gradient(from 0deg at 52% 48%, rgba(0,82,204,0.06) 0deg 2.5deg, transparent 2.5deg 16deg),
-            radial-gradient(ellipse at 52% 48%, #ffffff 5%, #e8f3ff 45%, #c8dcff 100%);
-    }
-    .thumb-top-strip {
-        position: absolute; top: 25px; left: 25px; right: 25px;
-        background: var(--blue); color: #fff;
-        font-size: 36px; font-weight: 900; padding: 18px 0;
-        text-align: center; letter-spacing: 0.06em; z-index: 3;
-    }
-    .thumb-accent-tri { position: absolute; width: 0; height: 0; z-index: 1; }
-    .thumb-accent-tri.tl { top:25px; left:25px; border-top:300px solid rgba(0,82,204,0.09); border-right:300px solid transparent; }
-    .thumb-accent-tri.br { bottom:25px; right:25px; border-bottom:300px solid rgba(0,82,204,0.09); border-left:300px solid transparent; }
-    .thumb-tag {
-        font-size: 76px; font-weight: 900; color: #fff;
-        background: var(--red); padding: 18px 54px;
-        transform: rotate(-3deg); box-shadow: 8px 8px 0 rgba(0,0,0,0.25);
-        margin-bottom: 28px; z-index: 2;
-    }
-    .thumb-title {
-        font-size: 78px; font-weight: 900; color: #1a1a2e;
-        line-height: 1.25; margin-bottom: 26px; max-width: 940px; z-index: 2;
-    }
-    .thumb-title .hl { color: var(--blue); }
-    .thumb-title .hl-red { color: var(--red); }
-    .thumb-sub-band {
-        font-size: 60px; font-weight: 900; color: #fff;
-        background: var(--blue); padding: 18px 70px; border-radius: 12px;
-        box-shadow: 4px 4px 0 rgba(0,0,0,0.2); margin-bottom: 30px; z-index: 2;
-    }
-    .thumb-logo-wrap {
-        height: 190px; display: flex; align-items: center; justify-content: center; z-index: 2;
-    }
-    .thumb-logo-wrap img {
-        height: 150px; filter: none;
-        background: #fff; border-radius: 18px; padding: 14px 30px;
-        box-shadow: 4px 4px 0 rgba(0,82,204,0.18);
-    }
-    .thumb-illust {
-        position: absolute; bottom: 40px; right: 50px; z-index: 2;
-    }
-    .thumb-illust img { height: 290px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.18)); }
-
-    /* ===== Standard slides (2-5) ===== */
-    .watermark {
-        position: absolute; top: -40px; left: 10px;
-        font-size: 280px; font-weight: 900; color: var(--blue);
-        opacity: 0.07; z-index: 0; line-height: 1;
-    }
-    .slide-pad { padding: 80px 70px; }
-    .slide-title {
-        font-size: 62px; font-weight: 900; color: #1a1a2e;
-        border-bottom: 10px solid var(--blue); padding-bottom: 14px;
-        margin-bottom: 30px; z-index: 1;
-    }
-    .slide-title .hl { color: var(--blue); }
-    .slide-title .hl-red { color: var(--red); }
-    .slide-body { display: flex; flex-direction: column; gap: 28px; z-index: 1; }
-
-    .report-header-card {
-        display: flex; align-items: center; gap: 24px;
-        background: linear-gradient(135deg, #0052cc, #003fa0);
-        color: #fff; border-radius: 20px; padding: 28px 36px;
-    }
-    .report-header-card .rh-logo { height: 130px; background:#fff; border-radius:14px; padding:14px 22px; filter:none; }
-    .report-header-card .rh-text { font-size: 44px; font-weight: 900; line-height: 1.3; }
-
-    .info-card {
-        display: flex; align-items: center; gap: 22px;
-        padding: 22px 32px; border-radius: 0 16px 16px 0;
-        font-size: 46px; font-weight: 700;
-        background: #f0f5ff; border-left: 14px solid var(--blue);
-    }
-    .info-card .ic-emoji { font-size: 52px; flex-shrink: 0; }
-    .info-card.alert {
-        background: #fff0f0; border-left-color: var(--red);
-        color: var(--red); font-size: 50px; font-weight: 900;
-    }
-    .info-card .ic-num { color: var(--blue); font-weight: 900; }
-    .info-card .ic-free { color: var(--red); font-weight: 900; }
-    .info-card .strike { text-decoration: line-through; opacity: 0.7; }
-
-    .list-item {
-        display: flex; align-items: center; gap: 22px;
-        font-size: 52px; font-weight: 700; color: #1a1a2e;
-    }
-    .list-item .li-emoji { font-size: 54px; flex-shrink: 0; }
-
-    .price-flow {
-        display: flex; align-items: center; justify-content: center; gap: 26px;
-        background: #f0f5ff; border: 6px solid var(--blue); border-radius: 22px;
-        padding: 30px 28px; font-weight: 900;
-    }
-    .price-flow .pf-old { font-size: 54px; color: #6b7280; text-decoration: line-through; }
-    .price-flow .pf-arrow { font-size: 50px; color: var(--blue); }
-    .price-flow .pf-new { font-size: 64px; color: var(--red); }
-    .price-flow .pf-label { font-size: 38px; color: #1a1a2e; line-height: 1.2; }
-
-    /* ===== Option rows (Slide 5 : 乗り換え候補3選) ===== */
-    .opt-row {
-        display: flex; align-items: center; gap: 28px;
-        background: #f0f5ff; border-left: 14px solid var(--blue);
-        border-radius: 0 16px 16px 0; padding: 20px 30px;
-    }
-    .opt-logo-chip {
-        width: 240px; height: 96px; flex-shrink: 0;
-        background: #fff; border-radius: 14px;
-        display: flex; align-items: center; justify-content: center;
-        box-shadow: 3px 3px 0 rgba(0,82,204,0.15);
-    }
-    .opt-logo-chip img { max-height: 68px; max-width: 210px; filter: none; }
-    .opt-reason { display: flex; flex-direction: column; }
-    .opt-reason .opt-tag { font-size: 34px; font-weight: 900; color: #fff; background: var(--red); border-radius: 8px; padding: 4px 16px; align-self: flex-start; margin-bottom: 8px; }
-    .opt-reason .opt-text { font-size: 46px; font-weight: 900; color: #1a1a2e; }
-
-    .slide-illust {
-        position: absolute; bottom: 40px; right: 40px;
-    }
-    .slide-illust img { height: 260px; }
-
-    /* ===== CTA (Slide 6) ===== */
-    .slide-cta {
-        align-items: center; justify-content: center; text-align: center;
-        background: linear-gradient(135deg, #0052cc, #003380);
-        padding: 70px;
-    }
-    .cta-logo { height: 110px; filter: none; background: #fff; border-radius: 18px; padding: 8px 16px; box-shadow: 4px 4px 0 rgba(0,0,0,0.18); margin-bottom: 12px; }
-    .cta-title { font-size: 84px; font-weight: 900; color: #ffd700; line-height: 1.2; margin-bottom: 18px; }
-    .cta-sub { font-size: 50px; font-weight: 900; color: #fff; margin-bottom: 26px; }
-    .cta-banner-img { width: 840px; border-radius: 18px; box-shadow: 0 14px 40px rgba(0,0,0,0.35); margin-bottom: 22px; filter: none; }
-    .cta-arrow { font-size: 90px; color: #ffd700; animation: bounce 1s infinite; }
-    @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-22px); }
-    }
-</style>
-</head>
-<body>
-
-<!-- ===================== Slide 1 : Thumbnail ===================== -->
-<div class="slide-container slide-thumbnail">
-    <div class="thumb-top-strip">⚡ 2026年8月 UQ mobile 手数料改定 ⚡</div>
-    <div class="thumb-accent-tri tl"></div>
-    <div class="thumb-accent-tri br"></div>
-
-    <div class="thumb-tag">8月値上げ！</div>
-    <div class="thumb-title">手数料が<span class="hl-red">4,950円</span>に…<br>でも<span class="hl">0円</span>にできる</div>
-    <div class="thumb-sub-band">乗り換え候補3選！</div>
-    <div class="thumb-logo-wrap">
-        <img src="public/images/logo/UQ_logo_2.png" alt="UQ mobile">
+          repeating-conic-gradient(
+            from 0deg at 52% 48%,
+            rgba(0, 82, 204, 0.06) 0deg 2.5deg,
+            transparent 2.5deg 16deg
+          ),
+          radial-gradient(
+            ellipse at 52% 48%,
+            #fff 5%,
+            #e8f3ff 45%,
+            #c8dcff 100%
+          );
+        text-align: center;
+      }
+      .thumb-top-strip {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        right: 25px;
+        z-index: 3;
+        padding: 18px 0;
+        background: var(--blue);
+        color: #fff;
+        font-size: 36px;
+        font-weight: 900;
+        letter-spacing: 0.06em;
+        text-align: center;
+      }
+      .thumb-accent-tri {
+        position: absolute;
+        width: 0;
+        height: 0;
+      }
+      .thumb-accent-tri.tl {
+        top: 25px;
+        left: 25px;
+        border-top: 300px solid rgba(0, 82, 204, 0.09);
+        border-right: 300px solid transparent;
+      }
+      .thumb-accent-tri.br {
+        right: 25px;
+        bottom: 25px;
+        border-bottom: 300px solid rgba(0, 82, 204, 0.09);
+        border-left: 300px solid transparent;
+      }
+      .thumb-content {
+        position: relative;
+        z-index: 2;
+      }
+      .thumb-tag {
+        display: inline-block;
+        margin-bottom: 24px;
+        padding: 18px 54px;
+        transform: rotate(-3deg);
+        background: var(--red);
+        box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.25);
+        color: #fff;
+        font-size: 72px;
+        font-weight: 900;
+      }
+      .thumb-title {
+        max-width: 920px;
+        margin: 0 auto 22px;
+        color: #17213d;
+        font-size: 78px;
+        font-weight: 900;
+        line-height: 1.2;
+        letter-spacing: -0.055em;
+      }
+      .thumb-title span {
+        color: var(--red);
+      }
+      .thumb-sub-band {
+        display: inline-block;
+        padding: 16px 46px;
+        border-radius: 14px;
+        background: var(--blue);
+        box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+        color: #fff;
+        font-size: 52px;
+        font-weight: 900;
+      }
+      .thumb-sticker {
+        position: absolute;
+        z-index: 2;
+        left: 42px;
+        bottom: 78px;
+        width: 500px;
+        padding: 16px 22px;
+        border: 5px solid var(--blue);
+        border-radius: 20px;
+        background: #fff;
+        box-shadow: 6px 7px 0 rgba(0, 82, 204, 0.18);
+        font-size: 32px;
+        font-weight: 900;
+        line-height: 1.2;
+        text-align: center;
+        word-break: keep-all;
+        overflow-wrap: normal;
+      }
+      .thumb-sticker span {
+        white-space: nowrap;
+      }
+      .thumb-illust {
+        right: 24px;
+        bottom: 16px;
+        height: 292px;
+      }
+      .thumb-illust img {
+        max-width: 380px;
+      }
+      /* Type selection */
+      .choice-lead {
+        padding: 25px 30px;
+        border-radius: 20px;
+        background: var(--ink);
+        color: #fff;
+        font-size: 42px;
+        font-weight: 900;
+        text-align: center;
+      }
+      .type-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .type-card {
+        min-height: 176px;
+        padding: 27px 30px;
+        border: 6px solid #c4d8f7;
+        border-radius: 22px;
+        background: #f6faff;
+        color: var(--muted);
+      }
+      .type-card b {
+        display: block;
+        margin-bottom: 12px;
+        color: var(--blue);
+        font-size: 48px;
+      }
+      .type-card small {
+        font-size: 31px;
+        font-weight: 900;
+      }
+      .type-card.selected {
+        grid-column: span 2;
+        border-color: var(--red);
+        background: var(--red-soft);
+        box-shadow: 0 14px 30px rgba(230, 57, 70, 0.15);
+      }
+      .type-card.selected b {
+        color: var(--red-deep);
+        font-size: 58px;
+      }
+      .type-card.selected small {
+        color: var(--red);
+        font-size: 38px;
+      }
+      /* povo answer */
+      .logo-answer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 28px;
+        min-height: 170px;
+        padding: 22px 34px;
+        border: 7px solid var(--blue);
+        border-radius: 24px;
+        background: #fff;
+      }
+      .logo-answer img {
+        width: 350px;
+        max-height: 115px;
+      }
+      .logo-answer strong {
+        padding: 13px 20px;
+        border-radius: 14px;
+        background: var(--red);
+        color: #fff;
+        font-size: 36px;
+      }
+      .info-card {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        min-height: 148px;
+        padding: 22px 30px;
+        border-left: 14px solid var(--blue);
+        border-radius: 0 16px 16px 0;
+        background: #f0f5ff;
+        font-size: 47px;
+        font-weight: 900;
+        line-height: 1.18;
+      }
+      .info-card.alert {
+        border-left-color: var(--red);
+        background: var(--red-soft);
+        color: var(--red-deep);
+      }
+      .card-icon {
+        display: grid;
+        place-items: center;
+        min-width: 70px;
+        height: 70px;
+        border-radius: 18px;
+        background: var(--red);
+        color: #fff;
+        font-size: 42px;
+      }
+      .blue-callout {
+        padding: 20px 26px;
+        border-radius: 16px;
+        background: var(--blue);
+        color: #fff;
+        font-size: 43px;
+        font-weight: 900;
+        text-align: center;
+      }
+      /* Mechanism: reserve a dedicated right-bottom visual zone so the explanatory
+   cards never extend beneath the illustration. */
+      .mechanism-slide .slide-body {
+        width: 590px;
+      }
+      .mechanism-flow {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .mechanism-card {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        min-height: 170px;
+        padding: 20px 24px;
+        border-radius: 22px;
+        text-align: center;
+      }
+      .mechanism-card b {
+        font-size: 41px;
+      }
+      .mechanism-card span {
+        font-size: 30px;
+      }
+      .mechanism-card em {
+        align-self: center;
+        padding: 6px 18px;
+        border-radius: 999px;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 900;
+      }
+      .mechanism-card.stop {
+        border: 7px solid var(--red);
+        background: var(--red-soft);
+        color: var(--red-deep);
+      }
+      .mechanism-card.stop em {
+        background: var(--red);
+        color: #fff;
+      }
+      .mechanism-flow .flow-arrow {
+        color: var(--red);
+        font-size: 56px;
+        font-weight: 900;
+        line-height: 1;
+        text-align: center;
+      }
+      .mechanism-card.solution {
+        border: 7px solid var(--blue);
+        background: var(--blue-soft);
+        color: var(--blue-deep);
+      }
+      .mechanism-card.solution em {
+        background: var(--blue);
+        color: #fff;
+      }
+      .mechanism-illust {
+        right: 34px;
+        bottom: 30px;
+        height: 230px;
+      }
+      .mechanism-illust img {
+        max-width: 380px;
+      }
+      /* Price */
+      .price-hero {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        align-items: center;
+        min-height: 270px;
+        padding: 28px 34px;
+        border: 7px solid var(--red);
+        border-radius: 26px;
+        background: linear-gradient(145deg, #fff7f7, #ffe3e6);
+      }
+      .price-hero img {
+        width: 280px;
+        max-height: 130px;
+      }
+      .price-hero div {
+        text-align: center;
+      }
+      .price-hero span {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--ink);
+        font-size: 35px;
+        font-weight: 900;
+      }
+      .price-hero strong {
+        display: block;
+        color: var(--red);
+        font-size: 88px;
+        font-weight: 900;
+        line-height: 1.12;
+        letter-spacing: -0.06em;
+      }
+      .price-hero small {
+        color: var(--ink);
+        font-size: 34px;
+        font-weight: 900;
+      }
+      .topping-flow {
+        display: grid;
+        grid-template-columns: 1fr 72px 1fr;
+        align-items: center;
+        gap: 16px;
+      }
+      .topping-flow div {
+        min-height: 135px;
+        padding: 20px;
+        border-radius: 18px;
+        background: var(--blue-soft);
+        color: var(--blue);
+        font-size: 34px;
+        font-weight: 900;
+        line-height: 1.18;
+        text-align: center;
+      }
+      .topping-flow b {
+        font-size: 44px;
+      }
+      .topping-flow span {
+        color: var(--red);
+        font-size: 66px;
+        font-weight: 900;
+        text-align: center;
+      }
+      .insurance-strip {
+        padding: 20px;
+        border-radius: 16px;
+        background: var(--ink);
+        color: #fff;
+        font-size: 40px;
+        font-weight: 900;
+        text-align: center;
+      }
+      .price-note .slide-illust {
+        height: 210px;
+      }
+      /* CTA */
+      .cta-slide {
+        padding: 20px 60px 14px;
+        background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+      }
+      .cta-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        text-align: center;
+      }
+      .cta-logo-card {
+        display: grid;
+        place-items: center;
+        height: 126px;
+        margin-bottom: 5px;
+        padding: 8px 16px;
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.18);
+      }
+      .cta-logo-card img {
+        height: 110px;
+        max-width: 340px;
+        filter: none;
+      }
+      .cta-title {
+        margin: 0 0 7px;
+        color: var(--yellow);
+        font-size: 67px;
+        font-weight: 900;
+        line-height: 1.1;
+      }
+      .cta-sub {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: 920px;
+        margin-bottom: 9px;
+        color: #fff;
+        font-size: 29px;
+        font-weight: 900;
+      }
+      .cta-sub span {
+        padding: 5px 14px;
+        border: 3px solid rgba(255, 255, 255, 0.55);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.1);
+        white-space: nowrap;
+      }
+      .cta-banner-img {
+        width: 850px;
+        max-height: 440px;
+        border: 7px solid #fff;
+        border-radius: 18px;
+        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.4);
+        object-fit: contain;
+        filter: none;
+      }
+      .cta-arrow {
+        margin-top: 7px;
+        color: var(--yellow);
+        font-size: 62px;
+        font-weight: 900;
+        line-height: 1.05;
+        animation: bounce 1s infinite;
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(8px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- スライドID: 1 | CSV表示内容: テロップ：楽天モバイル、auローミング終了で繋がらないエリア拡大？／乗り換えずに備える2枚持ちという技 ／ テロップ：乗り換え不要／『2枚目』の格安SIMで備える -->
+    <div class="slide-container slide-thumbnail" data-slide-id="1">
+      <div class="thumb-top-strip">⚡ 楽天モバイルの圏外対策 ⚡</div>
+      <i class="thumb-accent-tri tl"></i><i class="thumb-accent-tri br"></i>
+      <div class="thumb-content">
+        <div class="thumb-tag">乗り換え不要！</div>
+        <h1 class="thumb-title">
+          繋がらない不安は<br /><span>「2枚持ち」で備える</span>
+        </h1>
+        <div class="thumb-sub-band">楽天モバイル × povo2.0</div>
+      </div>
+      <div class="thumb-sticker">
+        <span>auローミング終了の穴を</span><br /><span>カバー</span>
+      </div>
+      <div class="slide-illust thumb-illust">
+        <img
+          src="public/images/common/複数回線持ちで通信障害対策.png"
+          alt="複数回線で通信障害に備える"
+        />
+      </div>
     </div>
-
-    <div class="thumb-illust" style="position: absolute; bottom: 5px;">
-        <img src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="驚き">
-    </div>
-</div>
-
-<!-- ===================== Slide 2 : 店頭事務手数料の値上げ ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">2</div>
-    <h2 class="slide-title">店頭手数料が<span class="hl-red">値上げ</span></h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">🏪</span>UQ mobile 店頭の事務手数料</div>
-        <div class="price-flow">
-            <span class="pf-old">3,850円</span>
-            <span class="pf-arrow">▶</span>
-            <span class="pf-new">4,950円</span>
+    <!-- スライドID: 2 | CSV表示内容: テロップ：2枚目って何を基準に選ぶ？ ／ テロップ：あなたはどのタイプ？／①通信品質重視／②安さ重視／③回線を選びたい -->
+    <div class="slide-container choice-slide" data-slide-id="2">
+      <div class="watermark">2</div>
+      <h2 class="slide-title">あなたは<span>どのタイプ？</span></h2>
+      <div class="slide-body" style="margin-bottom: 120px">
+        <div class="choice-lead">「2枚目」は優先したいことから選ぶ</div>
+        <div class="type-grid">
+          <div class="type-card selected">
+            <b>① 通信品質</b><small>とにかく繋がること</small>
+          </div>
+          <div class="type-card">
+            <b>② 安さ重視</b><small>月額を抑えたい</small>
+          </div>
+          <div class="type-card">
+            <b>③ 回線を選ぶ</b><small>好きな回線を持ちたい</small>
+          </div>
         </div>
-        <div class="info-card alert"><span class="ic-emoji">📈</span>約3割の値上げ<br>（2026年8月1日〜）</div>
+      </div>
+      <div class="slide-illust">
+        <img
+          src="public/images/irasutoya/smartphone_nidaimochi_man.png"
+          alt="スマートフォンを2台持つ人"
+        />
+      </div>
     </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/business_man2_3_surprise.png" alt="驚き">
-    </div>
-</div>
-
-<!-- ===================== Slide 3 : eSIMをWebで申し込めば0円 ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">3</div>
-    <h2 class="slide-title">でも<span class="hl">eSIM</span>なら<span class="hl-red">0円</span></h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">🙆</span>慌てて乗り換えなくてOK</div>
-        <div class="info-card"><span class="ic-emoji">📱</span>eSIMをWebで申し込めば</div>
-        <div class="info-card alert"><span class="ic-emoji">🎉</span>事務手数料は<span class="ic-free">0円</span>にできる</div>
-    </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/internet_kanki_woman1.png" alt="喜び">
-    </div>
-</div>
-
-<!-- ===================== Slide 4 : 本当に100Mbps必要？ ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">4</div>
-    <h2 class="slide-title">本当に<span class="hl">100Mbps</span>必要？</h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">🔍</span>ネット検索は<span class="ic-num">約10Mbps</span></div>
-        <div class="info-card"><span class="ic-emoji">🎬</span>動画視聴は<span class="ic-num">約20Mbps</span>で快適</div>
-        <div class="list-item"><span class="li-emoji">👌</span>そんなに速くなくてもOK</div>
-    </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/pose_necchuu_smartphone_woman.png" alt="スマホ視聴">
-    </div>
-</div>
-
-<!-- ===================== Slide 5 : 乗り換え候補3選 ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">5</div>
-    <h2 class="slide-title">乗り換え候補<span class="hl-red">3選</span></h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="opt-row">
-            <div class="opt-logo-chip"><img src="public/images/logo/Povo_logo.png" alt="povo2.0"></div>
-            <div class="opt-reason"><span class="opt-tag">速さ重視</span><span class="opt-text">povo2.0</span></div>
+    <!-- スライドID: 3 | CSV表示内容: テロップ：①通信品質重視派なら… ／ テロップ：通信品質重視派→povo2.0／au回線の通信品質をそのまま使える -->
+    <div class="slide-container povo-answer-slide" data-slide-id="3">
+      <div class="watermark">3</div>
+      <h2 class="slide-title">通信品質重視なら<br /><span>povo2.0</span></h2>
+      <div class="slide-body" style="margin-bottom: 120px">
+        <div class="logo-answer">
+          <img
+            src="public/images/logo/Povo_logo.png"
+            alt="povo2.0 ロゴ"
+          /><strong>迷わずコレ</strong>
         </div>
-        <div class="opt-row">
-            <div class="opt-logo-chip"><img src="public/images/logo/Rakuten_Mobile_logo.png" alt="楽天モバイル"></div>
-            <div class="opt-reason"><span class="opt-tag">お店で相談</span><span class="opt-text">楽天モバイル</span></div>
+        <div class="info-card alert">
+          <span class="card-icon">✓</span>au回線の通信品質を<br />そのまま使える
         </div>
-        <div class="opt-row">
-            <div class="opt-logo-chip"><img src="public/images/logo/Mineo_logo.png" alt="mineo"></div>
-            <div class="opt-reason"><span class="opt-tag">安さ重視</span><span class="opt-text">mineo</span></div>
+        <div class="blue-callout">楽天モバイルの“保険回線”に</div>
+      </div>
+      <div class="slide-illust">
+        <img
+          src="public/images/irasutoya/smartphone_speed_5g.png"
+          alt="高速通信をするスマートフォン"
+        />
+      </div>
+    </div>
+    <!-- スライドID: 4 | CSV表示内容: テロップ：auローミングが終わるのに大丈夫？ ／ テロップ：終わるのは『楽天がau回線を借りる仕組み』だけ／自分でau回線を1枚持てば穴を補える -->
+    <div class="slide-container mechanism-slide" data-slide-id="4">
+      <div class="watermark">4</div>
+      <h2 class="slide-title">終了するのは<br /><span>楽天がau回線を借りる仕組み</span></h2>
+      <div class="slide-body" style="margin-bottom: 120px">
+        <div class="mechanism-flow">
+          <div class="mechanism-card stop">
+            <b>楽天モバイル</b><span>au回線を借りる仕組み</span><em>終了</em>
+          </div>
+          <div class="flow-arrow">↓</div>
+          <div class="mechanism-card solution">
+            <b>自分で povo2.0 を1枚</b><span>au回線を直接持つ</span
+            ><em>穴を補える！</em>
+          </div>
         </div>
+      </div>
+      <div class="slide-illust mechanism-illust" style="z-index: 2">
+        <img
+          src="public/images/common/複数回線を組み合わせるイメージ図.png"
+          alt="複数回線を組み合わせるイメージ"
+        />
+      </div>
     </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/pose_yubisashi_kakunin_businesswoman.png" alt="確認">
+    <!-- スライドID: 5 | CSV表示内容: テロップ：povo2.0の維持費は？ ／ テロップ：povo2.0のベースプランは月額0円（税込）／必要な時だけデータをトッピング -->
+    <div class="slide-container price-note price-slide" data-slide-id="5">
+      <div class="watermark">5</div>
+      <h2 class="slide-title">povo2.0の維持費は？</h2>
+      <div class="slide-body" style="margin-bottom: 118px">
+        <div class="price-hero">
+          <img src="public/images/logo/Povo_logo.png" alt="povo2.0 ロゴ" />
+          <div>
+            <span>ベースプラン</span><strong>月額 0円</strong
+            ><small>（税込）</small>
+          </div>
+        </div>
+        <div class="topping-flow">
+          <div>ふだんは<br /><b>0円</b></div>
+          <span>＋</span>
+          <div>必要な時だけ<br /><b>データを追加</b></div>
+        </div>
+        <div class="insurance-strip">通信の“保険”として持てる</div>
+      </div>
+      <div class="slide-illust" style="z-index: 2; bottom: 88px">
+        <img
+          src="public/images/irasutoya/pose_anshin_woman.png"
+          alt="安心する女性"
+        />
+      </div>
     </div>
-</div>
-
-<!-- ===================== Slide 6 : CTA ===================== -->
-<div class="slide-container slide-cta">
-    <img src="public/images/logo/UQ_logo_2.png" class="cta-logo" alt="UQ mobile">
-    <div class="cta-title">料金・0円のコツは<br>本編で！</div>
-    <div class="cta-sub">自分に合う乗り換え先を解説</div>
-    <img src="public/images/thumbnails/【2026年8月】UQ mobileが手数料を4,950円に値上げ！乗り換え候補3選を徹底解説_サムネ1.png" class="cta-banner-img" alt="本編動画をチェック">
-    <div class="cta-arrow">▼</div>
-</div>
-
-</body>
+    <!-- スライドID: 6 | CSV表示内容: テロップ：これなら安心して備えられる ／ テロップ：残り2つのおすすめSIMは本編でチェック！／【2026年10月】楽天モバイル、繋がらないエリアが拡大？乗り換えずに備える2枚持ちという技 -->
+    <div class="slide-container cta-slide" data-slide-id="6">
+      <div class="cta-content">
+        <div class="cta-logo-card">
+          <img src="public/images/logo/Povo_logo.png" alt="povo2.0 ロゴ" />
+        </div>
+        <h2 class="cta-title">本編で<br />残り2タイプも解説！</h2>
+        <div class="cta-sub">
+          <span>安さ重視派・回線を選びたい派も</span
+          ><span>あなたに合う2枚目をチェック</span>
+        </div>
+        <img
+          class="cta-banner-img"
+          src="public/images/thumbnails/43_【2026年10月】楽天モバイル、繋がらないエリアが拡大？乗り換えずに備える2枚持ちという技_サムネ2.png"
+          alt="本編動画のサムネイル"
+        />
+        <div class="cta-arrow">▼ 本編はこちら ▼</div>
+      </div>
+    </div>
+  </body>
 </html>
