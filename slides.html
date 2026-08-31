@@ -258,6 +258,18 @@
       .page .plan-matrix th .sub {
         color: #fff;
       }
+      .page .plan-matrix tr.campaign-row td {
+        background: var(--brand-soft);
+      }
+      .page .plan-matrix tr.campaign-row td:first-child {
+        font-weight: 900;
+        color: var(--brand-deep);
+      }
+      .campaign-note {
+        color: var(--con);
+        font-weight: 900;
+        margin-bottom: -4px;
+      }
     </style>
   </head>
   <body>
@@ -392,133 +404,6 @@
         </div>
       </div>
     </div>
-    <!-- Slide ID: 6-1 -->
-    <div
-      class="slide-container price-note"
-      style="--brand: #1565c0; --brand-deep: #0d47a1; --brand-soft: #e3f0fb"
-    >
-      <div class="book">
-        <div class="spine"></div>
-        <div class="page left">
-          <div class="page-head">音声・SMSの月額料金</div>
-          <div class="page-body">
-            <table class="sheet plan-matrix">
-              <tr>
-                <th class="capacity">容量</th>
-                <th>音声<br /><span class="sub">物理SIM／eSIM</span></th>
-                <th>SMS<br /><span class="sub">物理SIM／eSIM</span></th>
-              </tr>
-              <tr>
-                <td>2ギガ</td>
-                <td class="em">850円</td>
-                <td>820円</td>
-              </tr>
-              <tr>
-                <td>5ギガ</td>
-                <td>950円</td>
-                <td>930円</td>
-              </tr>
-              <tr>
-                <td>10ギガ</td>
-                <td>1,400円</td>
-                <td>1,370円</td>
-              </tr>
-              <tr>
-                <td>15ギガ</td>
-                <td>1,600円</td>
-                <td>1,580円</td>
-              </tr>
-              <tr>
-                <td>25ギガ</td>
-                <td>2,000円</td>
-                <td>1,980円</td>
-              </tr>
-              <tr>
-                <td>35ギガ</td>
-                <td>2,400円</td>
-                <td>2,380円</td>
-              </tr>
-              <tr>
-                <td>45ギガ</td>
-                <td>3,300円</td>
-                <td>3,280円</td>
-              </tr>
-              <tr>
-                <td>55ギガ</td>
-                <td>3,900円</td>
-                <td>3,880円</td>
-              </tr>
-            </table>
-            <div class="note plan-source">ドコモ網・au網は同額</div>
-          </div>
-        </div>
-        <div class="page right">
-          <span class="index-tab">格安SIM図鑑</span>
-          <div class="page-head">データ専用の月額料金</div>
-          <div class="page-body">
-            <table class="sheet plan-matrix">
-              <tr>
-                <th class="capacity">容量</th>
-                <th>eSIM<br /><span class="sub">ドコモ</span></th>
-                <th>eSIM<br /><span class="sub">au</span></th>
-                <th>物理SIM<br /><span class="sub">ドコモ</span></th>
-              </tr>
-              <tr>
-                <td>2ギガ</td>
-                <td class="em">440円</td>
-                <td class="em">740円</td>
-                <td>740円</td>
-              </tr>
-              <tr>
-                <td>5ギガ</td>
-                <td>650円</td>
-                <td>860円</td>
-                <td>860円</td>
-              </tr>
-              <tr>
-                <td>10ギガ</td>
-                <td>1,050円</td>
-                <td>1,300円</td>
-                <td>1,300円</td>
-              </tr>
-              <tr>
-                <td>15ギガ</td>
-                <td>1,320円</td>
-                <td>1,530円</td>
-                <td>1,530円</td>
-              </tr>
-              <tr>
-                <td>25ギガ</td>
-                <td>1,650円</td>
-                <td>1,950円</td>
-                <td>1,950円</td>
-              </tr>
-              <tr>
-                <td>35ギガ</td>
-                <td>2,240円</td>
-                <td>2,340円</td>
-                <td>2,340円</td>
-              </tr>
-              <tr>
-                <td>45ギガ</td>
-                <td>2,940円</td>
-                <td>3,240円</td>
-                <td>3,240円</td>
-              </tr>
-              <tr>
-                <td>55ギガ</td>
-                <td>3,540円</td>
-                <td>3,840円</td>
-                <td>3,840円</td>
-              </tr>
-            </table>
-            <div class="note plan-source">
-              IIJmio公式料金表（2026年8月25日公表）をもとに作成
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     <!-- Slide ID: 6-2 -->
     <div
       class="slide-container price-note"
@@ -527,22 +412,61 @@
       <div class="book">
         <div class="spine"></div>
         <div class="page left">
-          <div class="page-head">2ギガの通常月額</div>
+          <div class="page-head">データ専用eSIMの月額料金</div>
           <div class="page-body">
-            <table class="sheet">
+            <table class="sheet plan-matrix">
               <tr>
-                <th>回線</th>
-                <th>月額(税込)</th>
+                <th class="capacity">容量</th>
+                <th>eSIM<br /><span class="sub">タイプI（ドコモ網）</span></th>
+                <th>eSIM<br /><span class="sub">タイプA（au網）</span></th>
               </tr>
-              <tr>
-                <td>タイプI<br /><span class="sub">ドコモ回線</span></td>
+              <tr class="campaign-row">
+                <td>2ギガ</td>
                 <td class="em">440円</td>
-              </tr>
-              <tr>
-                <td>タイプA<br /><span class="sub">au回線・9/1追加</span></td>
                 <td class="em">740円</td>
               </tr>
+              <tr>
+                <td>5ギガ</td>
+                <td>650円</td>
+                <td>860円</td>
+              </tr>
+              <tr>
+                <td>10ギガ</td>
+                <td>1,050円</td>
+                <td>1,300円</td>
+              </tr>
+              <tr>
+                <td>15ギガ</td>
+                <td>1,320円</td>
+                <td>1,530円</td>
+              </tr>
+              <tr class="campaign-row">
+                <td>25ギガ</td>
+                <td class="em">1,650円</td>
+                <td class="em">1,950円</td>
+              </tr>
+              <tr>
+                <td>35ギガ</td>
+                <td>2,240円</td>
+                <td>2,340円</td>
+              </tr>
+              <tr>
+                <td>45ギガ</td>
+                <td>2,940円</td>
+                <td>3,240円</td>
+              </tr>
+              <tr>
+                <td>55ギガ</td>
+                <td>3,540円</td>
+                <td>3,840円</td>
+              </tr>
             </table>
+            <div class="note plan-source campaign-note">
+              ※キャンペーン対象は2ギガ・25ギガのみ
+            </div>
+            <div class="note plan-source">
+              IIJmio公式料金表（2026年8月25日公表）をもとに作成
+            </div>
           </div>
         </div>
         <div class="page right">
