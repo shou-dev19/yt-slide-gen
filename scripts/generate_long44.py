@@ -52,9 +52,13 @@ def spread(left: str, right: str, *, style: str = BLUE, price: bool = False) -> 
 </div>'''
 
 
-def head(title: str, body: str, page_no: int | None = None) -> str:
-    no = f'<span class="page-no">― {page_no} ―</span>' if page_no else ""
-    return f'<div class="page-head">{title}</div><div class="page-body">{body}</div>{no}'
+def head(title: str, body: str, _legacy_page_no: int | None = None) -> str:
+    """Build a page without the retired decorative page number.
+
+    ``_legacy_page_no`` remains temporarily accepted so older slide mappings can
+    be regenerated safely while their obsolete positional arguments are removed.
+    """
+    return f'<div class="page-head">{title}</div><div class="page-body">{body}</div>'
 
 
 def rows(items: list[tuple[str, str]], numbered: bool = False) -> str:
