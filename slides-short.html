@@ -1,284 +1,102 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UQ mobile手数料4,950円を0円にするテクニック (Short)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
-<style>
-    :root {
-        --blue: #0052cc;
-        --blue-dark: #003380;
-        --red: #e63946;
-        --white: #ffffff;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-        font-family: 'Inter', 'Noto Sans JP', sans-serif;
-        background: #f0f4f8;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 40px;
-        padding: 40px;
-    }
-    .slide-container {
-        width: 1080px;
-        height: 1080px;
-        background: var(--white);
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-    }
-    .flex-row { display: flex; flex-direction: row; }
-    .flex-col { display: flex; flex-direction: column; }
-    img { object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
-
-    /* ===== Thumbnail (Slide 1) ===== */
-    .slide-thumbnail {
-        align-items: center;
-        justify-content: flex-start;
-        text-align: center;
-        border: 25px solid var(--blue);
-        padding-top: 160px;
-        padding-bottom: 300px;
-        background:
-            repeating-conic-gradient(from 0deg at 52% 48%, rgba(0,82,204,0.06) 0deg 2.5deg, transparent 2.5deg 16deg),
-            radial-gradient(ellipse at 52% 48%, #ffffff 5%, #e8f3ff 45%, #c8dcff 100%);
-    }
-    .thumb-top-strip {
-        position: absolute; top: 25px; left: 25px; right: 25px;
-        background: var(--blue); color: #fff;
-        font-size: 36px; font-weight: 900; padding: 18px 0;
-        text-align: center; letter-spacing: 0.06em; z-index: 3;
-    }
-    .thumb-accent-tri { position: absolute; width: 0; height: 0; z-index: 1; }
-    .thumb-accent-tri.tl { top:25px; left:25px; border-top:300px solid rgba(0,82,204,0.09); border-right:300px solid transparent; }
-    .thumb-accent-tri.br { bottom:25px; right:25px; border-bottom:300px solid rgba(0,82,204,0.09); border-left:300px solid transparent; }
-    .thumb-tag {
-        font-size: 76px; font-weight: 900; color: #fff;
-        background: var(--red); padding: 18px 54px;
-        transform: rotate(-3deg); box-shadow: 8px 8px 0 rgba(0,0,0,0.25);
-        margin-bottom: 28px; z-index: 2;
-    }
-    .thumb-title {
-        font-size: 78px; font-weight: 900; color: #1a1a2e;
-        line-height: 1.25; margin-bottom: 26px; max-width: 940px; z-index: 2;
-    }
-    .thumb-title .hl { color: var(--blue); }
-    .thumb-title .hl-red { color: var(--red); }
-    .thumb-sub-band {
-        font-size: 60px; font-weight: 900; color: #fff;
-        background: var(--blue); padding: 18px 70px; border-radius: 12px;
-        box-shadow: 4px 4px 0 rgba(0,0,0,0.2); margin-bottom: 30px; z-index: 2;
-    }
-    .thumb-logo-wrap {
-        height: 190px; display: flex; align-items: center; justify-content: center; z-index: 2;
-    }
-    .thumb-logo-wrap img {
-        height: 150px; filter: none;
-        background: #fff; border-radius: 18px; padding: 14px 30px;
-        box-shadow: 4px 4px 0 rgba(0,82,204,0.18);
-    }
-    .thumb-illust {
-        position: absolute; bottom: 40px; right: 50px; z-index: 2;
-    }
-    .thumb-illust img { height: 290px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.18)); }
-
-    /* ===== Standard slides (2-5) ===== */
-    .watermark {
-        position: absolute; top: -40px; left: 10px;
-        font-size: 280px; font-weight: 900; color: var(--blue);
-        opacity: 0.07; z-index: 0; line-height: 1;
-    }
-    .slide-pad { padding: 80px 70px; }
-    .slide-title {
-        font-size: 62px; font-weight: 900; color: #1a1a2e;
-        border-bottom: 10px solid var(--blue); padding-bottom: 14px;
-        margin-bottom: 30px; z-index: 1;
-    }
-    .slide-title .hl { color: var(--blue); }
-    .slide-title .hl-red { color: var(--red); }
-    .slide-body { display: flex; flex-direction: column; gap: 28px; z-index: 1; }
-
-    .report-header-card {
-        display: flex; align-items: center; gap: 24px;
-        background: linear-gradient(135deg, #0052cc, #003fa0);
-        color: #fff; border-radius: 20px; padding: 28px 36px;
-    }
-    .report-header-card .rh-logo { height: 130px; background:#fff; border-radius:14px; padding:14px 22px; filter:none; }
-    .report-header-card .rh-text { font-size: 44px; font-weight: 900; line-height: 1.3; }
-
-    .info-card {
-        display: flex; align-items: center; gap: 22px;
-        padding: 22px 32px; border-radius: 0 16px 16px 0;
-        font-size: 46px; font-weight: 700;
-        background: #f0f5ff; border-left: 14px solid var(--blue);
-    }
-    .info-card .ic-emoji { font-size: 52px; flex-shrink: 0; }
-    .info-card.alert {
-        background: #fff0f0; border-left-color: var(--red);
-        color: var(--red); font-size: 50px; font-weight: 900;
-    }
-    .info-card .ic-num { color: var(--blue); font-weight: 900; }
-    .info-card .ic-free { color: var(--red); font-weight: 900; }
-    .info-card .strike { text-decoration: line-through; opacity: 0.7; }
-
-    .list-item {
-        display: flex; align-items: center; gap: 22px;
-        font-size: 52px; font-weight: 700; color: #1a1a2e;
-    }
-    .list-item .li-emoji { font-size: 54px; flex-shrink: 0; }
-
-    .price-flow {
-        display: flex; align-items: center; justify-content: center; gap: 26px;
-        background: #f0f5ff; border: 6px solid var(--blue); border-radius: 22px;
-        padding: 30px 28px; font-weight: 900;
-    }
-    .price-flow .pf-old { font-size: 54px; color: #6b7280; text-decoration: line-through; }
-    .price-flow .pf-arrow { font-size: 50px; color: var(--blue); }
-    .price-flow .pf-new { font-size: 64px; color: var(--red); }
-    .price-flow .pf-label { font-size: 38px; color: #1a1a2e; line-height: 1.2; }
-
-    /* ===== Option rows (Slide 5 : 乗り換え候補3選) ===== */
-    .opt-row {
-        display: flex; align-items: center; gap: 28px;
-        background: #f0f5ff; border-left: 14px solid var(--blue);
-        border-radius: 0 16px 16px 0; padding: 20px 30px;
-    }
-    .opt-logo-chip {
-        width: 240px; height: 96px; flex-shrink: 0;
-        background: #fff; border-radius: 14px;
-        display: flex; align-items: center; justify-content: center;
-        box-shadow: 3px 3px 0 rgba(0,82,204,0.15);
-    }
-    .opt-logo-chip img { max-height: 68px; max-width: 210px; filter: none; }
-    .opt-reason { display: flex; flex-direction: column; }
-    .opt-reason .opt-tag { font-size: 34px; font-weight: 900; color: #fff; background: var(--red); border-radius: 8px; padding: 4px 16px; align-self: flex-start; margin-bottom: 8px; }
-    .opt-reason .opt-text { font-size: 46px; font-weight: 900; color: #1a1a2e; }
-
-    .slide-illust {
-        position: absolute; bottom: 40px; right: 40px;
-    }
-    .slide-illust img { height: 260px; }
-
-    /* ===== CTA (Slide 6) ===== */
-    .slide-cta {
-        align-items: center; justify-content: center; text-align: center;
-        background: linear-gradient(135deg, #0052cc, #003380);
-        padding: 70px;
-    }
-    .cta-logo { height: 110px; filter: none; background: #fff; border-radius: 18px; padding: 8px 16px; box-shadow: 4px 4px 0 rgba(0,0,0,0.18); margin-bottom: 12px; }
-    .cta-title { font-size: 84px; font-weight: 900; color: #ffd700; line-height: 1.2; margin-bottom: 18px; }
-    .cta-sub { font-size: 50px; font-weight: 900; color: #fff; margin-bottom: 26px; }
-    .cta-banner-img { width: 840px; border-radius: 18px; box-shadow: 0 14px 40px rgba(0,0,0,0.35); margin-bottom: 22px; filter: none; }
-    .cta-arrow { font-size: 90px; color: #ffd700; animation: bounce 1s infinite; }
-    @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-22px); }
-    }
-</style>
-</head>
-<body>
-
-<!-- ===================== Slide 1 : Thumbnail ===================== -->
-<div class="slide-container slide-thumbnail">
-    <div class="thumb-top-strip">⚡ 2026年8月 UQ mobile 手数料改定 ⚡</div>
-    <div class="thumb-accent-tri tl"></div>
-    <div class="thumb-accent-tri br"></div>
-
-    <div class="thumb-tag">8月値上げ！</div>
-    <div class="thumb-title">手数料が<span class="hl-red">4,950円</span>に…<br>でも<span class="hl">0円</span>にできる</div>
-    <div class="thumb-sub-band">乗り換え候補3選！</div>
-    <div class="thumb-logo-wrap">
-        <img src="public/images/logo/UQ_logo_2.png" alt="UQ mobile">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IIJmio データeSIM 最大3ヶ月0円 - Shorts Slides</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet" />
+    <style>
+      :root { --blue:#0052cc; --blue-deep:#003380; --blue-soft:#eaf3ff; --red:#e63946; --red-deep:#b0001e; --red-soft:#fff0f0; --yellow:#ffd700; --ink:#172b4d; --muted:#5b6780; }
+      * { box-sizing:border-box; margin:0; padding:0; }
+      body { display:flex; flex-direction:column; align-items:center; gap:40px; margin:0; padding:40px; background:#f0f4f8; color:var(--ink); font-family:"Inter","Noto Sans JP",sans-serif; font-weight:700; }
+      .slide-container { position:relative; isolation:isolate; overflow:hidden; width:1080px; height:1080px; flex-shrink:0; padding:58px 70px; background:#fff; }
+      .slide-container.price-note::after { content:"※表示している料金はすべて月額・税込みの価格です"; position:absolute; right:20px; bottom:16px; z-index:9999; background:rgba(0,0,0,.62); color:#fff; font-family:"Noto Sans JP",sans-serif; font-size:26px; font-weight:700; letter-spacing:.02em; line-height:1; padding:10px 20px; border-radius:10px; white-space:nowrap; pointer-events:none; }
+      img { object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,.12)); }
+      .watermark { position:absolute; top:-74px; left:20px; z-index:-1; color:var(--blue); font:900 280px/1 "Inter",sans-serif; opacity:.07; }
+      .slide-title { position:relative; z-index:1; margin:0 0 30px; padding:0 0 20px; border-bottom:10px solid var(--blue); font-size:62px; font-weight:900; line-height:1.15; letter-spacing:-.045em; }
+      .slide-title span { color:var(--red); }
+      .slide-body { position:relative; z-index:1; display:flex; flex-direction:column; gap:24px; }
+      .slide-illust { position:absolute; right:34px; bottom:30px; height:250px; pointer-events:none; }
+      .slide-illust img { height:100%; max-width:330px; }
+      .slide-thumbnail { display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding:154px 48px 300px; border:25px solid var(--blue); background:repeating-conic-gradient(from 0deg at 52% 48%,rgba(0,82,204,.06) 0deg 2.5deg,transparent 2.5deg 16deg),radial-gradient(ellipse at 52% 48%,#fff 5%,#e8f3ff 45%,#c8dcff 100%); text-align:center; }
+      .thumb-top-strip { position:absolute; top:25px; left:25px; right:25px; z-index:3; padding:18px 0; background:var(--blue); color:#fff; font-size:36px; font-weight:900; letter-spacing:.06em; }
+      .thumb-accent-tri { position:absolute; width:0; height:0; } .thumb-accent-tri.tl { top:25px; left:25px; border-top:300px solid rgba(0,82,204,.09); border-right:300px solid transparent; } .thumb-accent-tri.br { right:25px; bottom:25px; border-bottom:300px solid rgba(0,82,204,.09); border-left:300px solid transparent; }
+      .thumb-content { position:relative; z-index:2; } .thumb-tag { display:inline-block; margin-bottom:22px; padding:18px 50px; transform:rotate(-3deg); background:var(--red); box-shadow:8px 8px 0 rgba(0,0,0,.25); color:#fff; font-size:70px; font-weight:900; }
+      .thumb-title { max-width:900px; margin:0 auto 24px; color:#17213d; font-size:72px; font-weight:900; line-height:1.18; letter-spacing:-.055em; } .thumb-title span { color:var(--red); }
+      .thumb-sub-band { display:inline-block; padding:17px 35px; border-radius:14px; background:var(--blue); box-shadow:4px 4px 0 rgba(0,0,0,.2); color:#fff; font-size:46px; font-weight:900; }
+      .thumb-logo-card { position:absolute; z-index:2; left:45px; bottom:82px; display:grid; place-items:center; width:345px; height:126px; padding:14px; border:5px solid var(--blue); border-radius:20px; background:#fff; box-shadow:6px 7px 0 rgba(0,82,204,.18); } .thumb-logo-card img { max-width:285px; max-height:86px; }
+      .thumb-illust { right:24px; bottom:16px; height:278px; } .thumb-illust img { max-width:350px; }
+      .choice-lead,.blue-callout,.saving-strip { padding:21px 26px; border-radius:16px; background:var(--ink); color:#fff; font-size:40px; font-weight:900; text-align:center; }
+      .type-card { min-height:150px; padding:23px 30px; border:7px solid #c4d8f7; border-radius:22px; background:#f6faff; } .type-card b { display:block; margin-bottom:10px; font-size:48px; } .type-card small { color:var(--muted); font-size:31px; font-weight:900; }
+      .type-card.use-often { border-color:var(--blue); background:var(--blue-soft); color:var(--blue-deep); } .type-card.insurance { border-color:var(--red); background:var(--red-soft); color:var(--red-deep); } .vs-badge { align-self:center; width:72px; height:52px; border-radius:28px; background:var(--yellow); font-size:29px; font-weight:900; line-height:52px; text-align:center; }
+      .logo-answer { display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:146px; padding:20px 30px; border:7px solid var(--blue); border-radius:24px; background:#fff; } .logo-answer img { width:300px; max-height:105px; } .logo-answer strong { padding:12px 18px; border-radius:14px; background:var(--blue); color:#fff; font-size:31px; }
+      .date-badge { align-self:center; padding:10px 28px; border-radius:999px; background:var(--yellow); color:var(--ink); font-size:38px; font-weight:900; }
+      .info-card { display:flex; align-items:center; gap:20px; min-height:116px; padding:18px 27px; border-left:14px solid var(--blue); border-radius:0 16px 16px 0; background:#f0f5ff; font-size:42px; font-weight:900; line-height:1.16; } .info-card.alert { border-left-color:var(--red); background:var(--red-soft); color:var(--red-deep); font-size:49px; } .card-icon { display:grid; place-items:center; min-width:66px; height:66px; border-radius:18px; background:var(--red); color:#fff; font-size:30px; font-weight:900; }
+      .blue-callout { background:var(--blue); font-size:37px; }
+      .price-hero { display:grid; grid-template-columns:300px 1fr; align-items:center; min-height:282px; padding:27px 30px; border:7px solid var(--red); border-radius:26px; background:linear-gradient(145deg,#fff7f7,#ffe3e6); } .price-hero img { width:260px; max-height:122px; } .price-hero div { text-align:center; } .price-hero span { display:block; margin-bottom:8px; font-size:34px; font-weight:900; } .price-hero strong { display:block; color:var(--red); font-size:75px; font-weight:900; line-height:1.1; letter-spacing:-.06em; } .price-hero small { font-size:30px; font-weight:900; }
+      .saving-strip { background:var(--blue); font-size:42px; }
+      .cta-slide { padding:20px 60px 14px; background:linear-gradient(135deg,var(--blue),var(--blue-deep)); } .cta-content { display:flex; flex-direction:column; align-items:center; height:100%; text-align:center; } .cta-logo-card { display:grid; place-items:center; height:126px; margin-bottom:5px; padding:8px 16px; border-radius:18px; background:#fff; box-shadow:4px 4px 0 rgba(0,0,0,.18); } .cta-logo-card img { height:110px; max-width:340px; filter:none; } .cta-title { margin:0 0 7px; color:var(--yellow); font-size:63px; font-weight:900; line-height:1.08; } .cta-sub { display:flex; flex-direction:column; gap:5px; width:920px; margin-bottom:9px; color:#fff; font-size:29px; font-weight:900; } .cta-sub span { padding:5px 14px; border:3px solid rgba(255,255,255,.55); border-radius:12px; background:rgba(255,255,255,.1); white-space:nowrap; } .cta-banner-img { width:850px; max-height:430px; border:7px solid #fff; border-radius:18px; box-shadow:0 18px 42px rgba(0,0,0,.4); object-fit:contain; filter:none; } .cta-arrow { margin-top:7px; color:var(--yellow); font-size:62px; font-weight:900; line-height:1.05; animation:bounce 1s infinite; } @keyframes bounce { 0%,100% { transform:translateY(0); } 50% { transform:translateY(8px); } }
+    </style>
+  </head>
+  <body>
+    <!-- Slide ID: 1 | CSV表示内容: テロップ：IIJmioのデータ専用eSIM／au回線で2枚目の副回線に／月額最大3ヶ月間0円 -->
+    <div class="slide-container slide-thumbnail price-note" data-slide-id="1">
+      <div class="thumb-top-strip">⚡ 11月4日までの期間限定 ⚡</div>
+      <i class="thumb-accent-tri tl"></i><i class="thumb-accent-tri br"></i>
+      <div class="thumb-content">
+        <div class="thumb-tag">最大3ヶ月 0円！</div>
+        <h1 class="thumb-title">IIJmioのデータ専用eSIM<br /><span>月額最大3ヶ月間0円</span></h1>
+        <div class="thumb-sub-band">au回線で2枚目の副回線に</div>
+      </div>
+      <div class="thumb-logo-card"><img src="public/images/logo/iijmio_logo.png" alt="IIJmio ロゴ" /></div>
+      <div class="slide-illust thumb-illust" style="z-index: 2;"><img src="public/images/common/複数回線持ちで通信障害対策.png" alt="複数回線で通信障害に備える" /></div>
     </div>
-
-    <div class="thumb-illust" style="position: absolute; bottom: 5px;">
-        <img src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="驚き">
+    <!-- Slide ID: 2 | CSV表示内容: テロップ：あなたはどっち？／①毎月ちょっとずつ使う派／②たまにしか使わない保険派 -->
+    <div class="slide-container choice-slide" data-slide-id="2">
+      <div class="watermark">2</div>
+      <h2 class="slide-title">あなたはどっち？</h2>
+      <div class="slide-body" style="margin-bottom: 120px;">
+        <div class="choice-lead">2枚目の副回線、選び方はここ！</div>
+        <div class="type-card use-often"><b>①毎月ちょっとずつ使う派</b><small>キャンペーンを活かせる</small></div>
+        <div class="vs-badge">or</div>
+        <div class="type-card insurance"><b>②たまにしか使わない保険派</b><small>必要な時だけ使いたい</small></div>
+      </div>
+      <div class="slide-illust" style="z-index: 2;"><img src="public/images/irasutoya/smartphone_nidaimochi_man.png" alt="スマートフォンを2台持つ人" /></div>
     </div>
-</div>
-
-<!-- ===================== Slide 2 : 店頭事務手数料の値上げ ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">2</div>
-    <h2 class="slide-title">店頭手数料が<span class="hl-red">値上げ</span></h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">🏪</span>UQ mobile 店頭の事務手数料</div>
-        <div class="price-flow">
-            <span class="pf-old">3,850円</span>
-            <span class="pf-arrow">▶</span>
-            <span class="pf-new">4,950円</span>
-        </div>
-        <div class="info-card alert"><span class="ic-emoji">📈</span>約3割の値上げ<br>（2026年8月1日〜）</div>
+    <!-- Slide ID: 3 | CSV表示内容: テロップ：IIJmioデータ通信専用eSIM／au回線が新規追加／9月1日〜11月4日の新規申込で2ギガが最大3ヶ月間0円 -->
+    <div class="slide-container campaign-slide price-note" data-slide-id="3">
+      <div class="watermark">3</div>
+      <h2 class="slide-title">毎月使う派は<br /><span>今がチャンス！</span></h2>
+      <div class="slide-body" style="margin-bottom: 120px;">
+        <div class="logo-answer"><img src="public/images/logo/iijmio_logo.png" alt="IIJmio ロゴ" /><strong>データ専用eSIM</strong></div>
+        <div class="date-badge">9月1日〜11月4日 の新規申込</div>
+        <div class="info-card alert"><span class="card-icon">0</span>2ギガが最大3ヶ月間0円</div>
+        <div class="info-card"><span class="card-icon">au</span>au回線が新規追加</div>
+        <div class="blue-callout">eSIMなら最短で申込当日から使える</div>
+      </div>
+      <div class="slide-illust" style="z-index: 2;"><img src="public/images/irasutoya/smartphone_speed_5g.png" alt="高速通信をするスマートフォン" /></div>
     </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/business_man2_3_surprise.png" alt="驚き">
+    <!-- Slide ID: 4 | CSV表示内容: テロップ：初期費用も今だけ1,650円（通常3,300円→半額） -->
+    <div class="slide-container setup-slide price-note" data-slide-id="4">
+      <div class="watermark">4</div>
+      <h2 class="slide-title">始めるなら今！<br /><span>初期費用も半額</span></h2>
+      <div class="slide-body" style="margin-bottom: 130px;">
+        <div class="price-hero"><img src="public/images/logo/iijmio_logo.png" alt="IIJmio ロゴ" /><div><span>今だけの初期費用</span><strong>1,650円</strong><small>通常3,300円 → 半額</small></div></div>
+        <div class="saving-strip">✨ 0円キャンペーンと合わせて始めやすい</div>
+      </div>
+      <div class="slide-illust" style="z-index: 2;"><img src="public/images/irasutoya/money_fueru.png" alt="お金が増えるイメージ" /></div>
     </div>
-</div>
-
-<!-- ===================== Slide 3 : eSIMをWebで申し込めば0円 ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">3</div>
-    <h2 class="slide-title">でも<span class="hl">eSIM</span>なら<span class="hl-red">0円</span></h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">🙆</span>慌てて乗り換えなくてOK</div>
-        <div class="info-card"><span class="ic-emoji">📱</span>eSIMをWebで申し込めば</div>
-        <div class="info-card alert"><span class="ic-emoji">🎉</span>事務手数料は<span class="ic-free">0円</span>にできる</div>
+    <!-- Slide ID: 5 | CSV表示内容: テロップ：『たまにしか使わない保険派』に向いてる回線は本編でチェック！ -->
+    <div class="slide-container cta-slide" data-slide-id="5">
+      <div class="cta-content">
+        <div class="cta-logo-card"><img src="public/images/logo/iijmio_logo.png" alt="IIJmio ロゴ" /></div>
+        <h2 class="cta-title">保険派に向いてる<br />回線は？</h2>
+        <div class="cta-sub"><span>答えは本編でくわしく解説！</span><span>あなたに合う2枚目を見つけよう</span></div>
+        <img class="cta-banner-img" src="public/images/thumbnails/44_【〜11／4】IIJmioのデータeSIMが最大3ヵ月0円！au回線で2枚目の副回線を持つ方法_サムネ1.png" alt="本編動画のサムネイル" />
+        <div class="cta-arrow">▼ 本編はこちら ▼</div>
+      </div>
     </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/internet_kanki_woman1.png" alt="喜び">
-    </div>
-</div>
-
-<!-- ===================== Slide 4 : 本当に100Mbps必要？ ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">4</div>
-    <h2 class="slide-title">本当に<span class="hl">100Mbps</span>必要？</h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">🔍</span>ネット検索は<span class="ic-num">約10Mbps</span></div>
-        <div class="info-card"><span class="ic-emoji">🎬</span>動画視聴は<span class="ic-num">約20Mbps</span>で快適</div>
-        <div class="list-item"><span class="li-emoji">👌</span>そんなに速くなくてもOK</div>
-    </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/pose_necchuu_smartphone_woman.png" alt="スマホ視聴">
-    </div>
-</div>
-
-<!-- ===================== Slide 5 : 乗り換え候補3選 ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">5</div>
-    <h2 class="slide-title">乗り換え候補<span class="hl-red">3選</span></h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="opt-row">
-            <div class="opt-logo-chip"><img src="public/images/logo/Povo_logo.png" alt="povo2.0"></div>
-            <div class="opt-reason"><span class="opt-tag">速さ重視</span><span class="opt-text">povo2.0</span></div>
-        </div>
-        <div class="opt-row">
-            <div class="opt-logo-chip"><img src="public/images/logo/Rakuten_Mobile_logo.png" alt="楽天モバイル"></div>
-            <div class="opt-reason"><span class="opt-tag">お店で相談</span><span class="opt-text">楽天モバイル</span></div>
-        </div>
-        <div class="opt-row">
-            <div class="opt-logo-chip"><img src="public/images/logo/Mineo_logo.png" alt="mineo"></div>
-            <div class="opt-reason"><span class="opt-tag">安さ重視</span><span class="opt-text">mineo</span></div>
-        </div>
-    </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/pose_yubisashi_kakunin_businesswoman.png" alt="確認">
-    </div>
-</div>
-
-<!-- ===================== Slide 6 : CTA ===================== -->
-<div class="slide-container slide-cta">
-    <img src="public/images/logo/UQ_logo_2.png" class="cta-logo" alt="UQ mobile">
-    <div class="cta-title">料金・0円のコツは<br>本編で！</div>
-    <div class="cta-sub">自分に合う乗り換え先を解説</div>
-    <img src="public/images/thumbnails/【2026年8月】UQ mobileが手数料を4,950円に値上げ！乗り換え候補3選を徹底解説_サムネ1.png" class="cta-banner-img" alt="本編動画をチェック">
-    <div class="cta-arrow">▼</div>
-</div>
-
-</body>
+  </body>
 </html>
