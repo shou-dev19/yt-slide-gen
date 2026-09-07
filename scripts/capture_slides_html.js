@@ -27,6 +27,8 @@ const OUT_DIR = path.join(PROJECT_ROOT, 'out');
 // Get mode from command line args
 const mode = process.argv[2] === 'short' ? 'short' : 'long';
 const isShort = mode === 'short';
+// Keep review renders entirely inside slide-gen when external writes are prohibited.
+const localOnly = process.argv.includes('--local-only');
 const SLIDE_DEST_DIR = path.resolve(
     PROJECT_ROOT,
     '..',
@@ -151,7 +153,13 @@ async function main() {
             // ショートで禁止されている見開き構造・図鑑装丁（generate-short-slides §0）の機械判定
             const shortSpread = isShort ? await measureShortSpread(page, SLIDE_SELECTOR, i) : null;
             // 画像パス規約（generate-short-slides §4）の機械判定。long / short 共通。
-            const imagePaths = await measureImagePaths(page, SLIDE_SELECTOR, i);
+            const imagePaths = (await measureImagePaths(page, SLIDE_SELECTOR, i)).filter((item) => {
+                // Local-only decks may explicitly require absolute workspace asset paths.
+                if (!localOnly || !path.isAbsolute(item.src) || !fs.existsSync(item.src)) return true;
+                const relative = path.relative(fs.realpathSync(PROJECT_ROOT), fs.realpathSync(item.src));
+                return relative.startsWith('..') || path.isAbsolute(relative)
+                    || item.reasons.some((reason) => reason !== '絶対パス');
+            });
             layoutResults.push({
                 id,
                 file: `${FILE_PREFIX}${paddedId}.png`,
@@ -306,16 +314,20 @@ async function main() {
         );
     }
 
-    const { copiedCount, removedCount } = copyCapturedSlides({
-        sourceDir: OUT_DIR,
-        destinationDir: SLIDE_DEST_DIR,
-        mode,
-    });
-    const kindReportDestination = path.join(path.dirname(SLIDE_DEST_DIR), 'slide_kind-report.json');
-    fs.copyFileSync(kindReportPath, kindReportDestination);
-    console.log(`Copied slide kind report to ${kindReportDestination}`);
-    console.log(`Removed ${removedCount} old PNG(s) from ${SLIDE_DEST_DIR}`);
-    console.log(`Copied ${copiedCount} ${mode} slide PNG(s) to ${SLIDE_DEST_DIR}`);
+    if (!localOnly) {
+        const { copiedCount, removedCount } = copyCapturedSlides({
+            sourceDir: OUT_DIR,
+            destinationDir: SLIDE_DEST_DIR,
+            mode,
+        });
+        const kindReportDestination = path.join(path.dirname(SLIDE_DEST_DIR), 'slide_kind-report.json');
+        fs.copyFileSync(kindReportPath, kindReportDestination);
+        console.log(`Copied slide kind report to ${kindReportDestination}`);
+        console.log(`Removed ${removedCount} old PNG(s) from ${SLIDE_DEST_DIR}`);
+        console.log(`Copied ${copiedCount} ${mode} slide PNG(s) to ${SLIDE_DEST_DIR}`);
+    } else {
+        console.log('Local-only capture: external copying disabled.');
+    }
 
     if (isShort) {
         if (shortSpreadViolations.length === 0) {

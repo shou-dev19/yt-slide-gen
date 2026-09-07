@@ -42,3 +42,4 @@ dist-ssr
 out/*whitespace-report.json
 out/*layout-report.json
 out/*kind-report.json
+.tmp/
