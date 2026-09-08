@@ -9,6 +9,8 @@ Script file path: $ARGUMENTS (default: `台本.txt`)
 
 # Generate YouTube Shorts HTML Slides
 
+> `$REPO_ROOT` はリポジトリルート（`git rev-parse --show-toplevel` の出力。本体なら `/workspaces/yt-factory`、worktree で作業しているときはその worktree のパス）。
+
 When generating HTML slides for YouTube shorts from a script (e.g., `台本.txt`), adhere strictly to the following design and structural requirements.
 
 ## 0. 着手前に「直近の完成ショートデッキ」を必ず読む
@@ -258,7 +260,7 @@ When a slide presents N selectable options (e.g., 乗り換え先4選), **split 
 
 `src` 属性は**必ず `public/images/...` のようにリポジトリ相対（`slides-short.html` から見た相対）で書く**。次はすべて禁止:
 
-- ❌ `file:///workspaces/yt-factory/packages/slide-gen/public/images/...`（絶対 file URI）
+- ❌ `file://$REPO_ROOT/packages/slide-gen/public/images/...`（絶対 file URI）
 - ❌ `/workspaces/...` で始まる絶対パス
 - ❌ `../video-studio/...` のような**他パッケージへの参照**
 
