@@ -162,21 +162,12 @@ body {
   z-index: 5;
 }
 
-/* 右上の図鑑インデックスタブ */
+/* 2026-09-14 廃止。右上のタブは動画側（video-studio の ThemeTab）で今回のテーマを重ねて表示する。
+ * 古い HTML に残っていても表示しない。 */
 .index-tab {
-  position: absolute; top: -2px; right: 48px;
-  background: var(--brand);
-  color: #fff;
-  font-weight: 900;
-  font-size: 28px;
-  letter-spacing: 2px;
-  padding: 8px 24px 10px;
-  border-radius: 0 0 14px 14px;
-  box-shadow: 0 9px 15px rgba(0,0,0,0.3);
-  z-index: 6;
+  display: none;
 }
-/* 右ページの見出しはインデックスタブの下に潜らないよう右側を空ける */
-.right .page-head { padding-right: 210px; }
+/* ページ上端〜見出しの上（y<44）の右側には動画側でテーマタブが重なるので、そこに要素を絶対配置しないこと。 */
 
 /* ファイル番号バッジ */
 .file-no {

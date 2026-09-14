@@ -16,7 +16,7 @@
  *   区間の和集合を使うので、下端の空きだけでなく中間の大きな空きも拾える。
  *
  *   「描画されている要素」= 直接の子に非空白テキストを持つ要素 / img・svg・canvas /
- *   背景色や枠線が視認できる要素（カード・バッジ）。ノンブルや図鑑インデックスタブなどの
+ *   背景色や枠線が視認できる要素（カード・バッジ）。ノンブルなどの
  *   装飾クロムは内容ではないので除外する。
  */
 
@@ -110,8 +110,8 @@ const measureInPage = (slideSelector, index, excludeSelectors) => {
     return single ? [single] : [];
 };
 
-/** 図鑑インデックスタブなど、内容ではない装飾クロム。 */
-export const DEFAULT_EXCLUDE_SELECTORS = ['.index-tab'];
+/** 内容ではない装飾クロム。 */
+export const DEFAULT_EXCLUDE_SELECTORS = [];
 
 /**
  * 1スライドの余白を計測する。
