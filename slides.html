@@ -120,6 +120,28 @@
       .std .logos img {
         height: 90px;
       }
+      /* Text substitutes keep the two store-support brand marks the same height. */
+      .support-logos {
+        flex-direction: column;
+        gap: 22px;
+        flex-wrap: nowrap;
+      }
+      .support-logo-text {
+        font-size: 90px;
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: -0.05em;
+        white-space: nowrap;
+      }
+      .support-logo-text.ymobile {
+        color: #e6002d;
+      }
+      .support-logo-text.uq {
+        color: #0098f7;
+      }
+      .support-logo-text.uq .mobile {
+        color: #e60088;
+      }
       /* Long display titles are emitted by title_lines() as semantic, unbreakable phrases. */
       .big-title {
         word-break: auto-phrase;
@@ -947,9 +969,11 @@
         <div class="page left">
           <div class="page-head">店舗サポートSSランクは2社</div>
           <div class="page-body center">
-            <div class="logos">
-              <img src="public/images/logo/Y!mobile.png" alt="Y!mobile" />
-              <img src="public/images/logo/UQ_logo_2.png" alt="UQ mobile" />
+            <div class="logos support-logos">
+              <span class="support-logo-text ymobile">Y!mobile</span>
+              <span class="support-logo-text uq"
+                >UQ <span class="mobile">mobile</span></span
+              >
             </div>
             <div class="emph">
               各種セット割がないと<br /><span class="em">料金は高めに</span>
@@ -970,7 +994,9 @@
             <div class="lead">
               毎月のスマホ代を抑えつつ<br />実店舗サポートも欲しい人に
             </div>
-            <div class="big-title"><span class="em">イオンモバイル</span><br />がおすすめ</div>
+            <div class="big-title">
+              <span class="em">イオンモバイル</span><br />がおすすめ
+            </div>
           </div>
         </div>
       </div>
