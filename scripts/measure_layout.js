@@ -522,10 +522,10 @@ const measureImagePathsInPage = (slideSelector, index) => {
 };
 
 /**
- * 内容ではない装飾クロム。図鑑インデックスタブ（long）に加え、ショートの
- * `.watermark`（`top:-40px` / `opacity:0.07` の巨大な番号。枠外へ抜けるのが意図）も除く。
+ * 内容ではない装飾クロム。ショートの `.watermark`（`top:-40px` / `opacity:0.07` の巨大な番号。
+ * 枠外へ抜けるのが意図）を除く。
  */
-export const DEFAULT_EXCLUDE_SELECTORS = ['.index-tab', '.watermark'];
+export const DEFAULT_EXCLUDE_SELECTORS = ['.watermark'];
 
 export const DEFAULT_LAYOUT_OPTIONS = {
     excludeSelectors: DEFAULT_EXCLUDE_SELECTORS,
