@@ -102,10 +102,18 @@ def rows(items: list[tuple[str, str, str]]) -> str:
     return '<ul class="rows">' + ''.join(entries) + '</ul>'
 
 
-def divider(number: int, title: str, subtitle: str, brand: str = RED) -> str:
+def divider(
+    sid: str,
+    chapter: int,
+    title: str,
+    subtitle: str,
+    brand: str = RED,
+    left_head: str = "",
+) -> str:
+    """Render a chapter divider with independent scenario and display IDs."""
     return spread(
-        f"{number}-0",
-        page("", '<div class="divider"><div class="kicker">CHAPTER</div><div class="num">%s</div><div class="seal">FILE No.%02d</div></div>' % (number, number)),
+        sid,
+        page(left_head, '<div class="divider"><div class="kicker">CHAPTER</div><div class="num">%s</div><div class="seal">FILE No.%02d</div></div>' % (chapter, chapter)),
         page("", body(f'<div class="big-title">{title}</div>{lead(subtitle)}'), True),
         brand,
     )
@@ -135,6 +143,18 @@ def evaluation(sid: str, direction: str, carrier: str, logo: str, brand: str, de
     return spread(sid, left, right, brand)
 
 
+def price_and_radar(sid: str, carrier: str, logo: str, chart: str, brand: str, plans: list[tuple[str, str]], note: str = "") -> str:
+    """Render the chapter context slide with its logo, radar chart, and plan table."""
+    logo_img = asset("logo", logo)
+    chart_img = asset("charts", chart)
+    table_rows = ''.join(f'<tr><td style="padding:5px 18px">{capacity}</td><td style="padding:5px 18px">{price}</td></tr>' for capacity, price in plans)
+    table = f'<table class="sheet"><thead><tr><th style="padding:5px 18px">容量</th><th style="padding:5px 18px">月額</th></tr></thead><tbody>{table_rows}</tbody></table>'
+    right_body = table + (lead(note, True) if note else "")
+    left = f'<div class="page left"><div class="head-left"><img class="logo" src="{logo_img}" alt="{carrier}"></div><div class="visual evaluation-radar"><img src="{chart_img}" alt="{carrier}の6観点評価レーダーチャート"></div></div>'
+    right = page(f"{carrier}の料金", body(right_body), True)
+    return spread(sid, left, right, brand, True)
+
+
 def render(slides: OrderedDict[str, str]) -> list[str]:
     # Each entry is keyed by the scenario's own slide ID.  `display` is passed
     # into content-specific renderers, retaining the CSV as the input contract.
@@ -144,10 +164,12 @@ def render(slides: OrderedDict[str, str]) -> list[str]:
     out.append(std("1-2", "格安SIM利用者本人に聞いた", "満足度調査で<br><strong>1位が発表！</strong>", ["総合満足度 No.1", "サポート満足度 No.1 は別の会社"], BLUE))
     out.append(std("2", "利用者の声から2社を徹底比較", "総合No.1は<br><strong>日本通信SIM</strong><br>サポートNo.1はイオンモバイル", ["コスパ重視なら？", "店舗サポート重視なら？"], RED))
     out.append(spread("3", page("格安SIM図鑑 もくじ", body('<ul class="agenda"><li><span class="num">1</span>調査の中身</li><li><span class="num">2</span>日本通信SIM</li><li><span class="num">3</span>イオンモバイル</li><li><span class="num">4</span>どっちを選ぶ？</li><li><span class="num">5</span>まとめ</li></ul>')), page("この動画でわかること", body('<ul class="benefits"><li><span class="check">✓</span>調査の中身がわかる</li><li><span class="check">✓</span>日本通信SIMが総合1位の理由</li><li><span class="check">✓</span>イオンモバイルがサポート1位の理由</li></ul>'), True), RED))
-    out.append(divider(4, title_lines("『格安SIMアワード』", "ってどんな調査？", variant="compact"), "利用者本人の声で選ばれた結果", BLUE))
-    out.append(spread("4-1", page("調査のポイント", body(rows([("fa-users", "格安SIM利用者本人へのアンケート", "満足度・継続意向・コスパを調査"), ("fa-calendar-check", "2026年9月3日に発表", "株式会社イード『格安SIMアワード2026上半期』")]))), page("MVNO部門の総合1位", body(emph('日本通信SIMが<br><span class="big">3部門で1位</span>') + lead('総合満足度・継続意向・コストパフォーマンス', True) + '<div class="note" style="font-size:30px;line-height:1.1">出典：株式会社イード（2026年9月3日発表）</div>', "top"), True), BLUE))
-    out.append(spread("4-2", page("もう一つの最優秀", body('<div class="logos"><img src="%s" alt="イオンモバイル" style="max-width:560px;height:82px"></div>' % asset("logo", "aeonmobile_logo.png") + emph('イオンモバイルが<br><span class="big">サポート満足度 1位</span>'))), page("強みは通信品質も", body(rows([("1", "サポート全体満足度で最優秀", "イオンモール等で対面相談できる"), ("2", "通信速度（品質）でも最優秀", "部門ごとに強みが異なる結果")])), True), PURPLE))
-    out.append(divider(5, '日本通信SIM<br><span class="em">総合満足度 No.1</span>', "コスパを重視する人の有力候補", BLUE))
+    out.append(divider("4", 1, title_lines("『格安SIMアワード』", "ってどんな調査？", variant="compact"), "利用者本人の声で選ばれた結果", BLUE))
+    out.append(spread("4-1", page("調査のポイント", body(rows([("fa-users", "格安SIM利用者本人へのアンケート", "満足度・継続意向・コスパを調査"), ("fa-calendar-check", "2026年9月3日に発表", "株式会社イード『格安SIMアワード2026上半期』")] ))), page("調査の出典", body(lead("格安SIM利用者本人の声を<br>ランキング形式で集計", True) + '<div class="note" style="font-size:30px;line-height:1.1">出典：株式会社イード（2026年9月3日発表）</div>', "center"), True), BLUE))
+    out.append(spread("4-2", page("MVNO部門の総合1位", body(emph('日本通信SIMが<br><span class="big">3部門で1位</span>') + lead('総合満足度・継続意向・コストパフォーマンス', True), "center")), page("利用者の評価で最優秀", body(rows([("1", "総合満足度", "MVNO（サブブランド除く）部門"), ("2", "継続意向・コストパフォーマンス", "3部門で1位を獲得")])), True), BLUE))
+    out.append(spread("4-3", page("もう一つの最優秀", body('<div class="logos"><img src="%s" alt="イオンモバイル" style="max-width:560px;height:82px"></div>' % asset("logo", "aeonmobile_logo.png") + emph('イオンモバイルが<br><span class="big">サポート満足度 1位</span>'))), page("強みは通信品質も", body(rows([("1", "サポート全体満足度で最優秀", "イオンモール等で対面相談できる"), ("2", "通信速度（品質）でも最優秀", "部門ごとに強みが異なる結果")])), True), PURPLE))
+    out.append(divider("5-0", 2, '日本通信SIM<br><span class="em">総合満足度 No.1</span>', "コスパを重視する人の有力候補", BLUE))
+    out.append(price_and_radar("5-1", "日本通信SIM", "nihon_tsushin.jpg", "日本通信SIM.png", BLUE, [("1GB", "290円"), ("20GB", "1,390円"), ("50GB", "2,178円")], "20GB以上のプランは通話定額が無料付帯"))
     out.append(evaluation("6-0", display["6-0"], "日本通信SIM", "nihon_tsushin.jpg", BLUE, [
         ("データ料金", "SS", "20GB 月額1,390円", "容量は少なめの選択肢"),
         ("通信品質", "B", "ドコモ回線でエリアが広い", "混雑時間は速度が落ちやすい"),
@@ -159,7 +181,8 @@ def render(slides: OrderedDict[str, str]) -> list[str]:
     out.append(spread("6", page("合理的シンプル290", body(emph('1GBで<br><span class="big">月額 290円</span>') + lead('サブ回線として持つ選択肢にも', True), "center")), page("始めやすさも魅力", body(rows([("fa-ban", "最低利用期間なし", "合わなければ気軽に見直せる"), ("fa-yen-sign", "契約解除料 0円", "コスパと始めやすさを両立")])), True), BLUE, True))
     out.append(spread("6-1", page("日本通信SIMの通話料", body(emph('<span class="big">11円</span> / 30秒') + lead('20GB以上のプランは<br>5分・月70分のかけ放題が無料付帯', True), "center")), page("通話する人にも高コスパ", body(rows([("1", "5分かけ放題 または 月70分", "20GB以上のプランで無料付帯"), ("2", "基本通話料は11円 / 30秒", "毎月の通話コストも抑えやすい")])), True), BLUE, True))
     out.append(spread("6-2", page("詳しい解説は過去動画で", body('<div class="visual"><img src="%s" alt="日本通信SIMの過去動画サムネイル"></div>' % asset("thumbnails", "【2026年最新】20GBで1,390円！？日本通信SIMの「SS級」コスパを徹底解剖！メリット・デメリット全公開.png"))), page("日本通信SIMを徹底解剖", body('<div class="bigicon cta-icon"><i class="fa-solid fa-play"></i></div><div class="big-title">%s</div>' % title_lines("料金プランも", "詳しくチェック！", variant="cta"), "top"), True), BLUE))
-    out.append(divider(7, 'イオンモバイル<br><span class="em">サポート満足度 No.1</span>', "店舗で相談したい人の有力候補", PURPLE))
+    out.append(divider("7-0", 3, 'イオンモバイル<br><span class="em">サポート満足度 No.1</span>', "店舗で相談したい人の有力候補", PURPLE))
+    out.append(price_and_radar("7-1", "イオンモバイル", "aeonmobile_logo.png", "イオンモバイル.png", PURPLE, [("0.5GB", "803円"), ("3GB", "1,078円"), ("10GB", "1,848円"), ("20GB", "1,958円"), ("50GB", "3,608円"), ("100GB", "6,358円")]))
     out.append(evaluation("8-0", display["8-0"], "イオンモバイル", "aeonmobile_logo.png", PURPLE, [
         ("データ料金", "A", "0.5〜100GBを細かく選べる", "大容量帯は割高になりやすい"),
         ("通信品質", "B", "ドコモ・au回線を選べる", "混雑時間は速度が落ちやすい"),
@@ -169,10 +192,13 @@ def render(slides: OrderedDict[str, str]) -> list[str]:
         ("オプション", "S", "繰り越し・容量帯が豊富", "選択肢が多く迷いやすい"),
     ]))
     out.append(spread("8", page("容量も回線も選べる", body(rows([("fa-layer-group", "0.5GB 803円〜100GB 6,358円", "10段階の容量帯から選択"), ("fa-signal", "ドコモ回線・au回線から選べる", "日本通信SIMはドコモ回線のみ")]))), page("データ繰り越しに対応", body(emph('余ったデータは<br><span class="big">翌月へ繰り越し</span>') + lead('月によって使う量が変わる人にも安心', True), "center"), True), PURPLE, True))
+    out.append(spread("8-3", page("データ繰り越しに対応", body(emph('余ったデータは<br><span class="big">翌月へ繰り越し</span>') + lead('使い切れなかった分を無駄にしにくい', True), "center")), page("月ごとの使用量に備える", body(rows([("fa-calendar-plus", "イオンモバイルはデータ繰り越し対応", "余ったデータを翌月に使える"), ("fa-chart-line", "日本通信SIMは繰り越しに非対応", "月ごとに使う量が変わる人にも安心")])), True), PURPLE, True))
     out.append(spread("8-1", page("店舗サポートが強み", body('<div class="bigicon"><i class="fa-solid fa-store"></i></div>' + lead('イオンモール等の実店舗で<br>対面相談できる', True), "center")), page("事前に近くの店舗を確認", body(rows([("1", "サポート全体満足度で最優秀", "困ったときに相談できる安心感"), ("2", "全国どの地域にもあるわけではない", "最寄りのイオンモバイル取扱店を確認")])), True), PURPLE))
     out.append(spread("8-2", page("家族での料金も解説", body('<div class="visual"><img src="%s" alt="イオンモバイルの過去動画サムネイル"></div>' % asset("thumbnails", "【月額800円〜】家族4人で乗り換えると衝撃の安さに！イオンモバイルの料金プランと5つのメリットを徹底解説.png"))), page("イオンモバイルもチェック", body('<div class="bigicon cta-icon"><i class="fa-solid fa-play"></i></div><div class="big-title">家族の料金も<br>過去動画で！</div>', "top"), True), PURPLE))
-    out.append(divider(9, 'あなたは<br><span class="em">どっちを選ぶ？</span>', "使い方に合わせて選び分けよう", RED))
-    out.append(spread("10-0", page("第5章", '<div class="divider"><div class="kicker">CHAPTER</div><div class="num">5</div><div class="seal">FINAL SUMMARY</div></div>'), page("", body('<div class="big-title">今日の<br><span class="em">まとめ</span></div>' + lead('利用者の声から、あなたに合う1枚を選ぼう')), True), RED))
+    out.append(divider("9-0", 4, 'あなたは<br><span class="em">どっちを選ぶ？</span>', "使い方に合わせて選び分けよう", RED))
+    out.append(spread("9", page("毎月の料金を抑えたいなら", body('<div class="bigicon"><i class="fa-solid fa-yen-sign"></i></div>' + emph('選ぶのは<br><span class="big">日本通信SIM</span>') + lead('とにかく月額の安さを優先', True), "center")), page("サポートも大事なら", body('<div class="bigicon"><i class="fa-solid fa-store"></i></div>' + emph('選ぶのは<br><span class="big">イオンモバイル</span>') + lead('店舗で相談できる安心感を優先', True), "center"), True), RED))
+    out.append(spread("9-2", page("サブ回線として持つなら", body('<div class="bigicon"><i class="fa-solid fa-mobile-screen-button"></i></div>' + lead('日本通信SIMの小容量プランが候補', True), "center")), page("合理的シンプル290", body(emph('1GBで<br><span class="big">月額 290円</span>') + lead('お守り代わりの1回線にも', True), "center"), True), BLUE, True))
+    out.append(divider("10-0", 5, '今日の<br><span class="em">まとめ</span>', "利用者の声から、あなたに合う1枚を選ぼう", RED, "第5章"))
     out.append(spread("11", page("今日のまとめ", body(rows([("1", "総合満足度1位は日本通信SIM", "『格安SIMアワード2026上半期』"), ("2", "サポート満足度No.1はイオンモバイル", "店舗で相談できる強み")]))), page("選ぶ軸はこの2つ", body(rows([("fa-yen-sign", "コスパ重視なら 日本通信SIM", "20GB 月額1,390円・通話も高コスパ"), ("fa-store", "サポート重視なら イオンモバイル", "実店舗で対面相談できる")])), True), RED))
     out.append(spread("11-2", page("もう一方の調査結果", body('<div class="logos"><img src="%s" alt="povo2.0"></div>' % asset("logo", "Povo_logo.png") + lead('オンライン専用プラン＋サブブランドでは<br>povo2.0が全部門で最優秀', True))), page("povo2.0の独壇場", body(rows([("1", "総合満足度・継続意向", "通信速度（品質）・コスパも最優秀"), ("2", "サポート全体満足度も最優秀", "今回はMVNO部門に絞って解説")])), True), BLUE))
     out.append(spread("12", page("ご注意", body('<div class="bigicon"><i class="fa-solid fa-circle-info"></i></div><div class="big-title">お申し込み前に<br>最新情報を確認</div>', "center")), page("料金・調査結果について", body('<div class="warn"><i class="ic fa-solid fa-triangle-exclamation"></i>料金・調査結果は動画投稿時点の情報です</div>' + lead('お申し込み前に<br>各社公式サイトの最新情報をご確認ください', True)), True), RED))
@@ -200,8 +226,9 @@ def main() -> None:
     actual = re.findall(r"<!-- Slide ID: ([0-9-]+) -->", "\n".join(rendered))
     if len(actual) != len(set(actual)):
         raise ValueError("duplicate slide IDs in generated deck")
-    if set(actual) != expected:
-        raise ValueError(f"ID mismatch; missing={expected-set(actual)}, extra={set(actual)-expected}")
+    actual_ids = set(actual)
+    if actual_ids != expected:
+        raise ValueError(f"ID mismatch; missing={expected-actual_ids}, extra={actual_ids-expected}")
     document = f'''<!doctype html>
 <html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
