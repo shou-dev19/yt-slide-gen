@@ -233,6 +233,121 @@
         width: auto;
         object-fit: contain;
       }
+      .intro-agenda {
+        padding: 32px 48px 38px;
+      }
+      .intro-kicker {
+        display: inline-block;
+        padding: 8px 26px;
+        border-radius: 999px;
+        background: var(--primary-color);
+        color: #fff;
+        font-size: 42px;
+        font-weight: 900;
+        line-height: 1.15;
+        box-shadow: 0 7px 14px rgba(0, 0, 0, 0.16);
+      }
+      .agenda-title {
+        margin: 14px 0 20px;
+        font-size: 82px;
+        font-weight: 900;
+        line-height: 1.12;
+        color: var(--text-dark);
+      }
+      .agenda-title .em {
+        color: var(--primary-color);
+      }
+      .intro-agenda-list {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        width: 100%;
+      }
+      .intro-agenda-card {
+        display: flex;
+        align-items: center;
+        width: 31%;
+        min-height: 156px;
+        box-sizing: border-box;
+        padding: 16px 18px;
+        border: 4px solid var(--primary-color);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+        color: var(--text-dark);
+        text-align: left;
+      }
+      .intro-agenda-num {
+        flex: 0 0 auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 58px;
+        height: 58px;
+        margin-right: 14px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        color: #fff;
+        font-size: 36px;
+        font-weight: 900;
+      }
+      .intro-agenda-text {
+        font-size: 34px;
+        font-weight: 900;
+        line-height: 1.23;
+      }
+      .intro-agenda-text b {
+        color: #22a73f;
+        font-size: 42px;
+      }
+      .title-slide-copy {
+        padding: 18px 38px 26px;
+      }
+      .title-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 270px;
+        margin: 0 auto;
+        padding: 12px 28px;
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.16);
+      }
+      .title-logo img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .title-main {
+        margin: 16px auto 12px;
+        color: var(--text-dark);
+        font-size: 78px;
+        font-weight: 900;
+        line-height: 1.1;
+      }
+      .title-slide-copy .cover-badge {
+        display: block;
+        width: fit-content;
+        margin: 14px auto 0;
+      }
+      .title-main .green {
+        color: #22a73f;
+      }
+      .title-main .red {
+        color: var(--primary-color);
+        font-size: 104px;
+      }
+      .title-sub {
+        display: inline-block;
+        padding: 10px 28px;
+        border-radius: 12px;
+        background: #fff5f5;
+        border: 3px solid var(--primary-color);
+        color: var(--text-dark);
+        font-size: 38px;
+        font-weight: 900;
+      }
       .page .visual img {
         max-height: 480px;
       }
@@ -486,75 +601,55 @@
     </div>
     <!-- Slide ID: 3 -->
     <div
-      class="slide-container"
-      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+      class="slide-container std intro-agenda"
+      style="--primary-color: #c8102e"
     >
-      <div class="book">
-        <div class="spine"></div>
-        <div class="page">
-          <div class="page-head">格安SIM図鑑 もくじ</div>
-          <div class="page-body">
-            <ul class="agenda">
-              <li><span class="num">1</span>3GBで足りる？</li>
-              <li><span class="num">2</span>3Mbpsで何ができる？</li>
-              <li><span class="num">3</span>6カ月後はいくら？</li>
-            </ul>
-          </div>
+      <div class="sunburst"></div>
+      <div class="cover-ribbon">最後まで見れば判断できる！</div>
+      <div class="std-copy">
+        <div class="intro-kicker">この動画で分かること</div>
+        <div class="agenda-title">
+          <span class="em">3GB＋使い放題</span>は<br />自分に合う？
         </div>
-        <div class="page">
-          <div class="page-head">この動画で分かること</div>
-          <div class="page-body">
-            <ul class="benefits">
-              <li>
-                <span class="check">✓</span
-                ><span class="benefit-text">自分は<b>3GBで足りるか</b></span>
-              </li>
-              <li>
-                <span class="check">✓</span
-                ><span class="benefit-text"
-                  >使い切った後の<b>3Mbps</b>でできること</span
-                >
-              </li>
-              <li>
-                <span class="check">✓</span
-                ><span class="benefit-text">割引終了後に<b>戻る料金</b></span>
-              </li>
-            </ul>
+        <div class="intro-agenda-list">
+          <div class="intro-agenda-card">
+            <span class="intro-agenda-num">1</span>
+            <span class="intro-agenda-text"
+              ><b>3GB</b>で<br />足りる人・<br />足りない人</span
+            >
+          </div>
+          <div class="intro-agenda-card">
+            <span class="intro-agenda-num">2</span>
+            <span class="intro-agenda-text"
+              >使い切った後の<br /><b>最大3Mbps</b>でできること</span
+            >
+          </div>
+          <div class="intro-agenda-card">
+            <span class="intro-agenda-num">3</span>
+            <span class="intro-agenda-text"
+              >割引終了後は<br />いくらに<br /><b>戻る？</b></span
+            >
           </div>
         </div>
       </div>
     </div>
     <!-- Slide ID: 4 -->
     <div
-      class="slide-container price-note"
-      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+      class="slide-container std price-note"
+      style="--primary-color: #c8102e"
     >
-      <div class="book">
-        <div class="spine"></div>
-        <div class="page">
-          <div class="page-head">mineo 秋のピッタリ割</div>
-          <div class="page-body center">
-            <div class="visual">
-              <img src="public/images/logo/Mineo_logo.png" alt="mineo ロゴ" />
-            </div>
-            <div class="emph">
-              3GB＋使い放題<br /><span class="big">最大6カ月 880円</span>
-            </div>
-          </div>
+      <div class="sunburst"></div>
+      <div class="cover-ribbon">11/30まで</div>
+      <div class="std-copy title-slide-copy">
+        <div class="title-logo">
+          <img src="public/images/logo/Mineo_logo.png" alt="mineo" />
         </div>
-        <div class="page">
-          <div class="page-head">キャンペーンを徹底解説</div>
-          <div class="page-body center">
-            <div class="big-title campaign-title">
-              <span class="semantic-line">【11/30まで】</span
-              ><span class="semantic-line">3GB＋使い放題</span
-              ><span class="semantic-line"
-                ><span class="em">最大6カ月 880円</span></span
-              >
-            </div>
-            <div class="lead">注意点も含めて分かりやすく解説！</div>
-          </div>
+        <div class="cover-badge">秋のピッタリ割</div>
+        <div class="title-main">
+          <span class="green">3GB＋使い放題</span>が<br />
+          <span class="red">最大6カ月 880円！</span>
         </div>
+        <div class="title-sub">損しないための注意点も徹底解説</div>
       </div>
     </div>
     <!-- Slide ID: 5-0 -->
@@ -592,21 +687,23 @@
         <div class="page">
           <div class="page-head">秋のピッタリ割</div>
           <div class="page-body">
-            <div class="lead">申込期間：2026年9月17日〜2026年11月30日</div>
+            <div class="lead">
+              申込期間：2026年9月17日<br />〜2026年11月30日
+            </div>
             <div class="warn">
               <span class="ic">⚠</span
-              >対象：マイピタ（音声通話付き）を新たに申し込み
+              >対象：<br />マイピタ（音声通話付き）を<br />新たに申し込み
             </div>
           </div>
         </div>
         <div class="page">
-          <div class="page-head">コース別の割引額</div>
+          <div class="page-head">月額基本料金と割引額</div>
           <div class="page-body">
             <table class="sheet">
               <tr>
                 <th>容量</th>
-                <th>通常</th>
-                <th>最大6カ月</th>
+                <th>通常(税込)</th>
+                <th>最大6カ月(税込)</th>
               </tr>
               <tr>
                 <td>3GB</td>
@@ -631,7 +728,7 @@
               <tr>
                 <td>50GB</td>
                 <td>2,948円</td>
-                <td class="em">2,090円（すべて税込）</td>
+                <td class="em">2,090円</td>
               </tr>
             </table>
           </div>
@@ -648,7 +745,7 @@
         <div class="page">
           <div class="page-head">パケット放題 3Mbps 割引キャンペーン</div>
           <div class="page-body">
-            <div class="emph">月額385円 → 最大6カ月間0円</div>
+            <div class="emph">月額385円(税込) → 最大6カ月間0円</div>
             <div class="lead">対象：マイピタ3GB・7GBコース</div>
           </div>
         </div>
@@ -683,10 +780,10 @@
       <div class="book">
         <div class="spine"></div>
         <div class="page">
-          <div class="page-head">10分通話パック割引キャンペーン</div>
+          <div class="page-head">10分通話パック<br />割引キャンペーン</div>
           <div class="page-body">
-            <div class="emph">月額110円 → 最大6カ月間無料</div>
-            <div class="lead">毎月440円分（最大10分）の通話が割引</div>
+            <div class="emph">月額110円(税込) → 最大6カ月間無料</div>
+            <div class="lead">毎月440円分<br />（最大10分）の通話が割引</div>
           </div>
         </div>
         <div class="page">
