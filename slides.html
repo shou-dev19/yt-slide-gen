@@ -1,103 +1,1679 @@
 <!doctype html>
-<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="templates/spread-base.css"><style>
-body { --primary-color:#C8102E; --accent-red:#E53935; --text-dark:#212121; }
-.slide-container.std{width:1280px;height:720px;border:10px solid var(--primary-color);background:#fff;box-sizing:border-box;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:56px;flex-shrink:0}
-.sunburst{position:absolute;inset:0;background:repeating-conic-gradient(from 0deg at 50% 48%,rgba(200,16,46,.08) 0deg 5deg,transparent 5deg 10deg);pointer-events:none}.std-copy{position:relative;z-index:1;text-align:center;width:100%}.cover-badge{display:inline-block;background:var(--primary-color);color:#fff;font-size:44px;font-weight:900;padding:10px 32px;border-radius:10px;transform:rotate(-2deg);box-shadow:0 8px 16px rgba(0,0,0,.2)}.std-title{font-size:86px;font-weight:900;line-height:1.22;color:var(--text-dark);text-shadow:4px 4px 0 #fff;margin-top:28px;word-break:auto-phrase;text-wrap:balance}.std-detail{font-size:46px;font-weight:900;line-height:1.35;color:var(--text-dark);margin:28px auto 0;max-width:1080px;word-break:auto-phrase;text-wrap:balance}.cover-ribbon{position:absolute;z-index:2;top:28px;right:28px;padding:10px 24px;background:#f6b600;color:#3b2100;font-size:30px;font-weight:900;text-align:center;white-space:nowrap;transform:rotate(-4deg);border-radius:8px;box-shadow:0 6px 12px rgba(0,0,0,.16)}.intro-logo-card{width:280px;margin:0 auto 8px;padding:12px 28px;background:#fff;border-radius:16px;box-shadow:0 8px 20px rgba(0,0,0,.16)}.intro-logo-card img{display:block;width:100%;height:auto}.intro-copy{padding-bottom:20px}.intro-price{margin-top:14px;font-size:92px;line-height:1.04}.intro-price span{display:block}.intro-price b{color:#22a73f}.intro-price strong{color:var(--primary-color);font-size:128px}.intro-benefit{margin-top:12px;font-size:44px}.intro-date{display:inline-block;margin-top:18px;padding:10px 26px;background:rgba(255,255,255,.92);border:3px solid var(--primary-color);border-radius:999px;color:var(--text-dark);font-size:32px;font-weight:900}.intro-illust{position:absolute;z-index:0;right:38px;bottom:12px;height:250px;width:auto;object-fit:contain}.diagram-copy{padding-top:6px}.diagram-title{margin:12px 0 18px;font-size:76px;line-height:1.08}.diagram-title span{color:var(--primary-color)}.campaign-flow{display:flex;align-items:stretch;justify-content:center;gap:10px;width:100%;padding:0 72px;box-sizing:border-box}.flow-card{width:270px;min-height:286px;box-sizing:border-box;padding:16px 14px 18px;background:rgba(255,255,255,.97);border:5px solid var(--primary-color);border-radius:22px;box-shadow:0 10px 18px rgba(0,0,0,.14);color:var(--text-dark)}.flow-num{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:var(--primary-color);color:#fff;font-size:32px;font-weight:900}.flow-label{min-height:76px;margin-top:8px;color:#555;font-size:30px;font-weight:900;line-height:1.2}.flow-main{margin-top:12px;font-size:34px;font-weight:900;line-height:1.22}.flow-main b{color:var(--primary-color);font-size:42px}.zero-card .flow-main b{font-size:68px}.unlimited-card .flow-main b{font-size:48px}.flow-arrow{align-self:center;color:var(--primary-color);font-size:56px;font-weight:900;text-shadow:2px 2px 0 #fff}.diagram-illust{position:absolute;z-index:0;right:8px;bottom:2px;height:208px;width:auto;object-fit:contain}.page .visual img{max-height:480px}.page-body>.note{font-size:34px}.card{flex:0 0 auto}.card .line{font-size:30px;line-height:1.25}.card-name{font-size:38px}.cards{justify-content:space-evenly}.page .sheet{font-size:34px}.page .sheet th,.page .sheet td{padding:12px}.page .rows .tx{font-size:40px}.page .lead.tight{font-size:38px}.page .logos{gap:32px}.compact-title{font-size:82px}.compact-icon{font-size:220px}.compact-emph{padding:24px 34px}.compact-list{flex:1;min-height:0}.compact-list .rows{gap:9px}.compact-list .rows li{padding:10px 18px;border-left-width:10px}.compact-list .rows .ic{width:54px;font-size:42px}.compact-list .rows .tx{font-size:32px;line-height:1.2}.cta-copy{font-size:32px;line-height:1.25;padding:22px 28px}.semantic-line{display:block;white-space:nowrap}.chapter-title{font-size:78px;line-height:1.22}.campaign-title{font-size:66px;line-height:1.2}.benefits .benefit-text{flex:1;min-width:0}.closing-title{font-size:60px;line-height:1.22}.plan-title{font-size:54px;margin-bottom:12px}.plan-shots{justify-content:flex-start;gap:18px}.plan-shot{font-size:30px;font-weight:900;color:var(--brand-deep);text-align:center}.plan-shot img{display:block;width:100%;max-height:230px;object-fit:contain;margin-top:4px}.eval-head{height:112px;margin-bottom:8px;padding-bottom:8px}.eval-head .logo{height:66px}.eval-head .grade{font-size:72px}.eval-title{font-size:48px;padding-bottom:8px;margin-bottom:8px}.eval-cards{gap:7px;justify-content:space-between}.eval-cards .card{grid-template-columns:76px 1fr;gap:1px 10px;padding:7px 12px;border-left-width:10px}.eval-cards .card .rank{width:68px;height:68px;border-radius:14px;font-size:36px}.eval-cards .card-name{font-size:30px;line-height:1.05}.eval-cards .card .line{font-size:30px;line-height:1.04}.eval-note{font-size:28px!important;line-height:1.12;text-align:center;margin-top:4px}
-.intro-logo-card{width:230px;margin:0 auto 6px}.intro-copy{padding-bottom:10px}.intro-price{margin-top:10px;font-size:86px}.intro-price strong{font-size:114px}.intro-benefit{margin-top:8px;font-size:38px}.intro-date{margin-top:10px;padding:7px 22px;font-size:28px}
-</style></head><body><!-- Slide ID: 1 -->
-<div class="slide-container std price-note intro-cover" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-  <div class="sunburst"></div><div class="cover-ribbon">期間限定</div>
-  <img class="intro-illust" src="public/images/irasutoya/money_fueru.png" alt="増えるお金のイラスト">
-  <div class="std-copy intro-copy">
-    <div class="intro-logo-card"><img src="public/images/logo/Mineo_logo.png" alt="mineo"></div>
-    <div class="cover-badge">秋のピッタリ割　11/30まで</div>
-    <div class="std-title intro-price"><span>マイピタ <b>3GB</b></span><span>月 <strong>880円</strong></span></div>
-    <div class="std-detail intro-benefit">最大6カ月間のキャンペーン価格</div>
-    <div class="intro-date">申込期間　2026年9月17日 〜 11月30日</div>
-  </div>
-</div>
-<!-- Slide ID: 2 -->
-<div class="slide-container std campaign-diagram" style="--brand:#C8102E;--brand-deep:#9a0c23;--brand-soft:#fde3e7">
-  <div class="sunburst"></div><div class="cover-ribbon">最大6カ月</div>
-  <img class="diagram-illust" src="public/images/irasutoya/smartphone04_laugh.png" alt="スマートフォンを見て喜ぶ人のイラスト">
-  <div class="std-copy diagram-copy">
-    <div class="cover-badge">秋のピッタリ割</div>
-    <div class="std-title diagram-title">月額も使い放題も <span>おトク</span></div>
-    <div class="campaign-flow" aria-label="秋のピッタリ割の特典図解">
-      <div class="flow-card"><div class="flow-num">1</div><div class="flow-label">マイピタ<br>音声通話付き</div><div class="flow-main">月額基本料金<br><b>最大6カ月割引</b></div></div>
-      <div class="flow-arrow">＋</div>
-      <div class="flow-card zero-card"><div class="flow-num">2</div><div class="flow-label">パケット放題<br>3Mbps</div><div class="flow-main">最大6カ月間<br><b>0円</b></div></div>
-      <div class="flow-arrow">＝</div>
-      <div class="flow-card unlimited-card"><div class="flow-num">3</div><div class="flow-label">3GBを使い切っても</div><div class="flow-main"><b>最大3Mbps</b><br>データ使い放題</div></div>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="templates/spread-base.css" />
+    <style>
+      body {
+        --primary-color: #c8102e;
+        --accent-red: #e53935;
+        --text-dark: #212121;
+      }
+      .slide-container.std {
+        width: 1280px;
+        height: 720px;
+        border: 10px solid var(--primary-color);
+        background: #fff;
+        box-sizing: border-box;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 56px;
+        flex-shrink: 0;
+      }
+      .sunburst {
+        position: absolute;
+        inset: 0;
+        background: repeating-conic-gradient(
+          from 0deg at 50% 48%,
+          rgba(200, 16, 46, 0.08) 0deg 5deg,
+          transparent 5deg 10deg
+        );
+        pointer-events: none;
+      }
+      .std-copy {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        width: 100%;
+      }
+      .cover-badge {
+        display: inline-block;
+        background: var(--primary-color);
+        color: #fff;
+        font-size: 44px;
+        font-weight: 900;
+        padding: 10px 32px;
+        border-radius: 10px;
+        transform: rotate(-2deg);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      }
+      .std-title {
+        font-size: 86px;
+        font-weight: 900;
+        line-height: 1.22;
+        color: var(--text-dark);
+        text-shadow: 4px 4px 0 #fff;
+        margin-top: 28px;
+        word-break: auto-phrase;
+        text-wrap: balance;
+      }
+      .std-detail {
+        font-size: 46px;
+        font-weight: 900;
+        line-height: 1.35;
+        color: var(--text-dark);
+        margin: 28px auto 0;
+        max-width: 1080px;
+        word-break: auto-phrase;
+        text-wrap: balance;
+      }
+      .cover-ribbon {
+        position: absolute;
+        z-index: 2;
+        top: 28px;
+        right: 28px;
+        padding: 10px 24px;
+        background: #f6b600;
+        color: #3b2100;
+        font-size: 30px;
+        font-weight: 900;
+        text-align: center;
+        white-space: nowrap;
+        transform: rotate(-4deg);
+        border-radius: 8px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.16);
+      }
+      .intro-logo-card {
+        width: 280px;
+        margin: 0 auto 8px;
+        padding: 12px 28px;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+      }
+      .intro-logo-card img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .intro-copy {
+        padding-bottom: 20px;
+      }
+      .intro-price {
+        margin-top: 14px;
+        font-size: 92px;
+        line-height: 1.04;
+      }
+      .intro-price span {
+        display: block;
+      }
+      .intro-price b {
+        color: #22a73f;
+      }
+      .intro-price strong {
+        color: var(--primary-color);
+        font-size: 128px;
+      }
+      .intro-benefit {
+        margin-top: 12px;
+        font-size: 44px;
+      }
+      .intro-date {
+        display: inline-block;
+        margin-top: 18px;
+        padding: 10px 26px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 3px solid var(--primary-color);
+        border-radius: 999px;
+        color: var(--text-dark);
+        font-size: 32px;
+        font-weight: 900;
+      }
+      .intro-illust {
+        position: absolute;
+        z-index: 0;
+        right: 38px;
+        bottom: 12px;
+        height: 250px;
+        width: auto;
+        object-fit: contain;
+      }
+      .diagram-copy {
+        padding-top: 6px;
+      }
+      .diagram-title {
+        margin: 12px 0 18px;
+        font-size: 76px;
+        line-height: 1.08;
+      }
+      .diagram-title span {
+        color: var(--primary-color);
+      }
+      .campaign-flow {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        padding: 0 72px;
+        box-sizing: border-box;
+      }
+      .flow-card {
+        width: 270px;
+        min-height: 286px;
+        box-sizing: border-box;
+        padding: 16px 14px 18px;
+        background: rgba(255, 255, 255, 0.97);
+        border: 5px solid var(--primary-color);
+        border-radius: 22px;
+        box-shadow: 0 10px 18px rgba(0, 0, 0, 0.14);
+        color: var(--text-dark);
+      }
+      .flow-num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        color: #fff;
+        font-size: 32px;
+        font-weight: 900;
+      }
+      .flow-label {
+        min-height: 76px;
+        margin-top: 8px;
+        color: #555;
+        font-size: 30px;
+        font-weight: 900;
+        line-height: 1.2;
+      }
+      .flow-main {
+        margin-top: 12px;
+        font-size: 34px;
+        font-weight: 900;
+        line-height: 1.22;
+      }
+      .flow-main b {
+        color: var(--primary-color);
+        font-size: 42px;
+      }
+      .zero-card .flow-main b {
+        font-size: 68px;
+      }
+      .unlimited-card .flow-main b {
+        font-size: 48px;
+      }
+      .flow-arrow {
+        align-self: center;
+        color: var(--primary-color);
+        font-size: 56px;
+        font-weight: 900;
+        text-shadow: 2px 2px 0 #fff;
+      }
+      .diagram-illust {
+        position: absolute;
+        z-index: 0;
+        right: 8px;
+        bottom: 2px;
+        height: 208px;
+        width: auto;
+        object-fit: contain;
+      }
+      .page .visual img {
+        max-height: 480px;
+      }
+      .page-body > .note {
+        font-size: 34px;
+      }
+      .card {
+        flex: 0 0 auto;
+      }
+      .card .line {
+        font-size: 30px;
+        line-height: 1.25;
+      }
+      .card-name {
+        font-size: 38px;
+      }
+      .cards {
+        justify-content: space-evenly;
+      }
+      .page .sheet {
+        font-size: 34px;
+      }
+      .page .sheet th,
+      .page .sheet td {
+        padding: 12px;
+      }
+      .page .rows .tx {
+        font-size: 40px;
+      }
+      .page .lead.tight {
+        font-size: 38px;
+      }
+      .page .logos {
+        gap: 32px;
+      }
+      .compact-title {
+        font-size: 82px;
+      }
+      .compact-icon {
+        font-size: 220px;
+      }
+      .compact-emph {
+        padding: 24px 34px;
+      }
+      .compact-list {
+        flex: 1;
+        min-height: 0;
+      }
+      .compact-list .rows {
+        gap: 9px;
+      }
+      .compact-list .rows li {
+        padding: 10px 18px;
+        border-left-width: 10px;
+      }
+      .compact-list .rows .ic {
+        width: 54px;
+        font-size: 42px;
+      }
+      .compact-list .rows .tx {
+        font-size: 32px;
+        line-height: 1.2;
+      }
+      .cta-copy {
+        font-size: 32px;
+        line-height: 1.25;
+        padding: 22px 28px;
+      }
+      .semantic-line {
+        display: block;
+        white-space: nowrap;
+      }
+      .chapter-title {
+        font-size: 78px;
+        line-height: 1.22;
+      }
+      .campaign-title {
+        font-size: 66px;
+        line-height: 1.2;
+      }
+      .benefits .benefit-text {
+        flex: 1;
+        min-width: 0;
+      }
+      .closing-title {
+        font-size: 60px;
+        line-height: 1.22;
+      }
+      .plan-title {
+        font-size: 54px;
+        margin-bottom: 12px;
+      }
+      .plan-shots {
+        justify-content: flex-start;
+        gap: 18px;
+      }
+      .plan-shot {
+        font-size: 30px;
+        font-weight: 900;
+        color: var(--brand-deep);
+        text-align: center;
+      }
+      .plan-shot img {
+        display: block;
+        width: 100%;
+        max-height: 230px;
+        object-fit: contain;
+        margin-top: 4px;
+      }
+      .eval-head {
+        height: 112px;
+        margin-bottom: 8px;
+        padding-bottom: 8px;
+      }
+      .eval-head .logo {
+        height: 66px;
+      }
+      .eval-head .grade {
+        font-size: 72px;
+      }
+      .eval-title {
+        font-size: 48px;
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+      }
+      .eval-cards {
+        gap: 7px;
+        justify-content: space-between;
+      }
+      .eval-cards .card {
+        grid-template-columns: 76px 1fr;
+        gap: 1px 10px;
+        padding: 7px 12px;
+        border-left-width: 10px;
+      }
+      .eval-cards .card .rank {
+        width: 68px;
+        height: 68px;
+        border-radius: 14px;
+        font-size: 36px;
+      }
+      .eval-cards .card-name {
+        font-size: 30px;
+        line-height: 1.05;
+      }
+      .eval-cards .card .line {
+        font-size: 30px;
+        line-height: 1.04;
+      }
+      .eval-note {
+        font-size: 28px !important;
+        line-height: 1.12;
+        text-align: center;
+        margin-top: 4px;
+      }
+      .intro-logo-card {
+        width: 230px;
+        margin: 0 auto 6px;
+      }
+      .intro-copy {
+        padding-bottom: 10px;
+      }
+      .intro-price {
+        margin-top: 10px;
+        font-size: 86px;
+      }
+      .intro-price strong {
+        font-size: 114px;
+      }
+      .intro-benefit {
+        margin-top: 8px;
+        font-size: 38px;
+      }
+      .intro-date {
+        margin-top: 10px;
+        padding: 7px 22px;
+        font-size: 28px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Slide ID: 1 -->
+    <div
+      class="slide-container std price-note intro-cover"
+      style="--brand: #c8102e; --brand-deep: #9a0c23; --brand-soft: #fde3e7"
+    >
+      <div class="sunburst"></div>
+      <div class="cover-ribbon">期間限定</div>
+      <img
+        class="intro-illust"
+        src="public/images/irasutoya/money_fueru.png"
+        alt="増えるお金のイラスト"
+      />
+      <div class="std-copy intro-copy">
+        <div class="intro-logo-card">
+          <img src="public/images/logo/Mineo_logo.png" alt="mineo" />
+        </div>
+        <div class="cover-badge">秋のピッタリ割　11/30まで</div>
+        <div class="std-title intro-price">
+          <span>マイピタ <b>3GB</b></span
+          ><span>月 <strong>880円</strong></span>
+        </div>
+        <div class="std-detail intro-benefit">
+          最大6カ月間のキャンペーン価格
+        </div>
+        <div class="intro-date">申込期間　2026年9月17日 〜 11月30日</div>
+      </div>
     </div>
-  </div>
-</div>
-<!-- Slide ID: 3 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">格安SIM図鑑 もくじ</div><div class="page-body"><ul class="agenda"><li><span class="num">1</span>3GBで足りる？</li><li><span class="num">2</span>3Mbpsで何ができる？</li><li><span class="num">3</span>6カ月後はいくら？</li></ul></div></div><div class="page"><div class="page-head">この動画で分かること</div><div class="page-body"><ul class="benefits"><li><span class="check">✓</span><span class="benefit-text">自分は<b>3GBで足りるか</b></span></li><li><span class="check">✓</span><span class="benefit-text">使い切った後の<b>3Mbps</b>でできること</span></li><li><span class="check">✓</span><span class="benefit-text">割引終了後に<b>戻る料金</b></span></li></ul></div></div></div></div>
-<!-- Slide ID: 4 -->
-<div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">mineo 秋のピッタリ割</div><div class="page-body center"><div class="visual"><img src="public/images/logo/Mineo_logo.png" alt="mineo ロゴ"></div><div class="emph">3GB＋使い放題<br><span class="big">最大6カ月 880円</span></div></div></div><div class="page"><div class="page-head">キャンペーンを徹底解説</div><div class="page-body center"><div class="big-title campaign-title"><span class="semantic-line">【11/30まで】mineo</span><span class="semantic-line">3GB＋使い放題</span><span class="semantic-line"><span class="em">最大6カ月 880円</span></span></div><div class="lead">注意点も含めて分かりやすく解説！</div></div></div></div></div>
-<!-- Slide ID: 5-0 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="divider"><div class="kicker">CHAPTER</div><div class="num">1</div><div class="seal">FILE No.01</div></div></div><div class="page"><div class="page-body center"><div class="big-title chapter-title"><span class="semantic-line">何が・いくら</span><span class="semantic-line">いつまで安い？</span></div><div class="lead">mineoを選ぶ前に、ポイントを整理します</div></div></div></div></div>
-<!-- Slide ID: 6 -->
-<div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">秋のピッタリ割</div><div class="page-body"><div class="lead">申込期間：2026年9月17日〜2026年11月30日</div><div class="warn"><span class="ic">⚠</span>対象：マイピタ（音声通話付き）を新たに申し込み</div></div></div><div class="page"><div class="page-head">コース別の割引額</div><div class="page-body"><table class="sheet"><tr><th>容量</th><th>通常</th><th>最大6カ月</th></tr><tr><td>3GB</td><td>1,298円</td><td class="em">880円</td></tr><tr><td>7GB</td><td>1,518円</td><td class="em">990円</td></tr><tr><td>15GB</td><td>1,958円</td><td class="em">990円</td></tr><tr><td>30GB</td><td>2,178円</td><td class="em">1,320円</td></tr><tr><td>50GB</td><td>2,948円</td><td class="em">2,090円（すべて税込）</td></tr></table></div></div></div></div>
-<!-- Slide ID: 6-2 -->
-<div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">パケット放題 3Mbps 割引キャンペーン</div><div class="page-body"><div class="emph">月額385円 → 最大6カ月間0円</div><div class="lead">対象：マイピタ3GB・7GBコース</div></div></div><div class="page"><div class="page-head">対象と使い放題のしくみ</div><div class="page-body"><ul class="rows"><li><span class="ic"><i class="fa-solid fa-mobile-screen-button"></i></span><div class="tx">15GB以上のコースはキャンペーンに関係なく無料</div></li><li><span class="ic"><i class="fa-solid fa-infinity"></i></span><div class="tx">ギガを使い切っても最大3Mbpsでデータ使い放題</div></li></ul></div></div></div></div>
-<!-- Slide ID: 6-3 -->
-<div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">10分通話パック割引キャンペーン</div><div class="page-body"><div class="emph">月額110円 → 最大6カ月間無料</div><div class="lead">毎月440円分（最大10分）の通話が割引</div></div></div><div class="page"><div class="page-head">使い方のポイント</div><div class="page-body"><ul class="rows"><li><span class="ic"><i class="fa-solid fa-clock"></i></span><div class="tx">使わなかった分は最大10分まで翌月へ繰り越し</div></li><li><span class="ic"><i class="fa-solid fa-mobile-screen-button"></i></span><div class="tx">専用の通話アプリは不要</div></li></ul></div></div></div></div>
-<!-- Slide ID: 6-4 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">キャンペーン情報を見逃さない</div><div class="page-body center"><div class="bigicon compact-icon"><i class="fa-solid fa-bell"></i></div><div class="big-title compact-title"><span class="semantic-line">チャンネル登録で</span><span class="semantic-line em">最新情報を</span><span class="semantic-line">チェック！</span></div></div></div><div class="page"><div class="page-head">開始・終了を毎週お知らせ</div><div class="page-body center"><div class="lead">チャンネル登録でキャンペーンの開始・終了を見逃さない！</div><div class="emph compact-emph">登録ボタンを押して<br><span class="big">見逃し防止</span></div></div></div></div></div>
-<!-- Slide ID: 7-0 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="divider"><div class="kicker">CHAPTER</div><div class="num">2</div><div class="seal">FILE No.02</div></div></div><div class="page"><div class="page-body center"><div class="big-title chapter-title"><span class="semantic-line">3GBで足りる人</span><span class="semantic-line">足りない人</span></div><div class="lead">mineoを選ぶ前に、ポイントを整理します</div></div></div></div></div>
-<!-- Slide ID: 8 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">結論</div><div class="page-body"><div class="warn"><span class="ic">⚠</span>外出先で重いオンラインゲームをする人、高画質の動画をたくさん見る人 → もっと容量が必要</div></div></div><div class="page"><div class="page-head">多くの人はこの組み合わせ</div><div class="page-body center"><div class="emph">それ以外の多くの人 → 3GB＋パケット放題 3Mbps で足りる</div></div></div></div></div>
-<!-- Slide ID: 8-2 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">ショウの使い方</div><div class="page-body"><ul class="rows"><li><span class="ic"><i class="fa-solid fa-user"></i></span><div class="tx">mineo歴8年・マイピタ3GB＋パケット放題 3Mbps</div></li><li><span class="ic"><i class="fa-solid fa-battery-full"></i></span><div class="tx">毎月の高速3GBはほとんど使い切らない</div></li></ul></div></div><div class="page"><div class="page-head">余ったギガは貯められる</div><div class="page-body"><div class="emph">余ったパケットはパスケット（月110円）に貯まっていく</div><div class="visual"><img src="public/images/temp/mineo/mineo_パスケットを使ったデータ貯金運用のイメージ図.png" alt="パスケットのイメージ"></div></div></div></div></div>
-<!-- Slide ID: 8-3 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">ショウの場合</div><div class="page-body"><ul class="rows"><li><span class="ic"><i class="fa-solid fa-gamepad"></i></span><div class="tx">スマホゲームをよく遊んでいた頃は、最大3Mbpsだとゲーム画面が固まることがあった</div></li><li><span class="ic"><i class="fa-solid fa-bolt"></i></span><div class="tx">そのときは高速通信に切り替えて3GBを消費</div></li></ul></div></div><div class="page"><div class="page-head">足りないときの備え</div><div class="page-body center"><div class="lead">足りなくなったらパスケットから引き出して利用</div></div></div></div></div>
-<!-- Slide ID: 9 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">最大3Mbpsでできること</div><div class="page-body"><div class="compact-list"><ul class="rows"><li><span class="ic"><i class="fa-solid fa-comment"></i></span><div class="tx">LINE</div></li><li><span class="ic"><i class="fa-solid fa-comment"></i></span><div class="tx">SNS</div></li><li><span class="ic"><i class="fa-solid fa-comment"></i></span><div class="tx">音楽のストリーミング</div></li><li><span class="ic"><i class="fa-solid fa-comment"></i></span><div class="tx">標準画質の動画</div></li><li><span class="ic"><i class="fa-solid fa-comment"></i></span><div class="tx">地図アプリ</div></li></ul></div></div></div><div class="page"><div class="page-head">苦しい使い方と注意点</div><div class="page-body"><ul class="rows"><li><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span><div class="tx">高画質の動画を長時間</div></li><li><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span><div class="tx">オンラインゲーム</div></li><li><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span><div class="tx">大きなファイルのダウンロード</div></li><li><span class="ic"><i class="fa-solid fa-clock"></i></span><div class="tx">※3日間で10GB以上使うと、翌日は最大200kbpsに制限</div></li></ul></div></div></div></div>
-<!-- Slide ID: 9-2 -->
-<div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">6カ月後はどうなる？</div><div class="page-body"><div class="emph">マイピタ3GB 880円 → 1,298円</div><div class="emph">パケット放題 3Mbps 0円 → 385円</div></div></div><div class="page"><div class="page-head">オプションも通常料金へ</div><div class="page-body"><div class="emph">10分通話パック 無料 → 110円</div><div class="note">※割引は最大6カ月間、特典の適用は1回線につき1回まで</div></div></div></div></div>
-<!-- Slide ID: 10-0 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="divider"><div class="kicker">CHAPTER</div><div class="num">3</div><div class="seal">FILE No.03</div></div></div><div class="page"><div class="page-body center"><div class="big-title chapter-title"><span class="semantic-line">mineoって</span><span class="semantic-line">どんな格安SIM？</span></div><div class="lead">mineoを選ぶ前に、ポイントを整理します</div></div></div></div></div>
-<!-- Slide ID: 11-0 -->
-<div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="head-left"><img class="logo" src="public/images/logo/Mineo_logo.png" alt="mineo"></div><div class="page-body"><div class="visual"><img src="public/images/charts/mineo.png" alt="mineoの6観点評価レーダーチャート"></div></div></div><div class="page"><div class="page-head plan-title">mineoの料金プラン</div><div class="page-body plan-shots"><div class="plan-shot"><div>マイピタ（デュアルタイプ）</div><img src="public/images/temp/mineo/mineo_マイピタ_料金表のみ.png" alt="mineo マイピタ料金表"></div><div class="plan-shot"><div>マイそく</div><img src="public/images/temp/mineo/mineo_マイそく_料金表のみ.png" alt="mineo マイそく料金表"></div></div></div></div></div>
-<!-- Slide ID: 11 -->
-<div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="head-left eval-head"><img class="logo" src="public/images/logo/Mineo_logo.png" alt="mineo"><div class="total"><div class="label">総合評価</div><div class="grade">S</div></div></div><div class="cards eval-cards"><div class="card"><div class="rank SS">SS</div><div class="card-name">データ料金</div><div class="line pro"><span class="tag">＋</span>マイピタ15GB 1,958円・30GB 2,178円で、パケット放題3Mbpsが無料で付いてくる</div><div class="line con"><span class="tag">－</span>特になし</div></div><div class="card"><div class="rank A">A</div><div class="card-name">通信品質</div><div class="line pro"><span class="tag">＋</span>回線をau・ドコモ・ソフトバンクの3つから選べる</div><div class="line con"><span class="tag">－</span>平日のお昼など、混雑する時間帯は速度が落ちやすい傾向がある</div></div><div class="card"><div class="rank A">A</div><div class="card-name">初期費用</div><div class="line pro"><span class="tag">＋</span>提携サイト限定リンクなら契約事務手数料が無料。2026年10月の改定後も無料のまま</div><div class="line con"><span class="tag">－</span>通常の申し込みでは契約事務手数料がかかり、2026年10月1日からは3,850円に改定される</div></div></div></div><div class="page"><div class="page-head eval-title">mineoを6観点で評価</div><div class="cards eval-cards"><div class="card"><div class="rank A">A</div><div class="card-name">通話料</div><div class="line pro"><span class="tag">＋</span>かけ放題オプションもしっかり用意されている</div><div class="line con"><span class="tag">－</span>基本料金に無料通話分は含まれておらず、電話をよく使うなら別途オプション料金がかかる</div></div><div class="card"><div class="rank A">A</div><div class="card-name">店舗サポート</div><div class="line pro"><span class="tag">＋</span>一部の店舗や、ユーザー同士のコミュニティで相談できる</div><div class="line con"><span class="tag">－</span>基本はWEB中心</div></div><div class="card"><div class="rank SS">SS</div><div class="card-name">オプション</div><div class="line pro"><span class="tag">＋</span>3Mbps使い放題のパケット放題が、15GB以上のプランに無料で付いてくる＝何カ月だけではなく、ずっと無料</div><div class="line con"><span class="tag">－</span>特になし</div></div></div><div class="note eval-note">※本評価は当チャンネルの独断と偏見による独自評価であり、キャンペーン割引等は考慮していません</div></div></div></div>
-<!-- Slide ID: 11-3 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">過去動画</div><div class="page-body"><div class="visual"><img src="public/images/thumbnails/【裏技】mineo歴8年が教える「実質使い放題」の極意！契約前に知らないと損する5つの節約術_サムネ.png" alt="mineoの解説動画もチェック！"></div></div></div><div class="page"><div class="page-head">mineoの解説動画もチェック！</div><div class="page-body center"><div class="bigicon"><i class="fa-solid fa-circle-play"></i></div><div class="lead cta-copy">mineoの詳しい解説は別動画もチェック！（#03「mineo歴8年が教える『実質使い放題』の極意」）</div></div></div></div></div>
-<!-- Slide ID: 12-0 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="divider"><div class="kicker">CHAPTER</div><div class="num">4</div><div class="seal">FILE No.04</div></div></div><div class="page"><div class="page-body center"><div class="big-title chapter-title"><span class="semantic-line">自分は対象？</span><span class="semantic-line">申し込みの条件</span></div><div class="lead">mineoを選ぶ前に、ポイントを整理します</div></div></div></div></div>
-<!-- Slide ID: 13 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">秋のピッタリ割の適用条件</div><div class="page-body"><ul class="rows"><li><span class="ic"><i class="fa-solid fa-file-signature"></i></span><div class="tx">①申込期間中に、音声通話付きのマイピタを新たに申し込む</div></li><li><span class="ic"><i class="fa-solid fa-mobile-screen-button"></i></span><div class="tx">②シングルタイプのマイピタから、音声通話付きのデュアルタイプへタイプ変更する</div></li></ul></div></div><div class="page"><div class="page-head">対象外・期限を確認</div><div class="page-body"><ul class="rows"><li><span class="ic"><i class="fa-solid fa-user-xmark"></i></span><div class="tx">特典の適用は1回線につき1回まで</div></li><li><span class="ic"><i class="fa-solid fa-building"></i></span><div class="tx">法人名義は対象外</div></li><li><span class="ic"><i class="fa-solid fa-calendar-xmark"></i></span><div class="tx">2026年12月31日までに申し込みが承諾されることが必要</div></li></ul></div></div></div></div>
-<!-- Slide ID: 13-2 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">パケット放題 3Mbps が0円になる条件</div><div class="page-body"><div class="lead">マイピタ3GB・7GBコースと同時に申し込む</div><div class="note">※2026年9月16日時点で3GB・7GBを利用中で、パケット放題 3Mbps を契約していない方は、申込期間中に申し込めば対象</div></div></div><div class="page"><div class="page-head">15GB以上なら常に無料</div><div class="page-body center"><div class="emph">15GB以上のコースはキャンペーンに関係なく無料</div></div></div></div></div>
-<!-- Slide ID: 14-0 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="divider"><div class="kicker">CHAPTER</div><div class="num">5</div><div class="seal">FILE No.05</div></div></div><div class="page"><div class="page-body center"><div class="big-title chapter-title"><span class="semantic-line">申し込む前に</span><span class="semantic-line">知っておきたい</span><span class="semantic-line">2つのこと</span></div><div class="lead">mineoを選ぶ前に、ポイントを整理します</div></div></div></div></div>
-<!-- Slide ID: 15 -->
-<div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">提携サイト限定キャンペーン</div><div class="page-body top"><div class="lead">mineoと提携サイト限定のキャンペーンです</div><div class="emph compact-emph">概要欄の指定リンクから<br><span class="big">事務手数料が無料</span></div></div></div><div class="page"><div class="page-head">対象外・通常の手数料</div><div class="page-body"><ul class="rows"><li><span class="ic"><i class="fa-solid fa-circle-xmark"></i></span><div class="tx">法人名義・お試し200MBコース・マイそくスーパーライトは対象外</div></li><li><span class="ic"><i class="fa-solid fa-triangle-exclamation"></i></span><div class="tx">通常は契約事務手数料がかかります（2026年10月1日から3,850円）</div></li></ul></div></div></div></div>
-<!-- Slide ID: 15-2 -->
-<div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">eSIMなら初期費用がさらに軽くなる</div><div class="page-body top"><div class="emph compact-emph">2026年10月1日から eSIMプロファイル発行料が0円に</div><div class="emph compact-emph">提携サイト限定リンク＋eSIM＝初期費用0円</div></div></div><div class="page"><div class="page-head">SIMカードは発行料に注意</div><div class="page-body center"><div class="warn"><span class="ic">⚠</span>※SIMカードを選ぶ場合は発行料がかかります</div></div></div></div></div>
-<!-- Slide ID: 15-3 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">過去動画</div><div class="page-body"><div class="visual"><img src="public/images/thumbnails/【2026年最新】mineo10月手数料改定、契約時手数料3,850円もeSIMなら0円_サムネ2.png" alt="事務手数料の解説動画もチェック！"></div></div></div><div class="page"><div class="page-head">事務手数料の解説動画もチェック！</div><div class="page-body center"><div class="bigicon"><i class="fa-solid fa-circle-play"></i></div><div class="lead cta-copy">mineoの事務手数料改定に関する詳しい解説は過去動画もチェック！（「【2026年最新】mineo10月手数料改定、契約時手数料3,850円もeSIMなら0円」）</div></div></div></div></div>
-<!-- Slide ID: 16 -->
-<div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">10分通話パックの注意点</div><div class="page-body"><ul class="rows"><li><span class="ic"><i class="fa-solid fa-calendar-days"></i></span><div class="tx">無料になるのは最大6カ月間まで</div></li><li><span class="ic"><i class="fa-solid fa-yen-sign"></i></span><div class="tx">そのあとは月110円が自動でかかり続ける</div></li></ul></div></div><div class="page"><div class="page-head">無料期間の終わりに確認</div><div class="page-body"><div class="warn"><span class="ic">⚠</span>通話をほとんどしない人は、無料期間が終わるタイミングで外す</div><div class="note">※キャンペーン期間中に解約すると、解約以降の特典は適用されません</div></div></div></div></div>
-<!-- Slide ID: 17-0 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="divider"><div class="kicker">CHAPTER</div><div class="num">6</div><div class="seal">FILE No.06</div></div></div><div class="page"><div class="page-body center"><div class="big-title chapter-title"><span class="semantic-line">まとめ</span></div><div class="lead">mineoを選ぶ前に、ポイントを整理します</div></div></div></div></div>
-<!-- Slide ID: 18 -->
-<div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">今日のまとめ</div><div class="page-body"><ul class="rows"><li><span class="ic"><i class="fa-solid fa-calendar"></i></span><div class="tx">①mineoの「秋のピッタリ割」は2026年9月17日〜11月30日の申し込みが対象</div></li><li><span class="ic"><i class="fa-solid fa-tag"></i></span><div class="tx">②マイピタ3GBは最大6カ月間 月880円、パケット放題 3Mbps も最大6カ月間0円</div></li></ul></div></div><div class="page"><div class="page-head">自分の使い方で判断</div><div class="page-body"><ul class="rows"><li><span class="ic"><i class="fa-solid fa-user-check"></i></span><div class="tx">③外出先でオンラインゲームや高画質動画をたくさん見る人以外は、3GB＋最大3Mbpsで足りる</div></li><li><span class="ic"><i class="fa-solid fa-rotate"></i></span><div class="tx">④6カ月後は 3GB 1,298円＋パケット放題 3Mbps 385円 に戻る</div></li></ul></div></div></div></div>
-<!-- Slide ID: 19 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">ご注意</div><div class="page-body center"><div class="bigicon"><i class="fa-solid fa-circle-info"></i></div><div class="big-title">ご確認ください</div></div></div><div class="page"><div class="page-head">申し込み前の最終確認</div><div class="page-body center"><div class="warn">お申し込みの際は必ずmineo公式サイトをご確認ください。プラン内容やキャンペーン情報はすべてmineo公式サイトの内容が正となります。</div><div class="note">※料金・キャンペーンは動画投稿時点のものです</div></div></div></div></div>
-<!-- Slide ID: 20 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">コメントで教えてね！</div><div class="page-body center"><div class="bigicon"><i class="fa-solid fa-comments"></i></div><div class="big-title">あなたは<br><span class="em">何GB？</span></div></div></div><div class="page"><div class="page-head">コメント例</div><div class="page-body"><ul class="rows"><li><span class="ic"><i class="fa-solid fa-comment"></i></span><div class="tx">わたしは〇ギガで足りてます</div></li><li><span class="ic"><i class="fa-solid fa-comment"></i></span><div class="tx">わたしのエリアの電波</div></li><li><span class="ic"><i class="fa-solid fa-comment"></i></span><div class="tx">わかりづらかった点</div></li></ul></div></div></div></div>
-<!-- Slide ID: 21 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">スマホ代は大きな固定費</div><div class="page-body center"><div class="bigicon"><i class="fa-solid fa-wallet"></i></div><div class="big-title">毎月の固定費を<br><span class="em">見直そう</span></div></div></div><div class="page"><div class="page-head">浮いたぶんは自分のために</div><div class="page-body"><ul class="rows"><li><span class="ic"><i class="fa-solid fa-piggy-bank"></i></span><div class="tx">少しでも多くの方に見直してほしい</div></li><li><span class="ic"><i class="fa-solid fa-sack-dollar"></i></span><div class="tx">浮いたぶんは貯蓄などにまわせます</div></li></ul></div></div></div></div>
-<!-- Slide ID: 21-1 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">格安SIM図鑑からのお約束</div><div class="page-body center"><div class="bigicon"><i class="fa-solid fa-compass"></i></div><div class="big-title">自分に合う<br><span class="em">1枚</span>が分かる</div></div></div><div class="page"><div class="page-head">これからも続けます</div><div class="page-body center"><div class="lead">この動画を見れば自分に合う1枚が分かる、そんな動画をこれからも作っていきます！</div></div></div></div></div>
-<!-- Slide ID: 22 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">ブログ・noteでも比較中</div><div class="page-body center"><div class="bigicon"><i class="fa-solid fa-pen-nib"></i></div><div class="big-title">もっと詳しく<br><span class="em">料金比較</span></div></div></div><div class="page"><div class="page-head">概要欄からどうぞ</div><div class="page-body top"><div class="visual"><img src="public/images/common/ブログ_ヘッダー画像_スライド用.png" alt="ブログ・noteの案内"></div><div class="lead tight cta-copy">ブログ・noteでも格安SIMの料金を詳しく比較中！概要欄のリンクからぜひ！</div></div></div></div></div>
-<!-- Slide ID: 23 -->
-<div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6"><div class="book"><div class="spine"></div><div class="page"><div class="page-head">ご視聴ありがとうございました！</div><div class="page-body center"><div class="bigicon compact-icon"><i class="fa-solid fa-bell"></i></div><div class="big-title compact-title closing-title"><span class="semantic-line">チャンネル登録</span><span class="semantic-line">よろしくお願いします！</span></div></div></div><div class="page"><div class="page-head">また次回も一緒に節約</div><div class="page-body center"><div class="logos"><span style="font-size:128px">👍</span><span style="font-size:128px">🔔</span></div><div class="lead cta-copy">ご視聴頂きありがとうございました！チャンネル登録・グッドボタンもよろしくお願いします！</div></div></div></div></div></body></html>
+    <!-- Slide ID: 2 -->
+    <div
+      class="slide-container std campaign-diagram"
+      style="--brand: #c8102e; --brand-deep: #9a0c23; --brand-soft: #fde3e7"
+    >
+      <div class="sunburst"></div>
+      <div class="cover-ribbon">最大6カ月</div>
+      <img
+        class="diagram-illust"
+        src="public/images/irasutoya/smartphone04_laugh.png"
+        alt="スマートフォンを見て喜ぶ人のイラスト"
+      />
+      <div class="std-copy diagram-copy">
+        <div class="cover-badge">秋のピッタリ割</div>
+        <div class="std-title diagram-title">
+          月額も使い放題も <span>おトク</span>
+        </div>
+        <div class="campaign-flow" aria-label="秋のピッタリ割の特典図解">
+          <div class="flow-card">
+            <div class="flow-num">1</div>
+            <div class="flow-label">マイピタ<br />音声通話付き</div>
+            <div class="flow-main">月額基本料金<br /><b>最大6カ月割引</b></div>
+          </div>
+          <div class="flow-arrow">＋</div>
+          <div class="flow-card zero-card">
+            <div class="flow-num">2</div>
+            <div class="flow-label">パケット放題<br />3Mbps</div>
+            <div class="flow-main">最大6カ月間<br /><b>0円</b></div>
+          </div>
+          <div class="flow-arrow">＝</div>
+          <div class="flow-card unlimited-card">
+            <div class="flow-num">3</div>
+            <div class="flow-label">3GBを使い切っても</div>
+            <div class="flow-main"><b>最大3Mbps</b><br />データ使い放題</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 3 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">格安SIM図鑑 もくじ</div>
+          <div class="page-body">
+            <ul class="agenda">
+              <li><span class="num">1</span>3GBで足りる？</li>
+              <li><span class="num">2</span>3Mbpsで何ができる？</li>
+              <li><span class="num">3</span>6カ月後はいくら？</li>
+            </ul>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">この動画で分かること</div>
+          <div class="page-body">
+            <ul class="benefits">
+              <li>
+                <span class="check">✓</span
+                ><span class="benefit-text">自分は<b>3GBで足りるか</b></span>
+              </li>
+              <li>
+                <span class="check">✓</span
+                ><span class="benefit-text"
+                  >使い切った後の<b>3Mbps</b>でできること</span
+                >
+              </li>
+              <li>
+                <span class="check">✓</span
+                ><span class="benefit-text">割引終了後に<b>戻る料金</b></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 4 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">mineo 秋のピッタリ割</div>
+          <div class="page-body center">
+            <div class="visual">
+              <img src="public/images/logo/Mineo_logo.png" alt="mineo ロゴ" />
+            </div>
+            <div class="emph">
+              3GB＋使い放題<br /><span class="big">最大6カ月 880円</span>
+            </div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">キャンペーンを徹底解説</div>
+          <div class="page-body center">
+            <div class="big-title campaign-title">
+              <span class="semantic-line">【11/30まで】mineo</span
+              ><span class="semantic-line">3GB＋使い放題</span
+              ><span class="semantic-line"
+                ><span class="em">最大6カ月 880円</span></span
+              >
+            </div>
+            <div class="lead">注意点も含めて分かりやすく解説！</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 5-0 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="divider">
+            <div class="kicker">CHAPTER</div>
+            <div class="num">1</div>
+            <div class="seal">FILE No.01</div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-body center">
+            <div class="big-title chapter-title">
+              <span class="semantic-line">何が・いくら</span
+              ><span class="semantic-line">いつまで安い？</span>
+            </div>
+            <div class="lead">mineoを選ぶ前に、ポイントを整理します</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 6 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">秋のピッタリ割</div>
+          <div class="page-body">
+            <div class="lead">申込期間：2026年9月17日〜2026年11月30日</div>
+            <div class="warn">
+              <span class="ic">⚠</span
+              >対象：マイピタ（音声通話付き）を新たに申し込み
+            </div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">コース別の割引額</div>
+          <div class="page-body">
+            <table class="sheet">
+              <tr>
+                <th>容量</th>
+                <th>通常</th>
+                <th>最大6カ月</th>
+              </tr>
+              <tr>
+                <td>3GB</td>
+                <td>1,298円</td>
+                <td class="em">880円</td>
+              </tr>
+              <tr>
+                <td>7GB</td>
+                <td>1,518円</td>
+                <td class="em">990円</td>
+              </tr>
+              <tr>
+                <td>15GB</td>
+                <td>1,958円</td>
+                <td class="em">990円</td>
+              </tr>
+              <tr>
+                <td>30GB</td>
+                <td>2,178円</td>
+                <td class="em">1,320円</td>
+              </tr>
+              <tr>
+                <td>50GB</td>
+                <td>2,948円</td>
+                <td class="em">2,090円（すべて税込）</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 6-2 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">パケット放題 3Mbps 割引キャンペーン</div>
+          <div class="page-body">
+            <div class="emph">月額385円 → 最大6カ月間0円</div>
+            <div class="lead">対象：マイピタ3GB・7GBコース</div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">対象と使い放題のしくみ</div>
+          <div class="page-body">
+            <ul class="rows">
+              <li>
+                <span class="ic"
+                  ><i class="fa-solid fa-mobile-screen-button"></i
+                ></span>
+                <div class="tx">
+                  15GB以上のコースはキャンペーンに関係なく無料
+                </div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-infinity"></i></span>
+                <div class="tx">
+                  ギガを使い切っても最大3Mbpsでデータ使い放題
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 6-3 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">10分通話パック割引キャンペーン</div>
+          <div class="page-body">
+            <div class="emph">月額110円 → 最大6カ月間無料</div>
+            <div class="lead">毎月440円分（最大10分）の通話が割引</div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">使い方のポイント</div>
+          <div class="page-body">
+            <ul class="rows">
+              <li>
+                <span class="ic"><i class="fa-solid fa-clock"></i></span>
+                <div class="tx">使わなかった分は最大10分まで翌月へ繰り越し</div>
+              </li>
+              <li>
+                <span class="ic"
+                  ><i class="fa-solid fa-mobile-screen-button"></i
+                ></span>
+                <div class="tx">専用の通話アプリは不要</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 6-4 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">キャンペーン情報を見逃さない</div>
+          <div class="page-body center">
+            <div class="bigicon compact-icon">
+              <i class="fa-solid fa-bell"></i>
+            </div>
+            <div class="big-title compact-title">
+              <span class="semantic-line">チャンネル登録で</span
+              ><span class="semantic-line em">最新情報を</span
+              ><span class="semantic-line">チェック！</span>
+            </div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">開始・終了を毎週お知らせ</div>
+          <div class="page-body center">
+            <div class="lead">
+              チャンネル登録でキャンペーンの開始・終了を見逃さない！
+            </div>
+            <div class="emph compact-emph">
+              登録ボタンを押して<br /><span class="big">見逃し防止</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 7-0 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="divider">
+            <div class="kicker">CHAPTER</div>
+            <div class="num">2</div>
+            <div class="seal">FILE No.02</div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-body center">
+            <div class="big-title chapter-title">
+              <span class="semantic-line">3GBで足りる人</span
+              ><span class="semantic-line">足りない人</span>
+            </div>
+            <div class="lead">mineoを選ぶ前に、ポイントを整理します</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 8 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">結論</div>
+          <div class="page-body">
+            <div class="warn">
+              <span class="ic">⚠</span
+              >外出先で重いオンラインゲームをする人、高画質の動画をたくさん見る人
+              → もっと容量が必要
+            </div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">多くの人はこの組み合わせ</div>
+          <div class="page-body center">
+            <div class="emph">
+              それ以外の多くの人 → 3GB＋パケット放題 3Mbps で足りる
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 8-2 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">ショウの使い方</div>
+          <div class="page-body">
+            <ul class="rows">
+              <li>
+                <span class="ic"><i class="fa-solid fa-user"></i></span>
+                <div class="tx">
+                  mineo歴8年・マイピタ3GB＋パケット放題 3Mbps
+                </div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-battery-full"></i></span>
+                <div class="tx">毎月の高速3GBはほとんど使い切らない</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">余ったギガは貯められる</div>
+          <div class="page-body">
+            <div class="emph">
+              余ったパケットはパスケット（月110円）に貯まっていく
+            </div>
+            <div class="visual">
+              <img
+                src="public/images/temp/mineo/mineo_パスケットを使ったデータ貯金運用のイメージ図.png"
+                alt="パスケットのイメージ"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 8-3 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">ショウの場合</div>
+          <div class="page-body">
+            <ul class="rows">
+              <li>
+                <span class="ic"><i class="fa-solid fa-gamepad"></i></span>
+                <div class="tx">
+                  スマホゲームをよく遊んでいた頃は、最大3Mbpsだとゲーム画面が固まることがあった
+                </div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-bolt"></i></span>
+                <div class="tx">そのときは高速通信に切り替えて3GBを消費</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">足りないときの備え</div>
+          <div class="page-body center">
+            <div class="lead">足りなくなったらパスケットから引き出して利用</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 9 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">最大3Mbpsでできること</div>
+          <div class="page-body">
+            <div class="compact-list">
+              <ul class="rows">
+                <li>
+                  <span class="ic"><i class="fa-solid fa-comment"></i></span>
+                  <div class="tx">LINE</div>
+                </li>
+                <li>
+                  <span class="ic"><i class="fa-solid fa-comment"></i></span>
+                  <div class="tx">SNS</div>
+                </li>
+                <li>
+                  <span class="ic"><i class="fa-solid fa-comment"></i></span>
+                  <div class="tx">音楽のストリーミング</div>
+                </li>
+                <li>
+                  <span class="ic"><i class="fa-solid fa-comment"></i></span>
+                  <div class="tx">標準画質の動画</div>
+                </li>
+                <li>
+                  <span class="ic"><i class="fa-solid fa-comment"></i></span>
+                  <div class="tx">地図アプリ</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">苦しい使い方と注意点</div>
+          <div class="page-body">
+            <ul class="rows">
+              <li>
+                <span class="ic"
+                  ><i class="fa-solid fa-triangle-exclamation"></i
+                ></span>
+                <div class="tx">高画質の動画を長時間</div>
+              </li>
+              <li>
+                <span class="ic"
+                  ><i class="fa-solid fa-triangle-exclamation"></i
+                ></span>
+                <div class="tx">オンラインゲーム</div>
+              </li>
+              <li>
+                <span class="ic"
+                  ><i class="fa-solid fa-triangle-exclamation"></i
+                ></span>
+                <div class="tx">大きなファイルのダウンロード</div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-clock"></i></span>
+                <div class="tx">
+                  ※3日間で10GB以上使うと、翌日は最大200kbpsに制限
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 9-2 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">6カ月後はどうなる？</div>
+          <div class="page-body">
+            <div class="emph">マイピタ3GB 880円 → 1,298円</div>
+            <div class="emph">パケット放題 3Mbps 0円 → 385円</div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">オプションも通常料金へ</div>
+          <div class="page-body">
+            <div class="emph">10分通話パック 無料 → 110円</div>
+            <div class="note">
+              ※割引は最大6カ月間、特典の適用は1回線につき1回まで
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 10-0 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="divider">
+            <div class="kicker">CHAPTER</div>
+            <div class="num">3</div>
+            <div class="seal">FILE No.03</div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-body center">
+            <div class="big-title chapter-title">
+              <span class="semantic-line">mineoって</span
+              ><span class="semantic-line">どんな格安SIM？</span>
+            </div>
+            <div class="lead">mineoを選ぶ前に、ポイントを整理します</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 11-0 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="head-left">
+            <img
+              class="logo"
+              src="public/images/logo/Mineo_logo.png"
+              alt="mineo"
+            />
+          </div>
+          <div class="page-body">
+            <div class="visual">
+              <img
+                src="public/images/charts/mineo.png"
+                alt="mineoの6観点評価レーダーチャート"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head plan-title">mineoの料金プラン</div>
+          <div class="page-body plan-shots">
+            <div class="plan-shot">
+              <div>マイピタ（デュアルタイプ）</div>
+              <img
+                src="public/images/temp/mineo/mineo_マイピタ_料金表のみ.png"
+                alt="mineo マイピタ料金表"
+              />
+            </div>
+            <div class="plan-shot">
+              <div>マイそく</div>
+              <img
+                src="public/images/temp/mineo/mineo_マイそく_料金表のみ.png"
+                alt="mineo マイそく料金表"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 11 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="head-left eval-head">
+            <img
+              class="logo"
+              src="public/images/logo/Mineo_logo.png"
+              alt="mineo"
+            />
+            <div class="total">
+              <div class="label">総合評価</div>
+              <div class="grade">S</div>
+            </div>
+          </div>
+          <div class="cards eval-cards">
+            <div class="card">
+              <div class="rank SS">SS</div>
+              <div class="card-name">データ料金</div>
+              <div class="line pro">
+                <span class="tag">＋</span>マイピタ15GB 1,958円・30GB
+                2,178円で、パケット放題3Mbpsが無料で付いてくる
+              </div>
+              <div class="line con"><span class="tag">－</span>特になし</div>
+            </div>
+            <div class="card">
+              <div class="rank A">A</div>
+              <div class="card-name">通信品質</div>
+              <div class="line pro">
+                <span class="tag">＋</span
+                >回線をau・ドコモ・ソフトバンクの3つから選べる
+              </div>
+              <div class="line con">
+                <span class="tag">－</span
+                >平日のお昼など、混雑する時間帯は速度が落ちやすい傾向がある
+              </div>
+            </div>
+            <div class="card">
+              <div class="rank A">A</div>
+              <div class="card-name">初期費用</div>
+              <div class="line pro">
+                <span class="tag">＋</span
+                >提携サイト限定リンクなら契約事務手数料が無料。2026年10月の改定後も無料のまま
+              </div>
+              <div class="line con">
+                <span class="tag">－</span
+                >通常の申し込みでは契約事務手数料がかかり、2026年10月1日からは3,850円に改定される
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head eval-title">mineoを6観点で評価</div>
+          <div class="cards eval-cards">
+            <div class="card">
+              <div class="rank A">A</div>
+              <div class="card-name">通話料</div>
+              <div class="line pro">
+                <span class="tag">＋</span
+                >かけ放題オプションもしっかり用意されている
+              </div>
+              <div class="line con">
+                <span class="tag">－</span
+                >基本料金に無料通話分は含まれておらず、電話をよく使うなら別途オプション料金がかかる
+              </div>
+            </div>
+            <div class="card">
+              <div class="rank A">A</div>
+              <div class="card-name">店舗サポート</div>
+              <div class="line pro">
+                <span class="tag">＋</span
+                >一部の店舗や、ユーザー同士のコミュニティで相談できる
+              </div>
+              <div class="line con">
+                <span class="tag">－</span>基本はWEB中心
+              </div>
+            </div>
+            <div class="card">
+              <div class="rank SS">SS</div>
+              <div class="card-name">オプション</div>
+              <div class="line pro">
+                <span class="tag">＋</span
+                >3Mbps使い放題のパケット放題が、15GB以上のプランに無料で付いてくる＝何カ月だけではなく、ずっと無料
+              </div>
+              <div class="line con"><span class="tag">－</span>特になし</div>
+            </div>
+          </div>
+          <div class="note eval-note">
+            ※本評価は当チャンネルの独断と偏見による独自評価であり、キャンペーン割引等は考慮していません
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 11-3 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">過去動画</div>
+          <div class="page-body">
+            <div class="visual">
+              <img
+                src="public/images/thumbnails/【裏技】mineo歴8年が教える「実質使い放題」の極意！契約前に知らないと損する5つの節約術_サムネ.png"
+                alt="mineoの解説動画もチェック！"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">mineoの解説動画もチェック！</div>
+          <div class="page-body center">
+            <div class="bigicon"><i class="fa-solid fa-circle-play"></i></div>
+            <div class="lead cta-copy">
+              mineoの詳しい解説は別動画もチェック！（#03「mineo歴8年が教える『実質使い放題』の極意」）
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 12-0 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="divider">
+            <div class="kicker">CHAPTER</div>
+            <div class="num">4</div>
+            <div class="seal">FILE No.04</div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-body center">
+            <div class="big-title chapter-title">
+              <span class="semantic-line">自分は対象？</span
+              ><span class="semantic-line">申し込みの条件</span>
+            </div>
+            <div class="lead">mineoを選ぶ前に、ポイントを整理します</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 13 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">秋のピッタリ割の適用条件</div>
+          <div class="page-body">
+            <ul class="rows">
+              <li>
+                <span class="ic"
+                  ><i class="fa-solid fa-file-signature"></i
+                ></span>
+                <div class="tx">
+                  ①申込期間中に、音声通話付きのマイピタを新たに申し込む
+                </div>
+              </li>
+              <li>
+                <span class="ic"
+                  ><i class="fa-solid fa-mobile-screen-button"></i
+                ></span>
+                <div class="tx">
+                  ②シングルタイプのマイピタから、音声通話付きのデュアルタイプへタイプ変更する
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">対象外・期限を確認</div>
+          <div class="page-body">
+            <ul class="rows">
+              <li>
+                <span class="ic"><i class="fa-solid fa-user-xmark"></i></span>
+                <div class="tx">特典の適用は1回線につき1回まで</div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-building"></i></span>
+                <div class="tx">法人名義は対象外</div>
+              </li>
+              <li>
+                <span class="ic"
+                  ><i class="fa-solid fa-calendar-xmark"></i
+                ></span>
+                <div class="tx">
+                  2026年12月31日までに申し込みが承諾されることが必要
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 13-2 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">パケット放題 3Mbps が0円になる条件</div>
+          <div class="page-body">
+            <div class="lead">マイピタ3GB・7GBコースと同時に申し込む</div>
+            <div class="note">
+              ※2026年9月16日時点で3GB・7GBを利用中で、パケット放題 3Mbps
+              を契約していない方は、申込期間中に申し込めば対象
+            </div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">15GB以上なら常に無料</div>
+          <div class="page-body center">
+            <div class="emph">15GB以上のコースはキャンペーンに関係なく無料</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 14-0 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="divider">
+            <div class="kicker">CHAPTER</div>
+            <div class="num">5</div>
+            <div class="seal">FILE No.05</div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-body center">
+            <div class="big-title chapter-title">
+              <span class="semantic-line">申し込む前に</span
+              ><span class="semantic-line">知っておきたい</span
+              ><span class="semantic-line">2つのこと</span>
+            </div>
+            <div class="lead">mineoを選ぶ前に、ポイントを整理します</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 15 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">提携サイト限定キャンペーン</div>
+          <div class="page-body top">
+            <div class="lead">mineoと提携サイト限定のキャンペーンです</div>
+            <div class="emph compact-emph">
+              概要欄の指定リンクから<br /><span class="big"
+                >事務手数料が無料</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">対象外・通常の手数料</div>
+          <div class="page-body">
+            <ul class="rows">
+              <li>
+                <span class="ic"><i class="fa-solid fa-circle-xmark"></i></span>
+                <div class="tx">
+                  法人名義・お試し200MBコース・マイそくスーパーライトは対象外
+                </div>
+              </li>
+              <li>
+                <span class="ic"
+                  ><i class="fa-solid fa-triangle-exclamation"></i
+                ></span>
+                <div class="tx">
+                  通常は契約事務手数料がかかります（2026年10月1日から3,850円）
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 15-2 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">eSIMなら初期費用がさらに軽くなる</div>
+          <div class="page-body top">
+            <div class="emph compact-emph">
+              2026年10月1日から eSIMプロファイル発行料が0円に
+            </div>
+            <div class="emph compact-emph">
+              提携サイト限定リンク＋eSIM＝初期費用0円
+            </div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">SIMカードは発行料に注意</div>
+          <div class="page-body center">
+            <div class="warn">
+              <span class="ic">⚠</span>※SIMカードを選ぶ場合は発行料がかかります
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 15-3 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">過去動画</div>
+          <div class="page-body">
+            <div class="visual">
+              <img
+                src="public/images/thumbnails/【2026年最新】mineo10月手数料改定、契約時手数料3,850円もeSIMなら0円_サムネ2.png"
+                alt="事務手数料の解説動画もチェック！"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">事務手数料の解説動画もチェック！</div>
+          <div class="page-body center">
+            <div class="bigicon"><i class="fa-solid fa-circle-play"></i></div>
+            <div class="lead cta-copy">
+              mineoの事務手数料改定に関する詳しい解説は過去動画もチェック！（「【2026年最新】mineo10月手数料改定、契約時手数料3,850円もeSIMなら0円」）
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 16 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">10分通話パックの注意点</div>
+          <div class="page-body">
+            <ul class="rows">
+              <li>
+                <span class="ic"
+                  ><i class="fa-solid fa-calendar-days"></i
+                ></span>
+                <div class="tx">無料になるのは最大6カ月間まで</div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-yen-sign"></i></span>
+                <div class="tx">そのあとは月110円が自動でかかり続ける</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">無料期間の終わりに確認</div>
+          <div class="page-body">
+            <div class="warn">
+              <span class="ic">⚠</span
+              >通話をほとんどしない人は、無料期間が終わるタイミングで外す
+            </div>
+            <div class="note">
+              ※キャンペーン期間中に解約すると、解約以降の特典は適用されません
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 17-0 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="divider">
+            <div class="kicker">CHAPTER</div>
+            <div class="num">6</div>
+            <div class="seal">FILE No.06</div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-body center">
+            <div class="big-title chapter-title">
+              <span class="semantic-line">まとめ</span>
+            </div>
+            <div class="lead">mineoを選ぶ前に、ポイントを整理します</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 18 -->
+    <div
+      class="slide-container price-note"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">今日のまとめ</div>
+          <div class="page-body">
+            <ul class="rows">
+              <li>
+                <span class="ic"><i class="fa-solid fa-calendar"></i></span>
+                <div class="tx">
+                  ①mineoの「秋のピッタリ割」は2026年9月17日〜11月30日の申し込みが対象
+                </div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-tag"></i></span>
+                <div class="tx">
+                  ②マイピタ3GBは最大6カ月間 月880円、パケット放題 3Mbps
+                  も最大6カ月間0円
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">自分の使い方で判断</div>
+          <div class="page-body">
+            <ul class="rows">
+              <li>
+                <span class="ic"><i class="fa-solid fa-user-check"></i></span>
+                <div class="tx">
+                  ③外出先でオンラインゲームや高画質動画をたくさん見る人以外は、3GB＋最大3Mbpsで足りる
+                </div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-rotate"></i></span>
+                <div class="tx">
+                  ④6カ月後は 3GB 1,298円＋パケット放題 3Mbps 385円 に戻る
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 19 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">ご注意</div>
+          <div class="page-body center">
+            <div class="bigicon"><i class="fa-solid fa-circle-info"></i></div>
+            <div class="big-title">ご確認ください</div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">申し込み前の最終確認</div>
+          <div class="page-body center">
+            <div class="warn">
+              お申し込みの際は必ずmineo公式サイトをご確認ください。プラン内容やキャンペーン情報はすべてmineo公式サイトの内容が正となります。
+            </div>
+            <div class="note">※料金・キャンペーンは動画投稿時点のものです</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 20 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">コメントで教えてね！</div>
+          <div class="page-body center">
+            <div class="bigicon"><i class="fa-solid fa-comments"></i></div>
+            <div class="big-title">
+              あなたは<br /><span class="em">何GB？</span>
+            </div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">コメント例</div>
+          <div class="page-body">
+            <ul class="rows">
+              <li>
+                <span class="ic"><i class="fa-solid fa-comment"></i></span>
+                <div class="tx">わたしは〇ギガで足りてます</div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-comment"></i></span>
+                <div class="tx">わたしのエリアの電波</div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-comment"></i></span>
+                <div class="tx">わかりづらかった点</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 21 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">スマホ代は大きな固定費</div>
+          <div class="page-body center">
+            <div class="bigicon"><i class="fa-solid fa-wallet"></i></div>
+            <div class="big-title">
+              毎月の固定費を<br /><span class="em">見直そう</span>
+            </div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">浮いたぶんは自分のために</div>
+          <div class="page-body">
+            <ul class="rows">
+              <li>
+                <span class="ic"><i class="fa-solid fa-piggy-bank"></i></span>
+                <div class="tx">少しでも多くの方に見直してほしい</div>
+              </li>
+              <li>
+                <span class="ic"><i class="fa-solid fa-sack-dollar"></i></span>
+                <div class="tx">浮いたぶんは貯蓄などにまわせます</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 21-1 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">格安SIM図鑑からのお約束</div>
+          <div class="page-body center">
+            <div class="bigicon"><i class="fa-solid fa-compass"></i></div>
+            <div class="big-title">
+              自分に合う<br /><span class="em">1枚</span>が分かる
+            </div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">これからも続けます</div>
+          <div class="page-body center">
+            <div class="lead">
+              この動画を見れば自分に合う1枚が分かる、そんな動画をこれからも作っていきます！
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 22 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">ブログ・noteでも比較中</div>
+          <div class="page-body center">
+            <div class="bigicon"><i class="fa-solid fa-pen-nib"></i></div>
+            <div class="big-title">
+              もっと詳しく<br /><span class="em">料金比較</span>
+            </div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">概要欄からどうぞ</div>
+          <div class="page-body top">
+            <div class="visual">
+              <img
+                src="public/images/common/ブログ_ヘッダー画像_スライド用.png"
+                alt="ブログ・noteの案内"
+              />
+            </div>
+            <div class="lead tight cta-copy">
+              ブログ・noteでも格安SIMの料金を詳しく比較中！概要欄のリンクからぜひ！
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 23 -->
+    <div
+      class="slide-container"
+      style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page">
+          <div class="page-head">ご視聴ありがとうございました！</div>
+          <div class="page-body center">
+            <div class="bigicon compact-icon">
+              <i class="fa-solid fa-bell"></i>
+            </div>
+            <div class="big-title compact-title closing-title">
+              <span class="semantic-line">チャンネル登録</span
+              ><span class="semantic-line">よろしくお願いします！</span>
+            </div>
+          </div>
+        </div>
+        <div class="page">
+          <div class="page-head">また次回も一緒に節約</div>
+          <div class="page-body center">
+            <div class="logos">
+              <span style="font-size: 128px">👍</span
+              ><span style="font-size: 128px">🔔</span>
+            </div>
+            <div class="lead cta-copy">
+              ご視聴頂きありがとうございました！チャンネル登録・グッドボタンもよろしくお願いします！
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
