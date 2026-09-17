@@ -348,6 +348,23 @@
         font-size: 38px;
         font-weight: 900;
       }
+      .slide-eight .page-body {
+        position: relative;
+      }
+      .slide-eight-illust {
+        position: absolute;
+        bottom: -200px;
+        z-index: 1;
+        height: 300px;
+        width: auto;
+        object-fit: contain;
+      }
+      .slide-eight-illust.left {
+        left: 22px;
+      }
+      .slide-eight-illust.right {
+        right: 22px;
+      }
       .page .visual img {
         max-height: 480px;
       }
@@ -865,27 +882,37 @@
     </div>
     <!-- Slide ID: 8 -->
     <div
-      class="slide-container"
+      class="slide-container slide-eight"
       style="--brand: #22a73f; --brand-deep: #1c8b34; --brand-soft: #e8f5e6"
     >
       <div class="book">
         <div class="spine"></div>
         <div class="page">
           <div class="page-head">結論</div>
-          <div class="page-body">
+          <div class="page-body" style="margin-bottom: 140px">
             <div class="warn">
               <span class="ic">⚠</span
               >外出先で重いオンラインゲームをする人、高画質の動画をたくさん見る人
               → もっと容量が必要
             </div>
+            <img
+              class="slide-eight-illust left"
+              src="public/images/irasutoya/pose_necchuu_smartphone_man.png"
+              alt="スマートフォンに熱中する男性のイラスト"
+            />
           </div>
         </div>
         <div class="page">
           <div class="page-head">多くの人はこの組み合わせ</div>
-          <div class="page-body center">
+          <div class="page-body center" style="margin-bottom: 140px">
             <div class="emph">
               それ以外の多くの人 → 3GB＋パケット放題 3Mbps で足りる
             </div>
+            <img
+              class="slide-eight-illust right"
+              src="public/images/irasutoya/smartphone_speed_5g.png"
+              alt="5G通信速度のイラスト"
+            />
           </div>
         </div>
       </div>
@@ -904,12 +931,12 @@
               <li>
                 <span class="ic"><i class="fa-solid fa-user"></i></span>
                 <div class="tx">
-                  mineo歴8年・マイピタ3GB＋パケット放題 3Mbps
+                  mineo歴8年超・マイピタ3GB＋パケット放題 3Mbps＋パスケット
                 </div>
               </li>
               <li>
                 <span class="ic"><i class="fa-solid fa-battery-full"></i></span>
-                <div class="tx">毎月の高速3GBはほとんど使い切らない</div>
+                <div class="tx">毎月の高速通信分の3GBはほとんど使わない</div>
               </li>
             </ul>
           </div>
@@ -917,9 +944,7 @@
         <div class="page">
           <div class="page-head">余ったギガは貯められる</div>
           <div class="page-body">
-            <div class="emph">
-              余ったパケットはパスケット（月110円）に貯まっていく
-            </div>
+            <div class="emph">余ったパケットはパスケットに貯まっていく</div>
             <div class="visual">
               <img
                 src="public/images/temp/mineo/mineo_パスケットを使ったデータ貯金運用のイメージ図.png"
