@@ -1,0 +1,139 @@
+#!/usr/bin/env python3
+"""Generate the mineo short deck from its scenario CSV.
+
+The CSV is the source of truth: each unique slide ID and its
+``スライドに表示する内容`` value is read before being assigned to the matching
+short-slide component.  Keep subsequent visual revisions in this generator,
+then regenerate slides-short.html.
+"""
+
+from __future__ import annotations
+
+import csv
+import html
+from collections import OrderedDict
+from pathlib import Path
+
+
+PROJECT = Path("/workspaces/yt-factory/packages/slide-gen")
+SCENARIO = Path(
+    "/workspaces/yt-factory/packages/scenario-gen/archive/videos/"
+    "47_【〜11／30】mineo 3GB＋データ使い放題が最大6カ月880円！注意点も解説/"
+    "short/【〜11／30】mineoが最大6カ月880円に.csv"
+)
+OUTPUT = PROJECT / "slides-short.html"
+
+
+def read_slides() -> OrderedDict[str, str]:
+    """Return one display-content value per slide ID, retaining CSV order."""
+    slides: OrderedDict[str, str] = OrderedDict()
+    with SCENARIO.open(encoding="utf-8-sig", newline="") as source:
+        for row in csv.DictReader(source):
+            slide_id = (row.get("スライドID") or "").strip()
+            display = (row.get("スライドに表示する内容") or "").strip()
+            if not slide_id:
+                raise ValueError("台本に空のスライドIDがあります")
+            if slide_id not in slides:
+                slides[slide_id] = display
+            elif display not in ("", "同上", slides[slide_id]):
+                raise ValueError(f"スライドID {slide_id} に異なる表示内容があります")
+    if list(slides) != [str(number) for number in range(1, 7)]:
+        raise ValueError(f"この短尺用ジェネレータが期待するIDは1〜6です: {list(slides)}")
+    return slides
+
+
+def esc(value: str) -> str:
+    return html.escape(value, quote=True)
+
+
+def css() -> str:
+    return r'''
+      :root { --blue:#0052cc; --blue-dark:#003380; --red:#e63946; --ink:#172033; --pale:#f0f5ff; }
+      * { box-sizing:border-box; margin:0; padding:0; }
+      body { background:#f0f4f8; color:var(--ink); font-family:"Inter","Noto Sans JP",sans-serif; display:flex; flex-direction:column; align-items:center; gap:40px; padding:40px; }
+      .slide-container { width:1080px; height:1080px; position:relative; overflow:hidden; display:flex; flex-direction:column; background:#fff; }
+      img { object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,.12)); }
+      .blue { color:var(--blue); } .red { color:var(--red); }
+      .slide-container.price-note::after {
+          content: "※表示している料金はすべて月額・税込みの価格です";
+          position: absolute; right: 20px; bottom: 16px; z-index: 9999;
+          background: rgba(0,0,0,0.62); color: #fff;
+          font-family: 'Noto Sans JP', sans-serif;
+          font-size: 26px; font-weight: 700; letter-spacing: 0.02em; line-height: 1;
+          padding: 10px 20px; border-radius: 10px; white-space: nowrap; pointer-events: none;
+      }
+      .slide-thumbnail { align-items:center; text-align:center; border:25px solid var(--blue); padding:160px 45px 300px; background:repeating-conic-gradient(from 0deg at 52% 48%,rgba(0,82,204,.06) 0deg 2.5deg,transparent 2.5deg 16deg),radial-gradient(ellipse at 52% 48%,#fff 5%,#e8f3ff 45%,#c8dcff 100%); }
+      .thumb-top-strip { position:absolute; top:25px; left:25px; right:25px; z-index:3; background:var(--blue); color:#fff; font-size:36px; font-weight:900; padding:18px 0; letter-spacing:.06em; }
+      .thumb-accent-tri { position:absolute; width:0; height:0; z-index:1; } .thumb-accent-tri.tl { top:25px;left:25px;border-top:300px solid rgba(0,82,204,.09);border-right:300px solid transparent; } .thumb-accent-tri.br { bottom:25px;right:25px;border-bottom:300px solid rgba(0,82,204,.09);border-left:300px solid transparent; }
+      .thumb-tag { z-index:2; background:var(--red); color:#fff; font-size:76px; font-weight:900; padding:18px 54px; transform:rotate(-3deg); box-shadow:8px 8px 0 rgba(0,0,0,.25); margin-bottom:28px; }
+      .thumb-title { z-index:2; font-size:80px; font-weight:900; line-height:1.22; margin-bottom:22px; max-width:900px; } .thumb-sub-band { z-index:2; color:#fff; background:var(--blue); font-size:52px; font-weight:900; padding:18px 48px; border-radius:12px; box-shadow:4px 4px 0 rgba(0,0,0,.2); }
+      .thumb-logo-wrap { position:absolute; z-index:2; left:80px; right:80px; bottom:72px; height:185px; display:flex; justify-content:center; } .thumb-logo { height:150px; width:360px; background:#fff; border-radius:18px; padding:18px 24px; filter:none; box-shadow:6px 6px 0 rgba(0,0,0,.18); }
+      .slide-pad { padding:72px 70px; } .watermark { position:absolute; top:-45px; left:10px; z-index:0; color:var(--blue); font-size:280px; font-weight:900; line-height:1; opacity:.07; }
+      .slide-title { z-index:1; border-bottom:10px solid var(--blue); font-size:62px; font-weight:900; line-height:1.2; padding-bottom:14px; margin-bottom:30px; } .slide-body { z-index:1; display:flex; flex-direction:column; gap:28px; }
+      .info-card { display:flex; align-items:center; gap:22px; padding:22px 32px; border-radius:0 16px 16px 0; font-size:46px; font-weight:700; line-height:1.25; background:#f0f5ff; border-left:14px solid var(--blue); } .info-card > span { font-size:54px; } .info-card.alert { background:#fff0f0; border-left-color:var(--red); color:var(--red); font-size:50px; font-weight:900; }
+      .report-header-card { display:flex; align-items:center; justify-content:center; gap:24px; background:linear-gradient(135deg,var(--blue),#003fa0); color:#fff; border-radius:20px; padding:26px 32px; font-size:42px; font-weight:900; } .report-logo { width:240px; height:108px; background:#fff; border-radius:14px; padding:10px 16px; filter:none; }
+      .hero-stat { display:flex; align-items:baseline; justify-content:center; gap:14px; color:var(--blue); background:#fff; border:8px solid var(--blue); border-radius:22px; padding:20px; box-shadow:8px 8px 0 #cfe1ff; } .hero-stat b { font-size:106px; letter-spacing:-.05em; color:var(--red); } .hero-stat span { font-size:48px; font-weight:900; } .hero-stat small { font-size:30px; font-weight:900; color:var(--ink); }
+      .slide-illust { position:absolute; right:40px; bottom:40px; z-index:2; } .speed-pict { height:230px; } .think-pict { height:215px; }
+      .warning-slide { background:#fff8f8; padding:70px; } .warning-mark { color:var(--red); left:25px; } .warning-banner { z-index:1; margin:0 -70px 24px; padding:22px 0; background:var(--red); color:#fff; text-align:center; font-size:62px; font-weight:900; } .warning-title { z-index:1; font-size:62px; line-height:1.2; font-weight:900; margin-bottom:28px; } .warning-box { z-index:1; display:flex; flex-direction:column; gap:26px; background:#fff0f0; border:10px solid var(--red); padding:36px 42px; } .w-item { display:flex; align-items:center; gap:16px; color:#87212b; font-size:48px; font-weight:900; line-height:1.2; } .w-item span { font-size:56px; }
+      .campaign-card { background:linear-gradient(135deg,#eaf3ff,#fff); border:8px solid var(--blue); border-radius:24px; padding:24px; text-align:center; box-shadow:8px 8px 0 #cfe1ff; } .campaign-name { color:#fff; background:var(--blue); border-radius:999px; display:inline-block; padding:10px 30px; font-size:34px; font-weight:900; margin-bottom:16px; } .campaign-plan { font-size:43px; font-weight:900; line-height:1.22; } .campaign-price { color:var(--red); font-size:108px; font-weight:900; letter-spacing:-.06em; line-height:1.04; } .campaign-price small { font-size:38px; letter-spacing:0; color:var(--ink); } .date-badge { align-self:center; background:var(--ink); color:#fff; border-radius:999px; padding:11px 28px; font-size:34px; font-weight:900; }
+      .cta-slide { align-items:center; justify-content:center; padding:38px 60px; text-align:center; background:linear-gradient(135deg,var(--blue),var(--blue-dark)); } .cta-content { display:flex; flex-direction:column; align-items:center; } .cta-logo { height:110px; width:290px; margin-bottom:12px; background:#fff; border-radius:18px; padding:8px 16px; filter:none; box-shadow:4px 4px 0 rgba(0,0,0,.18); } .cta-title { color:#ffd700; font-size:70px; font-weight:900; line-height:1.15; margin-bottom:10px; } .cta-sub { color:#fff; font-size:43px; font-weight:900; margin-bottom:12px; } .cta-banner-img { width:820px; max-height:420px; object-fit:contain; border-radius:18px; filter:none; box-shadow:0 14px 40px rgba(0,0,0,.35); } .cta-arrow { color:#ffd700; font-size:72px; font-weight:900; line-height:.8; margin-top:18px; animation:bounce 1s infinite; } @keyframes bounce { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-16px); } }
+    '''
+
+
+def build_html(display: OrderedDict[str, str]) -> str:
+    # Escape the source values once; each component uses its own short, readable
+    # extraction of the CSV source alongside the complete source as a data attribute.
+    source = {key: esc(value) for key, value in display.items()}
+    slides = f'''    <!-- Slide ID: 1 -->
+    <div class="slide-container slide-thumbnail price-note" data-script-content="{source['1']}">
+      <div class="thumb-top-strip">⚡ mineo 秋のピッタリ割 ⚡</div><div class="thumb-accent-tri tl"></div><div class="thumb-accent-tri br"></div>
+      <div class="thumb-tag">最大6カ月 880円！</div>
+      <h1 class="thumb-title"><span class="blue">3GBで足りる？</span><br><span class="red">足りない？</span></h1>
+      <div class="thumb-sub-band">あなたはどっち？</div>
+      <div class="thumb-logo-wrap"><img src="public/images/logo/Mineo_logo.png" class="thumb-logo" alt="mineo"></div>
+    </div>
+
+    <!-- Slide ID: 2 -->
+    <div class="slide-container slide-pad" data-script-content="{source['2']}">
+      <div class="watermark">2</div><h2 class="slide-title">mineo歴<span class="red">8年</span>の答え</h2>
+      <div class="slide-body" style="margin-bottom:150px"><div class="report-header-card"><img src="public/images/logo/Mineo_logo.png" class="report-logo" alt="mineo"><span>ショウの愛用プラン</span></div><div class="info-card"><span>📱</span>マイピタ <b>3GB</b>で運用中</div><div class="info-card alert"><span>♾️</span>パケット放題 3Mbps</div></div>
+      <div class="slide-illust" style="z-index:2"><img src="public/images/irasutoya/pose_necchuu_smartphone_man.png" class="think-pict" alt="スマホを使う男性"></div>
+    </div>
+
+    <!-- Slide ID: 3 -->
+    <div class="slide-container slide-pad" data-script-content="{source['3']}">
+      <div class="watermark">3</div><h2 class="slide-title">ギガ切れ後も<span class="red">使い放題</span></h2>
+      <div class="slide-body" style="margin-bottom:170px"><div class="hero-stat"><span>最大</span><b>3Mbps</b></div><div class="info-card"><span>📶</span>データ容量を使い切っても<br>最大3Mbpsで通信</div><div class="info-card"><span>♾️</span>パケット放題オプションで<br>データ使い放題</div></div>
+      <div class="slide-illust" style="z-index:2"><img src="public/images/irasutoya/smartphone_speed_5g.png" class="speed-pict" alt="通信速度のイメージ"></div>
+    </div>
+
+    <!-- Slide ID: 4 -->
+    <div class="slide-container warning-slide" data-script-content="{source['4']}">
+      <div class="watermark warning-mark">!</div><div class="warning-banner">3GBで足りる人・足りない人</div><h2 class="warning-title">こんな使い方なら<br><span class="red">3GBでは厳しい</span>かも</h2>
+      <div class="warning-box"><div class="w-item"><span>🎮</span><b>外でオンラインゲームをする</b></div><div class="w-item"><span>🎬</span><b>高画質動画をよく見る</b></div><div class="w-item"><span>◎</span><b>それ以外なら 3GB＋3MbpsでOK</b></div></div>
+      <div class="slide-illust" style="z-index:2"><img src="public/images/irasutoya/shinpai_man.png" class="think-pict" alt="心配する人"></div>
+    </div>
+
+    <!-- Slide ID: 5 -->
+    <div class="slide-container slide-pad price-note" data-script-content="{source['5']}">
+      <div class="watermark">5</div><h2 class="slide-title">秋のピッタリ割で<span class="red">880円</span></h2>
+      <div class="slide-body"><div class="campaign-card"><div class="campaign-name">mineo「秋のピッタリ割」</div><div class="campaign-plan">マイピタ 3GB ＋<br>パケット放題 3Mbps</div><div class="campaign-price">880円 <small>最大6カ月</small></div></div><div class="date-badge">申込：2026/9/17 〜 11/30</div><div class="info-card"><span>✨</span>契約事務手数料が無料になる<br>キャンペーンも本編で解説！</div></div>
+    </div>
+
+    <!-- Slide ID: 6 -->
+    <div class="slide-container cta-slide" data-script-content="{source['6']}"><div class="cta-content"><img src="public/images/logo/Mineo_logo.png" class="cta-logo" alt="mineo"><div class="cta-title">手数料無料の<br>条件もチェック！</div><div class="cta-sub">mineo歴8年の使い方は本編で解説</div><img src="public/images/thumbnails/47_【〜11／30】mineo 3GB＋データ使い放題が最大6カ月880円！注意点も解説_サムネ1.png" class="cta-banner-img" alt="本編動画のサムネイル"><div class="cta-arrow">▼</div></div></div>'''
+    return f'''<!doctype html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>mineo 秋のピッタリ割（Short）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet"><style>{css()}</style></head><body>
+{slides}
+</body></html>\n'''
+
+
+def main() -> None:
+    slides = read_slides()
+    OUTPUT.write_text(build_html(slides), encoding="utf-8")
+    print(f"Generated {OUTPUT} ({len(slides)} slides: {', '.join(slides)})")
+
+
+if __name__ == "__main__":
+    main()
