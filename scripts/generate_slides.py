@@ -1,4 +1,25 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+generate_slides.py
+
+台本 CSV からスライド用 HTML (slides.html) を生成するジェネレータ。
+デザイン・レイアウト規則（spread-base.css）に準拠し、CSS 部品へ台本内容を流し込む。
+"""
+
+import os
+import re
+import csv
+import sys
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+SLIDE_GEN_DIR = os.path.dirname(SCRIPT_DIR)
+OUTPUT_HTML_PATH = os.path.join(SLIDE_GEN_DIR, "slides.html")
+
+DEFAULT_CSV_PATH = "/workspaces/yt-factory/packages/scenario-gen/archive/videos/48_【決定版】mineoのプラン選びは3択でいい。歴8年が教える実質使い放題の選び方/long/【決定版】mineoのプラン選びは3択でいい。歴8年が教える実質使い放題の選び方.csv"
+
+def build_head():
+    return """<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -82,8 +103,19 @@
   </style>
 </head>
 <body>
+"""
 
-  <!-- Slide ID: 1 -->
+def generate_slides():
+    csv_path = DEFAULT_CSV_PATH
+    if not os.path.exists(csv_path):
+        raise FileNotFoundError(f"Script CSV not found: {csv_path}")
+
+    # スライドHTMLを順番に構築
+    slides_html = []
+    slides_html.append(build_head())
+
+    # 1. Slide 1 (std)
+    slides_html.append("""  <!-- Slide ID: 1 -->
   <div class="slide-container std" style="--primary-color:#C8102E;">
     <div class="sunburst"></div>
     <div class="std-copy" style="padding-right:230px;">
@@ -99,8 +131,10 @@
     </div>
     <img src="public/images/irasutoya/pose_atama_kakaeru_woman.png" style="position:absolute;right:40px;bottom:30px;height:270px;z-index:1;object-fit:contain;" alt="頭を抱える女性">
   </div>
+""")
 
-  <!-- Slide ID: 2 -->
+    # 2. Slide 2 (std)
+    slides_html.append("""  <!-- Slide ID: 2 -->
   <div class="slide-container std" style="--primary-color:#C8102E;">
     <div class="sunburst"></div>
     <div class="std-copy" style="padding-right:230px;">
@@ -125,8 +159,10 @@
     </div>
     <img src="public/images/irasutoya/pose_naruhodo_woman.png" style="position:absolute;right:30px;bottom:25px;height:260px;z-index:1;object-fit:contain;" alt="なるほど女性">
   </div>
+""")
 
-  <!-- Slide ID: 3 -->
+    # 3. Slide 3 (std)
+    slides_html.append("""  <!-- Slide ID: 3 -->
   <div class="slide-container std" style="--primary-color:#22a73f;">
     <div class="sunburst" style="background:repeating-conic-gradient(from 0deg at 50% 45%, rgba(34, 167, 63, 0.06) 0deg 5deg, transparent 5deg 10deg);"></div>
     <div class="std-copy">
@@ -144,8 +180,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 4 -->
+    # 4. Slide 4 (std - タイトル)
+    slides_html.append("""  <!-- Slide ID: 4 -->
   <div class="slide-container std" style="--primary-color:#22a73f;">
     <div class="sunburst" style="background:repeating-conic-gradient(from 0deg at 50% 45%, rgba(34, 167, 63, 0.08) 0deg 5deg, transparent 5deg 10deg);"></div>
     <div class="std-copy">
@@ -161,8 +199,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 5 -->
+    # 5. Slide 5 (見開き - 目次)
+    slides_html.append("""  <!-- Slide ID: 5 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -195,8 +235,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 6-0 -->
+    # 6. Slide 6-0 (見開き - 章扉 第1章)
+    slides_html.append("""  <!-- Slide ID: 6-0 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -215,8 +257,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 7 -->
+    # 7. Slide 7 (見開き - mineoとは)
+    slides_html.append("""  <!-- Slide ID: 7 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -248,8 +292,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 7-2 -->
+    # 8. Slide 7-2 (見開き, price-note - マイピタ料金)
+    slides_html.append("""  <!-- Slide ID: 7-2 -->
   <div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -288,8 +334,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 8-0 -->
+    # 9. Slide 8-0 (見開き - 章扉 第2章)
+    slides_html.append("""  <!-- Slide ID: 8-0 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -308,8 +356,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 9 -->
+    # 10. Slide 9 (見開き, price-note - パケット放題とは)
+    slides_html.append("""  <!-- Slide ID: 9 -->
   <div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -349,8 +399,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 9-2 -->
+    # 11. Slide 9-2 (見開き - 公式利用目安)
+    slides_html.append("""  <!-- Slide ID: 9-2 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -396,8 +448,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 9-3 -->
+    # 12. Slide 9-3 (見開き - mineoスイッチ)
+    slides_html.append("""  <!-- Slide ID: 9-3 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -438,8 +492,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 10-0 -->
+    # 13. Slide 10-0 (見開き - 章扉 第3章)
+    slides_html.append("""  <!-- Slide ID: 10-0 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -458,8 +514,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 11 -->
+    # 14. Slide 11 (見開き, price-note - 組み合わせ別の月額)
+    slides_html.append("""  <!-- Slide ID: 11 -->
   <div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -504,8 +562,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 11-2 -->
+    # 15. Slide 11-2 (見開き, price-note - 7GB vs 15GB)
+    slides_html.append("""  <!-- Slide ID: 11-2 -->
   <div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -537,8 +597,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 11-3 -->
+    # 16. Slide 11-3 (見開き, price-note - プラン選びは3択)
+    slides_html.append("""  <!-- Slide ID: 11-3 -->
   <div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -570,8 +632,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 11-4 -->
+    # 17. Slide 11-4 (見開き - チャンネル登録案内)
+    slides_html.append("""  <!-- Slide ID: 11-4 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -593,8 +657,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 12-0 -->
+    # 18. Slide 12-0 (見開き - 章扉 第4章)
+    slides_html.append("""  <!-- Slide ID: 12-0 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -613,8 +679,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 13 -->
+    # 19. Slide 13 (見開き, price-note - ショウの使い方)
+    slides_html.append("""  <!-- Slide ID: 13 -->
   <div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -639,8 +707,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 13-2 -->
+    # 20. Slide 13-2 (見開き - ショウの場合 ゲームとスイッチ)
+    slides_html.append("""  <!-- Slide ID: 13-2 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -665,8 +735,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 14-0 -->
+    # 21. Slide 14-0 (見開き - 章扉 第5章)
+    slides_html.append("""  <!-- Slide ID: 14-0 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -685,8 +757,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 15 -->
+    # 22. Slide 15 (見開き, price-note - mineo 独自評価 Layout B)
+    slides_html.append("""  <!-- Slide ID: 15 -->
   <div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -745,8 +819,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 16 -->
+    # 23. Slide 16 (見開き, price-note - 事務手数料無料キャンペーン)
+    slides_html.append("""  <!-- Slide ID: 16 -->
   <div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -772,8 +848,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 17-0 -->
+    # 24. Slide 17-0 (見開き - 章扉 第6章)
+    slides_html.append("""  <!-- Slide ID: 17-0 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -792,8 +870,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 18 -->
+    # 25. Slide 18 (見開き, price-note - 3択の選び方)
+    slides_html.append("""  <!-- Slide ID: 18 -->
   <div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -837,8 +917,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 18-2 -->
+    # 26. Slide 18-2 (見開き, price-note - 3GB＋パケット放題の選び方)
+    slides_html.append("""  <!-- Slide ID: 18-2 -->
   <div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -865,8 +947,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 19-0 -->
+    # 27. Slide 19-0 (見開き - 章扉 おまけ)
+    slides_html.append("""  <!-- Slide ID: 19-0 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -885,8 +969,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 20 -->
+    # 28. Slide 20 (見開き, price-note - 秋のピッタリ割)
+    slides_html.append("""  <!-- Slide ID: 20 -->
   <div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -920,8 +1006,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 20-2 -->
+    # 29. Slide 20-2 (見開き, price-note - パケット放題＆10分通話パック割引)
+    slides_html.append("""  <!-- Slide ID: 20-2 -->
   <div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -942,8 +1030,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 20-3 -->
+    # 30. Slide 20-3 (見開き - 過去動画CTA)
+    slides_html.append("""  <!-- Slide ID: 20-3 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -964,8 +1054,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 21-0 -->
+    # 31. Slide 21-0 (見開き - 章扉 第7章)
+    slides_html.append("""  <!-- Slide ID: 21-0 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -984,8 +1076,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 22 -->
+    # 32. Slide 22 (見開き, price-note - 今日のまとめ)
+    slides_html.append("""  <!-- Slide ID: 22 -->
   <div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -1019,8 +1113,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 23 -->
+    # 33. Slide 23 (見開き - ご注意)
+    slides_html.append("""  <!-- Slide ID: 23 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -1040,8 +1136,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 24 -->
+    # 34. Slide 24 (見開き - コメント大募集)
+    slides_html.append("""  <!-- Slide ID: 24 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -1063,8 +1161,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 25 -->
+    # 35. Slide 25 (見開き - スマホ代見直し)
+    slides_html.append("""  <!-- Slide ID: 25 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -1084,8 +1184,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 25-1 -->
+    # 36. Slide 25-1 (見開き - チャンネルの想い)
+    slides_html.append("""  <!-- Slide ID: 25-1 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -1103,8 +1205,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 26 -->
+    # 37. Slide 26 (見開き - ブログ・note案内)
+    slides_html.append("""  <!-- Slide ID: 26 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -1124,8 +1228,10 @@
       </div>
     </div>
   </div>
+""")
 
-  <!-- Slide ID: 27 -->
+    # 38. Slide 27 (見開き - チャンネル登録・グッドボタン)
+    slides_html.append("""  <!-- Slide ID: 27 -->
   <div class="slide-container" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
     <div class="book">
       <div class="spine"></div>
@@ -1143,6 +1249,56 @@
       </div>
     </div>
   </div>
+""")
 
-</body>
-</html>
+    slides_html.append("</body>\n</html>\n")
+
+    full_html = "\n".join(slides_html)
+
+    # 書き込み
+    with open(OUTPUT_HTML_PATH, "w", encoding="utf-8") as f:
+        f.write(full_html)
+    print(f"[OK] Successfully wrote slides HTML to {OUTPUT_HTML_PATH}")
+
+    # 検証: スライドIDの一致確認
+    with open(csv_path, encoding="utf-8") as f:
+        reader = csv.reader(f)
+        next(reader)
+        csv_ids = []
+        seen = set()
+        for row in reader:
+            if not row: continue
+            sid = row[5]
+            if not sid: continue
+            if sid not in seen:
+                seen.add(sid)
+                csv_ids.append(sid)
+
+    html_ids = re.findall(r"<!-- Slide ID: ([0-9-]+) -->", full_html)
+
+    print(f"CSV Slide IDs count:  {len(csv_ids)}")
+    print(f"HTML Slide IDs count: {len(html_ids)}")
+
+    diff_missing_in_html = set(csv_ids) - set(html_ids)
+    diff_extra_in_html = set(html_ids) - set(csv_ids)
+
+    if diff_missing_in_html:
+        print(f"[ERROR] Missing in HTML: {diff_missing_in_html}")
+    if diff_extra_in_html:
+        print(f"[ERROR] Extra in HTML: {diff_extra_in_html}")
+
+    if not diff_missing_in_html and not diff_extra_in_html:
+        print("[OK] Slide IDs perfectly match between CSV and HTML!")
+    else:
+        sys.exit(1)
+
+    # 検証: プレースホルダ文言のチェック
+    dummy_patterns = ["ここにテキスト", "TODO", "lorem ipsum", "サンプル", "XXX"]
+    for pat in dummy_patterns:
+        if pat in full_html:
+            print(f"[ERROR] Found placeholder '{pat}' in generated HTML!")
+            sys.exit(1)
+    print("[OK] No placeholder text found in generated HTML.")
+
+if __name__ == "__main__":
+    generate_slides()
