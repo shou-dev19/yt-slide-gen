@@ -68,6 +68,10 @@
     .agenda li { font-size: 50px; }
     .agenda .num { width: 72px; height: 72px; font-size: 44px; }
 
+    /* 評価ペア N-0 の料金表 */
+    .plan-table td:nth-child(2) { font-weight: 900; }
+    .plan-table .packet-service { color: var(--brand-deep); font-weight: 900; }
+
     /* 評価見開き用スタイル（#47 の確定寸法を踏襲。±文言は台本どおりのまま収める） */
     .eval-head { height: 112px; margin-bottom: 8px; padding-bottom: 8px; }
     .eval-head .logo { height: 66px; object-fit: contain; }
@@ -681,6 +685,41 @@
         <div class="page-body center">
           <div class="big-title">格安SIM図鑑の<br><span class="em">独自評価</span></div>
           <div class="lead">6つの観点からmineoの実力を徹底チェック！</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide ID: 15-0 -->
+  <div class="slide-container price-note" style="--brand:#22a73f;--brand-deep:#1c8b34;--brand-soft:#e8f5e6;">
+    <div class="book">
+      <div class="spine"></div>
+      <div class="page left">
+        <div class="head-left">
+          <img class="logo" src="public/images/logo/Mineo_logo.png" alt="mineo">
+        </div>
+        <div class="page-body">
+          <div class="visual">
+            <img src="public/images/charts/mineo.png" alt="mineoの6観点評価レーダーチャート">
+          </div>
+        </div>
+      </div>
+      <div class="page right">
+        <div class="page-head">mineoの料金プラン</div>
+        <div class="page-body">
+          <table class="sheet plan-table">
+            <thead>
+              <tr><th>コース</th><th>月額</th><th>無料の使い放題</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>3GB</td><td>1,298円</td><td class="packet-service" rowspan="2">1Mbps</td></tr>
+              <tr><td>7GB</td><td>1,518円</td></tr>
+              <tr><td>15GB</td><td>1,958円</td><td class="packet-service" rowspan="3">3Mbps</td></tr>
+              <tr><td>30GB</td><td>2,178円</td></tr>
+              <tr><td>50GB</td><td>2,948円</td></tr>
+            </tbody>
+          </table>
+          <div class="note">※マイピタ（音声通話付き）</div>
         </div>
       </div>
     </div>
