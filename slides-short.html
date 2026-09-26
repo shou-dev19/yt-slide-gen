@@ -1,284 +1,527 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UQ mobile手数料4,950円を0円にするテクニック (Short)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
-<style>
-    :root {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>IIJmio 初期費用キャンペーン（Short）</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
         --blue: #0052cc;
         --blue-dark: #003380;
         --red: #e63946;
-        --white: #ffffff;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-        font-family: 'Inter', 'Noto Sans JP', sans-serif;
+        --ink: #172033;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
         background: #f0f4f8;
+        color: var(--ink);
+        font-family: "Inter", "Noto Sans JP", sans-serif;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 40px;
         padding: 40px;
-    }
-    .slide-container {
+      }
+      .slide-container {
         width: 1080px;
         height: 1080px;
-        background: var(--white);
         position: relative;
         overflow: hidden;
         display: flex;
         flex-direction: column;
-    }
-    .flex-row { display: flex; flex-direction: row; }
-    .flex-col { display: flex; flex-direction: column; }
-    img { object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
-
-    /* ===== Thumbnail (Slide 1) ===== */
-    .slide-thumbnail {
+        background: #fff;
+      }
+      img {
+        object-fit: contain;
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
+      }
+      .blue {
+        color: var(--blue);
+      }
+      .red {
+        color: var(--red);
+      }
+      .slide-thumbnail {
         align-items: center;
-        justify-content: flex-start;
         text-align: center;
         border: 25px solid var(--blue);
-        padding-top: 160px;
-        padding-bottom: 300px;
+        padding: 160px 45px 300px;
         background:
-            repeating-conic-gradient(from 0deg at 52% 48%, rgba(0,82,204,0.06) 0deg 2.5deg, transparent 2.5deg 16deg),
-            radial-gradient(ellipse at 52% 48%, #ffffff 5%, #e8f3ff 45%, #c8dcff 100%);
-    }
-    .thumb-top-strip {
-        position: absolute; top: 25px; left: 25px; right: 25px;
-        background: var(--blue); color: #fff;
-        font-size: 36px; font-weight: 900; padding: 18px 0;
-        text-align: center; letter-spacing: 0.06em; z-index: 3;
-    }
-    .thumb-accent-tri { position: absolute; width: 0; height: 0; z-index: 1; }
-    .thumb-accent-tri.tl { top:25px; left:25px; border-top:300px solid rgba(0,82,204,0.09); border-right:300px solid transparent; }
-    .thumb-accent-tri.br { bottom:25px; right:25px; border-bottom:300px solid rgba(0,82,204,0.09); border-left:300px solid transparent; }
-    .thumb-tag {
-        font-size: 76px; font-weight: 900; color: #fff;
-        background: var(--red); padding: 18px 54px;
-        transform: rotate(-3deg); box-shadow: 8px 8px 0 rgba(0,0,0,0.25);
-        margin-bottom: 28px; z-index: 2;
-    }
-    .thumb-title {
-        font-size: 78px; font-weight: 900; color: #1a1a2e;
-        line-height: 1.25; margin-bottom: 26px; max-width: 940px; z-index: 2;
-    }
-    .thumb-title .hl { color: var(--blue); }
-    .thumb-title .hl-red { color: var(--red); }
-    .thumb-sub-band {
-        font-size: 60px; font-weight: 900; color: #fff;
-        background: var(--blue); padding: 18px 70px; border-radius: 12px;
-        box-shadow: 4px 4px 0 rgba(0,0,0,0.2); margin-bottom: 30px; z-index: 2;
-    }
-    .thumb-logo-wrap {
-        height: 190px; display: flex; align-items: center; justify-content: center; z-index: 2;
-    }
-    .thumb-logo-wrap img {
-        height: 150px; filter: none;
-        background: #fff; border-radius: 18px; padding: 14px 30px;
-        box-shadow: 4px 4px 0 rgba(0,82,204,0.18);
-    }
-    .thumb-illust {
-        position: absolute; bottom: 40px; right: 50px; z-index: 2;
-    }
-    .thumb-illust img { height: 290px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.18)); }
-
-    /* ===== Standard slides (2-5) ===== */
-    .watermark {
-        position: absolute; top: -40px; left: 10px;
-        font-size: 280px; font-weight: 900; color: var(--blue);
-        opacity: 0.07; z-index: 0; line-height: 1;
-    }
-    .slide-pad { padding: 80px 70px; }
-    .slide-title {
-        font-size: 62px; font-weight: 900; color: #1a1a2e;
-        border-bottom: 10px solid var(--blue); padding-bottom: 14px;
-        margin-bottom: 30px; z-index: 1;
-    }
-    .slide-title .hl { color: var(--blue); }
-    .slide-title .hl-red { color: var(--red); }
-    .slide-body { display: flex; flex-direction: column; gap: 28px; z-index: 1; }
-
-    .report-header-card {
-        display: flex; align-items: center; gap: 24px;
-        background: linear-gradient(135deg, #0052cc, #003fa0);
-        color: #fff; border-radius: 20px; padding: 28px 36px;
-    }
-    .report-header-card .rh-logo { height: 130px; background:#fff; border-radius:14px; padding:14px 22px; filter:none; }
-    .report-header-card .rh-text { font-size: 44px; font-weight: 900; line-height: 1.3; }
-
-    .info-card {
-        display: flex; align-items: center; gap: 22px;
-        padding: 22px 32px; border-radius: 0 16px 16px 0;
-        font-size: 46px; font-weight: 700;
-        background: #f0f5ff; border-left: 14px solid var(--blue);
-    }
-    .info-card .ic-emoji { font-size: 52px; flex-shrink: 0; }
-    .info-card.alert {
-        background: #fff0f0; border-left-color: var(--red);
-        color: var(--red); font-size: 50px; font-weight: 900;
-    }
-    .info-card .ic-num { color: var(--blue); font-weight: 900; }
-    .info-card .ic-free { color: var(--red); font-weight: 900; }
-    .info-card .strike { text-decoration: line-through; opacity: 0.7; }
-
-    .list-item {
-        display: flex; align-items: center; gap: 22px;
-        font-size: 52px; font-weight: 700; color: #1a1a2e;
-    }
-    .list-item .li-emoji { font-size: 54px; flex-shrink: 0; }
-
-    .price-flow {
-        display: flex; align-items: center; justify-content: center; gap: 26px;
-        background: #f0f5ff; border: 6px solid var(--blue); border-radius: 22px;
-        padding: 30px 28px; font-weight: 900;
-    }
-    .price-flow .pf-old { font-size: 54px; color: #6b7280; text-decoration: line-through; }
-    .price-flow .pf-arrow { font-size: 50px; color: var(--blue); }
-    .price-flow .pf-new { font-size: 64px; color: var(--red); }
-    .price-flow .pf-label { font-size: 38px; color: #1a1a2e; line-height: 1.2; }
-
-    /* ===== Option rows (Slide 5 : 乗り換え候補3選) ===== */
-    .opt-row {
-        display: flex; align-items: center; gap: 28px;
-        background: #f0f5ff; border-left: 14px solid var(--blue);
-        border-radius: 0 16px 16px 0; padding: 20px 30px;
-    }
-    .opt-logo-chip {
-        width: 240px; height: 96px; flex-shrink: 0;
-        background: #fff; border-radius: 14px;
-        display: flex; align-items: center; justify-content: center;
-        box-shadow: 3px 3px 0 rgba(0,82,204,0.15);
-    }
-    .opt-logo-chip img { max-height: 68px; max-width: 210px; filter: none; }
-    .opt-reason { display: flex; flex-direction: column; }
-    .opt-reason .opt-tag { font-size: 34px; font-weight: 900; color: #fff; background: var(--red); border-radius: 8px; padding: 4px 16px; align-self: flex-start; margin-bottom: 8px; }
-    .opt-reason .opt-text { font-size: 46px; font-weight: 900; color: #1a1a2e; }
-
-    .slide-illust {
-        position: absolute; bottom: 40px; right: 40px;
-    }
-    .slide-illust img { height: 260px; }
-
-    /* ===== CTA (Slide 6) ===== */
-    .slide-cta {
-        align-items: center; justify-content: center; text-align: center;
-        background: linear-gradient(135deg, #0052cc, #003380);
-        padding: 70px;
-    }
-    .cta-logo { height: 110px; filter: none; background: #fff; border-radius: 18px; padding: 8px 16px; box-shadow: 4px 4px 0 rgba(0,0,0,0.18); margin-bottom: 12px; }
-    .cta-title { font-size: 84px; font-weight: 900; color: #ffd700; line-height: 1.2; margin-bottom: 18px; }
-    .cta-sub { font-size: 50px; font-weight: 900; color: #fff; margin-bottom: 26px; }
-    .cta-banner-img { width: 840px; border-radius: 18px; box-shadow: 0 14px 40px rgba(0,0,0,0.35); margin-bottom: 22px; filter: none; }
-    .cta-arrow { font-size: 90px; color: #ffd700; animation: bounce 1s infinite; }
-    @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-22px); }
-    }
-</style>
-</head>
-<body>
-
-<!-- ===================== Slide 1 : Thumbnail ===================== -->
-<div class="slide-container slide-thumbnail">
-    <div class="thumb-top-strip">⚡ 2026年8月 UQ mobile 手数料改定 ⚡</div>
-    <div class="thumb-accent-tri tl"></div>
-    <div class="thumb-accent-tri br"></div>
-
-    <div class="thumb-tag">8月値上げ！</div>
-    <div class="thumb-title">手数料が<span class="hl-red">4,950円</span>に…<br>でも<span class="hl">0円</span>にできる</div>
-    <div class="thumb-sub-band">乗り換え候補3選！</div>
-    <div class="thumb-logo-wrap">
-        <img src="public/images/logo/UQ_logo_2.png" alt="UQ mobile">
-    </div>
-
-    <div class="thumb-illust" style="position: absolute; bottom: 5px;">
-        <img src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="驚き">
-    </div>
-</div>
-
-<!-- ===================== Slide 2 : 店頭事務手数料の値上げ ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">2</div>
-    <h2 class="slide-title">店頭手数料が<span class="hl-red">値上げ</span></h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">🏪</span>UQ mobile 店頭の事務手数料</div>
-        <div class="price-flow">
-            <span class="pf-old">3,850円</span>
-            <span class="pf-arrow">▶</span>
-            <span class="pf-new">4,950円</span>
+          repeating-conic-gradient(
+            from 0deg at 52% 48%,
+            rgba(0, 82, 204, 0.06) 0deg 2.5deg,
+            transparent 2.5deg 16deg
+          ),
+          radial-gradient(
+            ellipse at 52% 48%,
+            #fff 5%,
+            #e8f3ff 45%,
+            #c8dcff 100%
+          );
+      }
+      .thumb-top-strip {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        right: 25px;
+        z-index: 3;
+        background: var(--blue);
+        color: #fff;
+        font-size: 36px;
+        font-weight: 900;
+        padding: 18px 0;
+        letter-spacing: 0.06em;
+      }
+      .thumb-accent-tri {
+        position: absolute;
+        width: 0;
+        height: 0;
+        z-index: 1;
+      }
+      .thumb-accent-tri.tl {
+        top: 25px;
+        left: 25px;
+        border-top: 300px solid rgba(0, 82, 204, 0.09);
+        border-right: 300px solid transparent;
+      }
+      .thumb-accent-tri.br {
+        bottom: 25px;
+        right: 25px;
+        border-bottom: 300px solid rgba(0, 82, 204, 0.09);
+        border-left: 300px solid transparent;
+      }
+      .thumb-tag {
+        z-index: 2;
+        background: var(--red);
+        color: #fff;
+        font-size: 76px;
+        font-weight: 900;
+        padding: 18px 54px;
+        transform: rotate(-3deg);
+        box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.25);
+        margin-bottom: 28px;
+      }
+      .thumb-title {
+        z-index: 2;
+        font-size: 80px;
+        font-weight: 900;
+        line-height: 1.22;
+        margin-bottom: 22px;
+        max-width: 900px;
+      }
+      .thumb-sub-band {
+        z-index: 2;
+        color: #fff;
+        background: var(--blue);
+        font-size: 46px;
+        font-weight: 900;
+        padding: 18px 40px;
+        border-radius: 12px;
+        box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
+      }
+      .thumb-logo-wrap {
+        position: absolute;
+        z-index: 2;
+        left: 80px;
+        right: 80px;
+        bottom: 72px;
+        height: 185px;
+        display: flex;
+        justify-content: center;
+      }
+      .thumb-logo {
+        height: 150px;
+        width: 360px;
+        background: #fff;
+        border-radius: 18px;
+        padding: 18px 24px;
+        filter: none;
+        box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.18);
+      }
+      .slide-pad {
+        padding: 72px 70px;
+      }
+      .watermark {
+        position: absolute;
+        top: -45px;
+        left: 10px;
+        z-index: 0;
+        color: var(--blue);
+        font-size: 280px;
+        font-weight: 900;
+        line-height: 1;
+        opacity: 0.07;
+      }
+      .slide-title {
+        z-index: 1;
+        border-bottom: 10px solid var(--blue);
+        font-size: 62px;
+        font-weight: 900;
+        line-height: 1.2;
+        padding-bottom: 14px;
+        margin-bottom: 30px;
+      }
+      .method-count {
+        align-self: flex-start;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: -8px 0 2px;
+        padding: 12px 22px;
+        border-radius: 999px;
+        background: #eaf3ff;
+        color: var(--blue-dark);
+        font-size: 31px;
+        font-weight: 900;
+        line-height: 1.15;
+      }
+      .method-count b {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 62px;
+        height: 48px;
+        padding: 0 12px;
+        border-radius: 999px;
+        background: var(--red);
+        color: #fff;
+        font-size: 32px;
+      }
+      .slide-body {
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin-bottom: 145px;
+      }
+      .info-card {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        padding: 22px 32px;
+        border-radius: 0 16px 16px 0;
+        font-size: 45px;
+        font-weight: 700;
+        line-height: 1.2;
+        background: #f0f5ff;
+        border-left: 14px solid var(--blue);
+      }
+      .info-card > span {
+        font-size: 54px;
+        flex-shrink: 0;
+      }
+      .info-card.alert {
+        background: #fff0f0;
+        border-left-color: var(--red);
+        color: var(--red);
+        font-size: 47px;
+        font-weight: 900;
+      }
+      .slide-illust {
+        position: absolute;
+        right: 40px;
+        bottom: 32px;
+      }
+      .slide-pict {
+        height: 220px;
+        max-width: 300px;
+      }
+      .fee-compare {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        padding: 16px 20px;
+        background: #f0f5ff;
+        border-radius: 20px;
+      }
+      .fee-compare div {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .fee-compare small {
+        font-size: 32px;
+        font-weight: 900;
+      }
+      .fee-compare strong {
+        color: var(--blue);
+        font-size: 66px;
+        font-weight: 900;
+      }
+      .fee-compare .new-fee strong {
+        color: var(--red);
+      }
+      .fee-compare .arrow {
+        font-size: 58px;
+        font-weight: 900;
+        color: #64748b;
+      }
+      .campaign-card {
+        text-align: center;
+        background: linear-gradient(135deg, #eaf3ff, #fff);
+        border: 8px solid var(--blue);
+        border-radius: 24px;
+        padding: 22px;
+        box-shadow: 8px 8px 0 #cfe1ff;
+      }
+      .campaign-name {
+        display: inline-block;
+        color: #fff;
+        background: var(--blue);
+        border-radius: 999px;
+        padding: 10px 28px;
+        font-size: 34px;
+        font-weight: 900;
+        margin-bottom: 12px;
+      }
+      .campaign-price {
+        color: var(--red);
+        font-size: 94px;
+        font-weight: 900;
+        line-height: 1.1;
+      }
+      .campaign-price small {
+        color: var(--ink);
+        font-size: 34px;
+      }
+      .date-badge {
+        align-self: center;
+        background: var(--ink);
+        color: #fff;
+        border-radius: 999px;
+        padding: 12px 28px;
+        font-size: 36px;
+        font-weight: 900;
+      }
+      .step-card {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        padding: 22px 26px;
+        background: #f0f5ff;
+        border-radius: 18px;
+        font-size: 42px;
+        font-weight: 800;
+        line-height: 1.18;
+      }
+      .step-num {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        display: flex;
+        flex: none;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        background: var(--blue);
+        font-size: 46px;
+      }
+      .step-card strong {
+        color: var(--red);
+        font-size: 48px;
+      }
+      .cta-slide {
+        align-items: center;
+        justify-content: center;
+        padding: 38px 60px;
+        text-align: center;
+        background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      }
+      .cta-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .cta-logo {
+        height: 100px;
+        width: 270px;
+        margin-bottom: 10px;
+        background: #fff;
+        border-radius: 18px;
+        padding: 8px 16px;
+        filter: none;
+      }
+      .cta-title {
+        color: #ffd700;
+        font-size: 70px;
+        font-weight: 900;
+        line-height: 1.12;
+        margin-bottom: 8px;
+      }
+      .cta-sub {
+        color: #fff;
+        font-size: 38px;
+        font-weight: 900;
+        margin-bottom: 10px;
+      }
+      .cta-banner-img {
+        width: 860px;
+        max-height: 500px;
+        object-fit: contain;
+        border-radius: 18px;
+        filter: none;
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+      }
+      .cta-arrow {
+        color: #ffd700;
+        font-size: 68px;
+        font-weight: 900;
+        line-height: 0.8;
+        margin-top: 12px;
+        animation: bounce 1s infinite;
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-16px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Slide ID: 1 -->
+    <section
+      class="slide-container slide-thumbnail"
+      data-script-content="タイトル：IIJmio eSIMは初期費用が半額！12月の初期費用値上げ前に申し込むなら今"
+    >
+      <div class="thumb-top-strip">⚡ IIJmio 公式キャンペーン ⚡</div>
+      <div class="thumb-accent-tri tl"></div>
+      <div class="thumb-accent-tri br"></div>
+      <div class="thumb-tag">11月4日まで！</div>
+      <h1 class="thumb-title">
+        <span class="blue">IIJmio eSIM</span><br /><span class="red"
+          >初期費用が半額</span
+        >
+      </h1>
+      <div class="thumb-sub-band">12月の値上げ前に申し込もう</div>
+      <div class="thumb-logo-wrap">
+        <img
+          src="public/images/logo/iijmio_logo.png"
+          class="thumb-logo"
+          alt="IIJmio"
+        />
+      </div>
+    </section>
+    <!-- Slide ID: 2 -->
+    <section
+      class="slide-container slide-pad"
+      data-script-content="テロップ：IIJmio公式発表／Web申込みの初期費用 3,300円→3,850円（2026年12月1日〜）"
+    >
+      <div class="watermark">2</div>
+      <h2 class="slide-title">12月から初期費用が値上げ</h2>
+      <div class="slide-body">
+        <div class="info-card alert"><span>📢</span><b>2026年12月1日〜</b></div>
+        <div class="fee-compare">
+          <div><small>現在</small><strong>3,300円</strong></div>
+          <span class="arrow">→</span>
+          <div class="new-fee">
+            <small>改定後</small><strong>3,850円</strong>
+          </div>
         </div>
-        <div class="info-card alert"><span class="ic-emoji">📈</span>約3割の値上げ<br>（2026年8月1日〜）</div>
-    </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/business_man2_3_surprise.png" alt="驚き">
-    </div>
-</div>
-
-<!-- ===================== Slide 3 : eSIMをWebで申し込めば0円 ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">3</div>
-    <h2 class="slide-title">でも<span class="hl">eSIM</span>なら<span class="hl-red">0円</span></h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">🙆</span>慌てて乗り換えなくてOK</div>
-        <div class="info-card"><span class="ic-emoji">📱</span>eSIMをWebで申し込めば</div>
-        <div class="info-card alert"><span class="ic-emoji">🎉</span>事務手数料は<span class="ic-free">0円</span>にできる</div>
-    </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/internet_kanki_woman1.png" alt="喜び">
-    </div>
-</div>
-
-<!-- ===================== Slide 4 : 本当に100Mbps必要？ ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">4</div>
-    <h2 class="slide-title">本当に<span class="hl">100Mbps</span>必要？</h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">🔍</span>ネット検索は<span class="ic-num">約10Mbps</span></div>
-        <div class="info-card"><span class="ic-emoji">🎬</span>動画視聴は<span class="ic-num">約20Mbps</span>で快適</div>
-        <div class="list-item"><span class="li-emoji">👌</span>そんなに速くなくてもOK</div>
-    </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/pose_necchuu_smartphone_woman.png" alt="スマホ視聴">
-    </div>
-</div>
-
-<!-- ===================== Slide 5 : 乗り換え候補3選 ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">5</div>
-    <h2 class="slide-title">乗り換え候補<span class="hl-red">3選</span></h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="opt-row">
-            <div class="opt-logo-chip"><img src="public/images/logo/Povo_logo.png" alt="povo2.0"></div>
-            <div class="opt-reason"><span class="opt-tag">速さ重視</span><span class="opt-text">povo2.0</span></div>
+        <div class="info-card">
+          <span>🌐</span>IIJmio公式発表<br />Web申込みの初期費用
         </div>
-        <div class="opt-row">
-            <div class="opt-logo-chip"><img src="public/images/logo/Rakuten_Mobile_logo.png" alt="楽天モバイル"></div>
-            <div class="opt-reason"><span class="opt-tag">お店で相談</span><span class="opt-text">楽天モバイル</span></div>
+      </div>
+      <div class="slide-illust" style="z-index: 2">
+        <img
+          src="public/images/irasutoya/seikyuusyo_shock.png"
+          class="slide-pict"
+          alt="初期費用値上げに驚くイメージ"
+        />
+      </div>
+    </section>
+    <!-- Slide ID: 3 -->
+    <section
+      class="slide-container slide-pad"
+      data-script-content="テロップ：IIJmio「eSIM初期費用割引キャンペーン」／Web申込みのeSIMは初期費用が半額（1,650円）／SIMプロファイル発行手数料も0円／2026年11月4日23:59まで"
+    >
+      <div class="watermark">3</div>
+      <h2 class="slide-title">今ならeSIMの初期費用が半額</h2>
+      <div class="slide-body">
+        <div class="campaign-card">
+          <div class="campaign-name">eSIM初期費用割引キャンペーン</div>
+          <div class="campaign-price">1,650円 <small>初期費用</small></div>
         </div>
-        <div class="opt-row">
-            <div class="opt-logo-chip"><img src="public/images/logo/Mineo_logo.png" alt="mineo"></div>
-            <div class="opt-reason"><span class="opt-tag">安さ重視</span><span class="opt-text">mineo</span></div>
+        <div class="info-card alert">
+          <span>🎉</span><b>SIMプロファイル発行手数料 0円</b>
         </div>
-    </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/pose_yubisashi_kakunin_businesswoman.png" alt="確認">
-    </div>
-</div>
-
-<!-- ===================== Slide 6 : CTA ===================== -->
-<div class="slide-container slide-cta">
-    <img src="public/images/logo/UQ_logo_2.png" class="cta-logo" alt="UQ mobile">
-    <div class="cta-title">料金・0円のコツは<br>本編で！</div>
-    <div class="cta-sub">自分に合う乗り換え先を解説</div>
-    <img src="public/images/thumbnails/【2026年8月】UQ mobileが手数料を4,950円に値上げ！乗り換え候補3選を徹底解説_サムネ1.png" class="cta-banner-img" alt="本編動画をチェック">
-    <div class="cta-arrow">▼</div>
-</div>
-
-</body>
+        <div class="date-badge">2026年11月4日 23:59まで</div>
+      </div>
+      <div class="slide-illust" style="z-index: 2">
+        <img
+          src="public/images/irasutoya/money_fueru.png"
+          class="slide-pict"
+          alt="お得なキャンペーンのイメージ"
+        />
+      </div>
+    </section>
+    <!-- Slide ID: 4 -->
+    <section
+      class="slide-container slide-pad"
+      data-script-content="テロップ：初期費用を抑える方法は全部で3つ／①公式キャンペーン中にWebからeSIMで申し込む（対象：ギガプランのeSIM／乗り換え・新規どちらもOK）"
+    >
+      <div class="watermark">4</div>
+      <h2 class="slide-title">方法① WebでeSIM申込み</h2>
+      <div class="slide-body">
+        <div class="method-count">
+          <span>初期費用を抑える方法は全部で</span><b>3つ</b>
+        </div>
+        <div class="step-card">
+          <b class="step-num">1</b
+          ><span>キャンペーン期間中に<br />公式サイトから申込み</span>
+        </div>
+        <div class="step-card">
+          <b class="step-num">2</b
+          ><span>申込みで<strong>eSIM</strong>を選択</span>
+        </div>
+        <div class="info-card alert">
+          <span>✓</span><b>ギガプランのeSIMが対象</b>
+        </div>
+        <div class="info-card"><span>🔁</span>乗り換え・新規どちらもOK</div>
+      </div>
+      <div class="slide-illust" style="z-index: 2">
+        <img
+          src="public/images/irasutoya/smartphone_blank_tenin_woman.png"
+          class="slide-pict"
+          alt="スマートフォンで申し込むイメージ"
+        />
+      </div>
+    </section>
+    <!-- Slide ID: 5 -->
+    <section
+      class="slide-container cta-slide"
+      data-script-content="テロップ：残り2つの申込み方法とあなたに合う申し込み方は本編で詳しく解説！"
+    >
+      <div class="cta-content">
+        <img
+          src="public/images/logo/iijmio_logo.png"
+          class="cta-logo"
+          alt="IIJmio"
+        />
+        <div class="cta-title">残り2つの方法も<br />本編で解説！</div>
+        <div class="cta-sub">あなたに合う申し込み方をチェック</div>
+        <img
+          src="public/images/thumbnails/49_【〜11／4】IIJmioのeSIMは初期費用が半額！12月の初期費用値上げ前に申し込むなら今_サムネ1.png"
+          class="cta-banner-img"
+          alt="本編動画のサムネイル"
+        />
+        <div class="cta-arrow">▼</div>
+      </div>
+    </section>
+  </body>
 </html>

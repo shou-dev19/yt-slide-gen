@@ -1,0 +1,162 @@
+#!/usr/bin/env python3
+"""Generate the short deck for video 49 directly from its script CSV."""
+
+from __future__ import annotations
+
+import csv
+import html
+from pathlib import Path
+
+
+ROOT = Path("/workspaces/yt-factory/packages/slide-gen")
+CSV_PATH = Path(
+    "/workspaces/yt-factory/packages/scenario-gen/archive/videos/49_【〜11／4】IIJmioのeSIMは初期費用が半額！12月の初期費用値上げ前に申し込むなら今/short/【11月4日まで】IIJmio初期費用が上がる前に.csv"
+)
+OUTPUT = ROOT / "slides-short.html"
+LOGO = "public/images/logo/iijmio_logo.png"
+FALLBACK_THUMB = "public/images/slides/今すぐ本編動画をチェック.png"
+
+
+def cta_thumbnail() -> str:
+    long_scripts = sorted((CSV_PATH.parent.parent / "long").glob("*.csv"))
+    if long_scripts:
+        matches = sorted((ROOT / "public/images/thumbnails").glob(
+            f"*{long_scripts[0].stem}_サムネ1.png"
+        ))
+        if matches:
+            return matches[0].relative_to(ROOT).as_posix()
+    return FALLBACK_THUMB
+
+
+def esc(value: str) -> str:
+    return html.escape(value, quote=True)
+
+
+def rows_by_slide() -> list[dict[str, str]]:
+    with CSV_PATH.open(encoding="utf-8-sig", newline="") as source:
+        rows = list(csv.DictReader(source))
+    grouped: dict[str, dict[str, str]] = {}
+    for row in rows:
+        slide_id = row["スライドID"].strip()
+        if slide_id not in grouped:
+            grouped[slide_id] = {**row, "content": row["スライドに表示する内容"].strip()}
+        elif row["スライドに表示する内容"].strip() != "同上":
+            grouped[slide_id]["content"] = row["スライドに表示する内容"].strip()
+    return [grouped[key] for key in sorted(grouped, key=lambda key: int(key))]
+
+
+def slide_block(slide_id: str, content: str, body: str, classes: str = "slide-pad") -> str:
+    return f'''\n    <!-- Slide ID: {esc(slide_id)} -->
+    <section class="slide-container {classes}" data-script-content="{esc(content)}">
+      {body}
+    </section>'''
+
+
+def make_slide(row: dict[str, str], index: int, total: int) -> str:
+    slide_id = row["スライドID"].strip()
+    content = row["content"]
+    if index == 0:
+        body = f'''
+      <div class="thumb-top-strip">⚡ IIJmio 公式キャンペーン ⚡</div>
+      <div class="thumb-accent-tri tl"></div><div class="thumb-accent-tri br"></div>
+      <div class="thumb-tag">11月4日まで！</div>
+      <h1 class="thumb-title"><span class="blue">IIJmio eSIM</span><br><span class="red">初期費用が半額</span></h1>
+      <div class="thumb-sub-band">12月の値上げ前に申し込もう</div>
+      <div class="thumb-logo-wrap"><img src="{LOGO}" class="thumb-logo" alt="IIJmio"></div>'''
+        return slide_block(slide_id, content, body, "slide-thumbnail")
+
+    if index == total - 1:
+        thumbnail = cta_thumbnail()
+        body = f'''
+      <div class="cta-content">
+        <img src="{LOGO}" class="cta-logo" alt="IIJmio">
+        <div class="cta-title">残り2つの方法も<br>本編で解説！</div>
+        <div class="cta-sub">あなたに合う申し込み方をチェック</div>
+        <img src="{thumbnail}" class="cta-banner-img" alt="本編動画のサムネイル">
+        <div class="cta-arrow">▼</div>
+      </div>'''
+        return slide_block(slide_id, content, body, "cta-slide")
+
+    if slide_id == "2":
+        heading = "12月から初期費用が値上げ"
+        cards = '''
+        <div class="info-card alert"><span>📢</span><b>2026年12月1日〜</b></div>
+        <div class="fee-compare"><div><small>現在</small><strong>3,300円</strong></div><span class="arrow">→</span><div class="new-fee"><small>改定後</small><strong>3,850円</strong></div></div>
+        <div class="info-card"><span>🌐</span>IIJmio公式発表<br>Web申込みの初期費用</div>'''
+        illustration = 'public/images/irasutoya/seikyuusyo_shock.png'
+        alt = "初期費用値上げに驚くイメージ"
+    elif slide_id == "3":
+        heading = "今ならeSIMの初期費用が半額"
+        cards = '''
+        <div class="campaign-card"><div class="campaign-name">eSIM初期費用割引キャンペーン</div><div class="campaign-price">1,650円 <small>初期費用</small></div></div>
+        <div class="info-card alert"><span>🎉</span><b>SIMプロファイル発行手数料 0円</b></div>
+        <div class="date-badge">2026年11月4日 23:59まで</div>'''
+        illustration = "public/images/irasutoya/money_fueru.png"
+        alt = "お得なキャンペーンのイメージ"
+    else:
+        heading = "方法① WebでeSIM申込み"
+        cards = '''
+        <div class="method-count"><span>初期費用を抑える方法は全部で</span><b>3つ</b></div>
+        <div class="step-card"><b class="step-num">1</b><span>キャンペーン期間中に<br>公式サイトから申込み</span></div>
+        <div class="step-card"><b class="step-num">2</b><span>申込みで<strong>eSIM</strong>を選択</span></div>
+        <div class="info-card alert"><span>✓</span><b>ギガプランのeSIMが対象</b></div>
+        <div class="info-card"><span>🔁</span>乗り換え・新規どちらもOK</div>'''
+        illustration = "public/images/irasutoya/smartphone_blank_tenin_woman.png"
+        alt = "スマートフォンで申し込むイメージ"
+
+    body = f'''
+      <div class="watermark">{esc(slide_id)}</div>
+      <h2 class="slide-title">{heading}</h2>
+      <div class="slide-body">{cards}</div>
+      <div class="slide-illust" style="z-index: 2;"><img src="{illustration}" class="slide-pict" alt="{alt}"></div>'''
+    return slide_block(slide_id, content, body)
+
+
+CSS = r'''
+      :root { --blue:#0052cc; --blue-dark:#003380; --red:#e63946; --ink:#172033; }
+      * { box-sizing:border-box; margin:0; padding:0; }
+      body { background:#f0f4f8; color:var(--ink); font-family:'Inter','Noto Sans JP',sans-serif; display:flex; flex-direction:column; align-items:center; gap:40px; padding:40px; }
+      .slide-container { width:1080px; height:1080px; position:relative; overflow:hidden; display:flex; flex-direction:column; background:#fff; }
+      img { object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,.1)); }
+      .blue { color:var(--blue); } .red { color:var(--red); }
+      .slide-thumbnail { align-items:center; text-align:center; border:25px solid var(--blue); padding:160px 45px 300px; background:repeating-conic-gradient(from 0deg at 52% 48%,rgba(0,82,204,.06) 0deg 2.5deg,transparent 2.5deg 16deg),radial-gradient(ellipse at 52% 48%,#fff 5%,#e8f3ff 45%,#c8dcff 100%); }
+      .thumb-top-strip { position:absolute; top:25px; left:25px; right:25px; z-index:3; background:var(--blue); color:#fff; font-size:36px; font-weight:900; padding:18px 0; letter-spacing:.06em; }
+      .thumb-accent-tri { position:absolute; width:0; height:0; z-index:1; } .thumb-accent-tri.tl { top:25px; left:25px; border-top:300px solid rgba(0,82,204,.09); border-right:300px solid transparent; } .thumb-accent-tri.br { bottom:25px; right:25px; border-bottom:300px solid rgba(0,82,204,.09); border-left:300px solid transparent; }
+      .thumb-tag { z-index:2; background:var(--red); color:#fff; font-size:76px; font-weight:900; padding:18px 54px; transform:rotate(-3deg); box-shadow:8px 8px 0 rgba(0,0,0,.25); margin-bottom:28px; }
+      .thumb-title { z-index:2; font-size:80px; font-weight:900; line-height:1.22; margin-bottom:22px; max-width:900px; } .thumb-sub-band { z-index:2; color:#fff; background:var(--blue); font-size:46px; font-weight:900; padding:18px 40px; border-radius:12px; box-shadow:4px 4px 0 rgba(0,0,0,.2); }
+      .thumb-logo-wrap { position:absolute; z-index:2; left:80px; right:80px; bottom:72px; height:185px; display:flex; justify-content:center; } .thumb-logo { height:150px; width:360px; background:#fff; border-radius:18px; padding:18px 24px; filter:none; box-shadow:6px 6px 0 rgba(0,0,0,.18); }
+      .slide-pad { padding:72px 70px; } .watermark { position:absolute; top:-45px; left:10px; z-index:0; color:var(--blue); font-size:280px; font-weight:900; line-height:1; opacity:.07; }
+      .slide-title { z-index:1; border-bottom:10px solid var(--blue); font-size:62px; font-weight:900; line-height:1.2; padding-bottom:14px; margin-bottom:30px; }
+      .method-count { align-self:flex-start; display:flex; align-items:center; gap:12px; margin:-8px 0 2px; padding:12px 22px; border-radius:999px; background:#eaf3ff; color:var(--blue-dark); font-size:31px; font-weight:900; line-height:1.15; }
+      .method-count b { display:inline-flex; align-items:center; justify-content:center; min-width:62px; height:48px; padding:0 12px; border-radius:999px; background:var(--red); color:#fff; font-size:32px; }
+      .slide-body { z-index:1; display:flex; flex-direction:column; gap:25px; margin-bottom:145px; }
+      .info-card { display:flex; align-items:center; gap:22px; padding:22px 32px; border-radius:0 16px 16px 0; font-size:45px; font-weight:700; line-height:1.2; background:#f0f5ff; border-left:14px solid var(--blue); }
+      .info-card > span { font-size:54px; flex-shrink:0; } .info-card.alert { background:#fff0f0; border-left-color:var(--red); color:var(--red); font-size:47px; font-weight:900; }
+      .slide-illust { position:absolute; right:40px; bottom:32px; } .slide-pict { height:220px; max-width:300px; }
+      .fee-compare { display:flex; align-items:center; justify-content:center; gap:18px; padding:16px 20px; background:#f0f5ff; border-radius:20px; } .fee-compare div { text-align:center; display:flex; flex-direction:column; gap:5px; } .fee-compare small { font-size:32px; font-weight:900; } .fee-compare strong { color:var(--blue); font-size:66px; font-weight:900; } .fee-compare .new-fee strong { color:var(--red); } .fee-compare .arrow { font-size:58px; font-weight:900; color:#64748b; }
+      .campaign-card { text-align:center; background:linear-gradient(135deg,#eaf3ff,#fff); border:8px solid var(--blue); border-radius:24px; padding:22px; box-shadow:8px 8px 0 #cfe1ff; } .campaign-name { display:inline-block; color:#fff; background:var(--blue); border-radius:999px; padding:10px 28px; font-size:34px; font-weight:900; margin-bottom:12px; } .campaign-price { color:var(--red); font-size:94px; font-weight:900; line-height:1.1; } .campaign-price small { color:var(--ink); font-size:34px; }
+      .date-badge { align-self:center; background:var(--ink); color:#fff; border-radius:999px; padding:12px 28px; font-size:36px; font-weight:900; }
+      .step-card { display:flex; align-items:center; gap:26px; padding:22px 26px; background:#f0f5ff; border-radius:18px; font-size:42px; font-weight:800; line-height:1.18; } .step-num { width:72px; height:72px; border-radius:50%; display:flex; flex:none; align-items:center; justify-content:center; color:#fff; background:var(--blue); font-size:46px; } .step-card strong { color:var(--red); font-size:48px; }
+      .cta-slide { align-items:center; justify-content:center; padding:38px 60px; text-align:center; background:linear-gradient(135deg,var(--blue),var(--blue-dark)); } .cta-content { display:flex; flex-direction:column; align-items:center; } .cta-logo { height:100px; width:270px; margin-bottom:10px; background:#fff; border-radius:18px; padding:8px 16px; filter:none; } .cta-title { color:#ffd700; font-size:70px; font-weight:900; line-height:1.12; margin-bottom:8px; } .cta-sub { color:#fff; font-size:38px; font-weight:900; margin-bottom:10px; } .cta-banner-img { width:820px; max-height:380px; object-fit:contain; border-radius:18px; filter:none; box-shadow:0 14px 40px rgba(0,0,0,.35); } .cta-arrow { color:#ffd700; font-size:68px; font-weight:900; line-height:.8; margin-top:12px; animation:bounce 1s infinite; } @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+'''
+
+
+def main() -> None:
+    rows = rows_by_slide()
+    if not rows:
+        raise SystemExit("CSV にスライド行がありません")
+    ids = [row["スライドID"].strip() for row in rows]
+    if len(ids) != len(set(ids)):
+        raise SystemExit("同じスライドIDのグループ化に失敗しました")
+    blocks = [make_slide(row, index, len(rows)) for index, row in enumerate(rows)]
+    document = f'''<!doctype html>
+<html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IIJmio 初期費用キャンペーン（Short）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
+<style>{CSS}</style></head><body>{''.join(blocks)}
+</body></html>'''
+    OUTPUT.write_text(document, encoding="utf-8")
+    print(f"Wrote {OUTPUT} ({len(blocks)} slides: {', '.join(ids)})")
+
+
+if __name__ == "__main__":
+    main()
