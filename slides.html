@@ -136,6 +136,38 @@
       .closing-icon {
         font-size: 180px;
       }
+      /* 評価見開きの右ページ: 左ページの head-left と同じ高さの帯を置き、
+         左右のカードの開始位置と高さを揃える */
+      .slide-container:has(.eval-head-right) .head-left {
+        flex-shrink: 0;
+      }
+      .eval-head-right {
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        gap: 4px;
+      }
+      .eval-head-title {
+        font-size: 52px;
+        font-weight: 900;
+        line-height: 1.1;
+        color: var(--ink);
+      }
+      .eval-head-note {
+        font-size: 26px;
+        font-weight: 700;
+        line-height: 1.3;
+        color: var(--ink-soft);
+        word-break: auto-phrase;
+        text-wrap: balance;
+      }
+      .blog-header-img {
+        width: 100%;
+        max-height: 330px;
+        object-fit: contain;
+        border-radius: 14px;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+      }
     </style>
   </head>
   <body>
@@ -151,7 +183,7 @@
           src="public/images/logo/Ahamo_logo.png"
           alt="ahamo"
         />
-        <div class="std-kicker">速報｜2026年12月1日から</div>
+        <div class="std-kicker">速報｜大盛りオプションも終了へ</div>
         <div class="std-title">ahamoが2026年12月1日から値上げ</div>
         <div class="std-footer">ahamoの料金が変わる</div>
       </div>
@@ -224,7 +256,7 @@
             <ul class="agenda">
               <li><span class="num">01</span><span>料金改定</span></li>
               <li><span class="num">02</span><span>ahamoの独自評価</span></li>
-              <li><span class="num">03</span><span>選ぶべき4条件</span></li>
+              <li><span class="num">03</span><span>選ぶべき4つの条件</span></li>
               <li>
                 <span class="num">04</span><span>データ量・通信品質</span>
               </li>
@@ -245,7 +277,7 @@
               </li>
               <li>
                 <span class="check">✓</span
-                ><span>ahamoを選ぶべき人の4条件</span>
+                ><span>ahamoを選ぶべき人の4つの条件</span>
               </li>
               <li>
                 <span class="check">✓</span
@@ -522,7 +554,7 @@
                 data-full="40GBまでの枠で月額3,135円（税込）〔2026年12月1日〜〕。設定した利用量上限に達しても最大1Mbpsの速度で使い続けられる"
               >
                 <span class="tag">＋</span
-                >40GBまで月額3,135円・上限後も最大1Mbps
+                >40GBまで月額3,135円・上限後も最大1Mbpsで利用可
               </div>
               <div
                 class="line con"
@@ -560,6 +592,12 @@
           </div>
         </div>
         <div class="page right">
+          <div class="head-left eval-head-right">
+            <div class="eval-head-title">ahamoを6観点で評価</div>
+            <div class="eval-head-note">
+              ※本評価は当チャンネルの独断と偏見による独自評価であり、キャンペーン割引等は考慮していません
+            </div>
+          </div>
           <div class="cards">
             <div class="card">
               <span class="rank S">S</span>
@@ -597,7 +635,8 @@
                 class="line pro"
                 data-full="海外でも追加の手続きなしでデータ通信が使える。12月からは海外で使える量が40GBに増える"
               >
-                <span class="tag">＋</span>海外でも手続き不要・12月から40GB
+                <span class="tag">＋</span
+                >海外でも手続き不要で12月から40GBまで利用可
               </div>
               <div
                 class="line con"
@@ -606,9 +645,6 @@
                 <span class="tag">－</span>大盛りは11月30日終了
               </div>
             </div>
-          </div>
-          <div class="note" style="font-size: 28px; text-align: center">
-            ※本評価は当チャンネルの独断と偏見による独自評価であり、キャンペーン割引等は考慮していません
           </div>
         </div>
       </div>
@@ -705,7 +741,7 @@
       <div class="book">
         <div class="spine"></div>
         <div class="page left">
-          <div class="page-head">ahamoを選ぶ4条件</div>
+          <div class="page-head">ahamoを選ぶ4つの条件</div>
           <div class="page-body">
             <ul class="rows">
               <li>
@@ -948,7 +984,7 @@
               <li>
                 <span class="badge">2</span
                 ><span class="tx"
-                  >ahamoを選ぶべき4条件に全部当てはまるかチェックする</span
+                  >ahamoを選ぶべき4つの条件に全部当てはまるかチェックする</span
                 >
               </li>
             </ul>
@@ -1016,7 +1052,7 @@
           <div class="page-head">ahamoを選ぶ人</div>
           <div class="page-body center">
             <div class="emph">
-              自信をもっておすすめできるのは、4条件すべてに当てはまる人
+              自信をもっておすすめできるのは、4つの条件すべてに当てはまる人
             </div>
           </div>
         </div>
@@ -1124,24 +1160,60 @@
         <div class="spine"></div>
         <div class="page left">
           <div class="page-head">今が見直すチャンス</div>
-          <div class="page-body">
+          <div class="page-body center">
             <div class="big-title closing-title">
               値上げの<br />タイミングこそ
             </div>
             <div class="emph">自分に合う1枚を見直すチャンス</div>
-            <div class="lead">浮いた分は貯蓄や運用にも</div>
           </div>
         </div>
         <div class="page right">
+          <div class="page-head">スマホ代は毎月の固定費</div>
+          <div class="page-body center">
+            <div class="bigicon closing-icon">
+              <i class="fa-solid fa-piggy-bank" aria-hidden="true"></i>
+            </div>
+            <div class="lead">
+              見直して浮いた分は<br /><span class="em">貯蓄や運用</span>にも
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Slide ID: 22-1 -->
+    <div
+      class="slide-container"
+      style="--brand: #c8102e; --brand-deep: #9a0c23; --brand-soft: #fde3e7"
+    >
+      <div class="book">
+        <div class="spine"></div>
+        <div class="page left">
           <div class="page-head">これからも発信します</div>
-          <div class="page-body">
+          <div class="page-body center">
             <div class="bigicon closing-icon">
               <i class="fa-solid fa-pen" aria-hidden="true"></i>
             </div>
             <div class="lead">
-              自分に合う1枚が見つかる動画を、これからも作っていきます
+              自分に合う1枚が見つかる動画を、<br /><span class="em"
+                >これからも作っていきます</span
+              >
             </div>
-            <div class="lead tight">ブログとnoteの記事は概要欄から</div>
+          </div>
+        </div>
+        <div class="page right">
+          <div class="page-head">ブログ・noteも公開中！</div>
+          <div class="page-body">
+            <div style="text-align: center">
+              <img
+                class="blog-header-img"
+                src="public/images/common/ブログ_ヘッダー画像_スライド用.png"
+                alt="ブログヘッダー"
+              />
+            </div>
+            <div class="lead">
+              格安SIMの料金を<br /><span class="em">詳しく比較中！</span>
+            </div>
+            <div class="note">概要欄のリンクからぜひ！</div>
           </div>
         </div>
       </div>
@@ -1168,9 +1240,7 @@
           <div class="page-head">ご視聴ありがとうございます！</div>
           <div class="page-body center">
             <div class="bigicon">👍</div>
-            <div class="lead">
-              チャンネル登録・グッドボタンをよろしくお願いします！
-            </div>
+            <div class="lead">グッドボタンもよろしくお願いします！</div>
           </div>
         </div>
       </div>
