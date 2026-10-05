@@ -1,13 +1,31 @@
-<!doctype html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ahamo値上げ｜続ける？乗り換える？</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
-<style>
+#!/usr/bin/env python3
+"""Generate the ahamo short deck from the CSV's display-content column."""
+from __future__ import annotations
+
+import csv
+import re
+from html import escape
+from pathlib import Path
+
+ROOT = Path('/workspaces/yt-factory/packages/slide-gen')
+CSV_PATH = Path('/workspaces/yt-factory/packages/scenario-gen/archive/videos/50_【2026年12月】ahamoが値上げ＆大盛り終了！？対象者と今やるべき3つの対策/short/【12月値上げ】ahamoが月3,135円に.csv')
+OUTPUT = ROOT / 'slides-short.html'
+ASSET_ROOT = ROOT / 'public/images'
+LOGO = ASSET_ROOT / 'logo/Ahamo_logo.png'
+BANNER = ASSET_ROOT / 'thumbnails/50_【2026年12月】ahamoが値上げ＆大盛り終了！？対象者と今やるべき3つの対策_サムネ1.png'
+ILLUST = {
+    '1': 'irasutoya/bikkuri_me_tobideru_man.png',
+    '2': 'irasutoya/shinpai_man.png',
+    '3': 'irasutoya/seikyuusyo_shock.png',
+    '4': 'irasutoya/pose_naruhodo_woman.png',
+    '5': 'irasutoya/pose_necchuu_smartphone_man.png',
+    '6': 'irasutoya/smartphone_photo_satsuei_man.png',
+    '7': 'irasutoya/smartphone_talk03_man.png',
+    '8': 'irasutoya/pose_anshin_woman.png',
+    '9': 'irasutoya/pose_anshin_woman.png',
+}
+
+STYLE = r'''
 :root { --blue:#0052cc; --blue-dark:#003380; --red:#e63946; --ink:#172033; --brand:#0052cc; --brand-deep:#003380; --brand-soft:#eaf3ff; }
 * { box-sizing:border-box; margin:0; padding:0; }
 body { display:flex; flex-direction:column; align-items:center; background:#f0f4f8; color:var(--ink); font-family:'Inter','Noto Sans JP',sans-serif; gap:40px; padding:40px; }
@@ -103,102 +121,173 @@ img { object-fit:contain; filter:drop-shadow(0 10px 20px rgba(0,0,0,.1)); }
 .cta-banner-img { width:880px; max-height:455px; object-fit:contain; border:10px solid #fff; border-radius:12px; }
 .cta-arrow { font-size:80px; color:#ffd700; line-height:1; margin-top:9px; animation:bounce 1.4s infinite; }
 @keyframes bounce { 50% { transform:translateY(12px); } }
-</style>
-</head>
-<body>
-<!-- Slide ID: 1 -->
+'''
+
+
+def e(value: str) -> str:
+    return escape(value, quote=True)
+
+
+def image(path: Path, css: str, alt: str) -> str:
+    if not path.is_file():
+        raise FileNotFoundError(path)
+    return f'<img class="{css}" src="{e(path.relative_to(ROOT).as_posix())}" alt="{e(alt)}">'
+
+
+def illust(slide_id: str) -> str:
+    path = ASSET_ROOT / ILLUST[slide_id]
+    return image(path, 'slide-illust', '内容を補うイラスト')
+
+
+def card(text: str, *, alert: bool = False, compact: bool = False) -> str:
+    classes = 'info-card' + (' alert' if alert else '') + (' compact' if compact else '')
+    return f'<div class="{classes}">{e(text)}</div>'
+
+
+def standard(slide_id: str, title: str, body: str, price: bool = False, sparse: bool = False, summary: bool = False) -> str:
+    price_class = ' price-note' if price else ''
+    sparse_class = ' sparse' if sparse else ''
+    summary_class = ' summary-slide' if summary else ''
+    illustration = '' if summary else f'  {illust(slide_id)}\n'
+    return f'''<!-- Slide ID: {e(slide_id)} -->
+<div class="slide-container slide-pad{price_class}{sparse_class}{summary_class}">
+  <div class="watermark">{e(slide_id)}</div>
+  <h2 class="slide-title">{e(title).replace(chr(10), '<br>')}</h2>
+  <div class="slide-body">{body}</div>
+{illustration}</div>'''
+
+
+def render(slide_id: str, content: str) -> str:
+    chunks = [part.strip() for part in content.split('／')]
+    if slide_id == '1':
+        title = chunks[0].removeprefix('タイトル：')
+        first, second = title.split('！', 1)
+        return f'''<!-- Slide ID: 1 -->
 <div class="slide-container slide-thumbnail price-note">
   <div class="thumb-top-strip">⚡ 2026年12月 ahamo料金改定 ⚡</div>
-  <div class="thumb-tag">ahamo値上げ！</div>
-  <h1 class="thumb-title">あなたは続ける？<br>乗り換える？</h1>
+  <div class="thumb-tag">{e(first)}！</div>
+  <h1 class="thumb-title">{e(second).replace('？', '？<br>', 1)}</h1>
   <div class="thumb-sub-band">40GBまで月3,135円に</div>
-  <img class="thumb-logo" src="public/images/logo/Ahamo_logo.png" alt="ahamo">
-  <img class="thumb-illust" src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="驚く人">
-</div>
-<!-- Slide ID: 2 -->
-<div class="slide-container slide-pad sparse">
-  <div class="watermark">2</div>
-  <h2 class="slide-title">ahamo値上げ後も<br>おすすめな人は？</h2>
-  <div class="slide-body"><div class="hero-panel"><div class="hero-small">値上げ後もおすすめ</div><div class="hero-number">4つ</div><div class="hero-label">の条件</div></div>
-        <div class="large-card alert">全部そろう人だけ</div></div>
-  <img class="slide-illust" src="public/images/irasutoya/shinpai_man.png" alt="内容を補うイラスト">
-</div>
-<!-- Slide ID: 3 -->
-<div class="slide-container slide-pad price-note sparse">
-  <div class="watermark">3</div>
-  <h2 class="slide-title">2026年12月1日〜 ahamo</h2>
-  <div class="slide-body"><div class="fee-grid">
-          <div class="fee-cell new"><small>40GBまで</small><strong>3,135円</strong><span>月額・税込</span></div>
-          <div class="fee-cell"><small>今の30GB</small><strong>2,970円</strong><span>月額・税込</span></div>
+  {image(LOGO, 'thumb-logo', 'ahamo')}
+  {image(ASSET_ROOT / ILLUST['1'], 'thumb-illust', '驚く人')}
+</div>'''
+    if slide_id == '2':
+        body = '''<div class="hero-panel"><div class="hero-small">値上げ後もおすすめ</div><div class="hero-number">4つ</div><div class="hero-label">の条件</div></div>
+        <div class="large-card alert">全部そろう人だけ</div>'''
+        return standard(slide_id, 'ahamo値上げ後も\nおすすめな人は？', body, sparse=True)
+    if slide_id == '3':
+        current, previous = chunks[1:3]
+        current_value = int(re.search(r'([\d,]+)円', current).group(1).replace(',', ''))
+        previous_value = int(re.search(r'([\d,]+)円', previous).group(1).replace(',', ''))
+        current_label = current.split(' 月額')[0]
+        previous_label = previous.split(' 月額')[0]
+        body = f'''<div class="fee-grid">
+          <div class="fee-cell new"><small>{e(current_label)}</small><strong>{current_value:,}円</strong><span>月額・税込</span></div>
+          <div class="fee-cell"><small>{e(previous_label)}</small><strong>{previous_value:,}円</strong><span>月額・税込</span></div>
         </div><div class="fee-detail"><span>30GB</span><span>→</span><b>40GB</b></div>
-        <div class="large-card alert">今より月165円アップ</div></div>
-  <img class="slide-illust" src="public/images/irasutoya/seikyuusyo_shock.png" alt="内容を補うイラスト">
-</div>
-<!-- Slide ID: 4 -->
-<div class="slide-container slide-pad sparse">
-  <div class="watermark">4</div>
-  <h2 class="slide-title">ahamoがぴったりな人の<br>4つの条件</h2>
-  <div class="slide-body"><div class="condition-dots"><span>①</span><span>②</span><span>③</span><span>④</span></div>
-        <div class="hero-panel"><div class="hero-number">4つ全部</div><div class="hero-label">そろう人だけ</div></div></div>
-  <img class="slide-illust" src="public/images/irasutoya/pose_naruhodo_woman.png" alt="内容を補うイラスト">
-</div>
-<!-- Slide ID: 5 -->
-<div class="slide-container slide-pad price-note sparse">
-  <div class="watermark">5</div>
-  <h2 class="slide-title">条件①｜毎月30〜40GBを<br>高速で使う</h2>
-  <div class="slide-body"><div class="fact-stack compact-facts">
+        <div class="large-card alert">今より月{current_value - previous_value:,}円アップ</div>'''
+        return standard(slide_id, chunks[0], body, price=True, sparse=True)
+    if slide_id == '4':
+        body = '''<div class="condition-dots"><span>①</span><span>②</span><span>③</span><span>④</span></div>
+        <div class="hero-panel"><div class="hero-number">4つ全部</div><div class="hero-label">そろう人だけ</div></div>'''
+        return standard(slide_id, 'ahamoがぴったりな人の\n4つの条件', body, sparse=True)
+    if slide_id == '5':
+        body = '''<div class="fact-stack compact-facts">
           <div class="hero-panel"><div class="hero-number">40GB</div><div class="hero-label">まで 月額3,135円</div><div class="hero-small">枠を無駄にしにくい</div></div>
           <div class="large-card">40GBに上限設定</div>
           <div class="large-card alert">超えても料金は上がらず<br>最大1Mbpsで使える</div>
-        </div></div>
-  <img class="slide-illust" src="public/images/irasutoya/pose_necchuu_smartphone_man.png" alt="内容を補うイラスト">
-</div>
-<!-- Slide ID: 6 -->
-<div class="slide-container slide-pad sparse">
-  <div class="watermark">6</div>
-  <h2 class="slide-title">条件②｜海外によく行く</h2>
-  <div class="slide-body"><div class="fact-stack three-facts">
+        </div>'''
+        return standard(slide_id, '条件①｜毎月30〜40GBを\n高速で使う', body, price=True, sparse=True)
+    if slide_id == '6':
+        body = '''<div class="fact-stack three-facts">
           <div class="hero-panel"><div class="hero-number">海外</div><div class="hero-label">によく行く</div></div>
           <div class="large-card">追加の手続きなし</div>
           <div class="large-card alert">海外でもデータ通信が使える</div>
-        </div></div>
-  <img class="slide-illust" src="public/images/irasutoya/smartphone_photo_satsuei_man.png" alt="内容を補うイラスト">
-</div>
-<!-- Slide ID: 7 -->
-<div class="slide-container slide-pad sparse">
-  <div class="watermark">7</div>
-  <h2 class="slide-title">条件③｜5分以内の通話を<br>よくかける</h2>
-  <div class="slide-body"><div class="fact-stack">
+        </div>'''
+        return standard(slide_id, '条件②｜海外によく行く', body, sparse=True)
+    if slide_id == '7':
+        body = '''<div class="fact-stack">
           <div class="hero-panel"><div class="hero-number">5分</div><div class="hero-label">かけ放題</div></div>
           <div class="large-card alert">最初から込み</div>
-        </div></div>
-  <img class="slide-illust" src="public/images/irasutoya/smartphone_talk03_man.png" alt="内容を補うイラスト">
-</div>
-<!-- Slide ID: 8 -->
-<div class="slide-container slide-pad sparse">
-  <div class="watermark">8</div>
-  <h2 class="slide-title">条件④｜初期費用を<br>かけたくない</h2>
-  <div class="slide-body"><div class="fact-stack">
+        </div>'''
+        return standard(slide_id, '条件③｜5分以内の通話を\nよくかける', body, sparse=True)
+    if slide_id == '8':
+        body = '''<div class="fact-stack">
           <div class="hero-panel"><div class="hero-small">契約時の事務手数料</div><div class="hero-number">0円</div></div>
           <div class="large-card">初期費用をかけたくない人へ</div>
-        </div></div>
-  <img class="slide-illust" src="public/images/irasutoya/pose_anshin_woman.png" alt="内容を補うイラスト">
-</div>
-<!-- Slide ID: 9 -->
-<div class="slide-container slide-pad summary-slide">
-  <div class="watermark">9</div>
-  <h2 class="slide-title">4つ全部そろえば、<br>ahamoを続けて正解</h2>
-  <div class="slide-body"><div class="summary-grid"><div class="info-card"><div class="summary-head"><span class="num">1</span><span class="summary-main">毎月30〜40GBを高速で使う</span></div><div class="summary-detail">40GBに上限設定で<br>超えても最大1Mbps</div></div><div class="info-card"><div class="summary-head"><span class="num">2</span><span class="summary-main">海外によく行く</span></div><div class="summary-detail">追加の手続きなしで<br>海外でもデータ通信</div></div><div class="info-card"><div class="summary-head"><span class="num">3</span><span class="summary-main">5分以内の通話をよくかける</span></div><div class="summary-detail">5分かけ放題が<br>最初から込み</div></div><div class="info-card"><div class="summary-head"><span class="num">4</span><span class="summary-main">初期費用を<br>かけたくない</span></div><div class="summary-detail">契約事務手数料<br>0円</div></div></div></div>
-</div>
-<!-- Slide ID: 10 -->
+        </div>'''
+        return standard(slide_id, '条件④｜初期費用を\nかけたくない', body, sparse=True)
+    if slide_id == '9':
+        # Four conditions are separated by numbered glyphs in one CSV field.
+        items = [item.strip() for item in re.split(r'(?=[①②③④])', chunks[1]) if item.strip()]
+        if len(items) != 4:
+            raise ValueError(f'Expected four summary conditions: {items}')
+        # These details come from the display-content fields for slides 5–8.
+        details = (
+            '40GBに上限設定で<br>超えても最大1Mbps',
+            '追加の手続きなしで<br>海外でもデータ通信',
+            '5分かけ放題が<br>最初から込み',
+            '契約事務手数料<br>0円',
+        )
+        summary = '<div class="summary-grid">' + ''.join(
+            f'<div class="info-card"><div class="summary-head"><span class="num">{index}</span>'
+            + '<span class="summary-main">' + e(item[1:].strip()).replace('初期費用を', '初期費用を<br>') + '</span></div>'
+            + '<div class="summary-detail">' + detail + '</div>'
+            + '</div>'
+            for index, (item, detail) in enumerate(zip(items, details), 1)
+        ) + '</div>'
+        return standard(slide_id, '4つ全部そろえば、\nahamoを続けて正解', summary, summary=True)
+    if slide_id == '10':
+        return f'''<!-- Slide ID: 10 -->
 <div class="slide-container cta-slide">
   <div class="cta-content">
-    <img class="cta-logo" src="public/images/logo/Ahamo_logo.png" alt="ahamo">
-    <div class="cta-title">1つでも外れたら？</div>
-    <div class="cta-sub">乗り換え先は本編で（条件ごとに解説）</div>
-    <img class="cta-banner-img" src="public/images/thumbnails/50_【2026年12月】ahamoが値上げ＆大盛り終了！？対象者と今やるべき3つの対策_サムネ1.png" alt="関連する長尺動画のサムネイル">
+    {image(LOGO, 'cta-logo', 'ahamo')}
+    <div class="cta-title">{e(chunks[0])}</div>
+    <div class="cta-sub">{e(chunks[1])}</div>
+    {image(BANNER, 'cta-banner-img', '関連する長尺動画のサムネイル')}
     <div class="cta-arrow">⇧ 本編へ</div>
   </div>
-</div>
+</div>'''
+    raise ValueError(f'Unexpected slide ID: {slide_id}')
+
+
+def main() -> None:
+    with CSV_PATH.open(encoding='utf-8-sig', newline='') as f:
+        rows = list(csv.DictReader(f))
+    slides: dict[str, str] = {}
+    prior = ''
+    for row in rows:
+        slide_id = row['スライドID'].strip()
+        content = row['スライドに表示する内容'].strip()
+        if content == '同上':
+            content = prior
+        else:
+            prior = content
+        if slide_id in slides and slides[slide_id] != content:
+            raise ValueError(f'Inconsistent content for slide {slide_id}')
+        slides[slide_id] = content
+    if list(slides) != [str(i) for i in range(1, 11)]:
+        raise ValueError(f'Unexpected slide IDs: {list(slides)}')
+    markup = '\n'.join(render(slide_id, content) for slide_id, content in slides.items())
+    document = f'''<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ahamo値上げ｜続ける？乗り換える？</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
+<style>{STYLE}</style>
+</head>
+<body>
+{markup}
 </body>
 </html>
+'''
+    OUTPUT.write_text(document, encoding='utf-8')
+    print(f'Generated {len(slides)} slides: {OUTPUT}')
+
+
+if __name__ == '__main__':
+    main()
