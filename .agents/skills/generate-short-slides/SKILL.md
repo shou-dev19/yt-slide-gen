@@ -279,13 +279,17 @@ When a slide presents N selectable options (e.g., 乗り換え先4選), **split 
     - **Charts**: Use `public/images/charts/` for data comparisons.
 - **Styling**: Apply `object-fit: contain` and `filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1))` to all images.
 - **Fallbacks**: If no specific image matches, use a relevant generic illustration from `public/images/irasutoya/` or `public/images/common/`. Do NOT leave images empty.
+  - ただし本文スライド（2枚目以降）のいらすとやは**任意**。置くことで本文が押し上げられて下側に余白ができるなら、**いらすとやは置かない**（§5「情報が最優先・いらすとやは任意」）。この Fallback は「プレースホルダの空枠を残すな」という意味で、「必ずイラストを置け」という意味ではない。
 
 ## 5. Self-Check & Adjustment (Critical)
 - **Thumbnail strip/content overlap**: Verify that no flex child on the thumbnail slide (`.thumb-tag`, main title, sub-band, etc.) overlaps with `.thumb-top-strip`. The strip sits at `top: 25px` and is ~90px tall, ending at roughly `y = 115px`. `.slide-thumbnail` must have `padding-top ≥ 140px` so the first child starts below the strip. If overlap is detected, increase `padding-top` (not the strip's `top`) until the gap is clear.
 - **Overflow Check**: Before final generation, strictly verify that all text and images fit entirely within the `1080px × 1080px` container.
-- **Illustration overlap prevention**: The bottom-right illustration (`position: absolute; bottom: 40px; right: 40px; height: ~260–290px`) occupies roughly the bottom 330px of the slide. On Slide 1, `padding-bottom: 300px` handles this automatically. On other slides, add `style="margin-bottom: 120px;"` to `.slide-body` whenever body content would otherwise extend into that zone.
+- **Illustration overlap prevention**: The bottom-right illustration (`position: absolute; bottom: 40px; right: 40px; height: ~260–290px`) occupies roughly the bottom 330px of the slide. On Slide 1, `padding-bottom: 300px` handles this automatically. On other slides, add `style="margin-bottom: 120px;"` to `.slide-body` whenever body content would otherwise extend into that zone. **If reserving that zone would leave the lower part of the slide empty (body content bunched at the top), remove the illustration instead and let `.slide-body` fill the canvas** (see "情報が最優先・いらすとやは任意" below).
 - **Automatic Adjustment Rules**:
     - **Text**: Even after refining to short phrases, if text still overflows, reduce the font size by 10%–15% from the standard sizes defined above.
     - **Images**: If illustrations overlap text making it unreadable, reduce the image height or adjust position — but never go below 200px for slide illustrations.
 - **Mobile Visibility**: Since the 1:1 aspect ratio will be viewed full-screen on smartphones, ensure sufficient margins (safe areas) at the edges.
 - **Fill the canvas**: The standard sizes above are the baseline — the goal is a visually full, high-impact canvas with minimal empty space. If a slide feels sparse, increase font or image sizes rather than adding padding.
+- **情報が最優先・いらすとやは任意（運営者方針 2026-10-05）**: いらすとやを置くことで、カードとの兼ね合いでスライド下側に余白ができるなら、**無理にいらすとやを使わない**。イラストを外し、カード・グリッドを縦に広げて文字を拡大し、台本にある情報でキャンバスを埋める（スライドに表示する情報が一番重要）。
+  - 典型例: 右下のイラスト領域を避けるために `.slide-body` に `margin-bottom` を取った結果、カード群が上に固まり、イラストの左側から下が空く（#50 ahamo ショートのスライド9で発生）。
+  - この形は機械判定の「下端の空き」に**掛からない**（右下のイラストが下端まで届いているため `bottomGapRatio` が 0 になる）。生成時に自分で避けること。
