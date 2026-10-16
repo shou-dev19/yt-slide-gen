@@ -1,284 +1,119 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UQ mobile手数料4,950円を0円にするテクニック (Short)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>格安SIM15種診断｜最短3問</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&family=Noto+Sans+JP:wght@700;900&display=swap" rel="stylesheet">
 <style>
-    :root {
-        --blue: #0052cc;
-        --blue-dark: #003380;
-        --red: #e63946;
-        --white: #ffffff;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-        font-family: 'Inter', 'Noto Sans JP', sans-serif;
-        background: #f0f4f8;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 40px;
-        padding: 40px;
-    }
-    .slide-container {
-        width: 1080px;
-        height: 1080px;
-        background: var(--white);
-        position: relative;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-    }
-    .flex-row { display: flex; flex-direction: row; }
-    .flex-col { display: flex; flex-direction: column; }
-    img { object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
-
-    /* ===== Thumbnail (Slide 1) ===== */
-    .slide-thumbnail {
-        align-items: center;
-        justify-content: flex-start;
-        text-align: center;
-        border: 25px solid var(--blue);
-        padding-top: 160px;
-        padding-bottom: 300px;
-        background:
-            repeating-conic-gradient(from 0deg at 52% 48%, rgba(0,82,204,0.06) 0deg 2.5deg, transparent 2.5deg 16deg),
-            radial-gradient(ellipse at 52% 48%, #ffffff 5%, #e8f3ff 45%, #c8dcff 100%);
-    }
-    .thumb-top-strip {
-        position: absolute; top: 25px; left: 25px; right: 25px;
-        background: var(--blue); color: #fff;
-        font-size: 36px; font-weight: 900; padding: 18px 0;
-        text-align: center; letter-spacing: 0.06em; z-index: 3;
-    }
-    .thumb-accent-tri { position: absolute; width: 0; height: 0; z-index: 1; }
-    .thumb-accent-tri.tl { top:25px; left:25px; border-top:300px solid rgba(0,82,204,0.09); border-right:300px solid transparent; }
-    .thumb-accent-tri.br { bottom:25px; right:25px; border-bottom:300px solid rgba(0,82,204,0.09); border-left:300px solid transparent; }
-    .thumb-tag {
-        font-size: 76px; font-weight: 900; color: #fff;
-        background: var(--red); padding: 18px 54px;
-        transform: rotate(-3deg); box-shadow: 8px 8px 0 rgba(0,0,0,0.25);
-        margin-bottom: 28px; z-index: 2;
-    }
-    .thumb-title {
-        font-size: 78px; font-weight: 900; color: #1a1a2e;
-        line-height: 1.25; margin-bottom: 26px; max-width: 940px; z-index: 2;
-    }
-    .thumb-title .hl { color: var(--blue); }
-    .thumb-title .hl-red { color: var(--red); }
-    .thumb-sub-band {
-        font-size: 60px; font-weight: 900; color: #fff;
-        background: var(--blue); padding: 18px 70px; border-radius: 12px;
-        box-shadow: 4px 4px 0 rgba(0,0,0,0.2); margin-bottom: 30px; z-index: 2;
-    }
-    .thumb-logo-wrap {
-        height: 190px; display: flex; align-items: center; justify-content: center; z-index: 2;
-    }
-    .thumb-logo-wrap img {
-        height: 150px; filter: none;
-        background: #fff; border-radius: 18px; padding: 14px 30px;
-        box-shadow: 4px 4px 0 rgba(0,82,204,0.18);
-    }
-    .thumb-illust {
-        position: absolute; bottom: 40px; right: 50px; z-index: 2;
-    }
-    .thumb-illust img { height: 290px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.18)); }
-
-    /* ===== Standard slides (2-5) ===== */
-    .watermark {
-        position: absolute; top: -40px; left: 10px;
-        font-size: 280px; font-weight: 900; color: var(--blue);
-        opacity: 0.07; z-index: 0; line-height: 1;
-    }
-    .slide-pad { padding: 80px 70px; }
-    .slide-title {
-        font-size: 62px; font-weight: 900; color: #1a1a2e;
-        border-bottom: 10px solid var(--blue); padding-bottom: 14px;
-        margin-bottom: 30px; z-index: 1;
-    }
-    .slide-title .hl { color: var(--blue); }
-    .slide-title .hl-red { color: var(--red); }
-    .slide-body { display: flex; flex-direction: column; gap: 28px; z-index: 1; }
-
-    .report-header-card {
-        display: flex; align-items: center; gap: 24px;
-        background: linear-gradient(135deg, #0052cc, #003fa0);
-        color: #fff; border-radius: 20px; padding: 28px 36px;
-    }
-    .report-header-card .rh-logo { height: 130px; background:#fff; border-radius:14px; padding:14px 22px; filter:none; }
-    .report-header-card .rh-text { font-size: 44px; font-weight: 900; line-height: 1.3; }
-
-    .info-card {
-        display: flex; align-items: center; gap: 22px;
-        padding: 22px 32px; border-radius: 0 16px 16px 0;
-        font-size: 46px; font-weight: 700;
-        background: #f0f5ff; border-left: 14px solid var(--blue);
-    }
-    .info-card .ic-emoji { font-size: 52px; flex-shrink: 0; }
-    .info-card.alert {
-        background: #fff0f0; border-left-color: var(--red);
-        color: var(--red); font-size: 50px; font-weight: 900;
-    }
-    .info-card .ic-num { color: var(--blue); font-weight: 900; }
-    .info-card .ic-free { color: var(--red); font-weight: 900; }
-    .info-card .strike { text-decoration: line-through; opacity: 0.7; }
-
-    .list-item {
-        display: flex; align-items: center; gap: 22px;
-        font-size: 52px; font-weight: 700; color: #1a1a2e;
-    }
-    .list-item .li-emoji { font-size: 54px; flex-shrink: 0; }
-
-    .price-flow {
-        display: flex; align-items: center; justify-content: center; gap: 26px;
-        background: #f0f5ff; border: 6px solid var(--blue); border-radius: 22px;
-        padding: 30px 28px; font-weight: 900;
-    }
-    .price-flow .pf-old { font-size: 54px; color: #6b7280; text-decoration: line-through; }
-    .price-flow .pf-arrow { font-size: 50px; color: var(--blue); }
-    .price-flow .pf-new { font-size: 64px; color: var(--red); }
-    .price-flow .pf-label { font-size: 38px; color: #1a1a2e; line-height: 1.2; }
-
-    /* ===== Option rows (Slide 5 : 乗り換え候補3選) ===== */
-    .opt-row {
-        display: flex; align-items: center; gap: 28px;
-        background: #f0f5ff; border-left: 14px solid var(--blue);
-        border-radius: 0 16px 16px 0; padding: 20px 30px;
-    }
-    .opt-logo-chip {
-        width: 240px; height: 96px; flex-shrink: 0;
-        background: #fff; border-radius: 14px;
-        display: flex; align-items: center; justify-content: center;
-        box-shadow: 3px 3px 0 rgba(0,82,204,0.15);
-    }
-    .opt-logo-chip img { max-height: 68px; max-width: 210px; filter: none; }
-    .opt-reason { display: flex; flex-direction: column; }
-    .opt-reason .opt-tag { font-size: 34px; font-weight: 900; color: #fff; background: var(--red); border-radius: 8px; padding: 4px 16px; align-self: flex-start; margin-bottom: 8px; }
-    .opt-reason .opt-text { font-size: 46px; font-weight: 900; color: #1a1a2e; }
-
-    .slide-illust {
-        position: absolute; bottom: 40px; right: 40px;
-    }
-    .slide-illust img { height: 260px; }
-
-    /* ===== CTA (Slide 6) ===== */
-    .slide-cta {
-        align-items: center; justify-content: center; text-align: center;
-        background: linear-gradient(135deg, #0052cc, #003380);
-        padding: 70px;
-    }
-    .cta-logo { height: 110px; filter: none; background: #fff; border-radius: 18px; padding: 8px 16px; box-shadow: 4px 4px 0 rgba(0,0,0,0.18); margin-bottom: 12px; }
-    .cta-title { font-size: 84px; font-weight: 900; color: #ffd700; line-height: 1.2; margin-bottom: 18px; }
-    .cta-sub { font-size: 50px; font-weight: 900; color: #fff; margin-bottom: 26px; }
-    .cta-banner-img { width: 840px; border-radius: 18px; box-shadow: 0 14px 40px rgba(0,0,0,0.35); margin-bottom: 22px; filter: none; }
-    .cta-arrow { font-size: 90px; color: #ffd700; animation: bounce 1s infinite; }
-    @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-22px); }
-    }
-</style>
-</head>
-<body>
-
-<!-- ===================== Slide 1 : Thumbnail ===================== -->
+:root{--blue:#0052cc;--blue-dark:#003380;--red:#e63946;--ink:#172033;--pale:#eaf3ff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{display:flex;flex-direction:column;align-items:center;gap:40px;padding:40px;background:#f0f4f8;color:var(--ink);font-family:Inter,'Noto Sans JP',sans-serif}
+.slide-container{position:relative;overflow:hidden;display:flex;width:1080px;height:1080px;flex:none;background:#fff}
+.slide-thumbnail{align-items:center;justify-content:center;flex-direction:column;text-align:center;border:25px solid var(--blue);padding:160px 42px 210px;background:repeating-conic-gradient(from 0deg at 52% 48%,rgba(0,82,204,.06) 0deg 2.5deg,transparent 2.5deg 16deg),radial-gradient(ellipse at 52% 48%,#fff 5%,#e8f3ff 45%,#c8dcff 100%)}
+.thumb-top-strip{position:absolute;top:25px;left:25px;right:25px;background:var(--blue);color:#fff;font-size:36px;font-weight:900;padding:18px 0;letter-spacing:.06em;z-index:3}
+.thumb-tag{font-size:80px;font-weight:900;color:#fff;background:var(--red);padding:18px 54px;transform:rotate(-3deg);box-shadow:8px 8px 0 #0004;margin-bottom:28px}
+.thumb-title{font-size:80px;line-height:1.25;font-weight:900;margin-bottom:22px;max-width:900px}
+.thumb-sub-band{font-size:54px;font-weight:900;color:#fff;background:var(--blue);padding:18px 48px;border-radius:12px;box-shadow:4px 4px 0 #0003}
+.thumb-flow{display:flex;align-items:center;gap:12px;white-space:nowrap;margin-top:35px;font-size:33px;font-weight:900;color:var(--blue-dark)}
+.thumb-flow span{padding:10px 16px;border:4px solid var(--blue);border-radius:16px;background:#fff}.thumb-flow b{color:var(--red);font-size:38px}
+.slide-content{position:relative;z-index:1;display:flex;flex:1;min-height:0;flex-direction:column;padding:75px 70px}
+.watermark{position:absolute;top:-38px;left:10px;color:var(--blue);opacity:.07;font-size:280px;line-height:1;font-weight:900}
+.slide-title{position:relative;font-size:62px;line-height:1.2;font-weight:900;border-bottom:10px solid var(--blue);padding-bottom:15px;margin-bottom:30px}
+.slide-body{position:relative;z-index:1;display:flex;flex:1;min-height:0;flex-direction:column;justify-content:space-evenly;gap:22px}
+.info-card{padding:26px 32px;border-left:14px solid var(--blue);border-radius:0 18px 18px 0;background:#f0f5ff;font-size:48px;line-height:1.25;font-weight:900}
+.path-panel{display:flex;flex:1;flex-direction:column;align-items:center;justify-content:center;gap:22px;border:8px solid var(--blue);border-radius:28px;background:linear-gradient(145deg,#eaf3ff,#fff);text-align:center;padding:32px}
+.path-count{color:var(--red);font-size:180px;font-weight:900;line-height:1}.path-count span{font-size:82px}.path-step{font-size:64px;font-weight:900;color:var(--blue-dark)}.path-step b{color:var(--red);padding:0 18px}.path-panel p{font-size:40px;font-weight:900}
+.two-counts{display:grid;grid-template-columns:1fr 1fr;gap:25px;flex:1;align-items:stretch}
+.count-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;border:8px solid var(--blue);border-radius:25px;background:var(--pale);text-align:center;padding:20px}
+.count-card.red{border-color:var(--red);background:#fff0f0}.count-card strong{font-size:210px;line-height:1;color:var(--blue)}.count-card.red strong{color:var(--red)}.count-card span{font-size:44px;font-weight:900}.count-card b{font-size:36px}
+.question-card{display:flex;align-items:center;gap:24px;padding:28px;border-radius:22px;background:#eaf3ff;border:5px solid var(--blue)}.q-badge{flex:none;width:120px;height:120px;display:grid;place-items:center;border-radius:50%;background:var(--blue);color:#fff;font-size:50px;font-weight:900}.question-card h3{font-size:52px;line-height:1.25;font-weight:900}
+.choice-grid{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;flex:1}.choice{display:grid;place-items:center;height:300px;padding:22px;text-align:center;border:8px solid;border-radius:25px;font-size:44px;font-weight:900;line-height:1.3}.choice.blue{color:var(--blue);border-color:var(--blue);background:#eaf3ff}.choice.red{color:var(--red);border-color:var(--red);background:#fff0f0}.choice-grid> b{font-size:38px;color:#78849a}
+.route-diagram{display:flex;flex:1;min-height:0;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4px 16px}.route-start,.route-question{display:grid;place-items:center;min-width:340px;padding:18px 38px;border:7px solid var(--blue);border-radius:24px;background:#eaf3ff;color:var(--blue-dark);font-size:46px;font-weight:900}.route-down{height:54px;color:var(--red);font-size:54px;line-height:1;font-weight:900}.route-question{min-width:200px;border-color:var(--red);background:#fff0f0;color:var(--red);font-size:52px}.route-branches{width:100%;height:150px;flex:none;overflow:visible}.route-outcomes{display:grid;width:100%;grid-template-columns:1fr 1fr;gap:60px;margin-top:-8px}.route-outcome{display:grid;min-height:160px;place-items:center;border:8px solid var(--blue);border-radius:25px;background:#eaf3ff;color:var(--blue);font-size:48px;font-weight:900}.route-outcome.red{border-color:var(--red);background:#fff0f0;color:var(--red)}.route-note{margin-top:28px;color:var(--blue-dark);font-size:36px;font-weight:900}.split-panel{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:18px;flex:1;border:8px solid var(--blue);border-radius:28px;background:linear-gradient(145deg,#f7faff,#fff);padding:24px}.split-side{display:flex;flex-direction:column;align-items:center;gap:15px;text-align:center}.split-number{font-size:190px;line-height:1;color:var(--blue);font-weight:900}.split-side.online .split-number{color:var(--red)}.split-side strong{font-size:47px;font-weight:900}.split-side p{font-size:33px;font-weight:900;color:#526078}.split-divider{width:5px;height:300px;border-radius:999px;background:#9aa6b7}
+.cta-slide{align-items:center;justify-content:center;background:linear-gradient(135deg,#0052cc,#003380);padding:48px;color:#fff;text-align:center}.cta-content{display:flex;align-items:center;justify-content:space-evenly;flex-direction:column;width:100%;height:100%;gap:14px}.cta-kicker{font-size:44px;font-weight:900;color:#fff}.cta-title{font-size:52px;white-space:nowrap;line-height:1.25;color:#ffd700;font-weight:900}.cta-sub{font-size:40px;line-height:1.3;font-weight:900}.cta-banner-img{width:820px;max-height:460px;object-fit:contain;background:#fff;border:8px solid #fff;border-radius:20px;filter:drop-shadow(0 10px 20px #0004)}.cta-arrow{font-size:48px;font-weight:900;color:#ffd700}.cta-arrow span{display:block;font-size:75px;line-height:.9;animation:bounce 1.1s infinite}@keyframes bounce{50%{transform:translateY(12px)}}
+</style></head><body>
+<!-- Slide ID: 1 -->
 <div class="slide-container slide-thumbnail">
-    <div class="thumb-top-strip">⚡ 2026年8月 UQ mobile 手数料改定 ⚡</div>
-    <div class="thumb-accent-tri tl"></div>
-    <div class="thumb-accent-tri br"></div>
-
-    <div class="thumb-tag">8月値上げ！</div>
-    <div class="thumb-title">手数料が<span class="hl-red">4,950円</span>に…<br>でも<span class="hl">0円</span>にできる</div>
-    <div class="thumb-sub-band">乗り換え候補3選！</div>
-    <div class="thumb-logo-wrap">
-        <img src="public/images/logo/UQ_logo_2.png" alt="UQ mobile">
-    </div>
-
-    <div class="thumb-illust" style="position: absolute; bottom: 5px;">
-        <img src="public/images/irasutoya/bikkuri_me_tobideru_man.png" alt="驚き">
-    </div>
+  <div class="thumb-top-strip">⚡ 格安SIM選び 15種診断 ⚡</div>
+  <div class="thumb-tag">最短3問！</div>
+  <h1 class="thumb-title">格安SIM15種診断 最初の質問は？</h1>
+  <div class="thumb-sub-band">あなたに合う1枚が見つかる</div>
+  <div class="thumb-flow" aria-label="診断チャート">
+    <span>START</span><b>→</b><span>Q1</span><b>→</b><span>Q2</span><b>→</b><span>Q3</span><b>→</b><span>あなたの1枚</span>
+  </div>
 </div>
-
-<!-- ===================== Slide 2 : 店頭事務手数料の値上げ ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">2</div>
-    <h2 class="slide-title">店頭手数料が<span class="hl-red">値上げ</span></h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">🏪</span>UQ mobile 店頭の事務手数料</div>
-        <div class="price-flow">
-            <span class="pf-old">3,850円</span>
-            <span class="pf-arrow">▶</span>
-            <span class="pf-new">4,950円</span>
-        </div>
-        <div class="info-card alert"><span class="ic-emoji">📈</span>約3割の値上げ<br>（2026年8月1日〜）</div>
-    </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/business_man2_3_surprise.png" alt="驚き">
-    </div>
+<!-- Slide ID: 2 -->
+<div class="slide-container">
+  <div class="watermark">2</div>
+  <div class="slide-content">
+    <h2 class="slide-title">最短3問で15種から診断</h2>
+    <div class="slide-body"><div class="path-panel"><div class="path-count">15<span>種</span></div>
+          <div class="path-step">START <b>→</b> Q1</div><p>質問に答えて診断</p></div></div>
+  </div>
 </div>
-
-<!-- ===================== Slide 3 : eSIMをWebで申し込めば0円 ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">3</div>
-    <h2 class="slide-title">でも<span class="hl">eSIM</span>なら<span class="hl-red">0円</span></h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">🙆</span>慌てて乗り換えなくてOK</div>
-        <div class="info-card"><span class="ic-emoji">📱</span>eSIMをWebで申し込めば</div>
-        <div class="info-card alert"><span class="ic-emoji">🎉</span>事務手数料は<span class="ic-free">0円</span>にできる</div>
-    </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/internet_kanki_woman1.png" alt="喜び">
-    </div>
+<!-- Slide ID: 3 -->
+<div class="slide-container">
+  <div class="watermark">3</div>
+  <div class="slide-content">
+    <h2 class="slide-title">質問数はルートで変わる</h2>
+    <div class="slide-body"><div class="two-counts"><div class="count-card"><strong>3</strong><span>問で決まる</span><b>早いルート</b></div>
+          <div class="count-card red"><strong>6</strong><span>問でもOK</span><b>長いルート</b></div></div></div>
+  </div>
 </div>
-
-<!-- ===================== Slide 4 : 本当に100Mbps必要？ ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">4</div>
-    <h2 class="slide-title">本当に<span class="hl">100Mbps</span>必要？</h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="info-card"><span class="ic-emoji">🔍</span>ネット検索は<span class="ic-num">約10Mbps</span></div>
-        <div class="info-card"><span class="ic-emoji">🎬</span>動画視聴は<span class="ic-num">約20Mbps</span>で快適</div>
-        <div class="list-item"><span class="li-emoji">👌</span>そんなに速くなくてもOK</div>
-    </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/pose_necchuu_smartphone_woman.png" alt="スマホ視聴">
-    </div>
+<!-- Slide ID: 4 -->
+<div class="slide-container">
+  <div class="watermark">4</div>
+  <div class="slide-content">
+    <h2 class="slide-title">診断 Q1</h2>
+    <div class="slide-body"><div class="question-card"><span class="q-badge">Q1</span><h3>店舗での<br>対面サポートは必要？</h3></div>
+          <div class="choice-grid"><div class="choice blue">はい→店舗派</div><b>OR</b><div class="choice red">いいえ→<br>オンライン派</div></div></div>
+  </div>
 </div>
-
-<!-- ===================== Slide 5 : 乗り換え候補3選 ===================== -->
-<div class="slide-container slide-pad">
-    <div class="watermark">5</div>
-    <h2 class="slide-title">乗り換え候補<span class="hl-red">3選</span></h2>
-    <div class="slide-body" style="margin-bottom: 120px;">
-        <div class="opt-row">
-            <div class="opt-logo-chip"><img src="public/images/logo/Povo_logo.png" alt="povo2.0"></div>
-            <div class="opt-reason"><span class="opt-tag">速さ重視</span><span class="opt-text">povo2.0</span></div>
-        </div>
-        <div class="opt-row">
-            <div class="opt-logo-chip"><img src="public/images/logo/Rakuten_Mobile_logo.png" alt="楽天モバイル"></div>
-            <div class="opt-reason"><span class="opt-tag">お店で相談</span><span class="opt-text">楽天モバイル</span></div>
-        </div>
-        <div class="opt-row">
-            <div class="opt-logo-chip"><img src="public/images/logo/Mineo_logo.png" alt="mineo"></div>
-            <div class="opt-reason"><span class="opt-tag">安さ重視</span><span class="opt-text">mineo</span></div>
-        </div>
-    </div>
-    <div class="slide-illust" style="z-index: 2;">
-        <img src="public/images/irasutoya/pose_yubisashi_kakunin_businesswoman.png" alt="確認">
-    </div>
+<!-- Slide ID: 5 -->
+<div class="slide-container">
+  <div class="watermark">5</div>
+  <div class="slide-content">
+    <h2 class="slide-title">診断 Q5</h2>
+    <div class="slide-body"><div class="question-card"><span class="q-badge">Q5</span><h3>通信品質とコスパ、<br>どっちを優先？</h3></div>
+          <div class="choice-grid"><div class="choice blue">通信品質</div><b>OR</b><div class="choice red">コスパ</div></div></div>
+  </div>
 </div>
-
-<!-- ===================== Slide 6 : CTA ===================== -->
-<div class="slide-container slide-cta">
-    <img src="public/images/logo/UQ_logo_2.png" class="cta-logo" alt="UQ mobile">
-    <div class="cta-title">料金・0円のコツは<br>本編で！</div>
-    <div class="cta-sub">自分に合う乗り換え先を解説</div>
-    <img src="public/images/thumbnails/【2026年8月】UQ mobileが手数料を4,950円に値上げ！乗り換え候補3選を徹底解説_サムネ1.png" class="cta-banner-img" alt="本編動画をチェック">
-    <div class="cta-arrow">▼</div>
+<!-- Slide ID: 6 -->
+<div class="slide-container">
+  <div class="watermark">6</div>
+  <div class="slide-content">
+    <h2 class="slide-title">Q5で分かれ道</h2>
+    <div class="slide-body"><div class="route-diagram">
+          <div class="route-start">オンライン派</div>
+          <div class="route-down" aria-hidden="true">↓</div>
+          <div class="route-question">Q5</div>
+          <svg class="route-branches" viewBox="0 0 800 150" role="img" aria-label="Q5から通信品質派とコスパ派に分岐">
+            <path d="M400 0 V55 H190 V145 M400 55 H610 V145" fill="none" stroke="#78849a" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M190 125 L165 100 M190 125 L215 100 M610 125 L585 100 M610 125 L635 100" fill="none" stroke="#78849a" stroke-width="12" stroke-linecap="round"/>
+          </svg>
+          <div class="route-outcomes">
+            <div class="route-outcome blue">通信品質派</div>
+            <div class="route-outcome red">コスパ派</div>
+          </div>
+          <p class="route-note">同じオンライン派でも、進む先が変わる</p>
+        </div></div>
+  </div>
 </div>
-
-</body>
-</html>
+<!-- Slide ID: 7 -->
+<div class="slide-container">
+  <div class="watermark">7</div>
+  <div class="slide-content">
+    <h2 class="slide-title">店舗派も複数に分岐</h2>
+    <div class="slide-body"><div class="split-panel"><div class="split-side"><span class="split-number">5</span><strong>店舗派</strong><p>候補の会社に分岐</p></div>
+          <div class="split-divider" aria-hidden="true"></div><div class="split-side online"><span class="split-number">?</span><strong>オンライン派</strong><p>さらに質問が続く</p></div></div></div>
+  </div>
+</div>
+<!-- Slide ID: 8 -->
+<div class="slide-container cta-slide">
+  <div class="cta-content">
+    <div class="cta-kicker">続きの診断は本編で</div>
+    <h2 class="cta-title">格安SIM15種 徹底診断！<br>最短3問であなたに合う1枚が見つかる</h2>
+    <p class="cta-sub">診断チャートを一緒に進めよう</p>
+    <img class="cta-banner-img" src="public/images/thumbnails/29_格安SIM診断チャート_サムネ1.png" alt="本編動画のサムネイル">
+    <div class="cta-arrow">本編をチェック <span>⬇</span></div>
+  </div>
+</div>
+</body></html>
