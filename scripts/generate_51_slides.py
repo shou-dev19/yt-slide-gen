@@ -225,12 +225,12 @@ def footer(slide_id: str, content: str) -> str:
 def render(slide_id: str, content: str) -> str:
     if slide_id in {'1','2','3'}:
         if slide_id=='1':
-            return std(slide_id,'格安SIMにしたら<br><span class="intro-red">山で圏外</span>？<br>連絡できない？','登山中のもしもに備える','<img class="intro-figure" src="public/images/irasutoya/shinpai_man.png" alt="圏外に困る人">')
+            return std(slide_id,'<span class="intro-red">山で圏外</span>でも<br>連絡できる<br>格安SIMを教えて！','登山中のもしもに備える','<img class="intro-figure" src="public/images/irasutoya/shinpai_man.png" alt="圏外に困る人">')
         if slide_id=='2':
             return std(slide_id,'登山する人に<br>おすすめの<br><span class="intro-red">格安SIM</span>は？','友達からの相談')
         return std(slide_id,'ドコモ・au・ソフトバンク<br><span class="intro-red">衛星通信</span>を開始','格安SIMでも山の連絡手段を持てる','<div class="intro-logos"><img src="public/images/logo/docomo_logo.png" alt="ドコモ"><img src="public/images/logo/au_logo.png" alt="au"><img src="public/images/logo/Softbank_logo.png" alt="ソフトバンク"></div>')
     if slide_id=='4':
-        return std(slide_id,'登山で圏外でも<br><span class="intro-red">連絡できる</span>格安SIMは？<br><span class="intro-count">4</span>つの選び方','2026年最新｜格安SIM図鑑')
+        return std(slide_id,'登山で圏外でも<br><span class="intro-red">連絡できる</span>格安SIMは？<br>衛星通信が使えるSIMの<br><span class="intro-count">4</span>つの選び方','2026年最新｜格安SIM図鑑')
     if slide_id=='5': return agenda(content)
     if re.fullmatch(r'\d+-0',slide_id) and content.startswith('第'):
         return chapter(slide_id,content)
