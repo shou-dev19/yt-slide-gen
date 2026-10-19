@@ -8,7 +8,7 @@ import re
 from pathlib import Path
 
 ROOT = Path('/workspaces/yt-factory/packages/slide-gen')
-MASTER = Path('/workspaces/yt-factory/packages/scenario-gen/archive/videos/51_【2026年最新】登山で圏外でも連絡できる格安SIMは？衛星通信が使える4つの選び方/long/【2026年最新】登山で圏外でも連絡できる格安SIMは？衛星通信が使える4つの選び方.csv')
+MASTER = Path('/workspaces/yt-factory/packages/scenario-gen/archive/videos/51_【2026年最新】登山で圏外でも連絡できる格安SIMは？衛星通信が使える4つの選び方/long/【2026年最新】登山で圏外でも連絡できる格安SIMは？衛星通信が使えるSIMの4つの選び方.csv')
 OUT = ROOT / 'slides.html'
 RED = ('#C8102E', '#9a0c23', '#fde3e7')
 BLUE = ('#1565C0', '#0d47a1', '#e3f0fb')
